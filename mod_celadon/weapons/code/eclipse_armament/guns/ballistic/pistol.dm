@@ -1,11 +1,12 @@
 /obj/item/gun/ballistic/automatic/pistol/usp45
-	name = "\improper USP .45"
-	desc = "USP .45."
+	name = "\improper Eclips USP .45"
+	desc = "Пистолет под патрон .45 калибра, мощный и надежный. Встроенн тактический фонарик. Этот пистолет создан по проверенным чертежам, эргономичный и эффективный."
 	icon = 'mod_celadon/weapons/icons/guns/usp.dmi'
 	icon_state = "usp"
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/usp45_standart
 	can_suppress = FALSE
+	manufacturer = MANUFACTURER_ECLIPSE
 	fire_sound = 'mod_celadon/weapons/sound/gun/shot_usp45.wav'
 	rack_sound = 'sound/weapons/gun/pistol/candor_cocked.ogg' //На будущее заменить
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg' //На будущее заменить
@@ -25,13 +26,14 @@
 	return ..()
 
 /obj/item/gun/ballistic/automatic/pistol/glock
-	name = "\improper Glock 17"
-	desc = "Glock 17"
+	name = "\improper Eclips Glock"
+	desc = "Доступный и надежный пистолет под патрон 9mm. Фонарик, в комплект не входит. Популярный выбор среди колонистов и наемников."
 	icon = 'mod_celadon/weapons/icons/guns/glock.dmi'
 	icon_state = "glock"
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/glock_standart
 	can_suppress = FALSE
+	manufacturer = MANUFACTURER_ECLIPSE
 	fire_sound = 'mod_celadon/weapons/sound/gun/shot_glock.wav'
 	load_sound = 'sound/weapons/gun/pistol/mag_insert.ogg'//На будущее заменить
 	load_empty_sound = 'sound/weapons/gun/pistol/mag_insert.ogg'//На будущее заменить

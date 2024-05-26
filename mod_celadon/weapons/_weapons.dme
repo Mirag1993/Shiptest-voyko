@@ -3,16 +3,20 @@
 
 #include "_weapons.dm"
 
-#include "code/modules/projectiles/ammunition/ballistic/rifle.dm"
-#include "code/modules/projectiles/boxes_magazines/external/rifle.dm"
-#include "code/modules/projectiles/boxes_magazines/ammo_boxes.dm"
-#include "code/modules/projectiles/guns/ballistic/assault.dm"
-#include "code/modules/projectiles/guns/ballistic/revolver.dm"
-#include "code/modules/projectiles/projectile/bullets/rifle.dm"
-#include "code/modules/projectiles/guns/ballistic/pistol.dm"
-#include "code/ammo.dm"
-#include "code/gun.dm"
+#include "code/eclipse.dm"
 
-#include "code/modules/research/all_nodes.dm"
+#include "code/eclipse_armament/ammunition/ballistic/rifle.dm"
+#include "code/eclipse_armament/boxes_magazines/external/rifle.dm"
+#include "code/eclipse_armament/boxes_magazines/ammo_boxes.dm"
+#include "code/eclipse_armament/guns/ballistic/assault.dm"
+#include "code/eclipse_armament/guns/ballistic/revolver.dm"
+#include "code/eclipse_armament/projectile/bullets/rifle.dm"
+#include "code/eclipse_armament/guns/ballistic/pistol.dm"
+#include "code/eclipse_logistics/sell_cargo_ammo.dm"
+#include "code/eclipse_logistics/sell_cargo_guns.dm"
+#include "code/eclipse_logistics/armomat.dm"
+
+#include "code/eclipse_rnd/all_nodes.dm"
 
 #endif
+
