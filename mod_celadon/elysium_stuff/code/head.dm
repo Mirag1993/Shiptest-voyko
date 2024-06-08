@@ -6,17 +6,17 @@
 
 /obj/item/clothing/head/bandana/elysium/black
 	name = "Чёрная бандана"
-	icon_state = "bandana_black_elysiun"
+	icon_state = "bandana_black_elysium"
 	mob_overlay_state = "bandana_black_elysium"
 
 /obj/item/clothing/head/bandana/elysium/white
 	name = "Белая бандана"
-	icon_state = "bandana_white_elysiun"
+	icon_state = "bandana_white_elysium"
 	mob_overlay_state = "bandana_white_elysium"
 
 /obj/item/clothing/head/bandana/elysium/green
 	name = "Зелёная бандана"
-	icon_state = "bandana_green_elysiun"
+	icon_state = "bandana_green_elysium"
 	mob_overlay_state = "bandana_green_elysium"
 
 /obj/item/clothing/head/turban
