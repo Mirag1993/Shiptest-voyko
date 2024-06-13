@@ -85,8 +85,10 @@
 /obj/item/clothing/head/space/elysm/space_helm
 	name = "Elysium EVA Helmet"
 	desc = "Довольно добротно сделанный шлем с маркировками сепаратистов Элизиума"
+	icon = 'mod_celadon/elysium_stuff/icons/obj/hats.dmi'
+	mob_overlay_icon = 'mod_celadon/elysium_stuff/icons/mob/space.dmi'
 	icon_state = "space_elysium"
-	mob_overlay_state = "armband"
+	mob_overlay_state = "space_elysium"
 	armor = list("melee" = 20, "bullet" = 15, "laser" = 15, "energy" = 20, "bomb" = 35, "bio" = 100, "rad" = 75, "fire" = 50, "acid" = 100)
 
 /// CentCom Elyzium
