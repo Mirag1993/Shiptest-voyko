@@ -116,6 +116,22 @@
 	item_state = "elysium_brigade_webbing"
 	resistance_flags = FIRE_PROOF
 
+/obj/item/clothing/under/solfed/solfed_officer_formal
+	name = "Solar Federation officer form"
+	desc = "This is the standard uniform of the Solar Federation Officer. It's colored dark blue."
+	icon = 'mod_celadon/solfed_stuff/icons/Solfed_officer.dmi'
+	mob_overlay_icon = 'mod_celadon/solfed_stuff/icons/mob/Solfed_officer.dmi'
+	icon_state = "solfed_officer_formal"
+	item_state = "solfed_officer_formal"
+
+/obj/item/clothing/head/solfed/solfed_officer_beret
+	name = "Solar Federation Brigade beret"
+	desc = "This is a beret of the Solar Federation's Officer. It's colored dark blue. It has the Solar Federation flag on the front."
+	icon = 'mod_celadon/solfed_stuff/icons/Solfed_officer.dmi'
+	mob_overlay_icon = 'mod_celadon/solfed_stuff/icons/mob/Solfed_officer.dmi'
+	icon_state = "solfed_officer_beret"
+	item_state = "solfed_officer_beret"
+
 /obj/item/clothing/head/solfed/elysium/beret
 	name = "Elysium Brigade beret"
 	desc = "This is a beret of the Solar Federation's Elysium Brigade. It's made in a dark green color. It has the Solar Federation flag on the front."
