@@ -60,12 +60,12 @@ ID мода: CELADON_DONATERS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mods/donaters.dm`: `DONATERS_SPEED_MULTIPLIER`, `DONATERS_SPEED_BASE`
+  Примеры: `code/__defines/~mod_celadon/donaters.dm`: `DONATERS_SPEED_MULTIPLIER`, `DONATERS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- Отсутствуют
+- `mod_celadon/_storge_icons/icons/donaters`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

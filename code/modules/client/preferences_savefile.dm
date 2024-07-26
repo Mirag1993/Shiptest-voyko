@@ -461,6 +461,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_tajara_chest_markings"], features["tajara_chest_markings"])
 	READ_FILE(S["feature_tajara_body_markings"], features["tajara_body_markings"])
 	READ_FILE(S["feature_tajara_tail"], features["tajara_tail"])
+	READ_FILE(S["tajara_ears_markings_color"], tajara_ears_markings_color)
+	READ_FILE(S["tajara_head_markings_color"], tajara_head_markings_color)
+	READ_FILE(S["tajara_nose_markings_color"], tajara_nose_markings_color)
+	READ_FILE(S["tajara_chest_markings_color"], tajara_chest_markings_color)
+	READ_FILE(S["tajara_body_markings_color"], tajara_body_markings_color)
 	// [/CELADON-ADD]
 
 	READ_FILE(S["equipped_gear"], equipped_gear)
@@ -534,6 +539,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.tajara_facial_hairs_list)
 		features["grad_style"]				= sanitize_inlist(features["grad_style"], GLOB.hair_gradients_list)
 		features["grad_color"]				= sanitize_hexcolor(features["grad_color"])
+
+
+
 	// [/CELADON-EDIT]
 	else
 		// [CELADON-EDIT] - TAJARA
@@ -614,6 +622,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["tajara_chest_markings"] = sanitize_inlist(features["tajara_chest_markings"], GLOB.tajara_chest_markings_list, "None")
 	features["tajara_body_markings"] = sanitize_inlist(features["tajara_body_markings"], GLOB.tajara_body_markings_list, "None")
 	features["tajara_tail"] = sanitize_inlist(features["tajara_tail"], GLOB.tajara_tail_list, "Long")
+	features["tajara_ears_markings_color"]				= sanitize_hexcolor(features["tajara_ears_markings_color"])
+	features["tajara_head_markings_color"]				= sanitize_hexcolor(features["tajara_head_markings_color"])
+	features["tajara_nose_markings_color"]				= sanitize_hexcolor(features["tajara_nose_markings_color"])
+	features["tajara_chest_markings_color"]				= sanitize_hexcolor(features["tajara_chest_markings_color"])
+	features["tajara_body_markings_color"]				= sanitize_hexcolor(features["tajara_body_markings_color"])
 	// [/CELADON-ADD]
 
 	all_quirks = SANITIZE_LIST(all_quirks)
@@ -709,6 +722,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_tajara_chest_markings"], features["tajara_chest_markings"])
 	WRITE_FILE(S["feature_tajara_body_markings"], features["tajara_body_markings"])
 	WRITE_FILE(S["feature_tajara_tail"], features["tajara_tail"])
+	WRITE_FILE(S["tajara_ears_markings_color"], tajara_ears_markings_color)
+	WRITE_FILE(S["tajara_head_markings_color"], tajara_head_markings_color)
+	WRITE_FILE(S["tajara_nose_markings_color"], tajara_nose_markings_color)
+	WRITE_FILE(S["tajara_chest_markings_color"], tajara_chest_markings_color)
+	WRITE_FILE(S["tajara_body_markings_color"], tajara_body_markings_color)
 	// [/CELADON-ADD]
 
 	//Flavor text

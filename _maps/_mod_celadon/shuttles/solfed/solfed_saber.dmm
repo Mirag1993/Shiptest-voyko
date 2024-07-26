@@ -4125,7 +4125,7 @@
 "FJ" = (
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/firealarm/directional/west,
-/obj/machinery/computer/cargo/express/solgov,
+/obj/machinery/computer/cargo/solgov,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "FP" = (
