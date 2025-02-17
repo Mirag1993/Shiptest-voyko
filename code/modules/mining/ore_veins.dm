@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/nest = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest = 30,
 		/mob/living/simple_animal/hostile/asteroid/brimdemon = 20,
-		/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient = 5,
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient = 1,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf/nest = 5,
 		)
 
@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/nest = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest = 30,
 		/mob/living/simple_animal/hostile/asteroid/brimdemon = 20,
-		/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient = 10,
+		/mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient = 5,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf/nest = 10,
 		)
 
