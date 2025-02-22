@@ -1376,9 +1376,6 @@
 /mob/living/carbon/human/species/zombie/infectious
 	race = /datum/species/zombie/infectious
 
-/mob/living/carbon/human/species/zombie/krokodil_addict
-	race = /datum/species/human/krokodil_addict
-
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
 	// [CELADON-ADD] - CELADON_QOL
