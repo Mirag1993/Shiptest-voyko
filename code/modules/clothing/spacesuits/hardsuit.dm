@@ -448,7 +448,7 @@
 	icon_state = "hardsuit1-ramzi"
 	item_state = "hardsuit1-ramzi"
 	hardsuit_type = "ramzi"
-	armor = list("melee" = 35, "bullet" = 25, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75)
+	armor = list("melee" = 35, "bullet" = 40, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75)
 
 /obj/item/clothing/suit/space/hardsuit/syndi/ramzi
 	name = "rust-red hardsuit"
