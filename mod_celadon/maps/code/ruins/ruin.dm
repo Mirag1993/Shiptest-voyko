@@ -562,6 +562,13 @@
 	suffix = "rockplanet_distillery.dmm"
 	cost = 3
 
+/datum/map_template/ruin/rockplanet/lasttemplar
+	name = "Last Templar"
+	description = "A containment zone built around a certain creature..."
+	id = "lasttemplar"
+	suffix = "rockplanet_lasttemplar.dmm"
+  cost = 3
+
 //							///
 //		MARK: Space
 //							///
