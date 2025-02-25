@@ -4793,7 +4793,6 @@
 	name = "master at arm's locker";
 	req_access_txt = "3"
 	},
-/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
 /obj/item/ammo_box/magazine/m9mm_rattlesnake,
 /obj/item/clothing/mask/gas/atmos{
 	name = "tactical gas mask";

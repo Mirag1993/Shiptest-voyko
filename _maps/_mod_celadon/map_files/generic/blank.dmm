@@ -13255,7 +13255,6 @@
 /area/outpost/exterior)
 "MH" = (
 /obj/structure/table/reinforced/plastitaniumglass,
-/obj/item/gun/ballistic/automatic/pistol/deagle,
 /obj/effect/turf_decal/industrial/warning/corner,
 /turf/open/floor/plasteel/dark_2,
 /area/centcom/evac)
