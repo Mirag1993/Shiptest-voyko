@@ -1944,9 +1944,6 @@
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "Yr" = (
 /obj/structure/chair/comfy/shuttle,
-/mob/living/simple_animal/hostile/human/syndicate/mecha_pilot/no_mech/nanotrasen{
-	name = "BLUFOR Pilot"
-	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "Yx" = (
