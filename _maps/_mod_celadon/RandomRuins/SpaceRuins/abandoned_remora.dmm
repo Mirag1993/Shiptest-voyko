@@ -1439,7 +1439,6 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/structure/bed{
 	dir = 4
 	},
