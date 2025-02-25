@@ -4723,7 +4723,6 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "SD" = (
-/obj/item/target/clown,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "SF" = (

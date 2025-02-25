@@ -1639,7 +1639,6 @@
 /obj/structure/flippedtable{
 	icon_state = "table"
 	},
-/obj/item/target/clown,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/ruin/space/has_grav/powerpuzzle/secure)

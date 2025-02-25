@@ -1881,7 +1881,6 @@
 	name = "Elysium Town"
 	})
 "nB" = (
-/obj/item/target/clown,
 /turf/open/floor/plating/asteroid/sand{
 	light_power = 0.8;
 	light_range = 2;
