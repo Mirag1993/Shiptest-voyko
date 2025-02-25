@@ -9999,7 +9999,6 @@
 /mob/living/carbon/human/species/vampire,
 /mob/living/carbon/human/species/zombie,
 /mob/living/carbon/human/species/zombie/infectious,
-/mob/living/carbon/human/species/zombie/krokodil_addict,
 /mob/living/carbon/human/species/ipc,
 /mob/living/carbon/human/species/lizard/ashwalker/kobold,
 /mob/living/carbon/human/species/spider,
