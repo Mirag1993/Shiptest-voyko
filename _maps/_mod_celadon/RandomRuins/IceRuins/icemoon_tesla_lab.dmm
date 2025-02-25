@@ -6226,7 +6226,6 @@
 	pixel_y = 10;
 	pixel_x = 6
 	},
-/obj/item/clothing/head/helmet/solfedm11,
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/icemoon/tesla_lab/armory)
 "Ax" = (
