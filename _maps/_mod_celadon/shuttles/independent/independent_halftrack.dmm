@@ -626,7 +626,6 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/item/tank/internals/oxygen,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
 /obj/machinery/suit_storage_unit/inherit,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage)
