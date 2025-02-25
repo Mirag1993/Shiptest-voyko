@@ -20136,7 +20136,6 @@
 /turf/open/floor/plating/rust,
 /area/outpost/hallway/central)
 "YW" = (
-/obj/effect/mob_spawn/human/corpse/syndicatestormtrooper,
 /turf/open/floor/plating/asteroid/icerock/smooth,
 /area/outpost/hallway/central)
 "YX" = (
