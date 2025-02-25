@@ -971,7 +971,6 @@
 	dir = 4
 	},
 /obj/structure/catwalk/over/plated_catwalk,
-/mob/living/simple_animal/hostile/clown/fleshclown,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "kP" = (
@@ -2654,7 +2653,6 @@
 	dir = 5
 	},
 /obj/structure/catwalk/over/plated_catwalk,
-/mob/living/simple_animal/hostile/clown/fleshclown,
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
@@ -4370,7 +4368,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_animal/hostile/clown/fleshclown,
 /obj/structure/chair/office,
 /turf/open/floor/plasteel,
 /area/ship/engineering/atmospherics)
