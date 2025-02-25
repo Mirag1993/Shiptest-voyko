@@ -675,7 +675,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/item/clothing/head/solfed/solfed_officer_beret,
 /turf/open/floor/plasteel/dark,
 /area/ruin/icemoon/tesla_lab/armory)
 "da" = (
@@ -3711,7 +3710,6 @@
 /obj/effect/turf_decal/spline/fancy/wood{
 	dir = 5
 	},
-/obj/item/clothing/under/solfed/solfed_officer_formal,
 /turf/open/floor/carpet/blue,
 /area/ruin/icemoon/tesla_lab/office)
 "qi" = (

@@ -6725,8 +6725,6 @@
 /obj/item/storage/belt/military/solfed,
 /obj/item/storage/belt/military/solfed/medical,
 /obj/item/storage/belt/military/solfed/elysium,
-/obj/item/clothing/under/solfed/solfed_officer_formal,
-/obj/item/clothing/head/solfed/solfed_officer_beret,
 /obj/item/clothing/head/solfed/elysium/beret,
 /obj/item/clothing/head/solfed/elysium/turban,
 /obj/item/clothing/head/helmet/solfedm11,
