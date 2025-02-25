@@ -5030,10 +5030,6 @@
 	pixel_x = 11;
 	pixel_y = -10
 	},
-/obj/item/reagent_containers/syringe/contraband/bath_salts{
-	pixel_y = 13;
-	pixel_x = 6
-	},
 /obj/item/reagent_containers/hypospray/medipen/survival{
 	pixel_y = -12;
 	pixel_x = -4

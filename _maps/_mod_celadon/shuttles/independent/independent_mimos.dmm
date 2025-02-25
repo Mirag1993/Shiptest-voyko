@@ -1782,7 +1782,6 @@
 /obj/item/storage/pill_bottle/stimulant,
 /obj/item/storage/pill_bottle/lsd,
 /obj/item/storage/pill_bottle/psicodine,
-/obj/item/reagent_containers/syringe/contraband/bath_salts,
 /obj/item/reagent_containers/syringe/contraband/crank,
 /obj/item/reagent_containers/syringe/contraband/fentanyl,
 /obj/item/reagent_containers/syringe/contraband/krokodil,

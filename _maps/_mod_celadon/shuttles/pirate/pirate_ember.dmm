@@ -4503,10 +4503,6 @@
 	dir = 10
 	},
 /obj/structure/table/wood,
-/obj/item/reagent_containers/syringe/contraband/bath_salts{
-	pixel_y = 6;
-	pixel_x = -4
-	},
 /obj/item/reagent_containers/syringe/contraband/space_drugs{
 	pixel_x = -5;
 	pixel_y = 3
