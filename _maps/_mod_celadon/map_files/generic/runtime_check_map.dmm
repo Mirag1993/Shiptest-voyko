@@ -11046,7 +11046,7 @@
 /area/space)
 "yI" = (
 /turf/open/space/basic,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "yK" = (
 /turf/closed/wall/r_wall/rust,
 /area/space)
@@ -11597,7 +11597,7 @@
 /area/outpost/security/hall)
 "Ia" = (
 /turf/open/space/basic,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Id" = (
 /turf/open/space/basic,
 /area/ruin/space/has_grav/corporatemine/crewquarters)
@@ -12167,7 +12167,7 @@
 /area/ship/general/command_crew/hos)
 "PX" = (
 /turf/open/space/basic,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Qd" = (
 /turf/open/space/basic,
 /area/overmap_encounter/planetoid/oldtown)
