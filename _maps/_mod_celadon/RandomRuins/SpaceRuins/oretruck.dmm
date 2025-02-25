@@ -1351,7 +1351,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/syringe/contraband/krokodil,
 /obj/effect/decal/cleanable/glass,
 /obj/machinery/light/broken/directional/west,
 /turf/open/floor/plasteel/dark,

@@ -3067,7 +3067,6 @@
 /obj/item/reagent_containers/syringe/penacid,
 /obj/item/reagent_containers/syringe/contraband,
 /obj/item/reagent_containers/syringe/contraband/space_drugs,
-/obj/item/reagent_containers/syringe/contraband/krokodil,
 /obj/item/reagent_containers/syringe/contraband/crank,
 /obj/item/reagent_containers/syringe/contraband/methamphetamine,
 /obj/item/reagent_containers/syringe/contraband/fentanyl,
