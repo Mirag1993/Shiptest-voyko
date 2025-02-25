@@ -630,7 +630,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/astraeus/munitions)
 "sX" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/tech/techmaint,

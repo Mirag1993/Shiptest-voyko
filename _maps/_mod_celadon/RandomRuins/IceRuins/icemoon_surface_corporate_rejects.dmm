@@ -1893,7 +1893,6 @@
 /area/ruin/unpowered/corprejectrooms)
 "Qf" = (
 /obj/structure/bed,
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/unpowered/corprejectrooms)

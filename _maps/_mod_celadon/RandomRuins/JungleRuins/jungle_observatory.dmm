@@ -629,7 +629,6 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/science/misc_lab)
 "Rf" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/item/pickaxe/mini,
 /obj/item/grenade/syndieminibomb,
 /obj/item/camera,
