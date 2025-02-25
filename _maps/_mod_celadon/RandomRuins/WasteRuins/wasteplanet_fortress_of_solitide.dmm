@@ -345,7 +345,7 @@
 /obj/item/clothing/under/rank/civilian/clown/jester,
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat,
 /obj/item/borg/upgrade/transform/clown,
-/obj/item/stamp/clown,
+/obj/item/stamp,
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /obj/item/clothing/suit/space/hardsuit/ert/clown{
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 35, "bio" = 100, "rad" = 100, "fire" =100, "acid" = 100)

@@ -687,7 +687,7 @@
 	pixel_x = 6;
 	pixel_y = 8
 	},
-/obj/item/stamp/clown{
+/obj/item/stamp{
 	pixel_x = -8;
 	pixel_y = -1
 	},
