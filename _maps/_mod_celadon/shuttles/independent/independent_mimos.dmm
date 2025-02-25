@@ -1609,7 +1609,7 @@
 /turf/open/floor/wood/mahogany,
 /area/ship/security)
 "si" = (
-/obj/structure/sign/poster/contraband/clown,
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ship/engineering/atmospherics)
 "sk" = (

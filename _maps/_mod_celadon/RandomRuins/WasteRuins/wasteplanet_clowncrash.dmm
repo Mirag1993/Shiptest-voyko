@@ -112,7 +112,7 @@
 /turf/open/floor/plating/asteroid/wasteplanet,
 /area/overmap_encounter/planetoid/cave/explored)
 "w" = (
-/obj/structure/sign/poster/contraband/clown,
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/mineral/titanium,
 /area/overmap_encounter/planetoid/cave/explored)
 "x" = (

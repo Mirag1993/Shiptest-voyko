@@ -11547,7 +11547,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/contraband/clown{
+/obj/structure/sign/poster/contraband/smoke{
 	pixel_x = -32
 	},
 /turf/open/floor/plating,

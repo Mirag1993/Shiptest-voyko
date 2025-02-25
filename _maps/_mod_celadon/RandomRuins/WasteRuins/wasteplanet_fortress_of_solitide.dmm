@@ -176,7 +176,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "bC" = (
-/obj/structure/sign/poster/contraband/clown,
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
 "bF" = (
