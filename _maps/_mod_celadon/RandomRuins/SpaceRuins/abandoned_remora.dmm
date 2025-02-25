@@ -4455,7 +4455,6 @@
 /obj/item/defibrillator/compact/combat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/mob_spawn/human/corpse/syndicateramzi,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "Gd" = (

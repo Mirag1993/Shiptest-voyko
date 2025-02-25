@@ -70,7 +70,6 @@
 	pixel_y = 21;
 	anchored = 1
 	},
-/obj/effect/mob_spawn/human/corpse/syndicateramzi,
 /turf/open/floor/suns,
 /area/ruin/rockplanet/lasttemplar/medbay)
 "aM" = (

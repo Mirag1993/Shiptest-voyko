@@ -1818,7 +1818,6 @@
 /turf/open/floor/wood/walnut,
 /area/overmap_encounter/planetoid/cave/explored)
 "wM" = (
-/obj/effect/mob_spawn/human/corpse/syndicateramzi,
 /turf/open/floor/plating/asteroid/icerock/temperate,
 /area/overmap_encounter/planetoid/cave/explored)
 "wQ" = (
