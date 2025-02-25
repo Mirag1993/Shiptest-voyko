@@ -3792,7 +3792,6 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/vomit,
-/mob/living/simple_animal/hostile/clown/mutant/blob,
 /obj/item/clothing/shoes/clown_shoes/banana_shoes,
 /obj/structure/bed,
 /obj/item/reagent_containers/syringe/contraband/krokodil,
