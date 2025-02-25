@@ -3608,7 +3608,6 @@
 /obj/item/storage/photo_album/CMO,
 /obj/item/door_remote/chief_medical_officer,
 /obj/machinery/light/directional/north,
-/obj/item/hypospray/mkii/CMO,
 /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/CMO,
 /obj/item/card/id/captains_spare,
 /obj/structure/closet/secure_closet/CMO,

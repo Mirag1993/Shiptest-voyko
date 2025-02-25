@@ -1674,9 +1674,6 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/item/hypospray/mkii/CMO/combat{
-	pixel_x = -10
-	},
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/plasteel/patterned/cargo_one,

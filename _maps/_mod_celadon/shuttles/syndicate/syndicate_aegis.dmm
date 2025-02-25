@@ -569,7 +569,6 @@
 	name = "lead doctor's jacket"
 	},
 /obj/item/clothing/glasses/hud/health/night,
-/obj/item/hypospray/mkii/CMO,
 /obj/item/clothing/under/syndicate/suns/xo,
 /obj/item/clothing/head/suns,
 /obj/item/clothing/mask/breath/suns,
