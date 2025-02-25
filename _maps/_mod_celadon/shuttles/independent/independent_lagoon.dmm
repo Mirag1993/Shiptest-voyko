@@ -4309,7 +4309,7 @@
 	dir = 4
 	},
 /obj/item/paper_bin/bundlenatural,
-/obj/item/stamp/head_of_personnel,
+/obj/item/stamp,
 /obj/item/pen/fountain,
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/wood,

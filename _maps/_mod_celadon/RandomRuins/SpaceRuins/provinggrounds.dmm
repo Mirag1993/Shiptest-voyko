@@ -630,7 +630,6 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/space/has_grav/astraeus/munitions)
 "sX" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/tech/techmaint,
@@ -1639,7 +1638,6 @@
 /obj/structure/flippedtable{
 	icon_state = "table"
 	},
-/obj/item/target/clown,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/ruin/space/has_grav/powerpuzzle/secure)
@@ -1946,9 +1944,6 @@
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "Yr" = (
 /obj/structure/chair/comfy/shuttle,
-/mob/living/simple_animal/hostile/human/syndicate/mecha_pilot/no_mech/nanotrasen{
-	name = "BLUFOR Pilot"
-	},
 /turf/open/floor/mineral/titanium/blue,
 /area/ruin/space/has_grav/derelictoutpost/dockedship)
 "Yx" = (

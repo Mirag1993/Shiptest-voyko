@@ -3843,7 +3843,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/port)
 "Wf" = (
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/turf_decal/spline/fancy/opaque/deforestblue,
 /turf/open/floor/plasteel/white,

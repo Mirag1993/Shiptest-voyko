@@ -398,7 +398,6 @@
 "bb" = (
 /obj/effect/decal/cleanable/food/pie_smudge,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/item/gun/ballistic/automatic/pistol/ringneck/no_mag,
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/plasteel/sepia,
@@ -792,7 +791,6 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/wood/ebony,
 /area/ruin/unpowered)
@@ -1439,7 +1437,6 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/structure/bed{
 	dir = 4
 	},
@@ -4078,7 +4075,6 @@
 	},
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/unpowered)
 "iZ" = (
@@ -4459,7 +4455,6 @@
 /obj/item/defibrillator/compact/combat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/mob_spawn/human/corpse/syndicateramzi,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "Gd" = (
@@ -4646,9 +4641,6 @@
 	},
 /obj/effect/decal/cleanable/oil,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/human/syndicate/melee/spacebattle{
-	name = "Syndicate Close Combatant"
-	},
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "TD" = (

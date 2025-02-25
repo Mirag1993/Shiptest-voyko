@@ -971,7 +971,6 @@
 	dir = 4
 	},
 /obj/structure/catwalk/over/plated_catwalk,
-/mob/living/simple_animal/hostile/clown/fleshclown,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "kP" = (
@@ -1609,7 +1608,7 @@
 /turf/open/floor/wood/mahogany,
 /area/ship/security)
 "si" = (
-/obj/structure/sign/poster/contraband/clown,
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ship/engineering/atmospherics)
 "sk" = (
@@ -1783,10 +1782,8 @@
 /obj/item/storage/pill_bottle/stimulant,
 /obj/item/storage/pill_bottle/lsd,
 /obj/item/storage/pill_bottle/psicodine,
-/obj/item/reagent_containers/syringe/contraband/bath_salts,
 /obj/item/reagent_containers/syringe/contraband/crank,
 /obj/item/reagent_containers/syringe/contraband/fentanyl,
-/obj/item/reagent_containers/syringe/contraband/krokodil,
 /obj/item/reagent_containers/syringe/contraband/methamphetamine,
 /obj/item/reagent_containers/syringe/contraband/methamphetamine,
 /obj/item/reagent_containers/syringe/contraband/morphine,
@@ -2654,7 +2651,6 @@
 	dir = 5
 	},
 /obj/structure/catwalk/over/plated_catwalk,
-/mob/living/simple_animal/hostile/clown/fleshclown,
 /obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
@@ -3794,10 +3790,8 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/vomit,
-/mob/living/simple_animal/hostile/clown/mutant/blob,
 /obj/item/clothing/shoes/clown_shoes/banana_shoes,
 /obj/structure/bed,
-/obj/item/reagent_containers/syringe/contraband/krokodil,
 /obj/item/reagent_containers/syringe/contraband/morphine,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
@@ -4370,7 +4364,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_animal/hostile/clown/fleshclown,
 /obj/structure/chair/office,
 /turf/open/floor/plasteel,
 /area/ship/engineering/atmospherics)

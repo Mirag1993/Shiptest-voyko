@@ -1674,9 +1674,6 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/item/hypospray/mkii/CMO/combat{
-	pixel_x = -10
-	},
 /obj/structure/extinguisher_cabinet/directional/north,
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/plasteel/patterned/cargo_one,
@@ -4506,10 +4503,6 @@
 	dir = 10
 	},
 /obj/structure/table/wood,
-/obj/item/reagent_containers/syringe/contraband/bath_salts{
-	pixel_y = 6;
-	pixel_x = -4
-	},
 /obj/item/reagent_containers/syringe/contraband/space_drugs{
 	pixel_x = -5;
 	pixel_y = 3
@@ -4796,7 +4789,6 @@
 	name = "master at arm's locker";
 	req_access_txt = "3"
 	},
-/obj/item/gun/ballistic/automatic/pistol/deagle/gold,
 /obj/item/ammo_box/magazine/m9mm_rattlesnake,
 /obj/item/clothing/mask/gas/atmos{
 	name = "tactical gas mask";

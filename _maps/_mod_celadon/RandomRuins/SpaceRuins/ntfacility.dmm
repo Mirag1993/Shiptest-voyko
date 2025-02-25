@@ -1819,7 +1819,6 @@
 /turf/open/floor/carpet/blue,
 /area/ruin/powered)
 "Pn" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,

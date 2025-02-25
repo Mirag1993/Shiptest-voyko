@@ -669,7 +669,6 @@
 "nO" = (
 /obj/effect/gibspawner/generic/animal,
 /obj/item/chair/stool,
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/turf_decal/techfloor{
 	dir = 10
 	},

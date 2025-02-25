@@ -2647,7 +2647,6 @@
 /turf/open/floor/plasteel/dark/lava,
 /area/overmap_encounter/planetoid/cave/explored)
 "yY" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -2903,7 +2902,6 @@
 "Bs" = (
 /obj/effect/turf_decal/box/corners,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/mono,
 /area/ruin/lavaland/factory/warehouse)
@@ -5010,7 +5008,6 @@
 /turf/open/floor/plating/moss,
 /area/overmap_encounter/planetoid/cave/explored)
 "Yl" = (
-/obj/effect/mob_spawn/human/corpse/syndicatesoldier,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/turf_decal/siding/white,
 /obj/item/ammo_box/magazine/m10mm_ringneck{
