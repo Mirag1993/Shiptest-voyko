@@ -411,6 +411,8 @@
 		/obj/item/restraints/legcuffs/bola/watcher,
 		/obj/item/melee/sword/bone,
 		/obj/item/bodycamera,
+		/obj/item/binoculars,
+		/obj/item/tank/internals/emergency_oxygen,
 		))
 
 
