@@ -22,12 +22,13 @@
 		/datum/language/sylvan,
 		/datum/language/shadowtongue,
 		/datum/language/ratvar,
-// [CELADON-ADD] - CELADON_ITEMS
+		/datum/language/solarian,
+		// [CELADON-ADD] - CELADON_ITEMS
 		/datum/language/elysm,
 		/datum/language/alquadim,
 		/datum/language/thayoss,
 		/datum/language/fuyo
-// [/CELADON-ADD]
+		// [/CELADON-ADD]
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)
