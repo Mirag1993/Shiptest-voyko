@@ -15,6 +15,8 @@
 	var/atom/movable/screen/map_view/cam_screen
 	var/atom/movable/screen/plane_master/lighting/cam_plane_master
 	var/atom/movable/screen/background/cam_background
+	/// Countdown we use in case it's needed
+	var/obj/effect/countdown/countdown
 
 	// [CELADON-ADD] - OVERMAP ICON - Это вагабонд насрал
 	var/obj/token_visuals/move_vec
