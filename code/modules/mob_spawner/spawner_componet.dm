@@ -88,25 +88,10 @@
 	if(!COOLDOWN_FINISHED(src, spawn_delay))
 		return
 	COOLDOWN_START(src, spawn_delay, spawn_time)
-	var/spawn_multiplier = 1
-	//Avoid using this with spawners that add this component on initialize
-	//It causes numerous runtime errors during planet generation
-	if(spawn_distance_max > 1)
-		var/player_count = 0
-		for(var/mob/player as anything in GLOB.player_list)
-			if(player.virtual_z() != spot.virtual_z())
-				continue
-			if(!isliving(player))
-				continue
-			if(player.stat != CONSCIOUS)
-				continue
-			if(get_dist(get_turf(player), spot) > spawn_distance_max)
-				continue
-			player_count++
-		if(player_count > 3)
-			spawn_multiplier = round(player_count/2)
-	spawn_multiplier = clamp(spawn_multiplier, 1, max_mobs - length(spawned_mobs))
-	for(var/mob_index in 1 to spawn_multiplier)
+	var/to_spawn = clamp(spawn_amount, 1, max_mobs - length(spawned_mobs))
+	for(var/mob_index in 1 to to_spawn)
+		if(length(spawned_mobs) >= max_mobs)
+			return
 		if(spawn_distance_max > 1)
 			var/origin = spot
 			var/list/peel = turf_peel(spawn_distance_max, spawn_distance_min, origin, view_based = TRUE)
