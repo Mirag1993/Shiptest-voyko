@@ -177,6 +177,9 @@
 /obj/item/clothing/neck/stripedsolgovscarf,
 /obj/item/clothing/neck/stripedsolgovscarf,
 /obj/item/clothing/neck/stripedsolgovscarf,
+/obj/item/radio/headset/solgov/alt,
+/obj/item/radio/headset/solgov/alt,
+/obj/item/radio/headset/solgov/alt,
 /turf/open/floor/plasteel/white,
 /area/ship/crew/cryo)
 "es" = (
@@ -867,7 +870,6 @@
 	},
 /obj/machinery/suit_storage_unit/solgov,
 /obj/machinery/light/directional/west,
-/obj/item/tank/jetpack/oxygen/harness,
 /turf/open/floor/plasteel/tech,
 /area/ship/cargo)
 "sD" = (
@@ -1144,7 +1146,7 @@
 	id = "inkwell_turrets"
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ship/hallway/central)
+/area/ship/bridge)
 "zB" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/maintenance/three,
@@ -1241,6 +1243,9 @@
 /obj/item/folder/solgov,
 /obj/item/stack/tape,
 /obj/machinery/light/directional/west,
+/obj/item/tank/jetpack/oxygen/harness,
+/obj/item/tank/jetpack/oxygen/harness,
+/obj/item/tank/jetpack/oxygen/harness,
 /turf/open/floor/plasteel/tech,
 /area/ship/cargo)
 "Ap" = (
@@ -1647,6 +1652,10 @@
 /turf/open/floor/plasteel/white,
 /area/ship/bridge)
 "Hu" = (
+/obj/item/radio/intercom/wideband/directional/north{
+	pixel_x = 1;
+	pixel_y = 32
+	},
 /obj/structure/flora/bigplant,
 /turf/open/floor/carpet/royalblue,
 /area/ship/bridge)
@@ -1950,6 +1959,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/item/radio/intercom/directional/west,
 /turf/open/floor/plasteel/white,
 /area/ship/bridge)
 "Mo" = (
@@ -2008,7 +2018,7 @@
 	id = "inkwell_turrets"
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ship/crew/cryo)
+/area/ship/bridge)
 "MY" = (
 /obj/effect/turf_decal/corner/opaque/solgovblue/full,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2126,20 +2136,12 @@
 /obj/effect/turf_decal/solarpanel,
 /turf/open/floor/plating,
 /area/ship/engineering)
-"PY" = (
-/obj/machinery/porta_turret/ship/solfed/light{
-	dir = 10;
-	id = "inkwell_turrets"
-	},
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ship/engineering)
 "Qc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
 /obj/machinery/suit_storage_unit/solgov,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/item/tank/jetpack/oxygen/harness,
 /turf/open/floor/plasteel/tech,
 /area/ship/cargo)
 "Qe" = (
@@ -2477,7 +2479,7 @@
 	id = "inkwell_turrets"
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ship/engineering)
+/area/ship/bridge)
 "Vi" = (
 /obj/effect/turf_decal/corner/transparent/purple/mono,
 /obj/structure/window/plasma/reinforced/spawner/east,
@@ -2570,7 +2572,6 @@
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/head/welding,
 /obj/item/clothing/shoes/workboots,
-/obj/item/clothing/gloves/combat,
 /obj/effect/turf_decal/industrial/outline/orange,
 /obj/item/clothing/glasses/meson/prescription,
 /obj/effect/turf_decal/corner/opaque/solgovblue/full,
@@ -2580,6 +2581,7 @@
 /obj/item/clothing/under/solfed/industrial,
 /obj/item/clothing/head/hardhat/solfed,
 /obj/item/radio/headset/solgov/alt,
+/obj/item/clothing/gloves/color/yellow,
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering)
 "Wa" = (
@@ -2684,7 +2686,6 @@
 "Xg" = (
 /obj/machinery/suit_storage_unit/solgov,
 /obj/machinery/light/directional/east,
-/obj/item/tank/jetpack/oxygen/harness,
 /turf/open/floor/plasteel/tech,
 /area/ship/cargo)
 "Xi" = (
@@ -2750,7 +2751,7 @@
 	id = "inkwell_turrets"
 	},
 /turf/closed/wall/mineral/titanium,
-/area/ship/engineering)
+/area/ship/bridge)
 "Zr" = (
 /obj/effect/turf_decal/solgov/all/top_right,
 /obj/effect/turf_decal/spline/fancy/transparent/solgovblue{
@@ -2819,7 +2820,7 @@ VT
 VT
 YN
 eB
-PY
+MX
 zH
 zH
 zH
@@ -2876,7 +2877,7 @@ YN
 At
 YN
 eB
-PY
+MX
 "}
 (6,1,1) = {"
 zH
