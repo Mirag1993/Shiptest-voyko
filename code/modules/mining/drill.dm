@@ -71,8 +71,8 @@
 			cell = new preload_cell_type(src)
 	soundloop = new(list(src), active)
 
-/obj/machinery/drill/process()
-	if(machine_stat & BROKEN || (active && !mining))
+/obj/machinery/drill/process(seconds_per_tick)
+	if(machine_stat & BROKEN || (active && !our_vein))
 		active = FALSE
 		soundloop.stop()
 		update_overlays()

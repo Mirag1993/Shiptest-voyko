@@ -232,7 +232,7 @@
 	if(E) //Don't make this an else
 		Dock(E)
 
-/datum/overmap/ship/controlled/burn_engines(percentage = 100, deltatime)
+/datum/overmap/ship/controlled/burn_engines(percentage = 100, seconds_per_tick)
 	var/thrust_used = 0 //The amount of thrust that the engines will provide with one burn
 	refresh_engines()
 	calculate_avg_fuel()
@@ -246,6 +246,8 @@
 		if(real_engine.engine_type == "plasma")
 			thrust_used += real_engine.plasma_thrust(percentage, deltatime)
 // [/CELADON-EDIT]
+		// ID: ALARM_CONFLICTS_OFFOS
+		// thrust_used += real_engine.burn_engine(percentage, seconds_per_tick)
 
 	thrust_used = thrust_used / (shuttle_port.turf_count * 100)
 	est_thrust = thrust_used / percentage * 100 //cheeky way of rechecking the thrust, check it every time it's used

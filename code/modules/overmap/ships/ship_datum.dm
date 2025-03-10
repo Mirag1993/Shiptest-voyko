@@ -380,7 +380,7 @@
 	// [/CELADON-EDIT]
 
 
-/datum/overmap/ship/process(delta_time)
+/datum/overmap/ship/process(seconds_per_tick)
 	if((burn_direction == BURN_STOP && is_still()) || docked_to || docking)
 		change_heading(BURN_NONE)
 		return
@@ -398,6 +398,9 @@
 //		else
 //			added_velocity["y"] = min(-speed_y, added_velocity["y"])
 //	adjust_speed(added_velocity["x"], added_velocity["y"])
+
+// НОВЫЕ ИЗМЕНЕНИЯ ОТ ОФОВ! 3 недели назад (марта 11th, 2025 12:09 ночи)
+//	var/added_velocity = calculate_burn(burn_direction, burn_engines(burn_percentage, seconds_per_tick))
 
 	var/newx = 0
 	var/newy = 0
@@ -457,13 +460,13 @@
 /**
  * Returns the amount of acceleration to apply to the ship based on the percentage of the engines that are burning, and the time since the last burn tick.
  * * percentage - The percentage of the engines that are burning
- * * deltatime - The time since the last burn tick
+ * * seconds_per_tick - The time since the last burn tick
  */
-/datum/overmap/ship/proc/burn_engines(percentage = 100, deltatime)
+/datum/overmap/ship/proc/burn_engines(percentage = 100, seconds_per_tick)
 	if(docked_to || docking)
 		CRASH("Ship burned engines while docking or docked!")
 
-	return acceleration_speed * (percentage / 100) * deltatime
+	return acceleration_speed * (percentage / 100) * seconds_per_tick
 
 /datum/overmap/ship/proc/change_heading(direction)
 	burn_direction = direction
