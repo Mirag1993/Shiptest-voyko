@@ -35,7 +35,7 @@
 		if(W.get_sharpness() && W.force > 0)
 			if(W.hitsound)
 				// [CELADON-EDIT] - CELADON_QOL
-				// playsound(get_turf(src), W.hitsound, 100, FALSE, FALSE)		// CELADON-EDIT - ORIGINAL
+				// playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 100, FALSE, FALSE)		// CELADON-EDIT - ORIGINAL
 				playsound(get_turf(src), pick('mod_celadon/_storge_sounds/sound/trees/treechop1.ogg',
 											'mod_celadon/_storge_sounds/sound/trees/treechop2.ogg',
 											'mod_celadon/_storge_sounds/sound/trees/treechop3.ogg'), 100, FALSE, FALSE)
