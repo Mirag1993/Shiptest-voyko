@@ -25,7 +25,6 @@
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "fang"
 
-/*
 //goliath
 /obj/item/mob_trophy/goliath_tentacle
 	name = "goliath tentacle"
@@ -183,6 +182,5 @@
 	desc = "It's a paw from a true warrior. Still remembers the basics of CQB."
 	icon_state = "armor_paw"
 	icon ='icons/obj/lavaland/elite_trophies.dmi'
-*/
 */
 // [/CELADON-REMOVE]
