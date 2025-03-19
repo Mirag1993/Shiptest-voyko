@@ -362,9 +362,6 @@
 /obj/item/radio/headset/nanotrasen/alt,
 /obj/item/storage/backpack/ert/security,
 /obj/item/storage/belt/security/webbing,
-/obj/item/melee/baton{
-	cell = /obj/item/stock_parts/cell/high/plus
-	},
 /obj/item/melee/knife/combat,
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/assembly/flash,
@@ -381,6 +378,7 @@
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt/lp,
 /obj/item/flashlight/seclite,
 /obj/item/clothing/glasses/hud/security/sunglasses,
+/obj/item/melee/baton/loaded,
 /turf/open/floor/plasteel/tech,
 /area/ship/security/armory)
 "ei" = (
@@ -1459,6 +1457,7 @@
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/clothing/under/rank/engineering/engineer/nt/skirt/lp,
 /obj/item/clothing/under/rank/engineering/engineer/nt/lp,
+/obj/item/clothing/gloves/color/yellow,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/general/engineering)
 "vm" = (
@@ -2133,9 +2132,6 @@
 	},
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/storage/belt/military/assault,
-/obj/item/melee/baton{
-	cell = /obj/item/stock_parts/cell/high/plus
-	},
 /obj/item/melee/knife/combat,
 /obj/item/binoculars,
 /obj/item/assembly/flash,
@@ -2158,6 +2154,7 @@
 /obj/item/clothing/head/nanotrasen/captain/peaked,
 /obj/item/clothing/suit/hooded/wintercoat/captain,
 /obj/item/melee/classic_baton/telescopic,
+/obj/item/melee/baton/loaded,
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/dorm/captain)
 "DR" = (
