@@ -1923,6 +1923,11 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/rockplanet/lasttemplar/office)
+"RV" = (
+/obj/machinery/light/floor,
+/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor,
+/turf/open/floor/plating/asteroid/rockplanet,
+/area/overmap_encounter/planetoid/rockplanet/explored)
 "Sy" = (
 /obj/effect/turf_decal/borderfloorblack{
 	dir = 10
@@ -3030,7 +3035,7 @@ he
 he
 he
 he
-LO
+RV
 he
 he
 he
