@@ -34,6 +34,12 @@
 	dir = 4;
 	pixel_x = 28
 	},
+/obj/machinery/button/shieldwallgen{
+	id = "anomaly";
+	dir = 8;
+	pixel_y = 11;
+	pixel_x = 20
+	},
 /turf/open/floor/plasteel/darkbrownfull/darkbrown{
 	dir = 5
 	},
@@ -111,7 +117,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 1
 	},
-/area/ship/hallway/central)
+/area/ship/engineering/atmospherics)
 "aW" = (
 /obj/structure/chair/comfy/beige,
 /obj/machinery/button/door{
@@ -509,10 +515,17 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/engineering/atmospherics)
 "fY" = (
-/obj/structure/fans/tiny/invisible,
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
 	id = 8
+	},
+/obj/machinery/power/shieldwallgen/atmos/roundstart{
+	id = "anomaly"
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 1
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/general/cargo/cargo_bay)
@@ -708,6 +721,10 @@
 /obj/machinery/rnd/production/techfab/department/science,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/science)
+"kQ" = (
+/obj/machinery/firealarm/directional/north,
+/turf/open/floor/mineral/plastitanium,
+/area/ship/general/engineering)
 "kR" = (
 /obj/structure/table/reinforced/glass{
 	layer = 3.3
@@ -916,7 +933,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 10
 	},
-/area/ship/hallway/central)
+/area/ship/general/cargo/cargo_bay)
 "ou" = (
 /obj/machinery/atmospherics/components/trinary/filter/atmos,
 /obj/machinery/light/dim/directional/east,
@@ -1267,10 +1284,7 @@
 /obj/structure/chair/comfy/red/old/alt/directional/east{
 	pixel_x = 10
 	},
-/obj/machinery/light_switch{
-	pixel_y = 25;
-	pixel_x = 10
-	},
+/obj/machinery/firealarm/directional/north,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
 "tE" = (
@@ -1343,7 +1357,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 8
 	},
-/area/ship/hallway/central)
+/area/ship/bridge)
 "uz" = (
 /turf/open/floor/mineral/plastitanium,
 /area/ship/science)
@@ -1669,6 +1683,10 @@
 	pixel_x = 10
 	},
 /obj/machinery/light/dim/directional/north,
+/obj/machinery/light_switch{
+	pixel_x = -21;
+	dir = 4
+	},
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
 "AF" = (
@@ -1996,6 +2014,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/machinery/firealarm/directional/south,
 /turf/open/floor/marble/white_black_border{
 	dir = 1
 	},
@@ -2051,7 +2070,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 4
 	},
-/area/ship/hallway/central)
+/area/ship/engineering/engine)
 "Gx" = (
 /obj/structure/chair/comfy/blue/corpo/directional/east{
 	pixel_x = 16;
@@ -2125,7 +2144,11 @@
 /obj/machinery/light/dim/directional/south,
 /obj/structure/extinguisher_cabinet/directional/west{
 	dir = 4;
-	pixel_x = 30
+	pixel_x = 30;
+	pixel_y = 11
+	},
+/obj/machinery/firealarm/directional/east{
+	pixel_y = -5
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/engineering/atmospherics)
@@ -2147,6 +2170,10 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
+"Ii" = (
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/mineral/plastitanium,
+/area/ship/general/engineering/engineering_1)
 "Ik" = (
 /obj/structure/sign/poster/solfed/random,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
@@ -2256,6 +2283,25 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/general/engineering/engineering_1)
+"KS" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = 8
+	},
+/obj/machinery/power/shieldwallgen/atmos/roundstart{
+	id = "anomaly";
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/ship/general/cargo/cargo_bay)
 "KV" = (
 /obj/effect/turf_decal/solgov/wood/center,
 /obj/effect/turf_decal/solgov/all/center,
@@ -2547,7 +2593,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/stairs/stairs_pack/dark,
-/area/ship/hallway/central)
+/area/ship/science)
 "Qw" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/ship/bridge)
@@ -2563,7 +2609,6 @@
 /area/ship/bridge)
 "QP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/firealarm/directional/south,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "QV" = (
@@ -2658,7 +2703,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 10
 	},
-/area/ship/hallway/central)
+/area/ship/general/engineering/engineering_1)
 "Sf" = (
 /obj/structure/chair/comfy/blue/corpo/directional/west{
 	pixel_x = -6;
@@ -2732,6 +2777,15 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/ship/engineering/atmospherics)
+"Ub" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/ship/general/cargo/cargo_bay)
 "Uc" = (
 /obj/structure/curtain/bounty{
 	pixel_x = -32
@@ -2938,7 +2992,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 6
 	},
-/area/ship/hallway/central)
+/area/ship/general/engineering)
 "Yp" = (
 /obj/machinery/atmospherics/pipe/manifold/purple/hidden{
 	dir = 4
@@ -2983,11 +3037,18 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light/dim/directional/south,
+/obj/machinery/firealarm/directional/east,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/engineering/engine)
 "YY" = (
 /obj/machinery/light/dim/directional/north,
-/obj/machinery/newscaster/directional/west,
+/obj/machinery/newscaster/directional/west{
+	pixel_y = -4;
+	pixel_x = -31
+	},
+/obj/machinery/firealarm/directional/west{
+	pixel_y = 9
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/science)
 "Zu" = (
@@ -3008,7 +3069,7 @@
 /turf/open/floor/plasteel/stairs/stairs_pack/dark{
 	dir = 6
 	},
-/area/ship/hallway/central)
+/area/ship/crew/dorm)
 "ZB" = (
 /obj/structure/sign/solfed,
 /turf/closed/wall/r_wall/syndicate,
@@ -3215,7 +3276,7 @@ GI
 td
 aX
 ec
-np
+kQ
 np
 iy
 iy
@@ -3288,7 +3349,7 @@ yG
 yU
 oR
 pq
-vX
+Ii
 Tc
 wk
 Jk
@@ -3775,7 +3836,7 @@ hu
 aq
 RL
 eT
-tP
+Ub
 sE
 qH
 Gx
@@ -3802,7 +3863,7 @@ ZU
 dO
 Rc
 EV
-ZU
+DS
 OZ
 QE
 BF
@@ -3828,8 +3889,8 @@ ol
 ol
 ZU
 fY
-fY
-ZU
+KS
+tP
 ax
 ax
 Qw

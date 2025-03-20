@@ -2437,10 +2437,13 @@
 /area/ship/crew/dorm/captain)
 "HZ" = (
 /obj/docking_port/stationary{
+	width = 30;
+	height = 15;
+	dwidth = 15;
 	dir = 4
 	},
-/turf/open/floor/engine/hull,
-/area/ship/external)
+/turf/template_noop,
+/area/template_noop)
 "Ir" = (
 /turf/closed/wall/mineral/titanium/exterior,
 /area/ship/crew/dorm/captain)
@@ -4686,7 +4689,7 @@ SQ
 (32,1,1) = {"
 vm
 SQ
-HZ
+SQ
 SQ
 SQ
 vm
@@ -4722,12 +4725,12 @@ vm
 vm
 SQ
 SQ
-HZ
+SQ
 SQ
 "}
 (33,1,1) = {"
 vm
-vm
+HZ
 vm
 vm
 vm
@@ -4764,7 +4767,7 @@ vm
 vm
 vm
 vm
-vm
+HZ
 vm
 "}
 (34,1,1) = {"
