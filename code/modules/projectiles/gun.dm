@@ -393,6 +393,8 @@
 	if(azoom)
 		azoom.Remove(user)
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/gun)
+	if(azoom)
+		azoom.Remove(user)
 
 /obj/item/gun/proc/is_wielded()
 	return wielded
