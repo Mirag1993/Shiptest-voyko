@@ -14,6 +14,7 @@
 #define FACTION_EVENT "Event"
 #define FACTION_PIRATES "Pirates"
 
+#define FACTION_RAMZI "Ramzi Clique"
 #define FACTION_SRM "Saint-Roumain Militia"
 #define FACTION_CLIP "CLIP Minutemen"
 #define FACTION_FRONTIER "Frontiersmen Fleet"
@@ -42,13 +43,16 @@
 	#define PREFIX_NS_LOGI list("NSSV",)
 	#define PREFIX_VIGILITAS list("VISV",)
 #define PREFIX_FRONTIER list("FFV",)
-#define PREFIX_INDEPENDENT list("SV", "IMV", "ISV",)
+#define PREFIX_INDEPENDENT list("SV", "IMV", "ISV", "MSV",)
 #define PREFIX_ELYSIUM list("EUSM", "EUSQ", "EUSF", "EUSR",)
 #define PREFIX_PIRATES list("PIRATE",)
 #define PREFIX_EVENT list("CLO",)
 
+#define PREFIX_FRONTIERSMEN list("FFV")
 #define PREFIX_CLIP list("CMSV", "CMGSV",)
 #define PREFIX_PGF list("PGF", "PGFMC", "PGFN",)
+#define PREFIX_RAMZI list("RCSV")
+#define PREFIX_NONE list()
 
 GLOBAL_LIST_INIT(ship_faction_to_prefixes, list(
 	FACTION_SYNDICATE = PREFIX_SYNDICATE,
