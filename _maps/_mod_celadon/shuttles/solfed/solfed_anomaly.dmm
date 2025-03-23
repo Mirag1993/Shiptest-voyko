@@ -288,7 +288,6 @@
 /obj/structure/sign/warning/gasmask{
 	pixel_x = -30
 	},
-/obj/item/banner/solfed/mundane,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "cS" = (
@@ -336,6 +335,10 @@
 "do" = (
 /obj/structure/table/reinforced/glass,
 /obj/structure/window/bronze,
+/obj/item/kirbyplants{
+	icon_state = "plant-27";
+	pixel_y = 15
+	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/hallway/central)
 "dJ" = (
@@ -599,7 +602,6 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/ship/engineering/engine)
 "ii" = (
-/obj/item/banner/solfed/mundane,
 /obj/structure/sign/solfed{
 	pixel_x = 30
 	},
@@ -678,6 +680,15 @@
 /obj/effect/turf_decal/solgov/all/top,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
+"jA" = (
+/obj/structure/table/reinforced/glass,
+/obj/structure/window/bronze,
+/obj/item/kirbyplants{
+	icon_state = "plant-31";
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/mono/white,
+/area/ship/hallway/central)
 "jC" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 8;
@@ -726,11 +737,13 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/general/engineering)
 "kR" = (
-/obj/structure/table/reinforced/glass{
-	layer = 3.3
-	},
+/obj/structure/table/reinforced/glass,
 /obj/structure/window/bronze{
 	dir = 1
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-27";
+	pixel_y = 15
 	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/hallway/central)
@@ -1080,9 +1093,6 @@
 	pixel_y = -25
 	},
 /obj/machinery/light/directional/south,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "ri" = (
@@ -1115,9 +1125,7 @@
 /turf/open/floor/plasteel/darkbrownfull/darkbrown,
 /area/ship/general/cargo/cargo_bay)
 "rq" = (
-/obj/structure/chair/comfy/red/old/alt/directional/east{
-	pixel_x = 10
-	},
+/obj/structure/chair/comfy/red/old/alt/directional/east,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
 "rs" = (
@@ -1184,10 +1192,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/general/engineering/engineering_1)
 "sE" = (
-/obj/structure/chair/comfy/blue/corpo/directional/east{
-	pixel_x = 16;
-	pixel_y = 4
-	},
+/obj/structure/chair/comfy/blue/corpo/directional/east,
 /obj/machinery/light_switch{
 	pixel_y = 25;
 	pixel_x = 13
@@ -1281,9 +1286,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/engineering/atmospherics)
 "ts" = (
-/obj/structure/chair/comfy/red/old/alt/directional/east{
-	pixel_x = 10
-	},
+/obj/structure/chair/comfy/red/old/alt/directional/east,
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
@@ -1517,8 +1520,7 @@
 /area/ship/general/engineering/engineering_1)
 "xG" = (
 /obj/machinery/computer/cargo{
-	dir = 8;
-	pixel_x = 8
+	dir = 8
 	},
 /turf/open/floor/marble/white_black_border{
 	dir = 9
@@ -1705,6 +1707,9 @@
 	pixel_y = 6
 	},
 /obj/machinery/light/dim/directional/south,
+/obj/machinery/firealarm/directional/west{
+	pixel_y = -5
+	},
 /turf/open/floor/plasteel/darkbrownfull/darkbrown{
 	dir = 10
 	},
@@ -1804,8 +1809,7 @@
 /area/ship/general/engineering/engineering_1)
 "BF" = (
 /obj/machinery/computer/helm{
-	dir = 8;
-	pixel_x = 8
+	dir = 8
 	},
 /turf/open/floor/marble/white_black_border{
 	dir = 8
@@ -1888,9 +1892,7 @@
 /turf/open/floor/engine/vacuum,
 /area/ship/engineering/engine)
 "Du" = (
-/obj/structure/chair/comfy/red/old/alt/directional/west{
-	pixel_x = -10
-	},
+/obj/structure/chair/comfy/red/old/alt/directional/west,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
 "DA" = (
@@ -1927,7 +1929,6 @@
 	pixel_y = 25;
 	pixel_x = 10
 	},
-/obj/item/banner/solfed/mundane,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "Ei" = (
@@ -2073,8 +2074,7 @@
 /area/ship/engineering/engine)
 "Gx" = (
 /obj/structure/chair/comfy/blue/corpo/directional/east{
-	pixel_x = 16;
-	pixel_y = 4
+	pixel_y = 1
 	},
 /turf/open/floor/marble/black,
 /area/ship/bridge)
@@ -2227,7 +2227,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/general/engineering/engineering_1)
 "IX" = (
-/obj/item/banner/solfed/mundane,
 /obj/item/paper/carbon{
 	default_raw_text = "Внимание! В следующей комнате находится плазменная аномалия. Для работы с ней необходимо надеть защитный костюм, так как она выбрасывает ядовитые испарения. При этом, чтобы аномалия начала вырабатывать плазму, вам нужно взаимодействовать с ней. Например - коснуться её. Чем больше раз вы её коснётесь, тем больше плазмы она будет вырабатывать. Камера аномалии оборудована иновационным шлюзом, что не пропускает через себя атмосферу. При работе с аномалией не бойтесь смешивания атмосфер. Единственное, из-за чего это может произойти - человеческий фактор";
 	pixel_y = 4;
@@ -2399,9 +2398,7 @@
 /area/ship/crew/dorm)
 "Me" = (
 /obj/machinery/computer/helm/viewscreen/directional/north,
-/obj/structure/chair/comfy/red/old/alt/directional/west{
-	pixel_x = -10
-	},
+/obj/structure/chair/comfy/red/old/alt/directional/west,
 /turf/open/floor/wood/ebony,
 /area/ship/crew/dorm)
 "Ml" = (
@@ -2513,8 +2510,7 @@
 /area/ship/engineering/atmospherics)
 "OZ" = (
 /obj/machinery/modular_computer/console/preset/command{
-	dir = 8;
-	pixel_x = 8
+	dir = 8
 	},
 /turf/open/floor/marble/white_black_border{
 	dir = 10
@@ -2544,12 +2540,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/closed/wall/r_wall/syndicate,
 /area/ship/science)
 "PI" = (
@@ -2612,9 +2606,10 @@
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "QV" = (
-/obj/item/banner/solfed/mundane,
-/turf/open/floor/plasteel/mono/dark,
-/area/ship/hallway/central)
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/radio/intercom/directional/north,
+/turf/open/floor/wood/ebony,
+/area/ship/crew/dorm)
 "QY" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -2669,9 +2664,7 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/shuttle/heater{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/shuttle/heater,
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
 	id = 16
@@ -2731,8 +2724,10 @@
 /obj/structure/window/bronze{
 	dir = 1
 	},
-/obj/structure/table/reinforced/glass{
-	layer = 3.3
+/obj/structure/table/reinforced/glass,
+/obj/item/kirbyplants{
+	icon_state = "plant-31";
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/hallway/central)
@@ -2830,9 +2825,7 @@
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/royalblack,
-/obj/machinery/fax/solgov{
-	pixel_y = 6
-	},
+/obj/machinery/fax/solgov,
 /turf/open/floor/marble/white_black_border{
 	dir = 4
 	},
@@ -3078,10 +3071,7 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/ship/general/cargo/cargo_bay)
 "ZV" = (
-/obj/structure/chair/comfy/blue/corpo/directional/east{
-	pixel_x = 16;
-	pixel_y = 4
-	},
+/obj/structure/chair/comfy/blue/corpo/directional/east,
 /obj/machinery/newscaster/directional/south,
 /turf/open/floor/marble/white_black_border{
 	dir = 1
@@ -3487,7 +3477,7 @@ hm
 DB
 QY
 lw
-do
+jA
 tj
 kR
 FN
@@ -3513,11 +3503,11 @@ bn
 pj
 WK
 Vw
-QV
+WD
 qv
 mM
 qv
-QV
+WD
 wr
 fp
 gd
@@ -3571,7 +3561,7 @@ Ee
 pg
 PJ
 pg
-QV
+WD
 fB
 aN
 gd
@@ -3789,7 +3779,7 @@ uC
 uN
 FI
 Yw
-Ro
+QV
 Ro
 ys
 ys

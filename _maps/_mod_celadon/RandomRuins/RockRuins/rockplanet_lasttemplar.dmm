@@ -115,11 +115,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/suns/dark,
 /area/ruin/rockplanet/lasttemplar/office)
-"bM" = (
-/turf/closed/indestructible/reinforced{
-	max_integrity = 1e+007
-	},
-/area/ruin/rockplanet/lasttemplar/office)
 "bW" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/borderfloorblack{
@@ -1924,8 +1919,22 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/rockplanet/lasttemplar/office)
 "RV" = (
-/obj/machinery/light/floor,
-/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor,
+/mob/living/simple_animal/hostile/megafauna/cult_templar{
+	armor = list("melee" = 10, "bullet" = 45, "laser" = 35, "energy" = 20, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40);
+	name = "Last Templar";
+	armour_penetration = 30;
+	charge_distance = 4;
+	desc = "Once a warrior, now a lone remnant of Nar'Sie's will. No allies, no rituals - only battle remains, and he waits, knowing he is the last.";
+	gps_name = "???l";
+	melee_damage_lower = 30;
+	melee_damage_upper = 35;
+	move_to_delay = 1;
+	aggro_vision_range = 8;
+	crusher_loot = list(/obj/item/upgradescroll);
+	loot = list(/obj/item/clothing/suit/space/hardsuit/ert/inquisitor);
+	speed = 2;
+	movespeed_modification = 1.2
+	},
 /turf/open/floor/plating/asteroid/rockplanet,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "Sy" = (
@@ -2137,7 +2146,7 @@
 	move_to_delay = 1;
 	aggro_vision_range = 8;
 	crusher_loot = list(/obj/item/upgradescroll);
-	loot = list(/obj/item/clothing/suit/space/hardsuit/ert/inquisitor);
+	loot = list(/obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor);
 	speed = 2;
 	movespeed_modification = 1.2
 	},
@@ -3035,7 +3044,7 @@ he
 he
 he
 he
-RV
+LO
 he
 he
 he
@@ -3367,7 +3376,7 @@ eH
 IL
 Bg
 fy
-bM
+fy
 Do
 YU
 Cc
@@ -4110,7 +4119,7 @@ Xd
 xw
 kC
 he
-he
+RV
 Jc
 Jb
 kJ
