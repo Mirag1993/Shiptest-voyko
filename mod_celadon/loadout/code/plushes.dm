@@ -381,9 +381,9 @@
 	display_name = "hampter the major"
 	path = /obj/item/toy/plush/celadon/hampter/ert_squad
 
-// /datum/gear/plushes/hampter/cute
-// 	display_name = "cute hampter"
-// 	path = /obj/item/toy/plush/celadon/hampter/cute
+/datum/gear/plushes/hampter/cute
+	display_name = "cute hampter"
+	path = /obj/item/toy/plush/celadon/hampter/cute
 
 // Carpps
 
@@ -438,8 +438,15 @@
 	display_name = "Rimri snow plushie"
 	path = /obj/item/toy/plush/celadon/rimri/snow
 
-// Перенесено с `code\modules\client\loadout\loadout_general.dm`
+/datum/gear/plushes/kira
+	display_name = "Kira plushie"
+	path = /obj/item/toy/plush/celadon/kira
 
+/datum/gear/plushes/mira
+	display_name = "Mira plushie"
+	path = /obj/item/toy/plush/celadon/mira
+
+// Перенесено с `code\modules\client\loadout\loadout_general.dm`
 /datum/gear/plushes/lizard
 	display_name = "toy, lizard plushie"
 	path = /obj/item/toy/plush/lizardplushie
