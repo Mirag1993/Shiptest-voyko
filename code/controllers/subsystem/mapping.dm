@@ -179,6 +179,9 @@ SUBSYSTEM_DEF(mapping)
 	// var/list/filelist = flist("_maps/configs/") // CELADON-EDIT - ORIGINAL
 	var/list/filelist = flist("_maps/_mod_celadon/configs/")
 	// [/CELADON-EDIT]
+
+	filelist = sortList(filelist)
+
 	for(var/filename in filelist)
 		// [CELADON-EDIT] - CELADON_CONFIGS_MAPS
 		// var/file = file("_maps/configs/" + filename) // CELADON-EDIT - ORIGINAL
