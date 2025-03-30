@@ -19,7 +19,7 @@
 	var/mob/living/carbon/user = null
 	var/active = 0
 	var/see_in_dark = 6
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	// var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE // NEEDS_TO_FIX_ALARM!
 	var/current_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 /obj/item/clothing/head/helmet/riot/gamma_vision/attack_self(mob/living/carbon/human/user)

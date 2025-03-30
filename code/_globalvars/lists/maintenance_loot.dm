@@ -246,7 +246,9 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 		/obj/item/gun/ballistic/rocketlauncher/oneshot = 1,
 		/mob/living/simple_animal/crab = 1,
 		/obj/item/melee/baton/boomerang = 1,
-		/obj/item/circular_saw/best = 1,
+		// [CELADON-REMOVE] - CELADON_BALANCE - Что это за инструмент шакальный не понятно
+		// /obj/item/circular_saw/best = 1,
+		// [/CELADON-REMOVE]
 		/obj/item/gun/ballistic/shotgun/doublebarrel/brazil = 1,
 		/obj/item/toner/extreme = 1,
 		/obj/item/twenty_pounds_of_ice = 1,

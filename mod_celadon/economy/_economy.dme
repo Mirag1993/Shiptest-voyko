@@ -9,6 +9,7 @@
 // code/bounties	на будущее
 
 #include "code/exports/_prices.dm"
+#include "code/exports/canister.dm"
 #include "code/exports/gear.dm"
 #include "code/exports/large_objects.dm"
 #include "code/exports/lavaland.dm"

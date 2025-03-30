@@ -319,8 +319,10 @@ GENE SCANNER
 		for(var/obj/item/bodypart/B in H.bodyparts)
 			if(B.bone_status >= BONE_FLAG_BROKEN)		// Checks if bone is broken or splinted
 				broken_stuff += B.plaintext_zone
-			if(B.integrity_loss)
-				damaged_structure += B.plaintext_zone
+			// [CELADON-REMOVE] - CELADON_REVERT_CONTENT - Откат по ИПС
+			// if(B.integrity_loss)
+			// 	damaged_structure += B.plaintext_zone
+			// [/CELADON-REMOVE]
 		if(broken_stuff.len)
 			render_list += "\t<span class='alert'>Bone fractures detected. Subject's [english_list(broken_stuff)] [broken_stuff.len > 1 ? "require" : "requires"] surgical treatment!</span>\n"
 		if(damaged_structure.len)

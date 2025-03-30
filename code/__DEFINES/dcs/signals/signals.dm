@@ -694,7 +694,7 @@
 	#define COMPONENT_ACTION_BLOCK_TRIGGER 1
 
 // /datum/component/spawner signals
-// Called by parent when pausing spawning, returns bool: (datum/source, spawning_started)
+// Called by parent when pausing spawning, returns bool: (datum/source, currently_spawning)
 #define COMSIG_SPAWNER_TOGGLE_SPAWNING "spawner_toggle"
 
 // Drill signals

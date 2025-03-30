@@ -144,12 +144,16 @@
 	Rename(pick_list_replacements(SHIP_NAMES_FILE, pick(source_template.name_categories)), TRUE)
 #endif
 	SSovermap.controlled_ships += src
+	// [CELADON-ADD] - CELADON_COMPONENT - Добавляем оповещении о пиратах - NEEDS_TO_FIX_ALARM!
+	// if(get_faction() == "Pirates") //Проверка шипа на принадлежность к пиратской фракции
+	// 	radio = new(src.token)
+	// 	radio.name = "Outpost Security System" //Имя, что показывается в вайдбанде
+	// 	radio.talk_into(radio, "На датчиках дальнего действия обнаружена неавторизированная деятельность! Всем кораблям быть в боевой готовности!", FREQ_WIDEBAND) //Сообщение и путь в вайдбанд
+	// 	qdel(radio)
+	// [/CELADON-ADD]
 
-	if(get_faction() == "Pirates") //Проверка шипа на принадлежность к пиратской фракции
-		radio = new(src.token)
-		radio.name = "Outpost Security System" //Имя, что показывается в вайдбанде
-		radio.talk_into(radio, "На датчиках дальнего действия обнаружена неавторизированная деятельность! Всем кораблям быть в боевой готовности!", FREQ_WIDEBAND) //Сообщение и путь в вайдбанд
-		qdel(radio)
+// /datum/overmap/ship/controlled/proc/get_faction() - NEEDS_TO_FIX_ALARM!
+// 	return source_template.faction_name
 
 /datum/overmap/ship/controlled/Destroy()
 	//SHOULD be called first
@@ -252,10 +256,10 @@
 			continue
 // [CELADON-EDIT] - CELADON FIXES
 //thrust_used += real_engine.burn_engine(percentage, deltatime) // CELADON-EDIT - ORIGINAL
-		var/engine_thrust = real_engine.burn_engine(percentage, deltatime)
+		var/engine_thrust = real_engine.burn_engine(percentage, seconds_per_tick)
 		thrust_used += engine_thrust
 		if(real_engine.engine_type == "plasma")
-			thrust_used += real_engine.plasma_thrust(percentage, deltatime)
+			thrust_used += real_engine.plasma_thrust(percentage, seconds_per_tick)
 // [/CELADON-EDIT]
 		// ID: ALARM_CONFLICTS_OFFOS
 		// thrust_used += real_engine.burn_engine(percentage, seconds_per_tick)

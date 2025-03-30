@@ -1,5 +1,5 @@
 //Код ниже по большей части нужен для ребаланса миссий оффов
-/datum/mission/drill
+/datum/mission/outpost/drill
 	name = "Class 1 core sample mission"
 	desc = "We require geological information from one of the neighboring planetoids. \
 			Please anchor the drill in place and defend it until it has gathered enough samples.\
@@ -11,12 +11,12 @@
 	num_wanted = 4
 	class_wanted = 1
 
-/datum/mission/drill/New(...)
+/datum/mission/outpost/drill/New(...)
 	num_wanted = rand(num_wanted - 2, num_wanted + 2)
 	value = (num_wanted * (value / 10) + 1000)
 	return ..()
 
-/datum/mission/drill/classtwo
+/datum/mission/outpost/drill/classtwo
 	name = "Class 2 core sample mission"
 	value = 3500
 	duration = 90 MINUTES
@@ -24,7 +24,7 @@
 	class_wanted = 2
 	num_wanted = 6
 
-/datum/mission/drill/classthree
+/datum/mission/outpost/drill/classthree
 	name = "Class 3 core sample mission"
 	value = 6000
 	duration = 100 MINUTES

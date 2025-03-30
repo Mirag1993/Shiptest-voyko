@@ -24,8 +24,7 @@
 		/datum/language/fuyo,
 		// [/CELADON-ADD]
 		/datum/language/codespeak,
-		/datum/language/aphasia,
-		/datum/language/solarian
+		/datum/language/aphasia
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

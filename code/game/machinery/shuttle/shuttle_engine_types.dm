@@ -31,10 +31,10 @@
 	var/to_use = fuel_use * (percentage / 100) * seconds_per_tick
 	// [CELADON-EDIT] - CELADON_FIXES
 	//return resolved_heater.consume_fuel(to_use, fuel_type) / to_use * thrust //This proc returns how much was actually burned, so let's use that and multiply it by the thrust to get all the thrust we CAN give. // CELADON-EDIT - ORIGINAL
-	return resolved_heater.consume_fuel(to_use, fuel_type)
+	// return resolved_heater.consume_fuel(to_use, fuel_type) // Это наше, поставил офовское, мб починили чето уже?
+	return resolved_heater.consume_fuel(to_use, fuel_type) / to_use * percentage / 100 * thrust //This proc returns how much was actually burned, so let's use that and multiply it by the thrust to get all the thrust we CAN give.
 	// [/CELADON-EDIT]
 	// ID: ALARM_CONFLICTS_OFFOS
-	// return resolved_heater.consume_fuel(to_use, fuel_type) / to_use * percentage / 100 * thrust //This proc returns how much was actually burned, so let's use that and multiply it by the thrust to get all the thrust we CAN give.
 
 /obj/machinery/power/shuttle/engine/fueled/return_fuel()
 	. = ..()

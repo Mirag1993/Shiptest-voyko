@@ -235,10 +235,10 @@
 		)
 		return FALSE
 
-	// [CELADON-EDIT] - Pirates Update
-	if(dock_requester.get_faction() == "Pirates") //Проверка шипа на пиратскую фракцию
-		return new /datum/docking_ticket(_docking_error = "Неавторизованным лицам отказано в стыковке с аванпостом.") //Запрет пиратам на стыковку с аванпостом
-	// [/CELADON-EDIT]
+	// [CELADON-ADD] - CELADON_COMPONENT - Pirates Update - NEEDS_TO_FIX_ALARM!
+	// if(dock_requester.get_faction() == "Pirates") //Проверка шипа на пиратскую фракцию
+	// 	return new /datum/docking_ticket(_docking_error = "Неавторизованным лицам отказано в стыковке с аванпостом.") //Запрет пиратам на стыковку с аванпостом
+	// [/CELADON-ADD]
 
 	if(src in dock_requester.blacklisted)
 		return new /datum/docking_ticket(_docking_error = "Docking request denied: [dock_requester.blacklisted[src]]")
