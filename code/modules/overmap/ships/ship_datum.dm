@@ -399,7 +399,7 @@
 //			added_velocity["y"] = min(-speed_y, added_velocity["y"])
 //	adjust_speed(added_velocity["x"], added_velocity["y"])
 
-// НОВЫЕ ИЗМЕНЕНИЯ ОТ ОФОВ! 3 недели назад (марта 11th, 2025 12:09 ночи)
+// НОВЫЕ ИЗМЕНЕНИЯ ОТ ОФОВ! 3 недели назад (марта 11th, 2025 12:09 ночи) ID: ALARM_CONFLICTS_OFFOS
 //	var/added_velocity = calculate_burn(burn_direction, burn_engines(burn_percentage, seconds_per_tick))
 
 	var/newx = 0
