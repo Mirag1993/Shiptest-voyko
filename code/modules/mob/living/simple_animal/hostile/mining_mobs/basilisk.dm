@@ -229,7 +229,7 @@
 	movement_type = FLYING
 	robust_searching = 1
 	attack_same = TRUE		// So we'll fight basilisks
-	//mob_trophy = /obj/item/mob_trophy/watcher_wing
+	mob_trophy = /obj/item/mob_trophy/watcher_wing
 	loot = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 	lava_drinker = FALSE

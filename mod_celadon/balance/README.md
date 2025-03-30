@@ -58,6 +58,8 @@ ADD: `code\modules\projectiles\ammunition\_ammunition.dm` : /obj/item/ammo_casin
 Очки с зомби и ксеноморфов
 REMOVE: `D:\1ss\ShiptestYata\code\modules\surgery\experimental_dissection.dm`: `/datum/surgery_step/dissection/preop`
 REMOVE: `code\modules\projectiles\guns\energy.dm`
+REMOVE: `code/_globalvars/lists/maintenance_loot.dm`
+
 
 EDIT: `code/modules/mining/equipment/regenerative_core.dm` - теперь ИПС не смогут жрать ядра для полного отхила, их лечить будет на половину.
 EDIT:

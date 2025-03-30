@@ -380,7 +380,7 @@
 	// [/CELADON-EDIT]
 
 
-/datum/overmap/ship/process(delta_time)
+/datum/overmap/ship/process(seconds_per_tick)
 	if((burn_direction == BURN_STOP && is_still()) || docked_to || docking)
 		change_heading(BURN_NONE)
 		return
@@ -399,31 +399,34 @@
 //			added_velocity["y"] = min(-speed_y, added_velocity["y"])
 //	adjust_speed(added_velocity["x"], added_velocity["y"])
 
+// НОВЫЕ ИЗМЕНЕНИЯ ОТ ОФОВ! 3 недели назад (марта 11th, 2025 12:09 ночи) ID: ALARM_CONFLICTS_OFFOS
+//	var/added_velocity = calculate_burn(burn_direction, burn_engines(burn_percentage, seconds_per_tick))
+
 	var/newx = 0
 	var/newy = 0
 	if(burn_direction == BURN_STOP)
 		if(speed_x > 0)
-			newx = -min(speed_x, burn_engines(burn_percentage, delta_time))
+			newx = -min(speed_x, burn_engines(burn_percentage, seconds_per_tick))
 		else
-			newx = min(-speed_x, burn_engines(burn_percentage, delta_time))
+			newx = min(-speed_x, burn_engines(burn_percentage, seconds_per_tick))
 		if(speed_y > 0)
-			newy = -min(speed_y, burn_engines(burn_percentage, delta_time))
+			newy = -min(speed_y, burn_engines(burn_percentage, seconds_per_tick))
 		else
-			newy = min(-speed_y, burn_engines(burn_percentage, delta_time))
+			newy = min(-speed_y, burn_engines(burn_percentage, seconds_per_tick))
 	else
 		switch(burn_direction)
 			if(NORTH)
-				newx = burn_engines(burn_percentage, delta_time)*sin(bow_heading)
-				newy = burn_engines(burn_percentage, delta_time)*cos(bow_heading)
+				newx = burn_engines(burn_percentage, seconds_per_tick)*sin(bow_heading)
+				newy = burn_engines(burn_percentage, seconds_per_tick)*cos(bow_heading)
 			if(SOUTH)
-				newx = burn_engines(burn_percentage, delta_time)*sin(bow_heading+180)
-				newy = burn_engines(burn_percentage, delta_time)*cos(bow_heading+180)
+				newx = burn_engines(burn_percentage, seconds_per_tick)*sin(bow_heading+180)
+				newy = burn_engines(burn_percentage, seconds_per_tick)*cos(bow_heading+180)
 			if(WEST)
-				newx = burn_engines(burn_percentage, delta_time)*sin(bow_heading+270)
-				newy = burn_engines(burn_percentage, delta_time)*cos(bow_heading+270)
+				newx = burn_engines(burn_percentage, seconds_per_tick)*sin(bow_heading+270)
+				newy = burn_engines(burn_percentage, seconds_per_tick)*cos(bow_heading+270)
 			if(EAST)
-				newx = burn_engines(burn_percentage, delta_time)*sin(bow_heading+90)
-				newy = burn_engines(burn_percentage, delta_time)*cos(bow_heading+90)
+				newx = burn_engines(burn_percentage, seconds_per_tick)*sin(bow_heading+90)
+				newy = burn_engines(burn_percentage, seconds_per_tick)*cos(bow_heading+90)
 
 	adjust_speed(newx, newy)
 // [/CELADON-EDIT]
@@ -457,13 +460,13 @@
 /**
  * Returns the amount of acceleration to apply to the ship based on the percentage of the engines that are burning, and the time since the last burn tick.
  * * percentage - The percentage of the engines that are burning
- * * deltatime - The time since the last burn tick
+ * * seconds_per_tick - The time since the last burn tick
  */
-/datum/overmap/ship/proc/burn_engines(percentage = 100, deltatime)
+/datum/overmap/ship/proc/burn_engines(percentage = 100, seconds_per_tick)
 	if(docked_to || docking)
 		CRASH("Ship burned engines while docking or docked!")
 
-	return acceleration_speed * (percentage / 100) * deltatime
+	return acceleration_speed * (percentage / 100) * seconds_per_tick
 
 /datum/overmap/ship/proc/change_heading(direction)
 	burn_direction = direction

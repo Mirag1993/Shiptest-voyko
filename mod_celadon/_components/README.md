@@ -41,6 +41,9 @@ ID мода: CELADON_COMPONENTS, CELADON_COMPONENTS_EMOTE
 - EDIT -> `code\modules\mob\living\carbon\human\emote.dm`
 - EDIT -> `code\modules\mob\living\carbon\emote.dm`
 - REMOVE -> `code\__HELPERS\names.dm`
+
+- ADD -> `code/modules/overmap/ships/controlled_ship_datum.dm` - оповещение о пиратах
+- ADD -> `code/modules/overmap/objects/outpost/outpost.dm` - запрет о пиратах
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.

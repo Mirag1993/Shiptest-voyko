@@ -35,7 +35,7 @@
 		if(W.get_sharpness() && W.force > 0)
 			if(W.hitsound)
 				// [CELADON-EDIT] - CELADON_QOL
-				// playsound(get_turf(src), W.hitsound, 100, FALSE, FALSE)		// CELADON-EDIT - ORIGINAL
+				// playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 100, FALSE, FALSE)		// CELADON-EDIT - ORIGINAL
 				playsound(get_turf(src), pick('mod_celadon/_storge_sounds/sound/trees/treechop1.ogg',
 											'mod_celadon/_storge_sounds/sound/trees/treechop2.ogg',
 											'mod_celadon/_storge_sounds/sound/trees/treechop3.ogg'), 100, FALSE, FALSE)
@@ -847,7 +847,7 @@
 	START_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/structure/flora/tree/chapel/process()
+/obj/structure/flora/tree/chapel/process(seconds_per_tick)
 	if(world.time > (lastcycle + 200))
 		if(abs(karma) > 100)
 			pulseKarma()
@@ -1045,7 +1045,7 @@
 	create_reagents(300, OPENCONTAINER)
 	. = ..()
 
-/obj/structure/flora/tree/srm/process()
+/obj/structure/flora/tree/srm/process(seconds_per_tick)
 	if(world.time > (lastcycle + 100))
 		if(reagents.total_volume > 0)
 			var/gainedhealth = 0
