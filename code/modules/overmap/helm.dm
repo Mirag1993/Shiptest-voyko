@@ -170,7 +170,7 @@
 		return
 
 	.["calibrating"] = calibrating
-	// [CELADON-ADD] - OVERMAP ARPA - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ARPA - Это вагабонд насрал
 	.["arpa_ships"] = list()
 	var/list/arpobjects = current_ship.check_proximity()
 	var/arpdequeue_pointer = 0
@@ -225,7 +225,7 @@
 	.["y"] = current_ship.y || current_ship.docked_to.y
 	.["docking"] = current_ship.docking
 	.["docked"] = current_ship.docked_to
-	// [CELADON-EDIT] - OVERMAP ARPA - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ARPA - Это вагабонд насрал
 	// .["heading"] = dir2text(current_ship.get_heading()) || "None"
 	.["course"] = "[current_ship.get_alt_heading()]°"
 	.["heading"] = "[current_ship.bow_heading]°"
@@ -237,7 +237,7 @@
 	.["aiControls"] = allow_ai_control
 	.["burnDirection"] = current_ship.burn_direction
 	.["burnPercentage"] = current_ship.burn_percentage
-	// [CELADON-ADD] - OVERMAP ARPA - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ARPA - Это вагабонд насрал
 	.["rotating"] = current_ship.rotating
 	// [/CELADON-ADD]
 	for(var/datum/weakref/engine in current_ship.shuttle_port.engine_list)
@@ -282,7 +282,7 @@
 		prefixed = current_ship.name,
 		class = current_ship.source_template.name,
 		mass = current_ship.shuttle_port.turf_count,
-		// [CELADON-EDIT] OVERMAP ARPA - Вага бля
+		// [CELADON-EDIT] CELADON_OVERMAP_ARPA - Вага бля
 		// sensor_range = 4
 		sensor_range = current_ship.sensor_range
 		// [/CELADON-EDIT]
@@ -303,7 +303,7 @@
 	. = TRUE
 
 	switch(action) // Universal topics
-		// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+		// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		if("sensor_increase")
 			//овермап сенсорс максимальная дальность апдейт
 			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
@@ -363,7 +363,7 @@
 
 	if(!current_ship.docked_to && !current_ship.docking)
 		switch(action)
-			// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+			// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 			if("rotate_left")
 				if(current_ship.rotating == -1)
 					current_ship.rotating = 0

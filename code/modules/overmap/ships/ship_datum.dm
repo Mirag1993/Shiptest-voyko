@@ -5,7 +5,7 @@
  *
  */
 
-// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /obj/shiptrail
 	icon = 'mod_celadon/_storge_icons/icons/overmap/overmap.dmi'
 	icon_state = "ship_trail"
@@ -80,7 +80,7 @@
 /datum/overmap/ship
 	name = "overmap vessel"
 	char_rep = ">"
-	// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	// token_icon_state = "ship"
 	token_icon_state = "ship_point"
 	// [/CELADON-EDIT]
@@ -103,7 +103,7 @@
 	///ONLY USED FOR NON-SIMULATED SHIPS. The amount per burn that this ship accelerates
 	var/acceleration_speed = 0.02
 
-// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	///For bay overmap
 	var/x_pixels_moved = 0
 	var/y_pixels_moved = 0
@@ -146,7 +146,7 @@
 		RegisterSignal(docked_to, COMSIG_OVERMAP_MOVED, PROC_REF(on_docked_to_moved))
 
 /datum/overmap/ship/Destroy()
-	// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	//	if(movement_callback_id)
 	//		deltimer(movement_callback_id, SSovermap_movement)
 	clear_trails()
@@ -191,7 +191,7 @@
  */
 
 /datum/overmap/ship/proc/adjust_speed(n_x, n_y)
-// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 //	var/offset = 1
 //	if(movement_callback_id)
 //		var/previous_time = 1 / MAGNITUDE(speed_x, speed_y)
@@ -212,7 +212,7 @@
 	if(speed_y < min_speed && speed_y > -min_speed)
 		speed_y = 0
 
-// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	// token.update_icon_state()
 	speed_x = speed_x+vector_to_add["x"]
 	speed_y = speed_y+vector_to_add["y"]
@@ -227,7 +227,7 @@
 
 	update_visuals()
 
-// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	//	if(is_still() || QDELING(src) || movement_callback_id || docked_to || docking)
 	//		return
 	//	var/timer = 1 / MAGNITUDE(speed_x, speed_y) * offset
@@ -244,7 +244,7 @@
  * Called by [/datum/overmap/ship/proc/adjust_speed], this continually moves the ship according to its speed
  */
 
-// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /datum/overmap/ship/proc/not_tick_move(var/xmov, var/ymov)
 	if(QDELING(src))
 		return
@@ -258,7 +258,7 @@
 			token.move_vec.forceMove(token.loc)
 // [/CELADON-ADD]
 
-// [CELADON-REMOVE] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-REMOVE] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /*
 /datum/overmap/ship/proc/tick_move()
 	if(is_still() || QDELING(src) || docked_to)
@@ -304,7 +304,7 @@
  * Returns the direction the ship is moving in terms of dirs
  */
 
-// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /datum/overmap/ship/proc/get_alt_heading()
 	. = 0
 	var/stuff = -arctan(speed_x, speed_y)
@@ -333,7 +333,7 @@
  * Returns the estimated time in deciseconds to the next tile at current speed, or approx. time until reaching the destination when on autopilot
  */
 /datum/overmap/ship/proc/get_eta()
-	// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	// . += timeleft(movement_callback_id, SSovermap_movement)
 	// if(!.)
 	// 	return "--:--"
@@ -385,7 +385,7 @@
 		change_heading(BURN_NONE)
 		return
 
-// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 //	var/added_velocity = calculate_burn(burn_direction, burn_engines(burn_percentage, delta_time))
 // //Slows down the ship just enough to come to a full stop
 // if(burn_direction == BURN_STOP)
@@ -472,7 +472,7 @@
 	burn_direction = direction
 	if(burn_direction == BURN_NONE)
 		STOP_PROCESSING(SSphysics, src)
-		// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+		// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		rotating = 0
 		// [/CELADON-ADD]
 	else
@@ -492,7 +492,7 @@
 	else if(direction & SOUTH)
 		char_rep = "v"
 	if(direction)
-		// [CELADON-EDIT] - OVERMAP STUFF - Это вагабонд насрал
+		// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		//		token.icon_state = "ship_moving"
 		//		M.Turn(altdirection)
 		//	else

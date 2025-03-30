@@ -1,9 +1,9 @@
 /obj/overmap
-	// [CELADON-EDIT] - OVERMAP ICON
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON
 	// icon = 'icons/misc/overmap.dmi' // CELADON-EDIT - ORIGINAL
 	icon = 'mod_celadon/_storge_icons/icons/overmap/overmap.dmi'
 	// [/CELADON-EDIT]
-	// [CELADON-ADD] - OVERMAP ICON - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	glide_size = 32
 	// [/CELADON-ADD]
 	mouse_opacity = 2
@@ -19,7 +19,7 @@
 	/// Countdown we use in case it's needed
 	var/obj/effect/countdown/countdown
 
-	// [CELADON-ADD] - OVERMAP ICON - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	var/obj/token_visuals/move_vec
 	var/obj/token_visuals/ship_image
 
@@ -37,7 +37,7 @@
 	name = parent.name
 	icon_state = parent.token_icon_state
 	if(render_map)	// Initialize map objects
-		// [CELADON-ADD] - OVERMAP ICON - Это вагабонд насрал
+		// [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 		if(istype(parent, /datum/overmap/ship/controlled))
 			if(!move_vec)
 				move_vec = new (src)
@@ -75,7 +75,7 @@
 		QDEL_NULL(cam_screen)
 		QDEL_NULL(cam_plane_master)
 		QDEL_NULL(cam_background)
-	// [CELADON-ADD] - OVERMAP ICON - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	if(ship_image)
 		QDEL_NULL(ship_image)
 	if(move_vec)

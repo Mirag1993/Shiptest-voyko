@@ -50,7 +50,7 @@
 	/// The 'death time' of the object. Used for limited lifespan events.
 	var/death_time
 
-// [CELADON-ADD] - OVERMAP STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /obj/overmap
 	var/skip_alarm = 0
 
