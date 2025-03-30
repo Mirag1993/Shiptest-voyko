@@ -1978,7 +1978,7 @@
 "pi" = (
 /obj/machinery/light/floor,
 /obj/effect/landmark/subship{
-	subship_template = /datum/map_template/shuttle/subshuttles/syndicate_jet_lancer
+	subship_template = /datum/map_template/shuttle/subshuttles/jet_lancer
 	},
 /turf/open/floor/pod/dark,
 /area/ship/security/dock)
