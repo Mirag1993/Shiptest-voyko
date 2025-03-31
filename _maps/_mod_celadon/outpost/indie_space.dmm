@@ -255,7 +255,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
-/obj/effect/spawner/random/salvage/metal,
+/obj/effect/spawner/random/salvage/ore/metal,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/outpost/maintenance/central)
 "bL" = (
@@ -2230,7 +2230,7 @@
 	icon_state = "1-4"
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/mouse/brown,
+/mob/living/basic/mouse/brown,
 /turf/open/floor/plating,
 /area/outpost/maintenance/fore)
 "oW" = (
@@ -4899,7 +4899,7 @@
 /obj/effect/turf_decal/corner_techfloor_gray{
 	dir = 9
 	},
-/obj/effect/spawner/random/salvage/metal,
+/obj/effect/spawner/random/salvage/ore/metal,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/outpost/maintenance/fore)
@@ -5391,7 +5391,7 @@
 /turf/open/floor/plasteel/mono,
 /area/outpost/storage)
 "Hl" = (
-/mob/living/simple_animal/mouse/brown,
+/mob/living/basic/mouse/brown,
 /obj/effect/turf_decal/steeldecal/steel_decals6,
 /turf/open/floor/plating,
 /area/outpost/maintenance/fore)
@@ -7830,7 +7830,7 @@
 "Wa" = (
 /obj/effect/spawner/random/trash,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/mouse/brown,
+/mob/living/basic/mouse/brown,
 /turf/open/floor/plating,
 /area/outpost/maintenance/fore)
 "Wc" = (
