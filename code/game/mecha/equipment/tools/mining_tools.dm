@@ -119,16 +119,16 @@
 	SIGNAL_HANDLER
 
 	if(chassis.selected == src)
-		if(!chassis.occupant) // just in case..?
+		if(!chassis.occupant) //prevents exosuit from digging if it pushed with something, like an explosion // just in case..?
 			return
 		if(istype(bumped_into, /turf/closed/mineral/))
 			INVOKE_ASYNC(src, PROC_REF(action), bumped_into, null, TRUE)
 
 /obj/item/mecha_parts/mecha_equipment/drill/detach(atom/moveto)
-	..()
 	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = FALSE
 	UnregisterSignal(chassis, COMSIG_MOVABLE_BUMP)
+	..()
 
 /obj/item/mecha_parts/mecha_equipment/drill/proc/drill_mob(mob/living/target, mob/user)
 	target.visible_message("<span class='danger'>[chassis] is drilling [target] with [src]!</span>", \
