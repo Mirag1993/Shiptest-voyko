@@ -56,6 +56,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
 /obj/item/storage/cans/sixbeer,
+/obj/effect/landmark/mission_poi/main{
+	blocks_emissive = 1
+	},
 /turf/open/floor/plating,
 /area/ruin/jungle/syndifort)
 "bS" = (
@@ -128,6 +131,10 @@
 	name = "Jerry";
 	unsuitable_atmos_damage = 0
 	},
+/obj/effect/landmark/mission_poi/main/kill{
+	already_spawned = 1;
+	mission_index = 2
+	},
 /turf/open/floor/plating,
 /area/ruin/jungle/syndifort/jerry)
 "es" = (
@@ -154,6 +161,9 @@
 /area/ruin/jungle/syndifort)
 "eU" = (
 /obj/structure/chair/plastic,
+/obj/effect/landmark/mission_poi/guard{
+	type_to_spawn = /mob/living/simple_animal/hostile/human/ramzi/ranged
+	},
 /turf/open/floor/plating,
 /area/ruin/jungle/syndifort)
 "eW" = (
@@ -300,7 +310,9 @@
 /obj/structure/cable{
 	icon_state = "0-5"
 	},
-/obj/machinery/porta_turret/ruin/ramzi,
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 10
+	},
 /turf/open/floor/plating/rust,
 /area/ruin/jungle/syndifort/jerry)
 "ik" = (
@@ -758,6 +770,9 @@
 /obj/structure/sign/poster/contraband/peacemaker{
 	pixel_x = 32
 	},
+/obj/effect/landmark/mission_poi/guard{
+	type_to_spawn = /mob/living/simple_animal/hostile/human/ramzi
+	},
 /turf/open/floor/plating,
 /area/ruin/jungle/syndifort)
 "xm" = (
@@ -800,7 +815,9 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/porta_turret/ruin/ramzi,
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 6
+	},
 /turf/open/floor/plating/rust,
 /area/ruin/jungle/syndifort/jerry)
 "yx" = (
@@ -933,6 +950,9 @@
 "BC" = (
 /obj/structure/chair/plastic,
 /obj/machinery/light/small/directional/north,
+/obj/effect/landmark/mission_poi/guard{
+	type_to_spawn = /mob/living/simple_animal/hostile/human/ramzi
+	},
 /turf/open/floor/plating/rust,
 /area/ruin/jungle/syndifort)
 "BH" = (
@@ -1184,7 +1204,9 @@
 /obj/structure/cable{
 	icon_state = "0-9"
 	},
-/obj/machinery/porta_turret/ruin/ramzi,
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 6
+	},
 /turf/open/floor/plating/rust,
 /area/ruin/jungle/syndifort/jerry)
 "Lu" = (
@@ -1541,7 +1563,9 @@
 /obj/structure/cable{
 	icon_state = "0-6"
 	},
-/obj/machinery/porta_turret/ruin/ramzi,
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 9
+	},
 /turf/open/floor/plating/rust,
 /area/ruin/jungle/syndifort/jerry)
 "VV" = (

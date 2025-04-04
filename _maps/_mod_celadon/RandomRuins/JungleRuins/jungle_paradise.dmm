@@ -6645,6 +6645,12 @@
 /obj/structure/punji_sticks,
 /turf/open/floor/plating/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
+"QD" = (
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/jungle/paradise/misc)
 "QF" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating{

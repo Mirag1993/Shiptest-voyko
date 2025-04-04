@@ -445,6 +445,12 @@
 	},
 /turf/open/floor/plating/dirt/jungle,
 /area/overmap_encounter/planetoid/cave/explored)
+"fo" = (
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 5
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/storage)
 "fs" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 8
@@ -652,6 +658,9 @@
 /obj/structure/chair/comfy/grey/directional/east,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/landmark/mission_poi/main/kill{
+	mission_index = 1
 	},
 /turf/open/floor/plasteel/tech,
 /area/ruin/jungle/cavecrew/bridge)
@@ -2169,6 +2178,9 @@
 	pixel_x = -5;
 	pixel_y = -3
 	},
+/obj/effect/landmark/mission_poi/main{
+	mission_index = 2
+	},
 /turf/open/floor/plasteel/tech,
 /area/ruin/jungle/cavecrew/bridge)
 "Al" = (
@@ -2720,6 +2732,10 @@
 	dir = 10
 	},
 /obj/machinery/light/directional/south,
+/obj/effect/landmark/mission_poi/guard{
+	type_to_spawn = /mob/living/simple_animal/hostile/human/frontier/ranged/neutered;
+	mission_index = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/jungle/cavecrew/bridge)
 "Ir" = (
@@ -3202,7 +3218,6 @@
 /obj/effect/turf_decal/industrial/hatch/yellow,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/loot,
-/obj/item/wallframe/bounty_board,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ruin/jungle/cavecrew/cargo)
 "Nf" = (
@@ -3624,6 +3639,12 @@
 	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/cave/explored)
+"SH" = (
+/obj/machinery/porta_turret/ruin/ramzi{
+	dir = 5
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ship/storage)
 "SI" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -5485,7 +5506,7 @@ JQ
 Sj
 Sj
 Sj
-gQ
+lm
 mK
 hf
 Fw
@@ -6140,7 +6161,7 @@ fO
 fO
 fO
 fO
-zz
+gQ
 Ty
 Ty
 Ty
