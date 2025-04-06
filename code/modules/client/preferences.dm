@@ -721,7 +721,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='byond://?_src_=prefs;preference=ipc_antenna;task=input'>[features["ipc_antenna"]]</a><BR>"
 
-				dat += "<span style='border:1px solid #161616; background-color: #[facial_hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=hair;task=input'>Change</a><BR>" // [CELADON-EDIT] - CELADON_IPC_HAIR
+				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=hair;task=input'>Change</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1123,6 +1123,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("Smoker" in all_quirks)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<h3>Favorite Smokes</h3>"
+
+				dat += "<a href='byond://?_src_=prefs;preference=preferred_smoke_brand;task=input'>[preferred_smoke_brand]</a><BR>"
+
 			if("body_size" in pref_species.default_features)
 				if(!mutant_category)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -1186,12 +1193,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if(!fbp)
 					dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_PROSTHETIC]'>Random Prosthetic: [(randomise[RANDOM_PROSTHETIC]) ? "Yes" : "No"]</a><br>"
-
 					dat += "<table>"
 					for(var/index in prosthetic_limbs)
 						var/bodypart_name = parse_zone(index)
 						dat += "<tr><td><b>[bodypart_name]:</b></td>"
-						dat += "<td><a href='?_src_=prefs;preference=limbs;customize_limb=[index]'>[prosthetic_limbs[index]]</a></td></tr>"
+						dat += "<td><a href='byond://?_src_=prefs;preference=limbs;customize_limb=[index]'>[prosthetic_limbs[index]]</a></td></tr>"
 					dat += "</table><br>"
 					//[/CELADON - EDIT]
 		if(2) //Loadout
@@ -1259,7 +1265,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			for(var/gear_name in LC.gear)
 				var/datum/gear/G = LC.gear[gear_name]
 				// [CELADON-EDIT] - CELADON_QOL
-				// dat += "<tr style='vertical-align:top;'><td width=20%><a style='white-space:normal;' [(G.display_name in equipped_gear) ? "class='linkOn' " : ""]href='?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'>[G.display_name]</a></td><td>" // CELADON-EDIT - ORIGINAL
+				// dat += "<tr style='vertical-align:top;'><td width=20%><a style='white-space:normal;' [(G.display_name in equipped_gear) ? "class='linkOn' " : ""]href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'>[G.display_name]</a></td><td>"
 				dat += "<tr style='vertical-align:top;'><td align='middle' width=20%><a style='white-space:normal;' [(G.display_name in equipped_gear) ? "class='linkOn' " : ""]href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'>[G.display_name]</a><br/><img src=data:image/jpeg;base64,[G.base64icon] class='loadoutPreview'><hr></td><td>"
 				// [/CELADON-EDIT]
 				if(G.allowed_roles)
@@ -1404,9 +1410,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Play Lobby Music:</b> <a href='byond://?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Play End of Round Sounds:</b> <a href='byond://?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>See Pull Requests:</b> <a href='byond://?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>TGUI Large Buttons:</b> <a href='byond://?_src_=prefs;preference=large_tgui_buttons'>[(large_tgui_buttons) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Swap TGUI Buttons:</b> <a href='byond://?_src_=prefs;preference=swapped_tgui_buttons'>[(swapped_tgui_buttons) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>TGUI input toggles:</b> <a href='byond://?_src_=prefs;preference=tgui_input'>[(tgui_input) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<br>"
 
 

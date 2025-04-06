@@ -457,6 +457,7 @@
 
 	log_celadon_admin("ADMIN: [key_name(usr)] has entered Game Panel.") // [CELADON_ADD] - logging admin actions.
 
+
 	var/datum/browser/popup = new(usr, "admin2", null, 240, 280)
 	popup.set_content(dat)
 	popup.open()
