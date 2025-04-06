@@ -343,8 +343,11 @@
 	actions_types = list(/datum/action/item_action/toggle_helmet_mode,/datum/action/item_action/toggle_helmet_light)
 	visor_flags_inv = HIDEMASK|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDEEARS
 	visor_flags = STOPSPRESSUREDAMAGE
-	var/full_retraction = FALSE //whether or not our full face is revealed or not during travel mode
+	var/full_retraction = FALSE //whether or not our full face is revealed or not during combat mode
 	var/eva_mode = TRUE
+
+	kepori_override_icon = 'icons/mob/clothing/head/spacesuits_kepori.dmi'
+	supports_variations = KEPORI_VARIATION
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon_state()
 	icon_state = "hardsuit[eva_mode]-[hardsuit_type]"
@@ -438,12 +441,15 @@
 	jetpack = /obj/item/tank/jetpack/suit
 	// [CELADON-EDIT] - TAJARA, CELADON_RIOL, BALANCE
 	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
-	// slowdown = 0.7 // [CELADON - EDIT] - ORIGINAL
 	// var/combat_slowdown = 0 //slowdown when in combat mode // [CELADON - EDIT] - ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
 	var/combat_slowdown = 0.2
 	// [/CELADON - EDIT]
-	var/lightweight = FALSE //used for flags when toggling
+	slowdown = 0.5
+	var/lightweight = 0 //used for flags when toggling
+
+	kepori_override_icon = 'icons/mob/clothing/suits/spacesuits_kepori.dmi'
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
 
 //Ramzi Syndie suit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi
@@ -470,7 +476,7 @@
 	// [CELADON - REMOVE]
 	jetpack = null
 	// [CELADON-ADD] - TAJARA, CELADON_RIOL
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
 	// [/CELADON-ADD]
 
 //Elite Syndie suit
@@ -524,7 +530,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun
 	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
 	// supports_variations = VOX_VARIATION // CELADON-EDIT - ORIGINAL
-	supports_variations = VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	supports_variations = VOX_VARIATION | KEPORI_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
 	// [/CELADON-EDIT]
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun
@@ -568,7 +574,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/inteq
 	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
 	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
 	// [/CELADON-EDIT]
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/inteq
@@ -578,7 +584,7 @@
 	icon_state = "hardsuit1-pointman"
 	hardsuit_type = "pointman"
 	full_retraction = TRUE
-	supports_variations = VOX_VARIATION
+	supports_variations = VOX_VARIATION | KEPORI_VARIATION
 
 	//Medical hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/medical
