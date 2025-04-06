@@ -1,4 +1,4 @@
-import { flow } from 'common/fp';
+import { flow } from 'tgui-core/fp';
 import { filter, sortBy } from 'common/collections';
 import { useBackend, useSharedState } from '../../backend';
 import {
@@ -14,6 +14,8 @@ import {
   Collapsible,
 } from '../../components';
 import { formatMoney } from '../../format';
+} from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
 
 export const CargoCatalog = (props, context) => {
   const { act, data } = useBackend(context);
