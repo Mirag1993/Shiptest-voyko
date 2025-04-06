@@ -13,23 +13,15 @@ import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { logger } from '../logging';
 
-const findShipByRef = (ship_list, ship_ref) => {
-  for (let i = 0; i < ship_list.length; i++) {
-    if (ship_list[i].ref === ship_ref) return ship_list[i];
-  }
-  return null;
-};
-
-export const ShipSelect = (props, context) => {
-  const { act, data } = useBackend(context);
+export const ShipSelect = (props) => {
+  const { act, data } = useBackend();
 
   const ships = data.ships || {};
   const templates = data.templates || [];
 
-  const [currentTab, setCurrentTab] = useLocalState(context, 'tab', 1);
-  const [selectedShipRef, setSelectedShipRef] = useLocalState(
-    context,
-    'selectedShipRef',
+  const [currentTab, setCurrentTab] = useLocalState('tab', 1);
+  const [selectedShip, setSelectedShip] = useLocalState(
+    'selectedShip',
     null
   );
 
@@ -41,14 +33,14 @@ export const ShipSelect = (props, context) => {
     closed: 'Locked',
   };
 
-  const [shownTabs, setShownTabs] = useLocalState(context, 'tabs', [
+  const [shownTabs, setShownTabs] = useLocalState('tabs', [
     { name: 'Ship Select', tab: 1 },
     { name: 'Ship Purchase', tab: 3 },
   ]);
   const searchFor = (searchText) =>
     createSearch(searchText, (thing) => thing.name);
 
-  const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
+  const [searchText, setSearchText] = useLocalState('searchText', '');
 
   return (
     <Window title="Ship Select" width={800} height={600} resizable>

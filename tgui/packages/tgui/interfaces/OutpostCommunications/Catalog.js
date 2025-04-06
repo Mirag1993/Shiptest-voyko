@@ -1,6 +1,4 @@
-import { flow } from 'tgui-core/fp';
 import { filter, sortBy } from 'common/collections';
-import { useBackend, useSharedState } from '../../backend';
 import {
   Box,
   Button,
@@ -16,22 +14,23 @@ import {
 import { formatMoney } from '../../format';
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
+import { flow } from 'tgui-core/fp';
 
-export const CargoCatalog = (props, context) => {
-  const { act, data } = useBackend(context);
+import { useBackend, useSharedState } from '../../backend';
+
+export const CargoCatalog = (props) => {
+  const { act, data } = useBackend();
 
   const { self_paid, app_cost } = data;
 
   const supplies = Object.values(data.supplies);
 
   const [activeSupplyName, setActiveSupplyName] = useSharedState(
-    context,
     'supply',
     supplies[0]?.name
   );
 
   const [searchText, setSearchText] = useSharedState(
-    context,
     'search_text',
     ''
   );
@@ -230,4 +229,30 @@ const searchForSupplies = (supplies, search) => {
     sortBy((pack) => pack.name),
     (packs) => packs.slice(0, 25),
   ])(supplies);
+};
+
+const CargoCartButtons = (props) => {
+  const { act, data } = useBackend();
+  const { requestonly, can_send, can_approve_requests } = data;
+  const cart = data.cart || [];
+  const total = cart.reduce((total, entry) => total + entry.cost, 0);
+  if (requestonly || !can_send || !can_approve_requests) {
+    return null;
+  }
+  return (
+    <>
+      <Box inline mx={1}>
+        {cart.length === 0 && 'Cart is empty'}
+        {cart.length === 1 && '1 item'}
+        {cart.length >= 2 && cart.length + ' items'}{' '}
+        {total > 0 && `(${formatMoney(total)} cr)`}
+      </Box>
+      <Button
+        icon="times"
+        color="transparent"
+        content="Clear"
+        onClick={() => act('clear')}
+      />
+    </>
+  );
 };
