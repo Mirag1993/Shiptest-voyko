@@ -25,12 +25,6 @@
 #define REALTIMEOFDAY (world.timeofday + (MIDNIGHT_ROLLOVER * MIDNIGHT_ROLLOVER_CHECK))
 #define MIDNIGHT_ROLLOVER_CHECK (GLOB.rollovercheck_last_timeofday != world.timeofday ? update_midnight_rollover() : GLOB.midnight_rollovers)
 
-#if DM_VERSION >= 516
-#define SIGN(x) (sign(x))
-#else
-#define SIGN(x) ((x)!=0 ? (x) / abs(x) : 0)
-#endif
-
 #define CEILING(x, y) (-round(-(x) / (y)) * (y))
 
 #define ROUND_UP(x) (-round(-(x)))
@@ -297,4 +291,3 @@
 
 /// Like SPT_PROB_RATE but easier to use, simply put `if(SPT_PROB(10, 5))`
 #define SPT_PROB(prob_per_second_percent, seconds_per_tick) (prob(100*SPT_PROB_RATE((prob_per_second_percent)/100, (seconds_per_tick))))
-
