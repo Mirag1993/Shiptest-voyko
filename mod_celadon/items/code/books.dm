@@ -28,11 +28,11 @@
 	playsound(loc, "punch", 25, TRUE, -1)
 
 	if(M.stat == DEAD)
-		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src].", span_userdanger("[user] smacks your lifeless corpse with [src].", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
 	else if(M.has_language(/datum/language/elysm))
-		M.visible_message(span_danger("[user] beats [M] over the head with [src]!", span_userdanger("[user] beats you over the head with [src]!", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] beats [M] over the head with [src]!"), span_userdanger("[user] beats you over the head with [src]!"), span_hear("You hear smacking."))
 	else
-		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!", span_boldnotice("As [user] hits you with [src], arabic symbols flow through your mind.", span_hear("You hear smacking."))))
+		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], arabic symbols flow through your mind."), span_hear("You hear smacking."))
 		M.grant_language(/datum/language/elysm, TRUE, TRUE, LANGUAGE_MIND)
 
 /obj/item/alquadim_manual
@@ -65,11 +65,11 @@
 	playsound(loc, "punch", 25, TRUE, -1)
 
 	if(M.stat == DEAD)
-		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src].", span_userdanger("[user] smacks your lifeless corpse with [src].", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
 	else if(M.has_language(/datum/language/alquadim))
-		M.visible_message(span_danger("[user] beats [M] over the head with [src]!", span_userdanger("[user] beats you over the head with [src]!", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] beats [M] over the head with [src]!"), span_userdanger("[user] beats you over the head with [src]!"), span_hear("You hear smacking."))
 	else
-		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!", span_boldnotice("As [user] hits you with [src], arabic symbols flow through your mind.", span_hear("You hear smacking."))))
+		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], arabic symbols flow through your mind."), span_hear("You hear smacking."))
 		M.grant_language(/datum/language/alquadim, TRUE, TRUE, LANGUAGE_MIND)
 
 /obj/item/thayos_manual
@@ -102,11 +102,11 @@
 	playsound(loc, "punch", 25, TRUE, -1)
 
 	if(M.stat == DEAD)
-		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src].", span_userdanger("[user] smacks your lifeless corpse with [src].", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
 	else if(M.has_language(/datum/language/thayoss))
-		M.visible_message(span_danger("[user] beats [M] over the head with [src]!", span_userdanger("[user] beats you over the head with [src]!", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] beats [M] over the head with [src]!"), span_userdanger("[user] beats you over the head with [src]!"), span_hear("You hear smacking."))
 	else
-		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!", span_boldnotice("As [user] hits you with [src], japanese symbols flow through your mind.", span_hear("You hear smacking."))))
+		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], japanese symbols flow through your mind."), span_hear("You hear smacking."))
 		M.grant_language(/datum/language/thayoss, TRUE, TRUE, LANGUAGE_MIND)
 
 /obj/item/fuyo_manual
@@ -139,9 +139,9 @@
 	playsound(loc, "punch", 25, TRUE, -1)
 
 	if(M.stat == DEAD)
-		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src].", span_userdanger("[user] smacks your lifeless corpse with [src].", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] smacks [M]'s lifeless corpse with [src]."), span_userdanger("[user] smacks your lifeless corpse with [src]."), span_hear("You hear smacking."))
 	else if(M.has_language(/datum/language/fuyo))
-		M.visible_message(span_danger("[user] beats [M] over the head with [src]!", span_userdanger("[user] beats you over the head with [src]!", span_hear("You hear smacking."))))
+		M.visible_message(span_danger("[user] beats [M] over the head with [src]!"), span_userdanger("[user] beats you over the head with [src]!"), span_hear("You hear smacking."))
 	else
-		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!", span_boldnotice("As [user] hits you with [src], chinese symbols flow through your mind.", span_hear("You hear smacking."))))
+		M.visible_message(span_notice("[user] teaches [M] by beating [M.p_them()] over the head with [src]!"), span_boldnotice("As [user] hits you with [src], chinese symbols flow through your mind."), span_hear("You hear smacking."))
 		M.grant_language(/datum/language/fuyo, TRUE, TRUE, LANGUAGE_MIND)

@@ -77,7 +77,7 @@
 
 /obj/structure/spawner/wasteplanet/hivebot/proc/destroy_effect()
 	playsound(loc,'sound/effects/explosionfar.ogg', 200, TRUE)
-	visible_message(span_boldannounce("[src] begins to rattle and shake, sparks flying off of it!")
+	visible_message(span_boldannounce("[src] begins to rattle and shake, sparks flying off of it!"))
 
 
 /obj/structure/spawner/wasteplanet/hivebot/proc/drop_loot()

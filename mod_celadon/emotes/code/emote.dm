@@ -526,7 +526,7 @@
 				message_param = "пытается показать на %t с помощью ноги, но теряет баланс и <span class='userdanger'>падает на землю</span>!"
 				H.Paralyze(20)
 			else
-				message_param = span_userdanger("[user.p_their()] ударяется головой об землю</span> пытаясь двигаться в сторону %t."
+				message_param = span_userdanger("[user.p_their()] ударяется головой об землю</span> пытаясь двигаться в сторону %t.")
 				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 	..()
 

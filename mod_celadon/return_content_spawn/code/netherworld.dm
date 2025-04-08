@@ -16,9 +16,9 @@
 /obj/structure/spawner/nether/examine(mob/user)
 	. = ..()
 	if(isskeleton(user) || iszombie(user))
-		. += "A direct link to another dimension full of creatures very happy to see you. <span class='nicegreen'>You can see your house from here!")
+		. += span_nicegreen("A direct link to another dimension full of creatures very happy to see you. You can see your house from here!")
 	else
-		. += "A direct link to another dimension full of creatures not very happy to see you. <span class='warning'>Entering the link would be a very bad idea.")
+		. += span_warning("A direct link to another dimension full of creatures not very happy to see you. Entering the link would be a very bad idea.")
 
 /obj/structure/spawner/nether/attack_hand(mob/user)
 	. = ..()
