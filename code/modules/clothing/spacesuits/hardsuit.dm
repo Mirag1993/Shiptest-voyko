@@ -347,7 +347,7 @@
 	var/eva_mode = TRUE
 
 	kepori_override_icon = 'icons/mob/clothing/head/spacesuits_kepori.dmi'
-	supports_variations = KEPORI_VARIATION
+	supports_variations = KEPORI_VARIATION | VOX_VARIATION
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/update_icon_state()
 	icon_state = "hardsuit[eva_mode]-[hardsuit_type]"
