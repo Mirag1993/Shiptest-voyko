@@ -2,25 +2,25 @@
 	AddComponent(/datum/component/clumsy_climb, 5)
 	. = ..()
 
-/obj/structure/table/do_climb(mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	AddComponent(/datum/component/clumsy_climb, 15)
-	SEND_SIGNAL(src, COMSIG_CLIMBED_ON, user)
+// /obj/structure/table/do_climb(mob/living/user)	// Отключено
+// 	. = ..()
+// 	if(!.)
+// 		return FALSE
+// 	AddComponent(/datum/component/clumsy_climb, 15)
+// 	SEND_SIGNAL(src, COMSIG_CLIMBED_ON, user)
 
-/obj/structure/proc/do_climb(atom/movable/A)
-	if(climbable)
-		if(A.loc == src.loc)
-			var/turf/where_to_climb = get_step(A,dir)
-			if(!where_to_climb.is_blocked_turf())
-				A.forceMove(where_to_climb)
-				return TRUE
-		density = FALSE
-		. = step(A,get_dir(A,src.loc))
-		density = TRUE
+// /obj/structure/proc/do_climb(atom/movable/A)	// Удалено офами
+// 	if(climbable)
+// 		if(A.loc == src.loc)
+// 			var/turf/where_to_climb = get_step(A,dir)
+// 			if(!where_to_climb.is_blocked_turf())
+// 				A.forceMove(where_to_climb)
+// 				return TRUE
+// 		density = FALSE
+// 		. = step(A,get_dir(A,src.loc))
+// 		density = TRUE
 
-// /obj/structure/proc/climb_structure(mob/living/user)
+// /obj/structure/proc/climb_structure(mob/living/user)	// Удалено офами
 // 	src.add_fingerprint(user)
 // 	user.visible_message("<span class='warning'>[user] starts climbing onto [src].</span>",
 // 								"<span class='notice'>You start climbing onto [src]...</span>")
