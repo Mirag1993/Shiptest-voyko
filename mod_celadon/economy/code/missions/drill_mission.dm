@@ -46,7 +46,7 @@
 
 // /obj/machinery/drill/mission/examine()
 // 	. = ..()
-// 	. += span_notice("The drill contains [num_current] of the [num_wanted] samples needed.</span>"
+// 	. += span_notice("The drill contains [num_current] of the [num_wanted] samples needed.")
 
 // /obj/machinery/drill/mission/start_mining()
 // 	if(mining.vein_class < mission_class && mining)

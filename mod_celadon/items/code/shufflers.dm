@@ -9,8 +9,8 @@
 /obj/item/ammo_box/shuffler/unique_action(mob/living/user)
 	stored_ammo = shuffle(stored_ammo)
 	playsound(src, shuffle_sound, 50, TRUE)
-	user.visible_message(span_notice("[user] shuffles bullets in [src].</span>", \
-						span_notice("You shuffle bullets in [src].</span>", \
+	user.visible_message(span_notice("[user] shuffles bullets in [src]."), \
+						span_notice("You shuffle bullets in [src]."), \
 						span_notice("You hear shuffling sound."))
 
 /obj/item/ammo_box/shuffler/examine(mob/user)

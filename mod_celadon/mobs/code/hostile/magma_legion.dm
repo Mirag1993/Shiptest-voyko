@@ -100,7 +100,7 @@
 
 /obj/item/crusher_trophy/magma_skull/magma/examine(mob/user)
 	. = ..()
-	. += span_notice("Suitable as a trophy for a proto-kinetic crusher.</span>"
+	. += span_notice("Suitable as a trophy for a proto-kinetic crusher.")
 
 /obj/item/crusher_trophy/magma_skull/magma/effect_desc()
 	return "a kinetic crusher to armor penetration +<b>[bonus_value + 5]</b> up"

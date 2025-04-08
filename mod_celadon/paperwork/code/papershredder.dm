@@ -187,12 +187,12 @@ var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAS
 	if(!P.lit)
 		to_chat(user, span_warning("\The [P] is not lit."))
 		return
-	user.visible_message(span_warning("\The [user] holds \the [P] up to \the [src]. It looks like is trying to burn it!</span>", \
+	user.visible_message(span_warning("\The [user] holds \the [P] up to \the [src]. It looks like is trying to burn it!"), \
 		span_warning("You hold \the [P] up to \the [src], burning it slowly."))
 	if(!do_after(user,20))
 		to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))
 		return
-	user.visible_message(span_danger("\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+	user.visible_message(span_danger("\The [user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."), \
 		span_danger("You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap."))
 	FireBurn()
 

@@ -35,7 +35,7 @@
 			'mod_celadon/_storge_sounds/sound/voice/human_male_warcry_7.ogg',
 			'mod_celadon/_storge_sounds/sound/voice/human_male_warcry_8.ogg',
 			'mod_celadon/_storge_sounds/sound/voice/human_male_warcry_9.ogg'), 50, FALSE)
-	visible_message(span_warning("СМЕРТЬ КСЕНОСАМ!</span>",	span_hear("Никакой пощады!")))
+	visible_message(span_warning("СМЕРТЬ КСЕНОСАМ!"),	span_hear("Никакой пощады!")))
 	COOLDOWN_START(src, cooldown, 2 SECONDS)
 
 /obj/item/toy/plush/celadon/separ/proc/get_text()

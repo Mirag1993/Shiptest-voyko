@@ -46,7 +46,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/examine(mob/user)
 	. = ..()
-	. += span_notice("The shoes are [on ? "enabled" : "disabled"].</span>"
+	. += span_notice("The shoes are [on ? "enabled" : "disabled"].")
 
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/ui_action_click(mob/user)
 	var/datum/component/material_container/bananium = GetComponent(/datum/component/material_container)

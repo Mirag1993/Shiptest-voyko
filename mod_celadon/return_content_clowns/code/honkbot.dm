@@ -128,7 +128,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	..()
 	if(emagged == 2)
 		if(user)
-			user << span_danger("You short out [src]'s sound control system. It gives out an evil laugh!!</span>"
+			user << span_danger("You short out [src]'s sound control system. It gives out an evil laugh!!")
 			oldtarget_name = user.name
 		audible_message(span_danger("[src] gives out an evil laugh!"))
 		playsound(src, 'sound/machines/honkbot_evil_laugh.ogg', 75, TRUE, -1) // evil laughter
@@ -210,7 +210,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 			log_combat(src,C,"honked")
 
-			C.visible_message(span_danger("[src] honks [C]!</span>",\
+			C.visible_message(span_danger("[src] honks [C]!"),\
 					span_userdanger("[src] honks you!"))
 		else
 			C.stuttering = 20
