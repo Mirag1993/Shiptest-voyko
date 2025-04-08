@@ -958,6 +958,8 @@
 	cleanup_beam_segments()
 	if(trajectory)
 		QDEL_NULL(trajectory)
+	//Empties out the list, MIGHT help with landmines hardeling but not all that confident.
+	LAZYCLEARLIST(impacted)
 	return ..()
 
 /obj/projectile/proc/cleanup_beam_segments()
