@@ -1,36 +1,36 @@
 //Код ниже по большей части нужен для ребаланса миссий оффов
-/datum/mission/outpost/drill
-	name = "Class 1 core sample mission"
-	desc = "We require geological information from one of the neighboring planetoids. \
-			Please anchor the drill in place and defend it until it has gathered enough samples.\
-			Operation of the core sampling drill is extremely dangerous, caution is advised."
-	value = 1500
-	duration = 80 MINUTES
-	weight = 8
+// /datum/mission/outpost/drill
+// 	name = "Class 1 core sample mission"
+// 	desc = "We require geological information from one of the neighboring planetoids. \
+// 			Please anchor the drill in place and defend it until it has gathered enough samples.\
+// 			Operation of the core sampling drill is extremely dangerous, caution is advised."
+// 	value = 1500
+// 	duration = 80 MINUTES
+// 	weight = 8
 
-	num_wanted = 4
-	class_wanted = 1
+// 	num_wanted = 4
+// 	class_wanted = 1
 
-/datum/mission/outpost/drill/New(...)
-	num_wanted = rand(num_wanted - 2, num_wanted + 2)
-	value = (num_wanted * (value / 10) + 1000)
-	return ..()
+// /datum/mission/outpost/drill/New(...)
+// 	num_wanted = rand(num_wanted - 2, num_wanted + 2)
+// 	value = (num_wanted * (value / 10) + 1000)
+// 	return ..()
 
-/datum/mission/outpost/drill/classtwo
-	name = "Class 2 core sample mission"
-	value = 3500
-	duration = 90 MINUTES
-	weight = 6
-	class_wanted = 2
-	num_wanted = 6
+// /datum/mission/outpost/drill/classtwo
+// 	name = "Class 2 core sample mission"
+// 	value = 3500
+// 	duration = 90 MINUTES
+// 	weight = 6
+// 	class_wanted = 2
+// 	num_wanted = 6
 
-/datum/mission/outpost/drill/classthree
-	name = "Class 3 core sample mission"
-	value = 6000
-	duration = 100 MINUTES
-	weight = 4
-	class_wanted = 3
-	num_wanted = 8
+// /datum/mission/outpost/drill/classthree
+// 	name = "Class 3 core sample mission"
+// 	value = 6000
+// 	duration = 100 MINUTES
+// 	weight = 4
+// 	class_wanted = 3
+// 	num_wanted = 8
 
 /*
 /// MARK:		Core sampling drill
