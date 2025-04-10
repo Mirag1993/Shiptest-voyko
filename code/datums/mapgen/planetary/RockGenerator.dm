@@ -107,7 +107,9 @@
 		/obj/structure/flora/tree/cactus = 8,
 		/obj/structure/flora/ash/cacti = 2,
 		/obj/structure/flora/ash/garden/arid = 2,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
 		/obj/item/mine/pressure/explosive/rusty/live = 1,
+		// [/CELADON - ADD]
 	)
 
 	mob_spawn_list = list(
@@ -142,7 +144,6 @@
 		/obj/structure/flora/ash/cacti = 2,
 		/obj/structure/flora/grass/rockplanet/dead = 8,
 		/obj/structure/flora/ash/garden/arid = 1,
-		/obj/item/mine/pressure/explosive/rusty/live = 1,
 	)
 
 /datum/biome/cave/rock
@@ -154,8 +155,8 @@
 		/obj/structure/flora/rock/pile/rockplanet = 8,
 		/obj/structure/flora/ash/fern = 4,
 		/obj/structure/flora/ash/puce = 2,
-		/obj/item/mine/pressure/explosive/rusty/live = 1,
 		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live = 1,
 		/obj/item/mine/proximity/explosive/live = 1,
 		// [/CELADON - ADD]
 	)

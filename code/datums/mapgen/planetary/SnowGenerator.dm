@@ -146,7 +146,9 @@
 		/obj/structure/flora/ausbushes/ppflowers = 2,
 		/obj/structure/flora/ausbushes/lavendergrass = 2,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
 		/obj/item/mine/pressure/explosive/rusty/live = 1,
+		// [/CELADON - ADD]
 	)
 
 /datum/biome/snow/forest
@@ -256,8 +258,8 @@
 		/obj/structure/flora/ash/stem_shroom = 2,
 		/obj/structure/flora/ash/puce = 2,
 		/obj/structure/flora/ash/garden/frigid = 2,
-		/obj/item/mine/pressure/explosive/rusty/live = 1,
 		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live = 1,
 		/obj/item/mine/proximity/explosive/live = 1,
 		// [/CELADON - ADD]
 	)
