@@ -1,4 +1,4 @@
-﻿/datum/supply_pack/faction/syndicate/medical
+/datum/supply_pack/faction/syndicate/medical
 	group = "Medical"
 
 /datum/supply_pack/faction/syndicate/medical/mkii_hypo
