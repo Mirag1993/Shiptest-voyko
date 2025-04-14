@@ -114,34 +114,11 @@
 
 	return data
 
-/obj/machinery/computer/cargo/ui_static_data(mob/user)
-	var/list/data = list()
-	data["supplies"] = list()
-	for(var/pack in SSshuttle.supply_packs)
-		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
-		if(!data["supplies"][P.group])
-			data["supplies"][P.group] = list(
-				"name" = P.group,
-				"packs" = list()
-			)
-		if(P.hidden && !(obj_flags & EMAGGED))
-			continue
-		data["supplies"][P.group]["packs"] += list(list(
-			"name" = P.name,
-			"cost" = P.cost,
-			"id" = pack,
-			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
-			"small_item" = P.small_item,
-		))
-	return data
-
 //[CELADON-ADD] - CELADON_FIXES - Чиним реролл
-
 /datum/overmap/ship/controlled
 	var/given_up_missions = 0
 	var/giveup_timer = - 15 MINUTES
 	var/giveup_timeout = FALSE
-
 //[/CELADON-ADD]
 
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)

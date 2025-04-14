@@ -8,10 +8,6 @@
 // 	objective_type = /datum/overmap/event/dust
 
 
-/datum/overmap/event
-	var/safe_speed = 1
-	var/list/meteor_types = list()
-
 //Carp "meteors" - throws carp at the ship
 /datum/overmap/event/carp
 	name = "carp migration (moderate)"
@@ -19,9 +15,8 @@
 	token_icon_state = "carp_moderate1"
 	chance_to_affect = 15
 	spread_chance = 50
-	chain_rate = 4
-	safe_speed = 2
-	meteor_types = list(
+	var/safe_speed = 3
+	var/list/meteor_types = list(
 		/obj/effect/meteor/carp = 16,
 		/obj/effect/meteor/carp/big = 1, //numbers I pulled out of my ass
 	)
@@ -82,8 +77,8 @@
 	chance_to_affect = 30
 	spread_chance = 50
 	chain_rate = 4
-	safe_speed = 7
-	meteor_types = list(
+	var/safe_speed = 7
+	var/list/meteor_types = list(
 		/obj/effect/meteor/dust = 3,
 	)
 

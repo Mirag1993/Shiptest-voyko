@@ -18,7 +18,7 @@
 	spread_chance = 10
 	chain_rate = 2
 	chance_to_affect = 10
-	var/strength = 4
+	strength = 4
 
 /datum/overmap/event/emp/minor
 	name = "ion storm (minor)"
