@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(overmap)
 				if(MC_TICK_CHECK)
 					return
 
-// /datum/controller/subsystem/overmap/proc/overmap_container_view(user = usr)
+// /datum/controller/subsystem/overmap/proc/overmap_container_view(user = usr)  // ЭТО ЧИНИТЬ НАДО
 // 	. += "<a href='?src=[REF(src)];refresh=1'>\[Refresh\]</a><br><code>"
 // 	for(var/y in size to 1 step -1)
 // 		for(var/x in 1 to size)
@@ -459,7 +459,7 @@ SUBSYSTEM_DEF(overmap)
 // 		return // returns . for those who don't know
 
 // 	if(!force)
-// 		. = null
+// 		. = null	  // ЭТО ЧИНИТЬ НАДО ДОСЮДА!
 
 /**
  * Gets the parent overmap object (e.g. the planet the atom is on) for a given atom.
