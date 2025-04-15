@@ -24,14 +24,14 @@
 
 /datum/overmap/event/emp/Initialize(position, ...)
 	. = ..()
-	token.icon_state = "emp_moderate_[rand(1, 2)]"
+	token.icon_state = "emp_moderate_[rand(1, 4)]"
 	switch(type) //woop! this picks one of two icon states for the severity of the storm in overmap.dmi
 		if(/datum/overmap/event/emp/minor)
-			token.icon_state = "emp_minor[rand(1, 2)]"
+			token.icon_state = "emp_minor[rand(1, 4)]"
 		if(/datum/overmap/event/emp)
-			token.icon_state = "emp_moderate_[rand(1, 2)]"
+			token.icon_state = "emp_moderate_[rand(1, 4)]"
 		if(/datum/overmap/event/emp/major)
-			token.icon_state = "emp_major_[rand(1, 2)]"
+			token.icon_state = "emp_major_[rand(1, 4)]"
 		else
 			token.icon_state = "emp_moderate_1"
 	token.update_appearance()
