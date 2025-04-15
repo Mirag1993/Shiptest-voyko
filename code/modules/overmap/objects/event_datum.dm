@@ -168,7 +168,10 @@
 /datum/overmap/event/emp
 	name = "electromagnetic storm (moderate)"
 	desc = "A heavily ionized area of space, prone to causing electromagnetic pulses in ships"
-	base_icon_state = "emp_medium_"
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// base_icon_state = "emp_medium_"	// ORIGINAL
+	base_icon_state = "emp_moderate_"
+	// [/CELADON-EDIT]
 	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#4066ff"
 	// [/CELADON-REMOVE]
