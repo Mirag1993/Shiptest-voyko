@@ -514,36 +514,38 @@
 		token.dir = NORTH
 		// [/CELADON-EDIT]
 
-	alter_token_appearance()
+// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - Убираем офовские картинки шипов
+	// alter_token_appearance()
 
-/datum/overmap/ship/alter_token_appearance()
-	var/direction = get_heading()
-	var/speed = get_speed()
-	if(legacy_rendering_switch)
-		if(direction)
-			token_icon_state = moving_icon_state
-			token.dir = direction
-		else
-			token_icon_state = stationary_icon_state
-	else
-		token_icon_state = stationary_icon_state
-		if(direction)
-			token.dir = direction
-	..()
-	if(hidden)
-		token.name = "???"
-		token.desc = "There's no identification of what this is. It's possible to get more information with your radar by getting closer."
-		token.icon_state = "unknown"
-	token.color = current_overmap.primary_structure_color
-	current_overmap.post_edit_token_state(src)
-	if(!legacy_rendering_switch)
-		token.cut_overlays()
-		if(direction)
-			token.add_overlay("dir_moving")
-		else if(!hidden)
-			token.add_overlay("dir_idle")
-		if(speed)
-			token.add_overlay("speed_[clamp(round(speed,1),0,10)]")
+// /datum/overmap/ship/alter_token_appearance()
+// 	var/direction = get_heading()
+// 	var/speed = get_speed()
+// 	if(legacy_rendering_switch)
+// 		if(direction)
+// 			token_icon_state = moving_icon_state
+// 			token.dir = direction
+// 		else
+// 			token_icon_state = stationary_icon_state
+// 	else
+// 		token_icon_state = stationary_icon_state
+// 		if(direction)
+// 			token.dir = direction
+// 	..()
+// 	if(hidden)
+// 		token.name = "???"
+// 		token.desc = "There's no identification of what this is. It's possible to get more information with your radar by getting closer."
+// 		token.icon_state = "unknown"
+// 	token.color = current_overmap.primary_structure_color
+// 	current_overmap.post_edit_token_state(src)
+// 	if(!legacy_rendering_switch)
+// 		token.cut_overlays()
+// 		if(direction)
+// 			token.add_overlay("dir_moving")
+// 		else if(!hidden)
+// 			token.add_overlay("dir_idle")
+// 		if(speed)
+// 			token.add_overlay("speed_[clamp(round(speed,1),0,10)]")
+// [/CELADON-REMOVE]
 
 // ensures the camera always moves when the ship moves
 /datum/overmap/ship/overmap_move(new_x, new_y)
