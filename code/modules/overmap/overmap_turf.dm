@@ -14,27 +14,26 @@
 	. = ..()
 	if(!virtual_z)
 		return
-	// // [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал	// КОД JOPA
-	// if(prob(25))
-	// 	var/image/I = image('icons/turf/overmap.dmi')
-	// 	I.icon_state = "[rand(1, 16)]"
-	// 	I.pixel_x = rand(-16, 16)
-	// 	I.pixel_y = rand(-16, 16)
-	// 	overlays += I
-	// if(prob(25))
-	// 	var/image/I = image('icons/turf/overmap.dmi')
-	// 	I.icon_state = "[rand(1, 16)]"
-	// 	I.pixel_x = rand(-16, 16)
-	// 	I.pixel_y = rand(-16, 16)
-	// 	overlays += I
-	// if(prob(25))
-	// 	var/image/I = image('icons/turf/overmap.dmi')
-	// 	I.icon_state = "[rand(1, 16)]"
-	// 	I.pixel_x = rand(-16, 16)
-	// 	I.pixel_y = rand(-16, 16)
-	// 	overlays += I
-	// // [/CELADON-ADD]
-	// var/datum/virtual_level/vlevel = SSovermap.overmap_vlevel
+	// [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал
+	if(prob(25))
+		var/image/I = image('icons/turf/overmap.dmi')
+		I.icon_state = "[rand(1, 16)]"
+		I.pixel_x = rand(-16, 16)
+		I.pixel_y = rand(-16, 16)
+		overlays += I
+	if(prob(25))
+		var/image/I = image('icons/turf/overmap.dmi')
+		I.icon_state = "[rand(1, 16)]"
+		I.pixel_x = rand(-16, 16)
+		I.pixel_y = rand(-16, 16)
+		overlays += I
+	if(prob(25))
+		var/image/I = image('icons/turf/overmap.dmi')
+		I.icon_state = "[rand(1, 16)]"
+		I.pixel_x = rand(-16, 16)
+		I.pixel_y = rand(-16, 16)
+		overlays += I
+	// [/CELADON-ADD]
 	var/datum/virtual_level/vlevel = get_virtual_level()
 	if(!vlevel.current_systen)
 		return
