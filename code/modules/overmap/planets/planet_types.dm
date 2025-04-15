@@ -114,7 +114,7 @@
 	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = "#bd1313"
 	// icon_state = "rock"
-	icon_state = "red"
+	icon_state = "rock"
 	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/rock
 	default_baseturf = /turf/open/floor/plating/asteroid
@@ -133,7 +133,7 @@
 	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_GRAY
 	// icon_state = "whitesands"
-	icon_state = "sand"
+	icon_state = "whitesands"
 	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/sand
 	default_baseturf = /turf/open/floor/plating/asteroid/whitesands
@@ -154,7 +154,7 @@
 	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = "#c6b597"
 	// icon_state = "ocean"
-	icon_state = "beach"
+	icon_state = "ocean"
 	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/beach
 	default_baseturf = /turf/open/floor/plating/asteroid/sand/lit
