@@ -80,7 +80,9 @@
 	name = "asteroid field (moderate)"
 	desc = "An area of space rich with asteroids, going fast through here could prove dangerous"
 	base_icon_state = "meteor_medium_"
-	default_color = "#a08444"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#a08444"
+	// [/CELADON-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 50
 	chain_rate = 4
@@ -95,23 +97,6 @@
 		/obj/effect/meteor/big=1,
 		/obj/effect/meteor/irradiated=3
 	)
-// /datum/overmap/event/meteor/Initialize(position, ...)
-// 	. = ..()
-// 	token.icon_state = "meteor[rand(1, 4)]"
-// 	switch(type) //woop! this picks one of two icon states for the severity of the storm in overmap.dmi
-// 		if(/datum/overmap/event/meteor/minor)
-// 			token.icon_state = "meteor_minor[rand(1, 2)]"
-// 		if(/datum/overmap/event/meteor)
-// 			token.icon_state = "meteor_moderate[rand(1, 2)]"
-// 		if(/datum/overmap/event/meteor/major)
-// 			token.icon_state = "meteor_major[rand(1, 2)]"
-// 		else
-// 			token.icon_state = "meteor_moderate1"
-// 	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-// 	//	token.color = "#a08444"
-// 	//	token.light_color = "#a08444"
-// 	// [/CELADON-REMOVE]
-// 	token.update_appearance()
 	var/primary_ores = list(\
 		/obj/item/stack/ore/plasma,
 		/obj/item/stack/ore/hematite,
@@ -184,7 +169,9 @@
 	name = "electromagnetic storm (moderate)"
 	desc = "A heavily ionized area of space, prone to causing electromagnetic pulses in ships"
 	base_icon_state = "emp_medium_"
-	default_color = "#4066ff"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#4066ff"
+	// [/CELADON-REMOVE]
 	spread_chance = 20
 	chain_rate = 2
 	chance_to_affect = 30
@@ -250,7 +237,9 @@
 	name = "solar flare (moderate)"
 	desc = "A area with very high level of the local ejected mass from the sun, causing fires in ships"
 	base_icon_state = "flare_medium_"
-	default_color = "#f65f00"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#f65f00"
+	// [/CELADON-REMOVE]
 	spread_chance = 20
 	chain_rate = 2
 	chance_to_affect = 20
@@ -316,7 +305,9 @@
 	name = "electrical storm (moderate)"
 	desc = "A buildup of static electrity, an unfortunately common sight on the frontier. Disturbing it tends to lead to intense electrical discharges"
 	base_icon_state = "electrical_medium_"
-	default_color = "#e8e85c"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#e8e85c"
+	// [/CELADON-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 30
 	chain_rate = 3
@@ -325,23 +316,6 @@
 	var/max_damage = 3000
 	var/min_damage = 1000
 
-// /datum/overmap/event/electric/Initialize(position, ...)
-// 	. = ..()
-// 	token.icon_state = "electrical[rand(1, 4)]"
-// 	switch(type) //woop! this picks one of two icon states for the severity of the storm in overmap.dmi
-// 		if(/datum/overmap/event/electric/minor)
-// 			token.icon_state = "electrical_minor[rand(1, 2)]"
-// 		if(/datum/overmap/event/electric)
-// 			token.icon_state = "electrical_moderate[rand(1, 2)]"
-// 		if(/datum/overmap/event/electric/major)
-// 			token.icon_state = "electrical_major[rand(1, 2)]"
-// 		else
-// 			token.icon_state = "electrical_moderate1"
-// 	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-// 	//	token.color = "#e8e85c"
-// 	//	token.light_color = "#e8e85c"
-// 	// [/CELADON-REMOVE]
-// 	token.update_appearance()
 /datum/overmap/event/electric/alter_token_appearance()
 	icon_suffix = "[rand(1, 4)]"
 	..()
@@ -385,12 +359,15 @@
 /datum/overmap/event/nebula
 	name = "nebula"
 	desc = "Beware of modular code."
-	base_icon_state = "nebula"
 	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// default_color = "#c053f3"
 	// token_icon_state = "nebula"
-	token_icon_state = "nebula1"
+	// base_icon_state = "nebula"	// CELADON-EDIT - ORIGINAL
+	token_icon_state = "nebula_1"
+	base_icon_state = "nebula_1"
 	// [/CELADON-EDIT]
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#c053f3"
+	// [/CELADON-REMOVE]
 
 	chain_rate = 8
 	spread_chance = 75
@@ -408,8 +385,8 @@
 	token.opacity = TRUE
 // // [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
 // //	token.color = "#c053f3"
-// //	token.light_color = "#c053f3"
-// 	token.icon_state = "nebula[rand(1, 4)]"
+// //	token.light_color = "#c053f3"	// CELADON-EDIT - ORIGINAL
+	token.icon_state = "nebula_[rand(1, 4)]"
 // // [/CELADON-EDIT]
 // 	token.update_appearance()
 	current_overmap.post_edit_token_state(src)
@@ -471,12 +448,6 @@
 	if(_other_wormhole)
 		other_wormhole = _other_wormhole
 	if(!other_wormhole)
-	// 	other_wormhole = new(null, src) //Create a new wormhole at a random location
-	// // [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// //	token.color = "#6d80c7"
-	// //	token.light_color = "#6d80c7"
-	// // [/CELADON-REMOVE]
-	// token.update_appearance()
 		other_wormhole = new(null, current_overmap, set_lifespan, src) //Create a new wormhole at a random location
 	alter_token_appearance()
 
@@ -502,7 +473,9 @@
 	name = "carp migration (moderate)"
 	desc = "A migratory school of space carp. They travel at high speeds, and flying through them may cause them to impact your ship"
 	base_icon_state = "carp_medium_"
-	default_color = "#7b1ca8"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#7b1ca8"
+	// [/CELADON-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 50
 	chain_rate = 4
@@ -513,24 +486,6 @@
 		/obj/effect/meteor/carp/big=1, //numbers I pulled out of my ass
 	)
 	primary_ores = null
-
-// /datum/overmap/event/meteor/carp/Initialize(position, ...)
-// 	. = ..()
-// 	token.icon_state = "carp[rand(1, 4)]"
-// 	switch(type) //woop! this picks one of two icon states for the severity of the storm in overmap.dmi
-// 		if(/datum/overmap/event/meteor/carp/minor)
-// 			token.icon_state = "carp_minor[rand(1, 2)]"
-// 		if(/datum/overmap/event/meteor/carp)
-// 			token.icon_state = "carp_moderate[rand(1, 2)]"
-// 		if(/datum/overmap/event/meteor/carp/major)
-// 			token.icon_state = "carp_major[rand(1, 2)]"
-// 		else
-// 			token.icon_state = "carp_moderate1"
-// 	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-// 	//	token.color = "#7b1ca8"
-// 	//	token.light_color = "#7b1ca8"
-// 	// [/CELADON-REMOVE]
-// 	token.update_icon()
 
 /datum/overmap/event/meteor/carp/alter_token_appearance()
 	icon_suffix = "[rand(1, 4)]"
@@ -567,7 +522,9 @@
 	name = "dust cloud"
 	desc = "A cloud of spaceborne dust. Relatively harmless, unless you're travelling at relative speeds"
 	base_icon_state = "dust"
-	default_color = "#506469"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#506469"
+	// [/CELADON-REMOVE]
 	chance_to_affect = 90
 	spread_chance = 50
 	chain_rate = 4
@@ -578,14 +535,6 @@
 	)
 	primary_ores = null
 
-// /datum/overmap/event/meteor/dust/Initialize(position, ...)
-// 	. = ..()
-// 	token.icon_state = "dust[rand(1, 4)]"
-// // [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-// //	token.color = "#506469" //we should make these defines
-// //	token.light_color = "#506469"
-// // [/CELADON-REMOVE]
-// 	token.update_icon()
 /datum/overmap/event/meteor/dust/alter_token_appearance()
 	icon_suffix = "[rand(1, 4)]"
 	..()
@@ -597,19 +546,15 @@
 	name = "anomaly field"
 	desc = "A highly anomalous area of space, disturbing it leads to the manifestation of odd spatial phenomena"
 	base_icon_state = "anomaly"
-	default_color = "#d6c633"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#d6c633"
+	// [/CELADON-REMOVE]
 	chance_to_affect = 10
 	spread_chance = 35
 	chain_rate = 6
 
 /datum/overmap/event/anomaly/Initialize(position, datum/overmap_star_system/system_spawned_in, set_lifespan, ...)
 	. = ..()
-// 	token.icon_state = "anomaly[rand(1, 4)]"
-// // [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-// //	token.color = "#c46a24"
-// //	token.light_color = "#c46a24"
-// // [/CELADON-REMOVE]
-// 	token.update_icon()
 	if(prob(50)) //only 50% chance of having interference
 		interference_power = rand(20,60)
 
@@ -638,7 +583,7 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	/datum/overmap/event/emp/minor = 25,
 	/datum/overmap/event/emp = 20,
 	/datum/overmap/event/emp/major = 25,
-	// [/CELADON-EDIT]
+	// [/CELADON-ADD]
 	/datum/overmap/event/meteor/minor = 45,
 	/datum/overmap/event/meteor = 40,
 	/datum/overmap/event/meteor/major = 35,
@@ -660,7 +605,9 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	name = "radiation storm (moderate)"
 	desc = "An area with a high concentration of gamma rays. Better not take long here."
 	base_icon_state = "gamma_medium_"
-	default_color = "#d651c2"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#d651c2"
+	// [/CELADON-REMOVE]
 	spread_chance = 20
 	chain_rate = 2
 	chance_to_affect = 60
@@ -710,7 +657,9 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	name = "debris field (moderate)"
 	desc = "An area full of scrap metal, going fast through here could prove dangerous"
 	base_icon_state = "debris_medium_"
-	default_color = "#b8ccbf"
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// default_color = "#b8ccbf"
+	// [/CELADON-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 50
 	chain_rate = 4
