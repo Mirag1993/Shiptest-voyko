@@ -596,6 +596,9 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	/datum/overmap/event/carp = 35,
 	/datum/overmap/event/carp/major = 20,
 	/datum/overmap/event/dust = 50,
+	/datum/overmap/event/rad/minor = 20,
+	/datum/overmap/event/rad = 20,
+	/datum/overmap/event/rad/major = 20,
 	// [/CELADON-EDIT]
 	/datum/overmap/event/anomaly = 10
 ))
