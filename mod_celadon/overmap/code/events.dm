@@ -1,51 +1,39 @@
-// Миссия на изучение и поиск ионного шторма
-// Все миссии тут code/modules/overmap/missions/research_mission.dm
-/datum/mission/research/ion
-	name = "Ion storm research mission"
-	desc = "We require data on the behavior of ion storms in the system for an ongoing study. \
-			Please anchor the attached sensor array to your ship and fly it through the storms. \
-			It must be powered to collect the data."
-	value = 3500
-	// objective_type = /datum/overmap/event/emp // NEEDS_TO_FIX_ALARM!
-
 // Сам Ионный шторм
 // Остальные ивенты тут code/modules/overmap/objects/event_datum.dm
 ///ION STORM - explodes your IPCs
 /datum/overmap/event/emp
-	name = "ion storm (moderate)"
+	name = "electromagnetic storm (moderate)"
 	desc = "A heavily ionized area of space, prone to causing electromagnetic pulses in ships"
-	token_icon_state = "ion_moderate1"
+	token_icon_state = "emp_moderate_1"
 	spread_chance = 10
 	chain_rate = 2
 	chance_to_affect = 10
 	strength = 4
 
 /datum/overmap/event/emp/minor
-	name = "ion storm (minor)"
+	name = "electromagnetic storm (minor)"
 	chain_rate = 1
 	strength = 1
 	chance_to_affect = 5
 
 /datum/overmap/event/emp/major
-	name = "ion storm (major)"
+	name = "electromagnetic storm (major)"
 	chance_to_affect = 15
 	chain_rate = 4
 	strength = 4
 
 /datum/overmap/event/emp/Initialize(position, ...)
 	. = ..()
-	token.icon_state = "ion_moderate[rand(1, 2)]"
+	token.icon_state = "emp_moderate_[rand(1, 2)]"
 	switch(type) //woop! this picks one of two icon states for the severity of the storm in overmap.dmi
 		if(/datum/overmap/event/emp/minor)
-			token.icon_state = "ion_minor[rand(1, 2)]"
+			token.icon_state = "emp_minor[rand(1, 2)]"
 		if(/datum/overmap/event/emp)
-			token.icon_state = "ion_moderate[rand(1, 2)]"
+			token.icon_state = "emp_moderate_[rand(1, 2)]"
 		if(/datum/overmap/event/emp/major)
-			token.icon_state = "ion_major[rand(1, 2)]"
+			token.icon_state = "emp_major_[rand(1, 2)]"
 		else
-			token.icon_state = "ion_moderate1"
-	//token.color = "#7cb4d4"
-	//token.light_color = "#7cb4d4"
+			token.icon_state = "emp_moderate_1"
 	token.update_appearance()
 
 /datum/overmap/event/emp/affect_ship(datum/overmap/ship/controlled/S)
