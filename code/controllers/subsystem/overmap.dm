@@ -716,7 +716,11 @@ SUBSYSTEM_DEF(overmap)
 	var/secondary_structure_color = "#FFFFFF"
 
 	///the tileset we use, just the icon we force tokens to use, override only if nessary
-	var/tileset = 'icons/misc/overmap.dmi'
+	// [CELADON-EDIT] - CELADON_OVERMAP
+	// var/tileset = 'icons/misc/overmap.dmi'	// CELADON-EDIT - ORIGINAL
+	var/tileset = 'mod_celadon/_storge_icons/icons/overmap/overmap.dmi'
+	// [/CELADON-EDIT]
+
 	///This is the flag that makes it so all overmap objects use the same uniform color above. If false, tokens use their default colors
 	var/override_object_colors = FALSE
 
