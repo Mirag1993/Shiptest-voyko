@@ -16995,7 +16995,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "WQ" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/centcom)
 "WS" = (
