@@ -949,7 +949,7 @@
 	},
 /area/outpost/exterior)
 "aBJ" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating/grass/beach/dark,
 /area/outpost/crew/garden)
 "aCv" = (
@@ -982,7 +982,7 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutters{
 	anchored = 1
 	},
-/obj/structure/grille/indestructable,
+/obj/structure/grille/indestructible,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -1631,7 +1631,7 @@
 /turf/open/floor/plasteel/darkgreenfull/darkgreen,
 /area/outpost/medical/chemestry)
 "aUT" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -2028,7 +2028,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2{
 	dir = 8
 	},
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/outpost/engineering/atmospherics)
 "bfZ" = (
@@ -3738,7 +3738,7 @@
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "ckC" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/elysium,
 /turf/open/floor/plating,
 /area/outpost/crew/bar)
@@ -3754,7 +3754,7 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/operations/outpost_command)
 "cms" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth{
 	dir = 1
 	},
@@ -4280,7 +4280,7 @@
 /turf/open/floor/carpet/black,
 /area/outpost/crew/lounge)
 "cEt" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/fancy,
 /turf/open/floor/plating,
 /area/outpost/crew/dop_zone_1)
@@ -6155,7 +6155,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
 "dJT" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/purpl{
 	dir = 8
 	},
@@ -6505,7 +6505,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	dir = 1;
 	id = "ice_sb_armory"
@@ -6820,7 +6820,7 @@
 	},
 /area/outpost/exterior)
 "eaN" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -7024,7 +7024,7 @@
 	},
 /area/outpost/crew/bar)
 "egE" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "ice_lounge_window"
 	},
@@ -7764,7 +7764,7 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/shutters{
 	anchored = 1
 	},
-/obj/structure/grille/indestructable,
+/obj/structure/grille/indestructible,
 /obj/structure/sign/barsign{
 	icon_state = "cyberslyph";
 	req_access = null
@@ -8257,7 +8257,7 @@
 /turf/open/floor/wood/maple,
 /area/outpost/fraction/solfed)
 "eOO" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	dir = 8;
 	id = "outpost_command"
@@ -8283,7 +8283,7 @@
 /turf/closed/indestructible/titanium/nodiagnonal,
 /area/outpost/medical/hall_2)
 "eQe" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/grille,
 /obj/structure/cable{
 	d2 = 2;
@@ -8865,7 +8865,7 @@
 	},
 /area/outpost/exterior)
 "fkL" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/blacknormal,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
@@ -8993,7 +8993,7 @@
 /turf/open/floor/plating,
 /area/outpost/exterior)
 "foq" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth{
 	dir = 8
 	},
@@ -9494,7 +9494,7 @@
 /turf/open/floor/plasteel/patterned/grid,
 /area/outpost/fraction/inteq)
 "fzu" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -15530,7 +15530,7 @@
 	},
 /area/outpost/crew/lounge)
 "jbp" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	dir = 8;
 	id = "right_windows_medicals"
@@ -18886,7 +18886,7 @@
 /turf/open/floor/plasteel/patterned,
 /area/outpost/crew/bathroom)
 "lfM" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/blacknormal,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
@@ -19128,7 +19128,7 @@
 /turf/open/floor/plating/asteroid/icerock/cracked,
 /area/outpost/exterior)
 "lnm" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/preopen{
 	id = "outpost_security_window_cell_1"
 	},
@@ -20030,7 +20030,7 @@
 /turf/open/floor/carpet/green,
 /area/outpost/fraction/separatist)
 "lLW" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 8;
 	id = "ice_sec_medicals_hirurg_1"
@@ -20227,7 +20227,7 @@
 	},
 /area/outpost/exterior)
 "lSr" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/purpl,
 /obj/machinery/door/poddoor/ert{
 	id = "ice_sec_medicals"
@@ -20475,7 +20475,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
 "mae" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/outpost/cargo/smeltery)
 "maO" = (
@@ -22418,7 +22418,7 @@
 /turf/open/floor/carpet/blue,
 /area/outpost/fraction/solfed)
 "njG" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "njJ" = (
@@ -23419,7 +23419,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/outpost/crew/lounge)
 "nLN" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/blacknormal{
 	dir = 8
 	},
@@ -24256,7 +24256,7 @@
 	},
 /area/outpost/exterior)
 "ojx" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/blacknormal{
 	dir = 8
 	},
@@ -24782,7 +24782,7 @@
 	},
 /area/outpost/exterior)
 "oxM" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	id = "ice_sec_medicals"
 	},
@@ -25058,7 +25058,7 @@
 	},
 /area/outpost/exterior)
 "oGh" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/preopen{
 	id = "outpost_security_window_cell_2"
 	},
@@ -26405,7 +26405,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
 "pvy" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/shutters/preopen{
 	dir = 8;
 	id = "ice_sec_medicals_hirurg_2"
@@ -28472,7 +28472,7 @@
 	},
 /area/outpost/exterior)
 "qIw" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -30137,7 +30137,7 @@
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "rIK" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
 	dir = 4
 	},
@@ -31189,7 +31189,7 @@
 /turf/open/floor/carpet/black,
 /area/outpost/crew/lounge)
 "sqc" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/grille,
 /obj/structure/cable{
 	d2 = 2;
@@ -32414,7 +32414,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/grille,
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	dir = 4;
 	id = "outpost_detective"
@@ -32500,7 +32500,7 @@
 /turf/open/floor/carpet/black,
 /area/outpost/crew/lounge)
 "tcp" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/outpost/crew/bar)
 "tcD" = (
@@ -33055,7 +33055,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/hall_1)
 "try" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/purpl,
 /turf/open/floor/plating,
 /area/outpost/crew/bar/vip_zone)
@@ -33459,7 +33459,7 @@
 	},
 /area/outpost/exterior)
 "tEH" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth{
 	dir = 4
 	},
@@ -35597,7 +35597,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
 "uUE" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/blacknormal{
 	dir = 4
 	},
@@ -35699,7 +35699,7 @@
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/outpost/fraction/solfed)
 "uZg" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/outpost/vacant_rooms/shop)
 "uZH" = (
@@ -36746,7 +36746,7 @@
 /obj/effect/turf_decal/spline/fancy/opaque/black{
 	dir = 6
 	},
-/obj/machinery/telecomms/allinone/indestructable,
+/obj/machinery/telecomms/allinone/indestructible,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/outpost/operations/outpost_command)
 "vOY" = (
@@ -37190,7 +37190,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2{
 	dir = 8
 	},
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/outpost/operations/outpost_command)
 "waQ" = (
@@ -37823,7 +37823,7 @@
 /turf/open/floor/plating/rust,
 /area/outpost/fraction/separatist)
 "wpc" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -37883,7 +37883,7 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/crew/bathroom)
 "wpP" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	dir = 8;
 	id = "left_windows_medicals"
@@ -37991,7 +37991,7 @@
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_1)
 "wsd" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/purpl,
 /obj/machinery/door/poddoor/ert{
 	id = "ice_sec_medicals_2"
@@ -38309,7 +38309,7 @@
 /turf/open/floor/carpet/orange,
 /area/outpost/vacant_rooms/office)
 "wzS" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/machinery/door/poddoor/ert{
 	id = "outpost_command_podpilot";
 	dir = 4
@@ -39825,7 +39825,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
 "xtq" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -40115,7 +40115,7 @@
 /area/outpost/crew/bar/vip_zone)
 "xDq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer2,
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/plating,
 /area/outpost/engineering/atmospherics)
 "xDt" = (
@@ -40181,7 +40181,7 @@
 /turf/open/floor/plating,
 /area/outpost/maintenance/starboard)
 "xEQ" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/grille,
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -40903,7 +40903,7 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/outpost/exterior)
 "xZI" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
+/obj/effect/spawner/structure/window/reinforced/indestructible,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
