@@ -843,10 +843,7 @@
  */
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
-	// [CELADON-EDIT] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
-	//	set category = "OOC" // CELADON-EDIT - ORIGINAL
-	set category = "Special Verbs"
-	// [/CELADON-EDIT]
+	set category = "Special Verbs" // [CELADON-EDIT] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
 	reset_perspective(null)
 	unset_machine()
 
