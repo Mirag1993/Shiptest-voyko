@@ -209,10 +209,22 @@
 	return ..()
 
 /turf/closed/mineral/random
-	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/autunite = 3, /obj/item/stack/ore/gold = 4,
-		/obj/item/stack/ore/galena = 4, /obj/item/stack/ore/plasma = 40, /obj/item/stack/ore/hematite = 65, /obj/item/stack/ore/rutile = 5,
-		/obj/item/stack/ore/bluespace_crystal = 1, /obj/item/stack/ore/malachite = 50,
-		/obj/item/stack/ore/sulfur = 5)
+	// [CELADON-EDIT] - RETURN_GIBTONIT
+	// var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/autunite = 3, /obj/item/stack/ore/gold = 4,
+	// 	/obj/item/stack/ore/galena = 4, /obj/item/stack/ore/plasma = 40, /obj/item/stack/ore/hematite = 65, /obj/item/stack/ore/rutile = 5,
+	// 	/obj/item/stack/ore/bluespace_crystal = 1, /obj/item/stack/ore/malachite = 50,
+	// 	/obj/item/stack/ore/sulfur = 5)	// ORIGINAL
+	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/autunite = 3,
+											/obj/item/stack/ore/gold = 4,
+											/obj/item/stack/ore/galena = 4,
+											/obj/item/stack/ore/plasma = 40,
+											/obj/item/stack/ore/hematite = 65,
+											/obj/item/stack/ore/rutile = 5,
+											/obj/item/stack/ore/bluespace_crystal = 1,
+											/obj/item/stack/ore/malachite = 50,
+											/obj/item/stack/ore/sulfur = 5,
+											/turf/closed/mineral/gibtonite = 4)
+	// [/CELADON-EDIT]
 		//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 10
 
