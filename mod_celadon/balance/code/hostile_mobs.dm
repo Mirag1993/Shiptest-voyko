@@ -916,8 +916,3 @@ GLOBAL_LIST_INIT(onecardinalwest, WEST)
 // /mob/living/simple_animal/slime/pet
 
 // /mob/living/simple_animal/shade
-
-
-
-
-
