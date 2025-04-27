@@ -18628,7 +18628,7 @@
 /area/outpost/engineering/atmospherics)
 "TX" = (
 /obj/structure/flora/rock/pile/lava,
-/turf/open/lava/smooth/lava_land_surface,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/outpost/hallway/central)
 "TY" = (
 /obj/effect/portal/permanent/one_way{
@@ -49634,8 +49634,8 @@ TJ
 Tb
 Mj
 TJ
-Jk
 TX
+Jk
 Jk
 Jk
 Jk
@@ -50010,7 +50010,7 @@ io
 TJ
 Lc
 Lc
-TX
+Jk
 Jk
 Py
 ds
