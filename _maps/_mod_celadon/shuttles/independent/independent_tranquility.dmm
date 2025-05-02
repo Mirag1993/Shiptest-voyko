@@ -3302,6 +3302,10 @@
 /area/ship/crew/cryo)
 "Cr" = (
 /obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/grown/sweet_potato{
+	pixel_x = -16;
+	pixel_y = 1
+	},
 /obj/item/reagent_containers/food/snacks/grown/potato/sweet_potato,
 /obj/item/reagent_containers/food/snacks/grown/cabbage{
 	pixel_x = -1;
