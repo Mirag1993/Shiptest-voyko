@@ -3041,9 +3041,7 @@
 /obj/effect/turf_decal/corner/opaque/yellow/half{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/notasandwich{
-	pixel_y = 5
-	},
+/obj/item/reagent_containers/food/snacks/burger,
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/office)
 "LU" = (
