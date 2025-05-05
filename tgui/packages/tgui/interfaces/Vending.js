@@ -1,6 +1,7 @@
-import { classes } from 'tgui-core/react';
-import { useBackend } from '../backend';
 import { Box, Button, Section, Table } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const VendingRow = (props) => {
@@ -55,7 +56,7 @@ const VendingRow = (props) => {
             content={data.access ? 'FREE' : product.price + affix}
             onClick={() =>
               act('dispense', {
-                'item': product.name,
+                item: product.name,
               })
             }
           />
@@ -72,7 +73,7 @@ const VendingRow = (props) => {
             content={free ? 'FREE' : product.price + affix}
             onClick={() =>
               act('vend', {
-                'ref': product.ref,
+                ref: product.ref,
               })
             }
           />
