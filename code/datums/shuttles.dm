@@ -357,6 +357,7 @@
 	category = "subshuttles"
 	faction = /datum/faction/independent
 	starting_funds = 0
+	unique_ship_access = FALSE
 
 /datum/map_template/shuttle/subshuttles/pill
 	file_name = "independent_pill"
