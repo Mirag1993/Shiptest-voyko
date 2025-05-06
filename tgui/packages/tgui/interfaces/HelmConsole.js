@@ -500,7 +500,7 @@ const ShipControlContent = (_props) => {
             maxValue={estThrust * 1600}
             // [/CELADON-EDIT]
             unit="Gm/s²"
-            onDrag={(e, value) =>
+            onDrag={(value) =>
               act('change_burn_percentage', {
                 // [CELADON-EDIT] CELADON FIXES
                 // percentage: Math.round((value / (estThrust * 500)) * 100), // CELADON-EDIT - ORIGINAL
