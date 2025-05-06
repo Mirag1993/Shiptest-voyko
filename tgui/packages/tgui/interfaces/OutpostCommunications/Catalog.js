@@ -1,4 +1,3 @@
-import { filter, sortBy } from 'common/collections';
 import {
   Box,
   Button,
@@ -15,11 +14,9 @@ import {
 import { formatMoney } from '../../format';
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
-import { flow } from 'tgui-core/fp';
-
-import { searchForSupplies } from './helpers';
 
 import { useBackend, useSharedState } from '../../backend';
+import { searchForSupplies } from './helpers';
 
 export const CargoCatalog = (props) => {
   const { act, data } = useBackend();
