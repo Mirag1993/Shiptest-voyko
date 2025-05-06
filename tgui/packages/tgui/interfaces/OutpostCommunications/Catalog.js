@@ -17,6 +17,8 @@ import { formatMoney } from '../../format';
 import { formatMoney } from 'tgui-core/format';
 import { flow } from 'tgui-core/fp';
 
+import { searchForSupplies } from './helpers';
+
 import { useBackend, useSharedState } from '../../backend';
 
 export const CargoCatalog = (props) => {
@@ -129,7 +131,7 @@ export const CargoCatalog = (props) => {
                         }
                         setSearchText(value);
                       }}
-                      onChange={(e, value) => {
+                      onChange={(value) => {
                         // Allow edge cases like the X button to work
                         const onInput = e.target?.props?.onInput;
                         if (onInput) {
@@ -202,55 +204,6 @@ export const CargoCatalog = (props) => {
           </Flex.Item>
         </Flex>
       </Section>
-    </>
-  );
-};
-
-/**
- * Take entire supplies tree
- * and return a flat supply pack list that matches search,
- * sorted by name and only the first page.
- * @param {any[]} supplies Supplies list.
- * @param {string} search The search term
- * @returns {any[]} The flat list of supply packs.
- */
-const searchForSupplies = (supplies, search) => {
-  search = search.toLowerCase();
-
-  return flow([
-    (categories) => categories.flatMap((category) => category.packs),
-    filter(
-      (pack) =>
-        pack.name?.toLowerCase().includes(search.toLowerCase()) ||
-        pack.desc?.toLowerCase().includes(search.toLowerCase()),
-    ),
-    sortBy((pack) => pack.name),
-    (packs) => packs.slice(0, 25),
-  ])(supplies);
-};
-
-const CargoCartButtons = (props) => {
-  const { act, data } = useBackend();
-  const { requestonly, can_send, can_approve_requests } = data;
-  const cart = data.cart || [];
-  const total = cart.reduce((total, entry) => total + entry.cost, 0);
-  if (requestonly || !can_send || !can_approve_requests) {
-    return null;
-  }
-  return (
-    <>
-      <Box inline mx={1}>
-        {cart.length === 0 && 'Cart is empty'}
-        {cart.length === 1 && '1 item'}
-        {cart.length >= 2 && cart.length + ' items'}{' '}
-        {total > 0 && `(${formatMoney(total)} cr)`}
-      </Box>
-      <Button
-        icon="times"
-        color="transparent"
-        content="Clear"
-        onClick={() => act('clear')}
-      />
     </>
   );
 };
