@@ -202,3 +202,6 @@
 	/// Literally Admin Verbs Menu
 	var/datum/admin_menu/admin_menu
 // [/CELADON-ADD]
+
+	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
+	var/window_scaling
