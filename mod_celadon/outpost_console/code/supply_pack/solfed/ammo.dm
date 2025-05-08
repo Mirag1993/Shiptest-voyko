@@ -8,6 +8,7 @@
 > 9mm
 > 5.56 Caseless
 > 5.56x42mm
+> 7.62x40mm
 > Ferroslugs
 > Ferro Pellets
 > Ferro Lances
@@ -89,6 +90,16 @@ MARK: 5.56x42mm
 	desc = "Contains one 60-round 5.56x42mm Hollow Point box."
 	contains = list(/obj/item/storage/box/ammo/a556_42/hp)
 	cost = 375
+
+/*
+MARK: 7.62x40mm
+*/
+
+/datum/supply_pack/faction/solfed/ammo/a762_40_rubber
+	name = "box of 7.62x40mm rubber ammo"
+	desc = "A box of standard 7.62x40mm rubber ammo."
+	contains = list(/obj/item/storage/box/ammo/a762_40/rubber)
+	cost = 7777
 
 /*
 MARK: Ferroslugs
