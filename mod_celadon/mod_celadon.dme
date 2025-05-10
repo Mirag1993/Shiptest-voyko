@@ -15,7 +15,6 @@
 #include "achievements/_achievements.dme"
 #include "areas/_areas.dme"
 #include "faction/_faction.dme"
-#include "fov/_fov.dme"
 #include "ghost_roles/_ghost_roles.dme"
 #include "ipc_chassis/_ipc_chassis.dme"
 #include "ipc_hair/_ipc_hair.dme"

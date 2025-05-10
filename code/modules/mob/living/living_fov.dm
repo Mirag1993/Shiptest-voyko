@@ -1,27 +1,3 @@
-/mob/living
-	/// FOV view that is applied from either nativeness or traits
-	var/fov_view
-	/// Lazy list of FOV traits that will apply a FOV view when handled.
-	var/list/fov_traits
-	///what multiplicative slowdown we get from turfs currently.
-	var/current_turf_slowdown = 0
-
-/mob/proc/is_nearsighted_currently()
-	var/datum/status_effect/grouped/nearsighted/nearsight = has_status_effect_new(/datum/status_effect/grouped/nearsighted)
-	if(isnull(nearsight))
-		return FALSE
-	return nearsight.should_be_nearsighted()
-
-/mob/proc/has_status_effect_new(datum/status_effect/checked_effect)
-	// Yes I'm being cringe and putting this on the mob level even though status effects only apply to the living level
-	// There's quite a few places (namely examine and, bleh, cult code) where it's easier to not need to cast to living before checking
-	// for an effect such as blindness
-	return null
-
-/datum/status_effect/grouped/nearsighted/proc/should_be_nearsighted()
-	return !HAS_TRAIT(owner, TRAIT_NEARSIGHTED_CORRECTED)
-
-
 /// Is `observed_atom` in a mob's field of view? This takes blindness, nearsightness and FOV into consideration
 /mob/living/proc/in_fov(atom/observed_atom, ignore_self = FALSE)
 	if(ignore_self && observed_atom == src)
@@ -69,20 +45,27 @@
 		. = TRUE
 
 	// Handling nearsightnedness
-	if(. && is_nearsighted_currently())
+	if(. && HAS_TRAIT(src, TRAIT_NEARSIGHT))
+		//Checking if our dude really is suffering from nearsightness! (very nice nearsightness code)
+		if(iscarbon(src))
+			var/mob/living/carbon/carbon_me = src
+			if(carbon_me.glasses)
+				var/obj/item/clothing/glasses/glass = carbon_me.glasses
+				if(glass.vision_correction)
+					return
 		if((rel_x >= NEARSIGHTNESS_FOV_BLINDNESS || rel_x <= -NEARSIGHTNESS_FOV_BLINDNESS) || (rel_y >= NEARSIGHTNESS_FOV_BLINDNESS || rel_y <= -NEARSIGHTNESS_FOV_BLINDNESS))
 			return FALSE
 
 /// Updates the applied FOV value and applies the handler to client if able
 /mob/living/proc/update_fov()
 	var/highest_fov
+	if(CONFIG_GET(flag/native_fov))
+		highest_fov = native_fov
 	for(var/trait_type in fov_traits)
 		var/fov_type = fov_traits[trait_type]
 		if(fov_type > highest_fov)
 			highest_fov = fov_type
 	fov_view = highest_fov
-	if(HAS_TRAIT(src, TRAIT_EXPANDED_FOV))
-		fov_view += 30
 	update_fov_client()
 
 /// Updates the FOV for the client.
@@ -112,20 +95,11 @@
 	UNSETEMPTY(fov_traits)
 	update_fov()
 
-//did you know you can subtype /image and /mutable_appearance? // Stop telling them that they might actually do it
-/image/fov_image
-	icon = 'mod_celadon/_storge_icons/icons/items/fov/fov_effects.dmi'
-	layer = EFFECTS_LAYER + FOV_EFFECT_LAYER
-	appearance_flags = RESET_COLOR | RESET_TRANSFORM
-	plane = FULLSCREEN_PLANE
-
 /// Plays a visual effect representing a sound cue for people with vision obstructed by FOV or blindness
 /proc/play_fov_effect(atom/center, range, icon_state, dir = SOUTH, ignore_self = FALSE, angle = 0, time = 1.5 SECONDS, list/override_list)
 	var/turf/anchor_point = get_turf(center)
-	var/image/fov_image/fov_image
-	var/list/clients_shown
-
-	for(var/mob/living/living_mob in override_list || get_hearers_in_view(range, center))
+	var/image/fov_image
+	for(var/mob/living/living_mob in get_hearers_in_view(range, center))
 		var/client/mob_client = living_mob.client
 		if(!mob_client)
 			continue
@@ -134,31 +108,29 @@
 		if(living_mob.in_fov(center, ignore_self))
 			continue
 		if(!fov_image) //Make the image once we found one recipient to receive it
-			fov_image = new()
-			fov_image.loc = anchor_point
-			fov_image.icon_state = icon_state
+			fov_image = image(icon = 'icons/effects/fov/fov_effects.dmi', icon_state = icon_state, loc = anchor_point)
+			fov_image.plane = FULLSCREEN_PLANE
+			fov_image.layer = FOV_EFFECTS_LAYER
 			fov_image.dir = dir
+			fov_image.appearance_flags = RESET_COLOR | RESET_TRANSFORM
 			if(angle)
 				var/matrix/matrix = new
 				matrix.Turn(angle)
 				fov_image.transform = matrix
 			fov_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-		LAZYADD(clients_shown, mob_client)
-
 		mob_client.images += fov_image
-		//when added as an image mutable_appearances act identically. we just make it an MA becuase theyre faster to change appearance
-
-	if(clients_shown)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_clients), fov_image, clients_shown), time)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_image_from_client), fov_image, mob_client), time)
 
 /atom/movable/screen/fov_blocker
-	icon = 'mod_celadon/_storge_icons/icons/items/fov/fov_effects.dmi'
+	icon = 'icons/effects/fov/field_of_view.dmi'
 	icon_state = "90"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = FIELD_OF_VISION_BLOCKER_PLANE
 	screen_loc = "BOTTOM,LEFT"
 
-/// Like remove_image_from_client, but will remove the image from a list of clients
-/proc/remove_image_from_clients(image/image_to_remove, list/hide_from)
-	for(var/client/remove_from in hide_from)
-		remove_from.images -= image_to_remove
+/atom/movable/screen/fov_shadow
+	icon = 'icons/effects/fov/field_of_view.dmi'
+	icon_state = "90_v"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	plane = ABOVE_LIGHTING_PLANE
+	screen_loc = "BOTTOM,LEFT"
