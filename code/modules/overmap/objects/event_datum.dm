@@ -97,7 +97,7 @@
 	// 	/obj/effect/meteor/big=1,
 	// 	/obj/effect/meteor/irradiated=3
 	// )
-	// var/primary_ores = list(\
+	// var/primary_ores = list(
 	// 	/obj/item/stack/ore/plasma,
 	// 	/obj/item/stack/ore/hematite,
 	// 	/obj/item/stack/ore/malachite,

@@ -32,4 +32,5 @@
 	message = "издаёт отрицательный сигнал."
 
 /datum/emote/silicon/honk
+	key = "honk"
 	message = "хонкает."
