@@ -1,7 +1,7 @@
 
 
 /mob/living/simple_animal/hostile/megafauna/cult_templar // Офы выпилили курсед клэймор
-	crusher_loot = list(/obj/item/melee/sword/claymore, /obj/item/clothing/suit/space/hardsuit/cult/enchanted, /obj/item/upgradescroll)
+	crusher_loot = list(/obj/item/melee/sword/claymore, /obj/item/clothing/suit/space/hardsuit/cult/enchanted)
 
 /obj/item/crusher_trophy/ice_block_talisman
 	name = "ice block talisman"

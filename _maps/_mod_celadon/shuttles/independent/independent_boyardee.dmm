@@ -1594,7 +1594,6 @@
 /obj/machinery/grill,
 /obj/effect/turf_decal/corner/opaque/white/half,
 /obj/effect/turf_decal/box,
-/obj/item/stack/sheet/mineral/coal/ten,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/crew/canteen/kitchen)
 "Df" = (

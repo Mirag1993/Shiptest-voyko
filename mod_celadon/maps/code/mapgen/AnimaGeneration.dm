@@ -340,5 +340,5 @@
 	)
 
 /area/ruin/anima
-	ambientsounds = REEBE
+	ambientsounds = AMBIENCE_REEBE
 	always_unpowered = FALSE

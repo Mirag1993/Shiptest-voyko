@@ -2330,7 +2330,6 @@
 	id = "sunskipper_engine_shutters";
 	pixel_y = 22
 	},
-/obj/item/stack/sheet/mineral/coal/ten,
 /turf/open/floor/plating,
 /area/ship/maintenance/aft)
 "Eg" = (

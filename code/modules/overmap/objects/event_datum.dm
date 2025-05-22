@@ -99,7 +99,7 @@
 	// )
 	// var/primary_ores = list(
 	// 	/obj/item/stack/ore/plasma,
-	// 	/obj/item/stack/ore/hematite,
+	// 	/obj/item/stack/ore/iron,
 	// 	/obj/item/stack/ore/malachite,
 	// 	)	// ORIGINAL
 	safe_speed = 3
@@ -111,8 +111,7 @@
 	)
 	primary_ores = list(\
 		/obj/item/stack/ore/plasma,
-		/obj/item/stack/ore/hematite,
-		/obj/item/stack/ore/malachite,
+		/obj/item/stack/ore/iron,
 		)
 	// [/CELADON-EDIT]
 

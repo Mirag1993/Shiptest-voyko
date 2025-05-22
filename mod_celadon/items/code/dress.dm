@@ -6,7 +6,7 @@
 	icon_state = "flower_dress"
 	item_state = "flower_dress"
 	body_parts_covered = CHEST | GROIN | LEGS
-	can_adjust = FALSE
+	// can_adjust = FALSE - [CELADON-ALERT] - Параметр удалён оффами - https://github.com/shiptest-ss13/Shiptest/pull/4738
 
 /obj/item/clothing/under/dress/wedding
 	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/items/mob/suits/dress.dmi'
@@ -15,7 +15,7 @@
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
 	item_state = "bride_white"
-	can_adjust = FALSE
+	// can_adjust = FALSE - [CELADON-ALERT] - Параметр удалён оффами - https://github.com/shiptest-ss13/Shiptest/pull/4738
 
 /obj/item/clothing/under/dress/wedding/orange
 	name = "orange wedding dress"

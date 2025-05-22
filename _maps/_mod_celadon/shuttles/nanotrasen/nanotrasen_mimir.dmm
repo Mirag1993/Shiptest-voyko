@@ -8719,7 +8719,6 @@
 /turf/open/floor/plating/rust,
 /area/ship/maintenance/starboard)
 "YR" = (
-/obj/item/stack/sheet/mineral/coal/ten,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
