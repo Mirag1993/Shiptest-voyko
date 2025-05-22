@@ -1235,7 +1235,6 @@
 "gL" = (
 /obj/structure/sauna_oven_steam,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/stack/sheet/mineral/coal/ten,
 /turf/open/floor/plating/wasteplanet/rust,
 /area/ship/cargo)
 "gQ" = (
