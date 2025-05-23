@@ -32,7 +32,7 @@ Component that handles deleting atoms through timer
 	A = parent
 	if(!istype(A))
 		CRASH("Fancy_deleting_timer initialized not on atom. Notify coders.")
-		return COMPONENT_INCOMPATIBLE
+		// return COMPONENT_INCOMPATIBLE - [VSC Error]
 
 	standart_time = _standart_time
 	tick_if_alive = _tick_if_alive
