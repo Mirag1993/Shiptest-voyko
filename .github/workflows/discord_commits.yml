@@ -3,7 +3,8 @@ name: Discord Notify Commits
 on:
   push:
     branches:
-      - main
+      - beta-dev
+      - alpha-stable
 
 jobs:
   notify:
