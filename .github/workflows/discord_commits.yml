@@ -26,7 +26,8 @@ jobs:
         uses: stegzilla/discord-notify@v4
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          title: "[${{ github.repository }}:${{ github.ref_name }}] ${{ env.COMMITS_COUNT }} new commits"
+          title: "[${{ github.ref_name }}] ${{ env.COMMITS_COUNT }} new commits"
+          title_url: ${{ github.event.head_commit.url }}
           message: |
             ${{ env.COMMITS }}
           username: ${{ github.event.pusher.name }}
