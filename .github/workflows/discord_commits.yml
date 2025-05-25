@@ -31,3 +31,4 @@ jobs:
           message: |
             ${{ env.COMMITS }}
           username: ${{ github.event.pusher.name }}
+          avatar_url: ${{ github.event.sender.avatar_url }}
