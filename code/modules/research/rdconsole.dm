@@ -638,9 +638,6 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/proc/ui_designdisk()		//Legacy code
 	RDSCREEN_UI_DDISK_CHECK
 	var/list/l = list()
-	// [CELADON_EDIT]
-	var/N = 1 // thank you generalthrax
-	// [/CELADON_EDIT]
 	l += "Disk Operations: <A href='byond://?src=[REF(src)];clear_design=0'>Clear Disk</A><A href='byond://?src=[REF(src)];updt_design=0'>Upload All</A><A href='byond://?src=[REF(src)];eject_design=1'>Eject Disk</A>"
 	for(var/i in d_disk.blueprints)
 		l += "<div class='statusDisplay'>"
