@@ -96,7 +96,7 @@
 		account_holder = paying_account.account_holder
 	else
 		account_holder = "Cargo"
-	var/obj/structure/closet/crate/container = generate(location, paying_account)
+	var/obj/structure/closet/crate/container = supply_packs.generate(location, paying_account)
 	generateManifest(container, account_holder, supply_packs)
 	return container
 
