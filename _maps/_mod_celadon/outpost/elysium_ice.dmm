@@ -16155,7 +16155,7 @@
 "jqt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/bear/frontier{
+/mob/living/basic/bear/frontier{
 	name = "Billy guard";
 	health = 1200
 	},
