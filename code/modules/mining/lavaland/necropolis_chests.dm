@@ -32,7 +32,7 @@
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
 		if(9)
-			new /obj/item/gem/bloodstone(src)
+			new /obj/item/rod_of_asclepius(src)	//new /obj/item/gem/bloodstone(src) // [CELADON-EDIT] - RETURN_CONTENT_NECROOLIS
 		if(10)
 			new /obj/item/organ/heart/cursed/wizard(src)
 		if(11)
@@ -110,7 +110,7 @@
 				else
 					new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
 			if(9)
-				new /obj/item/gem/bloodstone(src)
+				new /obj/item/rod_of_asclepius(src)	//new /obj/item/gem/bloodstone(src) // [CELADON-EDIT] - RETURN_CONTENT_NECROOLIS
 			if(10)
 				new /obj/item/organ/heart/cursed/wizard(src)
 			if(11)
