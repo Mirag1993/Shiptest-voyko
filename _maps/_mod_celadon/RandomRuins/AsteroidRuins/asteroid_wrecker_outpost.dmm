@@ -213,8 +213,8 @@
 /obj/machinery/suit_storage_unit/inherit/industrial,
 /obj/item/tank/internals/oxygen/red,
 /obj/item/clothing/mask/gas/solfed,
-/obj/item/clothing/suit/space/syndicate/black,
-/obj/item/clothing/head/helmet/space/syndicate/black/blue,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/head/helmet/space/light,
 /turf/open/floor/plasteel/tech,
 /area/ruin/asteroid/wreckeroutpost/maincorridore)
 "db" = (

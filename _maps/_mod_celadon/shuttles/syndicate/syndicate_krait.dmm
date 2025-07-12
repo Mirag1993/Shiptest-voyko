@@ -616,8 +616,8 @@
 /area/ship/cargo)
 "fl" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/syndicate/black/red,
-/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/suit/space/syndicate/white_red,
+/obj/item/clothing/head/helmet/space/syndicate/white_red,
 /obj/item/tank/internals/oxygen/red,
 /obj/machinery/atmospherics/pipe/layer_manifold{
 	dir = 4
@@ -4236,8 +4236,8 @@
 /area/ship/security/dock)
 "Kg" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/syndicate/black/red,
-/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/suit/space/syndicate/white_red,
+/obj/item/clothing/head/helmet/space/syndicate/white_red,
 /obj/item/tank/internals/oxygen/red,
 /obj/item/clothing/mask/gas/syndicate,
 /turf/open/floor/plasteel/dark,
@@ -5757,8 +5757,8 @@
 /area/ship/bridge)
 "YM" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/syndicate/black/red,
-/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/suit/space/syndicate/white_red,
+/obj/item/clothing/head/helmet/space/syndicate/white_red,
 /obj/item/tank/internals/oxygen/red,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/effect/turf_decal/trimline/opaque/bar/filled/corner{

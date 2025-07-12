@@ -1498,8 +1498,8 @@
 "it" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
 /obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/suit/fire/firefighter,
-/obj/item/clothing/head/hardhat/red,
+/obj/item/clothing/suit/space/syndicate/ramzi,
+/obj/item/clothing/head/helmet/space/syndicate/ramzi,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/ramzi_station)
 "ix" = (
@@ -5819,8 +5819,8 @@
 /obj/machinery/suit_storage_unit/inherit/industrial,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/tank/jetpack/improvised,
-/obj/item/clothing/head/helmet/space/gezena,
-/obj/item/clothing/suit/space/gezena,
+/obj/item/clothing/head/helmet/space/syndicate/ramzi,
+/obj/item/clothing/suit/space/syndicate/ramzi,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/ramzi_station)
 "GA" = (
@@ -7707,8 +7707,8 @@
 	dir = 1
 	},
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/head/helmet/space/syndicate/black/engie,
-/obj/item/clothing/suit/space/syndicate/black/engie,
+/obj/item/clothing/head/helmet/space/syndicate/engie,
+/obj/item/clothing/suit/space/syndicate/engie,
 /obj/item/tank/internals/oxygen,
 /obj/item/clothing/mask/gas/syndicate,
 /turf/open/floor/plasteel/dark,
@@ -8560,8 +8560,8 @@
 /obj/machinery/suit_storage_unit/inherit/industrial,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/tank/jetpack/improvised,
-/obj/item/clothing/suit/space/syndicate/black/orange,
-/obj/item/clothing/head/helmet/space/syndicate/black/orange,
+/obj/item/clothing/suit/space/syndicate/ramzi,
+/obj/item/clothing/head/helmet/space/syndicate/ramzi,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/powered/ramzi_station)
 "UB" = (
