@@ -129,7 +129,7 @@
 		//the illusive shrapnel plant
 		/obj/item/mine/pressure/explosive/shrapnel/live = 30,
 		/obj/effect/spawner/random/mine = 8,
-		/obj/effect/spawner/minefield = 2
+		/obj/effect/spawner/minefield/tiny = 2
 	)
 
 	feature_spawn_list = list(
@@ -213,7 +213,7 @@
 		/obj/item/mine/pressure/explosive/shrapnel/live = 30,
 		// [/CELADON - ADD]
 		/obj/effect/spawner/random/mine = 8,
-		/obj/effect/spawner/minefield = 2
+		/obj/effect/spawner/minefield/tiny = 2
 	)
 
 /datum/biome/waste/tar_bed //tar colorings
@@ -272,7 +272,7 @@
 		/obj/item/mine/pressure/explosive/rad/live = 30,
 		// [/CELADON - ADD]
 		/obj/effect/spawner/random/mine = 8,
-		/obj/effect/spawner/minefield = 2
+		/obj/effect/spawner/minefield/tiny = 2
 	)
 	mob_spawn_list = list( //nor organics, more biased towards hivebots though
 		/mob/living/basic/hivebot = 40,
@@ -340,13 +340,14 @@
 		/obj/item/mine/pressure/explosive/rad/live = 30,
 		// [/CELADON - ADD]
 		/obj/effect/spawner/random/mine = 8,
-		/obj/effect/spawner/minefield = 2
+		/obj/effect/spawner/minefield/tiny = 2
 	)
 
 	feature_spawn_list = list(
 		/obj/effect/radiation/waste = 30,
 		/obj/effect/radiation/waste/intense = 10,
 		/obj/structure/geyser/random = 1,
+		/obj/effect/spawner/minefield = 5,
 		/obj/effect/spawner/random/anomaly/waste/cave = 1,
 	)
 	mob_spawn_list = list(
@@ -409,7 +410,7 @@
 		/obj/item/mine/pressure/explosive/rad/live = 30,
 		// [/CELADON - ADD]
 		/obj/effect/spawner/random/mine = 8,
-		/obj/effect/spawner/minefield = 2
+		/obj/effect/spawner/minefield/tiny = 2
 	)
 	feature_spawn_chance = 12
 
