@@ -2963,7 +2963,7 @@
 /obj/item/food/meat/slab/corgi,
 /obj/item/food/meat/slab/corgi,
 /obj/item/food/meat/slab/corgi,
-/obj/item/food/meat/slab/gondola,
+/obj/item/food/meat/slab/corgi,
 /obj/structure/closet/secure_closet{
 	icon_state = "freezer";
 	name = "refrigerator"

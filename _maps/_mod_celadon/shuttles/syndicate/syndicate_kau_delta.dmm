@@ -550,7 +550,7 @@
 /area/ship/security/armory)
 "kc" = (
 /obj/structure/closet/crate/large,
-/obj/item/reagent_containers/food/snacks/kebab/rat/double,
+/obj/item/food/kebab/rat/double,
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,

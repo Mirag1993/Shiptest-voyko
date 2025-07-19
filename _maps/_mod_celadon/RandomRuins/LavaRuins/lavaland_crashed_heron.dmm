@@ -5690,35 +5690,28 @@
 	pixel_y = 9
 	},
 /obj/item/food/grown/carrot{
-	list_reagents = list(/datum/reagent/medicine/oculine = 14, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4);
 	pixel_x = -4;
 	pixel_y = 3
 	},
 /obj/item/food/grown/apple{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 4;
 	pixel_y = -4
 	},
 /obj/item/food/grown/chili{
-	list_reagents = list(/datum/reagent/consumable/capsaicin = 14, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 3);
 	pixel_y = 1
 	},
 /obj/item/food/grown/soybeans{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 3);
 	pixel_x = -5;
 	pixel_y = 2
 	},
 /obj/item/food/grown/tomato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_y = 5
 	},
 /obj/item/food/grown/apple{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 1;
 	pixel_y = -4
 	},
 /obj/item/food/grown/sweet_potato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = -1;
 	pixel_y = -2
 	},
@@ -5733,32 +5726,26 @@
 	pixel_y = 3
 	},
 /obj/item/food/grown/tomato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 2;
 	pixel_y = -4
 	},
 /obj/item/food/grown/carrot{
-	list_reagents = list(/datum/reagent/medicine/oculine = 14, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4);
 	pixel_x = -5;
 	pixel_y = -2
 	},
 /obj/item/food/grown/apple{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = -2;
 	pixel_y = -2
 	},
 /obj/item/food/grown/apple{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 2;
 	pixel_y = 2
 	},
 /obj/item/food/grown/mushroom/plumphelmet{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 2;
 	pixel_y = 1
 	},
 /obj/item/food/grown/cherries{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 5);
 	pixel_x = 3;
 	pixel_y = 4
 	},
@@ -5876,37 +5863,30 @@
 	pixel_y = 6
 	},
 /obj/item/food/grown/cherries{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 5);
 	pixel_x = 5;
 	pixel_y = -5
 	},
 /obj/item/food/grown/soybeans{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 3);
 	pixel_x = -3;
 	pixel_y = 4
 	},
 /obj/item/food/grown/potato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 2;
 	pixel_y = -4
 	},
 /obj/item/food/grown/corn{
-	list_reagents = list(/datum/reagent/consumable/cornoil = 11, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 5;
 	pixel_y = 5
 	},
 /obj/item/food/grown/chili{
-	list_reagents = list(/datum/reagent/consumable/capsaicin = 14, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 3);
 	pixel_x = 3;
 	pixel_y = 3
 	},
 /obj/item/food/grown/mushroom/chanterelle{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6);
 	pixel_x = -1;
 	pixel_y = -4
 	},
 /obj/item/food/grown/cabbage{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 1;
 	pixel_y = -3
 	},
@@ -5916,31 +5896,24 @@
 	pixel_x = 8;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/snacks/chocolatebar{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/coco = 2)
-	},
+/obj/item/reagent_containers/food/snacks/chocolatebar,
 /obj/item/food/grown/mushroom/chanterelle{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6);
 	pixel_x = -4;
 	pixel_y = 5
 	},
 /obj/item/food/grown/mushroom/chanterelle{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6);
 	pixel_x = 3;
 	pixel_y = -1
 	},
 /obj/item/food/grown/carrot{
-	list_reagents = list(/datum/reagent/medicine/oculine = 14, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4);
 	pixel_x = 3;
 	pixel_y = -3
 	},
 /obj/item/food/grown/potato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 1;
 	pixel_y = -2
 	},
 /obj/item/food/grown/mushroom/chanterelle{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6);
 	pixel_x = 5;
 	pixel_y = 2
 	},
@@ -6121,41 +6094,33 @@
 "ajN" = (
 /obj/structure/closet/secure_closet/freezer/wall/directional/west,
 /obj/item/food/grown/corn{
-	list_reagents = list(/datum/reagent/consumable/cornoil = 11, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_y = -1
 	},
 /obj/item/food/grown/corn{
-	list_reagents = list(/datum/reagent/consumable/cornoil = 11, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 3;
 	pixel_y = 2
 	},
 /obj/item/food/grown/tomato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 5;
 	pixel_y = 4
 	},
 /obj/item/food/grown/tomato{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 2;
 	pixel_y = -5
 	},
 /obj/item/food/grown/soybeans{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 3);
 	pixel_x = -5;
 	pixel_y = -5
 	},
 /obj/item/food/grown/soybeans{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/cooking_oil = 3);
 	pixel_x = -5;
 	pixel_y = -2
 	},
 /obj/item/food/grown/onion{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = 5;
 	pixel_y = -1
 	},
 /obj/item/food/grown/onion{
-	list_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/consumable/nutriment = 6);
 	pixel_x = -4;
 	pixel_y = 4
 	},
@@ -6296,13 +6261,11 @@
 	pixel_y = 6
 	},
 /obj/item/food/dough{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6);
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = -4
 	},
 /obj/item/food/dough{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6);
 	dir = 8;
 	pixel_x = 4;
 	pixel_y = 1
@@ -7502,43 +7465,19 @@
 "alY" = (
 /obj/structure/closet/crate,
 /obj/item/storage/box/donkpockets/donkpockethonk,
-/obj/item/food/donkpocket/honk{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
-	},
-/obj/item/food/donkpocket/honk{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
-	},
-/obj/item/food/donkpocket/honk{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
-	},
-/obj/item/food/donkpocket/honk{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
-	},
-/obj/item/food/donkpocket/honk{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
-	},
-/obj/item/food/donkpocket/honk{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 4)
-	},
+/obj/item/food/donkpocket/honk,
+/obj/item/food/donkpocket/honk,
+/obj/item/food/donkpocket/honk,
+/obj/item/food/donkpocket/honk,
+/obj/item/food/donkpocket/honk,
+/obj/item/food/donkpocket/honk,
 /obj/item/storage/box/donkpockets/donkpocketpizza,
-/obj/item/food/donkpocket/pizza{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
-	},
-/obj/item/food/donkpocket/pizza{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
-	},
-/obj/item/food/donkpocket/pizza{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
-	},
-/obj/item/food/donkpocket/pizza{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
-	},
-/obj/item/food/donkpocket/pizza{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
-	},
-/obj/item/food/donkpocket/pizza{
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/tomatojuice = 2)
-	},
+/obj/item/food/donkpocket/pizza,
+/obj/item/food/donkpocket/pizza,
+/obj/item/food/donkpocket/pizza,
+/obj/item/food/donkpocket/pizza,
+/obj/item/food/donkpocket/pizza,
+/obj/item/food/donkpocket/pizza,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/corprejectrooms)

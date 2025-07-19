@@ -2048,7 +2048,7 @@
 	},
 /obj/structure/toilet/secret{
 	dir = 4;
-	secret_type = /obj/item/storage/box/donkpockets/donkpocketgondola
+	secret_type = /obj/item/storage/box/donkpockets
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/crew/library)
@@ -13823,7 +13823,7 @@
 	pixel_x = 1;
 	pixel_y = -3
 	},
-/obj/item/food/meatbun,
+/obj/item/food/bun,
 /obj/structure/sign/poster/contraband/eat{
 	pixel_y = 32
 	},
@@ -17851,7 +17851,7 @@
 "Sa" = (
 /obj/structure/toilet/secret{
 	dir = 4;
-	secret_type = /obj/item/storage/box/donkpockets/donkpocketgondola
+	secret_type = /obj/item/storage/box/donkpockets
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/outpost/crew/canteen)

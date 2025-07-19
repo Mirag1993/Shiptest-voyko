@@ -24,7 +24,7 @@
 	pixel_x = 4;
 	pixel_y = 10
 	},
-/obj/item/food/pizzaslice/custom{
+/obj/item/food/pizzaslice{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -954,7 +954,7 @@
 "Ax" = (
 /obj/structure/table/wood,
 /obj/structure/curtain/cloth,
-/obj/item/reagent_containers/food/snacks/hotcrossbun,
+/obj/item/food/hotcrossbun,
 /turf/open/floor/wood{
 	light_range = 2
 	},

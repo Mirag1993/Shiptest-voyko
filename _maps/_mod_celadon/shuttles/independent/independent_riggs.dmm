@@ -3218,22 +3218,10 @@
 	pixel_y = 9
 	},
 /obj/item/storage/box/matches,
-/obj/item/food/grown/tobacco{
-	dry = 1;
-	name = "dried tobacco leaves"
-	},
-/obj/item/food/grown/tobacco{
-	dry = 1;
-	name = "dried tobacco leaves"
-	},
-/obj/item/food/grown/tobacco{
-	dry = 1;
-	name = "dried tobacco leaves"
-	},
-/obj/item/food/grown/tobacco{
-	dry = 1;
-	name = "dried tobacco leaves"
-	},
+/obj/item/food/grown/tobacco,
+/obj/item/food/grown/tobacco,
+/obj/item/food/grown/tobacco,
+/obj/item/food/grown/tobacco,
 /obj/item/clothing/mask/cigarette/pipe/cobpipe,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)

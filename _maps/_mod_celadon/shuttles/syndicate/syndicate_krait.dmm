@@ -1653,11 +1653,11 @@
 	pixel_y = 4
 	},
 /obj/item/reagent_containers/condiment/saltshaker,
-/obj/item/reagent_containers/food/snacks/onigiri{
+/obj/item/food/onigiri{
 	pixel_y = 16;
 	pixel_x = -7
 	},
-/obj/item/reagent_containers/food/snacks/onigiri{
+/obj/item/food/onigiri{
 	pixel_y = 4;
 	pixel_x = -10
 	},
@@ -5513,8 +5513,8 @@
 /obj/item/lighter/clockwork{
 	pixel_y = 15
 	},
-/obj/item/reagent_containers/food/snacks/nigiri_sushi,
-/obj/item/reagent_containers/food/snacks/nigiri_sushi{
+/obj/item/food/nigiri_sushi,
+/obj/item/food/nigiri_sushi{
 	pixel_x = 6
 	},
 /obj/item/reagent_containers/condiment/saltshaker{
