@@ -120,9 +120,7 @@
 	SIGNAL_HANDLER
 
 	if(chassis.selected == src)
-// [/CELADON-ADD]
 		if(!chassis.occupant) //prevents exosuit from digging if it pushed with something, like an explosion // just in case..?
-// [CELADON-ADD] - CELADON_GRAVGEN
 			return
 		if(istype(bumped_into, /turf/closed/mineral/))
 			INVOKE_ASYNC(src, PROC_REF(action), bumped_into, null, TRUE)
