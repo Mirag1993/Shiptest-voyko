@@ -32709,6 +32709,7 @@
 /area/outpost/cargo)
 "tiT" = (
 /obj/effect/turf_decal/corner/opaque/blue/three_quarters,
+/obj/machinery/aug_manipulator,
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_1)
 "tjo" = (

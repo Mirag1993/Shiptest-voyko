@@ -2198,6 +2198,10 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/outpost/hallway/fore)
+"fF" = (
+/obj/machinery/aug_manipulator,
+/turf/open/floor/plasteel,
+/area/outpost/vacant_rooms)
 "fG" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -38180,7 +38184,7 @@ vh
 kG
 QT
 ps
-Ee
+fF
 Ee
 Ee
 QT
