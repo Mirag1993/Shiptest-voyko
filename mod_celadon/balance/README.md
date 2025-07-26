@@ -107,6 +107,8 @@ EDIT: `code/game/objects/items/storage/backpack.dm`
 
 ADD: `code/modules/overmap/objects/event_datum.dm` : Добавляем дебрисам рандом на безопасную скорость полетов
 
+EDIT: `code/modules/vehicles/scooter.dm` : Ускорение от роликов равно 35% а не 100% как было
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
