@@ -15,10 +15,6 @@
 	foldable = null
 	custom_price = 5
 
-/obj/item/storage/box/gum/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-
 /obj/item/storage/box/gum/PopulateContents()
 	for(var/i in 1 to 4)
 		new /obj/item/food/chewable/bubblegum(src)
