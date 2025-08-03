@@ -1865,18 +1865,18 @@ GLOBAL_VAR_INIT(ssd_indicator_overlay, mutable_appearance('icons/mob/ssd_indicat
 	// [CELADON-EDIT] - CELADON_QOL
 	//var/datum/language/used_language = get_selected_language()
 	//var/state_of_bubble = "[initial(used_language?.bubble_override) || bubble_icon || "default"]0"
+	//var/state_of_bubble = bubble_icon? "[bubble_icon]0" : "default0" // CELADON-EDIT - ORIGINAL
 	//var/mutable_appearance/bubble_overlay = mutable_appearance('icons/mob/talk.dmi', state_of_bubble, plane = RUNECHAT_PLANE)
-	var/datum/language/used_language = get_selected_language()
 	var/state_of_bubble
-	var/mutable_appearance/bubble_overlay = mutable_appearance('mod_celadon/_storge_icons/icons/assets/qol/talk.dmi', state_of_bubble, plane = RUNECHAT_PLANE)
 	if(isMe)
 		state_of_bubble = "emotetyping"
 	if(isSay)
-		state_of_bubble = "[initial(used_language?.bubble_override) ? "[bubble_icon]0" : "default0"
+		state_of_bubble = bubble_icon? "[bubble_icon]0" : "default0"
 	if(!state_of_bubble)
 		state_of_bubble = last_state_of_bubble
 	else
 		last_state_of_bubble = state_of_bubble
+	var/mutable_appearance/bubble_overlay = mutable_appearance('mod_celadon/_storge_icons/icons/assets/qol/talk.dmi', state_of_bubble, plane = RUNECHAT_PLANE)
 	// [/CELADON-EDIT]
 	bubble_overlay.appearance_flags = RESET_COLOR | RESET_TRANSFORM | TILE_BOUND | PIXEL_SCALE
 	if(typing_indicator)
