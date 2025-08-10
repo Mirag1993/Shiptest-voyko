@@ -163,8 +163,31 @@ export const ShipBrowser = (props, context) => {
     setSelectedTags([]);
   };
 
+  // Функция для определения темы окна по фракции
+  const getWindowTheme = (factionName) => {
+    switch (factionName) {
+      case 'nanotrasen':
+        return 'nt';
+      case 'syndicate':
+        return 'syndicate';
+      case 'inteq':
+        return 'inteq';
+      case 'solfed':
+        return 'solfed';
+      case 'independent':
+        return 'independent';
+      default:
+        return undefined; // Для elysium, pirates, other - стандартная тема
+    }
+  };
+
   return (
-    <Window title={String(faction || 'Ships')} width={860} height={640}>
+    <Window
+      title={String(faction || 'Ships')}
+      width={860}
+      height={faction === 'syndicate' ? 800 : 640}
+      theme={getWindowTheme(faction)}
+    >
       <Window.Content scrollable>
         <Section>
           {/* Кнопка возврата к выбору фракций */}
@@ -310,21 +333,21 @@ export const ShipBrowser = (props, context) => {
                       <Flex align="center" wrap>
                         <Flex.Item mr={2}>
                           <Icon name="users" mr={1} />
-                          <span style={{ color: '#c1c1c1' }}>Экипаж:</span>
+                          <span style={{ color: '#c1c1c1' }}>Экипаж: </span>
                           <span style={{ marginLeft: '4px' }}>
                             {Number(t?.crewCount) || 0}
                           </span>
                         </Flex.Item>
                         <Flex.Item mr={2}>
                           <Icon name="chart-bar" mr={1} />
-                          <span style={{ color: '#c1c1c1' }}>Лимит:</span>
+                          <span style={{ color: '#c1c1c1' }}>Лимит: </span>
                           <span style={{ marginLeft: '4px' }}>
                             {Number(t?.limit) || 'Нет'}
                           </span>
                         </Flex.Item>
                         <Flex.Item>
                           <Icon name="rocket" mr={1} />
-                          <span style={{ color: '#c1c1c1' }}>Сейчас:</span>
+                          <span style={{ color: '#c1c1c1' }}>Сейчас: </span>
                           <span style={{ marginLeft: '4px' }}>
                             {Number(t?.curNum) || 0}
                           </span>
