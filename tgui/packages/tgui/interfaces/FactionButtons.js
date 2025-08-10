@@ -105,6 +105,13 @@ export const FactionButtons = (props, context) => {
   const { act } = useBackend(context);
   const { showCloseButton = false } = props;
 
+  // Состояние для отслеживания наведенной фракции
+  const [hoveredFaction, setHoveredFaction] = useLocalState(
+    context,
+    'hoveredFaction',
+    null
+  );
+
   return (
     <>
       <Box style={{ textAlign: 'center', position: 'relative' }}>
@@ -161,6 +168,15 @@ export const FactionButtons = (props, context) => {
                     const fromPos = positions[fromIndex];
                     const toPos = positions[toIndex];
 
+                    // Определяем, должна ли линия быть подсвечена
+                    const isHighlighted = hoveredFaction && (
+                      relation.from === hoveredFaction || 
+                      relation.to === hoveredFaction
+                    );
+                    
+                    // Определяем, должна ли линия быть приглушена
+                    const isDimmed = hoveredFaction && !isHighlighted;
+
                     return (
                       <line
                         key={index}
@@ -169,8 +185,12 @@ export const FactionButtons = (props, context) => {
                         x2={toPos.x}
                         y2={toPos.y}
                         stroke={RELATION_TYPES[relation.type].color}
-                        strokeWidth="3"
-                        opacity="0.7"
+                        strokeWidth={isHighlighted ? "5" : "3"}
+                        opacity={isHighlighted ? "1" : isDimmed ? "0.2" : "0.7"}
+                        style={{
+                          filter: isHighlighted ? "drop-shadow(0 0 4px currentColor)" : "none",
+                          transition: "all 0.2s ease-in-out",
+                        }}
                       />
                     );
                   })}
@@ -191,6 +211,8 @@ export const FactionButtons = (props, context) => {
                       faction={pos.faction}
                       context={context}
                       act={act}
+                      hoveredFaction={hoveredFaction}
+                      setHoveredFaction={setHoveredFaction}
                     />
                   </Box>
                 ))}
@@ -208,6 +230,8 @@ export const FactionButtons = (props, context) => {
                     faction={CENTRAL_FACTION}
                     context={context}
                     act={act}
+                    hoveredFaction={hoveredFaction}
+                    setHoveredFaction={setHoveredFaction}
                   />
                 </Box>
               </>
@@ -228,7 +252,7 @@ export const FactionButtons = (props, context) => {
 };
 
 // Компонент для отдельной кнопки фракции
-const FactionButton = ({ faction, context, act }) => {
+const FactionButton = ({ faction, context, act, hoveredFaction, setHoveredFaction }) => {
   return (
     <Box
       style={{
@@ -237,6 +261,8 @@ const FactionButton = ({ faction, context, act }) => {
         cursor: 'pointer',
       }}
       onClick={() => act('open_faction', { faction: faction.id })}
+      onMouseEnter={() => setHoveredFaction(faction.id)}
+      onMouseLeave={() => setHoveredFaction(null)}
     >
       <FactionLogo faction={faction} context={context} />
       <Box mt={0.5} textAlign="center" fontSize="11px">
