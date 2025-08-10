@@ -71,20 +71,20 @@ const FACTION_RELATIONS = [
   { from: 'nanotrasen', to: 'solfed', type: 'union' },
   { from: 'nanotrasen', to: 'elysium', type: 'negative' },
   { from: 'nanotrasen', to: 'inteq', type: 'neutral' },
-  { from: 'nanotrasen', to: 'syndicate', type: 'neutral' },
+  { from: 'nanotrasen', to: 'syndicate', type: 'war' },
   { from: 'nanotrasen', to: 'pirates', type: 'war' },
   { from: 'nanotrasen', to: 'independent', type: 'neutral' },
 
   // SolFed отношения (5 линий - исключаем Nanotrasen, так как уже есть)
   { from: 'solfed', to: 'elysium', type: 'war' },
   { from: 'solfed', to: 'inteq', type: 'neutral' },
-  { from: 'solfed', to: 'syndicate', type: 'neutral' },
+  { from: 'solfed', to: 'syndicate', type: 'negative' },
   { from: 'solfed', to: 'pirates', type: 'war' },
   { from: 'solfed', to: 'independent', type: 'neutral' },
 
   // Elysium отношения (4 линии - исключаем Nanotrasen и SolFed)
-  { from: 'elysium', to: 'inteq', type: 'negative' },
-  { from: 'elysium', to: 'syndicate', type: 'neutral' },
+  { from: 'elysium', to: 'inteq', type: 'neutral' },
+  { from: 'elysium', to: 'syndicate', type: 'positive' },
   { from: 'elysium', to: 'pirates', type: 'war' },
   { from: 'elysium', to: 'independent', type: 'neutral' },
 
@@ -169,11 +169,11 @@ export const FactionButtons = (props, context) => {
                     const toPos = positions[toIndex];
 
                     // Определяем, должна ли линия быть подсвечена
-                    const isHighlighted = hoveredFaction && (
-                      relation.from === hoveredFaction || 
-                      relation.to === hoveredFaction
-                    );
-                    
+                    const isHighlighted =
+                      hoveredFaction &&
+                      (relation.from === hoveredFaction ||
+                        relation.to === hoveredFaction);
+
                     // Определяем, должна ли линия быть приглушена
                     const isDimmed = hoveredFaction && !isHighlighted;
 
@@ -185,11 +185,13 @@ export const FactionButtons = (props, context) => {
                         x2={toPos.x}
                         y2={toPos.y}
                         stroke={RELATION_TYPES[relation.type].color}
-                        strokeWidth={isHighlighted ? "5" : "3"}
-                        opacity={isHighlighted ? "1" : isDimmed ? "0.2" : "0.7"}
+                        strokeWidth={isHighlighted ? '5' : '3'}
+                        opacity={isHighlighted ? '1' : isDimmed ? '0.2' : '0.7'}
                         style={{
-                          filter: isHighlighted ? "drop-shadow(0 0 4px currentColor)" : "none",
-                          transition: "all 0.2s ease-in-out",
+                          filter: isHighlighted
+                            ? 'drop-shadow(0 0 4px currentColor)'
+                            : 'none',
+                          transition: 'all 0.2s ease-in-out',
                         }}
                       />
                     );
@@ -252,7 +254,13 @@ export const FactionButtons = (props, context) => {
 };
 
 // Компонент для отдельной кнопки фракции
-const FactionButton = ({ faction, context, act, hoveredFaction, setHoveredFaction }) => {
+const FactionButton = ({
+  faction,
+  context,
+  act,
+  hoveredFaction,
+  setHoveredFaction,
+}) => {
   return (
     <Box
       style={{
