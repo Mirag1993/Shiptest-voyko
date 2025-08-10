@@ -212,14 +212,10 @@ export const ShipBrowser = (props, context) => {
                 >
                   <LabeledList>
                     <LabeledList.Item label="Описание">
-                      <ShipDescription
-                        description={t?.description}
-                        context={context}
-                        shipName={t?.name}
-                      />
+                      {t?.desc || 'Нет описания'}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Экипаж">
-                      {t?.crewCount || 'Неизвестно'}
+                    <LabeledList.Item label="Фракция">
+                      {t?.faction || 'Неизвестно'}
                     </LabeledList.Item>
                     <LabeledList.Item label="Теги">
                       {t?.tags && t.tags.length > 0 ? (
@@ -244,6 +240,45 @@ export const ShipBrowser = (props, context) => {
                         'Нет тегов'
                       )}
                     </LabeledList.Item>
+                    <LabeledList.Item label="Экипаж">
+                      {Number(t?.crewCount) || 0}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Макс. количество">
+                      {Number(t?.limit) || 'Нет'}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Текущее количество">
+                      {Number(t?.curNum) || 0}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Ссылка на карту">
+                      <a
+                        href={
+                          'https://map.celadon.pro/Shiptest/' +
+                          (t?.shortName || t?.name)
+                        }
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        [Детальная карта корабля]
+                      </a>
+                    </LabeledList.Item>
+                    <LabeledList.Item>
+                      <Collapsible title={'Карта корабля'} key={'Map'}>
+                        <img
+                          src={
+                            'https://map.celadon.pro/Shiptest/Shuttles/' +
+                            (t?.shortName || t?.name) +
+                            '.png'
+                          }
+                          alt={
+                            '[Данные о карте не были получены. Обратитесь к Хосту (Voiko).]'
+                          }
+                          style={{
+                            width: t?.width || '600px',
+                            height: t?.height || 'auto',
+                          }}
+                        />
+                      </Collapsible>
+                    </LabeledList.Item>
                   </LabeledList>
                 </Collapsible>
               ))}
@@ -252,81 +287,5 @@ export const ShipBrowser = (props, context) => {
         </Section>
       </Window.Content>
     </Window>
-  );
-};
-
-// Компонент для красивого сворачивающегося описания
-const ShipDescription = ({ description, context, shipName }) => {
-  const [isExpanded, setIsExpanded] = useLocalState(
-    context,
-    `ship_desc_expanded_${shipName}`,
-    false
-  );
-
-  const maxLength = 120;
-  const needsTruncation = description.length > maxLength;
-  const shortDescription = needsTruncation
-    ? description.substring(0, maxLength) + '...'
-    : description;
-
-  return (
-    <Box
-      style={{
-        cursor: needsTruncation ? 'pointer' : 'default',
-        transition: 'all 0.2s ease',
-        maxHeight: isExpanded ? 'none' : '3.5em',
-        overflow: 'hidden',
-        position: 'relative',
-      }}
-      onClick={() => needsTruncation && setIsExpanded(!isExpanded)}
-      title={
-        needsTruncation
-          ? isExpanded
-            ? 'Кликните чтобы свернуть'
-            : 'Кликните чтобы развернуть'
-          : ''
-      }
-    >
-      <Box
-        fontSize="11px"
-        color="#c1c1c1"
-        lineHeight="1.4"
-        style={{ textAlign: 'justify' }}
-      >
-        {isExpanded ? description : shortDescription}
-      </Box>
-
-      {/* Градиент-индикатор для свернутого текста */}
-      {needsTruncation && !isExpanded && (
-        <Box
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            width: '100%',
-            height: '1.2em',
-            background:
-              'linear-gradient(to bottom, transparent, rgba(37, 99, 235, 0.1))',
-            pointerEvents: 'none',
-          }}
-        />
-      )}
-
-      {/* Маленький индикатор состояния */}
-      {needsTruncation && (
-        <Box
-          style={{
-            position: 'absolute',
-            bottom: '2px',
-            right: '4px',
-            fontSize: '10px',
-            color: '#2563eb',
-            opacity: 0.7,
-          }}
-        >
-          {isExpanded ? '▲' : '▼'}
-        </Box>
-      )}
-    </Box>
   );
 };
