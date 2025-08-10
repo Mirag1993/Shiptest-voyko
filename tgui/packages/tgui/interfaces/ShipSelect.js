@@ -310,8 +310,19 @@ export const ShipSelect = (props, context) => {
             title="Ship Purchase"
             buttons={
               <Button
-                content="?"
-                tooltip={'Цветные линии показывают отношения между фракциями'}
+                icon="question"
+                tooltip={
+                  <>
+                    Цветные линии показывают отношения между фракциями:
+                    <br />
+                    <br />
+                    <div>Зелёный — Союз</div>
+                    <div>Светло-синий — Положительные</div>
+                    <div>Серый — Нейтральные</div>
+                    <div>Оранжевый — Отрицательные</div>
+                    <div>Красный — Война</div>
+                  </>
+                }
               />
             }
           >

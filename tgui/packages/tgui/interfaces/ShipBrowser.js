@@ -99,32 +99,9 @@ export const ShipBrowser = (props, context) => {
       return tfString.includes('pirates') || tfString.includes('pirate');
     }
 
-    // Ищем Other корабли (все что не входит в основные фракции)
+    // Ищем Other корабли (все доступные корабли)
     if (factionString === 'other') {
-      // Проверяем, не является ли корабль частью основных фракций
-      if (tfString.includes('nanotrasen') || tfString.includes('nt')) {
-        return false;
-      }
-      if (tfString.includes('syndicate') || tfString.includes('syn')) {
-        return false;
-      }
-      if (tfString.includes('inteq') || tfString.includes('inteq risk')) {
-        return false;
-      }
-      if (tfString.includes('solfed') || tfString.includes('sf')) {
-        return false;
-      }
-      if (tfString.includes('independent') || tfString.includes('ind')) {
-        return false;
-      }
-      if (tfString.includes('elysium')) {
-        return false;
-      }
-      if (tfString.includes('pirates') || tfString.includes('pirate')) {
-        return false;
-      }
-
-      return true;
+      return true; // Показываем все корабли
     }
 
     // Для остальных фракций - точное совпадение
