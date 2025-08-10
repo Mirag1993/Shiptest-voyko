@@ -161,21 +161,17 @@
 		if("open_faction")
 			selected_faction_id = params["faction"]
 			just_switched = TRUE
-			ui.close()
-			src.ui_interact(usr, null)
+			// Не закрываем интерфейс, просто обновляем данные
 			return TRUE
 		if("open_faction_select")
 			selected_faction_id = null
 			just_switched = TRUE
-			ui.close()
-			src.ui_interact(usr, null)
+			// Не закрываем интерфейс, просто обновляем данные
 			return TRUE
 		if("back_factions")
 			selected_faction_id = null
 			just_switched = TRUE
-			ui.close()
-			// Возвращаемся к ShipSelect
-			src.ui_interact(usr, null)
+			// Не закрываем интерфейс, просто обновляем данные
 			return TRUE
 		if("close")
 			selected_faction_id = null
