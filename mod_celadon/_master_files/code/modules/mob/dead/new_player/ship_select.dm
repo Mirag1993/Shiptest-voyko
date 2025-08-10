@@ -1,7 +1,6 @@
 /datum/ship_select
 	var/selected_faction_id = null
 	var/just_switched = FALSE
-	var/back_pressed = FALSE
 
 /datum/ship_select/ui_state(mob/user)
 	return GLOB.always_state
@@ -21,8 +20,8 @@
 	if(!ui)
 		if(!just_switched)
 			selected_faction_id = null
-		var/interface_name = selected_faction_id ? "ShipBrowser" : "ShipSelect"
-		ui = new(user, src, interface_name)
+		// Всегда показываем ShipSelect - он сам определяет что отображать
+		ui = new(user, src, "ShipSelect")
 		ui.open()
 		just_switched = FALSE
 
@@ -174,12 +173,9 @@
 		if("back_factions")
 			selected_faction_id = null
 			just_switched = TRUE
-			back_pressed = TRUE
 			ui.close()
 			// Возвращаемся к ShipSelect
 			src.ui_interact(usr, null)
-			// Сбрасываем флаг через небольшую задержку
-			addtimer(CALLBACK(src, .proc/reset_back_pressed), 1)
 			return TRUE
 		if("close")
 			selected_faction_id = null
@@ -188,14 +184,12 @@
 			return TRUE
 		// [/CELADON-EDIT]
 
-/datum/ship_select/proc/reset_back_pressed()
-	back_pressed = FALSE
+// Убираем неиспользуемый proc
 
 /datum/ship_select/ui_data(mob/user)
 	. = list()
 	.["shipSpawning"] = SSovermap.ship_spawning
 	.["selectedFaction"] = selected_faction_id
-	.["backPressed"] = back_pressed
 
 /datum/ship_select/ui_static_data(mob/user)
 	// tracks the number of existing ships of each template type so that their unavailability for purchase can be communicated to the user

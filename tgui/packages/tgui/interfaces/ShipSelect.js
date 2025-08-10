@@ -13,6 +13,7 @@ import { Window } from '../layouts';
 import { createSearch, decodeHtmlEntities } from 'common/string';
 import { logger } from '../logging';
 import { FactionButtons } from './FactionButtons';
+import { ShipBrowser } from './ShipBrowser';
 
 // Цвета фракций для стилизации
 const FACTION_COLORS = {
@@ -83,14 +84,7 @@ export const ShipSelect = (props, context) => {
 
   const [currentTab, setCurrentTab] = useLocalState(context, 'tab', 1);
 
-  // Если selectedFaction сброшен и был нажат Back, переключаемся на вкладку 3
-  const selectedFaction = data.selectedFaction;
-  const backPressed = data.backPressed;
-
-  // Если selectedFaction сброшен и был нажат Back, переключаемся на вкладку 3
-  if (selectedFaction === null && backPressed) {
-    setCurrentTab(3);
-  }
+  // Убираем всю логику переключения вкладок - DM код сам управляет интерфейсом
 
   const [selectedShipRef, setSelectedShipRef] = useLocalState(
     context,
@@ -244,28 +238,28 @@ export const ShipSelect = (props, context) => {
                         {/* Правая часть: Мемо + кнопка */}
                         <Flex.Item>
                           <Flex align="center" gap={1}>
-                                                         <Box
-                               title={
-                                 ship.memo
-                                   ? decodeHtmlEntities(ship.memo)
-                                   : 'Мемо пусто'
-                               }
-                               style={{
-                                 padding: '4px 8px',
-                                 borderRadius: '6px',
-                                 cursor: 'help',
-                                 background: 'rgba(255,255,255,0.06)',
-                                 border: '1px solid rgba(255,255,255,0.12)',
-                                 fontSize: '12px',
-                                 color: '#ccc',
-                                 display: 'inline-flex',
-                                 alignItems: 'center',
-                                 height: '20px',
-                                 marginRight: '12px',
-                               }}
-                             >
-                               Мемо Капитана
-                                                         </Box>
+                            <Box
+                              title={
+                                ship.memo
+                                  ? decodeHtmlEntities(ship.memo)
+                                  : 'Мемо пусто'
+                              }
+                              style={{
+                                padding: '4px 8px',
+                                borderRadius: '6px',
+                                cursor: 'help',
+                                background: 'rgba(255,255,255,0.06)',
+                                border: '1px solid rgba(255,255,255,0.12)',
+                                fontSize: '12px',
+                                color: '#ccc',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                height: '20px',
+                                marginRight: '12px',
+                              }}
+                            >
+                              Мемо Капитана
+                            </Box>
                             <Button
                               content={
                                 ship.joinMode === applyStates.apply
@@ -311,7 +305,7 @@ export const ShipSelect = (props, context) => {
             </Flex>
           </Section>
         )}
-        {currentTab === 3 && (
+        {currentTab === 3 && !data.selectedFaction && (
           <Section
             title="Ship Purchase"
             buttons={
@@ -322,6 +316,16 @@ export const ShipSelect = (props, context) => {
             }
           >
             <FactionButtons />
+          </Section>
+        )}
+        {currentTab === 3 && data.selectedFaction && (
+          <Section
+            title={`Ship Purchase - ${data.selectedFaction}`}
+            buttons={
+              <Button content="Back" onClick={() => act('back_factions')} />
+            }
+          >
+            <ShipBrowser />
           </Section>
         )}
         {currentTab === 2 && (
