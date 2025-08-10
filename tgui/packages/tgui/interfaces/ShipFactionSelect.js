@@ -121,6 +121,7 @@ const FactionLogo = ({ faction, context }) => {
           justifyContent: 'center',
           border: '1px solid ' + faction.color,
           borderRadius: '4px',
+          pointerEvents: 'none',
         }}
       >
         {faction.short}
@@ -143,6 +144,7 @@ const FactionLogo = ({ faction, context }) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        pointerEvents: 'none',
       }}
     >
       <Box
@@ -152,6 +154,7 @@ const FactionLogo = ({ faction, context }) => {
           width: '96px',
           height: '64px',
           objectFit: 'contain',
+          pointerEvents: 'none',
         }}
         onError={() => {
           setHasError(true);
