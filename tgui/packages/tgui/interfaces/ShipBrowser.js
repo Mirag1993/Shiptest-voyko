@@ -6,8 +6,62 @@ import {
   Section,
   Collapsible,
   LabeledList,
+  Icon,
 } from '../components';
 import { Window } from '../layouts';
+
+// Цвета фракций для стилизации
+const FACTION_COLORS = {
+  'nanotrasen': { bg: '#283674', text: 'white' },
+  'syndicate': { bg: '#000000', text: '#B22C20' },
+  'inteq': { bg: '#7E6641', text: '#FFD700' },
+  'inteq risk management group': { bg: '#7E6641', text: '#FFD700' },
+  'solfed': { bg: '#FFFFFF', text: '#000080' },
+  'independent': { bg: '#283674', text: '#FFD700' },
+  'elysium': { bg: '#228B22', text: 'white' },
+  'pirates': { bg: '#000000', text: 'white' },
+  'other': { bg: '#000080', text: 'white' },
+};
+
+// Функция для получения цвета фракции
+const getFactionColor = (factionName) => {
+  if (!factionName) return { bg: '#666', text: 'white' };
+
+  const factionLower = String(factionName).toLowerCase();
+
+  // Проверяем точные совпадения
+  if (FACTION_COLORS[factionLower]) {
+    return FACTION_COLORS[factionLower];
+  }
+
+  // Проверяем частичные совпадения
+  if (factionLower.includes('nanotrasen') || factionLower.includes('nt')) {
+    return FACTION_COLORS.nanotrasen;
+  }
+  if (factionLower.includes('syndicate') || factionLower.includes('syn')) {
+    return FACTION_COLORS.syndicate;
+  }
+  if (
+    factionLower.includes('inteq') ||
+    factionLower.includes('inteq risk management group')
+  ) {
+    return FACTION_COLORS.inteq;
+  }
+  if (factionLower.includes('solfed') || factionLower.includes('sf')) {
+    return FACTION_COLORS.solfed;
+  }
+  if (factionLower.includes('independent') || factionLower.includes('ind')) {
+    return FACTION_COLORS.independent;
+  }
+  if (factionLower.includes('elysium')) {
+    return FACTION_COLORS.elysium;
+  }
+  if (factionLower.includes('pirates') || factionLower.includes('pirate')) {
+    return FACTION_COLORS.pirates;
+  }
+
+  return FACTION_COLORS.other;
+};
 
 export const ShipBrowser = (props, context) => {
   const { act, data } = useBackend(context);
@@ -215,7 +269,19 @@ export const ShipBrowser = (props, context) => {
                       {t?.desc || 'Нет описания'}
                     </LabeledList.Item>
                     <LabeledList.Item label="Фракция">
-                      {t?.faction || 'Неизвестно'}
+                      <Box
+                        style={{
+                          background: getFactionColor(t?.faction).bg,
+                          color: getFactionColor(t?.faction).text,
+                          padding: '2px 8px',
+                          borderRadius: '3px',
+                          fontSize: '11px',
+                          display: 'inline-block',
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        {t?.faction || 'Неизвестно'}
+                      </Box>
                     </LabeledList.Item>
                     <LabeledList.Item label="Теги">
                       {t?.tags && t.tags.length > 0 ? (
@@ -240,14 +306,30 @@ export const ShipBrowser = (props, context) => {
                         'Нет тегов'
                       )}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Экипаж">
-                      {Number(t?.crewCount) || 0}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Макс. количество">
-                      {Number(t?.limit) || 'Нет'}
-                    </LabeledList.Item>
-                    <LabeledList.Item label="Текущее количество">
-                      {Number(t?.curNum) || 0}
+                    <LabeledList.Item label="Информация об экипаже">
+                      <Flex align="center" wrap>
+                        <Flex.Item mr={2}>
+                          <Icon name="users" mr={1} />
+                          <span style={{ color: '#c1c1c1' }}>Экипаж:</span>
+                          <span style={{ marginLeft: '4px' }}>
+                            {Number(t?.crewCount) || 0}
+                          </span>
+                        </Flex.Item>
+                        <Flex.Item mr={2}>
+                          <Icon name="chart-bar" mr={1} />
+                          <span style={{ color: '#c1c1c1' }}>Лимит:</span>
+                          <span style={{ marginLeft: '4px' }}>
+                            {Number(t?.limit) || 'Нет'}
+                          </span>
+                        </Flex.Item>
+                        <Flex.Item>
+                          <Icon name="rocket" mr={1} />
+                          <span style={{ color: '#c1c1c1' }}>Сейчас:</span>
+                          <span style={{ marginLeft: '4px' }}>
+                            {Number(t?.curNum) || 0}
+                          </span>
+                        </Flex.Item>
+                      </Flex>
                     </LabeledList.Item>
                     <LabeledList.Item label="Ссылка на карту">
                       <a
