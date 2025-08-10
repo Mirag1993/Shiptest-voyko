@@ -1,0 +1,332 @@
+import { useBackend, useLocalState } from '../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  Section,
+  Collapsible,
+  LabeledList,
+} from '../components';
+import { Window } from '../layouts';
+
+export const ShipBrowser = (props, context) => {
+  const { act, data } = useBackend(context);
+  const [selectedTags, setSelectedTags] = useLocalState(context, 'sb_tags', []);
+  const [sortBy, setSortBy] = useLocalState(context, 'sb_sort', 'alphabet');
+
+  const faction = String(data.selectedFaction || '');
+  const templates = Array.isArray(data.templates) ? data.templates : [];
+
+  // Фильтруем корабли по выбранной фракции
+  let filtered = templates.filter((t) => {
+    if (!faction) return true;
+
+    // Получаем фракцию корабля
+    const tf = (t && t.faction && (t.faction.name || t.faction)) || '';
+    const tfString = String(tf).toLowerCase();
+    const factionString = String(faction).toLowerCase();
+
+    // Ищем InteQ корабли (включая полное название)
+    if (factionString === 'inteq') {
+      return (
+        tfString.includes('inteq') ||
+        tfString.includes('inteq risk management group') ||
+        tfString.includes('inteq risk')
+      );
+    }
+
+    // Ищем Elysium корабли
+    if (factionString === 'elysium') {
+      return tfString.includes('elysium');
+    }
+
+    // Ищем Pirates корабли
+    if (factionString === 'pirates') {
+      return tfString.includes('pirates') || tfString.includes('pirate');
+    }
+
+    // Ищем Other корабли (все что не входит в основные фракции)
+    if (factionString === 'other') {
+      // Проверяем, не является ли корабль частью основных фракций
+      if (tfString.includes('nanotrasen') || tfString.includes('nt')) {
+        return false;
+      }
+      if (tfString.includes('syndicate') || tfString.includes('syn')) {
+        return false;
+      }
+      if (tfString.includes('inteq') || tfString.includes('inteq risk')) {
+        return false;
+      }
+      if (tfString.includes('solfed') || tfString.includes('sf')) {
+        return false;
+      }
+      if (tfString.includes('independent') || tfString.includes('ind')) {
+        return false;
+      }
+      if (tfString.includes('elysium')) {
+        return false;
+      }
+      if (tfString.includes('pirates') || tfString.includes('pirate')) {
+        return false;
+      }
+
+      return true;
+    }
+
+    // Для остальных фракций - точное совпадение
+    return tfString === factionString;
+  });
+
+  // Собираем теги только из кораблей текущей фракции
+  const allTags = filtered
+    ? Array.from(new Set(filtered.flatMap((ship) => ship.tags || [])))
+    : [];
+
+  // Фильтруем по выбранным тегам
+  if (selectedTags.length) {
+    filtered = filtered.filter((ship) => {
+      return selectedTags.every((tag) => ship.tags && ship.tags.includes(tag));
+    });
+  }
+
+  // Сортируем корабли
+  const sorted = [...filtered];
+  if (sortBy === 'alphabet') {
+    sorted.sort((a, b) => (a?.name || '').localeCompare(b?.name || ''));
+  } else if (sortBy === 'crew') {
+    sorted.sort(
+      (a, b) => (Number(b?.crewCount) || 0) - (Number(a?.crewCount) || 0)
+    );
+  }
+
+  const toggleTag = (tag) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const clearAllTags = () => {
+    setSelectedTags([]);
+  };
+
+  return (
+    <Window title={String(faction || 'Ships')} width={860} height={640}>
+      <Window.Content scrollable>
+        <Section>
+          {/* Кнопка возврата к выбору фракций */}
+          <Box mb={2}>
+            <Button icon="arrow-left" onClick={() => act('back_factions')}>
+              Назад к фракциям
+            </Button>
+          </Box>
+
+          {/* Фильтр по тегам */}
+          <Box mb={1} bold>
+            Фильтр по тегам: ({allTags.length} доступно)
+          </Box>
+          {allTags.length === 0 ? (
+            <Box color="gray" mb={2}>
+              Теги не найдены. Проверьте конфигурацию кораблей.
+            </Box>
+          ) : (
+            <Flex wrap="wrap" mb={2}>
+              {allTags.map((tag) => (
+                <Flex.Item key={tag} mr={1} mb={1}>
+                  <Button
+                    onClick={() => toggleTag(tag)}
+                    color={selectedTags.includes(tag) ? 'good' : 'default'}
+                  >
+                    {tag}
+                  </Button>
+                </Flex.Item>
+              ))}
+              {selectedTags.length > 0 && (
+                <Flex.Item mr={1} mb={1}>
+                  <Button onClick={clearAllTags} color="red">
+                    Очистить все
+                  </Button>
+                </Flex.Item>
+              )}
+            </Flex>
+          )}
+
+          {/* Настройки сортировки */}
+          <Box mb={1} bold>
+            Сортировка:
+          </Box>
+          <Box mb={2}>
+            <Button
+              selected={sortBy === 'alphabet'}
+              mr={1}
+              onClick={() => setSortBy('alphabet')}
+            >
+              По алфавиту
+            </Button>
+            <Button
+              selected={sortBy === 'crew'}
+              onClick={() => setSortBy('crew')}
+            >
+              По количеству экипажа
+            </Button>
+          </Box>
+
+          {/* Список кораблей */}
+          {sorted.length === 0 ? (
+            <Box color="gray" textAlign="center" p={3}>
+              Корабли не найдены для выбранной фракции
+            </Box>
+          ) : (
+            <Section title={`Доступные к покупке (${sorted.length})`}>
+              {sorted.map((t, idx) => (
+                <Collapsible
+                  key={`${t?.name || 'ship'}-${idx}`}
+                  title={t?.name || 'Unknown Ship'}
+                  color={
+                    (!data.shipSpawnAllowed && 'average') ||
+                    (Number(t?.curNum) >= Number(t?.limit) &&
+                      Number(t?.limit) > 0 &&
+                      'grey') ||
+                    'default'
+                  }
+                  buttons={
+                    <Button
+                      content="Buy"
+                      tooltip={
+                        (!data.shipSpawnAllowed &&
+                          'Больше кораблей не может быть создано в это время.') ||
+                        (Number(t?.curNum) >= Number(t?.limit) &&
+                          Number(t?.limit) > 0 &&
+                          'Слишком много кораблей этого типа.') ||
+                        (data.shipSpawning &&
+                          'Корабль в процессе создания. Пожалуйста, подождите.')
+                      }
+                      disabled={
+                        !data.shipSpawnAllowed ||
+                        data.shipSpawning ||
+                        (Number(t?.curNum) >= Number(t?.limit) &&
+                          Number(t?.limit) > 0)
+                      }
+                      onClick={() => act('buy', { name: t?.name })}
+                    />
+                  }
+                >
+                  <LabeledList>
+                    <LabeledList.Item label="Описание">
+                      <ShipDescription
+                        description={t?.description}
+                        context={context}
+                        shipName={t?.name}
+                      />
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Экипаж">
+                      {t?.crewCount || 'Неизвестно'}
+                    </LabeledList.Item>
+                    <LabeledList.Item label="Теги">
+                      {t?.tags && t.tags.length > 0 ? (
+                        <Flex wrap="wrap">
+                          {t.tags.map((tag) => (
+                            <Flex.Item key={tag} mr={1} mb={1}>
+                              <Box
+                                style={{
+                                  background: '#444',
+                                  color: 'white',
+                                  padding: '2px 6px',
+                                  borderRadius: '3px',
+                                  fontSize: '11px',
+                                }}
+                              >
+                                {tag}
+                              </Box>
+                            </Flex.Item>
+                          ))}
+                        </Flex>
+                      ) : (
+                        'Нет тегов'
+                      )}
+                    </LabeledList.Item>
+                  </LabeledList>
+                </Collapsible>
+              ))}
+            </Section>
+          )}
+        </Section>
+      </Window.Content>
+    </Window>
+  );
+};
+
+// Компонент для красивого сворачивающегося описания
+const ShipDescription = ({ description, context, shipName }) => {
+  const [isExpanded, setIsExpanded] = useLocalState(
+    context,
+    `ship_desc_expanded_${shipName}`,
+    false
+  );
+
+  const maxLength = 120;
+  const needsTruncation = description.length > maxLength;
+  const shortDescription = needsTruncation
+    ? description.substring(0, maxLength) + '...'
+    : description;
+
+  return (
+    <Box
+      style={{
+        cursor: needsTruncation ? 'pointer' : 'default',
+        transition: 'all 0.2s ease',
+        maxHeight: isExpanded ? 'none' : '3.5em',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+      onClick={() => needsTruncation && setIsExpanded(!isExpanded)}
+      title={
+        needsTruncation
+          ? isExpanded
+            ? 'Кликните чтобы свернуть'
+            : 'Кликните чтобы развернуть'
+          : ''
+      }
+    >
+      <Box
+        fontSize="11px"
+        color="#c1c1c1"
+        lineHeight="1.4"
+        style={{ textAlign: 'justify' }}
+      >
+        {isExpanded ? description : shortDescription}
+      </Box>
+
+      {/* Градиент-индикатор для свернутого текста */}
+      {needsTruncation && !isExpanded && (
+        <Box
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            width: '100%',
+            height: '1.2em',
+            background:
+              'linear-gradient(to bottom, transparent, rgba(37, 99, 235, 0.1))',
+            pointerEvents: 'none',
+          }}
+        />
+      )}
+
+      {/* Маленький индикатор состояния */}
+      {needsTruncation && (
+        <Box
+          style={{
+            position: 'absolute',
+            bottom: '2px',
+            right: '4px',
+            fontSize: '10px',
+            color: '#2563eb',
+            opacity: 0.7,
+          }}
+        >
+          {isExpanded ? '▲' : '▼'}
+        </Box>
+      )}
+    </Box>
+  );
+};
