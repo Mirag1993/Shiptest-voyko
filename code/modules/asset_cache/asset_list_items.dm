@@ -470,14 +470,14 @@
 // [CELADON-EDIT] - SHIP_SELECTION_REWORK - Добавляем asset для логотипов фракций
 /datum/asset/simple/faction_logos
 	assets = list(
-		"nanotrasen.png" = 'html/nanotrasen.png',
-		"syndicate.png" = 'html/syndicate.png',
-		"inteq.png" = 'html/inteq.png',
-		"solfed.png" = 'html/solfed.png',
-		"independent.png" = 'html/independent.png',
-		"elysium.png" = 'html/elysium.png',
-		"pirates.png" = 'html/pirates.png',
-		"other.png" = 'html/other.png'
+		"nanotrasen.png" = 'mod_celadon/_storge_icons/icons/assets/logo/nanotrasen.png',
+		"syndicate.png" = 'mod_celadon/_storge_icons/icons/assets/logo/syndicate.png',
+		"inteq.png" = 'mod_celadon/_storge_icons/icons/assets/logo/inteq.png',
+		"solfed.png" = 'mod_celadon/_storge_icons/icons/assets/logo/solfed.png',
+		"independent.png" = 'mod_celadon/_storge_icons/icons/assets/logo/independent.png',
+		"elysium.png" = 'mod_celadon/_storge_icons/icons/assets/logo/elysium.png',
+		"pirates.png" = 'mod_celadon/_storge_icons/icons/assets/logo/pirates.png',
+		"other.png" = 'mod_celadon/_storge_icons/icons/assets/logo/other.png'
 	)
 // [/CELADON-EDIT]
 
