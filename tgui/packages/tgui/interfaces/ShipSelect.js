@@ -1,16 +1,71 @@
 import { useBackend, useLocalState } from '../backend';
 import {
   Button,
-  Input,
   Section,
   Tabs,
   Table,
   LabeledList,
   Collapsible,
+  Flex,
+  Box,
 } from '../components';
 import { Window } from '../layouts';
 import { createSearch, decodeHtmlEntities } from 'common/string';
 import { logger } from '../logging';
+import { FactionButtons } from './FactionButtons';
+
+// Цвета фракций для стилизации
+const FACTION_COLORS = {
+  'nanotrasen': { bg: '#283674', text: 'white' },
+  'syndicate': { bg: '#000000', text: '#B22C20' },
+  'inteq': { bg: '#7E6641', text: '#FFD700' },
+  'inteq risk management group': { bg: '#7E6641', text: '#FFD700' },
+  'solfed': { bg: '#FFFFFF', text: '#000080' },
+  'independent': { bg: '#283674', text: '#FFD700' },
+  'elysium': { bg: '#228B22', text: 'white' },
+  'pirates': { bg: '#000000', text: 'white' },
+  'other': { bg: '#000080', text: 'white' },
+};
+
+// Функция для получения цвета фракции
+const getFactionColor = (factionName) => {
+  if (!factionName) return { bg: '#666', text: 'white' };
+
+  const factionLower = String(factionName).toLowerCase();
+
+  // Проверяем точные совпадения
+  if (FACTION_COLORS[factionLower]) {
+    return FACTION_COLORS[factionLower];
+  }
+
+  // Проверяем частичные совпадения
+  if (factionLower.includes('nanotrasen') || factionLower.includes('nt')) {
+    return FACTION_COLORS.nanotrasen;
+  }
+  if (factionLower.includes('syndicate') || factionLower.includes('syn')) {
+    return FACTION_COLORS.syndicate;
+  }
+  if (
+    factionLower.includes('inteq') ||
+    factionLower.includes('inteq risk management group')
+  ) {
+    return FACTION_COLORS.inteq;
+  }
+  if (factionLower.includes('solfed') || factionLower.includes('sf')) {
+    return FACTION_COLORS.solfed;
+  }
+  if (factionLower.includes('independent') || factionLower.includes('ind')) {
+    return FACTION_COLORS.independent;
+  }
+  if (factionLower.includes('elysium')) {
+    return FACTION_COLORS.elysium;
+  }
+  if (factionLower.includes('pirates') || factionLower.includes('pirate')) {
+    return FACTION_COLORS.pirates;
+  }
+
+  return FACTION_COLORS.other;
+};
 
 const findShipByRef = (ship_list, ship_ref) => {
   for (let i = 0; i < ship_list.length; i++) {
@@ -22,10 +77,21 @@ const findShipByRef = (ship_list, ship_ref) => {
 export const ShipSelect = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const ships = data.ships || {};
+  // Используем ui_static_data для ships и templates
+  const ships = data.ships || [];
   const templates = data.templates || [];
 
   const [currentTab, setCurrentTab] = useLocalState(context, 'tab', 1);
+
+  // Если selectedFaction сброшен и был нажат Back, переключаемся на вкладку 3
+  const selectedFaction = data.selectedFaction;
+  const backPressed = data.backPressed;
+
+  // Если selectedFaction сброшен и был нажат Back, переключаемся на вкладку 3
+  if (selectedFaction === null && backPressed) {
+    setCurrentTab(3);
+  }
+
   const [selectedShipRef, setSelectedShipRef] = useLocalState(
     context,
     'selectedShipRef',
@@ -39,7 +105,6 @@ export const ShipSelect = (props, context) => {
     apply: 'Apply',
     closed: 'Locked',
   };
-
   const [shownTabs, setShownTabs] = useLocalState(context, 'tabs', [
     { name: 'Ship Select', tab: 1 },
     { name: 'Ship Purchase', tab: 3 },
@@ -50,14 +115,15 @@ export const ShipSelect = (props, context) => {
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
 
   return (
-    <Window title="Ship Select" width={800} height={600} resizable>
+    <Window title="Ship Select" width={860} height={640} resizable>
       <Window.Content scrollable>
-        <Tabs>
+        <Tabs style={{ display: 'flex', width: '100%' }}>
           {shownTabs.map((tabbing, index) => (
             <Tabs.Tab
               key={`${index}-${tabbing.name}`}
               selected={currentTab === tabbing.tab}
               onClick={() => setCurrentTab(tabbing.tab)}
+              style={{ flex: 1, textAlign: 'center' }}
             >
               {tabbing.name}
             </Tabs.Tab>
@@ -67,82 +133,195 @@ export const ShipSelect = (props, context) => {
           <Section
             title="Active Ship Selection"
             buttons={
-              <>
-                <Button
-                  content="Purchase Ship"
-                  tooltip={
-                    /* worth noting that disabled ship spawn doesn't cause the
-                  button to be disabled, as we want to let people look around */
-                    (data.purchaseBanned &&
-                      'You are banned from purchasing ships.') ||
-                    (!data.shipSpawnAllowed &&
-                      'No more ships may be spawned at this time.') ||
-                    (data.shipSpawning &&
-                      'A ship is currently spawning. Please wait.')
-                  }
-                  disabled={data.purchaseBanned}
-                  onClick={() => {
-                    setCurrentTab(3);
-                  }}
-                />
-                <Button
-                  content="?"
-                  tooltip={"Hover over a ship's name to see its faction."}
-                />
-              </>
+              <Button
+                content="?"
+                tooltip={"Hover over a ship's name to see its faction."}
+              />
             }
           >
-            <Table>
-              <Table.Row header>
-                <Table.Cell collapsing>Join</Table.Cell>
-                <Table.Cell>Ship Name</Table.Cell>
-                <Table.Cell>Ship Class</Table.Cell>
-              </Table.Row>
-              {Object.values(ships).map((ship) => {
+            <Flex direction="column" gap={1}>
+              {ships.map((ship) => {
                 const shipName = decodeHtmlEntities(ship.name);
                 const shipFaction = ship.faction;
+                const crewCount = ship.manifest
+                  ? Object.keys(ship.manifest).length
+                  : 0;
+
                 return (
-                  <Table.Row key={shipName}>
-                    <Table.Cell>
-                      <Button
-                        content={
-                          ship.joinMode === applyStates.apply ? 'Apply' : 'Join'
-                        }
-                        color={
-                          ship.joinMode === applyStates.apply
-                            ? 'average'
-                            : 'good'
-                        }
-                        onClick={() => {
-                          setSelectedShipRef(ship.ref);
-                          setCurrentTab(2);
-                          const newTab = {
-                            name: 'Job Select',
-                            tab: 2,
-                          };
-                          // check if the tab already exists
-                          const tabExists = shownTabs.some(
-                            (tab) =>
-                              tab.name === newTab.name && tab.tab === newTab.tab
-                          );
-                          if (tabExists) {
-                            return;
-                          }
-                          setShownTabs((tabs) => {
-                            logger.log(tabs);
-                            const newTabs = [...tabs];
-                            newTabs.splice(1, 0, newTab);
-                            return newTabs;
-                          });
-                        }}
-                      />
-                    </Table.Cell>
-                    <Table.Cell title={shipFaction}>{shipName}</Table.Cell>
-                    <Table.Cell>{ship.class}</Table.Cell>
-                  </Table.Row>
+                  <Box
+                    key={shipName}
+                    style={{
+                      background: '#2a2a2a',
+                      border: '1px solid #444',
+                      borderRadius: '8px',
+                      padding: '12px',
+                      marginBottom: '8px',
+                    }}
+                  >
+                    {/* Шапка: Название + бейджи + мемо + кнопка */}
+                    <Box
+                      style={{
+                        borderTop: '1px solid #444',
+                        borderBottom: '1px solid #444',
+                        padding: '8px 0',
+                        marginBottom: '8px',
+                      }}
+                    >
+                      <Flex align="center" justify="space-between" wrap>
+                        {/* Левая часть: название + бейджи */}
+                        <Flex.Item>
+                          <Flex align="center" gap={1}>
+                            <Box
+                              mr={1}
+                              bold
+                              style={{ fontSize: '16px', color: '#fff' }}
+                            >
+                              {shipName}
+                            </Box>
+                            <Box
+                              className="chip"
+                              title="Класс корабля"
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                padding: '0 6px',
+                                height: '20px',
+                                borderRadius: '6px',
+                                fontSize: '12px',
+                                lineHeight: '18px',
+                                background: 'rgba(255,255,255,0.06)',
+                                border: '1px solid rgba(255,255,255,0.12)',
+                                marginRight: '4px',
+                                color: '#fff',
+                              }}
+                            >
+                              {ship.class}
+                            </Box>
+                            <Box
+                              className="chip chip--faction"
+                              title="Фракция"
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                padding: '0 6px',
+                                height: '20px',
+                                borderRadius: '6px',
+                                fontSize: '12px',
+                                lineHeight: '18px',
+                                background: getFactionColor(shipFaction).bg,
+                                border: '1px solid rgba(255,255,255,0.12)',
+                                marginRight: '4px',
+                                color: getFactionColor(shipFaction).text,
+                              }}
+                            >
+                              {shipFaction}
+                            </Box>
+                            <Box
+                              className="chip"
+                              title="Экипаж"
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                padding: '0 6px',
+                                height: '20px',
+                                borderRadius: '6px',
+                                fontSize: '12px',
+                                lineHeight: '18px',
+                                background: 'rgba(255,255,255,0.06)',
+                                border: '1px solid rgba(255,255,255,0.12)',
+                                marginRight: '4px',
+                                color: '#fff',
+                              }}
+                            >
+                              👥{' '}
+                              <span style={{ color: '#2ECC71' }}>
+                                {crewCount}
+                              </span>
+                            </Box>
+                          </Flex>
+                        </Flex.Item>
+
+                        {/* Правая часть: Мемо + кнопка */}
+                        <Flex.Item>
+                          <Flex align="center" gap={1}>
+                                                         <Box
+                               title={
+                                 ship.memo
+                                   ? decodeHtmlEntities(ship.memo)
+                                   : 'Мемо пусто'
+                               }
+                               style={{
+                                 padding: '4px 8px',
+                                 borderRadius: '6px',
+                                 cursor: 'help',
+                                 background: 'rgba(255,255,255,0.06)',
+                                 border: '1px solid rgba(255,255,255,0.12)',
+                                 fontSize: '12px',
+                                 color: '#ccc',
+                                 display: 'inline-flex',
+                                 alignItems: 'center',
+                                 height: '20px',
+                                 marginRight: '12px',
+                               }}
+                             >
+                               Мемо Капитана
+                                                         </Box>
+                            <Button
+                              content={
+                                ship.joinMode === applyStates.apply
+                                  ? 'Apply'
+                                  : 'Вступить в команду'
+                              }
+                              color={
+                                ship.joinMode === applyStates.apply
+                                  ? 'average'
+                                  : 'good'
+                              }
+                              fluid={false}
+                              onClick={() => {
+                                setSelectedShipRef(ship.ref);
+                                setCurrentTab(2);
+                                const newTab = {
+                                  name: 'Job Select',
+                                  tab: 2,
+                                };
+                                const tabExists = shownTabs.some(
+                                  (tab) =>
+                                    tab.name === newTab.name &&
+                                    tab.tab === newTab.tab
+                                );
+                                if (tabExists) {
+                                  return;
+                                }
+                                setShownTabs((tabs) => {
+                                  logger.log(tabs);
+                                  const newTabs = [...tabs];
+                                  newTabs.splice(1, 0, newTab);
+                                  return newTabs;
+                                });
+                              }}
+                            />
+                          </Flex>
+                        </Flex.Item>
+                      </Flex>
+                    </Box>
+                  </Box>
                 );
               })}
-            </Table>
+            </Flex>
+          </Section>
+        )}
+        {currentTab === 3 && (
+          <Section
+            title="Ship Purchase"
+            buttons={
+              <Button
+                content="?"
+                tooltip={'Цветные линии показывают отношения между фракциями'}
+              />
+            }
+          >
+            <FactionButtons />
           </Section>
         )}
         {currentTab === 2 && (
@@ -228,123 +407,6 @@ export const ShipSelect = (props, context) => {
               </Table>
             </Section>
           </>
-        )}
-        {currentTab === 3 && (
-          <Section
-            title="Ship Purchase"
-            buttons={
-              <>
-                <Input
-                  placeholder="Search..."
-                  autoFocus
-                  value={searchText}
-                  onInput={(_, value) => setSearchText(value)}
-                />
-                <Button
-                  content="Back"
-                  onClick={() => {
-                    setCurrentTab(1);
-                  }}
-                />
-              </>
-            }
-          >
-            {templates.filter(searchFor(searchText)).map((template) => (
-              <Collapsible
-                title={template.name}
-                key={template.name}
-                color={
-                  (!data.shipSpawnAllowed && 'average') ||
-                  ((template.curNum >= template.limit ||
-                    (!data.autoMeet && data.playMin < template.minTime)) &&
-                    'grey') ||
-                  'default'
-                }
-                buttons={
-                  <Button
-                    content="Buy"
-                    tooltip={
-                      (!data.shipSpawnAllowed &&
-                        'No more ships may be spawned at this time.') ||
-                      (template.curNum >= template.limit &&
-                        'There are too many ships of this type.') ||
-                      (!data.autoMeet &&
-                        data.playMin < template.minTime &&
-                        'You do not have enough playtime to buy this ship.') ||
-                      (data.shipSpawning &&
-                        'A ship is currently spawning. Please wait.')
-                    }
-                    disabled={
-                      !data.shipSpawnAllowed ||
-                      data.shipSpawning ||
-                      template.curNum >= template.limit ||
-                      (!data.autoMeet && data.playMin < template.minTime)
-                    }
-                    onClick={() => {
-                      act('buy', {
-                        name: template.name,
-                      });
-                    }}
-                  />
-                }
-              >
-                <LabeledList>
-                  <LabeledList.Item label="Description">
-                    {template.desc || 'No Description'}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Ship Faction">
-                    {template.faction}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Ship Tags">
-                    {(template.tags && template.tags.join(', ')) ||
-                      'No Tags Set'}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Std. Crew">
-                    {template.crewCount}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Max #">
-                    {template.limit}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Min. Playtime">
-                    {formatShipTime(
-                      template.minTime,
-                      data.playMin,
-                      data.autoMeet
-                    )}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Map Link">
-                    <a /* Добавляем внешнюю ссылку для детального осмотра корабля */
-                      href={
-                        'https://map.celadon.pro/Shiptest/' + template.shortName
-                      }
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      [Детальная карта корабля]
-                    </a>
-                  </LabeledList.Item>
-                  <LabeledList.Item>
-                    <Collapsible title={'Map'} key={'Map'}>
-                      <img /* Добавляем отображение корабля под спойлером */
-                        src={
-                          'https://map.celadon.pro/Shiptest/Shuttles/' +
-                          template.shortName +
-                          '.png'
-                        }
-                        alt={
-                          '[Данные о карте не были получены. Обратитесь к Хосту (Voiko).]'
-                        }
-                        style={{
-                          width: template.width || '600px',
-                          height: template.height || 'auto',
-                        }}
-                      />
-                    </Collapsible>
-                  </LabeledList.Item>
-                </LabeledList>
-              </Collapsible>
-            ))}
-          </Section>
         )}
       </Window.Content>
     </Window>
