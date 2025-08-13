@@ -26,13 +26,13 @@ const FACTIONS = [
     id: 'solfed',
     name: 'SolFed',
     short: 'SF',
-    color: '#444e5f',
+    color: '#283674',
   },
   {
     id: 'independent',
     name: 'Independent',
     short: 'IND',
-    color: '#A0A0A0',
+    color: 'rgb(145, 78, 1)',
   },
   {
     id: 'elysium',
@@ -100,6 +100,62 @@ const FACTION_RELATIONS = [
   // Pirates отношения (1 линия - исключаем всех кроме Independent)
   { from: 'pirates', to: 'independent', type: 'war' },
 ];
+
+// Функция для получения цветов фракций (для использования в других файлах)
+export const getFactionColor = (factionName) => {
+  if (!factionName) return { bg: '#666', text: 'white' };
+
+  const factionLower = String(factionName).toLowerCase();
+
+  // Цвета фракций для стилизации
+  const FACTION_COLORS = {
+    'nanotrasen': { bg: '#283674', text: 'white' },
+    'syndicate': { bg: '#9C0808', text: 'white' },
+    'inteq': { bg: '#774b27', text: 'rgb(230, 200, 120)' },
+    'inteq risk management group': {
+      bg: '#774b27',
+      text: 'rgb(230, 200, 120)',
+    },
+    'solfed': { bg: '#283674', text: '#FFD700' },
+    'independent': { bg: '#7E6641', text: '#FFD700' },
+    'elysium': { bg: '#228B22', text: 'white' },
+    'pirates': { bg: '#000000', text: 'white' },
+    'other': { bg: '#000080', text: 'white' },
+  };
+
+  // Проверяем точные совпадения
+  if (FACTION_COLORS[factionLower]) {
+    return FACTION_COLORS[factionLower];
+  }
+
+  // Проверяем частичные совпадения
+  if (factionLower.includes('nanotrasen') || factionLower.includes('nt')) {
+    return FACTION_COLORS.nanotrasen;
+  }
+  if (factionLower.includes('syndicate') || factionLower.includes('syn')) {
+    return FACTION_COLORS.syndicate;
+  }
+  if (
+    factionLower.includes('inteq') ||
+    factionLower.includes('inteq risk management group')
+  ) {
+    return FACTION_COLORS.inteq;
+  }
+  if (factionLower.includes('solfed') || factionLower.includes('sf')) {
+    return FACTION_COLORS.solfed;
+  }
+  if (factionLower.includes('independent') || factionLower.includes('ind')) {
+    return FACTION_COLORS.independent;
+  }
+  if (factionLower.includes('elysium')) {
+    return FACTION_COLORS.elysium;
+  }
+  if (factionLower.includes('pirates') || factionLower.includes('pirate')) {
+    return FACTION_COLORS.pirates;
+  }
+
+  return FACTION_COLORS.other;
+};
 
 export const FactionButtons = (props, context) => {
   const { act } = useBackend(context);

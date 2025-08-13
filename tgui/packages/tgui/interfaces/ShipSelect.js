@@ -11,61 +11,14 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 import { createSearch, decodeHtmlEntities } from 'common/string';
-import { logger } from '../logging';
-import { FactionButtons } from './FactionButtons';
+import { FactionButtons, getFactionColor } from './FactionButtons';
 import { ShipBrowser } from './ShipBrowser';
 
-// Цвета фракций для стилизации
-const FACTION_COLORS = {
-  'nanotrasen': { bg: '#283674', text: 'white' },
-  'syndicate': { bg: '#000000', text: '#B22C20' },
-  'inteq': { bg: '#7E6641', text: '#FFD700' },
-  'inteq risk management group': { bg: '#7E6641', text: '#FFD700' },
-  'solfed': { bg: '#FFFFFF', text: '#000080' },
-  'independent': { bg: '#283674', text: '#FFD700' },
-  'elysium': { bg: '#228B22', text: 'white' },
-  'pirates': { bg: '#000000', text: 'white' },
-  'other': { bg: '#000080', text: 'white' },
-};
-
-// Функция для получения цвета фракции
-const getFactionColor = (factionName) => {
-  if (!factionName) return { bg: '#666', text: 'white' };
-
-  const factionLower = String(factionName).toLowerCase();
-
-  // Проверяем точные совпадения
-  if (FACTION_COLORS[factionLower]) {
-    return FACTION_COLORS[factionLower];
-  }
-
-  // Проверяем частичные совпадения
-  if (factionLower.includes('nanotrasen') || factionLower.includes('nt')) {
-    return FACTION_COLORS.nanotrasen;
-  }
-  if (factionLower.includes('syndicate') || factionLower.includes('syn')) {
-    return FACTION_COLORS.syndicate;
-  }
-  if (
-    factionLower.includes('inteq') ||
-    factionLower.includes('inteq risk management group')
-  ) {
-    return FACTION_COLORS.inteq;
-  }
-  if (factionLower.includes('solfed') || factionLower.includes('sf')) {
-    return FACTION_COLORS.solfed;
-  }
-  if (factionLower.includes('independent') || factionLower.includes('ind')) {
-    return FACTION_COLORS.independent;
-  }
-  if (factionLower.includes('elysium')) {
-    return FACTION_COLORS.elysium;
-  }
-  if (factionLower.includes('pirates') || factionLower.includes('pirate')) {
-    return FACTION_COLORS.pirates;
-  }
-
-  return FACTION_COLORS.other;
+// Функция для обрезки текста с троеточием
+const truncateText = (text, maxLength) => {
+  if (!text) return '';
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
 };
 
 const findShipByRef = (ship_list, ship_ref) => {
@@ -129,7 +82,9 @@ export const ShipSelect = (props, context) => {
             buttons={
               <Button
                 content="?"
-                tooltip={"Hover over a ship's name to see its faction."}
+                tooltip={
+                  'Для дополнительной информации наведите на интересующий вас элемент, например мемо капитана. Используйте манифест для просмотра текущих членов экипажа и их ролей.'
+                }
               />
             }
           >
@@ -168,9 +123,14 @@ export const ShipSelect = (props, context) => {
                             <Box
                               mr={1}
                               bold
-                              style={{ fontSize: '16px', color: '#fff' }}
+                              title={shipName}
+                              style={{
+                                fontSize: '16px',
+                                color: '#fff',
+                                cursor: 'default',
+                              }}
                             >
-                              {shipName}
+                              {truncateText(shipName, 15)}
                             </Box>
                             <Box
                               className="chip"
@@ -178,15 +138,19 @@ export const ShipSelect = (props, context) => {
                               style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                padding: '0 6px',
-                                height: '20px',
-                                borderRadius: '6px',
-                                fontSize: '12px',
-                                lineHeight: '18px',
+                                justifyContent: 'center',
+                                height: 22,
+                                lineHeight: '22px',
+                                padding: '0 8px',
+                                minWidth: 110,
+                                borderRadius: 6,
+                                fontSize: 12,
                                 background: 'rgba(255,255,255,0.06)',
                                 border: '1px solid rgba(255,255,255,0.12)',
                                 marginRight: '4px',
                                 color: '#fff',
+                                textAlign: 'center',
+                                whiteSpace: 'nowrap',
                               }}
                             >
                               {ship.class}
@@ -197,15 +161,19 @@ export const ShipSelect = (props, context) => {
                               style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                padding: '0 6px',
-                                height: '20px',
-                                borderRadius: '6px',
-                                fontSize: '12px',
-                                lineHeight: '18px',
+                                justifyContent: 'center',
+                                height: 22,
+                                lineHeight: '22px',
+                                padding: '0 8px',
+                                minWidth: 110,
+                                borderRadius: 6,
+                                fontSize: 12,
                                 background: getFactionColor(shipFaction).bg,
                                 border: '1px solid rgba(255,255,255,0.12)',
                                 marginRight: '4px',
                                 color: getFactionColor(shipFaction).text,
+                                textAlign: 'center',
+                                whiteSpace: 'nowrap',
                               }}
                             >
                               {shipFaction}
@@ -216,18 +184,22 @@ export const ShipSelect = (props, context) => {
                               style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                padding: '0 6px',
-                                height: '20px',
-                                borderRadius: '6px',
-                                fontSize: '12px',
-                                lineHeight: '18px',
+                                justifyContent: 'center',
+                                height: 22,
+                                lineHeight: '22px',
+                                padding: '0 8px',
+                                minWidth: 110,
+                                borderRadius: 6,
+                                fontSize: 12,
                                 background: 'rgba(255,255,255,0.06)',
                                 border: '1px solid rgba(255,255,255,0.12)',
                                 marginRight: '4px',
                                 color: '#fff',
+                                textAlign: 'center',
+                                whiteSpace: 'nowrap',
                               }}
                             >
-                              👥{' '}
+                              👥:{' '}
                               <span style={{ color: '#2ECC71' }}>
                                 {crewCount}
                               </span>
@@ -237,64 +209,72 @@ export const ShipSelect = (props, context) => {
 
                         {/* Правая часть: Мемо + кнопка */}
                         <Flex.Item>
-                          <Flex align="center" gap={1}>
-                            <Box
-                              title={
-                                ship.memo
-                                  ? decodeHtmlEntities(ship.memo)
-                                  : 'Мемо пусто'
-                              }
-                              style={{
-                                padding: '4px 8px',
-                                borderRadius: '6px',
-                                cursor: 'help',
-                                background: 'rgba(255,255,255,0.06)',
-                                border: '1px solid rgba(255,255,255,0.12)',
-                                fontSize: '12px',
-                                color: '#ccc',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                height: '20px',
-                                marginRight: '12px',
-                              }}
-                            >
-                              Мемо Капитана
-                            </Box>
-                            <Button
-                              content={
-                                ship.joinMode === applyStates.apply
-                                  ? 'Apply'
-                                  : 'Вступить в команду'
-                              }
-                              color={
-                                ship.joinMode === applyStates.apply
-                                  ? 'average'
-                                  : 'good'
-                              }
-                              fluid={false}
-                              onClick={() => {
-                                setSelectedShipRef(ship.ref);
-                                setCurrentTab(2);
-                                const newTab = {
-                                  name: 'Job Select',
-                                  tab: 2,
-                                };
-                                const tabExists = shownTabs.some(
-                                  (tab) =>
-                                    tab.name === newTab.name &&
-                                    tab.tab === newTab.tab
-                                );
-                                if (tabExists) {
-                                  return;
+                          <Flex align="center" justify="flex-end">
+                            <Flex.Item mr={1}>
+                              <div
+                                title={
+                                  ship.memo
+                                    ? decodeHtmlEntities(ship.memo)
+                                    : 'Мемо пусто'
                                 }
-                                setShownTabs((tabs) => {
-                                  logger.log(tabs);
-                                  const newTabs = [...tabs];
-                                  newTabs.splice(1, 0, newTab);
-                                  return newTabs;
-                                });
-                              }}
-                            />
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  height: 22,
+                                  lineHeight: '22px',
+                                  padding: '0 8px',
+                                  minWidth: 110,
+                                  borderRadius: 6,
+                                  background: 'rgba(255,255,255,0.06)',
+                                  border: '1px solid rgba(255,255,255,0.12)',
+                                  fontSize: 12,
+                                  color: '#ccc',
+                                  textAlign: 'center',
+                                  whiteSpace: 'nowrap',
+                                  cursor: 'help',
+                                }}
+                              >
+                                Мемо Капитана
+                              </div>
+                            </Flex.Item>
+
+                            <Flex.Item>
+                              <Button
+                                content={
+                                  ship.joinMode === applyStates.apply
+                                    ? 'Apply'
+                                    : 'Вступить в команду'
+                                }
+                                color={
+                                  ship.joinMode === applyStates.apply
+                                    ? 'average'
+                                    : 'good'
+                                }
+                                fluid={false}
+                                onClick={() => {
+                                  setSelectedShipRef(ship.ref);
+                                  setCurrentTab(2);
+                                  const newTab = {
+                                    name: 'Job Select',
+                                    tab: 2,
+                                  };
+                                  if (
+                                    !shownTabs.some(
+                                      (tab) =>
+                                        tab.name === newTab.name &&
+                                        tab.tab === newTab.tab
+                                    )
+                                  ) {
+                                    setShownTabs((tabs) => {
+                                      const t = [...tabs];
+                                      t.splice(1, 0, newTab);
+                                      return t;
+                                    });
+                                  }
+                                }}
+                              />
+                            </Flex.Item>
                           </Flex>
                         </Flex.Item>
                       </Flex>

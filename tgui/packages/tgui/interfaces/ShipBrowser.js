@@ -9,59 +9,7 @@ import {
   Icon,
 } from '../components';
 import { Window } from '../layouts';
-
-// Цвета фракций для стилизации
-const FACTION_COLORS = {
-  'nanotrasen': { bg: '#283674', text: 'white' },
-  'syndicate': { bg: '#000000', text: '#B22C20' },
-  'inteq': { bg: '#7E6641', text: '#FFD700' },
-  'inteq risk management group': { bg: '#7E6641', text: '#FFD700' },
-  'solfed': { bg: '#FFFFFF', text: '#000080' },
-  'independent': { bg: '#283674', text: '#FFD700' },
-  'elysium': { bg: '#228B22', text: 'white' },
-  'pirates': { bg: '#000000', text: 'white' },
-  'other': { bg: '#000080', text: 'white' },
-};
-
-// Функция для получения цвета фракции
-const getFactionColor = (factionName) => {
-  if (!factionName) return { bg: '#666', text: 'white' };
-
-  const factionLower = String(factionName).toLowerCase();
-
-  // Проверяем точные совпадения
-  if (FACTION_COLORS[factionLower]) {
-    return FACTION_COLORS[factionLower];
-  }
-
-  // Проверяем частичные совпадения
-  if (factionLower.includes('nanotrasen') || factionLower.includes('nt')) {
-    return FACTION_COLORS.nanotrasen;
-  }
-  if (factionLower.includes('syndicate') || factionLower.includes('syn')) {
-    return FACTION_COLORS.syndicate;
-  }
-  if (
-    factionLower.includes('inteq') ||
-    factionLower.includes('inteq risk management group')
-  ) {
-    return FACTION_COLORS.inteq;
-  }
-  if (factionLower.includes('solfed') || factionLower.includes('sf')) {
-    return FACTION_COLORS.solfed;
-  }
-  if (factionLower.includes('independent') || factionLower.includes('ind')) {
-    return FACTION_COLORS.independent;
-  }
-  if (factionLower.includes('elysium')) {
-    return FACTION_COLORS.elysium;
-  }
-  if (factionLower.includes('pirates') || factionLower.includes('pirate')) {
-    return FACTION_COLORS.pirates;
-  }
-
-  return FACTION_COLORS.other;
-};
+import { getFactionColor } from './FactionButtons';
 
 export const ShipBrowser = (props, context) => {
   const { act, data } = useBackend(context);
