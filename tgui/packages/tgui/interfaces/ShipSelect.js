@@ -81,7 +81,7 @@ export const ShipSelect = (props, context) => {
             title="Active Ship Selection"
             buttons={
               <Button
-                content="?"
+                icon="question"
                 tooltip={
                   'Для дополнительной информации наведите на интересующий вас элемент, например мемо капитана. Используйте манифест для просмотра текущих членов экипажа и их ролей.'
                 }
