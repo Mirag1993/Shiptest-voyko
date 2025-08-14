@@ -1,0 +1,19 @@
+# Compact Nuclear Reactor Module for Shiptest
+# Provides realistic nuclear power generation with cooling systems and safety features
+
+# Main reactor and fuel cells
+mod_celadon/compact_nuclear_reactor/code/machinery/power/cnr.dm
+mod_celadon/compact_nuclear_reactor/code/objects/items/nuclear_fuel_cell.dm
+
+# Cooling systems
+mod_celadon/compact_nuclear_reactor/code/machinery/cooling/cnr_radiator.dm
+mod_celadon/compact_nuclear_reactor/code/machinery/cooling/cnr_heat_exchanger.dm
+
+# Control and monitoring
+mod_celadon/compact_nuclear_reactor/code/machinery/computer/cnr_console.dm
+
+# Design recipes
+mod_celadon/compact_nuclear_reactor/code/datums/designs/cnr_designs.dm
+
+# TGUI interface
+tgui/packages/tgui/interfaces/CompactNuclearReactor.tsx

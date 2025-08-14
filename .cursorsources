@@ -1,0 +1,163 @@
+# Cursor Knowledge Sources for SS13/BYOND Development
+
+## Essential Sources (Highest Priority)
+
+### BYOND/DM Language and Runtime
+- **BYOND Dream Maker Language Reference**: https://www.byond.com/docs/ref/
+  - Priority: CRITICAL
+  - Purpose: Core language syntax, procs, types, datums, signals, spawn, sleep, qdel, GC chains
+  - Notes: Essential for all DM development
+
+- **BYOND Reference/Guide**: https://www.byond.com/docs/guide/
+  - Priority: CRITICAL
+  - Purpose: Standard procs, types, datums, signals, spawn, sleep, qdel, GC-цепочки
+  - Notes: Core runtime documentation
+
+- **BYOND 515/516 Release Notes**: https://www.byond.com/forum/post/2871235
+  - Priority: HIGH
+  - Purpose: Changes in procs, lists, path operations, compiler warnings for 515→516 migration
+  - Notes: Important for version compatibility
+
+### /tg/station Base Codebase
+- **/tg/station Repository**: https://github.com/tgstation/tgstation
+  - Priority: CRITICAL
+  - Purpose: Complete codebase + /docs/ (subsystem codes, controller/SS guide, process queues, timers, tick director)
+  - Notes: Base fork reference
+
+- **/tg/station Documentation**: https://github.com/tgstation/tgstation/tree/master/docs
+  - Priority: CRITICAL
+  - Purpose: Subsystem documentation, architecture guides, coding standards
+  - Notes: Essential for understanding core systems
+
+- **CONTRIBUTING / Coding Standards**: https://github.com/tgstation/tgstation/blob/master/.github/CONTRIBUTING.md
+  - Priority: HIGH
+  - Purpose: Variable/path naming, macros, patterns (Signals, Components, Elements, Initialize/Destroy)
+  - Notes: Style guide and conventions
+
+### Mapping and Tools
+- **Mapping & mapmerge2 Guide**: https://github.com/tgstation/tgstation/blob/master/docs/Mapping.md
+  - Priority: HIGH
+  - Purpose: How to edit .dmm files, map rules, running mapmerge2
+  - Notes: Essential for map development
+
+- **Unit Tests (DMUnit)**: https://github.com/tgstation/tgstation/blob/master/docs/UnitTests.md
+  - Priority: MEDIUM
+  - Purpose: Test structure, writing logic checks
+  - Notes: Quality assurance
+
+- **CI Guide**: https://github.com/tgstation/tgstation/blob/master/docs/CICD.md
+  - Priority: MEDIUM
+  - Purpose: MapDiffBot, linters, avoiding broken diffs
+  - Notes: Prevents CI issues
+
+### TGUI Frontend
+- **TGUI Documentation**: https://github.com/tgstation/tgstation/blob/master/tgui/README.md
+  - Priority: CRITICAL
+  - Purpose: Architecture, signals, useBackend, act(), messages, localization, state, hot reload
+  - Notes: Essential for UI development
+
+- **TGUI Component Reference**: https://github.com/tgstation/tgstation/blob/master/tgui/docs/component-reference.md
+  - Priority: HIGH
+  - Purpose: Button, Section, Stack, Tabs, Tooltip, NumberInput, LabeledList components
+  - Notes: UI building blocks
+
+- **TGUI Style/UX Guide**: https://github.com/tgstation/tgstation/blob/master/tgui/docs/style-guide.md
+  - Priority: MEDIUM
+  - Purpose: Spacing, font sizes, grids, contrasts, accessibility
+  - Notes: UI/UX best practices
+
+## Important Environment and Toolchain
+
+### Development Tools
+- **SpacemanDMM / dmdoc / DreamChecker**: https://github.com/SpaceManiac/SpacemanDMM
+  - Priority: HIGH
+  - Purpose: Static analysis, doc generation, GC problem highlighting
+  - Notes: Code quality tools
+
+- **StrongDMM**: https://github.com/SpaiR/StrongDMM
+  - Priority: MEDIUM
+  - Purpose: Opening/validating maps
+  - Notes: Map development tool
+
+- **mapmerge2 Documentation**: https://github.com/tgstation/tgstation/blob/master/tools/mapmerge2/README.md
+  - Priority: HIGH
+  - Purpose: Pre-commit rules
+  - Notes: Map merging tool
+
+- **RustG**: https://github.com/tgstation/rust-g
+  - Priority: MEDIUM
+  - Purpose: Installation, building, versions (if used)
+  - Notes: Performance optimization
+
+### Configuration and Deployment
+- **Game Configuration**: https://github.com/tgstation/tgstation/blob/master/config/example/config.txt
+  - Priority: MEDIUM
+  - Purpose: game_options.txt values, flags, subsystem configs, feature flags
+  - Notes: Server configuration
+
+- **Admin/Permissions**: https://github.com/tgstation/tgstation/blob/master/config/admin_ranks.txt
+  - Priority: MEDIUM
+  - Purpose: Ranks, flags, safe verbs, logging
+  - Notes: Administration system
+
+- **Server Setup**: https://github.com/tgstation/tgstation/blob/master/docs/installation.md
+  - Priority: MEDIUM
+  - Purpose: Local server, tick/subsystem profiling
+  - Notes: Development environment
+
+## Domain Knowledge SS13
+
+### Game Design and Mechanics
+- **Subsystem Documentation**: https://github.com/tgstation/tgstation/blob/master/docs/Subsystems.md
+  - Priority: HIGH
+  - Purpose: Air, atmos, power, processing; queues and priorities
+  - Notes: Core game systems
+
+- **Component/Element Documentation**: https://github.com/tgstation/tgstation/blob/master/docs/Components.md
+  - Priority: HIGH
+  - Purpose: Component pattern, Element pattern
+  - Notes: Code architecture
+
+- **Projectile/Signal Systems**: https://github.com/tgstation/tgstation/blob/master/docs/Projectiles.md
+  - Priority: MEDIUM
+  - Purpose: How shooting, damage, status effects are implemented
+  - Notes: Combat systems
+
+### Project-Specific Knowledge
+- **Shiptest Wiki**: https://wiki.celadon.pro/
+  - Priority: HIGH
+  - Purpose: Gameplay wiki for your fork (roles, UI flows, access, recipes)
+  - Notes: Understanding how things should work from player perspective
+
+- **Space Systems/Shuttles**: Internal design docs (if available)
+  - Priority: MEDIUM
+  - Purpose: Thrust physics, visibility radii, autopilot, weapons
+  - Notes: Space-specific mechanics
+
+## Asset Guidelines
+
+### Visual and Audio Assets
+- **Icon Guide (.dmi)**: https://github.com/tgstation/tgstation/blob/master/docs/Sprites.md
+  - Priority: MEDIUM
+  - Purpose: Layers, states, directional, icon_state, overlays/underlays
+  - Notes: Visual asset creation
+
+- **Sound/Music Guide**: https://github.com/tgstation/tgstation/blob/master/docs/Sounds.md
+  - Priority: LOW
+  - Purpose: Formats, volume, paths, licenses
+  - Notes: Audio asset guidelines
+
+## Local Project Documentation
+- **Project README**: ./README.md
+- **Installation Guide**: ./docs/installation.md
+- **Code of Conduct**: ./docs/CODE_OF_CONDUCT.md
+- **Security Policy**: ./docs/SECURITY.md
+- **TGUI Documentation**: ./tgui/README.md
+- **SpacemanDMM Config**: ./SpacemanDMM.toml
+- **Editor Config**: ./.editorconfig
+
+## Additional Resources
+- **BYOND Forums**: https://www.byond.com/forum/
+- **SS13 Development Discord**: Various community servers
+- **TGUI Examples**: ./tgui/packages/tgui/interfaces/
+- **Existing Code Examples**: ./code/ (for patterns and conventions)

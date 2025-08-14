@@ -1,0 +1,51 @@
+{
+  "tick_seconds": 2,
+  "temp_warn": 900,
+  "temp_meltdown": 1200,
+  "fuel": {
+    "LEU": {
+      "base_kw": 300,
+      "peak_kw": 400,
+      "burn_rate": 0.00045,
+      "heat_ratio": 1.2,
+      "neg_temp_coeff": 0.002
+    },
+    "HEU": {
+      "base_kw": 750,
+      "peak_kw": 1000,
+      "burn_rate": 0.0012,
+      "heat_ratio": 1.3,
+      "neg_temp_coeff": 0.0015
+    },
+    "THOX": {
+      "base_kw": 200,
+      "peak_kw": 260,
+      "burn_rate": 0.00025,
+      "heat_ratio": 1.1,
+      "neg_temp_coeff": 0.0025
+    }
+  },
+  "radiator_kw": 250,
+  "pump_kw_per_level": 600,
+  "cooling": {
+    "air": {
+      "base_efficiency": 1.0,
+      "space_requirement": true
+    },
+    "loop": {
+      "base_efficiency": 1.2,
+      "pump_multiplier": 1.5
+    }
+  },
+  "safety": {
+    "scram_delay": 5,
+    "meltdown_stages": 3,
+    "radiation_threshold": 700,
+    "max_radiation": 100
+  },
+  "ui": {
+    "update_interval": 1,
+    "graph_points": 60,
+    "alert_cooldown": 5
+  }
+}

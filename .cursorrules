@@ -1,0 +1,73 @@
+# Cursor Rules for SS13/BYOND Development
+
+## Language and Framework Rules
+- Write code only in DM (BYOND Dream Maker) and TGUI (TypeScript/JavaScript)
+- Follow the project's Coding Standards and Style Guide
+- Use proper indentation: tabs for DM files, spaces for YAML/JSON
+- Always use UTF-8 encoding
+
+## DM (BYOND) Specific Rules
+- Use Initialize()/LateInitialize() for initialization logic
+- Use Destroy() with qdel() for cleanup, avoid del()
+- Avoid sleep() in controllers; use timers/subsystems for long tasks
+- Don't add new globals - use datums/components/elements instead
+- Follow Component pattern and Element pattern for modularity
+- Use proper signal handling and event systems
+- Implement proper GC chains and avoid memory leaks
+
+## TGUI Development Rules
+- All UI must go through TGUI: use act() + backend signals
+- Do NOT create NanoUI interfaces
+- Use proper TypeScript types and interfaces
+- Follow Inferno/React patterns for components
+- Use proper state management and avoid prop drilling
+- Implement proper error handling and loading states
+
+## Code Organization
+- Keep modules organized: maps in '_maps' folder, code in 'code' folder
+- Follow the existing project structure and naming conventions
+- Use proper file organization within modules
+- Minimize changes to core code when possible
+
+## Testing and Quality
+- Write unit tests using DMUnit for new logic
+- Run mapmerge2 before committing map changes
+- Follow CI guidelines and linting rules
+- Update documentation when modifying subsystems
+- Add tests for new features and bug fixes
+
+## Performance and Best Practices
+- Avoid expensive operations in frequently called procs
+- Use proper caching and optimization techniques
+- Follow the project's performance guidelines
+- Profile code when making significant changes
+
+## Documentation
+- When in doubt, reference the connected documentation sources
+- Quote relevant sections from DM reference or project docs
+- Update documentation when adding new features
+- Follow the project's documentation standards
+
+## Git and Version Control
+- Follow the project's commit message conventions
+- Use proper branching strategies
+- Run pre-commit checks before pushing
+- Address CI/CD issues promptly
+
+## Security and Safety
+- Follow the project's security guidelines
+- Validate all user inputs
+- Use proper access controls and permissions
+- Avoid hardcoding sensitive information
+
+## Build and Deployment
+- Test changes in-game before committing
+- Follow the project's build procedures
+- Use proper configuration management
+- Test on different BYOND versions if needed
+
+## When Uncertain
+- Reference the BYOND DM Reference documentation
+- Check the project's contributing guidelines
+- Look at existing similar implementations
+- Ask for clarification rather than guessing
