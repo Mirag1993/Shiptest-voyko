@@ -51,7 +51,7 @@ const FACTIONS = [
 // Центральная фракция
 const CENTRAL_FACTION = {
   id: 'other',
-  name: 'Other',
+  name: 'All',
   short: 'OTHER',
   color: '#9333ea',
 };
@@ -279,8 +279,8 @@ export const FactionButtons = (props, context) => {
                 <Box
                   style={{
                     position: 'absolute',
-                    top: `${centerY - 50}px`,
-                    left: `${centerX - 50}px`,
+                    top: `${centerY - 40}px`,
+                    left: `${centerX - 40}px`,
                     zIndex: 3,
                   }}
                 >
@@ -290,6 +290,7 @@ export const FactionButtons = (props, context) => {
                     act={act}
                     hoveredFaction={hoveredFaction}
                     setHoveredFaction={setHoveredFaction}
+                    isCentral
                   />
                 </Box>
               </>
@@ -316,20 +317,23 @@ const FactionButton = ({
   act,
   hoveredFaction,
   setHoveredFaction,
+  isCentral = false,
 }) => {
+  const buttonSize = isCentral ? '80px' : '96px';
+
   return (
     <Box
       style={{
-        width: '100px',
-        height: '100px',
+        width: buttonSize,
+        height: buttonSize,
         cursor: 'pointer',
       }}
       onClick={() => act('open_faction', { faction: faction.id })}
       onMouseEnter={() => setHoveredFaction(faction.id)}
       onMouseLeave={() => setHoveredFaction(null)}
     >
-      <FactionLogo faction={faction} context={context} />
-      <Box mt={0.5} textAlign="center" fontSize="11px">
+      <FactionLogo faction={faction} context={context} isCentral={isCentral} />
+      <Box mt={isCentral ? 0.2 : 0.5} textAlign="center" fontSize="11px">
         {faction.name}
       </Box>
     </Box>
@@ -337,19 +341,21 @@ const FactionButton = ({
 };
 
 // Показывает логотип фракции или fallback если картинка не загрузилась
-const FactionLogo = ({ faction, context }) => {
+const FactionLogo = ({ faction, context, isCentral = false }) => {
   const [hasError, setHasError] = useLocalState(
     context,
     `faction_logo_error_${faction.id}`,
     false
   );
 
+  const logoSize = isCentral ? '80px' : '96px';
+
   if (hasError) {
     return (
       <Box
         style={{
-          width: '96px',
-          height: '64px',
+          width: logoSize,
+          height: logoSize,
           background: faction.color,
           color: 'white',
           fontSize: '14px',
@@ -373,8 +379,8 @@ const FactionLogo = ({ faction, context }) => {
   return (
     <Box
       style={{
-        width: '96px',
-        height: '64px',
+        width: logoSize,
+        height: logoSize,
         border: 'none',
         borderRadius: '0',
         background: 'transparent',
@@ -389,8 +395,8 @@ const FactionLogo = ({ faction, context }) => {
         as="img"
         src={imageSrc}
         style={{
-          width: '96px',
-          height: '64px',
+          width: logoSize,
+          height: logoSize,
           objectFit: 'contain',
           pointerEvents: 'none', // Fix for cursor flickering
         }}
