@@ -118,8 +118,12 @@ export const ShipBrowser = (props, context) => {
         return 'solfed';
       case 'independent':
         return 'independent';
+      case 'elysium':
+        return 'elysium';
+      case 'pirates':
+        return 'pirates';
       default:
-        return undefined; // Для elysium, pirates, other - стандартная тема
+        return undefined; // Для other - стандартная тема
     }
   };
 
