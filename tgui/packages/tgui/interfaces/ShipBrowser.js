@@ -7,14 +7,17 @@ import {
   Collapsible,
   LabeledList,
   Icon,
+  Input,
 } from '../components';
 import { Window } from '../layouts';
 import { getFactionColor } from './FactionButtons';
+import { createSearch } from 'common/string';
 
 export const ShipBrowser = (props, context) => {
   const { act, data } = useBackend(context);
   const [selectedTags, setSelectedTags] = useLocalState(context, 'sb_tags', []);
   const [sortBy, setSortBy] = useLocalState(context, 'sb_sort', 'alphabet');
+  const [searchQuery, setSearchQuery] = useLocalState(context, 'sb_search', '');
 
   const faction = String(data.selectedFaction || '');
   const templates = Array.isArray(data.templates) ? data.templates : [];
@@ -56,10 +59,20 @@ export const ShipBrowser = (props, context) => {
     return tfString === factionString;
   });
 
-  // Собираем теги только из кораблей текущей фракции
+  // Собираем теги из всех кораблей текущей фракции (до применения поиска)
   const allTags = filtered
     ? Array.from(new Set(filtered.flatMap((ship) => ship.tags || [])))
     : [];
+
+  // Фильтруем по поисковому запросу
+  if (searchQuery) {
+    const searchFilter = createSearch(searchQuery);
+    filtered = filtered.filter((ship) => {
+      const shipName = String(ship?.name || '').toLowerCase();
+      const shipDesc = String(ship?.desc || '').toLowerCase();
+      return searchFilter(shipName) || searchFilter(shipDesc);
+    });
+  }
 
   // Фильтруем по выбранным тегам
   if (selectedTags.length) {
@@ -86,6 +99,10 @@ export const ShipBrowser = (props, context) => {
 
   const clearAllTags = () => {
     setSelectedTags([]);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery('');
   };
 
   // Функция для определения темы окна по фракции
@@ -157,25 +174,40 @@ export const ShipBrowser = (props, context) => {
             Сортировка:
           </Box>
           <Box mb={2}>
-            <Button
-              selected={sortBy === 'alphabet'}
-              mr={1}
-              onClick={() => setSortBy('alphabet')}
-            >
-              По алфавиту
-            </Button>
-            <Button
-              selected={sortBy === 'crew'}
-              onClick={() => setSortBy('crew')}
-            >
-              По количеству экипажа
-            </Button>
+            <Flex align="center">
+              <Flex.Item>
+                <Button
+                  selected={sortBy === 'alphabet'}
+                  mr={1}
+                  onClick={() => setSortBy('alphabet')}
+                >
+                  По алфавиту
+                </Button>
+                <Button
+                  selected={sortBy === 'crew'}
+                  onClick={() => setSortBy('crew')}
+                >
+                  По количеству экипажа
+                </Button>
+              </Flex.Item>
+              <Flex.Item grow={1} ml={2} position="relative">
+                <Input
+                  placeholder="Поиск по названию корабля..."
+                  value={searchQuery}
+                  onInput={(e, value) => setSearchQuery(value)}
+                  style={{ width: '100%' }}
+                  type="text"
+                />
+              </Flex.Item>
+            </Flex>
           </Box>
 
           {/* Список кораблей */}
           {sorted.length === 0 ? (
             <Box color="gray" textAlign="center" p={3}>
-              Корабли не найдены для выбранной фракции
+              {searchQuery
+                ? `Корабли не найдены по запросу "${searchQuery}"`
+                : 'Корабли не найдены для выбранной фракции'}
             </Box>
           ) : (
             <Section title={`Доступные к покупке (${sorted.length})`}>
