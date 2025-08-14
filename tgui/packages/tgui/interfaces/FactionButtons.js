@@ -51,7 +51,7 @@ const FACTIONS = [
 // Центральная фракция
 const CENTRAL_FACTION = {
   id: 'other',
-  name: 'All',
+  name: 'Ships',
   short: 'OTHER',
   color: '#9333ea',
 };
@@ -111,14 +111,14 @@ export const getFactionColor = (factionName) => {
   const FACTION_COLORS = {
     'nanotrasen': { bg: '#283674', text: 'white' },
     'syndicate': { bg: '#9C0808', text: 'white' },
-    'inteq': { bg: '#7E6641', text: '#FFD700' },
+    'inteq': { bg: '#4D291F', text: 'rgb(230, 200, 120)' },
     'inteq risk management group': {
-      bg: '#7E6641',
-      text: '#FFD700',
+      bg: '#4D291F',
+      text: 'rgb(230, 200, 120)',
     },
-    'solfed': { bg: '#283674', text: '#FFD700' },
-    'independent': { bg: '#774b27', text: 'rgb(230, 200, 120)' },
-    'elysium': { bg: '#228B22', text: 'white' },
+    'solfed': { bg: '#191970', text: '#FFD700' },
+    'independent': { bg: '#7E6641', text: '#FFD700' },
+    'elysium': { bg: '#006400', text: 'white' },
     'pirates': { bg: '#000000', text: 'white' },
     'other': { bg: '#000080', text: 'white' },
   };

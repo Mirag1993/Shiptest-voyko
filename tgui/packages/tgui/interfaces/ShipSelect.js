@@ -130,7 +130,7 @@ export const ShipSelect = (props, context) => {
                                 cursor: 'default',
                               }}
                             >
-                              {truncateText(shipName, 15)}
+                              {truncateText(shipName, 25)}
                             </Box>
                             <Box
                               className="chip"
@@ -199,7 +199,7 @@ export const ShipSelect = (props, context) => {
                                 whiteSpace: 'nowrap',
                               }}
                             >
-                              👥:{' '}
+                              👥:{'\u00A0'}
                               <span style={{ color: '#2ECC71' }}>
                                 {crewCount}
                               </span>
@@ -243,7 +243,7 @@ export const ShipSelect = (props, context) => {
                               <Button
                                 content={
                                   ship.joinMode === applyStates.apply
-                                    ? 'Apply'
+                                    ? 'Подать заявку'
                                     : 'Вступить в команду'
                                 }
                                 color={
@@ -296,11 +296,15 @@ export const ShipSelect = (props, context) => {
                     Цветные линии показывают отношения между фракциями:
                     <br />
                     <br />
-                    <div>Зелёный — Союз</div>
-                    <div>Светло-синий — Положительные</div>
-                    <div>Серый — Нейтральные</div>
-                    <div>Оранжевый — Отрицательные</div>
-                    <div>Красный — Война</div>
+                    <div style={{ color: '#38A169' }}>Зелёный — Союз</div>
+                    <div style={{ color: '#60A5FA' }}>
+                      Синий — Положительные
+                    </div>
+                    <div style={{ color: '#9CA3AF' }}>Серый — Нейтральные</div>
+                    <div style={{ color: '#F59E0B' }}>
+                      Оранжевый — Отрицательные
+                    </div>
+                    <div style={{ color: '#EF4444' }}>Красный — Война</div>
                   </>
                 }
               />
