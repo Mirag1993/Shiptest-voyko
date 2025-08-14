@@ -20,7 +20,7 @@ const FACTIONS = [
     id: 'inteq',
     name: 'InteQ',
     short: 'IQ',
-    color: '#7E6641',
+    color: 'rgb(145, 78, 1)',
   },
   {
     id: 'solfed',
@@ -32,7 +32,7 @@ const FACTIONS = [
     id: 'independent',
     name: 'Independent',
     short: 'IND',
-    color: 'rgb(145, 78, 1)',
+    color: '#7E6641',
   },
   {
     id: 'elysium',
@@ -111,13 +111,13 @@ export const getFactionColor = (factionName) => {
   const FACTION_COLORS = {
     'nanotrasen': { bg: '#283674', text: 'white' },
     'syndicate': { bg: '#9C0808', text: 'white' },
-    'inteq': { bg: '#774b27', text: 'rgb(230, 200, 120)' },
+    'inteq': { bg: '#7E6641', text: '#FFD700' },
     'inteq risk management group': {
-      bg: '#774b27',
-      text: 'rgb(230, 200, 120)',
+      bg: '#7E6641',
+      text: '#FFD700',
     },
     'solfed': { bg: '#283674', text: '#FFD700' },
-    'independent': { bg: '#7E6641', text: '#FFD700' },
+    'independent': { bg: '#774b27', text: 'rgb(230, 200, 120)' },
     'elysium': { bg: '#228B22', text: 'white' },
     'pirates': { bg: '#000000', text: 'white' },
     'other': { bg: '#000080', text: 'white' },
