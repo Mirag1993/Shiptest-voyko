@@ -1,0 +1,11 @@
+#ifndef MODPACK_CELADON_TTS
+#define MODPACK_CELADON_TTS
+
+#include "_tts.dm"
+
+// Core TTS System
+#include "code/tts_core.dm"
+#include "code/tts_integration.dm"
+#include "code/tts_tgui.dm"
+
+#endif
