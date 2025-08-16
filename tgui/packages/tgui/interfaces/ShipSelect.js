@@ -31,6 +31,9 @@ const findShipByRef = (ship_list, ship_ref) => {
 export const ShipSelect = (props, context) => {
   const { act, data } = useBackend(context);
 
+  // Защита от множественных кликов
+  const [isJoining, setIsJoining] = useLocalState(context, 'isJoining', false);
+
   // Используем ui_static_data для ships и templates
   const ships = data.ships || [];
   const templates = data.templates || [];
@@ -62,7 +65,12 @@ export const ShipSelect = (props, context) => {
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
 
   return (
-    <Window title="Ship Select" width={860} height={640} resizable>
+    <Window
+      title="Ship Select [INTERCEPTOR-v1]"
+      width={860}
+      height={640}
+      resizable
+    >
       <Window.Content scrollable>
         <Tabs style={{ display: 'flex', width: '100%' }}>
           {shownTabs.map((tabbing, index) => (
@@ -386,13 +394,24 @@ export const ShipSelect = (props, context) => {
                         }
                         disabled={
                           (!data.autoMeet && data.playMin < job.minTime) ||
-                          (data.officerBanned && job.officer)
+                          (data.officerBanned && job.officer) ||
+                          isJoining
                         }
                         onClick={() => {
+                          if (isJoining) return;
+                          setIsJoining(true);
+
+                          const nonce = `join:${selectedShip.ref}:${
+                            job.ref
+                          }:${Date.now().toString(36)}`;
                           act('join', {
                             ship: selectedShip.ref,
                             job: job.ref,
+                            nonce: nonce,
                           });
+
+                          // Сброс защиты через 3 секунды
+                          setTimeout(() => setIsJoining(false), 3000);
                         }}
                       />
                     </Table.Cell>
