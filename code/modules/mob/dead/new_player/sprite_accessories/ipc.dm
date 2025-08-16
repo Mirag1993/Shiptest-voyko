@@ -181,7 +181,7 @@
 
 /datum/sprite_accessory/ipc_antennas
 	icon = 'icons/mob/ipc_accessories.dmi'
-	color_src = FACEHAIR // [CELADON-EDIT] - CELADON_IPC_HAIR
+	color_src = FACEHAIR
 
 /datum/sprite_accessory/ipc_antennas/none
 	name = "None"
@@ -390,3 +390,9 @@
 	name = "Absolution-Lux 'Solferino'"
 	limbs_id = "ablux"
 	has_screen = FALSE
+
+/datum/sprite_accessory/ipc_chassis/humanipc
+	name = "Clover Corporation 'Humaniform'"
+	limbs_id = "humanipc"
+	has_screen = FALSE
+	use_eyes = TRUE
