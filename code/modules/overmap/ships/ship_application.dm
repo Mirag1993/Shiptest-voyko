@@ -15,6 +15,10 @@
 	var/app_msg
 	/// The application's status -- whether or not it has been accepted, rejected, or hasn't been answered yet.
 	var/status = SHIP_APPLICATION_UNFINISHED
+	//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Добавляем поле для хранения целевой профессии
+	/// Target job for job-specific applications (optional)
+	var/datum/job/target_job
+	//[/CELADON-EDIT]
 
 /datum/ship_application/New(mob/dead/new_player/applicant, datum/overmap/ship/controlled/parent)
 	// If the admin is in stealth mode, we use their fakekey.
@@ -60,6 +64,7 @@
 		// don't need to use check_blinking, because it DAMN well better be blinking now that we exist
 		parent_ship.owner_act.set_blinking(TRUE)
 		SEND_SOUND(parent_ship.owner_mob, sound('sound/misc/server-ready.ogg', volume=50))
+
 		var/message = \
 			"<span class='looc'>[app_name] [show_key ? "([app_key]) " : null]applied to your ship: [app_msg]\n" + \
 			"<a href=?src=[REF(src)];application_accept=1>(ACCEPT)</a> / <a href=?src=[REF(src)];application_deny=1>(DENY)</a></span>"
@@ -97,10 +102,13 @@
 /datum/ship_application/ui_state(mob/user)
 	return GLOB.always_state
 
+//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Добавляем передачу job_name в UI
 /datum/ship_application/ui_data(mob/user)
 	. = list()
 	.["ship_name"] = parent_ship.name
 	.["player_name"] = app_name
+	.["job_name"] = target_job?.name // Название профессии для отображения в модалке
+//[/CELADON-EDIT]
 
 /datum/ship_application/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -147,5 +155,19 @@
 	switch(status)
 		if(SHIP_APPLICATION_ACCEPTED)
 			to_chat(app_mob, span_notice("Your application to [parent_ship] was accepted!"), MESSAGE_TYPE_INFO)
+			//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Автообновление Ship Select UI после принятия заявки
+			// Обновляем Ship Select UI если оно открыто
+			for(var/datum/tgui/ui in SStgui.open_uis)
+				if(ui.interface == "ShipSelect" && ui.user == app_mob)
+					ui.send_update()
+					break
+			//[/CELADON-EDIT]
 		if(SHIP_APPLICATION_DENIED)
 			to_chat(app_mob, span_warning("Your application to [parent_ship] was denied!"), MESSAGE_TYPE_INFO)
+			//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Автообновление Ship Select UI после отклонения заявки
+			// Обновляем Ship Select UI если оно открыто
+			for(var/datum/tgui/ui in SStgui.open_uis)
+				if(ui.interface == "ShipSelect" && ui.user == app_mob)
+					ui.send_update()
+					break
+			//[/CELADON-EDIT]

@@ -66,7 +66,7 @@ export const ShipSelect = (props, context) => {
 
   return (
     <Window
-      title="Ship Select [INTERCEPTOR-v1]"
+      title="Ship Select [INTERCEPTOR-v3-FACTION-FIX]"
       width={860}
       height={640}
       resizable
@@ -365,64 +365,333 @@ export const ShipSelect = (props, context) => {
             <Section
               title="Job Selection"
               buttons={
-                <Button
-                  content="Back"
-                  onClick={() => {
-                    setCurrentTab(1);
-                  }}
-                />
+                <>
+                  <Button
+                    icon="question"
+                    tooltip={
+                      'Выберите должность на корабле. Если корабль требует заявку - сначала подайте заявку на конкретную профессию. После одобрения вы сможете присоединиться к экипажу на эту роль.'
+                    }
+                  />
+                  <Button
+                    content="Back"
+                    onClick={() => {
+                      setCurrentTab(1);
+                    }}
+                  />
+                </>
               }
             >
-              <Table>
-                <Table.Row header>
-                  <Table.Cell collapsing>Join</Table.Cell>
-                  <Table.Cell>Job Name</Table.Cell>
-                  <Table.Cell>Slots</Table.Cell>
-                  <Table.Cell>Min. Playtime</Table.Cell>
-                </Table.Row>
-                {selectedShip.jobs.map((job) => (
-                  <Table.Row key={job.name}>
-                    <Table.Cell>
-                      <Button
-                        content="Select"
-                        tooltip={
-                          (!data.autoMeet &&
-                            data.playMin < job.minTime &&
-                            'You do not have enough playtime to play this job.') ||
-                          (data.officerBanned &&
-                            'You are banned from playing officer roles')
-                        }
-                        disabled={
-                          (!data.autoMeet && data.playMin < job.minTime) ||
-                          (data.officerBanned && job.officer) ||
-                          isJoining
-                        }
-                        onClick={() => {
-                          if (isJoining) return;
-                          setIsJoining(true);
+              <Flex direction="column" gap={1}>
+                {selectedShip.jobs.map((job) => {
+                  // Получаем статус заявки из динамических данных
+                  const jobApplicationStatus =
+                    data.jobApplicationStatuses?.[selectedShip.ref]?.[
+                      job.ref
+                    ] || 'none'; // none, pending, approved, denied
+                  const isApproved = jobApplicationStatus === 'approved';
+                  const isPending = jobApplicationStatus === 'pending';
+                  const isDenied = jobApplicationStatus === 'denied';
 
-                          const nonce = `join:${selectedShip.ref}:${
-                            job.ref
-                          }:${Date.now().toString(36)}`;
-                          act('join', {
-                            ship: selectedShip.ref,
-                            job: job.ref,
-                            nonce: nonce,
-                          });
+                  // Определяем какую кнопку показать
+                  let buttonContent = 'Apply';
+                  let buttonColor = 'average';
+                  let isDisabled = false;
+                  let showCancelButton = false;
 
-                          // Сброс защиты через 3 секунды
-                          setTimeout(() => setIsJoining(false), 3000);
+                  if (selectedShip.joinMode === 'open') {
+                    buttonContent = 'Select';
+                    buttonColor = 'good';
+                  } else if (isApproved) {
+                    buttonContent = 'Select';
+                    buttonColor = 'good';
+                  } else if (isPending) {
+                    buttonContent = 'Pending...';
+                    buttonColor = 'average';
+                    isDisabled = true;
+                    showCancelButton = true; // Показываем кнопку отмены для pending заявок
+                  } else if (isDenied) {
+                    buttonContent = 'Apply Again';
+                    buttonColor = 'bad';
+                  }
+
+                  // Проверки доступности
+                  const hasPlaytime =
+                    data.autoMeet || data.playMin >= job.minTime;
+                  const notOfficerBanned = !data.officerBanned || !job.officer;
+                  const canInteract =
+                    hasPlaytime && notOfficerBanned && !isJoining;
+
+                  return (
+                    <Box
+                      key={job.name}
+                      style={{
+                        background: '#2a2a2a',
+                        border: '1px solid #444',
+                        borderRadius: '8px',
+                        padding: '12px',
+                        marginBottom: '8px',
+                      }}
+                    >
+                      <Box
+                        style={{
+                          borderTop: '1px solid #444',
+                          borderBottom: '1px solid #444',
+                          padding: '8px 0',
+                          marginBottom: '8px',
                         }}
-                      />
-                    </Table.Cell>
-                    <Table.Cell>{job.name}</Table.Cell>
-                    <Table.Cell>{job.slots}</Table.Cell>
-                    <Table.Cell>
-                      {formatShipTime(job.minTime, data.playMin, data.autoMeet)}
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table>
+                      >
+                        <Flex align="center" justify="space-between" wrap>
+                          {/* Левая часть: название + бейджи */}
+                          <Flex.Item>
+                            <Flex align="center" gap={1}>
+                              <Box
+                                mr={1}
+                                bold
+                                title={job.name}
+                                style={{
+                                  fontSize: '16px',
+                                  color: job.officer ? '#FFD700' : '#fff',
+                                  cursor: 'default',
+                                }}
+                              >
+                                {job.name}
+                              </Box>
+
+                              {/* Бейдж офицера */}
+                              {job.officer && (
+                                <Box
+                                  className="chip"
+                                  title="Офицерская должность"
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    height: 22,
+                                    lineHeight: '22px',
+                                    padding: '0 8px',
+                                    minWidth: 70,
+                                    borderRadius: 6,
+                                    fontSize: 12,
+                                    background: 'rgba(255,215,0,0.15)',
+                                    border: '1px solid rgba(255,215,0,0.3)',
+                                    marginRight: '4px',
+                                    color: '#FFD700',
+                                    textAlign: 'center',
+                                    whiteSpace: 'nowrap',
+                                  }}
+                                >
+                                  ⭐ Officer
+                                </Box>
+                              )}
+
+                              {/* Бейдж слотов */}
+                              <Box
+                                className="chip"
+                                title="Доступные слоты"
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  height: 22,
+                                  lineHeight: '22px',
+                                  padding: '0 8px',
+                                  minWidth: 60,
+                                  borderRadius: 6,
+                                  fontSize: 12,
+                                  background: 'rgba(255,255,255,0.06)',
+                                  border: '1px solid rgba(255,255,255,0.12)',
+                                  marginRight: '4px',
+                                  color: '#fff',
+                                  textAlign: 'center',
+                                  whiteSpace: 'nowrap',
+                                }}
+                              >
+                                📋 {job.slots}
+                              </Box>
+
+                              {/* Бейдж времени */}
+                              <Box
+                                className="chip"
+                                title="Минимальное время игры"
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  height: 22,
+                                  lineHeight: '22px',
+                                  padding: '0 8px',
+                                  minWidth: 80,
+                                  borderRadius: 6,
+                                  fontSize: 12,
+                                  background: hasPlaytime
+                                    ? 'rgba(46,204,113,0.15)'
+                                    : 'rgba(231,76,60,0.15)',
+                                  border: hasPlaytime
+                                    ? '1px solid rgba(46,204,113,0.3)'
+                                    : '1px solid rgba(231,76,60,0.3)',
+                                  marginRight: '4px',
+                                  color: hasPlaytime ? '#2ECC71' : '#E74C3C',
+                                  textAlign: 'center',
+                                  whiteSpace: 'nowrap',
+                                }}
+                              >
+                                ⏱️{' '}
+                                {formatShipTime(
+                                  job.minTime,
+                                  data.playMin,
+                                  data.autoMeet
+                                )}
+                              </Box>
+
+                              {/* Бейдж статуса заявки */}
+                              {selectedShip.joinMode === 'apply' && (
+                                <Box
+                                  className="chip"
+                                  title="Статус заявки"
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    height: 22,
+                                    lineHeight: '22px',
+                                    padding: '0 8px',
+                                    minWidth: 80,
+                                    borderRadius: 6,
+                                    fontSize: 12,
+                                    background: isPending
+                                      ? 'rgba(241,196,15,0.15)'
+                                      : isApproved
+                                      ? 'rgba(46,204,113,0.15)'
+                                      : isDenied
+                                      ? 'rgba(231,76,60,0.15)'
+                                      : 'rgba(255,255,255,0.06)',
+                                    border: isPending
+                                      ? '1px solid rgba(241,196,15,0.3)'
+                                      : isApproved
+                                      ? '1px solid rgba(46,204,113,0.3)'
+                                      : isDenied
+                                      ? '1px solid rgba(231,76,60,0.3)'
+                                      : '1px solid rgba(255,255,255,0.12)',
+                                    marginRight: '4px',
+                                    color: isPending
+                                      ? '#F1C40F'
+                                      : isApproved
+                                      ? '#2ECC71'
+                                      : isDenied
+                                      ? '#E74C3C'
+                                      : '#fff',
+                                    textAlign: 'center',
+                                    whiteSpace: 'nowrap',
+                                  }}
+                                >
+                                  {isPending && '⏳ Pending'}
+                                  {isApproved && '✅ Approved'}
+                                  {isDenied && '❌ Denied'}
+                                  {!isPending &&
+                                    !isApproved &&
+                                    !isDenied &&
+                                    '📝 Not Applied'}
+                                </Box>
+                              )}
+                            </Flex>
+                          </Flex.Item>
+
+                          {/* Правая часть: кнопки */}
+                          <Flex.Item>
+                            <Flex gap={1}>
+                              {/* Основная кнопка */}
+                              <Flex.Item>
+                                <Button
+                                  content={buttonContent}
+                                  color={buttonColor}
+                                  fluid={false}
+                                  disabled={!canInteract || isDisabled}
+                                  tooltip={
+                                    !hasPlaytime
+                                      ? 'У вас недостаточно времени игры для этой должности'
+                                      : !notOfficerBanned
+                                      ? 'Вы забанены от офицерских ролей'
+                                      : isDisabled
+                                      ? 'Заявка на рассмотрении'
+                                      : selectedShip.joinMode === 'apply' &&
+                                        !isApproved
+                                      ? 'Подать заявку на эту должность'
+                                      : 'Присоединиться к экипажу на эту должность'
+                                  }
+                                  onClick={() => {
+                                    if (!canInteract || isDisabled || isJoining)
+                                      return;
+                                    setIsJoining(true);
+
+                                    const nonce = `join:${selectedShip.ref}:${
+                                      job.ref
+                                    }:${Date.now().toString(36)}`;
+
+                                    // Если корабль открытый или заявка одобрена - присоединяемся
+                                    if (
+                                      selectedShip.joinMode === 'open' ||
+                                      isApproved
+                                    ) {
+                                      act('join', {
+                                        ship: selectedShip.ref,
+                                        job: job.ref,
+                                        nonce: nonce,
+                                      });
+                                    } else {
+                                      // Иначе подаём заявку на конкретную профессию
+                                      act('apply_for_job', {
+                                        ship: selectedShip.ref,
+                                        job: job.ref,
+                                        nonce: nonce,
+                                      });
+                                    }
+
+                                    // Сброс защиты через 3 секунды
+                                    setTimeout(() => setIsJoining(false), 3000);
+                                  }}
+                                />
+                              </Flex.Item>
+
+                              {/* Кнопка отмены заявки для pending статуса */}
+                              {showCancelButton && (
+                                <Flex.Item>
+                                  <Button
+                                    content="Отменить"
+                                    color="bad"
+                                    icon="times"
+                                    fluid={false}
+                                    disabled={isJoining}
+                                    tooltip="Отменить заявку на эту должность"
+                                    onClick={() => {
+                                      if (isJoining) return;
+                                      setIsJoining(true);
+
+                                      const nonce = `cancel:${
+                                        selectedShip.ref
+                                      }:${job.ref}:${Date.now().toString(36)}`;
+
+                                      act('cancel_job_application', {
+                                        ship: selectedShip.ref,
+                                        job: job.ref,
+                                        nonce: nonce,
+                                      });
+
+                                      setTimeout(
+                                        () => setIsJoining(false),
+                                        3000
+                                      );
+                                    }}
+                                  />
+                                </Flex.Item>
+                              )}
+                            </Flex>
+                          </Flex.Item>
+                        </Flex>
+                      </Box>
+                    </Box>
+                  );
+                })}
+              </Flex>
             </Section>
           </>
         )}
