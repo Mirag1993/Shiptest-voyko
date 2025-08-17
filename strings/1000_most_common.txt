@@ -564,8 +564,8 @@ mother
 mouth
 move
 movie
-Mr.
-Mrs.
+Mr
+Mrs
 much
 mum
 mumble
