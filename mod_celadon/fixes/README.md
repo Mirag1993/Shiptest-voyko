@@ -99,6 +99,19 @@ Weebstick (Красная катана) теперь нельзя сломать
 
 - EDIT: `code\modules\hydroponics\grown\replicapod.dm` - Исправление отобрежения ДНК на сканере
 
+### Исправление бага перезарядки мех-оружия (SOB-3, BRM-6, SGL-6)
+
+**Проблема:** Оружие с `disabledreload = TRUE` (SOB-3 Clusterbang, BRM-6 Missile Rack, SGL-6 Flashbang) не могло быть перезаряжено из-за отсутствия переменной `projectiles`, что приводило к `projectiles_max = 0` и неправильной работе логики `ammo_resupply()`.
+
+**Решение:** Добавлены недостающие переменные `projectiles` для корректной работы автоматической инициализации `projectiles_max`.
+
+**Изменения:**
+- ADD: `code/game/mecha/equipment/weapons/weapons.dm`: `/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/breaching` -> `projectiles = 6` (с тегом `[CELADON-ADD]`)
+- ADD: `code/game/mecha/equipment/weapons/weapons.dm`: `/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang` -> `projectiles = 6` (с тегом `[CELADON-ADD]`)
+- ADD: `code/game/mecha/equipment/weapons/weapons.dm`: `/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang` -> `projectiles = 3` (с тегом `[CELADON-ADD]`)
+
+**Автор:** Турон/Mirag1993
+
 - EDIT: `code\modules\hydroponics\grown\replicapod.dm` - Исправлено появление людей из капусты
 
 - EDIT: `code/modules/mob/living/carbon/human/human_movement.dm` - Учитывается влияние обуви на гравитацию
