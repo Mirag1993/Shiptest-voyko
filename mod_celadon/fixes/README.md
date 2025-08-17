@@ -32,6 +32,8 @@ Weebstick (Красная катана) теперь нельзя сломать
 вытащив меч при подготовке блинка. (Если что-то сломается всёравно, попросите 
 вызвать proc "unprime_unlock" у ближайшего админа)
 
+**Фикс бесконечного спавна мобов при добыче:** Исправляет критический баг с бесконечным спавном мобов при использовании industrial grade mining drill в миссиях. Добавляет проверки завершения миссии во всех ключевых точках логики спавна мобов, а также защиту от продолжения спавна при удалении или поломке бура. Дополнительно производит балансировку жил класса 4 для более справедливой сложности.
+
 <!--
   Что он делает, что добавляет: что, куда, зачем и почему - всё здесь.
   А также любая полезная информация.
@@ -145,6 +147,13 @@ FIXES_SOUND
 - ADD:	`code/game/objects/items/melee/trickweapon.dm` - Баг звука энерго меча у пилы
 - EDIT:	`code/game/objects/items/melee/trickweapon.dm` - Новые звуки открытия/закрытия пилы
 
+**Фикс бесконечного спавна мобов при добыче:**
+- ADD: `code/modules/mining/drill.dm` - Добавлена проверка завершения миссии в `process()` и вызов `stop_spawning()` в `Destroy()`
+- ADD: `code/modules/mining/ore_veins.dm` - Добавлены проверки завершения миссии в `begin_spawning()`, `process()` и `increment_wave_tally()`
+- ADD: `code/modules/missions/dynamic/signaled.dm` - Добавлен вызов `stop_spawning()` при завершении миссии в `mine_success()`
+- EDIT: `code/modules/mining/ore_veins.dm` - Добавлена проверка `QDELETED(our_drill)` в `increment_wave_tally()` для защиты от удаленных буров
+- EDIT: `code/modules/mining/ore_veins.dm` - Балансировка жил класса 4: `max_mobs = 4` (было 6), `spawn_time = 12 SECONDS` (было 8), `wave_length = 30 SECONDS` (было 45)
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
@@ -199,6 +208,7 @@ FIXES_SOUND
 RalseiDreemuurr, Mirag1993 , Корольный крыс, MrCat15352, MysticalFaceLesS, Burbonchik, MrRomainzZ, Molniz, Redwizz, Sjerty, Garomt, Ganza9991, KOCMOHABT
 
 - Автор фикса дисков дизайнов: Турон/Mirag1993
+- Автор фикса бесконечного спавна мобов: Турон/Mirag1993
 
 <!--
   Здесь находится твой никнейм
