@@ -91,8 +91,8 @@
 
 			.["jobApplicationStatuses"][ship_ref][job_ref] = application_status
 
-	// Добавляем информацию о выбранной фракции
-	.["selectedFaction"] = selected_faction
+	// Добавляем информацию о выбранной фракции (уникальная для каждого пользователя)
+	.["selectedFaction"] = selected_faction_by_ckey[user_ckey]
 
 	return .
 //[/CELADON-EDIT]
@@ -270,17 +270,22 @@
 
 // Обработка выбора фракции
 /datum/ship_select/proc/handle_open_faction(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	var/mob/dead/new_player/spawnee = usr
 	var/faction_id = params["faction"]
+	var/user_ckey = ckey(spawnee.key)
 
-	// Устанавливаем выбранную фракцию в data
-	selected_faction = faction_id
+	// Устанавливаем выбранную фракцию для конкретного пользователя
+	selected_faction_by_ckey[user_ckey] = faction_id
 
 	return TRUE
 
 // Обработка возврата к списку фракций
 /datum/ship_select/proc/handle_back_factions(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	// Сбрасываем выбранную фракцию
-	selected_faction = null
+	var/mob/dead/new_player/spawnee = usr
+	var/user_ckey = ckey(spawnee.key)
+
+	// Сбрасываем выбранную фракцию для конкретного пользователя
+	selected_faction_by_ckey[user_ckey] = null
 
 	return TRUE
 
@@ -357,8 +362,19 @@
 
 //[/CELADON-EDIT] - Конец защищённых процедур
 
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Переменная для хранения выбранной фракции
+//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Переменная для хранения выбранной фракции (уникальная для каждого пользователя)
 /datum/ship_select
-	var/selected_faction = null
+	var/static/list/selected_faction_by_ckey = list()
+
+//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Очистка данных при закрытии UI
+/datum/ship_select/ui_close(mob/user)
+	. = ..()
+
+	// Очищаем данные выбранной фракции при закрытии UI
+	if(isnewplayer(user))
+		var/mob/dead/new_player/spawnee = user
+		var/user_ckey = ckey(spawnee.key)
+		if(user_ckey)
+			selected_faction_by_ckey[user_ckey] = null
 
 //[/CELADON-EDIT] - Конец модификаций SHIP_SELECTION_REWORK
