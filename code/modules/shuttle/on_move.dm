@@ -114,7 +114,36 @@ All ShuttleMove procs go here
 		CRASH("A turf queued to clean up after a shuttle dock somehow didn't have enough skipovers in baseturfs. [oldT]([oldT.type]):[oldT.loc]")
 
 	if(BT_index != length(baseturfs))
-		oldT.ScrapeAway(baseturfs.len - BT_index, CHANGETURF_FORCEOP|CHANGETURF_DEFER_CHANGE)
+		// Было раньше (старое поведение):
+		// oldT.ScrapeAway(baseturfs.len - BT_index, CHANGETURF_FORCEOP|CHANGETURF_DEFER_CHANGE)
+		// [CELADON-EDIT] - CELADON_FIXES - Safe hangar floor preservation during shuttle takeoff
+		var/scrape_amount = baseturfs.len - BT_index
+		if(scrape_amount > 0)
+			var/area/old_area = get_area(oldT)
+			if(istype(old_area, /area/ship/hangar))
+				// Peek the target baseturf after scraping. If it would become space, but below there is a non-space,
+				// reduce scraping by 1 to avoid creating a hole in hangars from minor layer undershoots.
+				var/list/new_baseturfs = baseturfs
+				var/candidate_amount = scrape_amount
+				var/turf_type = new_baseturfs[max(1, new_baseturfs.len - candidate_amount + 1)]
+				while(ispath(turf_type, /turf/baseturf_skipover))
+					candidate_amount++
+					if(candidate_amount > new_baseturfs.len)
+						break
+					turf_type = new_baseturfs[max(1, new_baseturfs.len - candidate_amount + 1)]
+				if(ispath(turf_type, /turf/open/space))
+					var/check_amount = candidate_amount + 1
+					if(check_amount <= new_baseturfs.len)
+						var/turf_type2 = new_baseturfs[max(1, new_baseturfs.len - check_amount + 1)]
+						while(ispath(turf_type2, /turf/baseturf_skipover))
+							check_amount++
+							if(check_amount > new_baseturfs.len)
+								break
+							turf_type2 = new_baseturfs[max(1, new_baseturfs.len - check_amount + 1)]
+						if(turf_type2 && !ispath(turf_type2, /turf/open/space))
+							scrape_amount = max(0, scrape_amount - 1)
+		oldT.ScrapeAway(scrape_amount, CHANGETURF_FORCEOP|CHANGETURF_DEFER_CHANGE)
+		// [/CELADON-EDIT] - CELADON_FIXES
 
 	return TRUE
 
