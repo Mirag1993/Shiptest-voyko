@@ -101,6 +101,15 @@ Weebstick (Красная катана) теперь нельзя сломать
 
 - EDIT: `code\modules\hydroponics\grown\replicapod.dm` - Исправлено появление людей из капусты
 
+- EDIT: `code/game/objects/items/melee/axe.dm` - [CELADON-ADD] - CELADON_FIXES - Безопасное разрушение объектов топорами
+  - Добавлена проверка QDELETED и INDESTRUCTIBLE перед вызовом obj_destruction("axe")
+  - Предотвращает краш игры при попытке разрушить уже удаленный или неуязвимый объект
+  - Решает проблему краша при броске топоров и ударе по объектам в нестабильном состоянии
+
+- EDIT: `code/game/objects/items/melee/blunt.dm` - [CELADON-ADD] - CELADON_FIXES - Безопасное разрушение объектов gorlex sledgehammer
+  - Аналогичный фикс для sledgehammer/gorlex
+  - Добавлена безопасная проверка состояния объекта перед разрушением
+
 - EDIT: `code/modules/mob/living/carbon/human/human_movement.dm` - Учитывается влияние обуви на гравитацию
 
 - ADD: `code/modules/mob/living/life.dm` - Добавление magboots_handle_gravity
@@ -197,6 +206,7 @@ FIXES_SOUND
 RalseiDreemuurr, Mirag1993 , Корольный крыс, MrCat15352, MysticalFaceLesS, Burbonchik, MrRomainzZ, Molniz, Redwizz, Sjerty, Garomt, Ganza9991, KOCMOHABT
 
 - Автор фикса дисков дизайнов: Турон/Mirag1993
+- Автор фикса краша топоров: Турон/Mirag1993
 
 <!--
   Здесь находится твой никнейм

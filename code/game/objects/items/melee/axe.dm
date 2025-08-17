@@ -35,7 +35,10 @@
 	if(HAS_TRAIT(src, TRAIT_WIELDED)) //destroys windows and grilles in one hit
 		if(istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))
 			var/obj/structure/W = A
-			W.obj_destruction("axe")
+			// [CELADON-ADD] - CELADON_FIXES - Безопасное разрушение объектов топорами
+			if(!QDELETED(W) && !(W.resistance_flags & INDESTRUCTIBLE))
+				W.obj_destruction("axe")
+			// [/CELADON-ADD]
 
 /obj/item/melee/axe/fire
 	name = "fire axe"
