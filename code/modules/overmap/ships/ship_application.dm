@@ -23,7 +23,7 @@
 /datum/ship_application/New(mob/dead/new_player/applicant, datum/overmap/ship/controlled/parent)
 	// If the admin is in stealth mode, we use their fakekey.
 	app_mob = applicant
-	app_name = app_mob.client?.prefs.real_name
+	app_name = clean_html_entities(app_mob.client?.prefs.real_name)
 	app_key = app_mob.client?.holder?.fakekey ? app_mob.client.holder.fakekey : applicant.key
 	parent_ship = parent
 
@@ -102,12 +102,23 @@
 /datum/ship_application/ui_state(mob/user)
 	return GLOB.always_state
 
+//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Вспомогательная функция для очистки HTML-сущностей
+/datum/ship_application/proc/clean_html_entities(text)
+	if(!text)
+		return text
+	text = replacetext(text, "&#39;", "'")
+	text = replacetext(text, "&amp;", "&")
+	text = replacetext(text, "&lt;", "<")
+	text = replacetext(text, "&gt;", ">")
+	text = replacetext(text, "&quot;", "\"")
+	return text
+
 //[CELADON-EDIT] - SHIP_SELECTION_REWORK - Добавляем передачу job_name в UI
 /datum/ship_application/ui_data(mob/user)
 	. = list()
 	.["ship_name"] = parent_ship.name
 	.["player_name"] = app_name
-	.["job_name"] = target_job?.name // Название профессии для отображения в модалке
+	.["job_name"] = clean_html_entities(target_job?.name)
 //[/CELADON-EDIT]
 
 /datum/ship_application/ui_act(action, list/params, datum/tgui/ui)
@@ -119,7 +130,7 @@
 		if("submit")
 			status = SHIP_APPLICATION_PENDING
 			show_key = !!params["ckey"]
-			app_msg = copytext(sanitize(params["text"]), 1, 1024)
+			app_msg = clean_html_entities(copytext(sanitize(params["text"]), 1, 1024))
 			SStgui.close_uis(src)
 			return TRUE
 

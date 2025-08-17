@@ -3,7 +3,6 @@ import {
   Button,
   Section,
   Tabs,
-  Table,
   LabeledList,
   Collapsible,
   Flex,
@@ -14,7 +13,6 @@ import { createSearch, decodeHtmlEntities } from 'common/string';
 import { FactionButtons, getFactionColor } from './FactionButtons';
 import { ShipBrowser } from './ShipBrowser';
 
-// Функция для обрезки текста с троеточием
 const truncateText = (text, maxLength) => {
   if (!text) return '';
   if (text.length <= maxLength) return text;
@@ -31,16 +29,12 @@ const findShipByRef = (ship_list, ship_ref) => {
 export const ShipSelect = (props, context) => {
   const { act, data } = useBackend(context);
 
-  // Защита от множественных кликов
   const [isJoining, setIsJoining] = useLocalState(context, 'isJoining', false);
 
-  // Используем ui_static_data для ships и templates
   const ships = data.ships || [];
   const templates = data.templates || [];
 
   const [currentTab, setCurrentTab] = useLocalState(context, 'tab', 1);
-
-  // Убираем всю логику переключения вкладок - DM код сам управляет интерфейсом
 
   const [selectedShipRef, setSelectedShipRef] = useLocalState(
     context,
@@ -66,7 +60,7 @@ export const ShipSelect = (props, context) => {
 
   return (
     <Window
-      title="Ship Select [INTERCEPTOR-v3-FACTION-FIX]"
+      title="Ship Select [INTERCEPTOR v3-FINAL]"
       width={860}
       height={640}
       resizable
@@ -383,16 +377,14 @@ export const ShipSelect = (props, context) => {
             >
               <Flex direction="column" gap={1}>
                 {selectedShip.jobs.map((job) => {
-                  // Получаем статус заявки из динамических данных
                   const jobApplicationStatus =
                     data.jobApplicationStatuses?.[selectedShip.ref]?.[
                       job.ref
-                    ] || 'none'; // none, pending, approved, denied
+                    ] || 'none';
                   const isApproved = jobApplicationStatus === 'approved';
                   const isPending = jobApplicationStatus === 'pending';
                   const isDenied = jobApplicationStatus === 'denied';
 
-                  // Определяем какую кнопку показать
                   let buttonContent = 'Apply';
                   let buttonColor = 'average';
                   let isDisabled = false;
@@ -408,13 +400,12 @@ export const ShipSelect = (props, context) => {
                     buttonContent = 'Pending...';
                     buttonColor = 'average';
                     isDisabled = true;
-                    showCancelButton = true; // Показываем кнопку отмены для pending заявок
+                    showCancelButton = true;
                   } else if (isDenied) {
                     buttonContent = 'Apply Again';
                     buttonColor = 'bad';
                   }
 
-                  // Проверки доступности
                   const hasPlaytime =
                     data.autoMeet || data.playMin >= job.minTime;
                   const notOfficerBanned = !data.officerBanned || !job.officer;
@@ -619,15 +610,19 @@ export const ShipSelect = (props, context) => {
                                       : 'Присоединиться к экипажу на эту должность'
                                   }
                                   onClick={() => {
-                                    if (!canInteract || isDisabled || isJoining)
+                                    if (
+                                      !canInteract ||
+                                      isDisabled ||
+                                      isJoining
+                                    ) {
                                       return;
+                                    }
                                     setIsJoining(true);
 
                                     const nonce = `join:${selectedShip.ref}:${
                                       job.ref
                                     }:${Date.now().toString(36)}`;
 
-                                    // Если корабль открытый или заявка одобрена - присоединяемся
                                     if (
                                       selectedShip.joinMode === 'open' ||
                                       isApproved
@@ -638,7 +633,6 @@ export const ShipSelect = (props, context) => {
                                         nonce: nonce,
                                       });
                                     } else {
-                                      // Иначе подаём заявку на конкретную профессию
                                       act('apply_for_job', {
                                         ship: selectedShip.ref,
                                         job: job.ref,
@@ -646,13 +640,11 @@ export const ShipSelect = (props, context) => {
                                       });
                                     }
 
-                                    // Сброс защиты через 3 секунды
                                     setTimeout(() => setIsJoining(false), 3000);
                                   }}
                                 />
                               </Flex.Item>
 
-                              {/* Кнопка отмены заявки для pending статуса */}
                               {showCancelButton && (
                                 <Flex.Item>
                                   <Button

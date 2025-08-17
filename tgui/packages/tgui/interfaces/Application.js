@@ -28,13 +28,22 @@ export const Application = (props, context) => {
 
   const { ship_name, player_name, job_name } = data;
 
-  // Определяем тип заявки
   const isJobSpecific = !!job_name;
   const applicationTitle = isJobSpecific
     ? `Заявка на должность ${job_name}`
     : `Заявка на вступление в экипаж`;
 
-  // Безопасные обработчики кнопок
+  const calcRows = (text) => {
+    if (!text) return 6;
+    const lines = String(text).split('\n');
+    let approx = 0;
+    for (const line of lines) {
+      approx += Math.max(1, Math.ceil(line.length / 70));
+    }
+    return Math.min(18, Math.max(6, approx));
+  };
+  const [textRows, setTextRows] = useLocalState(context, 'textRows', 6);
+
   const handleCancel = () => {
     if (isCancelling || isSubmitting) return;
     setIsCancelling(true);
@@ -53,14 +62,12 @@ export const Application = (props, context) => {
     setIsSubmitting(true);
 
     try {
-      // Формируем текст заявки с префиксом профессии
       let finalText = message.trim() || 'Заявка без сообщения';
-      
-      // Если это заявка на конкретную профессию - добавляем префикс
+
       if (isJobSpecific && job_name) {
         finalText = `${job_name}: ${finalText}`;
       }
-      
+
       act('submit', {
         text: finalText,
         ckey: showCkey,
@@ -74,77 +81,116 @@ export const Application = (props, context) => {
 
   return (
     <Window
-      title={`${ship_name} • ${applicationTitle} [v2-MODERN]`}
-      width={600}
-      height={650}
+      title={`${ship_name} • ${applicationTitle} [INTERCEPTOR v3-FINAL]`}
+      width={650}
+      height={700}
       resizable
+      theme="ntos"
     >
       <Window.Content scrollable>
         <Stack fill vertical gap={1}>
-          {/* Заголовок с иконкой */}
           <Stack.Item>
             <Section>
-              <Flex align="center" gap={2}>
-                <Flex.Item>
-                  <Icon
-                    name="file-alt"
-                    size={2}
-                    color="blue"
-                    style={{ marginRight: '8px' }}
-                  />
+              <Flex align="center" justify="center">
+                <Flex.Item shrink>
+                  <Icon name="file-alt" size={2.5} color="blue" mr={2} />
                 </Flex.Item>
-                <Flex.Item grow>
-                  <Box>
-                    <Box fontSize="18px" bold color="white" mb={1}>
-                      {applicationTitle}
-                    </Box>
-                    <Box fontSize="14px" color="label">
-                      {isJobSpecific
-                        ? `Корабль: ${ship_name} • Игрок: ${player_name}`
-                        : `Подача заявки на корабль ${ship_name} как ${player_name}`}
-                    </Box>
+                <Flex.Item grow style={{ textAlign: 'center' }}>
+                  <Box
+                    fontSize="20px"
+                    bold
+                    color="white"
+                    mb={1}
+                    style={{ lineHeight: '1.2', wordBreak: 'break-word' }}
+                  >
+                    {applicationTitle}
+                  </Box>
+                  <Box
+                    fontSize="14px"
+                    color="label"
+                    style={{ lineHeight: '1.3', opacity: 0.8 }}
+                  >
+                    {isJobSpecific
+                      ? `Корабль: ${ship_name} • Игрок: ${player_name}`
+                      : `Подача заявки на корабль ${ship_name} как ${player_name}`}
                   </Box>
                 </Flex.Item>
               </Flex>
             </Section>
           </Stack.Item>
 
-          {/* Информационная панель */}
           <Stack.Item>
             <Section>
               <Box
                 style={{
-                  background: 'rgba(52, 152, 219, 0.1)',
-                  border: '1px solid rgba(52, 152, 219, 0.3)',
-                  borderRadius: '8px',
-                  padding: '12px',
+                  background:
+                    'linear-gradient(135deg, rgba(52, 152, 219, 0.08) 0%, rgba(52, 152, 219, 0.12) 100%)',
+                  border: '1px solid rgba(52, 152, 219, 0.25)',
+                  borderRadius: '10px',
+                  padding: '16px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
                 }}
               >
-                <Flex align="center" gap={1} mb={2}>
-                  <Icon name="info-circle" color="blue" />
-                  <Box bold color="blue">
+                <Box mb={3}>
+                  <Icon name="info-circle" color="blue" size={1.2} mr={1} />
+                  <Box
+                    inline
+                    bold
+                    color="blue"
+                    fontSize="16px"
+                    style={{ transform: 'translateY(1px)' }}
+                  >
                     Информация о заявке
                   </Box>
-                </Flex>
+                </Box>
 
-                <Box mb={1}>
+                <Box
+                  mb={2}
+                  style={{
+                    lineHeight: '1.5',
+                    fontSize: '14px',
+                  }}
+                >
                   • Данный корабль требует <b>одобрения заявки</b> владельцем
                   для вступления
                 </Box>
-                <Box mb={1}>
+                <Box
+                  mb={2}
+                  style={{
+                    lineHeight: '1.5',
+                    fontSize: '14px',
+                  }}
+                >
                   • Это <b>OOC утилита</b> для координации между игроками
                 </Box>
                 {isJobSpecific ? (
-                  <Box mb={1}>
+                  <Box
+                    mb={2}
+                    style={{
+                      lineHeight: '1.5',
+                      fontSize: '14px',
+                    }}
+                  >
                     • Вы подаёте заявку на{' '}
                     <b>конкретную должность: {job_name}</b>
                   </Box>
                 ) : (
-                  <Box mb={1}>
+                  <Box
+                    mb={2}
+                    style={{
+                      lineHeight: '1.5',
+                      fontSize: '14px',
+                    }}
+                  >
                     • Заявка на <b>общее вступление</b> в экипаж корабля
                   </Box>
                 )}
-                <Box>
+                <Box
+                  style={{
+                    lineHeight: '1.5',
+                    fontSize: '14px',
+                  }}
+                >
                   • У вас есть <b>одна заявка на корабль</b>, разные персонажи
                   используют ту же заявку
                 </Box>
@@ -152,54 +198,95 @@ export const Application = (props, context) => {
             </Section>
           </Stack.Item>
 
-          {/* Поле ввода заявки */}
-          <Stack.Item grow>
-            <Section title="Текст заявки">
+          <Stack.Item>
+            <Section
+              title={
+                <Flex align="center">
+                  <Icon name="edit" color="blue" mr={1} />
+                  <Box>Текст заявки</Box>
+                </Flex>
+              }
+            >
               <Box mb={2}>
                 <TextArea
                   value={message}
                   fluid
-                  height={15}
+                  height={textRows}
                   maxLength={1024}
                   placeholder={
                     isJobSpecific
                       ? `Расскажите, почему вы хотите занять должность ${job_name} и что можете предложить экипажу...`
                       : 'Расскажите о себе, своём опыте и почему хотите присоединиться к экипажу...'
                   }
-                  onChange={(e, input) => setMessage(input)}
+                  onChange={(e, input) => {
+                    setMessage(input);
+                    setTextRows(calcRows(input));
+                  }}
                   style={{
                     fontSize: '14px',
-                    lineHeight: '1.4',
-                    background: '#1a1a1a',
-                    border: '1px solid #444',
-                    borderRadius: '6px',
+                    lineHeight: '1.5',
+                    background: 'rgba(0, 0, 0, 0.3)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '8px',
+                    padding: '12px',
+                    fontFamily: 'monospace',
+                    resize: 'none',
                   }}
                 />
-                <Box textAlign="right" fontSize="12px" color="label" mt={1}>
+                <Box
+                  textAlign="right"
+                  fontSize="12px"
+                  color="label"
+                  mt={1}
+                  style={{
+                    opacity: 0.7,
+                    fontStyle: 'italic',
+                  }}
+                >
                   {message.length}/1024 символов
                 </Box>
               </Box>
             </Section>
           </Stack.Item>
 
-          {/* Настройки приватности */}
           <Stack.Item>
-            <Section title="Настройки приватности">
+            <Section
+              title={
+                <Flex align="center">
+                  <Icon name="home" color="orange" mr={1} />
+                  <Box>Настройки приватности</Box>
+                </Flex>
+              }
+            >
               <Box
                 style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '6px',
-                  padding: '12px',
+                  background:
+                    'linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 165, 0, 0.12) 100%)',
+                  border: '1px solid rgba(255, 165, 0, 0.25)',
+                  borderRadius: '10px',
+                  padding: '16px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
                 }}
               >
-                <Flex align="center" gap={1}>
+                <Flex align="center" gap={3}>
                   <Flex.Item grow>
                     <Box>
-                      <Box bold mb={1}>
+                      <Box
+                        bold
+                        mb={1}
+                        fontSize="15px"
+                        style={{ color: '#ffa500' }}
+                      >
                         Показать ckey владельцу корабля
                       </Box>
-                      <Box fontSize="12px" color="label">
+                      <Box
+                        fontSize="13px"
+                        color="label"
+                        style={{
+                          lineHeight: '1.4',
+                          opacity: 0.8,
+                        }}
+                      >
                         Заявки сортируются по ckey, но ваш ckey будет показан
                         владельцу только при включении этой опции
                       </Box>
@@ -211,7 +298,8 @@ export const Application = (props, context) => {
                       checked={showCkey}
                       onClick={() => setShowCkey(!showCkey)}
                       style={{
-                        transform: 'scale(1.2)',
+                        transform: 'scale(1.3)',
+                        marginTop: '4px',
                       }}
                     />
                   </Flex.Item>
@@ -220,42 +308,54 @@ export const Application = (props, context) => {
             </Section>
           </Stack.Item>
 
-          <Divider />
+          <Divider style={{ margin: '16px 0' }} />
 
-          {/* Кнопки действий */}
           <Stack.Item>
-            <Flex gap={1}>
-              <Flex.Item grow>
-                <Button
-                  content={isCancelling ? 'Отменяется...' : 'Отменить'}
-                  color="bad"
-                  icon="times"
-                  fluid
-                  disabled={isCancelling || isSubmitting}
-                  onClick={handleCancel}
-                  style={{
-                    height: '40px',
-                    fontSize: '14px',
-                  }}
-                />
-              </Flex.Item>
-              <Flex.Item grow>
-                <Button
-                  content={
-                    isSubmitting ? 'Отправляется...' : 'Отправить заявку'
-                  }
-                  color="good"
-                  icon="paper-plane"
-                  fluid
-                  disabled={isSubmitting || isCancelling}
-                  onClick={handleSubmit}
-                  style={{
-                    height: '40px',
-                    fontSize: '14px',
-                  }}
-                />
-              </Flex.Item>
-            </Flex>
+            <Box
+              style={{
+                background: 'rgba(0, 0, 0, 0.2)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '10px',
+                padding: '10px',
+              }}
+            >
+              <Flex gap={2}>
+                <Flex.Item grow>
+                  <Button
+                    content={isCancelling ? 'Отменяется...' : 'Отменить'}
+                    color="bad"
+                    icon="times"
+                    fluid
+                    disabled={isCancelling || isSubmitting}
+                    onClick={handleCancel}
+                    style={{
+                      height: '24px',
+                      fontSize: '13px',
+                      borderRadius: '6px',
+                      padding: '0 10px',
+                    }}
+                  />
+                </Flex.Item>
+                <Flex.Item grow>
+                  <Button
+                    content={
+                      isSubmitting ? 'Отправляется...' : 'Отправить заявку'
+                    }
+                    color="good"
+                    icon="envelope"
+                    fluid
+                    disabled={isSubmitting || isCancelling}
+                    onClick={handleSubmit}
+                    style={{
+                      height: '24px',
+                      fontSize: '13px',
+                      borderRadius: '6px',
+                      padding: '0 10px',
+                    }}
+                  />
+                </Flex.Item>
+              </Flex>
+            </Box>
           </Stack.Item>
         </Stack>
       </Window.Content>
