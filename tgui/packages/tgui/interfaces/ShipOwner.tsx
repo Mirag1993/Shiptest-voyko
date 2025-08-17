@@ -1,3 +1,4 @@
+import { decodeHtmlEntities } from 'tgui-core/string';
 import {
   Button,
   Divider,
