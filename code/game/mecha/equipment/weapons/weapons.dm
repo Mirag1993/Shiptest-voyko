@@ -409,7 +409,7 @@
 	icon_state = "mecha_missilerack_six"
 	projectile = /obj/projectile/bullet/a84mm_br
 	fire_sound = 'sound/weapons/gun/general/rocket_launch.ogg'
-	// [CELADON-ADD] - CELADON_FIXES - Добавлена переменная projectiles для корректной работы перезарядки
+	// [CELADON-ADD] - CELADON_FIXES - MECH_WEAPON -Добавлена переменная projectiles для корректной работы перезарядки
 	projectiles = 6
 	// [/CELADON-ADD]
 	projectiles_cache_max = 0
@@ -446,7 +446,7 @@
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
-	// [CELADON-ADD] - CELADON_FIXES - Добавлена переменная projectiles для корректной работы перезарядки
+	// [CELADON-ADD] - CELADON_FIXES - MECH_WEAPON - Добавлена переменная projectiles для корректной работы перезарядки
 	projectiles = 6
 	// [/CELADON-ADD]
 	projectiles_cache_max = 24
@@ -464,7 +464,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang //Because I am a heartless bastard -Sieve //Heartless? for making the poor man's honkblast? - Kaze
 	name = "\improper SOB-3 grenade launcher"
 	desc = "A weapon for combat exosuits. Launches primed clusterbangs. You monster."
-	// [CELADON-ADD] - CELADON_FIXES - Добавлена переменная projectiles для корректной работы перезарядки
+	// [CELADON-ADD] - CELADON_FIXES - MECH_WEAPON - Добавлена переменная projectiles для корректной работы перезарядки
 	projectiles = 3
 	// [/CELADON-ADD]
 	projectiles_cache_max = 0
