@@ -216,7 +216,6 @@ FIXES_GOLIATH_TENTACLES
 RalseiDreemuurr, Mirag1993 , Корольный крыс, MrCat15352, MysticalFaceLesS, Burbonchik, MrRomainzZ, Molniz, Redwizz, Sjerty, Garomt, Ganza9991, KOCMOHABT
 
 - Автор фикса дисков дизайнов: Турон/Mirag1993
-- Автор фикса исчезновения пола в ангарах: Турон/Mirag1993
 
 <!--
   Здесь находится твой никнейм
