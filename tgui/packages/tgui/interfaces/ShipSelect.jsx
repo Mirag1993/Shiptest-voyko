@@ -20,7 +20,10 @@ export const ShipSelect = (props) => {
   const templates = data.templates || [];
 
   const [currentTab, setCurrentTab] = useLocalState('tab', 1);
-  const [selectedShip, setSelectedShip] = useLocalState('selectedShip', null);
+  const [selectedShipRef, setSelectedShipRef] = useLocalState(
+    'selectedShipRef',
+    null,
+  );
 
   const selectedShip = findShipByRef(ships, selectedShipRef);
 

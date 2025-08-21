@@ -89,6 +89,8 @@ export const DmTarget = new Juke.Target({
     "html/**",
     "icons/**",
     "interface/**",
+    "sound/**",
+    "tgui/public/tgui.html",
     "mod_celadon/**", // CELADON
     `${DME_NAME}.dme`,
     NamedVersionFile,
@@ -138,7 +140,7 @@ export const DmTestTarget = new Juke.Target({
       "-trusted",
       "-verbose",
       "-params",
-      "log-directory=ci"
+      "log-directory=ci",
     );
     Juke.rm("*.test.*");
     try {
@@ -184,7 +186,7 @@ export const AutowikiTarget = new Juke.Target({
       "-trusted",
       "-verbose",
       "-params",
-      "log-directory=ci"
+      "log-directory=ci",
     );
     Juke.rm("*.test.*");
     if (!fs.existsSync("data/autowiki_edits.txt")) {
@@ -221,15 +223,15 @@ export const TgFontTarget = new Juke.Target({
     await yarn("tgfont:build");
     fs.copyFileSync(
       "tgui/packages/tgfont/dist/tgfont.css",
-      "tgui/packages/tgfont/static/tgfont.css"
+      "tgui/packages/tgfont/static/tgfont.css",
     );
     fs.copyFileSync(
       "tgui/packages/tgfont/dist/tgfont.eot",
-      "tgui/packages/tgfont/static/tgfont.eot"
+      "tgui/packages/tgfont/static/tgfont.eot",
     );
     fs.copyFileSync(
       "tgui/packages/tgfont/dist/tgfont.woff2",
-      "tgui/packages/tgfont/static/tgfont.woff2"
+      "tgui/packages/tgfont/static/tgfont.woff2",
     );
   },
 });
@@ -391,12 +393,12 @@ export default TGS_MODE ? TgsTarget : BuildTarget;
 
 export const TguiPrettierFix = new Juke.Target({
   dependsOn: [YarnTarget],
-  executes: () => yarn('tgui:prettier-fix'),
+  executes: () => yarn("tgui:prettier-fix"),
 });
 
 export const TguiEslintFix = new Juke.Target({
   dependsOn: [YarnTarget],
-  executes: () => yarn('tgui:eslint-fix'),
+  executes: () => yarn("tgui:eslint-fix"),
 });
 
 export const TguiFix = new Juke.Target({
