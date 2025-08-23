@@ -1,50 +1,48 @@
 {
-	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Tomahawk-class Scout Vessel",
-	"prefix": "SFSV",
+	"map_short_name": "Tomahawk",
+	"description": "Корабль Солнечной Федерации класса Томагавк служит для фронтовой разведки с боем, cо временем начала космических экспансий 23 века о чем может подсказывать его обшивка. Данный корабль обладает хорошей скоростью, не смотря на свои габариты. На судне предусмотрены рабочие места для двух медиков, трёх полевых инженеров и одного корабельного.",
+	"map_path": "_maps/_mod_celadon/shuttles/solfed/solfed_tomahawk.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 4,
+	"starting_funds": 2000,
+	"prefix": "BSFSV",
+	"faction": "/datum/faction/solgov",
+	"tags": ["Разведка", "Бой", "Шахтёрство"],
 	"namelists": [
-		"SOLGOV",
+		"SOLFED",
 		"SPACE",
 		"BRITISH_NAVY",
 		"NATURAL"
 	],
-	"map_short_name": "Tomahawk-class",
-	"map_path": "_maps/_mod_celadon/shuttles/solfed/solfed_tomahawk.dmm",
-	"starting_funds": 4000,
-	"description": "Корабль Солнечной Федерации класса Томагавк служит для фронтовой разведки с боем. Данный корабль обладает хорошей скоростью, не смотря на свои габариты. На судне предусмотрены рабочие места для двух медиков, трёх полевых инженеров и одного корабельного. С консультациями капитану помогает надзиратель, у которого есть своя каюта",
-	"tags": ["Разведка", "Бой", "Шахтёрство"],
-	"limit": 1,
 	"job_slots": {
-		"Captain": {
-			"outfit": "/datum/outfit/job/solgov/captain",
+		"Kommandant": {
+			"outfit": "/datum/outfit/job/solfed/captain",
 			"officer": true,
 			"slots": 1
 		},
-		"Overseer": {
-			"outfit": "/datum/outfit/job/solgov/overseer",
+		"Feldwebel": {
+			"outfit": "/datum/outfit/job/solfed/sergeant",
 			"officer": true,
 			"slots": 1
 		},
-		"Sonnensöldner": {
-			"outfit": "/datum/outfit/job/solgov/sonnensoldner",
-			"slots": 4
-		},
-		"Medical Doctor": {
-			"outfit": "/datum/outfit/job/solgov/doctor",
-			"slots": 2
-		},
-		"Ship Engineer": {
-			"outfit": "/datum/outfit/job/solgov/engineer",
-			"slots": 1
-		},
-		"Field Engineer": {
-			"outfit": "/datum/outfit/job/solgov/miner",
+		"Marine": {
+			"outfit": "/datum/outfit/job/solfed/marine",
 			"slots": 3
 		},
-		"Scribe": {
-			"outfit": "/datum/outfit/job/solgov/assistant",
-			"slots" : 2
+		"Meeresarzt": {
+			"outfit": "/datum/outfit/job/solfed/doctor",
+			"slots": 2
+		},
+		"Marinemechaniker": {
+			"outfit": "/datum/outfit/job/solfed/engineer",
+			"slots": 1
+		},
+		"Contracted Miner": {
+			"outfit": "/datum/outfit/job/solfed/miner",
+			"slots": 3
 		}
-	},
-	"enabled": true
+	}
 }

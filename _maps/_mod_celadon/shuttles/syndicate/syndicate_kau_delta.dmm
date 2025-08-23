@@ -52,14 +52,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "bl" = (
-/obj/machinery/mineral/ore_redemption{
-	dir = 4;
-	input_dir = 4;
-	output_dir = null
-	},
 /obj/effect/turf_decal/spline/plain/opaque/syndiered{
 	dir = 10
 	},
+/obj/structure/crate_shelf,
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo)
 "bB" = (
@@ -100,6 +96,11 @@
 /obj/effect/turf_decal/spline/plain/opaque/syndiered,
 /turf/open/floor/circuit/red,
 /area/ship/crew/dorm)
+"cw" = (
+/obj/structure/catwalk/over/plated_catwalk/dark,
+/obj/machinery/light/floor,
+/turf/open/floor/engine/hull/reinforced,
+/area/ship/external)
 "cz" = (
 /obj/machinery/power/smes/engineering,
 /obj/structure/cable{
@@ -129,7 +130,7 @@
 /obj/item/tank/jetpack/oxygen/security{
 	name = "Suspicious looking jetpack (oxygen)"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi/ngr,
+/obj/item/clothing/suit/space/hardsuit/syndi,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "dg" = (
@@ -199,7 +200,10 @@
 /turf/open/floor/plating,
 /area/ship/engineering)
 "ee" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic,
+/obj/machinery/porta_turret/ship/syndicate/ballistic/light{
+	dir = 10;
+	id = "kau_turrets"
+	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
 "en" = (
@@ -511,6 +515,12 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/dorm)
+"jT" = (
+/obj/structure/catwalk/over,
+/obj/structure/marker_beacon,
+/obj/item/toy/plush/moth/poison,
+/turf/open/floor/engine/hull/reinforced,
+/area/ship/external)
 "kb" = (
 /obj/structure/closet/secure_closet/wall{
 	icon_state = "sec_wall";
@@ -524,15 +534,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/obj/item/storage/belt/military/assault,
-/obj/item/storage/belt/military/assault,
-/obj/item/storage/belt/military/assault,
-/obj/item/storage/belt/military/assault,
-/obj/item/clothing/suit/armor/vest/marine/medium,
-/obj/item/clothing/suit/armor/vest/marine/medium,
-/obj/item/clothing/suit/armor/vest/marine/medium,
-/obj/item/clothing/suit/armor/vest/marine/medium,
-/obj/item/clothing/head/helmet/swat,
 /obj/item/clothing/head/helmet/swat,
 /obj/item/clothing/head/helmet/swat,
 /obj/item/clothing/head/helmet/swat,
@@ -540,11 +541,16 @@
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/mask/gas/syndicate,
+/obj/item/clothing/suit/armor/vest/syndie,
+/obj/item/clothing/suit/armor/vest/syndie,
+/obj/item/clothing/suit/armor/vest/syndie,
+/obj/item/clothing/suit/armor/vest/syndie,
+/obj/item/clothing/head/caphat/cowboy,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "kc" = (
 /obj/structure/closet/crate/large,
-/obj/item/reagent_containers/food/snacks/kebab/rat/double,
+/obj/item/food/kebab/rat/double,
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
@@ -611,6 +617,7 @@
 /obj/item/coin/antagtoken{
 	pixel_x = -7
 	},
+/obj/item/binoculars,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "lX" = (
@@ -640,7 +647,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/crate/large,
 /obj/item/trash/can,
-/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/random/decoration/glowstick,
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -652,27 +659,16 @@
 	dir = 8;
 	pixel_x = -30
 	},
-/obj/item/pickaxe/mini,
-/obj/item/pickaxe/mini,
 /obj/effect/turf_decal/spline/plain/opaque/syndiered{
 	dir = 10
 	},
 /obj/machinery/light/directional/south,
 /obj/machinery/rnd/production/techfab/department/security,
-/obj/item/toy/plush/nukeplushie{
-	pixel_x = 6;
-	pixel_y = 7
-	},
-/obj/item/megaphone/sec{
-	name = "syndicate megaphone";
-	pixel_y = 1
-	},
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo/port)
 "nO" = (
 /obj/effect/gibspawner/generic/animal,
 /obj/item/chair/stool,
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/turf_decal/techfloor{
 	dir = 10
 	},
@@ -684,17 +680,17 @@
 "oq" = (
 /obj/effect/turf_decal/industrial/traffic/full,
 /obj/structure/table/reinforced,
-/obj/machinery/recharger{
-	pixel_x = -9;
+/obj/item/binoculars{
+	pixel_x = 7;
+	pixel_y = 2
+	},
+/obj/item/binoculars{
+	pixel_x = 7;
 	pixel_y = 10
 	},
-/obj/machinery/cell_charger{
-	pixel_y = 10;
-	pixel_x = 6
-	},
-/obj/item/stock_parts/cell/high{
-	pixel_y = 11;
-	pixel_x = 7
+/obj/machinery/recharger{
+	pixel_x = -7;
+	pixel_y = 3
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
@@ -773,7 +769,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /obj/structure/closet/crate/large,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo/port)
@@ -860,9 +856,10 @@
 /obj/effect/turf_decal/spline/plain/opaque/syndiered{
 	dir = 8
 	},
-/obj/machinery/turretid{
+/obj/machinery/turretid/ship{
 	pixel_y = 63;
-	pixel_x = -7
+	pixel_x = -7;
+	id = "kau_turrets"
 	},
 /turf/open/floor/carpet/black,
 /area/ship/bridge)
@@ -937,8 +934,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/hallway/central)
 "ud" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 8
+/obj/machinery/porta_turret/ship/syndicate/ballistic/light{
+	dir = 9;
+	id = "kau_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -1101,7 +1099,6 @@
 	req_access = list(48)
 	},
 /obj/item/storage/box/emptysandbags,
-/obj/item/kinetic_crusher/syndie_crusher,
 /obj/item/storage/bag/ore,
 /obj/item/mining_scanner,
 /obj/item/clothing/mask/gas/syndicate,
@@ -1112,6 +1109,8 @@
 	dir = 6
 	},
 /obj/item/clothing/glasses/meson/sunglasses,
+/obj/item/pickaxe/mini,
+/obj/item/gps,
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo)
 "xG" = (
@@ -1201,8 +1200,13 @@
 	dir = 8
 	},
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/hardsuit/syndi,
 /obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/suit/space/syndicate{
+	armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo/port)
 "Ar" = (
@@ -1317,13 +1321,6 @@
 /turf/open/floor/carpet/black,
 /area/ship/crew/dorm)
 "BC" = (
-/obj/item/gun/ballistic/automatic/smg/vector{
-	projectile_damage_multiplier = 1.2;
-	name = "Special Operative Vector";
-	desc = "A carbine based on a pre-Night of Fire SMG design. Chambered in .45 ACP. Has been modified to suit syndicate needs. Has a CyberSun TM";
-	wield_slowdown = 0.25;
-	mag_type = /obj/item/ammo_box/magazine/smgm45
-	},
 /obj/structure/closet/secure_closet/wall{
 	icon_state = "sec_wall";
 	name = "Captain's locker";
@@ -1338,6 +1335,22 @@
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/head/HoS/beret/syndicate,
 /obj/item/radio/headset/syndicate/alt/captain,
+/obj/item/storage/box/ammo/c57x39,
+/obj/item/storage/box/ammo/c57x39{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/ammo_box/magazine/m57_39_sidewinder{
+	pixel_x = 0;
+	pixel_y = -5
+	},
+/obj/item/ammo_box/magazine/m57_39_sidewinder,
+/obj/item/gun/ballistic/automatic/smg/sidewinder{
+	pixel_x = -10;
+	pixel_y = 4
+	},
+/obj/item/gps,
+/obj/item/tank/jetpack/suit,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "BW" = (
@@ -1411,7 +1424,14 @@
 	pixel_y = -29;
 	name = "ammo locker"
 	},
-/obj/item/storage/backpack/duffelbag/syndie/ammo/smg,
+/obj/item/storage/box/ammo/a300,
+/obj/item/storage/box/ammo/c45,
+/obj/item/storage/box/ammo/c45,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/a300,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Dz" = (
@@ -1443,8 +1463,9 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/hallway/central)
 "Ei" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 4
+/obj/machinery/porta_turret/ship/syndicate/ballistic{
+	dir = 6;
+	id = "kau_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -1565,6 +1586,16 @@
 /obj/item/trash/energybar,
 /obj/item/trash/can,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/item/megaphone/sec{
+	name = "syndicate megaphone";
+	pixel_y = 1
+	},
+/obj/item/toy/plush/nukeplushie{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/mini,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo/port)
 "Ga" = (
@@ -1600,7 +1631,7 @@
 	dir = 6
 	},
 /obj/structure/closet/crate/bin,
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "GD" = (
@@ -1646,13 +1677,13 @@
 /obj/effect/turf_decal/corner/opaque/syndiered/border{
 	dir = 10
 	},
-/obj/item/reagent_containers/food/snacks/pancakes/blueberry{
+/obj/item/food/pancakes/blueberry{
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/pancakes/chocolatechip{
+/obj/item/food/pancakes/chocolatechip{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/pancakes{
+/obj/item/food/pancakes{
 	pixel_y = 9
 	},
 /obj/item/cutting_board,
@@ -1716,7 +1747,7 @@
 /obj/effect/turf_decal/spline/plain/opaque/syndiered{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/donut/berry{
+/obj/item/food/donut/berry{
 	pixel_x = -7;
 	color = "#730622";
 	name = "suspicious red donut";
@@ -1784,7 +1815,6 @@
 	},
 /obj/item/roller,
 /obj/item/modular_computer/laptop/preset/civilian,
-/obj/item/storage/firstaid/regular,
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
@@ -1910,6 +1940,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on/layer4{
 	dir = 4
 	},
+/obj/item/toy/plush/celadon/duffmoth,
 /turf/open/floor/engine/hull/reinforced,
 /area/ship/external)
 "Mc" = (
@@ -1965,7 +1996,7 @@
 /obj/item/clothing/shoes/sneakers/orange,
 /obj/item/clothing/shoes/sneakers/orange,
 /obj/structure/closet/secure_closet/brig/wall/directional/north,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
 "ML" = (
@@ -2107,7 +2138,6 @@
 	req_access = list(48)
 	},
 /obj/item/storage/box/emptysandbags,
-/obj/item/kinetic_crusher/syndie_crusher,
 /obj/item/storage/bag/ore,
 /obj/item/mining_scanner,
 /obj/item/clothing/mask/gas/syndicate,
@@ -2119,8 +2149,16 @@
 	},
 /obj/effect/turf_decal/steeldecal/steel_decals_central7,
 /obj/item/clothing/glasses/meson/sunglasses,
+/obj/item/pickaxe/mini,
+/obj/item/gps,
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo)
+"OH" = (
+/obj/structure/catwalk/over,
+/obj/structure/marker_beacon,
+/obj/item/toy/plush/moth/deadhead,
+/turf/open/floor/engine/hull/reinforced,
+/area/ship/external)
 "OY" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/item/toy/plush/moth/error{
@@ -2169,24 +2207,14 @@
 	},
 /obj/structure/guncloset,
 /obj/effect/turf_decal/industrial/traffic/full,
-/obj/item/gun/energy/ionrifle/carbine,
-/obj/item/gun/ballistic/automatic/marksman/ebr{
-	name = "Special Operative 92 EBR";
-	desc = "Thats special operative syndicate rifle modified to be more usable in the heat of battle, chambered in .45 ACP. Effective against personnel and armor alike. Has a CyberSun TM";
-	mag_type = /obj/item/ammo_box/magazine/smgm45;
-	projectile_damage_multiplier = 1.7;
-	wield_delay = 6;
-	wield_slowdown = 0.45;
-	zoom_amt = 8
+/obj/item/gun/ballistic/rifle/scout,
+/obj/item/gun/ballistic/automatic/smg/cobra{
+	pixel_x = 3;
+	pixel_y = -1
 	},
-/obj/item/gun/ballistic/automatic/marksman/ebr{
-	name = "Special Operative 92 EBR";
-	desc = "Thats special operative syndicate rifle modified to be more usable in the heat of battle, chambered in .45 ACP. Effective against personnel and armor alike. Has a CyberSun TM";
-	mag_type = /obj/item/ammo_box/magazine/smgm45;
-	projectile_damage_multiplier = 1.7;
-	wield_delay = 6;
-	wield_slowdown = 0.45;
-	zoom_amt = 8
+/obj/item/gun/ballistic/automatic/smg/cobra{
+	pixel_x = 3;
+	pixel_y = -1
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
@@ -2358,12 +2386,10 @@
 "SL" = (
 /obj/structure/catwalk/over,
 /obj/structure/marker_beacon,
+/obj/item/toy/plush/moth/firewatch,
 /turf/open/floor/engine/hull/reinforced,
 /area/ship/external)
 "TK" = (
-/obj/structure/table/optable{
-	pixel_y = 9
-	},
 /obj/effect/turf_decal/techfloor{
 	dir = 1
 	},
@@ -2376,6 +2402,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
+	},
+/obj/structure/table/optable{
+	pixel_x = 0;
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
@@ -2438,8 +2468,13 @@
 	dir = 8
 	},
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/hardsuit/syndi,
 /obj/item/tank/internals/oxygen/red,
+/obj/item/clothing/suit/space/syndicate{
+	armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
+	},
+/obj/item/clothing/head/helmet/space/syndicate{
+	armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo/port)
 "WE" = (
@@ -2478,8 +2513,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
 "Xk" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 1
+/obj/machinery/porta_turret/ship/syndicate/ballistic{
+	dir = 5;
+	id = "kau_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -2573,15 +2609,15 @@
 	dir = 4
 	},
 /obj/structure/closet/secure_closet/freezer,
-/obj/item/reagent_containers/food/snacks/meat/slab/mouse{
+/obj/item/food/meat/slab/mouse{
 	pixel_y = 5;
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/mouse{
+/obj/item/food/meat/slab/mouse{
 	pixel_x = 6;
 	pixel_y = -7
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/mouse,
+/obj/item/food/meat/slab/mouse,
 /obj/item/storage/box/donkpockets/donkpocketteriyaki,
 /obj/item/storage/box/donkpockets/donkpocketteriyaki,
 /obj/item/storage/cans/sixbeer,
@@ -2615,11 +2651,12 @@
 /obj/effect/turf_decal/corner/opaque/syndiered{
 	dir = 8
 	},
-/obj/item/storage/backpack/duffelbag/sec/surgery{
-	pixel_y = 5
-	},
 /obj/structure/sign/poster/contraband/cybersun_med{
 	pixel_x = 32
+	},
+/obj/item/storage/firstaid/medical{
+	pixel_x = 0;
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
@@ -2641,10 +2678,10 @@ jv
 jv
 jv
 jv
-SL
+jT
 jv
 jv
-SL
+OH
 jv
 jv
 jv
@@ -2666,7 +2703,7 @@ jv
 ri
 jv
 jv
-ud
+ee
 jv
 jv
 jv
@@ -2806,7 +2843,7 @@ jv
 jv
 "}
 (10,1,1) = {"
-Xk
+ud
 kF
 op
 op
@@ -2992,7 +3029,7 @@ uv
 WZ
 lA
 Qb
-ee
+Ei
 jv
 "}
 (20,1,1) = {"
@@ -3075,11 +3112,11 @@ jv
 jv
 pf
 pf
+cw
 Ov
 Ov
 Ov
-Ov
-Ov
+cw
 GD
 FU
 Ha
@@ -3255,7 +3292,7 @@ jv
 jv
 jv
 jv
-Ei
+Xk
 jv
 jv
 jv

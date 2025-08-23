@@ -39,7 +39,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
 /obj/machinery/door/airlock/external,
 /obj/machinery/door/poddoor/preopen{
-	id = engenering
+	id = "engenering"
 	},
 /obj/structure/fans/tiny,
 /obj/structure/disposalpipe/segment,
@@ -49,7 +49,7 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ship/medical)
 "ak" = (
-/obj/item/reagent_containers/food/snacks/monkeycube/gorilla,
+/obj/item/food/monkeycube/gorilla,
 /turf/open/floor/engine,
 /area/ship/science)
 "al" = (
@@ -103,7 +103,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/button/door{
-	id = engenering;
+	id = "engenering";
 	name = "window button";
 	pixel_y = 24
 	},
@@ -133,7 +133,7 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/monkeycube,
+/obj/item/food/monkeycube,
 /turf/open/floor/engine,
 /area/ship/science)
 "av" = (
@@ -171,7 +171,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
 /obj/structure/cable,
-/obj/machinery/power/solar_control,
+/obj/machinery/computer/solar_control,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/ship/engineering)
@@ -316,7 +316,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	dir = 4;
-	id = engenering
+	id = "engenering"
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/science)
@@ -439,7 +439,7 @@
 "aY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
 /obj/structure/window/plasma/reinforced,
-/obj/item/reagent_containers/food/snacks/monkeycube,
+/obj/item/food/monkeycube,
 /turf/open/floor/engine,
 /area/ship/science)
 "aZ" = (
@@ -604,7 +604,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	dir = 4;
-	id = engenering
+	id = "engenering"
 	},
 /turf/open/floor/plating,
 /area/ship/science)
@@ -1047,7 +1047,7 @@
 /turf/open/floor/plasteel/mono/white,
 /area/ship/medical)
 "cj" = (
-/obj/machinery/vending/cola/random,
+/obj/effect/spawner/random/vending/cola,
 /turf/open/floor/plasteel/mono/white,
 /area/ship/hallway/aft)
 "ck" = (
@@ -1139,7 +1139,7 @@
 "cq" = (
 /obj/structure/bed,
 /obj/structure/curtain/bounty,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/item/storage/wallet/random,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm)
@@ -1335,7 +1335,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/item/banner/medical,
+/obj/item/banner/medical/mundane,
 /turf/open/floor/plasteel/tech,
 /area/ship/hallway/central)
 "cL" = (
@@ -1408,7 +1408,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/hallway/central)
 "cU" = (
-/obj/item/banner/medical,
+/obj/item/banner/medical/mundane,
 /obj/effect/turf_decal/siding/wideplating/light{
 	dir = 9
 	},
@@ -1500,7 +1500,7 @@
 /obj/structure/bed,
 /obj/machinery/airalarm/directional/east,
 /obj/structure/curtain/bounty,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm)
 "dc" = (
@@ -1766,7 +1766,7 @@
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/firealarm/directional/east,
 /obj/structure/curtain/bounty,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm)
 "dC" = (
@@ -2060,7 +2060,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/item/banner/medical,
+/obj/item/banner/medical/mundane,
 /obj/machinery/light/directional/north,
 /turf/open/floor/plasteel/tech,
 /area/ship/hallway/central)
@@ -2081,7 +2081,7 @@
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "ea" = (
-/obj/item/banner/medical,
+/obj/item/banner/medical/mundane,
 /obj/effect/turf_decal/siding/wideplating/light{
 	dir = 10
 	},
@@ -2565,13 +2565,13 @@
 /area/ship/bridge)
 "eS" = (
 /obj/structure/rack,
-/obj/item/kitchen/knife/hunting{
+/obj/item/melee/knife/hunting{
 	pixel_y = -4
 	},
-/obj/item/kitchen/knife/hunting{
+/obj/item/melee/knife/hunting{
 	pixel_y = -1
 	},
-/obj/item/kitchen/knife/hunting{
+/obj/item/melee/knife/hunting{
 	pixel_y = 2
 	},
 /turf/open/floor/plasteel/tech,
@@ -2806,7 +2806,7 @@
 /obj/item/storage/backpack/messenger/para,
 /obj/item/storage/belt/medical/webbing/paramedic,
 /obj/item/storage/firstaid/advanced,
-/obj/item/clothing/head/helmet/marine/medic,
+/obj/item/clothing/head/helmet/gezena,
 /obj/item/clothing/head/soft/paramedic,
 /obj/item/clothing/suit/toggle/labcoat/paramedic,
 /obj/item/clothing/mask/gas/sechailer,
@@ -3033,7 +3033,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	dir = 4;
-	id = engenering
+	id = "engenering"
 	},
 /turf/open/floor/plating,
 /area/ship/science/robotics)
@@ -3112,7 +3112,7 @@
 /obj/item/storage/backpack/messenger/para,
 /obj/item/storage/belt/medical/webbing/paramedic,
 /obj/item/storage/firstaid/advanced,
-/obj/item/clothing/head/helmet/marine/medic,
+/obj/item/clothing/head/helmet/gezena,
 /obj/item/clothing/head/soft/paramedic,
 /obj/item/clothing/suit/toggle/labcoat/paramedic,
 /obj/item/clothing/mask/gas/sechailer,
@@ -3138,7 +3138,7 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	dir = 4;
-	id = engenering
+	id = "engenering"
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/science/robotics)
@@ -3232,7 +3232,7 @@
 /obj/machinery/light/directional/west,
 /obj/machinery/jukebox/boombox,
 /obj/machinery/button/door{
-	id = Комнатаотдыха;
+	id = "room";
 	name = "window button";
 	pixel_y = 25
 	},
@@ -3274,7 +3274,7 @@
 "gf" = (
 /obj/machinery/button/door{
 	dir = 1;
-	id = down1;
+	id = "down";
 	name = "window button";
 	pixel_y = -28
 	},
@@ -3313,13 +3313,13 @@
 	},
 /obj/structure/table/wood,
 /obj/item/kitchen/spoon/plastic,
-/obj/item/reagent_containers/food/snacks/soup/beet,
+/obj/item/food/soup/beet,
 /turf/open/floor/wood,
 /area/ship/crew/canteen)
 "gl" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor/preopen{
-	id = engenering
+	id = "engenering"
 	},
 /turf/open/floor/plating,
 /area/ship/engineering)
@@ -3378,7 +3378,9 @@
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
 "gq" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	all_items_free = 1
+	},
 /obj/machinery/airalarm/directional/east{
 	pixel_y = -4
 	},
@@ -3388,7 +3390,7 @@
 "gr" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor/preopen{
-	id = down1
+	id = "down"
 	},
 /turf/open/floor/plating,
 /area/ship/medical)
@@ -3606,7 +3608,6 @@
 /obj/item/storage/photo_album/CMO,
 /obj/item/door_remote/chief_medical_officer,
 /obj/machinery/light/directional/north,
-/obj/item/hypospray/mkii/CMO,
 /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/CMO,
 /obj/item/card/id/captains_spare,
 /obj/structure/closet/secure_closet/CMO,
@@ -3639,7 +3640,8 @@
 "gR" = (
 /obj/machinery/vending/boozeomat/all_access{
 	pixel_x = 32;
-	density = 0
+	density = 0;
+	all_items_free = 1
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -3699,8 +3701,8 @@
 "ha" = (
 /obj/structure/curtain/bounty,
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm)
 "hf" = (
@@ -3797,7 +3799,7 @@
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor/preopen{
 	dir = 4;
-	id = Комнатаотдыха
+	id = "room"
 	},
 /turf/open/floor/plating,
 /area/ship/crew/canteen)
@@ -3835,7 +3837,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/science/robotics)
 "CG" = (
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
 "CO" = (
@@ -3935,14 +3937,14 @@
 "Th" = (
 /obj/effect/spawner/structure/window/shuttle,
 /obj/machinery/door/poddoor/preopen{
-	id = Комнатаотдыха
+	id = "room"
 	},
 /turf/open/floor/plating,
 /area/ship/crew/canteen)
 "ZJ" = (
 /obj/structure/curtain/bounty,
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm)
 

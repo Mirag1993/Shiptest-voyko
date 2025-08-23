@@ -17,12 +17,12 @@
 /area/ship/medical/surgery)
 "ad" = (
 /obj/structure/table,
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light_switch{
 	pixel_y = 21;
 	pixel_x = 13
 	},
+/obj/item/storage/case/surgery,
 /turf/open/floor/plasteel/white,
 /area/ship/medical/surgery)
 "ae" = (
@@ -51,8 +51,7 @@
 /area/ship/external)
 "ah" = (
 /obj/machinery/suit_storage_unit/inherit,
-/obj/item/clothing/head/helmet/space/syndicate/black/engie,
-/obj/item/clothing/suit/space/syndicate/black/engie,
+/obj/item/clothing/suit/space/hardsuit/mining/independent,
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light/small/directional/north,
 /obj/item/clothing/shoes/magboots,
@@ -72,7 +71,7 @@
 	pixel_y = 26;
 	id = 51321
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/ore_silo,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
@@ -87,7 +86,7 @@
 "am" = (
 /obj/effect/turf_decal/siding/thinplating/light,
 /obj/item/radio/intercom/directional/west,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/ship/medical/surgery)
@@ -120,10 +119,10 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/ship/crew/toilet)
 "ar" = (
-/obj/machinery/power/smes/engineering,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/power/ship_gravity,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "as" = (
@@ -139,9 +138,6 @@
 	icon_state = "term";
 	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /obj/effect/decal/cleanable/oil{
 	icon_state = "floor3"
 	},
@@ -152,6 +148,9 @@
 	},
 /obj/machinery/power/port_gen/pacman,
 /obj/item/stack/sheet/mineral/plasma/twenty,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "au" = (
@@ -200,16 +199,9 @@
 /turf/closed/wall,
 /area/ship/crew/cryo)
 "ay" = (
-/obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
 /obj/machinery/light/small/directional/north,
-/obj/machinery/selling_pad,
 /obj/effect/turf_decal/box,
+/obj/structure/frame/machine,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "az" = (
@@ -315,8 +307,7 @@
 /area/ship/external)
 "aH" = (
 /obj/machinery/suit_storage_unit/inherit,
-/obj/item/clothing/head/helmet/space/syndicate/black/engie,
-/obj/item/clothing/suit/space/syndicate/black/engie,
+/obj/item/clothing/suit/space/hardsuit/mining/independent,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /turf/open/floor/plasteel/mono/dark,
@@ -341,12 +332,9 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)
 "aJ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/computer/selling_pad_control,
 /obj/effect/turf_decal/box,
 /obj/machinery/newscaster/directional/north,
+/obj/machinery/computer/arcade,
 /turf/open/floor/plasteel/dark,
 /area/ship/engineering)
 "aK" = (
@@ -364,17 +352,6 @@
 /obj/structure/catwalk/over,
 /turf/open/floor/plating,
 /area/ship/cargo)
-"aL" = (
-/obj/structure/catwalk/over,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "0-1"
-	},
-/obj/machinery/power/ship_gravity,
-/turf/open/floor/plating,
-/area/ship/engineering)
 "aM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	icon_state = "manifold-2";
@@ -496,8 +473,8 @@
 "aX" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_containers/food/condiment/hotsauce,
-/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/reagent_containers/condiment/hotsauce,
+/obj/item/reagent_containers/condiment/ketchup,
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/canteen)
@@ -512,7 +489,7 @@
 	icon_state = "vent_map_on-2";
 	dir = 4
 	},
-/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/spawner/random/maintenance/three,
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/cryo)
 "aZ" = (
@@ -641,8 +618,8 @@
 	icon_state = "borderfloor_black";
 	dir = 10
 	},
-/obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/holopad,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plasteel/dark,
 /area/ship/engineering)
 "bi" = (
@@ -657,7 +634,9 @@
 /turf/open/floor/wood/walnut,
 /area/ship/crew/canteen)
 "bj" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat/all_access{
+	all_items_free = 1
+	},
 /turf/closed/wall,
 /area/ship/crew/canteen)
 "bk" = (
@@ -674,7 +653,7 @@
 /area/ship/cargo)
 "bl" = (
 /obj/structure/closet,
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
 /obj/item/clothing/under/rank/cargo/miner/lavaland{
 	desc = "Light and cool looking salvager uniform. Specail for salvage space trash.";
 	name = "salvager jumpsuit"
@@ -742,7 +721,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/cryo)
 "bq" = (
@@ -1006,7 +985,7 @@
 /area/ship/engineering)
 "bF" = (
 /obj/structure/closet,
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
 /obj/item/clothing/under/rank/cargo/miner/lavaland{
 	desc = "Light and cool looking salvager uniform. Specail for salvage space trash.";
 	name = "salvager jumpsuit"
@@ -1027,7 +1006,7 @@
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "bG" = (
-/obj/machinery/vending/cola/random,
+/obj/effect/spawner/random/vending/cola,
 /obj/effect/turf_decal/borderfloorblack{
 	icon_state = "borderfloor_black";
 	dir = 4
@@ -1044,7 +1023,7 @@
 /obj/effect/turf_decal/box/corners,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "bI" = (
@@ -1123,9 +1102,9 @@
 /obj/item/storage/cans/sixsoda,
 /obj/item/storage/cans/sixsoda,
 /obj/item/storage/cans/sixbeer,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
@@ -1366,8 +1345,8 @@
 /obj/machinery/suit_storage_unit/inherit/industrial{
 	density = 0
 	},
-/obj/item/clothing/suit/space/syndicate/black/red,
-/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/suit/space/engineer,
+/obj/item/clothing/head/helmet/space/light/engineer,
 /obj/item/clothing/mask/breath,
 /obj/machinery/light_switch{
 	pixel_y = 21;
@@ -1393,7 +1372,8 @@
 "cs" = (
 /obj/machinery/door/airlock/command{
 	icon_state = "closed";
-	dir = 4
+	dir = 4;
+	req_access_txt = list(19)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	icon_state = "pipe11-2";
@@ -1464,7 +1444,7 @@
 	dir = 1
 	},
 /obj/item/binoculars,
-/obj/item/kitchen/knife/combat,
+/obj/item/melee/knife/combat,
 /obj/item/crowbar/red,
 /obj/item/gun/energy/e_gun/adv_stopping,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -1496,7 +1476,7 @@
 	icon_state = "siding_wood_line";
 	dir = 9
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/holopad,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/canteen)
@@ -1524,7 +1504,7 @@
 /turf/open/floor/carpet/orange,
 /area/ship/engineering)
 "cz" = (
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering)
@@ -1590,7 +1570,7 @@
 /obj/structure/closet/crate/bin,
 /obj/item/clothing/head/wizard/marisa/fake,
 /obj/item/clothing/suit/wizrobe/marisa/fake,
-/obj/effect/spawner/lootdrop/maintenance/four,
+/obj/effect/spawner/random/maintenance/four,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/canteen)
@@ -1599,7 +1579,7 @@
 	icon_state = "pipe11-2";
 	dir = 10
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/holopad/emergency/command,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
@@ -1678,7 +1658,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plasteel/tech,
 /area/ship/maintenance/external)
 "cO" = (
@@ -1759,7 +1739,7 @@
 	icon_state = "siding_wood_line";
 	dir = 10
 	},
-/obj/item/kitchen/knife/pizza_cutter{
+/obj/item/melee/knife/pizza_cutter{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -1805,19 +1785,28 @@
 /area/ship/bridge)
 "cW" = (
 /obj/structure/table/reinforced,
-/obj/item/pneumatic_cannon/speargun{
-	pixel_x = -3;
-	pixel_y = 7
+/obj/item/throwing_star/magspear{
+	pixel_x = 4
 	},
-/obj/item/pneumatic_cannon/speargun{
-	pixel_x = -1;
-	pixel_y = 3
+/obj/item/throwing_star/magspear{
+	pixel_x = 1;
+	pixel_y = -3
 	},
-/obj/item/storage/backpack/magspear_quiver{
-	pixel_x = -1;
-	pixel_y = -7
+/obj/item/throwing_star/magspear{
+	pixel_y = 12
 	},
-/obj/item/storage/backpack/magspear_quiver,
+/obj/item/throwing_star/magspear{
+	pixel_y = 10
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 8
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 6
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/maintenance/external)
 "cX" = (
@@ -1890,11 +1879,11 @@
 	pixel_x = -4;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/obj/item/reagent_containers/condiment/saltshaker{
 	pixel_x = -7;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/condiment/peppermill{
+/obj/item/reagent_containers/condiment/peppermill{
 	pixel_x = -2;
 	pixel_y = 12
 	},
@@ -1939,15 +1928,15 @@
 	pixel_y = -28
 	},
 /obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife/butcher,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/melee/knife/butcher,
+/obj/item/reagent_containers/condiment/enzyme,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/canteen)
 "dg" = (
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/components/binary/dp_vent_pump{
 	icon_state = "dpvent_map-3";
@@ -1969,7 +1958,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)
 "di" = (
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/firealarm/directional/south{
 	pixel_x = 5
 	},
@@ -2112,7 +2101,7 @@
 	icon_state = "siding_wood_line";
 	dir = 4
 	},
-/obj/item/reagent_containers/food/condiment/milk,
+/obj/item/reagent_containers/condiment/milk,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	icon_state = "scrub_map_on-4";
 	dir = 1
@@ -2153,7 +2142,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plasteel/tech,
 /area/ship/maintenance/external)
 "du" = (
@@ -2170,8 +2159,8 @@
 /area/ship/maintenance/external)
 "dw" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/syndicate/green/dark,
-/obj/item/clothing/head/helmet/space/syndicate/green/dark,
+/obj/item/clothing/suit/space/engineer,
+/obj/item/clothing/head/helmet/space/light/engineer,
 /obj/machinery/light/small/directional/north,
 /obj/item/clothing/mask/breath,
 /obj/machinery/atmospherics/pipe/simple{
@@ -2194,7 +2183,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/canteen)
 "dz" = (
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -2299,9 +2288,9 @@
 /obj/effect/turf_decal/box/corners,
 /obj/structure/closet/crate/trashcart,
 /obj/item/clothing/head/kitty,
-/obj/effect/spawner/lootdrop/costume,
-/obj/effect/spawner/lootdrop/armory_contraband,
-/obj/effect/spawner/lootdrop/maintenance/eight,
+/obj/effect/spawner/random/clothing/costume,
+/obj/effect/spawner/random/exotic/armory,
+/obj/effect/spawner/random/maintenance/eight,
 /obj/effect/decal/cleanable/wrapping,
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -2340,8 +2329,7 @@
 /obj/machinery/suit_storage_unit/inherit,
 /obj/machinery/airalarm/directional/east,
 /obj/machinery/light/small/directional/south,
-/obj/item/clothing/head/helmet/space/syndicate/black/med,
-/obj/item/clothing/suit/space/syndicate/black/med,
+/obj/item/clothing/suit/space/hardsuit/medical,
 /obj/item/tank/internals/oxygen,
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/plasteel/white,
@@ -2379,10 +2367,7 @@
 /turf/open/floor/plating,
 /area/ship/external)
 "dR" = (
-/obj/docking_port{
-	dir = 8
-	},
-/turf/template_noop,
+/turf/open/floor/plating,
 /area/template_noop)
 "dS" = (
 /obj/structure/table/reinforced,
@@ -2398,6 +2383,14 @@
 	},
 /obj/machinery/light/small/directional/south,
 /obj/machinery/firealarm/directional/west,
+/obj/item/pneumatic_cannon/speargun{
+	pixel_x = -1;
+	pixel_y = 11
+	},
+/obj/item/pneumatic_cannon/speargun{
+	pixel_x = -3;
+	pixel_y = 7
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/maintenance/external)
 "dT" = (
@@ -2452,7 +2445,7 @@
 /turf/open/floor/plating,
 /area/ship/external)
 "dZ" = (
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/advanced_airlock_controller{
 	pixel_x = -28;
 	pixel_y = -5
@@ -2487,6 +2480,15 @@
 	},
 /turf/open/floor/plating,
 /area/ship/maintenance/external)
+"xU" = (
+/obj/docking_port/stationary{
+	width = 30;
+	height = 15;
+	dwidth = 15;
+	dir = 4
+	},
+/turf/template_noop,
+/area/template_noop)
 "BG" = (
 /obj/machinery/atmospherics/pipe/simple{
 	icon_state = "pipe11-3";
@@ -2956,7 +2958,7 @@ bX
 cd
 aj
 ar
-aL
+bC
 br
 bE
 cu
@@ -3081,7 +3083,7 @@ bL
 bL
 "}
 (25,1,1) = {"
-dR
+aa
 dD
 aG
 aR
@@ -3136,9 +3138,9 @@ ci
 cj
 ca
 dW
-aa
-aa
-aa
+dR
+dR
+dR
 aa
 bW
 ca
@@ -3155,7 +3157,7 @@ aa
 bW
 aa
 aa
-aa
+xU
 aa
 aa
 aa
@@ -3175,7 +3177,7 @@ aa
 bX
 bX
 bX
-bX
+ca
 aa
 aa
 aa

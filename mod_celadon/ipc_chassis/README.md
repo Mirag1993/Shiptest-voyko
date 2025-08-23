@@ -27,6 +27,7 @@ ID мода: CELADON_IPC_CHASSIS
 - `bishop_android_main`
 - `bishop_android_alternative`
 - `bishop_android_rook`
+- `cpu4mu`
 - `hephaestus_main`
 - `hephaestus_alt`
 - `hephaestus_titan`
@@ -90,7 +91,7 @@ ID мода: CELADON_IPC_CHASSIS
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_celadon/_storge_icons/icons/ipc`
+- `mod_celadon/_storge_icons/icons/species/ipc`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

@@ -45,7 +45,7 @@
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/ruin)
 "j" = (
-/obj/item/banner/security,
+/obj/item/banner/security/mundane,
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/ruin)
 "k" = (
@@ -60,10 +60,6 @@
 /obj/structure/sign/poster/official/ion_carbine,
 /turf/closed/wall/mineral/sandstone,
 /area/ruin)
-"o" = (
-/obj/item/banner/security/mundane,
-/turf/open/floor/plating/asteroid/whitesands/dried,
-/area/ruin)
 "p" = (
 /obj/structure/sign/poster/official/safety_report,
 /turf/closed/wall/mineral/sandstone,
@@ -75,7 +71,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/head/helmet/knight/blue,
 /obj/item/clothing/suit/armor/riot/knight/blue,
-/obj/item/spear,
+/obj/item/melee/spear,
 /obj/item/shield/riot/buckler,
 /turf/open/floor/plating/asteroid/whitesands,
 /area/ruin)
@@ -227,7 +223,7 @@ a
 "}
 (4,1,1) = {"
 V
-o
+j
 q
 k
 q

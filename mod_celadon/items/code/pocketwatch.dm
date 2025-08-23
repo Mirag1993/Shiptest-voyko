@@ -12,8 +12,8 @@ var/round_start_time
 /obj/item/pocketwatch
 	name = "pocketwatch"
 	desc = "A watch that goes in your pocket."
-	icon = 'mod_celadon/_storge_icons/icons/items/obj/tajara_items.dmi'
-	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/items/overlay/tajara_items_overlay.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/items/clothing/tajara_items_SORTIROVATI.dmi'
+	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/items/clothing/tajara_items_overlay_SORTIROVATI.dmi'
 	icon_state = "pocketwatch"
 	var/closed = FALSE
 
@@ -30,7 +30,7 @@ var/round_start_time
 
 /obj/item/pocketwatch/examine(mob/user, distance, is_adjacent)
 	. = ..()
-	. += "<span class='notice'>Alt-click it to quickly open the clock.</span>"
+	. += span_notice("Alt-click it to quickly open the clock.")
 	if (distance <= 1)
 		checktime()
 

@@ -255,7 +255,7 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "Du" = (
 /obj/structure/alien/weeds,
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/vigilitas_private,
 /obj/structure/bed/nest,
 /turf/open/floor/plating/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
@@ -267,13 +267,13 @@
 "Ee" = (
 /obj/structure/alien/weeds,
 /obj/structure/bed/nest,
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
 /turf/open/floor/plating/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "EC" = (
 /obj/structure/alien/weeds,
 /obj/structure/bed/nest,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plating/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Fe" = (

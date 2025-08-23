@@ -12,7 +12,14 @@
 <!-- Название мода. Не важно на русском или на английском. -->
 ## Balance - изменение баланса
 
-ID мода: CELADON_BALANCE, CELADON_BALANCE_MOBS
+ID мода: 
+	CELADON_BALANCE
+	CELADON_BALANCE_CD
+	CELADON_BALANCE_MOBS
+	CELADON_BALANCE_OVERMAP_EVENTS
+	CELADON_BALANCE_SPECIES
+	BALLISTIC_SHIELD
+	YOU_NOT_SEPARATIST
 <!--
   Название модпака прописными буквами, СОЕДИНЁННЫМИ_ПОДЧЁРКИВАНИЕМ,
   которое ты будешь использовать для обозначения файлов. Добавлены
@@ -48,13 +55,15 @@ ADD: `code\game\objects\items\circuitboards\machine_circuitboards.dm` : `/obj/it
 EDIT: `code\modules\cargo\packs\food.dm` : `/datum/supply_pack/food/`
 
 Ребаланс
-Лут с элиток
+Лут с элиток (вместо гритер сундука, выпадает обычный сундук некрополиса)
 EDIT: `code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\elite.dm`: `/obj/structure/elite_tumor/proc/onEliteLoss()` -> var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
 
-ADD: `code\modules\projectiles\ammunition\_ammunition.dm` : /obj/item/ammo_casing/attackby(obj/item/I, mob/user, params) -> добавлены звук подбора патрона в магазин с пола и задержка в 1 секунду зависящая от кликанья по патронам. Чем быстрее клики - тем быстрее загрузятся патроны.
+ADD: `code\modules\projectiles\ammunition\_ammunition.dm` : /obj/item/ammo_casing/attackby(obj/item/I, mob/user, params) -> добавлены звук подбора патрона в магазин с пола и задержка в 1 секунду зависящая от кликанья по патронам. Чем быстрее клики - тем быстрее загрузятся патроны. -> перемещено в `mod_celadon/items/code/ammunition.dm`
 Очки с зомби и ксеноморфов
 REMOVE: `D:\1ss\ShiptestYata\code\modules\surgery\experimental_dissection.dm`: `/datum/surgery_step/dissection/preop`
 REMOVE: `code\modules\projectiles\guns\energy.dm`
+REMOVE: `code/_globalvars/lists/maintenance_loot.dm`
+
 
 EDIT: `code/modules/mining/equipment/regenerative_core.dm` - теперь ИПС не смогут жрать ядра для полного отхила, их лечить будет на половину.
 EDIT:
@@ -73,6 +82,51 @@ EDIT:
 `code/modules/surgery/tools.dm`
 
 `code/datums/status_effects/buffs.dm`
+
+ADD: 
+`code/modules/vending/_vending.dm` : Добавлена вероятность поломки автомата при уничтожение его с вероятностью в 30% что ничего не выпадет с него
+
+Хардсьюты:
+EDIT: `code/modules/clothing/spacesuits/hardsuit.dm`
+REMOVE: `code/modules/clothing/spacesuits/hardsuit.dm`
+
+EDIT: `code/__DEFINES/turfs.dm`	- Меняем минимальный урон необходимый для снова стены из камня
+EDIT: `code/game/turfs/closed/walls.dm` - Меняем хп стены в 2 раза = 800, увеличиваем минимальный порог урона с 8 до 25
+EDIT: `code/game/turfs/closed/minerals.dm` - Убираем флаг на минимальный дамаг стене, назначаем числовой параметр. И даем сопротивление стене из камня в 70% и хп в 1200
+
+EDIT: `code/modules/projectiles/projectile.dm` : Меняем систему лежания и попадания по лежачим и стоячи
+
+EDIT: `code/modules/modular_computers/file_system/programs/radar.dm` : ставим заглушку, чтобы не пользовались планшетиком с радарчиком, пока кодеры не придумают иной вариант. Главное не забыть
+
+EDIT: `mod_celadon/return_content/code/hivebot.dm` : понизили шанс выпадения ксенобио с 45% до 15% с портала
+EDIT: `code/modules/reagents/chemistry/recipes/others.dm` : Меняем кровь слаймоменов в ядрах слаймов на кислоту
+
+EDIT: `code/game/objects/items/storage/briefcase.dm` : Меняем разрешенные вложенные предметы с нормала на смол, чтобы нельзя было вкладывать коробки с и создавать матрешку коробок. 
+EDIT: `code\modules\mob\living\simple_animal\hostile\megafauna\codename_claw.dm` : Меняем значениеи взрыва, чтобы коробку с лутом не взрывало после смерти челюстей
+
+EDIT: `code/__DEFINES/clothing.dm`
+EDIT: `code/__DEFINES/storage.dm`
+EDIT: `code/game/objects/items/storage/backpack.dm`
+
+ADD: `code/modules/overmap/objects/event_datum.dm` : Добавляем дебрисам рандом на безопасную скорость полетов
+
+EDIT: `code/modules/vehicles/scooter.dm` : Ускорение от роликов равно 35% а не 100% как было
+
+EDIT: `code/game/objects/items/shields.dm` : Реворк-Переработка щитов
+EDIT: `code/game/objects/items.dm` : Звуки для щитов
+
+REMOVE: `code/modules/mining/equipment/kinetic_crusher.dm` : Убрано отталкивает от кинетик-крашера
+
+CELADON_BALANCE_SPECIES
+EDIT: `code/modules/mob/living/carbon/human/species_types/kepori.dm` : Поднимаем скорость кепори до -0.30
+ADD: `code/modules/mob/living/carbon/human/species_types/lizardpeople.dm` : Даём сарати резист к огню на 15%
+ADD: `code/modules/mob/living/carbon/human/species_types/vox.dm` : Даём воксам резист к холоду на 20%
+
+ADD: `code/game/objects/items/storage/belt.dm` : Добавлен новый филтр крови в возможность грузить в мед разгрузку
+
+YOU_NOT_SEPARATIST
+ADD: `code/modules/mob/dead/new_player/ship_select.dm` : Добавляем сокрытие определенных кораблей для определенных видов
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
@@ -118,6 +172,12 @@ EDIT:
 - Двигатели, рад. коллекторы - RalseiDreemuurr
 - Затронуты проджектайлы энергетических дробовиков, батарейки в энерегетических пушках теперь можно вытаскивать руками, убрана возможность вытаскивать батарею в само-заряжающихся пушках. - Molniz
 - Ganza Pain Elite Edition Deluxe: баланс трогается всех мобов элитных и простых, Пандора реально может убить вас - Ganza9991
+- Дроби со стамина дамагом увеличен АП - Ganza9991
+Затронуты патроны .44, .357, slug. Усилены в целом - Deylan
+- Изменения попаданий по лежачим - MrCat15352
+- Убрано замедление от синдидюффелей - Quinal
+- Изменение взрыва клешни - Molniz
+- Реворк щитов - KOCMOHABT
 <!--
   Здесь находится твой никнейм
   Если работал совместно - никнеймы тех, кто помогал.

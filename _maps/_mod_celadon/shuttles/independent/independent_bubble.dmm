@@ -71,6 +71,9 @@
 	pixel_y = 23;
 	id = "thr"
 	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plating,
 /area/ship/maintenance/aft)
 "cO" = (
@@ -107,17 +110,20 @@
 /area/ship/bridge)
 "ew" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/structure/curtain/bounty,
 /turf/open/floor/carpet,
 /area/ship/crew/dorm)
 "eI" = (
-/obj/structure/frame/computer{
-	dir = 8
-	},
 /obj/machinery/airalarm/directional/north,
 /obj/effect/turf_decal/corner/opaque/blue/three_quarters{
 	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/radio/intercom/wideband/table{
+	dir = 4;
+	pixel_y = 2;
+	pixel_x = 1
 	},
 /turf/open/floor/plasteel,
 /area/ship/bridge)
@@ -221,13 +227,13 @@
 /area/ship/cargo)
 "ka" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
 /obj/structure/curtain/bounty,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = -11;
 	pixel_y = -20
 	},
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/carpet,
 /area/ship/crew/dorm)
 "kf" = (
@@ -274,16 +280,12 @@
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/item/spacecash/bundle/c1000,
 /obj/item/spacecash/bundle/c1000,
-/obj/item/spacecash/bundle/c1000,
-/obj/item/spacecash/bundle/c1000,
-/obj/item/spacecash/bundle/c1000,
-/obj/item/spacecash/bundle/c1000,
-/obj/item/spacecash/bundle/c1000,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /obj/structure/closet/wall/blue/directional/north,
+/obj/item/spacecash/bundle/c1000,
 /turf/open/floor/plasteel,
 /area/ship/bridge)
 "lV" = (
@@ -381,12 +383,12 @@
 /turf/open/floor/plasteel/mono,
 /area/ship/cargo)
 "od" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/structure/crate_shelf,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 6
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/ship/maintenance/aft)
@@ -473,13 +475,16 @@
 /area/ship/cargo)
 "qu" = (
 /obj/structure/safe/floor,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/circuitboard/computer/rdconsole,
+/obj/item/circuitboard/machine/protolathe/department/science,
+/obj/item/circuitboard/machine/circuit_imprinter/department/science,
 /turf/open/floor/plasteel,
 /area/ship/bridge)
 "qN" = (
 /obj/structure/crate_shelf,
 /obj/structure/closet/crate/engineering,
-/obj/item/circuitboard/computer/selling_pad_control,
-/obj/item/circuitboard/machine/selling_pad,
+/obj/item/circuitboard/computer/arcade/orion_trail,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 9
 	},
@@ -1204,6 +1209,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/item/clothing/neck/stethoscope,
 /turf/open/floor/plasteel,
 /area/ship/bridge)
 "Wx" = (

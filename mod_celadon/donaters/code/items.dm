@@ -1,7 +1,7 @@
 /obj/item/toy/plush/celadon/separ
 	name = "\proper Separatist plushie"
 	desc = "A cute soft toy of a Separatist. Holding it in your hands, you can hardly restrain yourself from screaming with happiness."
-	icon = 'mod_celadon/_storge_icons/icons/donaters/plushes.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/items/misc/plushes.dmi'
 	icon_state = "separ"
 	item_state = "separ"
 	w_class = WEIGHT_CLASS_SMALL
@@ -35,8 +35,7 @@
 			'mod_celadon/_storge_sounds/sound/voice/human_male_warcry_7.ogg',
 			'mod_celadon/_storge_sounds/sound/voice/human_male_warcry_8.ogg',
 			'mod_celadon/_storge_sounds/sound/voice/human_male_warcry_9.ogg'), 50, FALSE)
-	visible_message("<span class='warning'>СМЕРТЬ КСЕНОСАМ!</span>",
-		"<span class='hear'>Никакой пощады!</span>")
+	visible_message(span_warning("СМЕРТЬ КСЕНОСАМ!"), span_hear("Никакой пощады!"))
 	COOLDOWN_START(src, cooldown, 2 SECONDS)
 
 /obj/item/toy/plush/celadon/separ/proc/get_text()

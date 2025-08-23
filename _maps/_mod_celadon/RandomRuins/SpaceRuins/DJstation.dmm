@@ -76,8 +76,8 @@
 	})
 "as" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/space/syndicate/orange,
-/obj/item/clothing/head/helmet/space/syndicate/orange,
+/obj/item/clothing/suit/space/orange,
+/obj/item/clothing/head/helmet/space/orange,
 /obj/item/clothing/mask/breath,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered{
@@ -174,7 +174,7 @@
 	name = "Listening Post"
 	})
 "aB" = (
-/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/effect/spawner/random/structure/crate_abandoned,
 /turf/open/floor/plasteel/grimy,
 /area/ruin/space/has_grav/powered{
 	name = "Listening Post"
@@ -320,7 +320,7 @@
 	})
 "aP" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/effect/turf_decal/corner/opaque/white{
 	dir = 1
 	},

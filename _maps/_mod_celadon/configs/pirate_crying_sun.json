@@ -1,37 +1,29 @@
 {
-	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
-	"prefix": "PIRATE",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Crying Sun-class Light Frigate",
-	"namelists": [
+	"map_short_name": "Crying-Sun",
+	"description": "Легкий фрегат производства Nanotrasen для перевозки массивных линейных боевых орудий при сохранении высокой маневренности. Оружейная установка на этом корабле была выведена из эксплуатации, как и многие другие подобные корабли, отправленные из пространства Каликскии. Класс «Crying Sun» — это судно, предназначенное для военно-морского и морского флота, на борту которого находится шаттл для абордажа, экскурсий и передовой разведки. После вывода из эксплуатации основного орудия двигатели были заменены на меньшую мощность, щедро поставлено инженерное оборудование. Так как этот корабль не заимел популярности, его производство было прекращено, а все оставшиеся корабли списаны. Но всё таки некоторые экземпляры смогли попасть на чёрный рынок, а далее и в руки любителей нелегальной деятельности.",
+	"map_path": "_maps/_mod_celadon/shuttles/pirate/pirate_crying_sun.dmm",
+	"subshuttle": "Nail",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 5,
+	"space_spawn": true,
+	"prefix": "RSV",
+	"faction": "/datum/faction/pirate",
+	"tags": [
+		"Combat",
+		"Subshuttle",
+		"RP Focus"
+	],
+		"namelists": [
 		"PIRATES",
 		"BRITISH_NAVY"
 	],
-	"map_short_name": "Crying Sun-class",
-	"description": "Легкий фрегат производства Нанотрейзен для перевозки массивных линейных боевых орудий при сохранении высокой маневренности. Оружейная установка на этом корабле была выведена из эксплуатации, как и многие другие подобные корабли, отправленные из пространства Каликскии. Класс «Плачущее солнце» — это судно, предназначенное для военно-морского и морского флота, на борту которого находится шаттл для абордажа, экскурсий и передовой разведки. После вывода из эксплуатации основного орудия двигатели были заменены на меньшую мощность, щедро поставлено инженерное оборудование. Так как этот корабль не заимел популярности, его производство было прекращено, а все оставшиеся корабли списаны.",
-	"tags": [
-		"Combat",
-		"Engineering",
-		"RP Focus"
-	],
-	"starting_funds": 1000,
-	"map_path": "_maps/_mod_celadon/shuttles/pirate/pirate_crying_sun.dmm",
-	"limit": 1,
 	"job_slots": {
 		"Pirate Captain": {
 			"outfit": "/datum/outfit/job/independent/captain/pirate/jupiter",
 			"officer": true,
-			"slots": 1
-		},
-		"Pirate Crew": {
-			"outfit": "/datum/outfit/job/independent/assistant/pirate/jupiter",
-			"slots": 2
-		},
-		"Pirate Engineer": {
-			"outfit": "/datum/outfit/job/independent/engineer/pirate/jupiter",
-			"slots": 2
-		},
-		"Pirate Doctor": {
-			"outfit": "/datum/outfit/job/independent/doctor/pirate",
 			"slots": 1
 		},
 		"Marine Sergeant": {
@@ -41,7 +33,18 @@
 		"Marine": {
 			"outfit": "/datum/outfit/job/independent/security/pirate",
 			"slots": 3
+		},
+		"Pirate Engineer": {
+			"outfit": "/datum/outfit/job/independent/engineer/pirate/jupiter",
+			"slots": 1
+		},
+		"Pirate Doctor": {
+			"outfit": "/datum/outfit/job/independent/doctor/pirate",
+			"slots": 1
+		},
+		"Pirate Crew": {
+			"outfit": "/datum/outfit/job/independent/assistant/pirate/jupiter",
+			"slots": 2
 		}
-	},
-	"enabled":false
+	}
 }

@@ -2,7 +2,7 @@
 	icon = 'icons/obj/clothing/suits/armor.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/suits/armor.dmi'
 	allowed = null
-	body_parts_covered = CHEST
+	body_parts_covered = CHEST|GROIN
 	cold_protection = CHEST|GROIN
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN
@@ -11,11 +11,18 @@
 	equip_delay_other = 40
 	max_integrity = 250
 	resistance_flags = NONE
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	greyscale_colors = list(list(18, 19), list(13, 18), list(20, 15))
 	greyscale_icon_state = "armor"
 
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON | VOX_VARIATION
+
+	equipping_sound = EQUIP_SOUND_MED_GENERIC
+	unequipping_sound = UNEQUIP_SOUND_MED_GENERIC
+	equip_delay_self = EQUIP_DELAY_SUIT
+	equip_delay_other = EQUIP_DELAY_SUIT * 1.5
+	strip_delay = EQUIP_DELAY_SUIT * 1.5
+	equip_self_flags = null
 
 /obj/item/clothing/suit/armor/Initialize()
 	. = ..()
@@ -41,23 +48,32 @@
 	desc = "A heavy set of the finest mass-produced stamped plasteel armor plates money can buy."
 	icon_state = "marine_light"
 	item_state = "armor"
-	clothing_flags = THICKMATERIAL
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list("melee" = 50, "bullet" = 75, "laser" = 55, "energy" = 25, "bomb" = 60, "bio" = 100, "fire" = 70, "acid" = 50)
-	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	body_parts_covered = CHEST|GROIN
+	armor = list("melee" = 20, "bullet" = 45, "laser" = 45, "energy" = 25, "bomb" = 30, "bio" = 65, "fire" = 40, "acid" = 50)
+	cold_protection = CHEST|GROIN
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	heat_protection = CHEST|GROIN
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION_NO_NEW_ICON
-	slowdown = 0.5
+	slowdown = 0 //one day...
 
 /obj/item/clothing/suit/armor/vest/marine/medium
 	name = "medium tactical armor vest"
 	icon_state = "marine_medium"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	cold_protection = CHEST|GROIN|LEGS|ARMS
+	heat_protection = CHEST|GROIN|LEGS|ARMS
+	armor = list("melee" = 35, "bullet" = 50, "laser" = 45, "energy" = 25, "bomb" = 30, "bio" = 75, "fire" = 40, "acid" = 50)
+	slowdown = 0.4
 
 /obj/item/clothing/suit/armor/vest/marine/heavy
-	name = "large tactical armor vest"
+	name = "heavy tactical armor vest"
 	icon_state = "marine_heavy"
+	body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	cold_protection = CHEST|GROIN|LEGS|ARMS
+	heat_protection = CHEST|GROIN|LEGS|ARMS
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 55, "energy" = 25, "bomb" = 50, "bio" = 75, "fire" = 40, "acid" = 50)
+	slowdown = 0.8
 
 /obj/item/clothing/suit/armor/vest/old
 	name = "degrading armor vest"
@@ -76,7 +92,6 @@
 	desc = "A long, intimidating black coat. This one is reinforced and ideal for protecting its wearer from rain, sun, dust, and bullets."
 	icon_state = "armor_duster"
 	item_state = "duster_sec"
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 
@@ -85,8 +100,7 @@
 	desc = "A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence."
 	icon_state = "armor_hos"
 	item_state = "greatcoat"
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	strip_delay = 80
@@ -103,17 +117,11 @@
 	desc = "A black armored jacket with silver shoulder designations and '/Warden/' stitched into one of the chest pockets."
 	icon_state = "armor_warden"
 	item_state = "armor"
-	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS|HANDS
 	heat_protection = CHEST|GROIN|ARMS|HANDS
 	strip_delay = 70
 	resistance_flags = FLAMMABLE
 	dog_fashion = null
-
-/obj/item/clothing/suit/armor/vest/security/warden/inteq
-	name = "master at arms' armored coat"
-	desc = "A brown armored coat with a bulletproof vest over it, usually worn by the Master At Arms of the IRMG."
-	icon_state = "maacoat"
 
 /obj/item/clothing/suit/armor/vest/security/warden/alt
 	name = "warden's armored jacket"
@@ -130,7 +138,6 @@
 	desc = "Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of Nanotrasen Security."
 	icon_state = "armor_leathercoat-sec"
 	item_state = "hostrench"
-	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	cold_protection = CHEST|GROIN|LEGS|ARMS
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	dog_fashion = null
@@ -140,7 +147,6 @@
 	desc = "A fireproof armored chestpiece reinforced with ceramic plates and plasteel pauldrons to provide additional protection whilst still offering maximum mobility and flexibility. Issued only to NT's finest, although it does chafe your nipples."
 	icon_state = "carapace_nt"
 	item_state = "armor"
-	body_parts_covered = CHEST|GROIN
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 90)
 	dog_fashion = null
 	resistance_flags = FIRE_PROOF
@@ -167,6 +173,21 @@
 	icon_state = "carapace_duster"
 	item_state = "duster_captain"
 	supports_variations = VOX_VARIATION
+
+/obj/item/clothing/suit/armor/captaincoat
+	name = "captain's fur coat"
+	desc = "A long, stiff commanding coat, meant for frigid conditions."
+	icon_state = "captain_coat"
+	body_parts_covered = CHEST|GROIN
+	cold_protection = CHEST|GROIN|ARMS
+	heat_protection = CHEST|GROIN|ARMS
+	icon_state = "captain_coat"
+	item_state = "captain_coat"
+	blood_overlay_type = "coat"
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	icon = 'icons/obj/clothing/suits/armor.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/suits/armor.dmi'
+	supports_variations = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
@@ -204,7 +225,6 @@
 	icon_state = "laserproof"
 	item_state = "armor_reflec"
 	blood_overlay_type = "armor"
-	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 60, "energy" = 60, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
@@ -278,7 +298,7 @@
 	desc = "A classic suit of plate armour, highly effective at stopping melee attacks."
 	icon_state = "riot_knight_green"
 	item_state = "riot_knight_green"
-	allowed = list(/obj/item/nullrod, /obj/item/claymore, /obj/item/banner, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen, /obj/item/tank/internals/plasmaman)
+	allowed = list(/obj/item/melee/sword/claymore, /obj/item/banner, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen, /obj/item/tank/internals/plasmaman)
 
 /obj/item/clothing/suit/armor/riot/knight/yellow
 	icon_state = "riot_knight_yellow"
@@ -312,74 +332,6 @@
 	resistance_flags = FLAMMABLE
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 40, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50)
 
-/obj/item/clothing/suit/armor/hos/inteq
-	name = "inteq battle coat"
-	desc = "A luxurious brown coat made from a crossweave of kevlar and ballistic fibre, the collar and wrist trims are made from genuine wolf fur. as protective as it is stylish."
-	icon_state = "armor_inteq_battlecoat"
-	item_state = "inteq_battlecoat"
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON | VOX_VARIATION
-
-/obj/item/clothing/suit/armor/hos/inteq/honorable //Basically CC higherup clothing for inteq
-	name = "honorable vanguard battlecoat"
-	desc = "A sleek black coat with snow white fur trims made to order for honorable vanguards of the IRMG. It feels even tougher than the typical battlecoat."
-	icon_state = "armor_inteq_honorable_battlecoat"
-	item_state = "inteq_honorable_battlecoat"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90)
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/suit/armor/inteq/corpsman
-	name = "inteq corpsman vest"
-	desc = "A shortened brown labcoat with an armor vest under it, for the IRMG's support division Corpsmen."
-	icon_state = "armor_inteq_labcoat"
-	item_state = "inteq_labcoat"
-	supports_variations = VOX_VARIATION
-	allowed = list(
-		/obj/item/analyzer,
-		/obj/item/stack/medical,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/hypospray,
-		/obj/item/healthanalyzer,
-		/obj/item/flashlight/pen,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/pill,
-		/obj/item/storage/pill_bottle,
-		/obj/item/melee/classic_baton/telescopic,
-		/obj/item/soap,
-		/obj/item/sensor_device,
-		/obj/item/tank/internals/emergency_oxygen,
-		/obj/item/tank/internals/plasmaman,
-		/obj/item/ammo_box,
-		/obj/item/gun/ballistic,
-		/obj/item/gun/energy,
-		/obj/item/melee/baton,
-	)
-
-/obj/item/clothing/suit/armor/vest/bulletproof/solgov
-	name = "\improper Sonnensoldner gambison"
-	desc = "A standard armor vest fielded for SolGov's Sonnensoldners."
-	icon_state = "solgov_gambison"
-	item_state = "solgov_gambison"
-	supports_variations = DIGITIGRADE_VARIATION
-
-/obj/item/clothing/suit/armor/vest/bulletproof/solgov/overseer
-	name = "\improper SolGov Overseer robe"
-	desc = "An elaborately designed robe utilized by SolGov overseers."
-	icon_state = "solgov_overseer_robe"
-	item_state = "solgov_overseer_robe"
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/suit/armor/vest/bulletproof/solgov/captain
-	name = "\improper SolGov Captain coat"
-	desc = "An armored coat typically used by SolGov captains."
-	icon_state = "solgov_coat"
-	item_state = "solgov_coat"
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/suit/armor/vest/bulletproof/solgov/Initialize()
-	. = ..()
-	allowed |= list(/obj/item/gun/ballistic/automatic/assault/swiss_cheese, /obj/item/tank)
-
 /obj/item/clothing/suit/armor/vest/hop
 	name = "head of personnel's parade jacket"
 	desc = "For when an armoured vest isn't fashionable enough."
@@ -391,13 +343,6 @@
 	desc = "A plate carrier vest commonly used by Syndicate forces, regardless of affiliation. Has a few attached pouches."
 	icon_state = "armor_syndie"
 	item_state = "syndiearmor"
-
-/obj/item/clothing/suit/armor/vest/scrap_armor
-	name = "scrap armor"
-	desc = "An 'armor' vest consisting of sheet metal held together with cable. Who thought this was a good idea?"
-	icon_state = "scraparmor"
-	item_state = "scraparmor"
-	armor = list("melee" = 5)
 
 /obj/item/clothing/suit/armor/curator
 	name = "treasure hunter's coat"
@@ -411,21 +356,9 @@
 	cold_protection = CHEST|ARMS
 	heat_protection = CHEST|ARMS
 
-/obj/item/clothing/suit/armor/solgov_trenchcoat
-	name = "\improper SolGov trenchcoat"
-	desc = "A solgov official's trenchcoat. Has a lot of pockets."
-	icon_state = "armor_solgov_trenchcoat"
-	item_state = "trenchcoat_solgov"
-	body_parts_covered = CHEST|LEGS|ARMS
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	cold_protection = CHEST|LEGS|ARMS
-	heat_protection = CHEST|LEGS|ARMS
-	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
-
 //JACKETS
 /obj/item/clothing/suit/armor/vest/security
 	item_state = "armor"
-	body_parts_covered = CHEST|ARMS
 	cold_protection = CHEST|GROIN|ARMS|HANDS
 	heat_protection = CHEST|GROIN|ARMS|HANDS
 	strip_delay = 70
@@ -436,32 +369,27 @@
 	name = "security officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
 	icon_state = "armor_officerjacket"
-	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/armor/vest/security/warden
 	name = "warden's jacket"
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "armor_warden"
-	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/armor/vest/security/hos
 	name = "head of security's jacket"
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "armor_hosjacket"
-	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/armor/vest/security/brig_phys
 	name = "brig physician's jacket"
 	desc = "A black jacket with dark blue and silver accents, for the brig physician to prove they're a real member of security in style."
 	icon_state = "armor_brigphysjacket"
-	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/toggle/armor/vest/centcom_formal
 	name = "\improper CentCom formal coat"
 	desc = "A stylish coat given to CentCom Commanders. Perfect for sending ERTs to suicide missions with style!"
 	icon_state = "centcom_formal"
 	item_state = "centcom"
-	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 50, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 60)
 	togglename = "buttons"
 

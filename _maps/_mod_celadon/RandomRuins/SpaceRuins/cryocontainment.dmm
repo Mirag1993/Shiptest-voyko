@@ -103,7 +103,6 @@
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
 	},
-/obj/item/circuitboard/machine/bepis,
 /turf/open/floor/plasteel/white/airless,
 /area/ruin/unpowered)
 "dt" = (
@@ -126,7 +125,7 @@
 /turf/open/floor/plating/airless,
 /area/ruin/unpowered)
 "dw" = (
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid/smoothed/airless,
 /area/ruin/unpowered)
 "dT" = (
 /obj/effect/turf_decal/siding/purple,
@@ -164,7 +163,7 @@
 "eX" = (
 /obj/item/stack/ore/titanium,
 /obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid/smoothed/airless,
 /area/ruin/unpowered)
 "eZ" = (
 /obj/machinery/atmospherics/pipe/simple/general{
@@ -395,7 +394,7 @@
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/unpowered)
 "kT" = (
-/obj/effect/spawner/lootdrop/beaker_loot_spawner,
+/obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg2"
 	},
@@ -675,7 +674,7 @@
 "xD" = (
 /obj/structure/table/chem,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/effect/spawner/lootdrop/beaker_loot_spawner,
+/obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/unpowered)
 "xL" = (
@@ -784,7 +783,7 @@
 /area/ruin/unpowered)
 "Ey" = (
 /obj/item/stack/ore/uranium,
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid/smoothed/airless,
 /area/ruin/unpowered)
 "EE" = (
 /obj/effect/turf_decal/siding/purple{
@@ -890,7 +889,7 @@
 "Hm" = (
 /obj/item/stack/ore/silver,
 /obj/item/stack/ore/silver,
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid/smoothed/airless,
 /area/ruin/unpowered)
 "Hn" = (
 /obj/machinery/light/directional/north,
@@ -1103,7 +1102,7 @@
 /area/ruin/unpowered)
 "OI" = (
 /obj/item/stack/ore/silver,
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid/smoothed/airless,
 /area/ruin/unpowered)
 "OM" = (
 /obj/effect/turf_decal/corner/opaque/purple/bordercorner{
@@ -1112,7 +1111,7 @@
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/unpowered)
 "Pg" = (
-/obj/effect/spawner/lootdrop/beaker_loot_spawner,
+/obj/effect/spawner/random/medical/beaker,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/unpowered)
 "Po" = (
@@ -1193,7 +1192,7 @@
 /turf/template_noop,
 /area/template_noop)
 "Ro" = (
-/obj/item/banner/science,
+/obj/item/banner/science/mundane,
 /obj/machinery/light/directional/west,
 /turf/open/floor/plasteel/white/airless,
 /area/ruin/unpowered)
@@ -1305,7 +1304,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer2{
 	dir = 4
 	},
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/vigilitas_private,
 /obj/machinery/light/directional/north,
 /turf/open/floor/plasteel/dark/airless,
 /area/ruin/unpowered)
@@ -1351,7 +1350,7 @@
 /area/ruin/unpowered)
 "Wz" = (
 /obj/item/stack/ore/titanium,
-/turf/open/floor/plating/asteroid/airless,
+/turf/open/floor/plating/asteroid/smoothed/airless,
 /area/ruin/unpowered)
 "WF" = (
 /obj/effect/turf_decal/corner/opaque/purple/border{

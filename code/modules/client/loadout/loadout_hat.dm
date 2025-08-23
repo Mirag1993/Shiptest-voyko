@@ -24,8 +24,8 @@
 //Berets, AKA how I lost my will to live again
 
 /datum/gear/hat/beret
-	display_name = "beret, red"
-	path = /obj/item/clothing/head/beret
+	display_name = "beret, recolorable"
+	path = /obj/item/clothing/head/beret/color
 
 /datum/gear/hat/beret/departmental
 	display_name = "beret, departmental"
@@ -65,14 +65,45 @@
 		"Curator" = /obj/item/clothing/head/beret/service,
 		"Janitor" = /obj/item/clothing/head/beret/service,
 		"Lawyer" = /obj/item/clothing/head/beret/service,
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 		"Mime" = /obj/item/clothing/head/beret,
 		"Clown" = /obj/item/clothing/head/beret/puce
+// [/CELADON-ADD]
 	)
 
 /datum/gear/hat/beret/engineering/hazard
 	display_name = "beret, hazard"
 	path = /obj/item/clothing/head/beret/eng/hazard
 	allowed_roles = list("Station Engineer", "Atmospheric Technician", "Chief Engineer")
+
+//Soft caps
+
+/datum/gear/hat/softcap
+	display_name = "cap, recolorable"
+	path = /obj/item/clothing/head/soft
+
+/datum/gear/hat/utility_black
+	display_name = "utility cover, black"
+	path = /obj/item/clothing/head/soft/utility_black
+
+/datum/gear/hat/utility_olive
+	display_name = "utility cover, olive"
+	path = /obj/item/clothing/head/soft/utility_olive
+
+/datum/gear/hat/utility_beige
+	display_name = "utility cover, beige"
+	path = /obj/item/clothing/head/soft/utility_beige
+
+/datum/gear/hat/utility_navy
+	display_name = "utility cover, navy"
+	path = /obj/item/clothing/head/soft/utility_navy
+
+
+//Beanies
+
+/datum/gear/hat/beanie
+	display_name = "beanie, recolorable"
+	path = /obj/item/clothing/head/beanie
 
 //Misc
 
@@ -81,16 +112,20 @@
 	path = /obj/item/clothing/head/that
 
 /datum/gear/hat/fedora
-	display_name = "fedora"
+	display_name = "fedora, black"
 	path = /obj/item/clothing/head/fedora
+
+/datum/gear/hat/fedora/white
+	display_name = "fedora, white"
+	path = /obj/item/clothing/head/fedora/white
+
+/datum/gear/hat/fedora/beige
+	display_name = "fedora, beige"
+	path = /obj/item/clothing/head/fedora/beige
 
 /datum/gear/hat/flatcap
 	display_name = "flatcap"
 	path = /obj/item/clothing/head/flatcap
-
-/datum/gear/hat/beanie
-	display_name = "beanie"
-	path = /obj/item/clothing/head/beanie
 
 /datum/gear/hat/wig
 	display_name = "wig"
@@ -107,3 +142,11 @@
 /datum/gear/hat/flowers
 	display_name = "plastic flower, pickable"
 	path = /obj/item/clothing/head/plastic_flower
+
+/datum/gear/hat/flap
+	display_name = "flap cap, recolorable"
+	path = /obj/item/clothing/head/flap
+
+/datum/gear/hat/sunhat
+	display_name = "sun hat"
+	path = /obj/item/clothing/head/sunhat

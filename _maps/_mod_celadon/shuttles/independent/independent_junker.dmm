@@ -94,7 +94,6 @@
 	},
 /obj/effect/decal/cleanable/glass,
 /obj/structure/safe/floor,
-/obj/item/circuitboard/computer/cargo/express,
 /turf/open/floor/pod/dark,
 /area/ship/crew/office)
 "bJ" = (
@@ -465,7 +464,7 @@
 /obj/structure/closet/crate,
 /obj/effect/decal/cleanable/wrapping,
 /obj/item/reagent_containers/glass/bottle/welding_fuel,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -477,7 +476,7 @@
 /turf/open/floor/plating,
 /area/ship/storage/eva)
 "jm" = (
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
 	},
@@ -571,7 +570,7 @@
 /area/ship/storage/eva)
 "km" = (
 /obj/item/trash/sosjerky,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/areaeditor/shuttle{
 	pixel_y = 7
 	},
@@ -667,6 +666,7 @@
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
 	dir = 9
 	},
+/obj/item/circuitboard/computer/cargo,
 /turf/open/floor/pod/dark,
 /area/ship/crew/office)
 "lU" = (
@@ -1007,7 +1007,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plating,
 /area/ship/engineering/electrical)
 "sM" = (
@@ -1099,7 +1099,7 @@
 /area/ship/storage/eva)
 "un" = (
 /obj/machinery/door/firedoor,
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -1132,15 +1132,15 @@
 /area/ship/maintenance/central)
 "uQ" = (
 /obj/structure/table/chem,
-/obj/item/reagent_containers/food/snacks/meat/slab{
+/obj/item/food/meat/slab{
 	pixel_y = 6;
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab{
+/obj/item/food/meat/slab{
 	pixel_x = 4;
 	pixel_y = 9
 	},
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_y = -3;
 	pixel_x = 10
 	},
@@ -1295,7 +1295,7 @@
 /area/ship/maintenance/starboard)
 "zy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/item/decal_painter,
 /obj/item/storage/box/mousetraps,
 /obj/structure/closet/toolcloset{
@@ -1370,7 +1370,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/snacks/burger/roburger{
+/obj/item/food/burger/roburger{
 	pixel_x = 17;
 	name = "burger";
 	icon_state = "hburger"
@@ -1425,7 +1425,7 @@
 "Cf" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/spawner/random/maintenance/three,
 /obj/item/flashlight/pen,
 /obj/machinery/light/small/broken/directional/north{
 	pixel_y = 0;
@@ -1628,7 +1628,7 @@
 /area/ship/maintenance/central)
 "Fl" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/spawner/random/maintenance/three,
 /obj/item/toner,
 /obj/item/clothing/neck/stethoscope,
 /obj/machinery/light/small/broken/directional/north,
@@ -1644,7 +1644,7 @@
 /turf/open/floor/pod/dark,
 /area/ship/crew/canteen)
 "Fr" = (
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
@@ -1706,7 +1706,7 @@
 /turf/open/floor/plating,
 /area/ship/maintenance/starboard)
 "Hf" = (
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/pod/dark,
 /area/ship/crew/canteen)
@@ -1868,7 +1868,7 @@
 /turf/open/floor/plating,
 /area/ship/maintenance/starboard)
 "KM" = (
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_y = 1;
 	pixel_x = 8
 	},
@@ -2112,7 +2112,7 @@
 	pixel_y = 16;
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/snacks/cheesiehonkers{
+/obj/item/food/cheesiehonkers{
 	pixel_y = 5;
 	pixel_x = 6
 	},
@@ -2129,7 +2129,7 @@
 /turf/open/floor/pod/dark,
 /area/ship/crew/office)
 "OP" = (
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /obj/structure/cable{
 	icon_state = "4-9"
 	},
@@ -2157,7 +2157,7 @@
 "Pf" = (
 /obj/structure/rack,
 /obj/item/storage/backpack/explorer,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/item/pickaxe/rusted,
 /turf/open/floor/plating,
 /area/ship/engineering/electrical)
@@ -2245,7 +2245,7 @@
 /obj/structure/closet/crate/trashcart,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/wood/walnut{
 	icon_state = "wood-broken3"
@@ -2352,8 +2352,8 @@
 /turf/open/floor/pod/dark,
 /area/ship/crew/canteen)
 "Uu" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/mob/living/simple_animal/hostile/cockroach/glockroach,
+/obj/effect/spawner/random/maintenance,
+/mob/living/basic/cockroach/glockroach,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
 	dir = 4
@@ -2406,10 +2406,10 @@
 	pixel_y = 7;
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/snacks/donkpocket/warm{
+/obj/item/food/donkpocket/warm{
 	pixel_y = 14
 	},
-/obj/item/reagent_containers/food/snacks/donkpocket/warm/pizza{
+/obj/item/food/donkpocket/warm/pizza{
 	pixel_y = 11;
 	pixel_x = 5
 	},
@@ -2451,12 +2451,12 @@
 "Wr" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/maintenance/three,
-/obj/item/reagent_containers/food/snacks/canned/peaches/maint,
+/obj/effect/spawner/random/maintenance/three,
+/obj/item/trash/can/food/peaches/maint,
 /turf/open/floor/plating,
 /area/ship/construction)
 "WC" = (
-/obj/machinery/pipedispenser/disposal,
+/obj/machinery/pipedispenser,
 /obj/structure/cable{
 	icon_state = "4-5"
 	},
@@ -2545,7 +2545,7 @@
 	pixel_y = -3;
 	pixel_x = -10
 	},
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/wood/walnut{
 	icon_state = "wood-broken6"
@@ -2575,7 +2575,7 @@
 /turf/closed/wall/r_wall,
 /area/ship/maintenance/port)
 "Yv" = (
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /obj/structure/cable{
 	icon_state = "0-1"
 	},
@@ -2586,7 +2586,7 @@
 "Yx" = (
 /obj/effect/decal/cleanable/sprayweb,
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/machinery/light/small/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2622,7 +2622,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/effect/spawner/lootdrop/maintenance/eight,
+/obj/effect/spawner/random/maintenance/eight,
 /obj/structure/safe/floor{
 	number_of_tumblers = 5
 	},
@@ -2666,7 +2666,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/food/plant_smudge,
-/obj/item/reagent_containers/food/snacks/urinalcake{
+/obj/item/food/urinalcake{
 	pixel_y = -9;
 	pixel_x = -13
 	},

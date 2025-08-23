@@ -11,14 +11,6 @@
 	singular_name = "human skin piece"
 	novariants = FALSE
 
-GLOBAL_LIST_INIT(human_recipes, list( \
-	new/datum/stack_recipe("bloated human costume", /obj/item/clothing/suit/hooded/bloated_human, 5), \
-	))
-
-/obj/item/stack/sheet/animalhide/human/get_main_recipes()
-	. = ..()
-	. += GLOB.human_recipes
-
 /obj/item/stack/sheet/animalhide/generic
 	name = "skin"
 	desc = "A piece of skin."
@@ -31,12 +23,6 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	singular_name = "corgi hide piece"
 	icon_state = "sheet-corgi"
 	item_state = "sheet-corgi"
-
-
-GLOBAL_LIST_INIT(gondola_recipes, list ( \
-	new/datum/stack_recipe("gondola mask", /obj/item/clothing/mask/gondola, 1), \
-	new/datum/stack_recipe("gondola suit", /obj/item/clothing/under/costume/gondola, 2), \
-	))
 
 /obj/item/stack/sheet/animalhide/mothroach
 	name = "mothroach hide"
@@ -52,18 +38,6 @@ GLOBAL_LIST_INIT(gondola_recipes, list ( \
 	singular_name = "gondola hide piece"
 	icon_state = "sheet-gondola"
 	item_state = "sheet-gondola"
-
-/obj/item/stack/sheet/animalhide/gondola/get_main_recipes()
-	. = ..()
-	. += GLOB.gondola_recipes
-
-GLOBAL_LIST_INIT(corgi_recipes, list ( \
-	new/datum/stack_recipe("corgi costume", /obj/item/clothing/suit/hooded/ian_costume, 3), \
-	))
-
-/obj/item/stack/sheet/animalhide/corgi/get_main_recipes()
-	. = ..()
-	. += GLOB.corgi_recipes
 
 /obj/item/stack/sheet/animalhide/cat
 	name = "cat hide"
@@ -81,7 +55,9 @@ GLOBAL_LIST_INIT(corgi_recipes, list ( \
 
 GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	new/datum/stack_recipe("monkey mask", /obj/item/clothing/mask/gas/monkeymask, 1), \
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
 	new/datum/stack_recipe("monkey suit", /obj/item/clothing/suit/monkeysuit, 2), \
+	// [/CELADON-ADD]
 	))
 
 /obj/item/stack/sheet/animalhide/monkey/get_main_recipes()
@@ -101,15 +77,6 @@ GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	singular_name = "alien hide piece"
 	icon_state = "sheet-xeno"
 	item_state = "sheet-xeno"
-
-GLOBAL_LIST_INIT(xeno_recipes, list ( \
-	new/datum/stack_recipe("alien helmet", /obj/item/clothing/head/xenos, 1), \
-	new/datum/stack_recipe("alien suit", /obj/item/clothing/suit/xenos, 2), \
-	))
-
-/obj/item/stack/sheet/animalhide/xeno/get_main_recipes()
-	. = ..()
-	. += GLOB.xeno_recipes
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
 /obj/item/stack/sheet/xenochitin
@@ -148,6 +115,10 @@ GLOBAL_LIST_INIT(xeno_recipes, list ( \
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
 
+/obj/item/stack/sheet/wethide/Initialize(mapload, new_amount, merge)	// [CELADON-EDIT] - FIXES_WETHIDE // /obj/item/stack/sheet/leather/wetleather/Initialize(mapload, new_amount, merge)
+	. = ..()
+	AddElement(/datum/element/dryable, /obj/item/stack/sheet/leather)
+
 /*
  * Leather SHeet
  */
@@ -164,10 +135,13 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("botany gloves", /obj/item/clothing/gloves/botanic_leather, 3), \
 	new/datum/stack_recipe("toolbelt", /obj/item/storage/belt/utility, 4), \
 	new/datum/stack_recipe("leather satchel", /obj/item/storage/backpack/satchel/leather, 5), \
-	new/datum/stack_recipe("bandolier", /obj/item/storage/belt/bandolier, 5), \
+	new/datum/stack_recipe("shell bandolier", /obj/item/storage/belt/bandolier, 4), \
+	new/datum/stack_recipe("leather bandolier", /obj/item/storage/belt/security/military/frontiersmen, 4), \
 	new/datum/stack_recipe("leather jacket", /obj/item/clothing/suit/jacket/leather, 7), \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
 	new/datum/stack_recipe("leather overcoat", /obj/item/clothing/suit/jacket/leather/overcoat, 10), \
+	// [/CELADON-ADD]
 	new/datum/stack_recipe("saddle", /obj/item/saddle, 5), \
 ))
 
@@ -240,9 +214,9 @@ GLOBAL_LIST_INIT(sinew_recipes, list ( \
 /obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user, params)
 	if(W.get_sharpness())
 		playsound(loc, 'sound/weapons/slice.ogg', 50, TRUE, -1)
-		user.visible_message("<span class='notice'>[user] starts cutting hair off \the [src].</span>", "<span class='notice'>You start cutting the hair off \the [src]...</span>", "<span class='hear'>You hear the sound of a knife rubbing against flesh.</span>")
+		user.visible_message(span_notice("[user] starts cutting hair off \the [src]."), span_notice("You start cutting the hair off \the [src]..."), span_hear("You hear the sound of a knife rubbing against flesh."))
 		if(do_after(user, 50, target = src))
-			to_chat(user, "<span class='notice'>You cut the hair from this [src.singular_name].</span>")
+			to_chat(user, span_notice("You cut the hair from this [src.singular_name]."))
 			new /obj/item/stack/sheet/hairlesshide(user.drop_location(), 1)
 			use(1)
 	else

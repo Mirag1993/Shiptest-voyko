@@ -690,7 +690,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
 "dt" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat/all_access{
+	all_items_free = 1
+	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ship/crew/canteen/kitchen)
 "dF" = (
@@ -927,7 +929,7 @@
 /obj/structure/rack,
 /obj/item/storage/box/lights/mixed,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = 32
 	},
@@ -1334,7 +1336,7 @@
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/bag/tray,
-/obj/item/reagent_containers/food/snacks/burger/bearger,
+/obj/item/food/burger,
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
@@ -1415,15 +1417,15 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/ration{
+/obj/effect/spawner/random/food_or_drink/ration{
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/obj/effect/spawner/lootdrop/ration{
+/obj/effect/spawner/random/food_or_drink/ration{
 	pixel_x = -6;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/condiment/enzyme{
 	layer = 5;
 	pixel_x = 12;
 	pixel_y = 6
@@ -2040,8 +2042,8 @@
 	locked = 0;
 	name = "fridge"
 	},
-/obj/item/reagent_containers/food/snacks/sausage,
-/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/food/sausage,
+/obj/item/food/sandwich,
 /obj/effect/turf_decal/trimline/opaque/white/filled/line{
 	dir = 1
 	},

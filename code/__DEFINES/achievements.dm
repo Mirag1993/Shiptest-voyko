@@ -8,8 +8,10 @@
 #define MEDAL_PULSE "Jackpot"
 #define MEDAL_TIMEWASTE "Overextended The Joke"
 #define MEDAL_RODSUPLEX "Feat of Strength"
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 #define MEDAL_CLOWNCARKING "Round and Full"
 #define MEDAL_THANKSALOT "The Best Driver"
+// [/CELADON-ADD]
 #define MEDAL_HELBITALJANKEN "Hel-bent on Winning"
 #define MEDAL_MATERIALCRAFT "Getting an Upgrade"
 #define MEDAL_DISKPLEASE "Disk, Please!"
@@ -24,6 +26,7 @@
 #define MEDAL_SNAIL "KKKiiilll mmmeee"
 #define MEDAL_LOOKOUTSIR "Look Out, Sir!"
 #define MEDAL_GOTTEM "GOTTEM"
+#define MEDAL_SPRINGLOCK "The Man Inside the Modsuit"
 
 //Skill medal hub IDs
 #define MEDAL_LEGENDARY_MINER "Legendary Miner"

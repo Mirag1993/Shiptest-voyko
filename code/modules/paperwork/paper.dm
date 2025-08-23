@@ -352,8 +352,8 @@
 		return
 	. = TRUE
 	if(!bypass_clumsy && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(10) && Adjacent(user))
-		user.visible_message("<span class='warning'>[user] accidentally ignites [user.p_them()]self!</span>", \
-							"<span class='userdanger'>You miss [src] and accidentally light yourself on fire!</span>")
+		user.visible_message(span_warning("[user] accidentally ignites [user.p_them()]self!"), \
+							span_userdanger("You miss [src] and accidentally light yourself on fire!"))
 		if(user.is_holding(I)) //checking if they're holding it in case TK is involved
 			user.dropItemToGround(I)
 		user.adjust_fire_stacks(1)
@@ -543,7 +543,7 @@
 			return TRUE
 		if("add_text")
 			var/paper_input = params["text"]
-			var/this_input_length = length(paper_input)
+			var/this_input_length = length_char(paper_input)
 
 			if(this_input_length == 0)
 				to_chat(user, pick("Writing block strikes again!", "You forgot to write anything!"))
@@ -615,7 +615,7 @@
 
 			for(var/field_key in field_data)
 				var/field_text = field_data[field_key]
-				var/text_length = length(field_text)
+				var/text_length = length_char(field_text)
 				if(text_length > MAX_PAPER_INPUT_FIELD_LENGTH)
 					log_paper("[key_name(user)] tried to write to field [field_key] with text over the max limit ([text_length] out of [MAX_PAPER_INPUT_FIELD_LENGTH]) with the following text: [field_text]")
 					return TRUE
@@ -646,7 +646,7 @@
 /obj/item/paper/proc/get_total_length()
 	var/total_length = 0
 	for(var/datum/paper_input/entry as anything in raw_text_inputs)
-		total_length += length(entry.raw_text)
+		total_length += length_char(entry.raw_text)
 
 	return total_length
 

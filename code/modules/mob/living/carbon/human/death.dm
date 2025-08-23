@@ -16,12 +16,16 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 /mob/living/carbon/human/spawn_gibs(with_bodyparts)
 	if(with_bodyparts)
 		switch(dna.species.species_gibs)
+			if("lanius")//[CELADON - ADD] LANIUS
+				new /obj/effect/gibspawner(get_turf(src))
 			if("human")
 				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
 			if("robotic")
 				new /obj/effect/gibspawner/robot(get_turf(src))
 	else
 		switch(dna.species.species_gibs)
+			if("lanius") //[CELADON - ADD] LANIUS
+				new /obj/effect/gibspawner(get_turf(src))
 			if("human")
 				new /obj/effect/gibspawner/human/bodypartless(get_turf(src), src, get_static_viruses())
 			if("robotic")
@@ -62,10 +66,8 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
-	if(is_devil(src))
-		INVOKE_ASYNC(is_devil(src), TYPE_PROC_REF(/datum/antagonist/devil, beginResurrectionCheck), src)
 
-	to_chat(src, "<span class='warning'>You have died. Barring complete bodyloss, you can in most cases be revived by other players. If you do not wish to be brought back, use the \"Do Not Resuscitate\" verb in the ghost tab.</span>")
+	to_chat(src, span_warning("You have died. Barring complete bodyloss, you can in most cases be revived by other players. If you do not wish to be brought back, use the \"Do Not Resuscitate\" verb in the ghost tab."))
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)

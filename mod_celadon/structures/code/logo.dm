@@ -1,7 +1,8 @@
 /obj/effect/turf_decal/elysium_logo
-	icon = 'mod_celadon/_storge_icons/icons/structures/elysium_logo.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/structures/logo/elysium_logo.dmi'
 	name = "elysium logo"
 	icon_state = "22"
+	alpha = 170
 
 /obj/effect/turf_decal/elysium_logo/one_one
 	icon_state = "11"
@@ -32,7 +33,7 @@
 
 //Logo Celadon
 /obj/effect/turf_decal/celadon_logo
-	icon = 'mod_celadon/_storge_icons/icons/structures/celadon_logo.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/assets/celadon_logo.dmi'
 	name = "celadon logo"
 	icon_state = "22"
 

@@ -17,7 +17,7 @@
 /turf/closed/wall/mineral/sandstone,
 /area/ruin/unpowered)
 "cr" = (
-/obj/item/reagent_containers/food/snacks/kebab/rat/double,
+/obj/item/food/kebab/rat/double,
 /turf/open/floor/plating/grass/beach/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "cC" = (
@@ -79,7 +79,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/item/melee/roastingstick,
+/obj/item/roastingstick,
 /turf/open/floor/plating/grass/beach/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "kd" = (
@@ -184,7 +184,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "rD" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "ta" = (
@@ -406,7 +406,7 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "Oa" = (
-/obj/item/melee/skateboard/pro,
+/obj/item/skateboard/pro,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "Om" = (
@@ -435,7 +435,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "RK" = (
 /obj/item/toy/beach_ball/holoball/dodgeball,
-/obj/item/melee/skateboard/hoverboard,
+/obj/item/skateboard/hoverboard,
 /turf/open/floor/plating/asteroid/sand/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "RM" = (
@@ -497,11 +497,11 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Vx" = (
 /obj/structure/table/rolling,
-/obj/item/reagent_containers/food/snacks/kebab/fiesta,
-/obj/item/reagent_containers/food/snacks/kebab/fiesta{
+/obj/item/food/kebab/fiesta,
+/obj/item/food/kebab/fiesta{
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/kebab/fiesta{
+/obj/item/food/kebab/fiesta{
 	pixel_y = 13
 	},
 /turf/open/floor/plating/grass/beach/lit,
@@ -522,7 +522,7 @@
 /turf/open/floor/plating/grass/beach/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ww" = (
-/obj/item/melee/roastingstick,
+/obj/item/roastingstick,
 /turf/open/floor/plating/grass/beach/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Xd" = (
@@ -540,7 +540,7 @@
 /turf/open/floor/plating/asteroid/sand/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Xo" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /turf/open/floor/plating/asteroid/sand/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Xr" = (

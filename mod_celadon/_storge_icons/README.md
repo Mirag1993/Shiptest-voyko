@@ -22,7 +22,7 @@ _UNUSED/tajara_helmet.dmi
 ammo/ammo_bullets.dmi
 ammo/ammo.dmi
 ammo/projectiles.dmi
-
+actions/actions.dmi
 bongs/bong.dmi
 bongs/lefthand.dmi
 bongs/righthand.dmi
@@ -61,6 +61,10 @@ items/fov/fov_effects.dmi
 
 items/mob/head/costume.dmi
 items/mob/head/hats.dmi
+
+mecha_96x96.dmi
+mecha_equipment.dmi
+mecha.dmi
 
 items/mob/inhands/books_lefthand.dmi
 items/mob/inhands/books_righthand.dmi
@@ -220,6 +224,7 @@ areas.dmi
 barsigns_long.dmi
 barsigns.dmi
 barsigns96x96.dmi
+boarding.dmi
 default_title.dmi
 drake.dmi
 drakeborg_vr-1.dmi
@@ -229,9 +234,6 @@ elysium_brigade.dmi
 flags.dmi
 jellypeople.dmi
 language.dmi
-mecha_96x96.dmi
-mecha_equipment.dmi
-mecha.dmi
 musician.dmi
 parallax.dmi
 pizzamat.dmi

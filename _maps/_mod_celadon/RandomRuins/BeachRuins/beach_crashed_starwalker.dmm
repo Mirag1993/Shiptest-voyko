@@ -100,7 +100,7 @@
 	req_one_access_txt = "1"
 	},
 /obj/item/storage/box/slugshot,
-/obj/item/ammo_box/c38,
+/obj/item/storage/box/ammo/c38,
 /obj/structure/spacevine,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/beach/oceantown/house{
@@ -265,7 +265,7 @@
 	})
 "cT" = (
 /obj/effect/turf_decal/industrial/loading,
-/obj/item/reagent_containers/food/snacks/monkeycube,
+/obj/item/food/monkeycube,
 /turf/open/floor/plasteel/patterned/ridged,
 /area/ruin/beach/oceantown/house{
 	name = "Starwalker"
@@ -552,8 +552,8 @@
 	name = "Starwalker"
 	})
 "gV" = (
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp{
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp{
 	pixel_y = 7;
 	pixel_x = 4
 	},
@@ -646,9 +646,7 @@
 /obj/structure/closet/body_bag,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/computer/rdconsole,
 /obj/item/stack/medical/suture/medicated,
-/obj/item/circuitboard/machine/rdserver,
 /obj/item/circuitboard/machine/protolathe/department/security,
 /obj/effect/mob_spawn/human/sec,
 /turf/open/floor/plasteel,
@@ -835,9 +833,6 @@
 	icon_state = "1-4"
 	},
 /obj/structure/spacevine/weak,
-/obj/item/reagent_containers/food/snacks/breadslice/moldy{
-	pixel_x = 5
-	},
 /turf/open/floor/pod,
 /area/ruin/beach/oceantown/house{
 	name = "Starwalker"
@@ -915,7 +910,7 @@
 	pixel_y = 11;
 	icon_state = "floor6-old"
 	},
-/obj/item/reagent_containers/food/snacks/meat/rawcrab{
+/obj/item/food/meat/rawcrab{
 	pixel_x = 3;
 	pixel_y = 9
 	},
@@ -1088,7 +1083,7 @@
 	name = "Starwalker"
 	})
 "pk" = (
-/obj/item/reagent_containers/food/snacks/monkeycube{
+/obj/item/food/monkeycube{
 	pixel_y = -1;
 	pixel_x = 6
 	},
@@ -2240,7 +2235,7 @@
 	pixel_x = 1;
 	pixel_y = 14
 	},
-/obj/item/reagent_containers/food/snacks/meat/rawcrab{
+/obj/item/food/meat/rawcrab{
 	pixel_x = 5;
 	pixel_y = 10
 	},
@@ -2345,7 +2340,7 @@
 /turf/open/floor/engine/hull/interior,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Hl" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
@@ -2509,7 +2504,7 @@
 	})
 "IY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_x = 7;
 	pixel_y = 10
 	},
@@ -2760,7 +2755,7 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "LV" = (
 /obj/effect/turf_decal/industrial/loading,
-/obj/item/reagent_containers/food/snacks/monkeycube{
+/obj/item/food/monkeycube{
 	pixel_y = 5;
 	pixel_x = 3
 	},
@@ -2783,7 +2778,7 @@
 	name = "Starwalker"
 	})
 "Mk" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
@@ -2824,7 +2819,7 @@
 	pixel_x = -26
 	},
 /obj/structure/spider/stickyweb,
-/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/random/decoration/glowstick,
 /turf/open/floor/pod/light,
 /area/ruin/beach/oceantown/house{
 	name = "Starwalker"
@@ -2862,7 +2857,7 @@
 	name = "Starwalker"
 	})
 "MX" = (
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /obj/structure/railing{
 	dir = 4
 	},
@@ -2903,7 +2898,7 @@
 	icon_state = "gib3-old";
 	pixel_x = -6
 	},
-/obj/item/melee/transforming/energy/sword/saber/pirate/yellow{
+/obj/item/melee/energy/sword/saber/pirate/yellow{
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -3400,7 +3395,7 @@
 	pixel_y = -13;
 	pixel_x = 6
 	},
-/obj/item/reagent_containers/food/snacks/meat/rawcrab{
+/obj/item/food/meat/rawcrab{
 	pixel_x = -11;
 	pixel_y = -12
 	},
@@ -3437,7 +3432,7 @@
 /obj/effect/turf_decal/techfloor{
 	dir = 8
 	},
-/obj/machinery/computer/bounty{
+/obj/machinery/computer/arcade{
 	dir = 4
 	},
 /obj/machinery/light/directional/south,
@@ -3696,7 +3691,7 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/wall{
 	pixel_y = 29
 	},
-/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/condiment/rice,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/beach/oceantown/house{

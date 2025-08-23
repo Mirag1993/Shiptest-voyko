@@ -77,10 +77,6 @@
 				var/pos = length(file_data["[escape_status]"]) + 1
 				file_data["[escape_status]"]["[pos]"] = mob_data
 
-	var/datum/station_state/end_state = new /datum/station_state()
-	end_state.count()
-	var/station_integrity = min(PERCENT(GLOB.start_state.score(end_state)), 100)
-	file_data["additional data"]["station integrity"] = station_integrity
 	WRITE_FILE(json_file, json_encode(file_data))
 
 	SSblackbox.record_feedback("nested tally", "round_end_stats", num_survivors, list("survivors", "total"))
@@ -88,7 +84,6 @@
 	SSblackbox.record_feedback("nested tally", "round_end_stats", GLOB.joined_player_list.len - num_survivors, list("players", "dead"))
 	. = list()
 	.[POPCOUNT_SURVIVORS] = num_survivors
-	.["station_integrity"] = station_integrity
 
 /datum/controller/subsystem/ticker/proc/gather_antag_data()
 	var/team_gid = 1
@@ -121,7 +116,7 @@
 		SSblackbox.record_feedback("associative", "antagonists", 1, antag_info)
 
 /datum/controller/subsystem/ticker/proc/record_nuke_disk_location()
-	var/obj/item/disk/nuclear/N = locate() in GLOB.poi_list
+	var/obj/item/disk/nuclear/N = locate() in SSpoints_of_interest.other_points_of_interest
 	if(N)
 		var/list/data = list()
 		var/turf/T = get_turf(N)
@@ -184,7 +179,8 @@
 		speed_round = TRUE
 
 	for(var/client/C in GLOB.clients)
-		C.playtitlemusic(40)
+		if(COOLDOWN_FINISHED(GLOB, web_sound_cooldown))
+			C?.playtitlemusic(vol = 0.5)
 
 		if(speed_round)
 			C.give_award(/datum/award/achievement/misc/speed_round, C.mob)
@@ -214,7 +210,7 @@
 
 	CHECK_TICK
 
-	set_observer_default_invisibility(0, "<span class='warning'>The round is over! You are now visible to the living.</span>")
+	set_observer_default_invisibility(0, span_warning("The round is over! You are now visible to the living."))
 
 	CHECK_TICK
 
@@ -228,6 +224,11 @@
 		if(!(A.name in total_antagonists))
 			total_antagonists[A.name] = list()
 		total_antagonists[A.name] += "[key_name(A.owner)]"
+
+	CHECK_TICK
+
+	//check config blah blah
+	handle_hearts()
 
 	CHECK_TICK
 
@@ -284,7 +285,7 @@
 	CHECK_TICK
 
 	//Station Goals
-	parts += goal_report()
+	// parts += goal_report() [CELADON-DELETE] - Цели не используются. Отключены.
 
 	listclearnulls(parts)
 
@@ -295,14 +296,29 @@
 
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
-		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
+		var/info = statspage ? "<a href='byond://?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
 	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(REALTIMEOFDAY - SSticker.round_start_timeofday)]</B>"
-	parts += "[FOURSPACES]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
+	// [CELADON-EDIT] - Изменён вывод гринтекста на более правильный для последующего вывода в Discord.
+	// parts += "[FOURSPACES]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
+	parts += "<br><B>[FOURSPACES]Корабли: [length(SSovermap.controlled_ships)]</B>"
+	for(var/datum/overmap/ship/controlled/Ship as anything in SSovermap.controlled_ships)
+		if(Ship.source_template.short_name)
+			parts += "[FOURSPACES]<B>[Ship.source_template.short_name]-class [Ship.name]</B>"
+		else
+			parts += "[FOURSPACES]<B>SubShuttle: [Ship.name]</B>"
+		if(Ship.manifest && Ship.manifest.len >= 1)
+			parts += "[FOURSPACES]Капитан: <B>[Ship.manifest[1]]</B>"
+			parts += "[FOURSPACES]Количество экипажа: <B>[Ship.manifest.len]</B>"
+		else
+			parts += "[FOURSPACES]Капитан: <B>{Данные засекречены}</B>"
+		parts += "[FOURSPACES]Баланс: <B>[Ship.ship_account.account_balance] кредитов</B>"
+		parts += "[FOURSPACES]Местоположение: <B>X[Ship.x || Ship.docked_to.x]/Y[Ship.y || Ship.docked_to.y]</B><br>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
-		parts += "[FOURSPACES]Survival Rate: <B>[popcount[POPCOUNT_SURVIVORS]] ([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%)</B>"
+		parts += "[FOURSPACES]Survival Rate: <B>[PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%</B>"
+	// [/CELADON-EDIT]
 		if(SSblackbox.first_death)
 			var/list/ded = SSblackbox.first_death
 			if(ded.len)
@@ -378,11 +394,11 @@
 		var/location = original_ship ? "aboard [original_ship]" : "in [station_name()]"
 		if(M.stat != DEAD && !isbrain(M))
 			parts += "<div class='panel greenborder'>"
-			parts += "<span class='greentext'>You managed to survive the events [location] as [M.real_name].</span>"
+			parts += span_greentext("You managed to survive the events [location] as [M.real_name].")
 
 		else
 			parts += "<div class='panel redborder'>"
-			parts += "<span class='redtext'>You did not survive the events [location]...</span>"
+			parts += span_redtext("You did not survive the events [location]...")
 
 	else
 		parts += "<div class='panel stationborder'>"
@@ -408,7 +424,7 @@
 	for (var/i in GLOB.ai_list)
 		var/mob/living/silicon/ai/aiPlayer = i
 		if(aiPlayer.mind)
-			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was <span class='redtext'>deactivated</span>"] were:"
+			parts += "<b>[aiPlayer.name]</b> (Played by: <b>[aiPlayer.mind.key]</b>)'s laws [aiPlayer.stat != DEAD ? "at the end of the round" : "when it was [span_redtext("deactivated")]"] were:"
 			parts += aiPlayer.laws.get_law_list(include_zeroth=TRUE)
 
 		parts += "<b>Total law changes: [aiPlayer.law_change_counter]</b>"
@@ -419,13 +435,13 @@
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				borg_num--
 				if(robo.mind)
-					parts += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " <span class='redtext'>(Deactivated)</span>" : ""][borg_num ?", ":""]"
+					parts += "<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>)[robo.stat == DEAD ? " [span_redtext("(Deactivated)")]" : ""][borg_num ?", ":""]"
 		if(!borg_spacer)
 			borg_spacer = TRUE
 
 	for (var/mob/living/silicon/robot/robo in GLOB.silicon_mobs)
 		if (!robo.connected_ai && robo.mind)
-			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "<span class='greentext'>survived</span> as an AI-less borg!" : "was <span class='redtext'>unable to survive</span> the rigors of being a cyborg without an AI."] Its laws were:"
+			parts += "[borg_spacer?"<br>":""]<b>[robo.name]</b> (Played by: <b>[robo.mind.key]</b>) [(robo.stat != DEAD)? "[span_greentext("survived")] as an AI-less borg!" : "was [span_redtext("unable to survive")] the rigors of being a cyborg without an AI."] Its laws were:"
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				parts += robo.laws.get_law_list(include_zeroth=TRUE)
@@ -449,7 +465,7 @@
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
 		var/list/parts = list()
-		parts += "<span class='header'>Medal Commendations:</span>"
+		parts += span_header("Medal Commendations:")
 		for (var/com in GLOB.commendations)
 			parts += com
 		return "<div class='panel stationborder'>[parts.Join("<br>")]</div>"
@@ -513,7 +529,7 @@
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.Grant(C.mob)
-	to_chat(C,"<a href='?src=[REF(R)];report=1'>Show roundend report again</a>")
+	to_chat(C,"<a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a>")
 
 /datum/action/report
 	name = "Show roundend report"
@@ -541,13 +557,13 @@
 	var/text = "<b>[ply.key]</b> was <b>[ply.name]</b>[jobtext] and"
 	if(ply.current)
 		if(ply.current.stat == DEAD)
-			text += " <span class='redtext'>died</span>"
+			text += " [span_redtext("died")]"
 		else
-			text += " <span class='greentext'>survived</span>"
+			text += " [span_greentext("survived")]"
 		if(ply.current.real_name != ply.name)
 			text += " as <b>[ply.current.real_name]</b>"
 	else
-		text += " <span class='redtext'>had their body destroyed</span>"
+		text += " [span_redtext("had their body destroyed")]"
 	return text
 
 /proc/printplayerlist(list/players)
@@ -567,9 +583,9 @@
 	var/count = 1
 	for(var/datum/objective/objective in objectives)
 		if(objective.check_completion())
-			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_greentext("Success!")]"
 		else
-			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+			objective_parts += "<b>Objective #[count]</b>: [objective.explanation_text] [span_redtext("Fail.")]"
 		count++
 	return objective_parts.Join("<br>")
 
@@ -593,19 +609,32 @@
 
 	//json format backup file generation stored per server
 	var/json_file = file("data/admins_backup.json")
-	var/list/file_data = list("ranks" = list(), "admins" = list())
+	var/list/file_data = list(
+		"ranks" = list(),
+		"admins" = list(),
+		"connections" = list(),
+	)
 	for(var/datum/admin_rank/R in GLOB.admin_ranks)
 		file_data["ranks"]["[R.name]"] = list()
 		file_data["ranks"]["[R.name]"]["include rights"] = R.include_rights
 		file_data["ranks"]["[R.name]"]["exclude rights"] = R.exclude_rights
 		file_data["ranks"]["[R.name]"]["can edit rights"] = R.can_edit_rights
-	for(var/i in GLOB.admin_datums+GLOB.deadmins)
-		var/datum/admins/A = GLOB.admin_datums[i]
-		if(!A)
-			A = GLOB.deadmins[i]
-			if (!A)
+
+	for(var/admin_ckey in GLOB.admin_datums + GLOB.deadmins)
+		var/datum/admins/admin = GLOB.admin_datums[admin_ckey]
+
+		if(!admin)
+			admin = GLOB.deadmins[admin_ckey]
+			if (!admin)
 				continue
-		file_data["admins"]["[i]"] = A.rank.name
+		file_data["admins"][admin_ckey] = admin.rank.name
+
+		if (admin.owner)
+			file_data["connections"][admin_ckey] = list(
+				"cid" = admin.owner.computer_id,
+				"ip" = admin.owner.address,
+			)
+
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
 

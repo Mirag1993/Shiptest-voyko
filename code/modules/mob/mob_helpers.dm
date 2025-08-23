@@ -28,6 +28,45 @@
 			zone = BODY_ZONE_CHEST
 	return zone
 
+/// Returns a generic path of the object based on the slot
+/proc/get_path_by_slot(slot_id)
+	switch(slot_id)
+		if(ITEM_SLOT_BACK)
+			return /obj/item/storage/backpack
+		if(ITEM_SLOT_MASK)
+			return /obj/item/clothing/mask
+		if(ITEM_SLOT_NECK)
+			return /obj/item/clothing/neck
+		if(ITEM_SLOT_HANDCUFFED)
+			return /obj/item/restraints/handcuffs
+		if(ITEM_SLOT_LEGCUFFED)
+			return /obj/item/restraints/legcuffs
+		if(ITEM_SLOT_BELT)
+			return /obj/item/storage/belt
+		if(ITEM_SLOT_ID)
+			return /obj/item/card/id
+		if(ITEM_SLOT_EARS)
+			return /obj/item/clothing/ears
+		if(ITEM_SLOT_EYES)
+			return /obj/item/clothing/glasses
+		if(ITEM_SLOT_GLOVES)
+			return /obj/item/clothing/gloves
+		if(ITEM_SLOT_HEAD)
+			return /obj/item/clothing/head
+		if(ITEM_SLOT_FEET)
+			return /obj/item/clothing/shoes
+		if(ITEM_SLOT_OCLOTHING)
+			return /obj/item/clothing/suit
+		if(ITEM_SLOT_ICLOTHING)
+			return /obj/item/clothing/under
+		if(ITEM_SLOT_LPOCKET)
+			return /obj/item
+		if(ITEM_SLOT_RPOCKET)
+			return /obj/item
+		if(ITEM_SLOT_SUITSTORE)
+			return /obj/item
+	return null
+
 /**
  * Return the zone or randomly, another valid zone
  *
@@ -38,7 +77,7 @@
 	if(prob(probability))
 		zone = check_zone(zone)
 	else
-		zone = pickweight(list(BODY_ZONE_HEAD = 1, BODY_ZONE_CHEST = 1, BODY_ZONE_L_ARM = 4, BODY_ZONE_R_ARM = 4, BODY_ZONE_L_LEG = 4, BODY_ZONE_R_LEG = 4))
+		zone = pick_weight(list(BODY_ZONE_HEAD = 4, BODY_ZONE_CHEST = 64, BODY_ZONE_L_ARM = 8, BODY_ZONE_R_ARM = 8, BODY_ZONE_L_LEG = 8, BODY_ZONE_R_LEG = 8))
 	return zone
 
 ///Would this zone be above the neck
@@ -72,6 +111,7 @@
 			. += "*"
 	return sanitize(.)
 
+/* [CELADON REMOVE] - CELADON_QOL - mod_celadon\qol\code\mob_helpers2.dm перенёс т. к. желаю модульность
 /**
  * Makes you speak like you're drunk
  */
@@ -95,11 +135,6 @@
 				newletter = "oo"
 			else if(lowerletter == "c")
 				newletter = "k"
-		if(rand(1, 20) == 20)
-			if(newletter == " ")
-				newletter = "...huuuhhh..."
-			else if(newletter == ".")
-				newletter = " *BURP*."
 		switch(rand(1, 20))
 			if(1)
 				newletter += "'"
@@ -108,9 +143,10 @@
 			if(20)
 				newletter += "[newletter][newletter]"
 			else
-				// do nothing
+				EMPTY_BLOCK_GUARD
 		. += "[newletter]"
 	return sanitize(.)
+	[CELADON REMOVE] */
 
 /// Makes you talk like you got cult stunned, which is slurring but with some dark messages
 /proc/cultslur(phrase) // Inflicted on victims of a stun talisman
@@ -153,12 +189,13 @@
 			if(5)
 				newletter = "glor"
 			else
-				// do nothing
+				EMPTY_BLOCK_GUARD
 		. += newletter
 	return sanitize(.)
 
 #define CLOCK_CULT_SLUR(phrase) sanitize(text2ratvar(phrase))
 
+/* [CELADON REMOVE] - CELADON_QOL - mod_celadon\qol\code\mob_helpers2.dm перенёс т. к. желаю модульность
 ///Adds stuttering to the message passed in
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
@@ -169,17 +206,14 @@
 	var/static/regex/nostutter = regex(@@[aeiouAEIOU "'()[\]{}.!?,:;_`~-]@)
 	for(var/i = 1, i <= leng, i += length(rawchar))
 		rawchar = newletter = phrase[i]
-		if(prob(80) && !nostutter.Find(rawchar))
-			if(prob(10))
-				newletter = "[newletter]-[newletter]-[newletter]-[newletter]"
-			else if(prob(20))
+		if(prob(70) && !nostutter.Find(rawchar))
+			if(prob(25))
 				newletter = "[newletter]-[newletter]-[newletter]"
-			else if (prob(5))
-				newletter = ""
 			else
 				newletter = "[newletter]-[newletter]"
 		. += newletter
 	return sanitize(.)
+	[CELADON REMOVE] */
 
 ///Convert a message to derpy speak
 /proc/derpspeech(message, stuttering)
@@ -207,6 +241,8 @@
 /proc/Gibberish(text, replace_characters = FALSE, chance = 50)
 	text = html_decode(text)
 	. = ""
+	if(!chance)
+		return sanitize(.)
 	var/rawchar = ""
 	var/letter = ""
 	var/lentext = length(text)
@@ -344,9 +380,6 @@
 		return FALSE
 	if(M.mind && M.mind.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
 		switch(SSticker.mode.config_tag)
-			if("cult")
-				if(M.mind in SSticker.mode.cult)
-					return 2
 			if("nuclear")
 				if(M.mind.has_antag_datum(/datum/antagonist/nukeop,TRUE))
 					return 2
@@ -395,8 +428,8 @@
 			continue
 		var/orbit_link
 		if (source && action == NOTIFY_ORBIT)
-			orbit_link = " <a href='?src=[REF(O)];follow=[REF(source)]'>(Orbit)</a>"
-		to_chat(O, "<span class='ghostalert'>[message][(enter_link) ? " [enter_link]" : ""][orbit_link]</span>")
+			orbit_link = " <a href='byond://?src=[REF(O)];follow=[REF(source)]'>(Orbit)</a>"
+		to_chat(O, span_ghostalert("[message][(enter_link) ? " [enter_link]" : ""][orbit_link]"))
 		if(ghost_sound)
 			SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
 		if(flashwindow)
@@ -420,7 +453,10 @@
 /**
  * Heal a robotic body part on a mob
  */
+// [CELADON-EDIT] - CELADON_RETURN_CONTENT_IPC - Откат по ИПС
+// /proc/item_heal_robotic(mob/living/carbon/human/H, mob/user, brute_heal, burn_heal, integrity_loss=0)	// CELADON-EDIT = ORIGINAL
 /proc/item_heal_robotic(mob/living/carbon/human/H, mob/user, brute_heal, burn_heal)
+// [/CELADON-EDIT]
 	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
 	if(affecting && (!IS_ORGANIC_LIMB(affecting)))
 		var/dam //changes repair text based on how much brute/burn was supplied
@@ -429,13 +465,27 @@
 		else
 			dam = 0
 		if((brute_heal > 0 && affecting.brute_dam > 0) || (burn_heal > 0 && affecting.burn_dam > 0))
+			// [CELADON-REMOVE] - CELADON_RETURN_CONTENT_IPC - Откат по ИПС
+			// if(affecting.uses_integrity)
+			// 	var/integrity_damage_incurred = (affecting.get_curable_damage() >= affecting.integrity_threshold) || (affecting.max_damage - affecting.integrity_loss >= affecting.integrity_threshold)
+			// 	if(affecting.get_curable_damage(integrity_damage_incurred ? integrity_loss : 0) <= 0)
+			// 		var/limb_hp_loss = affecting.integrity_loss-affecting.integrity_ignored
+			// 		if(limb_hp_loss+integrity_loss >= affecting.max_damage)
+			// 			to_chat(user, span_warning("[affecting] is destroyed! It needs structural repairs to be repaired any further."))
+			// 		else
+			// 			to_chat(user, span_warning("[affecting] has taken too much structural damage, and needs surgery to improve any further."))
+			// 		return
+			// 	if (integrity_damage_incurred)
+			// 		affecting.take_integrity_damage(integrity_loss)
+			// [/CELADON-REMOVE]
+
 			if(affecting.heal_damage(brute_heal, burn_heal, 0, BODYTYPE_ROBOTIC))
 				H.update_damage_overlays()
 			user.visible_message("[user] has fixed some of the [dam ? "dents on" : "burnt wires in"] [H]'s [parse_zone(affecting.body_zone)].", \
-			"<span class='notice'>You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [parse_zone(affecting.body_zone)].</span>")
+			span_notice("You fix some of the [dam ? "dents on" : "burnt wires in"] [H == user ? "your" : "[H]'s"] [parse_zone(affecting.body_zone)]."))
 			return 1 //successful heal
 		else
-			to_chat(user, "<span class='warning'>[affecting] is already in good condition!</span>")
+			to_chat(user, span_warning("[affecting] is already in good condition!"))
 
 ///Is the passed in mob a ghost with admin powers, doesn't check for AI interact like isAdminGhost() used to
 /proc/isAdminObserver(mob/user)
@@ -573,7 +623,7 @@
 			dissectionmsg = " via Experimental Dissection"
 		else if(HAS_TRAIT_FROM(src, TRAIT_DISSECTED,"Thorough Dissection"))
 			dissectionmsg = " via Thorough Dissection"
-		. += "<span class='notice'>This body has been dissected and analyzed[dissectionmsg].</span><br>"
+		. += "[span_notice("This body has been dissected and analyzed[dissectionmsg].")]<br>"
 
 /**
  * Get the list of keywords for policy config
@@ -593,3 +643,22 @@
 ///Can the mob see reagents inside of containers?
 /mob/proc/can_see_reagents()
 	return stat == DEAD || has_unlimited_silicon_privilege //Dead guys and silicons can always see reagents
+
+// [CELADON-ADD] - CELADON_LOAD_PREF
+/mob/living/carbon/human/proc/load_client_appearance(client/client)
+	if(!client)
+		client = src.client
+	var/old_name = real_name
+	SEND_SOUND(src, 'sound/misc/server-ready.ogg')
+	client.prefs.copy_to(src)
+	SSquirks.AssignQuirks(src, client, TRUE, FALSE, job, FALSE)//This Assigns the selected character's quirks
+	var/obj/item/card/id/id_card = get_idcard() //Time to change their ID card as well if they have one.
+	if(id_card)
+		id_card.registered_name = real_name
+		id_card.update_label(real_name, id_card.assignment)
+	fully_replace_character_name(old_name, real_name)
+	SEND_SOUND(src, 'sound/magic/charge.ogg') //Fluff
+	log_game("[key_name(src)] has loaded their default appearance for a ghost role.")
+	message_admins("[ADMIN_LOOKUPFLW(src)] has loaded their default appearance for a ghost role.")
+	return
+// [/CELADON-ADD] - CELADON_LOAD_PREF

@@ -18,7 +18,7 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/orange_soda = 10,
 		/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry = 10,
 		/obj/item/reagent_containers/food/drinks/waterbottle = 10,
-		/obj/item/reagent_containers/food/drinks/soda_cans/xeno_energy = 5,
+		// /obj/item/reagent_containers/food/drinks/soda_cans/xeno_energy = 5, [CELADON-DELETE] - Задублированный товар.
 		/obj/item/reagent_containers/food/drinks/soda_cans/vimukti = 6,
 		/obj/item/reagent_containers/food/drinks/soda_cans/shoal_punch = 6)
 	premium = list(
@@ -26,24 +26,12 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/xeno_energy = 1,
 		/obj/item/reagent_containers/food/drinks/soda_cans/crosstalk = 1)
 	refill_canister = /obj/item/vending_refill/cola
-	default_price = 45
-	extra_price = 200
-
+	default_price = 5
+	extra_price = 15
 
 /obj/item/vending_refill/cola
 	machine_name = "RobustMore Softdrinks"
 	icon_state = "refill_cola"
-
-/obj/machinery/vending/cola/random
-	name = "\improper Random Drinkies"
-	icon_state = "random_cola"
-	desc = "Uh oh!"
-
-/obj/machinery/vending/cola/random/Initialize()
-	..()
-	var/T = pick(subtypesof(/obj/machinery/vending/cola) - /obj/machinery/vending/cola/random)
-	new T(loc)
-	return INITIALIZE_HINT_QDEL
 
 /obj/machinery/vending/cola/blue
 	icon_state = "Cola_Machine"

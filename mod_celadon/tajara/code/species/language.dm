@@ -1,10 +1,10 @@
 /datum/language_holder/tajara
 	understood_languages = list(
-		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/galactic_common = list(LANGUAGE_ATOM),
 		/datum/language/siiktajr = list(LANGUAGE_ATOM)
 	)
 	spoken_languages = list(
-		/datum/language/common = list(LANGUAGE_ATOM),
+		/datum/language/galactic_common = list(LANGUAGE_ATOM),
 		/datum/language/siiktajr = list(LANGUAGE_ATOM)
 	)
 
@@ -23,5 +23,5 @@
 		"rir", "khan", "jun", "dar", "rik", "kah", "hal", "ket", "jurl", "mah", "tul", "cresh", "azu", "ragh"
 	)
 	default_priority = 90
-	icon = 'mod_celadon/_storge_icons/icons/language.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/assets/language.dmi'
 	icon_state = "siiktajr"

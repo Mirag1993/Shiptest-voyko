@@ -8,8 +8,16 @@
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH | PEPPERPROOF
+	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH | PEPPERPROOF | SEALS_EYES
 	resistance_flags = NONE
+
+	equip_sound = 'sound/items/equip/armor_equip.ogg'
+	equipping_sound = EQUIP_SOUND_VFAST_GENERIC
+	unequipping_sound = UNEQUIP_SOUND_VFAST_GENERIC
+	equip_delay_self = EQUIP_DELAY_MASK
+	equip_delay_other = EQUIP_DELAY_MASK * 1.5
+	strip_delay = EQUIP_DELAY_MASK * 1.5
+	equip_self_flags = EQUIP_ALLOW_MOVEMENT | EQUIP_SLOWDOWN
 
 /obj/item/clothing/mask/gas/atmos
 	name = "atmospheric gas mask"
@@ -83,8 +91,11 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply. This one has an integrated voice changer."
 	var/voice_change = 1
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"
+	icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/masks.dmi'
+	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/mask.dmi'
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "clown"
@@ -128,11 +139,13 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.UpdateButtonIcon()
-		to_chat(user, "<span class='notice'>Your Clown Mask has now morphed into [choice], all praise the Honkmother!</span>")
+		to_chat(user, span_notice("Your Clown Mask has now morphed into [choice], all praise the Honkmother!"))
 		return TRUE
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
+	icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/masks.dmi'
+	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/mask.dmi'
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "sexyclown"
@@ -142,6 +155,8 @@
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
+	icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/masks.dmi'
+	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/mask.dmi'
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "mime"
@@ -181,8 +196,9 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.UpdateButtonIcon()
-		to_chat(user, "<span class='notice'>Your Mime Mask has now morphed into [choice]!</span>")
+		to_chat(user, span_notice("Your Mime Mask has now morphed into [choice]!"))
 		return TRUE
+// [/CELADON-ADD]
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -193,14 +209,17 @@
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
+	icon = 'mod_celadon/_storge_icons/icons/other/clown_mime/masks.dmi'
 	desc = "A traditional female mime's mask."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
+// [/CELADON-ADD]
 
 /obj/item/clothing/mask/gas/cyborg
 	name = "cyborg visor"
@@ -260,7 +279,7 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.UpdateButtonIcon()
-		to_chat(M, "<span class='notice'>The Tiki Mask has now changed into the [choice] Mask!</span>")
+		to_chat(M, span_notice("The Tiki Mask has now changed into the [choice] Mask!"))
 		return 1
 
 /obj/item/clothing/mask/gas/tiki_mask/yalp_elor
@@ -275,3 +294,9 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR
 
+/obj/item/clothing/mask/foggy
+	desc = "wow. fov. so cool"
+
+/obj/item/clothing/mask/foggy/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/clothing_fov_visor, FOV_90_DEGREES)

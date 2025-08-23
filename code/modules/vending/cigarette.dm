@@ -18,15 +18,14 @@
 		/obj/item/storage/fancy/rollingpapers = 5)
 	premium = list(
 		/obj/item/storage/fancy/cigarettes/cigpack_robustgold = 3,
-		/obj/item/storage/box/gum/nicotine = 3,
 		/obj/item/lighter = 3,
 		/obj/item/storage/fancy/cigarettes/cigars = 1,
 		/obj/item/storage/fancy/cigarettes/cigars/havana = 1,
 		/obj/item/storage/fancy/cigarettes/cigars/cohiba = 1,
 		/obj/item/clothing/mask/vape/cigar = 3)
 	refill_canister = /obj/item/vending_refill/cigarette
-	default_price = 75
-	extra_price = 250
+	default_price = 10
+	extra_price = 20
 	light_mask = "cigs-light-mask"
 
 /obj/machinery/vending/cigarette/syndicate
@@ -41,7 +40,7 @@
 		/obj/item/lighter/greyscale = 4,
 		/obj/item/storage/fancy/rollingpapers = 5)
 
-/obj/machinery/vending/cigarette/beach //Used in the lavaland_biodome_beach.dmm ruin
+/obj/machinery/vending/cigarette/beach //Used in the old lavaland biodome ruin
 	name = "\improper ShadyCigs Ultra"
 	desc = "Now with extra premium products!"
 	product_ads = "Probably not bad for you!;Dope will get you through times of no money better than money will get you through times of no dope!;It's good for you!"

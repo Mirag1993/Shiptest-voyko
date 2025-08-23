@@ -83,13 +83,13 @@
 /area/ruin/jungle/paradise/cargo)
 "p" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/claymore{
+/obj/item/melee/sword/claymore{
 	pixel_x = -3
 	},
-/obj/item/claymore{
+/obj/item/melee/sword/claymore{
 	pixel_x = 5
 	},
-/obj/item/clothing/head/peaceflower{
+/obj/item/clothing/head/plastic_flower{
 	desc = "An extremely addictive flower, full of lesbian magic."
 	},
 /obj/effect/turf_decal/corner/opaque/blue,

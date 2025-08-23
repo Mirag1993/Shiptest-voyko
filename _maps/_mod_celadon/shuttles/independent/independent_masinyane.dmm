@@ -66,10 +66,10 @@
 /obj/machinery/atmospherics/pipe/simple/purple{
 	dir = 6
 	},
-/obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/turf_decal/industrial/warning{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/ship/engineering)
 "hc" = (
@@ -491,14 +491,15 @@
 	id = "masinyane_blastdoors";
 	pixel_x = -23
 	},
+/obj/docking_port/mobile{
+	dir = 4;
+	launch_status = 0;
+	preferred_direction = 4;
+	port_direction = 2
+	},
 /obj/machinery/door/poddoor{
 	id = "masinyane_blastdoors";
 	name = "Masinyane Entrance Doors"
-	},
-/obj/docking_port/mobile{
-	dir = 2;
-	launch_status = 0;
-	port_direction = 8
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
@@ -510,7 +511,6 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "IQ" = (
-/obj/structure/extinguisher_cabinet/directional/north,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/structure/chair,
 /turf/open/floor/plasteel/dark,
@@ -628,8 +628,8 @@
 /obj/item/storage/bag/ore,
 /obj/item/storage/bag/ore,
 /obj/item/pickaxe/drill,
-/obj/item/gun/energy/plasmacutter,
-/obj/item/gun/energy/plasmacutter,
+/obj/item/pickaxe/drill/jackhammer/old,
+/obj/item/pickaxe/drill/jackhammer/old,
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "Rt" = (
@@ -712,7 +712,12 @@
 /turf/open/floor/plating,
 /area/ship/engineering)
 "Ua" = (
-/obj/machinery/newscaster/directional/west,
+/obj/machinery/newscaster/directional/west{
+	pixel_y = -7
+	},
+/obj/structure/extinguisher_cabinet/directional/west{
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "Wi" = (
@@ -785,18 +790,18 @@
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2,
 /obj/machinery/firealarm/directional/east,
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
-/obj/item/reagent_containers/food/snacks/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
+/obj/item/food/burrito,
 /turf/open/floor/plating,
 /area/ship/engineering)
 

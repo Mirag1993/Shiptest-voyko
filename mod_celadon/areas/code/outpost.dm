@@ -86,6 +86,20 @@
 	icon_state = "lounge_cab_4"
 	sound_environment = SOUND_AREA_WOODFLOOR
 
+/// CREW
+
+/area/outpost/crew/dop_zone_1
+	name = "Dop Zone 1"
+	icon_state = "dop_zone_1"
+
+/area/outpost/crew/dop_zone_2
+	name = "Dop Zone 2"
+	icon_state = "dop_zone_2"
+
+/area/outpost/crew/dop_zone_3
+	name = "Dop Zone 3"
+	icon_state = "dop_zone_3"
+
 /// BAR
 
 /area/outpost/crew/bar/vip_elysium_zone
@@ -114,6 +128,42 @@
 	lighting_colour_tube = "#d6feff"
 	lighting_colour_bulb = "#c1ffff"
 
+/area/outpost/crew/bar/bar_zone
+	name = "Bar zone"
+	icon_state = "zone_bar"
+
+/// SECURITY
+
+/area/outpost/security/bay
+	name = "Bay"
+	icon_state = "sec_bay"
+
+/area/outpost/security/detective
+	name = "Office detective"
+	icon_state = "sec_detectiv"
+
+/area/outpost/security/sb_armory
+	name = "SB Armory"
+	icon_state = "sec_armory"
+
+/area/outpost/security/hall
+	name = "Hall"
+	icon_state = "sec_hall"
+
+/area/outpost/security/reseption
+	name = "Reseption"
+	icon_state = "sec_reseption"
+
+/area/outpost/operations/outpost_command
+	name = "Outpost Command"
+	icon_state = "outpost_command"
+
+/// VACANT
+
+/area/outpost/vacant_rooms/trash_factory
+	name = "Trash Factory"
+	icon_state = "trash_factory"
+
 /// FRACTIONS
 
 /area/outpost/fraction
@@ -122,10 +172,87 @@
 	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
 
 /area/outpost/fraction/syndi
-	name = "Syndicate Room"
+	name = "Faction Syndicate"
+	icon_state = "faction_syndicate"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+
+/area/outpost/fraction/syndi/room
+	name = "Elite Syndicate Room"
 	icon_state = "syndie_elite"
 
-/area/outpost/fraction/syndi_shop
-	name = "Don Co Shop"
+/area/outpost/fraction/syndi/donkco_shop
+	name = "Donk Co Shop"
 	icon_state = "syndi_shop"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
+
+/area/outpost/fraction/nanotrasen
+	name = "Faction Nanotrasen"
+	icon_state = "faction_nanotrasen"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+
+/area/outpost/fraction/solfed
+	name = "Faction Solar Federation"
+	icon_state = "faction_solfed"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+
+/area/outpost/fraction/inteq
+	name = "Faction InteQ"
+	icon_state = "faction_inteq"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+
+/area/outpost/fraction/separatist
+	name = "Faction Separatists"
+	icon_state = "faction_separatist"
+	sound_environment = SOUND_AREA_MEDIUM_SOFTFLOOR
+
+// CARGO FACTION
+
+/area/outpost/cargo/faction
+	name = "Cargo faction"
+	icon_state = "cargo_bay_faction"
+	lighting_colour_tube = "#ffe3cc"
+	lighting_colour_bulb = "#ffdbb8"
+
+/area/outpost/cargo/faction/all
+	name = "Cargo All"
+	icon_state = "cargo_bay_all"
+
+/area/outpost/cargo/faction/all/zone_1
+	name = "Cargo All zone 1"
+	icon_state = "cargo_bay_1"
+
+/area/outpost/cargo/faction/all/zone_2
+	name = "Cargo All zone 2"
+	icon_state = "cargo_bay_2"
+
+/area/outpost/cargo/faction/all/zone_3
+	name = "Cargo All zone 3"
+	icon_state = "cargo_bay_3"
+
+/area/outpost/cargo/faction/all/zone_4
+	name = "Cargo All zone 4"
+	icon_state = "cargo_bay_4"
+
+/area/outpost/cargo/faction/syndicate
+	name = "Cargo Syndi"
+	icon_state = "cargo_bay_syndicate"
+	lighting_colour_tube = "#f16464"
+	lighting_colour_bulb = "#f16464"
+
+/area/outpost/cargo/faction/solfed
+	name = "Cargo SolFed"
+	icon_state = "cargo_bay_solfed"
+	lighting_colour_tube = "#f7ef7c"
+	lighting_colour_bulb = "#f7ef7c"
+
+/area/outpost/cargo/faction/inteq
+	name = "Cargo InteQ"
+	icon_state = "cargo_bay_inteq"
+	lighting_colour_tube = "#c0845d"
+	lighting_colour_bulb = "#c0845d"
+
+/area/outpost/cargo/faction/nanotrasen
+	name = "Cargo Nanotrasen"
+	icon_state = "cargo_bay_nt"
+	lighting_colour_tube = "#384e68"
+	lighting_colour_bulb = "#384e68"

@@ -79,12 +79,6 @@
 	},
 /area/ruin/beach)
 "eV" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
@@ -134,7 +128,7 @@
 /area/ruin/beach)
 "hd" = (
 /obj/machinery/light/floor,
-/obj/machinery/porta_turret/syndicate/energy{
+/obj/machinery/porta_turret/ruin/ramzi{
 	active_power_usage = 0;
 	faction = list("Frontiersmen","beach");
 	idle_power_usage = 0;
@@ -203,8 +197,7 @@
 "kj" = (
 /obj/structure/closet/cabinet,
 /obj/item/pneumatic_cannon/speargun,
-/obj/item/storage/backpack/magspear_quiver,
-/obj/item/kitchen/knife/hunting,
+/obj/item/melee/knife/hunting,
 /turf/open/floor/wood,
 /area/ruin/beach)
 "kr" = (
@@ -224,7 +217,7 @@
 /area/ruin/beach)
 "kM" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/fishfry{
+/obj/item/food/fishfry{
 	pixel_y = 8;
 	pixel_x = 2
 	},
@@ -282,7 +275,7 @@
 /turf/open/floor/plating/asteroid/sand,
 /area/overmap_encounter/planetoid/cave/explored)
 "mq" = (
-/obj/item/ammo_box/c38_box,
+/obj/item/storage/box/ammo/c38,
 /obj/structure/closet/crate/wooden,
 /turf/open/floor/wood,
 /area/ruin/beach)
@@ -457,12 +450,17 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
 /obj/structure/closet/secure_closet/freezer,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
+/obj/item/food/fishmeat/carp,
 /turf/open/floor/plastic,
 /area/ruin/beach)
 "sG" = (
@@ -492,9 +490,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen{
-	anchored = 1
-	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plastic,
 /area/ruin/beach)
 "tr" = (
@@ -529,7 +525,7 @@
 	dir = 6
 	},
 /obj/structure/table/reinforced,
-/obj/item/kitchen/knife/butcher,
+/obj/item/melee/knife/butcher,
 /turf/open/floor/plastic,
 /area/ruin/beach)
 "wg" = (
@@ -571,15 +567,26 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "yo" = (
 /obj/structure/table/wood/poker,
-/obj/item/kirbyplants{
-	icon_state = "plant-17";
-	pixel_y = 13;
-	layer = 3
-	},
-/obj/item/reagent_containers/food/snacks/burger/fish{
+/obj/item/food/burger/fish{
 	pixel_y = -3;
 	pixel_x = 11;
 	layer = 3.1
+	},
+/obj/item/gun/ballistic/revolver/ashhand{
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/ammo_casing/a4570{
+	pixel_x = -7;
+	pixel_y = -2
+	},
+/obj/item/spacecash/bundle/c1000{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/item/spacecash/bundle/c1000{
+	pixel_x = 9;
+	pixel_y = 4
 	},
 /turf/open/floor/carpet,
 /area/ruin/beach)
@@ -606,6 +613,25 @@
 	dir = 10
 	},
 /obj/structure/table/wood,
+/obj/item/throwing_star/magspear,
+/obj/item/throwing_star/magspear{
+	pixel_y = 2
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 4
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 6
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 8
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 10
+	},
+/obj/item/throwing_star/magspear{
+	pixel_y = 12
+	},
 /turf/open/floor/wood,
 /area/ruin/beach)
 "yV" = (
@@ -613,7 +639,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "zq" = (
 /obj/structure/table/wood/reinforced,
-/obj/item/reagent_containers/food/snacks/fishandchips,
+/obj/item/food/fishandchips,
 /obj/effect/turf_decal/corner/opaque/pink/diagonal,
 /turf/open/floor/plastic,
 /area/ruin/beach)
@@ -630,7 +656,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "zA" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/cubancarp{
+/obj/item/food/cubancarp{
 	pixel_y = 6;
 	pixel_x = 11
 	},
@@ -983,9 +1009,9 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "LM" = (
 /obj/structure/closet/crate/bin,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp/imitation,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp/imitation,
-/obj/item/reagent_containers/food/snacks/fishmeat/carp/imitation,
+/obj/item/food/fishmeat/carp/imitation,
+/obj/item/food/fishmeat/carp/imitation,
+/obj/item/food/fishmeat/carp/imitation,
 /obj/effect/turf_decal/corner/opaque/pink/diagonal,
 /turf/open/floor/plastic,
 /area/ruin/beach)
@@ -1032,11 +1058,11 @@
 "Os" = (
 /obj/structure/table/wood/reinforced,
 /obj/effect/turf_decal/corner/opaque/pink/diagonal,
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_y = 12;
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/snacks/fishfingers{
+/obj/item/food/fishfingers{
 	pixel_y = 5;
 	pixel_x = -4
 	},
@@ -1051,8 +1077,7 @@
 "PB" = (
 /obj/structure/closet/cabinet,
 /obj/item/pneumatic_cannon/speargun,
-/obj/item/storage/backpack/magspear_quiver,
-/obj/item/kitchen/knife/hunting,
+/obj/item/melee/knife/hunting,
 /obj/machinery/light/small/directional/east{
 	light_color = "#d8b1b1"
 	},
@@ -1165,6 +1190,11 @@
 "Ty" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod{
+	pixel_x = 5;
+	pixel_y = -2
+	},
 /turf/open/floor/wood,
 /area/ruin/beach)
 "TM" = (
@@ -1244,7 +1274,6 @@
 /turf/open/water/beach/deep,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Vt" = (
-/obj/item/nullrod/carp,
 /obj/structure/bed/dogbed,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood/walnut,

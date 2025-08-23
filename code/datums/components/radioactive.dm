@@ -13,7 +13,8 @@
 
 /datum/component/radioactive/Initialize(_strength=0, _source, _half_life=RAD_HALF_LIFE, _can_contaminate=TRUE)
 	// shouldn't ever happen, but it pays to be a little careful
-	strength = min(_strength, INFINITY)
+	// Ограничиваем максимальное значение радиации // [CELADON-ADD]
+	strength = SSradiation.cap_radiation(_strength)	// [CELADON-EDIT] - CELADON_FIXES_RADIATION // strength = min(_strength, INFINITY)	// ORIGINAL
 	source = _source
 	hl3_release_date = _half_life
 	can_contaminate = _can_contaminate
@@ -30,7 +31,7 @@
 	//Let's make er glow
 	//This relies on parent not being a turf or something. IF YOU CHANGE THAT, CHANGE THIS
 	var/atom/movable/master = parent
-	master.add_filter("rad_glow", 2, list("type" = "outline", "color" = "#39ff1430", "size" = 2))
+	master.add_filter("rad_glow", 2, list("type" = "outline", "color" = RAD_GLOW_COLOR, "size" = 2))
 	addtimer(CALLBACK(src, PROC_REF(glow_loop), master), rand(1,19))//Things should look uneven
 	START_PROCESSING(SSradiation, src)
 
@@ -40,13 +41,26 @@
 	master.remove_filter("rad_glow")
 	return ..()
 
-/datum/component/radioactive/process()
-	if(!prob(50))
+/datum/component/radioactive/process(seconds_per_tick)
+	if(!SPT_PROB(50, seconds_per_tick))
 		return
 	radiation_pulse(parent, strength, RAD_DISTANCE_COEFFICIENT*2, FALSE, can_contaminate)
 	if(!hl3_release_date)
 		return
-	strength -= strength / hl3_release_date
+
+	// [CELADON-EDIT] - CELADON_FIXES_RADIATION
+	//strength -= strength / hl3_release_date	// ORIGINAL
+	// Ускоренное уменьшение для больших значений
+	if(strength > 1000)
+		// Для больших значений уменьшаем быстрее
+		var/decay_factor = max(1, log(10, strength) / 2)
+		strength -= (strength / hl3_release_date) * decay_factor
+	else
+		// Стандартное уменьшение
+		strength -= strength / hl3_release_date
+
+	// Проверка на минимальное значение
+	// [/CELADON-EDIT]
 	if(strength <= RAD_BACKGROUND_RADIATION)
 		qdel(src)
 		return PROCESS_KILL
@@ -55,7 +69,6 @@
 	var/filter = master.get_filter("rad_glow")
 	if(filter)
 		animate(filter, alpha = 110, time = 15, loop = -1)
-		animate(alpha = 40, time = 25)
 
 /datum/component/radioactive/InheritComponent(datum/component/C, i_am_original, _strength, _source, _half_life, _can_contaminate)
 	if(!i_am_original)
@@ -64,9 +77,11 @@
 		return
 	if(C)
 		var/datum/component/radioactive/other = C
-		strength = max(strength, other.strength)
+	// [CELADON-EDIT] - CELADON_FIXES_RADIATION
+		strength = SSradiation.cap_radiation(max(strength, other.strength))	// strength = max(strength, other.strength) // ORIGINAL
 	else
-		strength = max(strength, _strength)
+		strength = SSradiation.cap_radiation(max(strength, _strength)) // strength = max(strength, _strength) // ORIGINAL
+	// [/CELADON-EDIT]
 
 /datum/component/radioactive/proc/rad_examine(datum/source, mob/user, atom/thing)
 	SIGNAL_HANDLER

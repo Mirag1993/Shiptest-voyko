@@ -23,7 +23,7 @@
 
 /obj/structure/table_frame/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, "<span class='notice'>You start disassembling [src]...</span>")
+		to_chat(user, span_notice("You start disassembling [src]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 30))
 			playsound(src.loc, 'sound/items/deconstruct.ogg', 50, TRUE)
@@ -34,16 +34,16 @@
 	if (istype(material))
 		if(material?.tableVariant)
 			if(material.get_amount() < 1)
-				to_chat(user, "<span class='warning'>You need one [material.name] sheet to do this!</span>")
+				to_chat(user, span_warning("You need one [material.name] sheet to do this!"))
 				return
-			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
+			to_chat(user, span_notice("You start adding [material] to [src]..."))
 			if(do_after(user, 20, target = src) && material.use(1))
 				make_new_table(material.tableVariant)
 		else if(istype(material, /obj/item/stack/sheet))
 			if(material.get_amount() < 1)
-				to_chat(user, "<span class='warning'>You need one sheet to do this!</span>")
+				to_chat(user, span_warning("You need one sheet to do this!"))
 				return
-			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
+			to_chat(user, span_notice("You start adding [material] to [src]..."))
 			if(do_after(user, 20, target = src) && material.use(1))
 				var/list/material_list = list()
 				if(material.material_type)
@@ -90,13 +90,24 @@
 		else if(istype(I, /obj/item/stack/tile/carpet))
 			toConstruct = /obj/structure/table/wood/poker
 		else if(istype(I, /obj/item/stack/sheet/plasteel))
-			toConstruct = /obj/structure/table/wood/reinforced
+			// [CELADON-EDIT] - CELADON_STRUCTURES - Пока так, у нас нет варианта усиленого материала дерева
+			// toConstruct = /obj/structure/table/wood/reinforced	// CELADON-EDIT - ORIGINAL
+			switch(alert(usr, "Choose variant reinforced table?",, "wood", "bar"))
+				if("wood")
+					toConstruct = /obj/structure/table/wood/reinforced
+				if("bar")
+					toConstruct = /obj/structure/table/wood/reinforced/bar
+			// [/CELADON-EDIT]
+		// [CELADON-ADD] - CELADON_STRUCTURES
+		else if(istype(I, /obj/item/stack/ore/salvage/scrapmetal))
+			toConstruct = /obj/structure/table/scrap
+		// [/CELADON-ADD]
 
 		if (toConstruct)
 			if(material.get_amount() < 1)
-				to_chat(user, "<span class='warning'>You need one [material.name] sheet to do this!</span>")
+				to_chat(user, span_warning("You need one [material.name] sheet to do this!"))
 				return
-			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
+			to_chat(user, span_notice("You start adding [material] to [src]..."))
 			if(do_after(user, 20, target = src) && material.use(1))
 				make_new_table(toConstruct)
 	else

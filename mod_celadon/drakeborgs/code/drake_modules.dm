@@ -7,8 +7,8 @@
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	flags_1 = CONDUCT_1
-	cyborg_icon_override = 'mod_celadon/_storge_icons/icons/drakeborg_vr-1.dmi'
-	hasrest = TRUE
+	cyborg_icon_override = 'mod_celadon/_storge_icons/icons/other/borgs/drakeborg_vr-1.dmi'
+	drakerest = TRUE
 
 /obj/item/robot_module/drake/medical
 	name = "Drake Medical"
@@ -29,8 +29,8 @@
 		/obj/item/roller/robo,
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/stack/medical/gauze/cyborg,
-		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+		/obj/item/organ_storage)
+		///obj/item/borg/lollipop)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	cyborg_base_icon = "drakemed"
 	moduleselect_icon = "medical"
@@ -76,7 +76,7 @@
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/disabler/cyborg,
-		/obj/item/clothing/mask/gas/sechailer/cyborg,
+		// /obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/extinguisher/mini)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	cyborg_base_icon = "drakesec"
@@ -138,9 +138,10 @@
 		/obj/item/storage/bag/sheetsnatcher/borg,
 		/obj/item/gun/energy/kinetic_accelerator/cyborg,
 		/obj/item/gps/cyborg,
-		/obj/item/stack/marker_beacon)
+		/obj/item/stack/marker_beacon,
+		/obj/item/t_scanner/adv_mining_scanner/cyborg)
 	emag_modules = list(/obj/item/borg/stun)
 	cyborg_base_icon = "drakemine"
 	moduleselect_icon = "miner"
 	hat_offset = 0
-	var/obj/item/t_scanner/adv_mining_scanner/cyborg/mining_scanner
+

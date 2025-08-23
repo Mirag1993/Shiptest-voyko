@@ -2,80 +2,127 @@
 #include "_modpacks.dm"
 
 
-// #include "example/_example.dme"
+// Соблюдаем алфавитный порядок при добавлении путей!
+// Пример пути: #include "example/_example.dme"
 
 // --- MAINTENANCE --- //
 #include "_components/__components.dme"
+#include "emotes/_emotes.dme"
 #include "_storge_sounds/_storge_sounds.dme"
 #include "_storge_icons/_storge_icons.dme"
-#include "fov/_fov.dme"
-#include "subtler/_subtler.dme"
-#include "radio_syndicate/_radio_syndicate.dme"
-#include "solgov_outfit/_solgov_outfit.dme"
-#include "ipc_chassis/_ipc_chassis.dme"
-#include "qol/_qol.dme"
-#include "loadout/_loadout.dme"
 #include "accents_add/_accents_add.dme"
-#include "areas/_areas.dme"
-#include "map_expansion/_map_expansion.dme"
-#include "faction/_faction.dme"
-#include "repairs_other/_repairs_other.dme"
+#include "access/_access.dme"
 #include "achievements/_achievements.dme"
+#include "areas/_areas.dme"
+#include "faction/_faction.dme"
+#include "ghost_roles/_ghost_roles.dme"
+#include "ipc_chassis/_ipc_chassis.dme"
+#include "ipc_hair/_ipc_hair.dme"
+#include "loadout/_loadout.dme"
+#include "map_expansion/_map_expansion.dme"
+#include "overmap/_overmap.dme"
+#include "qol/_qol.dme"
+#include "radio_syndicate/_radio_syndicate.dme"
+#include "subtler/_subtler.dme"
+#include "overload/_overload.dme"
+#include "clumsy_table/_clumsy_table.dme"
+#include "quirks/_quirks.dme"
+
+// --- SECRET --- //
+
+#if fexists("../+secret/__secret.dme") && !defined(DISABLE_SECRETS)
+#include "../+secret/__secret.dme"
+#else
+#include "_secrets/__secret_public.dme"
+#endif
 
 // --- ICONS --- //
-#include "species_changes/_species_changes.dme"
-#include "resprite/_resprite.dme"
 #include "parallax/_parallax.dme"
-#include "solfed_stuff/_solfed_stuff.dme"
+#include "resprite/_resprite.dme"
+#include "species_changes/_species_changes.dme"
 
 // --- SOUNDS --- //
 #include "lobby_celadon/_lobby_celadon.dme"
 
 // --- OBJECTS --- //
-#include "cargo_items/_cargo_items.dme"
-#include "stuff_elysium/_stuff_elysium.dme"
-#include "celadon_old_syndicate_rigs/_celadon_old_syndicate_rigs.dme"
-#include "structures/_structures.dme"
-#include "stuff_inteq/_stuff_inteq.dme"
-#include "tajara/_tajara.dme"
-#include "weapons/_weapons.dme"
-#include "bongs/_bongs.dme"
-#include "research/_research.dme"
-#include "mechas/_mechas.dme"
-#include "items/_items.dme"
-#include "flora/_flora.dme"
-#include "musician/_musician.dme"
-#include "food_and_drinks/_food_and_drinks.dme"
-#include "pizzamat/_pizzamat.dme"
 #include "barsigns/_barsigns.dme"
-#include "stamps/_stamps.dme"
-#include "stuff_gamma/_stuff_gamma.dme"
-#include "turrets/_turrets.dme"
-#include "sauna/_sauna.dme"
+#include "boarding/_boarding.dme"
+#include "bongs/_bongs.dme"
+#include "celadon_old_syndicate_rigs/_celadon_old_syndicate_rigs.dme"
+#include "celadon_modsuits/celadon_modsuits.dme"
 #include "effects/_effects.dme"
-#include "repair_weebstick/_repair_weebstick.dme"
-
+#include "elysiumpod/_elysiumpod.dme"
+#include "flora/_flora.dme"
+#include "food_and_drinks/_food_and_drinks.dme"
+#include "items/_items.dme"
+#include "large_doors/_large_doors.dme"
+#include "mechas/_mechas.dme"
+#include "moniq/_moniq.dme"
+#include "outpost_console/_outpost_console.dme"
+#include "paperwork/_paperwork.dme"
+#include "neon_pack/_neon_pack.dme"
+#include "pizzamat/_pizzamat.dme"
+#include "plushes_vending/_plushes_vending.dme"
+#include "riol/_riol.dme"
+#include "sauna/_sauna.dme"
+#include "stamps/_stamps.dme"
+#include "structures/_structures.dme"
+#include "tajara/_tajara.dme"
+#include "turrets/_turrets.dme"
+#include "weapons/_weapons.dme"
+#include "inteq_vendor/inteq_vendor.dme"
+#include "rnd/_rnd.dme"
+#include "rus_labeler/_rus_labeler.dme"
+//#include "helmet_seclite/_helmet_seclite.dme"
+#include "vending_cash/_vending_cash.dme"
+#include "reskin_customization/_reskin_customization.dme"
+#include "drinks_and_food/_drinks_and_food.dme"
 
 // --- MOBS --- //
-#include "mobs/_mobs.dme"
 #include "drakeborgs/_drakeborgs.dme"
+#include "lanius/_lanius.dme"
+#include "mobs/_mobs.dme"
+#include "silicon/_silicon.dme"
 
 // --- MISC --- //
+#include "ai_laws/_ai_laws.dme"
 #include "balance/_balance.dme"
+#include "ethereal_fix/_ethereal_fix.dme"
 #include "fixes/_fixes.dme"
 #include "ipc_surgery/_ipc_surgery.dme"
+#include "lifeline_minus/_lifeline_minus.dme"
 #include "robotic_honk/_robotic_honk.dme"
-#include "ai_laws/_ai_laws.dme"
+#include "wideband/_wideband.dme"
+// #include "fix_tail/_fix_tail.dme"	-	Отключен по приказу хэда шиптеста
+#include "survey_handheld/_survey_handheld.dme"
+#include "underwear/_underwear.dme"
+#include "increase_weapon_durability/_increase_weapon_durability.dme"
+#include "quickbind_pocket_and_neck/_quickbind_pocket_and_neck.dme"
+#include "add_item_for_slot_ears/_add_item_for_slot_ears.dme"
+#include "bite_feral/_bite_feral.dme"
 
 // --- RETURNS --- //
-#include "crusher_trophy/_crusher_trophy.dme"
-#include "return_tendrils/_return_tendrils.dme"
+#include "return_content_clowns/_return_content_clowns.dme"
+#include "return_content_quirks/_return_content_quirks.dme"
+#include "return_content_crusher_trophy/_return_content_crusher_trophy.dme"
+#include "return_combat_shotgun/_return_combat_shotgun.dme"
+#include "return_content_ipc/_return_content_ipc.dme"
+#include "return_content_spawn/_return_content_spawn.dme"
+#include "return_content_misc/_return_content_misc.dme"
 
 // --- DONATORS --- //
 #include "donaters/_donaters.dme"
 
 // --- MAPS --- //
 #include "maps/_configs.dme"
+
+// --- OUTFIT --- //
+#include "outfit/_outfit.dme"
+
+// --- ПОСЛЕДНЯЯ ИНСТАНЦИЯ (BALANCE) --- //
+// Тут собраны модпаки, что будут применяться на все и вся. Поэтому они собраны тут
+#include "economy/_economy.dme"
+
 
 
 // --- UNUSED MODS --- //
@@ -89,6 +136,6 @@
 
 // --- EVENTS --- //
 
-// #include "event_td/_event_td.dme" // Ивент на атаку и защита
+#include "event_td/_event_td.dme" // Ивент на атаку и защита
 
 //#include "event_cly/_event_cly.dme"

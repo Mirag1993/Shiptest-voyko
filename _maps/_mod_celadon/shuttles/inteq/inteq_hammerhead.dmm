@@ -73,7 +73,6 @@
 /obj/item/ammo_box/a357,
 /obj/item/ammo_box/a357,
 /obj/item/clothing/accessory/holster,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
 /obj/item/clothing/glasses/hud/security/sunglasses/inteq,
 /obj/item/clothing/suit/armor/hos/inteq/honorable,
 /obj/item/clothing/head/beret/sec/hos/inteq/honorable,
@@ -81,6 +80,7 @@
 /obj/item/storage/backpack/ert/security{
 	name = "Vanguard backpack"
 	},
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/carpet/royalblue,
 /area/ship/crew)
 "aq" = (
@@ -112,6 +112,13 @@
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/dorm)
+"aw" = (
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 8;
+	id = "hammerhead_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
 "ax" = (
 /obj/structure/railing{
 	dir = 4
@@ -181,8 +188,8 @@
 /mob/living/simple_animal/pet/mothroach{
 	faction = list("playerInteq")
 	},
-/obj/item/bedsheet/random,
-/obj/item/kitchen/knife/shiv,
+/obj/effect/spawner/random/bedsheet,
+/obj/item/melee/knife/shiv,
 /turf/open/floor/plating,
 /area/ship/security/prison)
 "aS" = (
@@ -338,9 +345,8 @@
 /obj/machinery/suit_storage_unit/inherit{
 	req_access_txt = "8485"
 	},
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
 /obj/item/clothing/shoes/magboots,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
+/obj/item/clothing/suit/space/hardsuit/security/inteq,
 /turf/open/floor/engine{
 	icon_state = "plastitanium";
 	explosion_block = 7
@@ -451,8 +457,9 @@
 "bU" = (
 /obj/machinery/light/directional/north,
 /obj/effect/decal/cleanable/robot_debris,
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover{
-	density = null
+/obj/machinery/porta_turret/ship/inteq/light{
+	dir = 6;
+	id = "hammerhead_turrets"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
@@ -549,9 +556,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering/engine)
 "cn" = (
-/obj/machinery/power/smes/shuttle/precharged{
-	dir = 4
-	},
+/obj/machinery/power/smes/shuttle/precharged,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -574,9 +579,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering/communications)
-"cs" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ship/crew/cryo)
 "ct" = (
 /obj/effect/turf_decal/industrial/traffic{
 	dir = 1
@@ -721,8 +723,7 @@
 /obj/effect/turf_decal/box,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/item/clothing/under/syndicate/inteq/artificer,
-/obj/item/clothing/under/syndicate/inteq/skirt/artificer,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
+/obj/item/clothing/under/syndicate/inteq/artificer/skirt,
 /obj/structure/closet/secure_closet{
 	icon_state = "eng_secure";
 	anchored = 1;
@@ -731,7 +732,8 @@
 /obj/item/storage/belt/utility/full/engi,
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "dD" = (
@@ -785,7 +787,7 @@
 /area/ship/security/prison)
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/maintenance/central)
 "dU" = (
@@ -945,9 +947,8 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/item/reagent_containers/food/snacks/pizzaslice/arnold,
-/obj/effect/spawner/lootdrop/maintenance/eight,
-/obj/effect/spawner/lootdrop/mafia_outfit,
+/obj/effect/spawner/random/maintenance/eight,
+/obj/effect/spawner/random/clothing/mafia_outfit,
 /obj/structure/closet/crate/wooden{
 	name = "old wooden crate"
 	},
@@ -1099,7 +1100,10 @@
 /turf/open/floor/plasteel/patterned/grid,
 /area/ship/cargo/office)
 "gy" = (
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover,
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 8;
+	id = "hammerhead_turrets"
+	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ship/bridge)
 "gF" = (
@@ -1129,7 +1133,10 @@
 /area/ship/maintenance/central)
 "gG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover,
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 5;
+	id = "hammerhead_turrets"
+	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
 "gJ" = (
@@ -1157,8 +1164,7 @@
 	explosion_block = 5
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
+/obj/item/clothing/suit/space/hardsuit/security/inteq,
 /turf/open/floor/engine{
 	icon_state = "plastitanium";
 	explosion_block = 7
@@ -1548,8 +1554,9 @@
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "ji" = (
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover{
-	density = null
+/obj/machinery/porta_turret/ship/inteq/light{
+	dir = 5;
+	id = "hammerhead_turrets"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
@@ -1614,7 +1621,7 @@
 /obj/effect/turf_decal/corner/opaque/brown{
 	dir = 8
 	},
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/item/clothing/under/rank/prisoner/skirt,
 /obj/item/clothing/under/rank/prisoner,
 /obj/item/clothing/shoes/sneakers/orange,
@@ -1703,7 +1710,7 @@
 	},
 /obj/machinery/door/window/brigdoor,
 /obj/effect/turf_decal/trimline/opaque/yellow/warning,
-/mob/living/simple_animal/mouse{
+/mob/living/basic/mouse{
 	faction = list("PlayerInteQ")
 	},
 /turf/open/floor/plasteel/dark,
@@ -1865,7 +1872,7 @@
 /obj/machinery/light/small/directional/east,
 /obj/structure/urinal{
 	dir = 8;
-	pixel_x = 11
+	pixel_x = 14
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ship/crew/janitor)
@@ -1965,7 +1972,7 @@
 	},
 /obj/machinery/firealarm/directional/west,
 /obj/structure/closet/firecloset/full,
-/mob/living/simple_animal/mouse/gray{
+/mob/living/basic/mouse/gray{
 	faction = list("playerInteq")
 	},
 /obj/effect/turf_decal/box/red,
@@ -2017,9 +2024,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/shuttle/engine/electric/tech2{
-	dir = 4
-	},
+/obj/machinery/power/shuttle/engine/electric/tech2,
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
 "nb" = (
@@ -2096,7 +2101,7 @@
 	explosion_block = 7;
 	req_access_txt = "8485"
 	},
-/mob/living/simple_animal/mouse{
+/mob/living/basic/mouse{
 	faction = list("playerInteq")
 	},
 /turf/open/floor/engine{
@@ -2112,7 +2117,9 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering/communications)
 "nR" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	all_items_free = 1
+	},
 /turf/open/floor/plastic,
 /area/ship/crew/canteen/kitchen)
 "nS" = (
@@ -2237,17 +2244,11 @@
 	desc = "A slick black folder stamped 'Property of Inteq Risk Management Group.'";
 	pixel_x = 5
 	},
-/obj/item/stamp/law{
-	name = "master at arms' rubber stamp";
-	pixel_x = 5
-	},
 /obj/machinery/door/window/brigdoor,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/prison)
 "oD" = (
-/obj/machinery/power/smes/shuttle/precharged{
-	dir = 4
-	},
+/obj/machinery/power/smes/shuttle/precharged,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -2321,8 +2322,9 @@
 /area/ship/security/prison)
 "oN" = (
 /obj/effect/decal/cleanable/squid_ink,
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover{
-	density = null
+/obj/machinery/porta_turret/ship/inteq/light{
+	dir = 5;
+	id = "hammerhead_turrets"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
@@ -2487,7 +2489,7 @@
 /turf/open/floor/plating,
 /area/ship/security/prison)
 "qe" = (
-/mob/living/simple_animal/mouse{
+/mob/living/basic/mouse{
 	faction = list("playerInteq")
 	},
 /turf/open/floor/plasteel/tech/grid,
@@ -2530,9 +2532,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/power/smes/shuttle/precharged{
-	dir = 4
-	},
+/obj/machinery/power/smes/shuttle/precharged,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2559,13 +2559,11 @@
 	pixel_x = 32
 	},
 /obj/structure/table,
-/obj/item/stamp/artificer{
-	pixel_x = 9
-	},
 /obj/item/storage/photo_album/CE{
 	pixel_y = 5;
 	pixel_x = -5
 	},
+/obj/item/stamp/inteq/artificer,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering/electrical)
 "qN" = (
@@ -2634,7 +2632,7 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /turf/open/floor/plasteel/patterned/grid,
 /area/ship/cargo/office)
 "rD" = (
@@ -2692,7 +2690,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/mob/living/simple_animal/mouse/gray{
+/mob/living/basic/mouse/gray{
 	faction = list("PlayerInteQ")
 	},
 /turf/open/floor/plasteel/patterned/grid,
@@ -2711,8 +2709,7 @@
 /obj/machinery/button/shieldwallgen{
 	pixel_x = 10;
 	pixel_y = 20;
-	id = "Hamm_down_ex";
-	req_access_txt = "0"
+	id = "Hamm_down_ex"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2789,13 +2786,16 @@
 	req_access_txt = "8485";
 	anchored = 1
 	},
-/obj/item/ammo_box/magazine/m12g/small,
 /obj/item/storage/toolbox/ammo/a308,
-/obj/item/ammo_box/magazine/gal,
-/obj/item/ammo_box/magazine/gal,
-/obj/item/ammo_box/magazine/m12g/small,
 /obj/item/storage/toolbox/ammo/c9mm,
-/obj/item/storage/toolbox/ammo/c9mm,
+/obj/item/ammo_box/magazine/f4_308,
+/obj/item/ammo_box/magazine/f4_308,
+/obj/item/storage/toolbox/ammo/shotgun,
+/obj/item/storage/toolbox/ammo/c10mm,
+/obj/item/ammo_box/magazine/smgm10mm,
+/obj/item/ammo_box/magazine/smgm10mm,
+/obj/item/ammo_box/magazine/smgm10mm,
+/obj/item/ammo_box/magazine/smgm10mm,
 /turf/open/floor/engine{
 	icon_state = "plastitanium";
 	explosion_block = 7
@@ -2828,15 +2828,14 @@
 	},
 /obj/machinery/vending/security/wall{
 	req_access_txt = "8485";
-	pixel_y = 28
+	pixel_y = 28;
+	all_items_free = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/security/prison)
 "sx" = (
 /obj/effect/turf_decal/techfloor/orange,
-/obj/structure/bed/dogbed{
-	anchored = 1
-	},
+/obj/structure/bed/dogbed,
 /mob/living/simple_animal/cow/wisdom{
 	dir = 8;
 	name = "Golosa";
@@ -2884,7 +2883,7 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/south,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/item/clothing/under/rank/prisoner/skirt,
 /obj/item/clothing/under/rank/prisoner,
 /obj/item/clothing/shoes/sneakers/orange,
@@ -3085,7 +3084,7 @@
 /obj/effect/decal/cleanable/garbage,
 /obj/structure/urinal{
 	dir = 8;
-	pixel_x = 11
+	pixel_x = 14
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ship/crew/janitor)
@@ -3107,7 +3106,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/directional/south,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/mouse/white{
+/mob/living/basic/mouse/white{
 	faction = list("playerInteq")
 	},
 /turf/open/floor/plasteel/tech/grid,
@@ -3127,6 +3126,7 @@
 	pixel_x = -2;
 	pixel_y = -3
 	},
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "us" = (
@@ -3136,10 +3136,9 @@
 /obj/item/clothing/suit/armor/inteq/corpsman,
 /obj/item/clothing/glasses/hud/security/sunglasses/inteq,
 /obj/item/clothing/under/syndicate/inteq/corpsman,
-/obj/item/clothing/under/syndicate/inteq/skirt/corpsman,
+/obj/item/clothing/under/syndicate/inteq/corpsman/skirt,
 /obj/item/clothing/head/soft/inteq/corpsman,
 /obj/item/toy/plush/plushvar,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
 /obj/structure/closet/secure_closet{
 	icon_state = "med_secure";
 	name = "medical doctor's locker";
@@ -3323,7 +3322,10 @@
 /turf/open/floor/plasteel/grimy,
 /area/ship/crew/dorm)
 "vU" = (
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover,
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 1;
+	id = "hammerhead_turrets"
+	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
 "vX" = (
@@ -3456,7 +3458,7 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/mouse{
+/mob/living/basic/mouse{
 	faction = list("PlayerInteQ")
 	},
 /turf/open/floor/plasteel/dark,
@@ -3466,6 +3468,11 @@
 /obj/item/bedsheet/brown,
 /obj/structure/curtain/bounty,
 /obj/structure/bed,
+/obj/item/gun/ballistic/shotgun/toy{
+	pixel_x = -4;
+	pixel_y = -8;
+	desc = "A shotgun for the youngest InteQ operatives. Shoots foam darts. 'For you and your little war crimes' Aged 18 years and older."
+	},
 /turf/open/floor/carpet/black,
 /area/ship/crew/dorm)
 "wP" = (
@@ -3475,7 +3482,7 @@
 	},
 /obj/effect/turf_decal/box/white,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance/seven,
+/obj/effect/spawner/random/maintenance/seven,
 /turf/open/floor/plating,
 /area/ship/cargo)
 "wR" = (
@@ -3518,11 +3525,8 @@
 "xb" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/igniter/incinerator_atmos,
-/obj/item/gun/ballistic/automatic/hmg/l6_saw/toy/riot{
-	name = "L6 SAW";
-	desc = "A heavy machine gun, designated 'L6 SAW'. Chambered in 7.12x82mm."
-	},
 /obj/machinery/air_sensor/atmos/incinerator_tank,
+/obj/item/gun/ballistic/automatic/toy,
 /turf/open/floor/engine/airless,
 /area/ship/engineering/engine)
 "xh" = (
@@ -3709,6 +3713,13 @@
 "yb" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/medical)
+"yh" = (
+/obj/machinery/porta_turret/ship/inteq/heavy{
+	dir = 4;
+	id = "hammerhead_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ship/bridge)
 "yj" = (
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/structure/window/plasma/reinforced/spawner,
@@ -3765,6 +3776,13 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/prison)
+"yu" = (
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 6;
+	id = "hammerhead_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
 "yv" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/atmospherics/pipe/simple/dark/hidden/layer5{
@@ -3917,9 +3935,9 @@
 	name = "Kitchen"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /turf/open/floor/plastic,
 /area/ship/crew/canteen/kitchen)
 "zh" = (
@@ -3985,12 +4003,12 @@
 /obj/item/clothing/suit/armor/vest/inteq,
 /obj/item/shield/riot/tele,
 /obj/item/clothing/head/helmet/swat/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
 /obj/item/clothing/glasses/hud/security/sunglasses/inteq,
 /obj/item/ammo_box/magazine/usp45_standart,
 /obj/item/storage/backpack/ert{
 	name = "Enforcer backpack"
 	},
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/carpet/red_gold,
 /area/ship/crew/crewtwo)
 "zM" = (
@@ -4096,7 +4114,7 @@
 	icon_state = "prisoner";
 	req_access_txt = "3"
 	},
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/item/clothing/under/rank/prisoner/skirt,
 /obj/item/clothing/under/rank/prisoner,
 /obj/item/clothing/shoes/sneakers/orange,
@@ -4123,9 +4141,8 @@
 /obj/item/clothing/head/helmet/inteq,
 /obj/item/clothing/head/helmet/inteq,
 /obj/item/clothing/head/helmet/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
+/obj/item/clothing/mask/balaclava/inteq,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plating,
 /area/ship/cargo)
 "AA" = (
@@ -4232,13 +4249,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
-/obj/structure/fireaxecabinet{
+/obj/structure/cabinet/fireaxe{
 	pixel_y = 27
 	},
 /obj/effect/turf_decal/techfloor/orange{
 	dir = 1
 	},
-/mob/living/simple_animal/mouse/gray{
+/mob/living/basic/mouse/gray{
 	faction = list("playerInteq")
 	},
 /turf/open/floor/plasteel/tech/grid,
@@ -4261,7 +4278,7 @@
 /obj/structure/closet/crate/large,
 /obj/effect/turf_decal/industrial/traffic,
 /obj/effect/turf_decal/box/white,
-/obj/effect/spawner/lootdrop/maintenance/seven,
+/obj/effect/spawner/random/maintenance/seven,
 /turf/open/floor/plating,
 /area/ship/cargo)
 "AT" = (
@@ -4282,7 +4299,8 @@
 /obj/effect/decal/cleanable/plasma,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/vending/engivend{
-	req_access = null
+	req_access = null;
+	all_items_free = 1
 	},
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
@@ -4496,7 +4514,7 @@
 /turf/open/floor/plating,
 /area/ship/cargo)
 "Cd" = (
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
@@ -4509,14 +4527,13 @@
 /obj/effect/turf_decal/techfloor/orange,
 /obj/item/clothing/glasses/meson/sunglasses,
 /obj/item/clothing/head/hardhat/weldhat/white,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
 /obj/item/storage/belt/utility/chief/full,
 /obj/item/storage/box/stockparts/t2,
 /obj/item/clothing/under/syndicate/inteq/honorable{
 	name = "good looking turtleneck";
 	desc = "a midnight black turtleneck."
 	},
-/obj/item/storage/box/inteqmaid,
+/obj/item/storage/box/maid,
 /obj/item/storage/belt/security/webbing/inteq/alt,
 /obj/item/clothing/suit/hooded/wintercoat/security/inteq/alt,
 /obj/item/clothing/head/beret/sec/hos/inteq/honorable{
@@ -4738,8 +4755,9 @@
 	anchored = 1
 	},
 /obj/machinery/light/directional/north,
-/obj/item/gun/ballistic/shotgun/bulldog/inteq,
-/obj/item/ammo_box/magazine/m12g,
+/obj/item/gun/ballistic/shotgun/automatic/bulldog/inteq,
+/obj/item/ammo_box/magazine/m12g_bulldog/drum,
+/obj/item/ammo_box/magazine/m12g_bulldog/drum,
 /turf/open/floor/engine{
 	icon_state = "plastitanium";
 	explosion_block = 7
@@ -4753,7 +4771,7 @@
 /obj/structure/closet/crate/engineering,
 /obj/item/storage/cans/sixbeer,
 /obj/item/storage/cans/sixbeer,
-/obj/item/storage/box/inteqmaid,
+/obj/item/storage/box/maid,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
@@ -4805,6 +4823,13 @@
 	},
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
+"DW" = (
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 5;
+	id = "hammerhead_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ship/bridge)
 "DY" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/autolathe/hacked,
@@ -4858,7 +4883,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/box/white,
-/obj/effect/spawner/lootdrop/maintenance/seven,
+/obj/effect/spawner/random/maintenance/seven,
 /turf/open/floor/plating,
 /area/ship/cargo)
 "Em" = (
@@ -4874,7 +4899,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2
 	},
-/mob/living/simple_animal/mouse{
+/mob/living/basic/mouse{
 	faction = list("PlayerInteQ")
 	},
 /turf/open/floor/plasteel/tech,
@@ -4946,15 +4971,15 @@
 /area/ship/engineering/electrical)
 "EY" = (
 /obj/effect/turf_decal/box/white,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/structure/closet/crate/large,
 /turf/open/floor/plating,
 /area/ship/cargo)
@@ -5062,7 +5087,6 @@
 /area/ship/engineering/communications)
 "Fy" = (
 /obj/machinery/atmospherics/components/unary/shuttle/heater{
-	dir = 4;
 	piping_layer = 1
 	},
 /obj/machinery/door/poddoor{
@@ -5185,15 +5209,15 @@
 	},
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/reagent_containers/food/snacks/grown/cannabis{
+/obj/item/food/grown/cannabis{
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/grown/cannabis{
+/obj/item/food/grown/cannabis{
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/grown/cannabis{
+/obj/item/food/grown/cannabis{
 	pixel_x = 10;
 	pixel_y = 4
 	},
@@ -5424,6 +5448,7 @@
 	pixel_x = -2;
 	pixel_y = -3
 	},
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "He" = (
@@ -5571,7 +5596,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_animal/mouse/white{
+/mob/living/basic/mouse/white{
 	faction = list("playerInteq")
 	},
 /turf/open/floor/plasteel/tech/grid,
@@ -5614,6 +5639,13 @@
 /obj/machinery/iv_drip,
 /turf/open/floor/plating,
 /area/ship/cargo)
+"Im" = (
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 1;
+	id = "hammerhead_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
 "Iq" = (
 /obj/structure/window/plasma/reinforced/spawner,
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxin_input,
@@ -5681,7 +5713,7 @@
 /area/ship/crew/crewtwo)
 "IG" = (
 /obj/structure/table/chem,
-/obj/item/storage/backpack/duffelbag/med,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/mineral/titanium/white,
 /area/ship/medical)
 "IK" = (
@@ -5764,9 +5796,7 @@
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "Jm" = (
-/obj/machinery/power/shuttle/engine/fueled/plasma{
-	dir = 4
-	},
+/obj/machinery/power/shuttle/engine/fueled/plasma,
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
 "Jp" = (
@@ -5845,7 +5875,9 @@
 /area/ship/engineering/electrical)
 "JQ" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	all_items_free = 1
+	},
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "JS" = (
@@ -5968,8 +6000,9 @@
 /obj/effect/turf_decal/corner/opaque/yellow/border{
 	dir = 8
 	},
-/obj/machinery/turretid{
-	pixel_x = -32
+/obj/machinery/turretid/ship{
+	pixel_x = -32;
+	id = "hammerhead_turrets"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
@@ -6001,9 +6034,7 @@
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "Ld" = (
-/obj/machinery/power/smes/shuttle/precharged{
-	dir = 4
-	},
+/obj/machinery/power/smes/shuttle/precharged,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -6032,6 +6063,13 @@
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
+"Lj" = (
+/obj/machinery/porta_turret/ship/inteq/heavy{
+	dir = 4;
+	id = "hammerhead_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
 "Ln" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/atmospherics/components/trinary/mixer{
@@ -6180,7 +6218,7 @@
 	req_access_txt = "8484"
 	},
 /obj/item/clothing/shoes/magboots/advance,
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering/electrical)
 "Mt" = (
@@ -6393,9 +6431,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/shuttle/engine/electric/tech2{
-	dir = 4
-	},
+/obj/machinery/power/shuttle/engine/electric/tech2,
 /turf/open/floor/plating,
 /area/ship/engineering/electrical)
 "Oq" = (
@@ -6435,18 +6471,12 @@
 	req_access_txt = "8485";
 	anchored = 1
 	},
-/obj/item/gun/ballistic/shotgun/automatic/combat{
-	pixel_y = -6
-	},
-/obj/item/gun/ballistic/shotgun/automatic/combat/compact,
-/obj/item/gun/ballistic/automatic/marksman/gal/inteq{
+/obj/item/gun/ballistic/automatic/marksman/f4/inteq{
 	pixel_x = -8;
 	pixel_y = 3
 	},
-/obj/item/gun/ballistic/automatic/marksman/gal/inteq{
-	pixel_x = -8;
-	pixel_y = 3
-	},
+/obj/item/gun/ballistic/automatic/smg/skm_carbine/inteq,
+/obj/item/gun/ballistic/automatic/smg/skm_carbine/inteq,
 /turf/open/floor/engine{
 	icon_state = "plastitanium";
 	explosion_block = 7
@@ -6454,7 +6484,7 @@
 /area/ship/security/armory)
 "OH" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/condiment/enzyme,
 /obj/machinery/door/firedoor,
 /obj/machinery/firealarm/directional/west,
 /obj/structure/window,
@@ -6590,7 +6620,7 @@
 /obj/item/clothing/head/beret/sec/inteq,
 /obj/item/clothing/head/beret/sec/inteq,
 /obj/item/clothing/head/beret/sec/inteq,
-/mob/living/simple_animal/mouse/brown{
+/mob/living/basic/mouse/brown{
 	faction = list("playerInteq")
 	},
 /obj/structure/closet/wall/directional/south,
@@ -6599,7 +6629,7 @@
 "Pe" = (
 /obj/structure/urinal{
 	dir = 8;
-	pixel_x = 11
+	pixel_x = 14
 	},
 /turf/open/floor/plasteel/freezer,
 /area/ship/crew/janitor)
@@ -6608,7 +6638,9 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ship/medical)
 "PB" = (
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover,
+/obj/machinery/porta_turret/ship/inteq{
+	id = "hammerhead_turrets"
+	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
 "PC" = (
@@ -6738,8 +6770,7 @@
 	req_access_txt = "8485"
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
+/obj/item/clothing/suit/space/hardsuit/security/inteq,
 /turf/open/floor/engine{
 	icon_state = "plastitanium";
 	explosion_block = 7
@@ -6867,7 +6898,9 @@
 /turf/closed/wall/mineral/plastitanium/interior,
 /area/ship/crew/canteen/kitchen)
 "Rg" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat{
+	all_items_free = 1
+	},
 /turf/open/floor/plastic,
 /area/ship/crew/canteen/kitchen)
 "Rr" = (
@@ -6883,6 +6916,8 @@
 /obj/item/clothing/head/inteq_peaked,
 /obj/item/clothing/suit/armor/vest/inteq,
 /obj/item/clothing/suit/armor/vest/inteq,
+/obj/item/clothing/mask/balaclava/inteq,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/prison)
 "Rx" = (
@@ -7001,8 +7036,9 @@
 /area/ship/cargo/office)
 "SU" = (
 /obj/machinery/light/directional/north,
-/obj/machinery/porta_turret/ship/faction/inteq/laser/cover{
-	density = null
+/obj/machinery/porta_turret/ship/inteq/light{
+	dir = 6;
+	id = "hammerhead_turrets"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
@@ -7146,7 +7182,7 @@
 /turf/open/floor/carpet/black,
 /area/ship/crew/dorm)
 "TY" = (
-/mob/living/simple_animal/mouse/gray{
+/mob/living/basic/mouse/gray{
 	faction = list("playerInteq")
 	},
 /obj/item/toy/plush/goatplushie/angry,
@@ -7200,12 +7236,12 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/box/white,
-/mob/living/simple_animal/mouse{
+/mob/living/basic/mouse{
 	faction = list("PlayerInteQ")
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/structure/closet/crate/large,
-/obj/effect/spawner/lootdrop/maintenance/seven,
+/obj/effect/spawner/random/maintenance/seven,
 /turf/open/floor/plating,
 /area/ship/cargo)
 "Un" = (
@@ -7428,11 +7464,11 @@
 	name = "Kitchen"
 	},
 /obj/machinery/door/firedoor,
-/obj/item/reagent_containers/food/condiment/peppermill{
+/obj/item/reagent_containers/condiment/peppermill{
 	pixel_x = -4;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/obj/item/reagent_containers/condiment/saltshaker{
 	pixel_x = 4;
 	pixel_y = 10
 	},
@@ -7501,22 +7537,6 @@
 	explosion_block = 6
 	},
 /area/ship/crew/dorm)
-"Ww" = (
-/obj/structure/window/plasma/reinforced/spawner/north,
-/obj/structure/window/plasma/reinforced/spawner/west{
-	explosion_block = 5
-	},
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
-/obj/machinery/suit_storage_unit/inherit{
-	req_access_txt = "8485"
-	},
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
-/turf/open/floor/engine{
-	icon_state = "plastitanium";
-	explosion_block = 7
-	},
-/area/ship/security/armory)
 "Wz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
@@ -7595,8 +7615,7 @@
 /obj/effect/turf_decal/box,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/item/clothing/under/syndicate/inteq/artificer,
-/obj/item/clothing/under/syndicate/inteq/skirt/artificer,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
+/obj/item/clothing/under/syndicate/inteq/artificer/skirt,
 /obj/structure/closet/secure_closet{
 	icon_state = "atmos";
 	anchored = 1;
@@ -7606,7 +7625,8 @@
 /obj/item/clothing/glasses/meson/engine,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/holosign_creator/atmos,
-/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/color/yellow,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "WZ" = (
@@ -7664,10 +7684,16 @@
 /area/ship/engineering/engine)
 "Xx" = (
 /obj/structure/bed,
-/obj/item/kitchen/knife/shiv/carrot,
-/obj/item/bedsheet/random,
+/obj/item/melee/knife/shiv/carrot,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/plasteel/tech,
 /area/ship/security/prison)
+"Xy" = (
+/obj/machinery/porta_turret/ship/inteq{
+	dir = 1
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
 "XD" = (
 /obj/effect/turf_decal/corner/opaque/brown/border{
 	dir = 1
@@ -7902,6 +7928,10 @@
 "Yv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/dresser,
+/obj/item/storage/box/ammo/foam_darts{
+	pixel_y = 11;
+	layer = 6
+	},
 /turf/open/floor/carpet/black,
 /area/ship/crew/dorm)
 "Yw" = (
@@ -8121,11 +8151,11 @@ Vx
 Vx
 fn
 fn
-PB
+aw
 Gf
 fO
 mW
-PB
+aw
 Vx
 Vx
 Vx
@@ -8137,11 +8167,11 @@ Vx
 Vx
 Vx
 Vx
-PB
+aw
 Jy
 wW
 Ok
-PB
+aw
 fn
 fn
 Vx
@@ -8155,7 +8185,7 @@ Vx
 Vx
 Vx
 fn
-PB
+Xy
 fO
 WZ
 qD
@@ -8365,7 +8395,7 @@ Vx
 Vx
 Vx
 fn
-PB
+Im
 fO
 tH
 tH
@@ -8647,7 +8677,7 @@ Vx
 Vx
 Vx
 fn
-PB
+Im
 eL
 Bm
 GD
@@ -8977,7 +9007,7 @@ ml
 Ql
 bs
 bs
-Ww
+bs
 gO
 RP
 fn
@@ -9138,7 +9168,7 @@ Vx
 Vx
 Vx
 fn
-PB
+Im
 yb
 fP
 fP
@@ -9292,7 +9322,7 @@ rc
 tB
 OO
 Rx
-cs
+Br
 Br
 fn
 Vx
@@ -9473,7 +9503,7 @@ dp
 Sy
 mR
 dp
-PB
+aw
 Gf
 mW
 PB
@@ -9551,7 +9581,7 @@ Vx
 "}
 (43,1,1) = {"
 Vx
-PB
+Im
 CM
 tH
 tH
@@ -9902,7 +9932,7 @@ Vx
 (53,1,1) = {"
 Vx
 Vx
-vU
+DW
 pD
 IR
 xA
@@ -9930,7 +9960,7 @@ Ig
 kw
 Dg
 Tb
-PB
+yu
 Vx
 Vx
 "}
@@ -9981,7 +10011,7 @@ gG
 tI
 lN
 lN
-vU
+yh
 nS
 VP
 VP
@@ -9991,11 +10021,11 @@ VP
 VP
 VP
 nS
-PB
+Lj
 Tc
 Tc
 Tb
-PB
+yu
 Vx
 Vx
 Vx

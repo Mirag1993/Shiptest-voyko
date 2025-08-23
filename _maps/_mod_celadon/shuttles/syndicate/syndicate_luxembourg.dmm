@@ -218,7 +218,9 @@
 /turf/open/floor/engine/plasma,
 /area/ship/engineering)
 "dK" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	all_items_free = 1
+	},
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
@@ -618,9 +620,9 @@
 	req_access = null;
 	req_one_access_txt = list(25,41)
 	},
-/obj/item/gun/ballistic/automatic/smg/c20r/toy,
-/obj/item/gun/ballistic/automatic/smg/c20r/toy,
-/obj/item/gun/ballistic/automatic/smg/c20r/toy,
+/obj/item/gun/ballistic/shotgun/toy/crossbow,
+/obj/item/gun/ballistic/shotgun/toy/crossbow,
+/obj/item/gun/ballistic/shotgun/toy/crossbow,
 /obj/machinery/light/directional/south,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
@@ -768,8 +770,6 @@
 "mH" = (
 /obj/item/toy/sword,
 /obj/structure/closet/crate/wooden/toy,
-/obj/item/ammo_box/magazine/toy/smgm45/riot,
-/obj/item/ammo_box/magazine/toy/smgm45/riot,
 /obj/item/soap/syndie,
 /obj/item/soap/syndie,
 /obj/item/soap/syndie,
@@ -1078,8 +1078,8 @@
 /area/ship/hallway/central)
 "sh" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/syndicate/green,
-/obj/item/clothing/head/helmet/space/syndicate/green,
+/obj/item/clothing/suit/space/syndicate,
+/obj/item/clothing/head/helmet/space/syndicate,
 /obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/corner/opaque/brown/border,
 /obj/structure/cable{
@@ -1110,7 +1110,8 @@
 "sM" = (
 /obj/machinery/vending/boozeomat/all_access{
 	default_price = 0;
-	extra_price = 0
+	extra_price = 0;
+	all_items_free = 1
 	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/crew/canteen)
@@ -1205,7 +1206,9 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/toyliberationstation,
+/obj/machinery/vending/toyliberationstation{
+	all_items_free = 1
+	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
@@ -1234,7 +1237,8 @@
 /obj/machinery/light/small/directional/south,
 /obj/machinery/vending/clothing{
 	default_price = 0;
-	extra_price = 0
+	extra_price = 0;
+	all_items_free = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -1296,7 +1300,7 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
-/obj/machinery/computer/selling_pad_control{
+/obj/machinery/computer/arcade{
 	dir = 1
 	},
 /obj/machinery/light/directional/south,
@@ -1338,7 +1342,7 @@
 /obj/effect/turf_decal/corner/opaque/brown/border{
 	dir = 9
 	},
-/obj/item/banner/cargo,
+/obj/item/banner/cargo/mundane,
 /obj/machinery/light/directional/west,
 /obj/machinery/button/door{
 	id = "syndiefuck";
@@ -1573,7 +1577,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "Dk" = (
-/obj/machinery/selling_pad,
 /obj/effect/turf_decal/box,
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/plasteel/mono/dark,
@@ -1598,7 +1601,7 @@
 	pixel_y = 21;
 	dir = 8
 	},
-/obj/effect/spawner/lootdrop/maintenance/eight,
+/obj/effect/spawner/random/maintenance/eight,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "Dy" = (
@@ -1748,8 +1751,8 @@
 /area/ship/hallway/central)
 "FQ" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/syndicate/blue,
-/obj/item/clothing/head/helmet/space/syndicate/blue,
+/obj/item/clothing/suit/space/syndicate,
+/obj/item/clothing/head/helmet/space/syndicate,
 /obj/item/clothing/mask/breath,
 /obj/effect/turf_decal/corner/opaque/brown/border{
 	dir = 10
@@ -1872,7 +1875,7 @@
 "IJ" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/shaker{
@@ -1887,7 +1890,8 @@
 "IZ" = (
 /obj/machinery/vending/autodrobe/all_access{
 	default_price = 0;
-	extra_price = 0
+	extra_price = 0;
+	all_items_free = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -2307,10 +2311,6 @@
 /obj/item/storage/box/donkpockets/donkpocketspicy,
 /obj/item/storage/box/donkpockets/donkpocketspicy,
 /obj/item/storage/box/donkpockets/donkpocketspicy,
-/obj/item/storage/box/donkpockets/donkpockethonk,
-/obj/item/storage/box/donkpockets/donkpockethonk,
-/obj/item/storage/box/donkpockets/donkpockethonk,
-/obj/item/storage/box/donkpockets/donkpockethonk,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,

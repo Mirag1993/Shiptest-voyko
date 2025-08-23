@@ -7,7 +7,7 @@
 /area/ruin/wasteplanet)
 "aD" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle,
+/obj/item/food/grown/mushroom/chanterelle,
 /turf/open/floor/plating/dirt/old/waste,
 /area/ruin/wasteplanet)
 "aL" = (
@@ -23,7 +23,7 @@
 /area/ruin/wasteplanet)
 "bc" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/ammo_box/c9mm,
+/obj/item/storage/box/ammo/c9mm,
 /turf/open/floor/plating/wasteplanet,
 /area/ruin/wasteplanet)
 "bd" = (
@@ -70,7 +70,7 @@
 /area/ruin/wasteplanet)
 "df" = (
 /obj/structure/table/wood,
-/obj/item/kitchen/knife/combat/bone,
+/obj/item/melee/knife/bone,
 /obj/item/flashlight/flare/torch,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
@@ -107,11 +107,11 @@
 /area/ruin/wasteplanet)
 "ge" = (
 /obj/structure/table/wood,
-/obj/item/kitchen/knife/combat/bone{
+/obj/item/melee/knife/bone{
 	pixel_x = -20
 	},
-/obj/item/reagent_containers/food/snacks/salad/edensalad,
-/obj/item/reagent_containers/food/snacks/grown/berries/death{
+/obj/item/food/salad,
+/obj/item/food/grown/berries/death{
 	pixel_x = 6;
 	pixel_y = 10
 	},
@@ -120,7 +120,7 @@
 "gm" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/hooded/cloak/bone,
-/obj/item/claymore/bone,
+/obj/item/melee/sword/bone,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "gr" = (
@@ -241,7 +241,7 @@
 /area/ruin/wasteplanet)
 "jF" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/berries/glow,
+/obj/item/food/grown/berries/glow,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "jV" = (
@@ -318,7 +318,7 @@
 /obj/item/stack/sheet/bone{
 	pixel_x = 11
 	},
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit,
+/obj/item/food/grown/ash_flora/cactus_fruit,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "mw" = (
@@ -412,20 +412,20 @@
 /area/ruin/wasteplanet)
 "pr" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/banner,
+/obj/item/banner/command/mundane,
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/wasteplanet)
 "pQ" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit,
+/obj/item/food/grown/ash_flora/cactus_fruit,
 /obj/item/storage/belt/mining/primitive,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "qo" = (
 /obj/structure/closet/cabinet,
-/obj/item/spear/bonespear,
+/obj/item/melee/spear/bone,
 /obj/item/clothing/suit/armor/witchhunter,
-/obj/item/reagent_containers/food/snacks/grown/berries/death,
+/obj/item/food/grown/berries/death,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "qs" = (
@@ -491,7 +491,7 @@
 /area/ruin/wasteplanet)
 "sV" = (
 /obj/structure/closet/cabinet,
-/obj/item/claymore/bone,
+/obj/item/melee/sword/bone,
 /obj/item/clothing/suit/armor/witchhunter,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
@@ -499,12 +499,12 @@
 /obj/item/ammo_casing/spent{
 	icon_state = "pistol-brass-empty"
 	},
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/vigilitas_private,
 /turf/open/floor/plating/dirt/old/waste,
 /area/ruin/wasteplanet)
 "tF" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/jupitercup,
+/obj/item/food/grown/mushroom/jupitercup,
 /turf/open/floor/plating/dirt/old/waste,
 /area/ruin/wasteplanet)
 "tR" = (
@@ -578,7 +578,7 @@
 /area/ruin/wasteplanet)
 "xk" = (
 /obj/structure/table/wood,
-/obj/item/spear/bonespear,
+/obj/item/melee/spear/bone,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "xu" = (
@@ -630,7 +630,7 @@
 /turf/open/water/waste,
 /area/ruin/wasteplanet)
 "zy" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasenassaultsoldier,
+/obj/effect/mob_spawn/human/corpse/vigilitas_trooper,
 /turf/open/indestructible/hierophant/two/waste,
 /area/ruin/wasteplanet)
 "zI" = (
@@ -807,19 +807,19 @@
 	pixel_x = -11;
 	pixel_y = -5
 	},
-/obj/item/gun/ballistic/automatic/smg/skm_carbine/inteq/proto{
+/obj/item/gun/ballistic/automatic/smg/skm_carbine/inteq{
 	pixel_y = -18
 	},
 /turf/open/indestructible/hierophant/two/waste,
 /area/ruin/wasteplanet)
 "FP" = (
-/obj/item/kitchen/knife/combat/bone{
+/obj/item/melee/knife/bone{
 	pixel_x = 15
 	},
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "FV" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasensoldier,
+/obj/effect/mob_spawn/human/corpse/vigilitas_private,
 /turf/open/indestructible/hierophant/waste,
 /area/ruin/wasteplanet)
 "Gu" = (
@@ -881,7 +881,7 @@
 /area/ruin/wasteplanet)
 "HE" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap,
+/obj/item/food/grown/mushroom/libertycap,
 /turf/open/floor/plating/dirt/old/waste,
 /area/ruin/wasteplanet)
 "Ih" = (
@@ -960,7 +960,7 @@
 "Li" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/armor/bone,
-/obj/item/fireaxe/boneaxe,
+/obj/item/melee/axe/fire,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "Lj" = (
@@ -1143,7 +1143,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/ruin/wasteplanet)
 "OU" = (
-/obj/effect/mob_spawn/human/corpse/nanotrasenassaultsoldier,
+/obj/effect/mob_spawn/human/corpse/vigilitas_trooper,
 /turf/open/indestructible/hierophant/waste,
 /area/ruin/wasteplanet)
 "OV" = (
@@ -1233,7 +1233,7 @@
 /area/ruin/wasteplanet)
 "RT" = (
 /obj/structure/table/wood,
-/obj/item/spear/bonespear,
+/obj/item/melee/spear/bone,
 /obj/item/stack/sheet/sinew,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
@@ -1250,7 +1250,7 @@
 /area/ruin/wasteplanet)
 "St" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/melonfruitbowl,
+/obj/item/food/melonfruitbowl,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "SS" = (
@@ -1363,7 +1363,7 @@
 /area/ruin/wasteplanet)
 "Ww" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet,
+/obj/item/food/grown/mushroom/plumphelmet,
 /turf/open/floor/plating/dirt/old/waste,
 /area/ruin/wasteplanet)
 "WS" = (
@@ -1468,7 +1468,7 @@
 /area/ruin/wasteplanet)
 "Zr" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/salad/herbsalad,
+/obj/item/food/salad,
 /turf/open/floor/wood/waste,
 /area/ruin/wasteplanet)
 "Zw" = (

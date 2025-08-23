@@ -7,9 +7,10 @@
 	desc = "Fatigues worn by members of the Frontiersmen pirate fleet. Its poor-quality linen is very uncomfortable to move around in."
 	icon_state = "frontier"
 	item_state = "frontier"
-	can_adjust = FALSE
 	icon = 'icons/obj/clothing/faction/frontiersmen/uniforms.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/uniforms.dmi'
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	supports_variations = VOX_VARIATION
 
 /obj/item/clothing/under/frontiersmen/deckhand
 	name = "\improper deckhand jumpsuit"
@@ -29,35 +30,50 @@
 	name = "\improper Frontiersmen officer's uniform"
 	desc = "Worn by officers of the Frontiersmen pirate fleet. It's less comfortable than it looks."
 	icon_state = "frontier_officer"
+	supports_variations = VOX_VARIATION
 
 /obj/item/clothing/under/frontiersmen/admiral
 	name = "\improper frontiersmen admiral uniform"
 	desc = "Worn by admirals of the Frontiersmen pirate fleet, adorned with a tasteful amount of gold and completed with a very-stylish all-white aesthetic. Quite snobby for a bunch of pirates."
 	icon_state = "frontier_admiral"
 	item_state = "frontier_admiral"
+	supports_variations = VOX_VARIATION
 
 ////////////////////
 //Unarmored suits//
 ///////////////////
 
-/obj/item/clothing/suit/frontiersmen
+/obj/item/clothing/suit/frontiersmen //Ideally, the basic suit model here should be turned into a placeholder model, and this item have "smock" or "apron" added on the end.
 	name = "frontiersmen smock"
 	desc = "A basic white surgical apron worn by the Frontiersmen. It seems it could stain very easily..."
 	icon_state = "frontier_surgery"
 	icon = 'icons/obj/clothing/faction/frontiersmen/suits.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/suits.dmi'
+	allowed = MEDICAL_SUIT_ALLOWED_ITEMS
 
 //////////////////
 //Armored suits//
 /////////////////
 
-/obj/item/clothing/suit/armor/vest/bulletproof/frontier
-	name = "\improper Frontiersmen bulletproof armor"
+/obj/item/clothing/suit/armor/vest/frontier
+	name = "\improper Frontiersmen armor vest"
 	desc = "A scrap piece of armor made of disused protective plates. This one was used to protect the squishy bits of a Frontiersman, once."
 	icon_state = "frontier_armor"
 	icon = 'icons/obj/clothing/faction/frontiersmen/suits.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/suits.dmi'
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
 	blood_overlay_type = "armor"
+	supports_variations = VOX_VARIATION
+
+/obj/item/clothing/suit/armor/vest/bulletproof/frontier
+	name = "\improper Frontiersmen reinforced armor vest"
+	desc = "A battletested piece of armor made of sturdy protective plates. This one is significantly tougher than similar vests."
+	icon_state = "frontier_armor"
+	icon = 'icons/obj/clothing/faction/frontiersmen/suits.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/suits.dmi'
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	blood_overlay_type = "armor"
+	supports_variations = VOX_VARIATION
 
 /obj/item/clothing/suit/armor/vest/marine/frontier
 	name = "light tactical armor vest"
@@ -71,13 +87,13 @@
 	name = "reinforced fur coat"
 	desc = "A stiff olive-green coat, meant for frigid conditions. Commonly worn by Frontiersmen command."
 	icon_state = "frontier_coat"
-	body_parts_covered = CHEST|GROIN|ARMS
+	body_parts_covered = CHEST|GROIN
 	cold_protection = CHEST|GROIN|ARMS
 	heat_protection = CHEST|GROIN|ARMS
 	icon_state = "frontier_coat"
 	item_state = "frontier_coat"
 	blood_overlay_type = "coat"
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	icon = 'icons/obj/clothing/faction/frontiersmen/suits.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/suits.dmi'
 
@@ -85,7 +101,9 @@
 	name = "frontiersmen fireproof coat"
 	desc = "A stiff olive-green coat, used particularly by Frontiersmen flame troopers. It seems to be lined with asbestos, to provide maximum heat and fire deterrence... At the cost of comfort. And mesothelioma."
 	icon_state = "frontier_fireproof_suit"
-	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
+	supports_variations = VOX_VARIATION
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	w_class = WEIGHT_CLASS_BULKY
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
@@ -127,9 +145,13 @@
 	name = "frontiersman cap"
 	desc = "An olive-green and grey baseball hat, worn by cargo technicians working under the Frontiersmen. Even they have the rights for a cool cap!"
 	icon_state = "frontiersoft"
-	soft_type = "frontiersmen"
+	current_skin = "frontiersoft"
 	icon = 'icons/obj/clothing/faction/frontiersmen/head.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/head.dmi'
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	supports_variations = VOX_VARIATION
+	unique_reskin = null
+	current_skin = null
 
 /obj/item/clothing/head/beret/sec/frontier
 	name = "\improper Frontiersmen beret"
@@ -142,7 +164,7 @@
 	name = "\improper Frontiersmen officer beret"
 	desc = "A scratchy olive green beret emblazoned with the Frontiersmen insignia, worn by Frontiersmen who want to look good while intimidating freighter captains."
 	icon_state = "frontier_officer_beret"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 /obj/item/clothing/head/frontier
 	name = "frontier surgical cap"
@@ -162,34 +184,49 @@
 	name = "\improper frontiersmen commander's cap"
 	desc = "An imposing peaked cap, meant for a commander of the Frontiersmen."
 	icon_state = "frontier_cap"
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	supports_variations = VOX_VARIATION
 
 /obj/item/clothing/head/frontier/admiral
 	name = "\improper frontiersmen admiral's cap"
 	desc = "An imposing peaked cap meant for only the highest of officers of the Frontiersmen pirate fleet."
 	icon_state = "frontier_admiral_cap"
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	supports_variations = VOX_VARIATION
 
 /obj/item/clothing/head/helmet/bulletproof/x11/frontier
 	name = "\improper frontiersmen X-11 helmet"
 	desc = "A heavily modified X-11 pattern helmet used by the Frontiersmen pirate fleet."
 	icon_state = "x11helm_frontier"
 	unique_reskin = null
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	supports_variations = VOX_VARIATION
+	can_flashlight = TRUE
 
 /obj/item/clothing/head/helmet/bulletproof/x11/frontier/fireproof
 	name = "\improper fireproof frontiersmen X-11 helmet"
-	desc = "A subtly but helpful modifcation of the Frontiersmen X11 to make it fireproof."
+	desc = "A subtle, but helpful modifcation of the Frontiersmen X11 to make it fireproof."
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
+	can_flashlight = TRUE
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 10, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50)
 
-/obj/item/clothing/head/helmet/marine/frontier
+/obj/item/clothing/head/helmet/frontier
 	name = "frontiersmen reinforced helmet"
 	desc = "A reinforced Frontiersmen X-11. The front plate has a small window to let the user see."
 	icon_state = "marine_frontier"
 	icon = 'icons/obj/clothing/faction/frontiersmen/head.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/head.dmi'
+	armor = list("melee" = 35, "bullet" = 55, "laser" = 45, "energy" = 25, "bomb" = 30, "bio" = 75, "fire" = 40, "acid" = 50)
+	slowdown = 0.1
+	min_cold_protection_temperature = HELMET_MIN_TEMP_PROTECT
+	clothing_flags = STOPSPRESSUREDAMAGE | SNUG_FIT | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF | SEALS_EYES
+	can_flashlight = TRUE
 
 ////////////
 //Glasses//
@@ -222,8 +259,41 @@
 	item_state = "frontierwebbing"
 	icon = 'icons/obj/clothing/faction/frontiersmen/belt.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/frontiersmen/belt.dmi'
+	vox_override_icon = 'icons/mob/clothing/faction/frontiersmen/vox.dmi'
+	supports_variations = VOX_VARIATION
 
 	unique_reskin = null
+
+/obj/item/storage/belt/security/military/frontiersmen/illestren/PopulateContents()
+	. = ..()
+	for(var/i in 1 to 4)
+		new /obj/item/ammo_box/magazine/illestren_a850r(src)
+	new /obj/item/grenade/frag(src)
+
+/obj/item/storage/belt/security/military/frontiersmen/skm_ammo/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/ammo_box/magazine/skm_762_40(src)
+	new /obj/item/grenade/frag(src)
+
+/obj/item/storage/belt/security/military/frontiersmen/mauler_mp_ammo/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/ammo_box/magazine/m9mm_mauler(src)
+	new /obj/item/grenade/frag(src)
+
+/obj/item/storage/belt/security/military/frontiersmen/spitter_ammo/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/ammo_box/magazine/spitter_9mm(src)
+	new /obj/item/grenade/frag(src)
+
+/obj/item/storage/belt/security/military/frontiersmen/flamer/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_containers/glass/beaker/large/napalm(src)
+	new /obj/item/grenade/frag(src)
+
+/obj/item/storage/belt/security/military/frontiersmen/wasp_ammo/PopulateContents()
+	for(var/i in 1 to 4)
+		new /obj/item/stock_parts/cell/gun(src)
+	new /obj/item/grenade/frag(src)
 
 /obj/item/storage/belt/medical/webbing/frontiersmen
 	name = "leather medical bandolier"
@@ -243,18 +313,10 @@
 	new /obj/item/hypospray/mkii(src)
 	update_appearance()
 
-
-/obj/item/storage/belt/security/military/frontiersmen/skm_ammo/PopulateContents()
-	for(var/i in 1 to 4)
-		new /obj/item/ammo_box/magazine/skm_762_40(src)
-	new /obj/item/grenade/frag(src)
-
-/obj/item/storage/belt/security/military/frontiersmen/aps_mp_ammo/PopulateContents() //replace with spitter. remind me.
-	for(var/i in 1 to 4)
-		new /obj/item/ammo_box/magazine/pistolm9mm(src)
-	new /obj/item/grenade/frag(src)
-
-/obj/item/storage/belt/security/military/frontiersmen/flamer/PopulateContents()
-	for(var/i in 1 to 4)
-		new /obj/item/reagent_containers/glass/beaker/large/napalm(src)
-	new /obj/item/grenade/frag(src)
+/obj/item/storage/belt/medical/webbing/frontiersmen/combat/PopulateContents()
+	new /obj/item/reagent_containers/hypospray/medipen/stimulants(src)
+	new /obj/item/reagent_containers/hypospray/medipen/stimulants(src)
+	new /obj/item/reagent_containers/medigel/silver_sulf(src)
+	new /obj/item/reagent_containers/medigel/styptic(src)
+	new /obj/item/stack/medical/gauze/twelve(src)
+	new /obj/item/stack/medical/splint(src)

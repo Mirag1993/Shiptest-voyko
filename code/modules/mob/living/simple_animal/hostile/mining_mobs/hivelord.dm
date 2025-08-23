@@ -50,9 +50,10 @@
 	OpenFire()
 	return TRUE
 
-// [CELADON-REMOVE] - CRUSHER_TROPHEY - Выпилено ради легенды
+// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 // /mob/living/simple_animal/hostile/asteroid/hivelord/spawn_mob_trophy()
-	// loot += mob_trophy //we don't butcher
+	// if(mob_trophy)
+		// loot += mob_trophy //we don't butcher
 // [/CELADON-REMOVE]
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/death(gibbed)
@@ -121,7 +122,7 @@
 	throw_message = "bounces harmlessly off of"
 	loot = list(/obj/item/organ/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
-	// [CELADON-REMOVE] - CRUSHER_TROPHEY - Выпилено ради легенды
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 	// mob_trophy = /obj/item/mob_trophy/legion_skull
 	// [/CELADON-REMOVE]
 	del_on_death = 1
@@ -135,11 +136,11 @@
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
 	if(prob(15))
-		// [CELADON-EDIT] - CRUSHER_TROPHEY
+		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
 		// new /obj/item/mob_trophy/legion_skull(loc) // CELADON-EDIT - ORIGINAL
 		new /obj/item/crusher_trophy/legion_skull(loc)
 		// [/CELADON-EDIT]
-		visible_message("<span class='warning'>One of the [src]'s skulls looks intact.</span>")
+		visible_message(span_warning("One of the [src]'s skulls looks intact."))
 	..()
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/random/Initialize()
@@ -157,21 +158,21 @@
 	icon_living = "dwarf_legion"
 	icon_aggro = "dwarf_legion"
 	icon_dead = "dwarf_legion"
-	//mob_trophy = /obj/item/mob_trophy/dwarf_skull
-	maxHealth = 150
-	health = 150
+	mob_trophy = /obj/item/mob_trophy/dwarf_skull
+	maxHealth = 75
+	health = 75
 	move_to_delay = 2
 	speed = 1 //much faster!
 	dwarf_mob = TRUE
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
-	visible_message("<span class='warning'>The skulls on [src] wail in anger as they flee from their dying host!</span>")
+	visible_message(span_warning("The skulls on [src] wail in anger as they flee from their dying host!"))
 	var/turf/T = get_turf(src)
 	if(T)
 		if(stored_mob)
 			stored_mob.forceMove(get_turf(src))
 			stored_mob = null
-		// [CELADON-ADD] - RETURN_TENDRILS
+		// [CELADON-ADD] - RETURN_CONTENT
 		else if(fromtendril)
 			new /obj/effect/mob_spawn/human/corpse/charredskeleton(T)
 		// [/CELADON-ADD]
@@ -193,7 +194,7 @@
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
-	// [CELADON-ADD] - CRUSHER_TROPHEY
+	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
 	if(prob(75))
 		new /obj/item/crusher_trophy/dwarf_skull(loc)
 		visible_message("<span class='warning'>One of the [src]'s skulls looks like it survived.</span>")
@@ -224,7 +225,7 @@
 	attack_sound = 'sound/weapons/pierce.ogg'
 	throw_message = "is shrugged off by"
 	del_on_death = TRUE
-	stat_attack = HARD_CRIT
+	stat_attack = SOFT_CRIT
 	robust_searching = 1
 	var/can_infest_dead = FALSE
 
@@ -238,7 +239,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/staff/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(death)), 50)
+	addtimer(CALLBACK(src, PROC_REF(death)), 5 SECONDS)
 	AddComponent(/datum/component/swarming)
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life()
@@ -246,6 +247,8 @@
 	if(stat == DEAD || !isturf(loc))
 		return
 	for(var/mob/living/carbon/human/victim in range(src, 1)) //Only for corpse right next to/on same tile
+		if(istype(victim.getorganslot(ORGAN_SLOT_REGENERATIVE_CORE), /obj/item/organ/legion_skull)) // no double dipping
+			continue
 		switch(victim.stat)
 			if(UNCONSCIOUS, HARD_CRIT)
 				infest(victim)
@@ -255,20 +258,89 @@
 					infest(victim)
 					return //This will qdelete the legion.
 
-
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/proc/infest(mob/living/carbon/human/H)
-	visible_message("<span class='warning'>[name] burrows into the flesh of [H]!</span>")
-	var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
-	if(HAS_TRAIT(H, TRAIT_DWARF)) //dwarf legions aren't just fluff!
-		L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
+	visible_message(span_warning("[name] burrows into [H]!"))
+	to_chat(H, span_boldwarning("You feel something digging into your body..."))
+	if(H.stat != DEAD)
+		var/obj/item/organ/legion_skull/throwyouabone = new()
+		throwyouabone.Insert(H)
 	else
-		L = new(H.loc)
-	visible_message("<span class='warning'>[L] staggers to [L.p_their()] feet!</span>")
-	H.death()
-	H.adjustBruteLoss(1000)
-	L.stored_mob = H
-	H.forceMove(L)
+		var/mob/living/simple_animal/hostile/asteroid/hivelord/legion/L
+		if(HAS_TRAIT(H, TRAIT_DWARF)) //dwarf legions aren't just fluff!
+			L = new /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf(H.loc)
+		else
+			L = new(H.loc)
+		visible_message(span_warning("[L] staggers to [L.p_their()] feet!"))
+		H.adjustBruteLoss(1000)
+		L.stored_mob = H
+		H.forceMove(L)
 	qdel(src)
+
+/obj/item/organ/legion_skull
+	name = "legion skull"
+	desc = "The skull of a legion, likely torn from a soon-to-be host."
+	icon_state = "legion_skull"
+	zone = BODY_ZONE_CHEST
+	slot = ORGAN_SLOT_REGENERATIVE_CORE
+	grind_results = list(/datum/reagent/medicine/soulus = 2, /datum/reagent/blood = 5)
+	var/datum/disease/transformation/legionvirus/malignance
+	var/malignance_countdown = 5 MINUTES
+	var/malignance_tracker
+
+/obj/item/organ/legion_skull/on_find(mob/living/finder)
+	..()
+	to_chat(finder, span_warning("You found a skull-shaped growth in [owner]'s [zone]!"))
+
+/obj/item/organ/legion_skull/Insert(mob/living/carbon/M, special = 0)
+	..()
+	malignance = new()
+	malignance.infect(M, FALSE) //we handle all the fancy virus stuff in the organ, so we need a reference for it
+	malignance_tracker = addtimer(CALLBACK(src, PROC_REF(update_stage)), malignance_countdown, TIMER_STOPPABLE|TIMER_DELETE_ME)
+	M.heal_overall_bleeding(12) //stop dying so fast
+
+/obj/item/organ/legion_skull/Remove(mob/living/carbon/M, special = 0)
+	malignance_countdown = initial(malignance_countdown)
+	deltimer(malignance_tracker)
+	malignance_tracker = null
+	malignance.cure()
+	..()
+
+/obj/item/organ/legion_skull/on_life()
+	. = ..()
+	skull_check()
+
+/obj/item/organ/legion_skull/on_death()
+	. = ..()
+	skull_check()
+
+/// track our timers and reagents
+/obj/item/organ/legion_skull/proc/skull_check()
+	if(!owner)
+		return
+	if(!malignance)
+		malignance = new()
+		malignance.infect(owner, FALSE)
+	if(owner.has_reagent(/datum/reagent/medicine/synaptizine, needs_metabolizing = TRUE) || owner.reagents.has_reagent(/datum/reagent/medicine/spaceacillin, needs_metabolizing = TRUE))
+		if(isnull(timeleft(malignance_tracker))) //ruhehehehehe
+			malignance_countdown = min(malignance_countdown + 1 SECONDS, initial(malignance_countdown)) //slightly improve our resistance to dying so we don't turn the second a treatment runs out
+			return
+		malignance_countdown = timeleft(malignance_tracker) //pause our timer if we have the reagents
+		deltimer(malignance_tracker)
+		malignance_tracker = null //you would think deltimer would do this but it actually doesn't track a direct reference!
+		return
+	if(!malignance_tracker)
+		malignance_tracker = addtimer(CALLBACK(src, PROC_REF(update_stage)), malignance_countdown, TIMER_STOPPABLE|TIMER_DELETE_ME) //and resume if we run out
+
+/// Updates the stage of our tied disease
+/obj/item/organ/legion_skull/proc/update_stage()
+	malignance.update_stage(min(malignance.stage + 1, malignance.max_stages))
+	if(malignance.stage == 5)
+		malignance.stage_act() //force the transformation here, then delete everything
+		qdel(malignance)
+		qdel(src)
+		return
+	malignance_countdown = initial(malignance_countdown)
+	malignance_tracker = addtimer(CALLBACK(src, PROC_REF(update_stage)), malignance_countdown, TIMER_STOPPABLE|TIMER_DELETE_ME)
 
 //Advanced Legion is slightly tougher to kill and can raise corpses (revive other legions)
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/advanced
@@ -311,7 +383,7 @@
 	del_on_death = TRUE
 	sentience_type = SENTIENCE_BOSS
 	loot = list(/obj/item/organ/regenerative_core/legion = 3, /obj/effect/mob_spawn/human/corpse/damaged/legioninfested = 5, /obj/effect/mob_spawn/human/corpse/damaged/legioninfested = 5, /obj/effect/mob_spawn/human/corpse/damaged/legioninfested = 5)
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	atmos_requirements = IMMUNE_ATMOS_REQS
 	minbodytemp = 0
 	maxbodytemp = INFINITY
 	move_to_delay = 7
@@ -328,7 +400,7 @@
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
-	visible_message("<span class='userwarning'>[src] falls over with a mighty crash, the remaining legions within it falling apart!</span>")
+	visible_message(span_userwarning("[src] falls over with a mighty crash, the remaining legions within it falling apart!"))
 	new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(loc)
 	new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(loc)
 	new /mob/living/simple_animal/hostile/asteroid/hivelord/legion(loc)
@@ -336,7 +408,7 @@
 
 /mob/living/simple_animal/hostile/big_legion/Initialize()
 	.=..()
-	// [CELADON-EDIT] - RETURN_TENDRILS
+	// [CELADON-EDIT] - RETURN_CONTENT
 	// AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest), 200, faction, "peels itself off from", 3) // CELADON-EDIT - ORIGINAL
 	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest,
 												/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril), 200, faction, "peels itself off from", 3)
@@ -351,7 +423,7 @@
 	icon_living = "snowlegion"
 	icon_aggro = "snowlegion_alive"
 	icon_dead = "snowlegion"
-	// [CELADON-REMOVE] - CRUSHER_TROPHEY - Выпилено ради легенды
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 	// mob_trophy = /obj/item/mob_trophy/legion_skull
 	// [/CELADON-REMOVE]
 	loot = list(/obj/item/organ/regenerative_core/legion)
@@ -415,7 +487,7 @@
 	H.transform = H.transform.Scale(0.8, 1)//somehow dwarf squashing is borked when not roundstart. I hate WS code
 
 /obj/effect/mob_spawn/human/corpse/damaged/legioninfested/Initialize() //in an ideal world, these would generate, the legion would overlay over the corpse, and we'd get cool sprites
-	mob_species = pickweight(list(
+	mob_species = pick_weight(list(
 			/datum/species/human = 50,
 			/datum/species/lizard = 20,
 			/datum/species/ipc = 10,
@@ -424,7 +496,7 @@
 			/datum/species/spider = 5
 		)
 	)
-	var/type = pickweight(list(
+	var/type = pick_weight(list(
 		"Miner" = 40,
 		"Assistant" = 10,
 		"Engineer" = 5,

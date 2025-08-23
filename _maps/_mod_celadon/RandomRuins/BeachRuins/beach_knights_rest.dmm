@@ -515,7 +515,7 @@
 	icon_state = "grave_lead";
 	desc = "An marked patch of soil, showing signs of a burial. The headstone cannot be read, its' message torn away by age."
 	},
-/obj/item/nullrod/claymore{
+/obj/item/melee/sword/claymore{
 	name = "ancient claymore";
 	desc = "The gold on the sword is tarnished, yet retains an human letter carved into it. R."
 	},
@@ -562,7 +562,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Eh" = (
 /obj/structure/altar_of_gods,
-/obj/item/reagent_containers/food/snacks/grown/poppy/lily,
+/obj/item/food/grown/poppy/lily,
 /turf/open/floor/plating/dirt/jungle/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ej" = (
@@ -591,7 +591,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Gj" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/seeds/potato/sweet,
+/obj/item/seeds/potato,
 /turf/open/floor/plating/dirt,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ha" = (
@@ -621,11 +621,6 @@
 /turf/open/floor/wood{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/beachplanet/explored)
-"Jf" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/potato,
-/turf/open/floor/plating/dirt,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "JH" = (
 /obj/structure/chair/pew/right{
@@ -1570,9 +1565,9 @@ uz
 rv
 wm
 wm
-Jf
-Jf
-Jf
+Gj
+Gj
+Gj
 XL
 XL
 XL

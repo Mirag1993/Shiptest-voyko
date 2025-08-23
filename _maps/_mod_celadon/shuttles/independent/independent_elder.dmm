@@ -230,10 +230,10 @@
 /area/ship/hallway/starboard)
 "cj" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/egg,
-/obj/item/reagent_containers/food/snacks/egg,
-/obj/item/reagent_containers/food/snacks/egg,
-/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/food/egg,
+/obj/item/food/egg,
+/obj/item/food/egg,
+/obj/item/food/egg,
 /obj/item/stack/ore/glass/basalt{
 	amount = 25;
 	pixel_y = -2;
@@ -341,7 +341,7 @@
 	pixel_y = 14;
 	pixel_x = 5
 	},
-/obj/item/ammo_box/c38_box{
+/obj/item/storage/box/ammo/c38{
 	pixel_x = -6;
 	pixel_y = 7
 	},
@@ -349,7 +349,7 @@
 	pixel_x = 8;
 	pixel_y = 6
 	},
-/obj/item/ammo_box/c38_box{
+/obj/item/storage/box/ammo/c38{
 	pixel_x = -6;
 	pixel_y = 1
 	},
@@ -1477,7 +1477,6 @@
 /obj/vehicle/ridden/wheelchair{
 	dir = 4
 	},
-/obj/item/melee/transforming/cleaving_saw/old,
 /turf/open/floor/ship/dirt/dark,
 /area/ship/bridge)
 "rj" = (
@@ -1705,16 +1704,16 @@
 	pixel_y = 9;
 	pixel_x = 6
 	},
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit,
+/obj/item/food/grown/ash_flora/cactus_fruit,
 /obj/item/pestle{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf,
-/obj/item/reagent_containers/food/snacks/meat/slab/bear{
+/obj/item/food/grown/ash_flora/mushroom_leaf,
+/obj/item/food/meat/slab/bear{
 	pixel_y = 1;
 	pixel_x = -7
 	},
-/obj/item/reagent_containers/food/snacks/grown/ash_flora/puce,
+/obj/item/food/grown/ash_flora/puce,
 /obj/effect/turf_decal/corner/opaque/blue/diagonal,
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
@@ -2024,7 +2023,7 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/kitchen/knife/combat,
+/obj/item/melee/knife/combat,
 /obj/effect/turf_decal/spline/fancy/wood{
 	dir = 5
 	},
@@ -2033,7 +2032,7 @@
 	},
 /obj/item/gun/ballistic/revolver/montagne,
 /obj/item/storage/backpack/satchel/leather,
-/obj/item/ammo_box/c45,
+/obj/item/storage/box/ammo/c45,
 /obj/item/clothing/head/cowboy/sec/roumain/montagne,
 /obj/item/clothing/suit/armor/roumain/montagne,
 /obj/item/ammo_box/a44roum_speedloader,
@@ -2288,28 +2287,28 @@
 "BJ" = (
 /obj/structure/crate_shelf,
 /obj/structure/closet/crate,
-/obj/item/reagent_containers/food/snacks/meat/steak{
+/obj/item/food/meat/steak{
 	pixel_y = 7;
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/snacks/meat/steak/chicken,
-/obj/item/reagent_containers/food/snacks/meat/steak/chicken{
+/obj/item/food/meat/steak/chicken,
+/obj/item/food/meat/steak/chicken{
 	pixel_y = 6;
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/meat/steak{
+/obj/item/food/meat/steak{
 	pixel_y = 0;
 	pixel_x = -9
 	},
-/obj/item/reagent_containers/food/snacks/meat/steak{
+/obj/item/food/meat/steak{
 	pixel_y = -6;
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/food/snacks/meat/steak/chicken{
+/obj/item/food/meat/steak/chicken{
 	pixel_y = -4;
 	pixel_x = -6
 	},
-/obj/item/reagent_containers/food/snacks/meat/steak/chicken{
+/obj/item/food/meat/steak/chicken{
 	pixel_y = 5;
 	pixel_x = -6
 	},
@@ -2479,15 +2478,15 @@
 /area/ship/roumain)
 "Eh" = (
 /obj/structure/table/wood,
-/obj/item/spear/bonespear{
+/obj/item/melee/spear/bone{
 	pixel_y = -3;
 	pixel_x = 2
 	},
-/obj/item/spear/bonespear{
+/obj/item/melee/spear/bone{
 	pixel_y = 1;
 	pixel_x = 2
 	},
-/obj/item/spear/bonespear{
+/obj/item/melee/spear/bone{
 	pixel_y = 5;
 	pixel_x = 2
 	},
@@ -2661,7 +2660,7 @@
 /obj/item/clothing/shoes/cowboy/black,
 /obj/item/clothing/shoes/cowboy,
 /obj/item/clothing/shoes/combat,
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
 /obj/item/gps{
 	pixel_x = -7
 	},
@@ -2700,6 +2699,10 @@
 	dir = 5
 	},
 /turf/open/floor/wood/mahogany,
+/area/ship/bridge)
+"Ih" = (
+/obj/item/melee/cleaving_saw/old,
+/turf/open/floor/ship/dirt/dark,
 /area/ship/bridge)
 "Ii" = (
 /obj/structure/closet/firecloset/wall{
@@ -3651,7 +3654,7 @@
 /obj/item/clothing/shoes/cowboy,
 /obj/item/clothing/shoes/cowboy/black,
 /obj/item/clothing/shoes/combat,
-/obj/item/kitchen/knife/hunting,
+/obj/item/melee/knife/hunting,
 /obj/item/gps{
 	pixel_x = -7
 	},
@@ -4577,7 +4580,7 @@ aP
 aP
 MZ
 wD
-xC
+Ih
 re
 xC
 wD

@@ -35,7 +35,8 @@
 
 	var/icon/cyborg_icon_override //WS Addition, need this shit to use VG icons
 
-/obj/item/robot_module/Initialize()
+// [CELADON-DELETE] - Silicon QoL - mod_celadon\qol\code\silicon.dm
+/*/obj/item/robot_module/Initialize()
 	. = ..()
 	for(var/i in basic_modules)
 		var/obj/item/I = new i(src)
@@ -44,8 +45,8 @@
 	for(var/i in emag_modules)
 		var/obj/item/I = new i(src)
 		emag_modules += I
-		emag_modules -= i
-
+		emag_modules -= i */
+// [/CELADON-DELETE]
 /obj/item/robot_module/Destroy()
 	basic_modules.Cut()
 	emag_modules.Cut()
@@ -258,7 +259,7 @@
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/soap/nanotrasen,
 		/obj/item/borg/cyborghug)
-	emag_modules = list(/obj/item/melee/transforming/energy/sword/cyborg)
+	emag_modules = list(/obj/item/melee/energy/sword/cyborg)
 	cyborg_base_icon = "robot"
 	moduleselect_icon = "standard"
 	hat_offset = -3
@@ -344,7 +345,7 @@
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/borg/lollipop)
+	)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	cyborg_base_icon = "medical"
 	moduleselect_icon = "medical"
@@ -531,7 +532,6 @@
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/disabler/cyborg,
-		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/extinguisher/mini)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	cyborg_base_icon = "sec"
@@ -602,11 +602,6 @@
 	return ..()
 //WS End
 
-/obj/item/robot_module/security/do_transform_animation()
-	..()
-	to_chat(loc, "<span class='userdanger'>While you have picked the security module, you still have to follow your laws, NOT Space Law. \
-	For Asimov, this means you must follow criminals' orders unless there is a law 1 reason not to.</span>")
-
 /obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
 	var/obj/item/gun/energy/e_gun/advtaser/cyborg/T = locate(/obj/item/gun/energy/e_gun/advtaser/cyborg) in basic_modules
@@ -616,7 +611,7 @@
 			T.cell.give(S.e_cost * coeff)
 			T.update_appearance()
 		else
-			T.charge_tick = 0
+			T.charge_timer = 0
 
 /obj/item/robot_module/peacekeeper
 	name = "Peacekeeper"
@@ -634,11 +629,6 @@
 	moduleselect_icon = "standard"
 	can_be_pushed = FALSE
 	hat_offset = -2
-
-/obj/item/robot_module/peacekeeper/do_transform_animation()
-	..()
-	to_chat(loc, "<span class='userdanger'>Under ASIMOV, you are an enforcer of the PEACE and preventer of HUMAN HARM. \
-	You are not a security module and you are expected to follow orders and prevent harm above all else. Space law means nothing to you.</span>")
 
 /obj/item/robot_module/janitor
 	name = "Janitor"
@@ -750,39 +740,12 @@
 	if(CL)
 		CL.reagents.add_reagent(/datum/reagent/lube, 2 * coeff)
 
-/obj/item/robot_module/clown
-	name = "Clown"
-	basic_modules = list(
-		/obj/item/assembly/flash/cyborg,
-		/obj/item/toy/crayon/rainbow,
-		/obj/item/instrument/bikehorn,
-		/obj/item/stamp/clown,
-		/obj/item/bikehorn,
-		/obj/item/bikehorn/airhorn,
-		/obj/item/paint/anycolor,
-		/obj/item/soap/nanotrasen,
-		/obj/item/pneumatic_cannon/pie/selfcharge/cyborg,
-		/obj/item/razor,					//killbait material
-		/obj/item/lipstick/purple,
-		/obj/item/reagent_containers/spray/waterflower/cyborg,
-		/obj/item/borg/cyborghug/peacekeeper,
-		/obj/item/borg/lollipop/clown,
-		/obj/item/picket_sign/cyborg,
-		/obj/item/reagent_containers/borghypo/clown,
-		/obj/item/extinguisher/mini)
-	emag_modules = list(
-		/obj/item/reagent_containers/borghypo/clown/hacked,
-		/obj/item/reagent_containers/spray/waterflower/cyborg/hacked)
-	moduleselect_icon = "service"
-	cyborg_base_icon = "clown"
-	hat_offset = -2
-
 /obj/item/robot_module/butler
 	name = "Service"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/glass/beaker/large, //I know a shaker is more appropiate but this is for ease of identification
-		/obj/item/reagent_containers/food/condiment/enzyme,
+		/obj/item/reagent_containers/condiment/enzyme,
 		/obj/item/pen,
 		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/extinguisher/mini,
@@ -795,9 +758,9 @@
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		/obj/item/reagent_containers/borghypo/borgshaker,
-		/obj/item/borg/lollipop,
 		/obj/item/stack/cable_coil/cyborg,
-		/obj/item/borg/apparatus/beaker/service)
+		/obj/item/borg/apparatus/beaker/service
+	)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
 	cyborg_base_icon = "service_m" // display as butlerborg for radial model selection
 	moduleselect_icon = "service"
@@ -806,7 +769,7 @@
 
 /obj/item/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R, coeff = 1)
 	..()
-	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/food/condiment/enzyme) in basic_modules
+	var/obj/item/reagent_containers/O = locate(/obj/item/reagent_containers/condiment/enzyme) in basic_modules
 	if(O)
 		O.reagents.add_reagent(/datum/reagent/consumable/enzyme, 2 * coeff)
 
@@ -976,7 +939,7 @@
 	name = "Syndicate Assault"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
-		/obj/item/melee/transforming/energy/sword/cyborg,
+		/obj/item/melee/energy/sword/cyborg,
 		/obj/item/gun/energy/printer,
 		/obj/item/gun/ballistic/revolver/grenadelauncher/cyborg,
 		/obj/item/card/emag/borg,
@@ -1041,7 +1004,7 @@
 		/obj/item/cautery,
 		/obj/item/surgicaldrill,
 		/obj/item/scalpel,
-		/obj/item/melee/transforming/energy/sword/cyborg/saw,
+		/obj/item/melee/energy/sword/cyborg/saw,
 		/obj/item/roller/robo,
 		/obj/item/card/emag/borg,
 		/obj/item/crowbar/cyborg,

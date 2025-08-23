@@ -2,7 +2,7 @@
 "ai" = (
 /obj/effect/decal/cleanable/molten_object,
 /obj/structure/table/chem,
-/obj/item/slime_extract/darkblue{
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly{
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone{
@@ -267,7 +267,7 @@
 /area/overmap_encounter/planetoid/lava/explored)
 "cv" = (
 /obj/structure/fence,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "cA" = (
 /obj/structure/closet/cardboard,
@@ -275,7 +275,6 @@
 /obj/effect/turf_decal/corner/opaque/lime/border{
 	dir = 8
 	},
-/obj/item/disk/tech_disk/major,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/corprejectrooms{
 	name = "Nanotrasen Genetic Research Test Subject Storage"
@@ -646,7 +645,7 @@
 	name = "Nanotrasen Genetic Research Storage"
 	})
 "gm" = (
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/ruin/unpowered/corprejectengineering{
 	name = "Nanotrasen Genetic Research Reception"
 	})
@@ -699,7 +698,7 @@
 	})
 "gE" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "gM" = (
 /obj/effect/turf_decal/corner_techfloor_grid/full,
@@ -711,7 +710,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "hb" = (
 /obj/effect/decal/cleanable/wrapping,
@@ -1015,9 +1014,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
-/obj/structure/chair/comfy{
-	dir = 4
-	},
+/obj/structure/chair/comfy/orange/directional/east,
 /turf/open/floor/wood,
 /area/ruin/unpowered/buried_shrine{
 	name = "Nanotrasen Genetic Research Laboratory"
@@ -1047,7 +1044,7 @@
 	})
 "kt" = (
 /obj/structure/flora/tree/dead_pine,
-/turf/open/floor/plating/grass/lava/purple,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "kA" = (
 /obj/effect/turf_decal/corner/opaque/white/mono,
@@ -1056,10 +1053,6 @@
 /area/ruin/unpowered/corprejectrooms{
 	name = "Nanotrasen Genetic Research Test Subject Storage"
 	})
-"kF" = (
-/obj/structure/fence,
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "kP" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1086,10 +1079,6 @@
 /area/ruin/unpowered/corprejectvault{
 	name = "Nanotrasen Genetic Research Storage"
 	})
-"lc" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "ln" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 4
@@ -1193,10 +1182,6 @@
 /area/ruin/unpowered/buried_shrine{
 	name = "Nanotrasen Genetic Research Laboratory"
 	})
-"md" = (
-/obj/structure/flora/ausbushes/ywflowers/hell,
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "mw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -1212,7 +1197,7 @@
 	name = "Nanotrasen Genetic Research Maintenance"
 	})
 "mA" = (
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "mF" = (
 /obj/structure/toilet{
@@ -1267,9 +1252,6 @@
 /area/ruin/unpowered/corprejectengineering{
 	name = "Nanotrasen Genetic Research Reception"
 	})
-"nm" = (
-/turf/open/floor/plating/grass/lava/purple,
-/area/overmap_encounter/planetoid/lava/explored)
 "ns" = (
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/plating,
@@ -1529,7 +1511,7 @@
 	})
 "pB" = (
 /obj/structure/flora/ausbushes/ywflowers/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "pE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1546,15 +1528,15 @@
 	pixel_x = 8
 	},
 /obj/structure/table,
-/obj/item/slime_extract/green{
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly{
 	pixel_x = -4;
 	pixel_y = 11
 	},
-/obj/item/slime_extract/green{
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly{
 	pixel_x = -11;
 	pixel_y = 11
 	},
-/obj/item/slime_extract/green{
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly{
 	pixel_x = -7;
 	pixel_y = 5
 	},
@@ -1579,7 +1561,7 @@
 	})
 "pQ" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grown/citrus/orange{
+/obj/item/food/grown/citrus/orange{
 	pixel_y = 8
 	},
 /obj/machinery/light/broken/directional/south,
@@ -1715,12 +1697,6 @@
 /area/ruin/unpowered/corprejectvault{
 	name = "Nanotrasen Genetic Research Storage"
 	})
-"rf" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "ri" = (
 /obj/machinery/door/airlock/public{
 	name = "Testing Room A"
@@ -1744,15 +1720,11 @@
 	})
 "rw" = (
 /obj/structure/closet/crate/bin,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/buried_shrine{
 	name = "Nanotrasen Genetic Research Laboratory"
 	})
-"rz" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/grass/lava/purple,
-/area/overmap_encounter/planetoid/lava/explored)
 "rA" = (
 /obj/structure/closet/crate/trashcart,
 /obj/item/pushbroom,
@@ -1985,10 +1957,6 @@
 /area/ruin/unpowered/corprejectengineering{
 	name = "Nanotrasen Genetic Research Reception"
 	})
-"tH" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/grass/lava/purple,
-/area/overmap_encounter/planetoid/lava/explored)
 "tI" = (
 /obj/structure/chair{
 	dir = 1
@@ -1999,7 +1967,7 @@
 	})
 "ua" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/ruin/unpowered/corprejectengineering{
 	name = "Nanotrasen Genetic Research Reception"
 	})
@@ -2014,7 +1982,7 @@
 /obj/structure/fence/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "uj" = (
 /obj/structure/cable{
@@ -2047,10 +2015,10 @@
 "uA" = (
 /obj/machinery/light/dim/directional/north,
 /obj/structure/table/chem,
-/obj/item/slimecrossbeaker/autoinjector/slimestimulant{
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly{
 	pixel_y = 11
 	},
-/obj/item/slimecrossbeaker/omnizine,
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly,
 /obj/item/reagent_containers/glass/beaker{
 	pixel_y = 10;
 	pixel_x = -9
@@ -2146,7 +2114,7 @@
 	})
 "vu" = (
 /obj/structure/flora/tree/dead/tall/grey,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "vz" = (
 /obj/structure/cable{
@@ -2204,10 +2172,6 @@
 	dir = 5
 	},
 /turf/open/floor/concrete/pavement/lava,
-/area/overmap_encounter/planetoid/lava/explored)
-"vQ" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/grass/lava/orange,
 /area/overmap_encounter/planetoid/lava/explored)
 "vU" = (
 /obj/machinery/light/dim/directional/south,
@@ -2405,7 +2369,7 @@
 /obj/structure/flora/rock/hell{
 	pixel_y = -1
 	},
-/turf/open/floor/plating/grass/lava/purple,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "ya" = (
 /obj/structure/table,
@@ -2753,7 +2717,7 @@
 	})
 "AK" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "AL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2871,7 +2835,7 @@
 	})
 "Bs" = (
 /obj/structure/flora/rock/hell,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Bu" = (
 /obj/effect/turf_decal/industrial/loading{
@@ -3110,7 +3074,7 @@
 	name = "Nanotrasen Genetic Research Reception"
 	})
 "DD" = (
-/obj/machinery/porta_turret/ai,
+/obj/machinery/porta_turret,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/corprejectvault{
 	name = "Nanotrasen Genetic Research Storage"
@@ -3144,12 +3108,6 @@
 /area/ruin/unpowered/corprejectvault{
 	name = "Nanotrasen Genetic Research Storage"
 	})
-"DU" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/floor/plating/grass/lava/purple,
-/area/overmap_encounter/planetoid/lava/explored)
 "DZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3316,7 +3274,7 @@
 	name = "Nanotrasen Genetic Research Maintenance"
 	})
 "Fy" = (
-/obj/machinery/modular_computer/console/preset/research,
+/obj/structure/salvageable/computer,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/buried_shrine{
 	name = "Nanotrasen Genetic Research Laboratory"
@@ -3587,10 +3545,6 @@
 /area/ruin/unpowered/corprejectvault{
 	name = "Nanotrasen Genetic Research Storage"
 	})
-"HW" = (
-/obj/structure/flora/ausbushes/hell,
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "Ig" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -3673,7 +3627,7 @@
 /area/overmap_encounter/planetoid/lava/explored)
 "Jb" = (
 /obj/structure/flora/ausbushes/fernybush/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Jd" = (
 /obj/effect/decal/cleanable/ash,
@@ -3876,10 +3830,6 @@
 /area/ruin/unpowered/corprejectrooms{
 	name = "Nanotrasen Genetic Research Test Subject Storage"
 	})
-"Lg" = (
-/obj/structure/flora/rock/hell,
-/turf/open/floor/plating/grass/lava/purple,
-/area/overmap_encounter/planetoid/lava/explored)
 "Lr" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3894,10 +3844,6 @@
 /area/ruin/unpowered/corprejectvault{
 	name = "Nanotrasen Genetic Research Storage"
 	})
-"Lx" = (
-/obj/structure/flora/ausbushes/fernybush/hell,
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "Lz" = (
 /obj/effect/turf_decal/corner_techfloor_grid/full{
 	dir = 4
@@ -4288,7 +4234,7 @@
 /obj/structure/fence/corner{
 	dir = 9
 	},
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "QQ" = (
 /obj/structure/closet/crate/large{
@@ -4442,7 +4388,7 @@
 	pixel_x = 6;
 	pixel_y = 25
 	},
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "RZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -4455,10 +4401,6 @@
 	dir = 1
 	},
 /turf/open/floor/concrete/pavement/lava,
-/area/overmap_encounter/planetoid/lava/explored)
-"Sn" = (
-/obj/structure/fence,
-/turf/open/floor/plating/grass/lava/purple,
 /area/overmap_encounter/planetoid/lava/explored)
 "Sq" = (
 /obj/structure/cable{
@@ -4502,9 +4444,6 @@
 /area/ruin/unpowered/crashed_holemaker{
 	name = "Nanotrasen Genetic Research Maintenance"
 	})
-"SY" = (
-/turf/open/floor/plating/grass/lava/orange,
-/area/overmap_encounter/planetoid/lava/explored)
 "Tg" = (
 /obj/structure/filingcabinet/double,
 /obj/effect/turf_decal/siding/wood{
@@ -4652,7 +4591,7 @@
 	})
 "UA" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/item/storage/box/cups,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/buried_shrine{
@@ -4667,7 +4606,7 @@
 /obj/structure/fence/corner{
 	dir = 5
 	},
-/turf/open/floor/plating/grass/lava/purple,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Vc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -4754,7 +4693,7 @@
 	})
 "Wa" = (
 /obj/structure/table,
-/obj/item/slime_extract/grey,
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly,
 /obj/item/reagent_containers/glass/beaker{
 	pixel_y = 10;
 	pixel_x = -9
@@ -4816,7 +4755,7 @@
 	pixel_y = 9;
 	pixel_x = 10
 	},
-/obj/item/slime_extract/grey,
+/obj/effect/spawner/random/food_or_drink/donut/slimejelly,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/buried_shrine{
 	name = "Nanotrasen Genetic Research Laboratory"
@@ -4854,7 +4793,7 @@
 /obj/structure/fence/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "WV" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -5044,7 +4983,7 @@
 	})
 "Ys" = (
 /obj/structure/flora/ausbushes/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Yw" = (
 /obj/structure/table,
@@ -5082,7 +5021,7 @@
 	})
 "YV" = (
 /obj/structure/flora/ausbushes/genericbush/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "YW" = (
 /obj/structure/closet/cardboard,
@@ -5102,7 +5041,7 @@
 	lethal = 1;
 	icon_state = "control_kill"
 	},
-/turf/open/floor/plating/grass/lava/purple,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Zd" = (
 /obj/machinery/light/small/directional/north,
@@ -5158,7 +5097,7 @@
 /area/overmap_encounter/planetoid/lava/explored)
 "Zs" = (
 /obj/structure/flora/tree/dead/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Zv" = (
 /obj/structure/cable{
@@ -5217,11 +5156,11 @@
 Iv
 Iv
 Iv
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
+mA
 Iv
 Iv
 Iv
@@ -5252,18 +5191,18 @@ Iv
 "}
 (2,1,1) = {"
 Iv
-SY
-SY
-lc
-SY
-SY
-SY
-md
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+AK
+mA
+mA
+mA
+pB
+mA
+mA
+mA
+mA
+mA
 mA
 AK
 mA
@@ -5289,17 +5228,17 @@ Iv
 "}
 (3,1,1) = {"
 Iv
-SY
+mA
 QO
-kF
-kF
-kF
-kF
-kF
-kF
-kF
-kF
-kF
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
 cv
 cv
 cv
@@ -5326,15 +5265,15 @@ Iv
 "}
 (4,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
-SY
-md
-SY
-SY
-SY
+mA
+gY
+mA
+mA
+mA
+pB
+mA
+mA
+mA
 mA
 mA
 mA
@@ -5362,14 +5301,14 @@ mA
 Iv
 "}
 (5,1,1) = {"
-SY
-SY
-rf
-SY
-SY
+mA
+mA
+gY
+mA
+mA
 ny
-SY
-SY
+mA
+mA
 mA
 mA
 YV
@@ -5399,15 +5338,15 @@ AK
 mA
 "}
 (6,1,1) = {"
-lc
-SY
-rf
-SY
+AK
+mA
+gY
+mA
 vu
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
 jB
 He
 He
@@ -5436,14 +5375,14 @@ mA
 mA
 "}
 (7,1,1) = {"
-SY
-SY
-rf
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+gY
+mA
+mA
+mA
+mA
+mA
 jB
 jB
 He
@@ -5473,14 +5412,14 @@ mA
 mA
 "}
 (8,1,1) = {"
-Lx
-SY
-rf
-SY
-SY
-SY
-SY
-SY
+Jb
+mA
+gY
+mA
+mA
+mA
+mA
+mA
 jB
 jB
 He
@@ -5510,14 +5449,14 @@ mA
 mA
 "}
 (9,1,1) = {"
-SY
-SY
-rf
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+gY
+mA
+mA
+mA
+mA
+mA
 Ws
 vL
 He
@@ -5547,13 +5486,13 @@ mA
 mA
 "}
 (10,1,1) = {"
-SY
-SY
-rf
-SY
-SY
-SY
-SY
+mA
+mA
+gY
+mA
+mA
+mA
+mA
 UM
 UM
 Ux
@@ -5585,12 +5524,12 @@ mA
 "}
 (11,1,1) = {"
 Iv
-SY
-rf
-vQ
-SY
-SY
-SY
+mA
+gY
+gE
+mA
+mA
+mA
 UM
 Zf
 YO
@@ -5622,12 +5561,12 @@ mA
 "}
 (12,1,1) = {"
 Iv
-lc
+AK
 TS
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
 UM
 Fx
 MB
@@ -5659,12 +5598,12 @@ Iv
 "}
 (13,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
-SY
-SY
+mA
+gY
+mA
+mA
+mA
+mA
 UM
 RZ
 uV
@@ -5696,12 +5635,12 @@ Iv
 "}
 (14,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
-SY
-SY
+mA
+gY
+mA
+mA
+mA
+mA
 UM
 ns
 Vd
@@ -5733,11 +5672,11 @@ Iv
 "}
 (15,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
-SY
+mA
+gY
+mA
+mA
+mA
 UM
 UM
 UM
@@ -5770,10 +5709,10 @@ Iv
 "}
 (16,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 UM
 Ej
@@ -5807,10 +5746,10 @@ Iv
 "}
 (17,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 Wq
 AO
@@ -5838,16 +5777,16 @@ Cd
 hE
 Kl
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (18,1,1) = {"
 Iv
-SY
-rf
-Lx
-SY
+mA
+gY
+Jb
+mA
 UM
 aO
 Bc
@@ -5876,15 +5815,15 @@ ck
 jB
 jB
 IO
-SY
+mA
 Iv
 "}
 (19,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 RX
 mZ
@@ -5913,15 +5852,15 @@ hE
 jB
 jB
 Zl
-SY
+mA
 Iv
 "}
 (20,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 hz
 JX
@@ -5950,15 +5889,15 @@ ck
 jB
 jB
 IO
-SY
-SY
+mA
+mA
 "}
 (21,1,1) = {"
 Iv
-Lx
-rf
-SY
-SY
+Jb
+gY
+mA
+mA
 UM
 LV
 Jm
@@ -5986,16 +5925,16 @@ Cd
 hE
 Kl
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (22,1,1) = {"
 Iv
-SY
-rf
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 Vc
 qL
@@ -6023,16 +5962,16 @@ hE
 hE
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (23,1,1) = {"
 Iv
-SY
-DU
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 am
 Bj
@@ -6056,20 +5995,20 @@ LG
 VW
 pY
 hE
-lc
-SY
+AK
+mA
 jB
 jB
-rf
-lc
-SY
+gY
+AK
+mA
 "}
 (24,1,1) = {"
 Iv
-SY
-DU
-SY
-SY
+mA
+gY
+mA
+mA
 UM
 NX
 eH
@@ -6093,20 +6032,20 @@ kl
 aR
 zj
 hE
-SY
-SY
+mA
+mA
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (25,1,1) = {"
 Iv
-nm
-DU
-vQ
-SY
+mA
+gY
+gE
+mA
 UM
 nQ
 AI
@@ -6130,20 +6069,20 @@ DZ
 Am
 pQ
 hE
-SY
-Lx
+mA
+Jb
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (26,1,1) = {"
 Iv
-nm
-DU
-nm
-SY
+mA
+gY
+mA
+mA
 UM
 Pu
 Uy
@@ -6167,20 +6106,20 @@ kl
 kl
 DJ
 hE
-SY
-SY
+mA
+mA
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (27,1,1) = {"
 Iv
-rz
-DU
-nm
-nm
+AK
+gY
+mA
+mA
 UM
 It
 uH
@@ -6204,20 +6143,20 @@ Zi
 yo
 ls
 hE
-SY
+mA
 Zx
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (28,1,1) = {"
 Iv
-nm
-DU
-nm
-nm
+mA
+gY
+mA
+mA
 UM
 FJ
 Uy
@@ -6241,20 +6180,20 @@ hE
 hE
 hE
 hE
-SY
+mA
 jB
 jB
 Zx
-rf
-SY
+gY
+mA
 Iv
 "}
 (29,1,1) = {"
 Iv
-nm
-DU
-nm
-nm
+mA
+gY
+mA
+mA
 UM
 qb
 FF
@@ -6274,24 +6213,24 @@ qs
 iI
 DF
 Pc
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
+mA
 jB
 jB
-SY
-rf
-SY
+mA
+gY
+mA
 Iv
 "}
 (30,1,1) = {"
 Iv
-nm
-DU
-nm
-nm
+mA
+gY
+mA
+mA
 UM
 oj
 FT
@@ -6311,24 +6250,24 @@ HQ
 HQ
 Ro
 Pc
-SY
-lc
-SY
-vQ
-SY
+mA
+AK
+mA
+gE
+mA
 jB
 jB
-SY
-rf
-SY
+mA
+gY
+mA
 Iv
 "}
 (31,1,1) = {"
-nm
-nm
-DU
-nm
-nm
+mA
+mA
+gY
+mA
+mA
 UM
 UM
 QV
@@ -6348,23 +6287,23 @@ pO
 Ff
 HQ
 Pc
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
+mA
 jB
 jB
-HW
-rf
-SY
+Ys
+gY
+mA
 Iv
 "}
 (32,1,1) = {"
-nm
-nm
-DU
-nm
+mA
+mA
+gY
+mA
 et
 et
 et
@@ -6385,23 +6324,23 @@ nu
 Db
 vU
 Pc
-vQ
-SY
-SY
-SY
+gE
+mA
+mA
+mA
 Zx
 jB
 jB
 Zx
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (33,1,1) = {"
-rz
-nm
-DU
-nm
+AK
+mA
+gY
+mA
 et
 nL
 Dc
@@ -6422,23 +6361,23 @@ HQ
 Di
 HQ
 Pc
-SY
-HW
-vQ
-SY
+mA
+Ys
+gE
+mA
 jB
 jB
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (34,1,1) = {"
-nm
-nm
-DU
-nm
+mA
+mA
+gY
+mA
 et
 mF
 TQ
@@ -6459,23 +6398,23 @@ pb
 HQ
 HQ
 Pc
-SY
-SY
+mA
+mA
 jB
 jB
 jB
 jB
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (35,1,1) = {"
-nm
-nm
-DU
-nm
+mA
+mA
+gY
+mA
 et
 et
 et
@@ -6496,7 +6435,7 @@ Ui
 HQ
 HQ
 Pc
-SY
+mA
 Zx
 jB
 jB
@@ -6504,15 +6443,15 @@ jB
 jB
 Zx
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (36,1,1) = {"
-nm
-Lg
-DU
-nm
+mA
+Bs
+gY
+mA
 et
 Bk
 DH
@@ -6533,7 +6472,7 @@ GK
 hb
 Ro
 Pc
-SY
+mA
 Sf
 BP
 jB
@@ -6541,15 +6480,15 @@ jB
 BP
 CV
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (37,1,1) = {"
-nm
-nm
-DU
-nm
+mA
+mA
+gY
+mA
 et
 KO
 uM
@@ -6570,7 +6509,7 @@ iz
 MN
 HQ
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6578,15 +6517,15 @@ jB
 jB
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (38,1,1) = {"
-nm
-nm
-DU
-tH
+mA
+mA
+gY
+gE
 et
 Zd
 XA
@@ -6607,7 +6546,7 @@ qY
 HQ
 sp
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6615,15 +6554,15 @@ jB
 jB
 jB
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (39,1,1) = {"
-nm
-nm
-DU
-nm
+mA
+mA
+gY
+mA
 et
 In
 pE
@@ -6644,7 +6583,7 @@ Ro
 jJ
 HQ
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6652,15 +6591,15 @@ jB
 jB
 jB
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (40,1,1) = {"
-nm
-nm
-DU
-nm
+mA
+mA
+gY
+mA
 et
 et
 et
@@ -6681,7 +6620,7 @@ Ni
 dF
 RI
 Pc
-SY
+mA
 Zx
 jB
 jB
@@ -6689,15 +6628,15 @@ jB
 jB
 Zx
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (41,1,1) = {"
 Iv
-nm
+mA
 TS
-nm
+mA
 et
 AJ
 Fg
@@ -6718,7 +6657,7 @@ fU
 Pc
 Pc
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6727,14 +6666,14 @@ jB
 jB
 jB
 TS
-SY
+mA
 Iv
 "}
 (42,1,1) = {"
 Iv
-nm
-DU
-nm
+mA
+gY
+mA
 et
 Zd
 kc
@@ -6755,7 +6694,7 @@ Js
 Ro
 DD
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6763,15 +6702,15 @@ jB
 jB
 jB
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (43,1,1) = {"
 Iv
-nm
-DU
-nm
+mA
+gY
+mA
 et
 rT
 BO
@@ -6792,7 +6731,7 @@ sz
 HQ
 HQ
 Pc
-SY
+mA
 Zx
 jB
 jB
@@ -6800,15 +6739,15 @@ jB
 jB
 Zx
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (44,1,1) = {"
 Iv
-nm
-DU
-nm
+mA
+gY
+mA
 et
 Bk
 Fz
@@ -6829,7 +6768,7 @@ Ni
 Ri
 HQ
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6837,15 +6776,15 @@ jB
 jB
 jB
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (45,1,1) = {"
 Iv
-nm
-DU
-nm
+mA
+gY
+mA
 et
 et
 et
@@ -6866,7 +6805,7 @@ Hc
 HQ
 sp
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6874,15 +6813,15 @@ jB
 jB
 jB
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (46,1,1) = {"
 Iv
-nm
-DU
-nm
+mA
+gY
+mA
 et
 gD
 NL
@@ -6903,7 +6842,7 @@ hb
 HQ
 HQ
 Pc
-SY
+mA
 jB
 jB
 jB
@@ -6911,15 +6850,15 @@ jB
 jB
 jB
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (47,1,1) = {"
 Iv
-nm
-DU
-nm
+mA
+gY
+mA
 et
 Kp
 Mv
@@ -6940,7 +6879,7 @@ Ro
 HQ
 Pc
 Pc
-SY
+mA
 cl
 cc
 jB
@@ -6948,16 +6887,16 @@ jB
 cc
 yG
 jB
-rf
-SY
+gY
+mA
 Iv
 "}
 (48,1,1) = {"
 Iv
-nm
-DU
-nm
-nm
+mA
+gY
+mA
+mA
 et
 et
 et
@@ -6977,7 +6916,7 @@ Pc
 Pc
 Pc
 RY
-SY
+mA
 Zx
 jB
 jB
@@ -6985,23 +6924,23 @@ jB
 jB
 Zx
 jB
-rf
-SY
-SY
+gY
+mA
+mA
 "}
 (49,1,1) = {"
 Iv
-nm
-DU
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
+mA
+gY
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
 Pc
 gr
 zu
@@ -7020,25 +6959,25 @@ jB
 jB
 jB
 jB
-SY
-Lx
-rf
-SY
-SY
+mA
+Jb
+gY
+mA
+mA
 "}
 (50,1,1) = {"
 Iv
-nm
-DU
-nm
-nm
-Lg
-nm
-nm
-nm
-nm
-rz
-nm
+mA
+gY
+mA
+mA
+Bs
+mA
+mA
+mA
+mA
+AK
+mA
 Pc
 cd
 jG
@@ -7056,26 +6995,26 @@ jB
 jB
 jB
 jB
-SY
-SY
-SY
-rf
-SY
-SY
+mA
+mA
+mA
+gY
+mA
+mA
 "}
 (51,1,1) = {"
-nm
-nm
-DU
-nm
-nm
-nm
-nm
-nm
-tH
-nm
-nm
-nm
+mA
+mA
+gY
+mA
+mA
+mA
+mA
+mA
+gE
+mA
+mA
+mA
 Pc
 Pc
 jC
@@ -7092,28 +7031,28 @@ jB
 jB
 jB
 jB
-SY
-Lx
-SY
-SY
-rf
-Lx
-SY
+mA
+Jb
+mA
+mA
+gY
+Jb
+mA
 "}
 (52,1,1) = {"
-rz
-nm
-DU
-nm
-nm
+AK
+mA
+gY
+mA
+mA
 ny
-nm
+mA
 kt
-nm
-nm
-nm
-nm
-nm
+mA
+mA
+mA
+mA
+mA
 Pc
 Pc
 Pc
@@ -7125,163 +7064,163 @@ Pc
 Pc
 Pc
 Zb
-nm
-nm
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
+mA
+mA
 ny
-SY
-rf
-SY
-SY
+mA
+gY
+mA
+mA
 "}
 (53,1,1) = {"
-nm
-nm
-DU
-nm
-nm
-nm
-nm
-nm
+mA
+mA
+gY
+mA
+mA
+mA
+mA
+mA
 xZ
-nm
-nm
-nm
-nm
-nm
-nm
-tH
-nm
-nm
-nm
-nm
-nm
-tH
-nm
-nm
-Lg
-nm
-SY
+mA
+mA
+mA
+mA
+mA
+mA
+gE
+mA
+mA
+mA
+mA
+mA
+gE
+mA
+mA
 Bs
-SY
-SY
-SY
-SY
-rf
-SY
-SY
+mA
+mA
+Bs
+mA
+mA
+mA
+mA
+gY
+mA
+mA
 "}
 (54,1,1) = {"
-nm
-nm
+mA
+mA
 UU
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
 TS
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-Sn
-kF
-kF
-kF
-kF
-kF
-kF
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
 uf
-SY
-SY
+mA
+mA
 "}
 (55,1,1) = {"
-nm
-rz
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-nm
-tH
-nm
-nm
-nm
-nm
-nm
-nm
-SY
-SY
-SY
-HW
-SY
-SY
-SY
-SY
-HW
-SY
+mA
+AK
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+gE
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+Ys
+mA
+mA
+mA
+mA
+Ys
+mA
 "}
 (56,1,1) = {"
-nm
-nm
-nm
-nm
-nm
-nm
-rz
-nm
-nm
+mA
+mA
+mA
+mA
+mA
+mA
+AK
+mA
+mA
 Iv
 Iv
 Iv
 Iv
 Iv
-nm
-Lg
-nm
-nm
-nm
-nm
-nm
+mA
+Bs
+mA
+mA
+mA
+mA
+mA
 Iv
 Iv
 Iv
 Iv
 Iv
 Iv
-SY
-SY
-SY
-SY
-SY
-SY
-SY
-SY
+mA
+mA
+mA
+mA
+mA
+mA
+mA
+mA
 "}

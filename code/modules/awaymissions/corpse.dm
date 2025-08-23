@@ -6,7 +6,7 @@
 	name = "Mob Spawner"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/effects/mapping_helpers.dmi' // These aren't *really* mapping helpers but it fits the most with it's common usage (to help place corpses in maps)
+	icon = 'icons/effects/mapping/mapping_helpers.dmi' // These aren't *really* mapping helpers but it fits the most with it's common usage (to help place corpses in maps)
 	icon_state = "mobspawner" // So it shows up in the map editor
 	var/mob_type = null
 	var/mob_name = ""
@@ -34,38 +34,53 @@
 	var/ghost_usable = TRUE
 	/// Weakref to the mob this spawner created - just if you needed to do something with it.
 	var/datum/weakref/spawned_mob_ref
+	var/can_load_appearance = TRUE // [CELADON-EDIT] - CELADON_LOAD_PREF
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/effect/mob_spawn/attack_ghost(mob/user)
 	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
 		return
 	if(!uses)
-		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
+		to_chat(user, span_warning("This spawner is out of charges!"))
 		return
 	if(is_banned_from(user.key, ban_type))
-		to_chat(user, "<span class='warning'>You are jobanned!</span>")
+		to_chat(user, span_warning("You are jobanned!"))
 		return
 	if(!allow_spawn(user))
 		return
 	if(QDELETED(src) || QDELETED(user))
 		return
+
+	// [CELADON-ADD] - CELADON: DISCORD VERIFY
+	if(CONFIG_GET(flag/DiscordVerify))
+		if(!checkDiscordVerify(user.ckey))
+			to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
+			return
+	// [/CELADON-ADD]
+
 	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
 
 	if(ghost_role == "No" || !loc)
 		return
+	// [CELADON-EDIT] - CELADON_LOAD_PREF
+	var/requested_char = FALSE
+	if(can_load_appearance == TRUE && ispath(mob_type, /mob/living/carbon/human)) // Can't just use if(can_load_appearance), 2 has a different behavior
+		if(alert(user, "Load currently selected slot?", "Play as your character!", "Yes", "No") == "Yes")
+			requested_char = TRUE
+	// [/CELADON-EDIT] - CELADON_LOAD_PREF
 	log_game("[key_name(user)] became [mob_name]")
-	create(ckey = user.ckey)
+	create(ckey = user.ckey, load_character = requested_char) // [CELADON-EDIT] - CELADON_LOAD_PREF
 
 /obj/effect/mob_spawn/Initialize(mapload)
 	. = ..()
 	if(instant || (roundstart && (mapload || (SSticker && SSticker.current_state > GAME_STATE_SETTING_UP))))
 		INVOKE_ASYNC(src, PROC_REF(create))
 	else if(ghost_usable)
-		GLOB.poi_list |= src
+		GLOB.poi_list |= src // [CELADON-EDIT] - old: SSpoints_of_interest.remove_point_of_interest(src)
 		LAZYADD(GLOB.mob_spawners[name], src)
 
 /obj/effect/mob_spawn/Destroy()
-	GLOB.poi_list -= src
+	GLOB.poi_list -= src // [CELADON-EDIT] - old: SSpoints_of_interest.remove_point_of_interest(src)
 	var/list/spawners = GLOB.mob_spawners[name]
 	LAZYREMOVE(spawners, src)
 	if(!LAZYLEN(spawners))
@@ -81,13 +96,16 @@
 /obj/effect/mob_spawn/proc/equip(mob/M)
 	return
 
-/obj/effect/mob_spawn/proc/create(ckey, newname)
+// [CELADON-ADD] - CELADON_LOAD_PREF
+/obj/effect/mob_spawn/proc/special_post_appearance(mob/H)
+	return
+// [//CELADON-ADD] - CELADON_LOAD_PREF
+
+// [CELADON-EDIT] - CELADON_LOAD_PREF
+/obj/effect/mob_spawn/proc/create(ckey, name, load_character)
 	var/mob/living/M = new mob_type(get_turf(src)) //living mobs only
-	if(!random || newname)
-		if(newname)
-			M.real_name = newname
-		else
-			M.real_name = mob_name ? mob_name : M.name
+	if(!random)
+		M.real_name = mob_name ? mob_name : M.name
 		if(!mob_gender)
 			mob_gender = pick(MALE, FEMALE)
 		M.gender = mob_gender
@@ -102,42 +120,68 @@
 	M.adjustBruteLoss(brute_damage)
 	M.adjustFireLoss(burn_damage)
 	M.color = mob_color
-	equip(M)
+	equip(M, load_character)
 
 	if(ckey)
 		M.ckey = ckey
 		if(show_flavour)
 			var/output_message = "<span class='big bold'>[short_desc]</span>"
 			if(flavour_text != "")
-				output_message += "\n<span class='bold'>[flavour_text]</span>"
+				output_message += "\n[span_bold("[flavour_text]")]"
 			if(important_info != "")
-				output_message += "\n<span class='userdanger'>[important_info]</span>"
+				output_message += "\n[span_userdanger("[important_info]")]"
 			to_chat(M, output_message)
+		if(ishuman(M) && load_character)
+			var/mob/living/carbon/human/H = M
+			H.load_client_appearance(H.client)
 		var/datum/mind/MM = M.mind
 		var/datum/antagonist/A
-		if(antagonist_type)
-			A = MM.add_antag_datum(antagonist_type)
-		if(objectives)
-			if(!A)
-				A = MM.add_antag_datum(/datum/antagonist/custom)
-			for(var/objective in objectives)
-				var/datum/objective/O = new/datum/objective(objective)
-				O.owner = MM
-				A.objectives += O
+		if(!istype(src, /obj/effect/mob_spawn/human))
+			if(antagonist_type)
+				A = MM.add_antag_datum(antagonist_type)
+			if(objectives)
+				if(!A)
+					A = MM.add_antag_datum(/datum/antagonist/custom)
+				for(var/objective in objectives)
+					var/datum/objective/O = new/datum/objective(objective)
+					O.owner = MM
+					A.objectives += O
 		if(assignedrole)
 			M.mind.assigned_role = assignedrole
-		special(M)
+		special(M, name)
 		MM.name = M.real_name
+		special_post_appearance(M, name)
+	// [CELADON-ADD] - CELADON_GHOST_ROLES
+		// Issue player loadout for ghost role when they chose to load character slot
+		if(ishuman(M) && load_character && M.client && M.client.prefs?.equipped_gear && length(M.client.prefs.equipped_gear))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/storage/box/loadout_dumper = new()
+
+			for(var/gear_id in M.client.prefs.equipped_gear)
+				var/datum/gear/new_gear = GLOB.gear_datums[gear_id]
+				if(new_gear)
+					// spawn item into the box; spawn_item handles role replacements via job/assigned_role
+					new_gear.spawn_item(loadout_dumper, H)
+
+			// try to place box into back storage, else into hands, else drop on turf
+			var/datum/component/storage/back_storage = H.back?.GetComponent(/datum/component/storage)
+			if(back_storage)
+				back_storage.handle_item_insertion(loadout_dumper, TRUE)
+			else if(!H.put_in_hands(loadout_dumper, TRUE))
+				loadout_dumper.forceMove(get_turf(H))
+				to_chat(H, span_warning("Unable to place your loadout box into hands, dropped at your feet."))
+	spawned_mob_ref = WEAKREF(M)
+	// [/CELADON-ADD]
 	if(uses > 0)
 		uses--
-	spawned_mob_ref = WEAKREF(M)
 	if(!permanent && !uses)
 		qdel(src)
-	return M
+// [/CELADON-EDIT] - CELADON_LOAD_PREF
 
 // Base version - place these on maps/templates.
 /obj/effect/mob_spawn/human
 	mob_type = /mob/living/carbon/human
+	icon_state = "corpsehuman"
 	//Human specific stuff.
 	var/mob_species = null		//Set to make them a mutant race such as lizard or skeleton. Uses the datum typepath instead of the ID.
 	var/datum/outfit/outfit = /datum/outfit	//If this is a path, it will be instanced in Initialize()
@@ -174,6 +218,8 @@
 	var/facial_hairstyle
 	var/skin_tone
 
+	var/list/outfit_override
+
 /obj/effect/mob_spawn/human/Initialize()
 	if(ispath(outfit))
 		outfit = new outfit()
@@ -194,14 +240,14 @@
 	if(hairstyle)
 		H.hairstyle = hairstyle
 	else
-		// [CELADON-EDIT] - TAJARA
+		// [CELADON-EDIT] - TAJARA - изменения базы
 		// H.hairstyle = random_hairstyle(H.gender) // CELADON-EDIT - ORIGINAL
 		H.hairstyle = H.dna.species.random_hairstyle(H.gender)
 		// [/CELADON-EDIT]
 	if(facial_hairstyle)
 		H.facial_hairstyle = facial_hairstyle
 	else
-		// [CELADON-EDIT] - TAJARA
+		// [CELADON-EDIT] - TAJARA - изменения базы
 		// H.facial_hairstyle = random_facial_hairstyle(H.gender) // CELADON-EDIT - ORIGINAL
 		H.facial_hairstyle = H.dna.species.random_facial_hairstyle(H.gender)
 		// [/CELADON-EDIT]
@@ -265,7 +311,7 @@
 
 //Non-human spawners
 
-/obj/effect/mob_spawn/AICorpse/create(ckey) //Creates a corrupted AI
+/obj/effect/mob_spawn/AICorpse/create(ckey, name, load_character) // [CELADON-EDIT] - CELADON_LOAD_PREF
 	var/A = locate(/mob/living/silicon/ai) in loc
 	if(A)
 		return
@@ -285,7 +331,7 @@
 /obj/effect/mob_spawn/slime/equip(mob/living/simple_animal/slime/S)
 	S.colour = mobcolour
 
-/obj/effect/mob_spawn/facehugger/create(ckey) //Creates a squashed facehugger
+/obj/effect/mob_spawn/facehugger/create(ckey, name, load_character) // [CELADON-EDIT] - CELADON_LOAD_PREF
 	var/mob/living/simple_animal/hostile/facehugger/object = new(src.loc) //variable object is a new facehugger at the location of the landmark
 	object.name = src.name
 	object.death() //call the facehugger's death proc
@@ -293,7 +339,7 @@
 
 /obj/effect/mob_spawn/mouse
 	name = "sleeper"
-	mob_type = 	/mob/living/simple_animal/mouse
+	mob_type = 	/mob/living/basic/mouse
 	death = FALSE
 	roundstart = FALSE
 	icon = 'icons/obj/machines/sleeper.dmi'
@@ -332,12 +378,10 @@
 /obj/effect/mob_spawn/human/corpse/cargo_tech
 	name = "Cargo Tech"
 	outfit = /datum/outfit/job/cargo_tech
-	icon_state = "corpsecargotech"
 
 /obj/effect/mob_spawn/human/cook
 	name = "Cook"
 	outfit = /datum/outfit/job/cook
-	icon_state = "corpsecook"
 
 /obj/effect/mob_spawn/human/cook/husked
 	husk = TRUE
@@ -345,8 +389,6 @@
 /obj/effect/mob_spawn/human/doctor
 	name = "Doctor"
 	outfit = /datum/outfit/job/doctor
-	icon_state = "corpsedoctor"
-
 
 /obj/effect/mob_spawn/human/doctor/alive
 	death = FALSE
@@ -369,22 +411,20 @@
 /obj/effect/mob_spawn/human/engineer
 	name = "Engineer"
 	outfit = /datum/outfit/job/engineer
-	icon_state = "corpseengineer"
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /obj/effect/mob_spawn/human/clown
 	name = "Clown"
 	outfit = /datum/outfit/job/clown
-	icon_state = "corpseclown"
+// [/CELADON-ADD]
 
 /obj/effect/mob_spawn/human/scientist
 	name = "Scientist"
 	outfit = /datum/outfit/job/scientist
-	icon_state = "corpsescientist"
 
 /obj/effect/mob_spawn/human/miner
 	name = "Shaft Miner"
 	outfit = /datum/outfit/job/miner
-	icon_state = "corpseminer"
 
 /obj/effect/mob_spawn/human/plasmaman
 	mob_species = /datum/species/plasmaman
@@ -411,7 +451,6 @@
 
 /obj/effect/mob_spawn/human/bartender
 	name = "Space Bartender"
-	icon_state = "corpsebartender"
 	id_job = "Bartender"
 	id_access_list = list(ACCESS_BAR)
 	outfit = /datum/outfit/spacebartender
@@ -446,7 +485,7 @@
 	var/obj/item/card/id/W = H.get_idcard()
 	if(H.age < AGE_MINOR)
 		W.registered_age = AGE_MINOR
-		to_chat(H, "<span class='notice'>You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!</span>")
+		to_chat(H, span_notice("You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!"))
 
 /obj/effect/mob_spawn/human/beach
 	outfit = /datum/outfit/beachbum
@@ -475,7 +514,6 @@
 	name = "Beach Bum"
 	glasses = /obj/item/clothing/glasses/sunglasses
 	r_pocket = /obj/item/storage/wallet/random
-	l_pocket = /obj/item/reagent_containers/food/snacks/pizzaslice/dank
 	uniform = /obj/item/clothing/under/pants/jeans
 	id = /obj/item/card/id
 
@@ -608,7 +646,7 @@
 	var/despawn = alert("Return to cryosleep? (Warning, Your mob will be deleted!)",,"Yes","No")
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return
-	user.visible_message("<span class='notice'>[user.name] climbs back into cryosleep...</span>")
+	user.visible_message(span_notice("[user.name] climbs back into cryosleep..."))
 	qdel(user)
 
 /datum/outfit/cryobartender

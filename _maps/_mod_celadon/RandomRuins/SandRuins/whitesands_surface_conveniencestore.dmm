@@ -78,11 +78,11 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "nB" = (
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "pd" = (
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_x = 6;
 	pixel_y = 1
 	},
@@ -96,12 +96,12 @@
 	pixel_y = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "sP" = (
 /obj/structure/rack,
-/obj/item/kitchen/knife/plastic{
+/obj/item/melee/knife/plastic{
 	pixel_x = -5
 	},
 /obj/item/kitchen/spoon/plastic{
@@ -141,7 +141,7 @@
 /turf/template_noop,
 /area/template_noop)
 "uM" = (
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "wd" = (
@@ -178,7 +178,7 @@
 /area/ruin/unpowered)
 "yQ" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/syndicake{
+/obj/item/food/syndicake{
 	pixel_x = -1;
 	pixel_y = 4
 	},
@@ -213,7 +213,7 @@
 /turf/closed/wall,
 /area/ruin/unpowered)
 "FX" = (
-/obj/machinery/vending/cola/random,
+/obj/effect/spawner/random/vending/cola,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "Gr" = (
@@ -291,7 +291,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/pizzaslice/custom{
+/obj/item/food/pizzaslice{
 	pixel_x = -1;
 	pixel_y = 3
 	},
@@ -314,7 +314,7 @@
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "Wp" = (
-/obj/structure/sign/poster/contraband/clown,
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall,
 /area/ruin/unpowered)
 "Wr" = (
@@ -341,7 +341,7 @@
 /area/ruin/unpowered)
 "Xd" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/canned/beans{
+/obj/item/food/canned/beans{
 	pixel_x = 1;
 	pixel_y = 9
 	},
@@ -355,7 +355,7 @@
 /area/ruin/unpowered)
 "Yd" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/cockroach,
+/mob/living/basic/cockroach,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered)
 "Yf" = (

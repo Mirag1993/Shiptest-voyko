@@ -20,6 +20,16 @@
 			remove_ripples()
 			return DOCKING_IMMOBILIZED
 
+
+	for(var/obj/docking_port/stationary/current_port as anything in docking_points)
+		if(current_port.disable_on_owner_ship_dock)
+			if(current_port.docked && !force)
+				return DOCKING_BLOCKED //lets not crush the ship/station we are about to land on
+			if(new_dock != assigned_transit)
+				current_port.enabled = FALSE
+			else
+				current_port.enabled = TRUE
+
 	var/obj/docking_port/stationary/old_dock = docked
 
 	/**************************************************************************************************************
@@ -362,4 +372,5 @@
 	for(var/i = 1, i <= length(turfs), i++)
 		var/turf/open/T = turfs[i]
 		if(istype(T))
-			T.air.copy_from_turf(T)
+			if(isopenturf(T))
+				T.air.copy_from_turf(T)

@@ -34,12 +34,13 @@
 
 /obj/item/organ/eyes/tajara
 	name = "Tajara eyes"
-	icon = 'mod_celadon/_storge_icons/icons/tajara/tajara_organs.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/species/tajara/tajara_organs.dmi'
 	icon_state = "night_eyes_off"
 	desc = "Some eyes"
 	actions_types = list(/datum/action/item_action/organ_action/toggle)
 	var/active = FALSE
 	var/current_lighting_alpha = null
+	flash_protect = FLASH_PROTECTION_SENSITIVE	// CELADON_BALANCE_SPECIES - Для баланса, глаза стали чувствительными
 
 /obj/item/organ/eyes/tajara/Initialize()
 	current_lighting_alpha = lighting_alpha
@@ -146,17 +147,17 @@
 	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
 	modifies_speech = TRUE
 	var/static/list/languages_possible_tajara = typecacheof(list(
-		/datum/language/common,
-		/datum/language/draconic,
+		/datum/language/galactic_common,
+		/datum/language/kalixcian_common,
 		/datum/language/codespeak,
 		/datum/language/monkey,
-		/datum/language/narsie,
-		/datum/language/beachbum,
+		// /datum/language/narsie,
+		// /datum/language/beachbum,
 		/datum/language/aphasia,
-		/datum/language/piratespeak,
+		// /datum/language/piratespeak,
 		/datum/language/moffic,
-		/datum/language/sylvan,
-		/datum/language/shadowtongue,
+		// /datum/language/sylvan,
+		// /datum/language/shadowtongue,
 		/datum/language/siiktajr
 	))
 
@@ -170,10 +171,10 @@
 	var/static/regex/tajara_ru_RR = new("Р+", "g")
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
-		message = tajara_rr.Replace(message, pick("rrr", "rr"))
-		message = tajara_RR.Replace(message, pick("Rrr", "Rr"))
-		message = tajara_ru_rr.Replace_char(message, pick("ррр", "рр"))
-		message = tajara_ru_RR.Replace_char(message, pick("Ррр", "Рр"))
+		message = tajara_rr.Replace(message, pick("rr", "rrr", "rrrr", "rrrrr"))
+		message = tajara_RR.Replace(message, pick("Rr", "Rrr", "Rrrr", "Rrrrr"))
+		message = tajara_ru_rr.Replace_char(message, pick("рр", "ррр", "рррр", "ррррр"))
+		message = tajara_ru_RR.Replace_char(message, pick("Рр", "Ррр", "Рррр", "Ррррр"))
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/tajara/Initialize(mapload)

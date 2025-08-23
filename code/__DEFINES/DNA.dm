@@ -12,7 +12,7 @@
 #define COUGH /datum/mutation/human/cough
 #define DWARFISM /datum/mutation/human/dwarfism
 #define GIGANTISM /datum/mutation/human/gigantism
-#define CLOWNMUT /datum/mutation/human/clumsy
+#define CLOWNMUT /datum/mutation/human/clumsy	// [CELADON-ADD] - RETURN_CONTENT - CLOWN_RETURN_CONTENT
 #define TOURETTES /datum/mutation/human/tourettes
 #define DEAFMUT /datum/mutation/human/deaf
 #define BLINDMUT /datum/mutation/human/blind
@@ -99,6 +99,7 @@
 #define TR_KEEPORGANS (1<<8)
 #define TR_KEEPSTUNS (1<<9)
 #define TR_KEEPREAGENTS (1<<10)
+#define TR_KEEPAI (1<<11)
 
 //species traits for mutantraces
 #define MUTCOLORS 1

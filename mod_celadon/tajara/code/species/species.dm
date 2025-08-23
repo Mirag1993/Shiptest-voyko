@@ -19,9 +19,11 @@
 	of family and politics. They prefer colder environments, and speak a variety of languages, mostly Siik'Maas, \
 	using unique inflections their mouths form."
 
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 
 	use_skintonetajara = TRUE
+
+	bodyflags = HAS_TAIL | TAIL_WAGGING
 
 	disliked_food = VEGETABLES | FRUIT | GRAIN | GROSS
 	liked_food = MEAT | RAW | DAIRY
@@ -59,13 +61,22 @@
 
 	default_color = "424242"
 
-	heatmod = 0.8
-	coldmod = 1.2
-	bodytemp_normal = HUMAN_BODYTEMP_NORMAL + 30
-	bodytemp_heat_damage_limit = (HUMAN_BODYTEMP_NORMAL + 30) + 10
-	bodytemp_cold_damage_limit = (HUMAN_BODYTEMP_NORMAL + 30) - 40
+	burnmod = 1.3
+	heatmod = 1.2
+	coldmod = 0.9
+	staminamod = 0.85
 
-	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/tajara 	//нарисовать/спиздить спрайт к нему
+	bodytemp_heat_damage_limit = TAJARAN_BODYTEMP_NORMAL + 30		//70
+
+	max_temp_comfortable = TAJARAN_BODYTEMP_NORMAL + 20				//60
+
+	bodytemp_normal = TAJARAN_BODYTEMP_NORMAL						//38
+
+	min_temp_comfortable = TAJARAN_BODYTEMP_NORMAL - 30				//-10
+
+	bodytemp_cold_damage_limit = TAJARAN_BODYTEMP_NORMAL - 40		//-20
+
+	meat = /obj/item/food/meat/slab/human/mutant/tajara 	//нарисовать/спиздить спрайт к нему
 	//skinned_type = /obj/item/stack/sheet/animalhide/tajara						//нужно сделать кожу из таяран и нарисовать/спиздить спрайт к нему
 
 	species_language_holder = /datum/language_holder/tajara
@@ -131,11 +142,19 @@
 		mutant_bodyparts -= "tajara_tail"
 		mutant_bodyparts |= "waggingtajara_tail"
 
+	// if("riol_tail" in mutant_bodyparts)
+	// 	mutant_bodyparts -= "riol_tail"
+	// 	mutant_bodyparts |= "waggingriol_tail"
+
 	return ..()
 
 /datum/species/stop_wagging_tail(mob/living/carbon/human/H)
 	if("waggingtajara_tail" in mutant_bodyparts)
 		mutant_bodyparts -= "waggingtajara_tail"
 		mutant_bodyparts |= "tajara_tail"
+
+	// if("waggingriol_tail" in mutant_bodyparts)
+	// 	mutant_bodyparts -= "waggingriol_tail"
+	// 	mutant_bodyparts |= "riol_tail"
 
 	return ..()

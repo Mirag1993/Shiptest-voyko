@@ -162,7 +162,7 @@
 		handle_reactions()
 		return amount
 
-/// Get the name of the reagent there is the most of in this holder
+/// DEPRICATED use get_master_regent. Get the name of the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent_name()
 	var/list/cached_reagents = reagent_list
 	var/name
@@ -175,7 +175,7 @@
 
 	return name
 
-/// Get the id of the reagent there is the most of in this holder
+/// DEPRICATED use get_master_regent. Get the id of the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent_id()
 	var/list/cached_reagents = reagent_list
 	var/max_type
@@ -215,8 +215,9 @@
  * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
  * * show_message - passed through to [/datum/reagents/proc/react_single]
  * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
+ * * ignore_stomach - when using methods INGEST will not use the stomach as the target
  */
-/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = TRUE, no_react = FALSE, mob/transfered_by, remove_blacklisted = FALSE, method = null, show_message = TRUE, round_robin = FALSE)
+/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = TRUE, no_react = FALSE, mob/transfered_by, remove_blacklisted = FALSE, method = null, show_message = TRUE, round_robin = FALSE, ignore_stomach = FALSE)
 	var/list/cached_reagents = reagent_list
 	if(!target || !total_volume)
 		return
@@ -229,10 +230,30 @@
 		R = target
 		target_atom = R.my_atom
 	else
-		if(!target.reagents)
+		if(!ignore_stomach && (method & INGEST) && istype(target, /mob/living/carbon))
+			var/mob/living/carbon/eater = target
+			var/obj/item/organ/stomach/belly = eater.getorganslot(ORGAN_SLOT_STOMACH)
+			if(!belly)
+				eater.expel_ingested(my_atom, amount)
+				return
+			R = belly.reagents
+			target_atom = belly
+		else if(!target.reagents)
 			return
-		R = target.reagents
-		target_atom = target
+		else
+			R = target.reagents
+			target_atom = target
+	// [CELADON-ADD] - CELADON_FIXES_BLOOD
+	// Проверка на переливание крови в живое существо
+	if(method == INJECT && ishuman(target_atom))
+		var/mob/living/carbon/human/H = target_atom
+		var/datum/reagent/blood/B = has_reagent(/datum/reagent/blood)
+		if(B && H.blood_volume >= (BLOOD_VOLUME_NORMAL - 0.5)) // Добавляем небольшой запас для предотвращения перелива
+			// Если у человека уже нормальный уровень крови, ограничиваем количество переливаемой крови
+			amount = min(amount, BLOOD_VOLUME_NORMAL - H.blood_volume)
+			if(amount <= 0)
+				return 0
+	// [/CELADON-ADD]
 
 	amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
 	var/trans_data = null
@@ -248,7 +269,10 @@
 				trans_data = copy_data(T)
 			R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
 			if(method)
-				R.expose_single(T, target_atom, method, part, show_message)
+				if(istype(target_atom, /obj/item/organ/stomach))
+					R.expose_single(T, target, method, part, show_message)
+				else
+					R.expose_single(T, target_atom, method, part, show_message)
 				T.on_transfer(target_atom, method, transfer_amount * multiplier)
 			remove_reagent(T.type, transfer_amount)
 			transfer_log[T.type] = transfer_amount
@@ -268,7 +292,10 @@
 			R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1)
 			to_transfer = max(to_transfer - transfer_amount , 0)
 			if(method)
-				R.expose_single(T, target_atom, method, transfer_amount, show_message)
+				if(istype(target_atom, /obj/item/organ/stomach))
+					R.expose_single(T, target, method, transfer_amount, show_message)
+				else
+					R.expose_single(T, target_atom, method, transfer_amount, show_message)
 				T.on_transfer(target_atom, method, transfer_amount * multiplier)
 			remove_reagent(T.type, transfer_amount)
 			transfer_log[T.type] = transfer_amount
@@ -420,7 +447,7 @@
 /// Removes addiction to a specific reagent on [/datum/reagents/var/my_atom]
 /datum/reagents/proc/remove_addiction(datum/reagent/R)
 	R.on_addiction_removal(my_atom)
-	to_chat(my_atom, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
+	to_chat(my_atom, span_notice("You feel like you've gotten over your need for [R.name]."))
 	SEND_SIGNAL(my_atom, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
 	addiction_list.Remove(R)
 	qdel(R)
@@ -512,18 +539,13 @@
 						matching_container = 1
 
 					else
-						if(cached_my_atom.type == C.required_container)
+						if(cached_my_atom.type in typesof(C.required_container))
 							matching_container = 1
 					if (isliving(cached_my_atom) && !C.mob_react) //Makes it so certain chemical reactions don't occur in mobs
 						return
 					if(!C.required_other)
 						matching_other = 1
 
-					else if(istype(cached_my_atom, /obj/item/slime_extract))
-						var/obj/item/slime_extract/M = cached_my_atom
-
-						if(M.Uses > 0) // added a limit to slime cores -- Muskets requested this
-							matching_other = 1
 				else
 					if(!C.required_container)
 						matching_container = 1
@@ -569,16 +591,7 @@
 						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 80, TRUE)
 
 					for(var/mob/M in seen)
-						to_chat(M, "<span class='notice'>[iconhtml] [selected_reaction.mix_message]</span>")
-
-				if(istype(cached_my_atom, /obj/item/slime_extract))
-					var/obj/item/slime_extract/ME2 = my_atom
-					ME2.Uses--
-					if(ME2.Uses <= 0) // give the notification that the slime core is dead
-						for(var/mob/M in seen)
-							to_chat(M, "<span class='notice'>[iconhtml] \The [my_atom]'s power is consumed in the reaction.</span>")
-							ME2.name = "used slime extract"
-							ME2.desc = "This extract has been used up."
+						to_chat(M, span_notice("[iconhtml] [selected_reaction.mix_message]"))
 
 			selected_reaction.on_reaction(src, multiplier)
 			reaction_occurred = 1
@@ -602,15 +615,22 @@
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
 		if(R.type == reagent)
-			if(my_atom && isliving(my_atom))
-				var/mob/living/M = my_atom
+			var/mob/living/mob_consumer
+			if (isliving(my_atom))
+				mob_consumer = my_atom
+			else if (istype(my_atom, /obj/item/organ))
+				var/obj/item/organ/organ = my_atom
+				mob_consumer = organ.owner
+
+			if (mob_consumer)
 				if(R.metabolizing)
 					R.metabolizing = FALSE
-					R.on_mob_end_metabolize(M)
-				R.on_mob_delete(M)
+					R.on_mob_end_metabolize(mob_consumer)
+				R.on_mob_delete(mob_consumer)
 			//Clear from relevant lists
 			addiction_list -= R
 			reagent_list -= R
+			SEND_SIGNAL(src, COMSIG_REAGENTS_DEL_REAGENT, R)
 			qdel(R)
 			update_total()
 			if(my_atom)
@@ -638,6 +658,8 @@
 		del_reagent(R.type)
 	if(my_atom)
 		my_atom.on_reagent_change(CLEAR_REAGENTS)
+
+	SEND_SIGNAL(src, COMSIG_REAGENTS_CLEAR_REAGENTS)
 	return 0
 
 /**
@@ -747,6 +769,8 @@
 			if(my_atom)
 				my_atom.on_reagent_change(ADD_REAGENT)
 			R.on_merge(data, amount)
+
+			SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, cached_reagents, amount, reagtemp, data, no_react)
 			if(!no_react)
 				handle_reactions()
 			return TRUE
@@ -762,9 +786,15 @@
 
 	if(isliving(my_atom))
 		R.on_mob_add(my_atom) //Must occur befor it could posibly run on_mob_delete
+	else if(istype(my_atom, /obj/item/organ/stomach))
+		var/obj/item/organ/stomach/belly = my_atom
+		var/mob/living/carbon/body = belly.owner
+		R.on_mob_add(body)
 	update_total()
 	if(my_atom)
 		my_atom.on_reagent_change(ADD_REAGENT)
+
+	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, reagent, amount, reagtemp, data, no_react)
 	if(!no_react)
 		handle_reactions()
 	return TRUE
@@ -797,6 +827,7 @@
 			//and zero, to prevent removing more than the holder has stored
 			amount = clamp(amount, 0, R.volume)
 			R.volume -= amount
+			SEND_SIGNAL(src, COMSIG_REAGENTS_REM_REAGENT, A, amount)
 			update_total()
 			if(!safety)//So it does not handle reactions when it need not to
 				handle_reactions()

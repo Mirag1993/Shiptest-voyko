@@ -6,45 +6,45 @@
 
 # Teams
 
+# Head Maintainers
+
+# Vairkharst
+
+/**/* @Vairkharst
+/**/*.dm @Vairkharst
+/**/*.ogg @Vairkharst
+/**/*.mp3 @Vairkharst
+/**/*.dmi @Vairkharst
+
 # Code Maintainers
 
-# MrCat15352
+# KOCMODECAHTHUK
 
-/strings/ @MrCat15352
-/tgui/ @MrCat15352
-/sound/ @MrCat15352
-/code/controllers/subsystem/shuttle.dm @MrCat15352
-/code/modules/shuttle/ @MrCat15352
-/code/modules/overmap/ @MrCat15352
-/code/game/objects/items/storage/ration.dm @MrCat15352
-/code/modules/food_and_drinks/drinks/drinks/breakawayflask.dm @MrCat15352
-/code/modules/food_and_drinks/food/ration.dm @MrCat15352
-/code/modules/mob/living/simple_animal/hostile/mining_mobs/hivelord.dm @MrCat15352
-/code/modules/projectiles/ @MrCat15352
-/code/modules/reagents/chemistry/reagents/trickwine_reagents.dm @MrCat15352
-/**/*.dm @MrCat15352
-
+/strings/ @KOCMODECAHTHUK
+/tgui/ @KOCMODECAHTHUK
+/sound/ @KOCMODECAHTHUK
+/code/ @KOCMODECAHTHUK
+/mod_celadon/ @KOCMODECAHTHUK
+/mod_celadon/_storge_sounds/ @KOCMODECAHTHUK
+/**/*.dm @KOCMODECAHTHUK
+/**/*.ogg @KOCMODECAHTHUK
+/**/*.mp3 @KOCMODECAHTHUK
 
 # Map Maintainers
 
-# molnizz
+# Kenfarka
 
-/_maps/ @molnizz
-/code/controllers/subsystem/shuttle.dm @molnizz
-/code/modules/shuttle/ @molnizz
-/code/modules/overmap/ @molnizz
-/_maps/RandomRuins/LavaRuins/lavaland_surface_sloth.dmm @molnizz
-/**/*.dmm @molnizz
+/_maps/_mod_celadon/ @Kenfarka
+/**/*.dmm @Kenfarka
+/**/*.json @Kenfarka
 
 
 # Sprite Maintainers
 
-# RalseiDreemuurr
+# Cuildipie
 
-/icons/ @RalseiDreemuurr
-/whitesands/icons/ @RalseiDreemuurr
-/**/*.dmi @RalseiDreemuurr
-
+/mod_celadon/_storge_icons/ @Cuildipie
+/**/*.dmi @Cuildipie
 
 # MAINTAINERS
 
@@ -61,6 +61,3 @@
 
 
 # CONTRIBUTORS
-
-#SIC SEMPER TYRANNIS
-#/_maps/RandomRuins/LavaRuins/lavaland_surface_sloth.dmm @MrCat15352

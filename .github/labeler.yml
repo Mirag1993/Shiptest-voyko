@@ -1,15 +1,24 @@
-# Any changes
-'🔵 Требуется проверка':
-- changed-files:
-  - any-glob-to-any-file:
-    - '**'
-
 # Changes to a .dmm or anything in the _map subfolder
 '🗺 Мапинг':
 - changed-files:
   - any-glob-to-any-file:
     - '**/*.dmm'
     - '_maps/**'
+
+'🚀 Корабли 🚀':
+- changed-files:
+  - any-glob-to-any-file:
+    - '_maps/shuttles/**'
+    - '_maps/configs/**'
+    - '_maps/_mod_celadon/shuttles/**'
+    - '_maps/_mod_celadon/configs/**'
+
+'🏔 Руинки 🏔':
+- changed-files:
+  - any-glob-to-any-file:
+    - '_maps/RandomRuins/**'
+    - 'code/datums/ruins/**'
+    - '_maps/_mod_celadon/RandomRuins/**'
 
 # Any .dmi changes
 '🎨 Спрайты 🎨':
@@ -18,7 +27,7 @@
     - '**/*.dmi'
 
 # Any changes if not in modulare folder
-'🪓 НЕ МОДУЛЬНО 🪓':
+'🪓 ТРОГАЛИ CORE-CODE 🪓':
 - changed-files:
   - any-glob-to-any-file:
     - '_maps/map_files/**'

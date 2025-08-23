@@ -7,14 +7,14 @@
 /obj/item/clothing/mask/gas/sechailer,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/reagent_containers/food/snacks/rationpack,
-/obj/item/reagent_containers/food/snacks/rationpack,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /obj/item/storage/box/survival/medical,
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
 /obj/structure/closet/wall{
 	pixel_y = 31;
 	pixel_x = -3;
@@ -64,7 +64,7 @@
 /obj/machinery/door/airlock/external,
 /obj/docking_port/mobile{
 	preferred_direction = 4;
-	set_dir_on_move = 4
+	port_direction = 4
 	},
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plasteel/dark,

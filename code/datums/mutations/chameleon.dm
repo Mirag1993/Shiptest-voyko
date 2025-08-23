@@ -4,8 +4,8 @@
 	desc = "A genome that causes the holder's skin to become transparent over time."
 	quality = POSITIVE
 	difficulty = 16
-	text_gain_indication = "<span class='notice'>You feel one with your surroundings.</span>"
-	text_lose_indication = "<span class='notice'>You feel oddly exposed.</span>"
+	text_gain_indication = span_notice("You feel one with your surroundings.")
+	text_lose_indication = span_notice("You feel oddly exposed.")
 	time_coeff = 5
 	instability = 25
 
@@ -32,7 +32,16 @@
 	owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
 
 /datum/mutation/human/chameleon/on_losing(mob/living/carbon/human/owner)
-	if(..())
-		return
-	owner.alpha = 255
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	// [CELADON-EDIT] - FIXES_CHAMELEON
+	// if(..())
+		// return
+	// owner.alpha = 255
+	// UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)	// ORIGINAL
+	// Сначала сбрасываем альфа-канал и отписываемся от сигналов
+	if(owner)
+		owner.alpha = 255
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(owner, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
+	// Затем вызываем родительскую функцию
+	..()
+	// [/CELADON-EDIT]

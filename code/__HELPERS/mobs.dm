@@ -68,6 +68,10 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	if(!GLOB.squid_face_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/squid_face, GLOB.squid_face_list)
+	// [CELADON-ADD] - CELADON_IPC_HAIR
+	if(!GLOB.ipc_hair_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_hair, GLOB.ipc_hair_list)
+	// [/CELADON-ADD] - CELADON_IPC_HAIR
 	if(!GLOB.ipc_screens_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	if(!GLOB.ipc_antennas_list.len)
@@ -113,6 +117,31 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_hairs, GLOB.tajara_hairs_list)
 	if(!GLOB.tajara_ears_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_ears, GLOB.tajara_ears_list)
+	// [CELADON-ADD] - CELADON_RIOL
+	if(!GLOB.riol_chest_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_chest_markings, GLOB.riol_chest_markings_list)
+	if(!GLOB.riol_body_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_body_markings, GLOB.riol_body_markings_list)
+	if(!GLOB.riol_facial_hairs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_facial_hairs, GLOB.riol_facial_hairs_list)
+	if(!GLOB.riol_nose_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_nose_markings, GLOB.riol_nose_markings_list)
+	if(!GLOB.riol_ears_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_ears_markings, GLOB.riol_ears_markings_list)
+	if(!GLOB.riol_head_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_head_markings, GLOB.riol_head_markings_list)
+	if(!GLOB.riol_tail_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_tail_markings, GLOB.riol_tail_markings_list)
+	if(!GLOB.riol_legs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_legs, GLOB.riol_legs_list)
+	if(!GLOB.riol_tail_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/riol, GLOB.riol_tail_list)
+	if(!GLOB.riol_animated_tail_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/riol, GLOB.riol_animated_tail_list)
+	if(!GLOB.riol_hairs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_hairs, GLOB.riol_hairs_list)
+	if(!GLOB.riol_ears_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_ears, GLOB.riol_ears_list)
 	// [/CELADON-ADD]
 
 	//For now we will always return none for tail_human and ears.
@@ -130,12 +159,13 @@
 		"ipc_brain" = pick(GLOB.ipc_brain_list),
 		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
+		"ipc_hair" = pick(GLOB.ipc_hair_list), // [CELADON-ADD] - CELADON_IPC_HAIR
 		"kepori_body_feathers" = pick(GLOB.kepori_body_feathers_list),
 		"kepori_head_feathers" = pick(GLOB.kepori_head_feathers_list),
 		"kepori_feathers" = pick(GLOB.kepori_feathers_list),
 		"kepori_tail_feathers" = pick(GLOB.kepori_tail_feathers_list),
 		"legs" = "Normal Legs",
-			// [CELADON-EDIT] - TAJARA - токс цвета ремув
+			// [CELADON-EDIT] - TAJARA - токс цвета ремув - изменения базы
 		// "mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		// "mcolor2" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
 		// CELADON-EDIT - ORIGINAL
@@ -148,6 +178,13 @@
 		"tajara_nose_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
 		"tajara_chest_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
 		"tajara_body_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		// [CELADON-ADD] - CELADON_RIOL
+		"riol_ears_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_head_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_nose_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_chest_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_body_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_tail_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
 		// [/CELADON-ADD]
 		"moth_fluff" = pick(GLOB.moth_fluff_list),
 		"moth_markings" = pick(GLOB.moth_markings_list),
@@ -163,7 +200,7 @@
 		"vox_head_quills" = pick(GLOB.vox_head_quills_list),
 		"vox_neck_quills" = pick(GLOB.vox_neck_quills_list),
 		"wings" = "None",
-		// [CELADON-ADD] - TAJARA - ,
+		// [CELADON-ADD] - TAJARA
 		"tajara_ears" = pick(GLOB.tajara_ears_list),
 		"tajara_hairs" = pick(GLOB.tajara_hairs_list),
 		"tajara_ears_markings" = pick(GLOB.tajara_ears_markings_list),
@@ -173,7 +210,19 @@
 		"tajara_chest_markings" = pick(GLOB.tajara_chest_markings_list),
 		"tajara_body_markings" = pick(GLOB.tajara_body_markings_list),
 		"tajara_tail" = pick(GLOB.tajara_tail_list),
-		// [/CELADON-ADD] ,
+		// [CELADON-ADD] - CELADON_RIOL
+		"riol_ears" = pick(GLOB.riol_ears_list),
+		"riol_hairs" = pick(GLOB.riol_hairs_list),
+		"riol_ears_markings" = pick(GLOB.riol_ears_markings_list),
+		"riol_head_markings" = pick(GLOB.riol_head_markings_list),
+		"riol_facial_hairs" = pick(GLOB.riol_facial_hairs_list),
+		"riol_nose_markings" = pick(GLOB.riol_nose_markings_list),
+		"riol_chest_markings" = pick(GLOB.riol_chest_markings_list),
+		"riol_body_markings" = pick(GLOB.riol_body_markings_list),
+		"riol_tail_markings" = pick(GLOB.riol_tail_markings_list),
+		"riol_tail" = pick(GLOB.riol_tail_list),
+		"riol_legs" = pick(GLOB.riol_legs_list),
+		// [/CELADON-ADD]
 	)
 
 // [CELADON-REMOVE] - TAJARA - Не вызовет ошибок, но будет неправильным использованием. Правильно: /datum/species/random_hairstyle()
@@ -243,6 +292,13 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_spider_name(attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		. = spider_name()
+
+		if(!findname(.))
+			break
+
 /proc/random_skin_tone()
 	return pick(GLOB.skin_tones)
 
@@ -307,7 +363,19 @@ GLOBAL_LIST_EMPTY(species_list)
 	return ..()
 
 /**
- * Timed action involving one mob user. A target can also be specified, but it is optional.
+ * Used to get the amount of change between two body temperatures
+ *
+ * When passed the difference between two temperatures returns the amount of change to temperature to apply.
+ * The change rate should be kept at a low value tween 0.16 and 0.02 for optimal results.
+ * vars:
+ * * temp_diff (required) The differance between two temperatures
+ * * change_rate (optional)(Default: 0.06) The rate of range multiplyer
+ */
+/proc/get_temp_change_amount(temp_diff, change_rate = 0.06)
+	if(temp_diff < 0)
+		return -(BODYTEMP_AUTORECOVERY_DIVISOR / 2) * log(1 - (temp_diff * change_rate))
+
+/* Timed action involving one mob user. A target can also be specified, but it is optional.
  *
  * Checks that `user` does not move, change hands, get stunned, etc. for the
  * given `delay`. Returns `TRUE` on success or `FALSE` on failure.
@@ -317,18 +385,21 @@ GLOBAL_LIST_EMPTY(species_list)
  * * delay - how long the do_after takes. Defaults to 3 SECONDS.
  * * target - the (optional) target mob of the do_after. If they move/cease to exist, the do_after is cancelled.
  * * timed_action_flags - optional flags to override certain do_after checks (see DEFINES/timed_action.dm).
- * * progress - if TRUE, a progress bar is displayed.
+ * * show_progress - if TRUE, a progress bar is displayed.
  * * extra_checks - a callback that can be used to add extra checks to the do_after. Returning false in this callback will cancel the do_after.
  */
-/proc/do_after(mob/user, delay = 3 SECONDS, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, hidden = FALSE)
+/proc/do_after(mob/user, delay = 3 SECONDS, atom/target, timed_action_flags = NONE, show_progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1, hidden = FALSE)
 	if(!user)
 		return FALSE
 	if(!isnum(delay))
 		CRASH("do_after was passed a non-number delay: [delay || "null"].")
 
 	if(target && DOING_INTERACTION_WITH_TARGET(user, target))
-		to_chat(user, "<span class='warning'>You're already interacting with [target]!</span>")
+		to_chat(user, span_warning("You're already interacting with [target]!"))
 		return
+
+	if(delay <= 0) // finishes instantly (or in negative time somehow??), skip the progress bar to save performance
+		return TRUE
 
 	if(!interaction_key && target)
 		interaction_key = target //Use the direct ref to the target
@@ -338,26 +409,13 @@ GLOBAL_LIST_EMPTY(species_list)
 			return
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
-	var/atom/user_loc = user.loc
-	var/atom/target_loc = target?.loc
-
-	var/drifting = FALSE
-	if(!user.Process_Spacemove(0) && user.inertia_dir)
-		drifting = TRUE
-
-	var/holding = user.get_active_held_item()
-
 	delay *= user.do_after_coefficent()
 
-	var/datum/progressbar/progbar
+	var/datum/progressbar/progbar = new(user, delay, target || user, timed_action_flags, extra_checks, show_progress)
 	var/datum/cogbar/cog
 
-	if(progress)
-		if(user.client)
-			progbar = new(user, delay, target || user)
-
-		if(!hidden && delay >= 1 SECONDS)
-			cog = new(user)
+	if(show_progress && !hidden && delay >= 1 SECONDS)
+		cog = new(user)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
@@ -365,26 +423,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	while (world.time < endtime)
 		stoplag(1)
 
-		if(!QDELETED(progbar))
-			progbar.update(world.time - starttime)
-
-		if(drifting && !user.inertia_dir)
-			drifting = FALSE
-			user_loc = user.loc
-
-		// Check flags
-		if(QDELETED(user) \
-			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
-			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
-			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
-			|| (extra_checks && !extra_checks.Invoke()))
-			. = FALSE
-			break
-
-		// If we have a target, we check for them moving here. We don't care about it if we're drifting or we ignore target loc change
-		if(target && (user != target) && \
-			(QDELETED(target) \
-			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc)))
+		if(QDELETED(progbar) || !progbar.update(world.time - starttime))
 			. = FALSE
 			break
 
@@ -458,7 +497,7 @@ GLOBAL_LIST_EMPTY(species_list)
 // Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
 // Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
-	message = "<span class='deadsay'>[source]<span class='linkify'>[message]</span></span>"
+	message = span_deadsay("[source][span_linkify("[message]")]")
 
 	for(var/mob/M in GLOB.player_list)
 		var/chat_toggles = TOGGLES_DEFAULT_CHAT
@@ -473,7 +512,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if (!M.client.holder)
 				return
 			else
-				message += "<span class='deadsay'> (This is viewable to admins only).</span>"
+				message += span_deadsay(" (This is viewable to admins only).")
 		var/override = FALSE
 		if(M.client.holder && (chat_toggles & CHAT_DEAD))
 			override = TRUE
@@ -519,28 +558,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			to_chat(M, rendered_message)
 		else
 			to_chat(M, message)
-
-//Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
-/proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)
-	var/static/list/mob_spawn_meancritters = list() // list of possible hostile mobs
-	var/static/list/mob_spawn_nicecritters = list() // and possible friendly mobs
-
-	if(mob_spawn_meancritters.len <= 0 || mob_spawn_nicecritters.len <= 0)
-		for(var/T in typesof(/mob/living/simple_animal))
-			var/mob/living/simple_animal/SA = T
-			switch(initial(SA.gold_core_spawnable))
-				if(HOSTILE_SPAWN)
-					mob_spawn_meancritters += T
-				if(FRIENDLY_SPAWN)
-					mob_spawn_nicecritters += T
-
-	var/chosen
-	if(mob_class == FRIENDLY_SPAWN)
-		chosen = pick(mob_spawn_nicecritters)
-	else
-		chosen = pick(mob_spawn_meancritters)
-	var/mob/living/simple_animal/C = new chosen(spawn_location)
-	return C
 
 /proc/passtable_on(target, source)
 	var/mob/living/L = target

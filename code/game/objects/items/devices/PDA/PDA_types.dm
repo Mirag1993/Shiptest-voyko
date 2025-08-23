@@ -1,4 +1,5 @@
 //Clown PDA is slippery.
+/* ОФЫ ВЫРЕЗАЛИ КОНТЕНТ ПО КЛОУНАМ
 /obj/item/pda/clown
 	name = "clown PDA"
 	default_cartridge = /obj/item/cartridge/virus/clown
@@ -10,8 +11,10 @@
 
 /obj/item/pda/clown/ComponentInitialize()
 	. = ..()
+	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_SPAWN
+	// AddComponent(/datum/component/wearertargeting/sitcomlaughter, CALLBACK(src, PROC_REF(after_sitcom_laugh)))	// CELADON-EDIT - ORIGINAL
 	AddComponent(/datum/component/slippery/clowning, 120, NO_SLIP_WHEN_WALKING, CALLBACK(src, PROC_REF(AfterSlip)))
-	AddComponent(/datum/component/wearertargeting/sitcomlaughter, CALLBACK(src, PROC_REF(after_sitcom_laugh)))
+	// [/CELADON-EDIT]
 
 /obj/item/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
 	if (istype(M) && (M.real_name != owner))
@@ -43,18 +46,19 @@
 	if(!U.canUseTopic(src, BE_CLOSE))
 		return
 	return emojis
-
+*/
 // Special AI/pAI PDAs that cannot explode.
 /obj/item/pda/ai
 	icon = null
 	ttone = "data"
 
-
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /obj/item/pda/ai/attack_self(mob/user)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, TRUE)
 	return
+// [/CELADON-ADD]
 
 /obj/item/pda/ai/pai
 	ttone = "assist"
@@ -104,7 +108,6 @@
 	default_cartridge = /obj/item/cartridge/signal/toxins
 	icon_state = "pda-science"
 	ttone = "boom"
-
 
 /obj/item/pda/heads
 	default_cartridge = /obj/item/cartridge/head

@@ -10,13 +10,19 @@
 	max_integrity = 200
 	var/obj/item/bodypart/storedpart
 	var/initial_icon_state
+// [CELADON-EDIT] - New Style Augments
+/* CELADON-EDIT - ORIGINAL
 	var/static/list/style_list_icons = list("standard" = 'icons/mob/augmentation/augments.dmi', "engineer" = 'icons/mob/augmentation/augments_engineer.dmi', "security" = 'icons/mob/augmentation/augments_security.dmi', "mining" = 'icons/mob/augmentation/augments_mining.dmi')
+*/
+	var/static/list/style_list_icons = list("standard" = 'icons/mob/augmentation/augments.dmi', "engineer" = 'icons/mob/augmentation/augments_engineer.dmi', "security" = 'icons/mob/augmentation/augments_security.dmi', "mining" = 'icons/mob/augmentation/augments_mining.dmi', "bishop" = 'mod_celadon/_storge_icons/icons/mobs/augmentation/augments_bishop.dmi', "shellguard" = 'mod_celadon/_storge_icons/icons/mobs/augmentation/augments_shellguard.dmi', "wardtakahashi" = 'mod_celadon/_storge_icons/icons/mobs/augmentation/augments_wardtakahashi.dmi', "xion" = 'mod_celadon/_storge_icons/icons/mobs/augmentation/augments_xion.dmi', "zenghu" = 'mod_celadon/_storge_icons/icons/mobs/augmentation/augments_zenghu.dmi')
+	var/static/list/style_list_icons_bonus = style_list_icons + list("digitigrade" = 'mod_celadon/_storge_icons/icons/mobs/augmentation/digitigrade_legs.dmi')
+// [/CELADONE-EDIT]
 	var/static/list/type_whitelist = list(/obj/item/bodypart/head/robot, /obj/item/bodypart/r_arm/robot, /obj/item/bodypart/l_arm/robot, /obj/item/bodypart/chest/robot, /obj/item/bodypart/leg/right/robot, /obj/item/bodypart/leg/left/robot)
 
 /obj/machinery/aug_manipulator/examine(mob/user)
 	. = ..()
 	if(storedpart)
-		. += "<span class='notice'>Alt-click to eject the limb.</span>"
+		. += span_notice("Alt-click to eject the limb.")
 
 /obj/machinery/aug_manipulator/Initialize()
 	if(!base_icon_state)
@@ -66,13 +72,13 @@
 	else if(istype(O, /obj/item/bodypart))
 		var/obj/item/bodypart/B = O
 		if(IS_ORGANIC_LIMB(B))
-			to_chat(user, "<span class='warning'>The machine only accepts cybernetics!</span>")
+			to_chat(user, span_warning("The machine only accepts cybernetics!"))
 			return
 		if(!(O.type in type_whitelist)) //Kepori won't break my system damn it
-			to_chat(user, "<span class='warning'>The machine doesn't accept that type of prosthetic!</span>")
+			to_chat(user, span_warning("The machine doesn't accept that type of prosthetic!"))
 			return
 		if(storedpart)
-			to_chat(user, "<span class='warning'>There is already something inside!</span>")
+			to_chat(user, span_warning("There is already something inside!"))
 			return
 		else
 			O = user.get_active_held_item()
@@ -84,22 +90,22 @@
 
 	else if(O.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)
 		if(obj_integrity < max_integrity)
-			if(!O.tool_start_check(user, amount=0))
+			if(!O.tool_start_check(user, src, amount=0))
 				return
 
-			user.visible_message("<span class='notice'>[user] begins repairing [src].</span>", \
-				"<span class='notice'>You begin repairing [src]...</span>", \
-				"<span class='hear'>You hear welding.</span>")
+			user.visible_message(span_notice("[user] begins repairing [src]."), \
+				span_notice("You begin repairing [src]..."), \
+				span_hear("You hear welding."))
 
 			if(O.use_tool(src, user, 40, volume=50))
 				if(!(machine_stat & BROKEN))
 					return
-				to_chat(user, "<span class='notice'>You repair [src].</span>")
+				to_chat(user, span_notice("You repair [src]."))
 				set_machine_stat(machine_stat & ~BROKEN)
 				obj_integrity = max(obj_integrity, max_integrity)
 				update_appearance()
 		else
-			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
+			to_chat(user, span_notice("[src] does not need repairs."))
 	else
 		return ..()
 
@@ -110,6 +116,8 @@
 	add_fingerprint(user)
 
 	if(storedpart)
+// [CELADON-EDIT] - New Style Augments
+/* CELADON-EDIT - ORIGINAL
 		var/augstyle = input(user, "Select style.", "Augment Custom Fitting") as null|anything in style_list_icons
 		if(!augstyle)
 			return
@@ -118,12 +126,31 @@
 		if(!storedpart)
 			return
 		storedpart.static_icon = style_list_icons[augstyle]
+*/
+		var/style_options = style_list_icons
+		if(istype(storedpart, /obj/item/bodypart/leg/right/robot) || istype(storedpart, /obj/item/bodypart/leg/left/robot))
+			style_options = style_list_icons_bonus
+		var/augstyle = input(user, "Select style.", "Augment Custom Fitting") as null|anything in style_options
+		if(!augstyle)
+			return
+		if(!in_range(src, user))
+			return
+		if(!storedpart)
+			return
+		storedpart.static_icon = style_options[augstyle]
+		if(augstyle == "digitigrade")
+			storedpart.bodytype |= BODYTYPE_DIGITIGRADE
+			storedpart.limb_id = "digitigrade"
+		else
+			storedpart.bodytype &= ~(BODYTYPE_DIGITIGRADE)
+			storedpart.limb_id = "robotic"
+// [/CELADON-EDIT]
 		storedpart.should_draw_greyscale = FALSE //Premptive fuck you to greyscale IPCs trying to break something
 		storedpart.update_icon_dropped()
 		eject_part(user)
 
 	else
-		to_chat(user, "<span class='warning'>\The [src] is empty!</span>")
+		to_chat(user, span_warning("\The [src] is empty!"))
 
 /obj/machinery/aug_manipulator/proc/eject_part(mob/living/user)
 	if(storedpart)
@@ -131,7 +158,7 @@
 		storedpart = null
 		update_appearance()
 	else
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		to_chat(user, span_warning("[src] is empty!"))
 
 /obj/machinery/aug_manipulator/AltClick(mob/living/user)
 	..()

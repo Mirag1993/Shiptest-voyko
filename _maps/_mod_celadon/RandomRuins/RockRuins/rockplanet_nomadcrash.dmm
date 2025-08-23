@@ -135,7 +135,7 @@
 	},
 /obj/structure/frame/machine,
 /turf/open/floor/plating{
-	icon_state = "wet_cracked2"
+	icon_state = "platingdmg3"
 	},
 /area/ruin/rockplanet/nomad)
 "fd" = (
@@ -408,7 +408,7 @@
 	icon_state = "1-8"
 	},
 /obj/structure/frame/machine,
-/obj/effect/spawner/lootdrop/salvage_matter_bin,
+/obj/effect/spawner/random/salvage/part/matter_bin,
 /turf/open/floor/plasteel/rockplanet,
 /area/ruin/rockplanet/nomad)
 "oz" = (
@@ -558,7 +558,7 @@
 	},
 /obj/structure/frame/machine,
 /obj/machinery/light/small/directional/north,
-/obj/effect/spawner/lootdrop/salvage_matter_bin,
+/obj/effect/spawner/random/salvage/part/matter_bin,
 /turf/open/floor/plating,
 /area/ruin/rockplanet/nomad)
 "sn" = (
@@ -822,7 +822,7 @@
 	},
 /obj/machinery/telecomms/receiver,
 /turf/open/floor/plating{
-	icon_state = "wet_cracked0"
+	icon_state = "platingdmg3"
 	},
 /area/ruin/rockplanet/nomad)
 "zw" = (
@@ -1272,7 +1272,7 @@
 	icon_state = "spline_plain_cee"
 	},
 /obj/structure/frame/machine,
-/obj/effect/spawner/lootdrop/salvage_matter_bin,
+/obj/effect/spawner/random/salvage/part/matter_bin,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/rockplanet/nomad)
 "Lk" = (

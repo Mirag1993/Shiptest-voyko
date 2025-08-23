@@ -23,27 +23,36 @@
 		if("join")
 			var/datum/overmap/ship/controlled/target = locate(params["ship"]) in SSovermap.controlled_ships
 			if(!target)
-				to_chat(spawnee, "<span class='danger'>Unable to locate ship. Please contact admins!</span>")
+				to_chat(spawnee, span_danger("Unable to locate ship. Please contact admins!"))
 				spawnee.new_player_panel()
 				return
 			if(!target.is_join_option())
-				to_chat(spawnee, "<span class='danger'>This ship is not currently accepting new players!</span>")
+				to_chat(spawnee, span_danger("This ship is not currently accepting new players!"))
 				spawnee.new_player_panel()
 				return
 
+			// [CELADON-ADD] - CELADON_FIXES
+			// Проверяем дублирование имен при входе на корабль
+			if(!spawnee.client.prefs.randomise[RANDOM_NAME])
+				var/name = spawnee.client.prefs.real_name
+				if(GLOB.real_names_joined.Find(name))
+					to_chat(spawnee, span_warning("Someone has spawned with this name already."))
+					spawnee.new_player_panel()
+					return
+			// [/CELADON-ADD]
 			var/did_application = FALSE
 			if(target.join_mode == SHIP_JOIN_MODE_APPLY)
 				var/datum/ship_application/current_application = target.get_application(spawnee)
 				if(isnull(current_application))
 					var/datum/ship_application/app = new(spawnee, target)
 					if(app.get_user_response())
-						to_chat(spawnee, "<span class='notice'>Ship application sent. You will be notified if the application is accepted.</span>")
+						to_chat(spawnee, span_notice("Ship application sent. You will be notified if the application is accepted."))
 					else
-						to_chat(spawnee, "<span class='notice'>Application cancelled, or there was an error sending the application.</span>")
+						to_chat(spawnee, span_notice("Application cancelled, or there was an error sending the application."))
 					return
 				switch(current_application.status)
 					if(SHIP_APPLICATION_ACCEPTED)
-						to_chat(spawnee, "<span class='notice'>Your ship application was accepted, continuing...</span>")
+						to_chat(spawnee, span_notice("Your ship application was accepted, continuing..."))
 					if(SHIP_APPLICATION_PENDING)
 						alert(spawnee, "You already have a pending application for this ship!")
 						return
@@ -53,35 +62,49 @@
 				did_application = TRUE
 
 			if(target.join_mode == SHIP_JOIN_MODE_CLOSED || (target.join_mode == SHIP_JOIN_MODE_APPLY && !did_application))
-				to_chat(spawnee, "<span class='warning'>You cannot join this ship anymore, as its join mode has changed!</span>")
+				to_chat(spawnee, span_warning("You cannot join this ship anymore, as its join mode has changed!"))
 				return
 
 			ui.close()
 			var/datum/job/selected_job = locate(params["job"]) in target.job_slots
+			//boots you out if you're banned from officer roles
+			if(selected_job.officer && is_banned_from(spawnee.ckey, "Ship Command"))
+				to_chat(spawnee, span_danger("You are banned from Officer roles!"))
+				spawnee.new_player_panel()
+				ui.close()
+				return
+
 			// Attempts the spawn itself. This checks for playtime requirements.
 			if(!spawnee.AttemptLateSpawn(selected_job, target))
-				to_chat(spawnee, "<span class='danger'>Unable to spawn on ship!</span>")
+				to_chat(spawnee, span_danger("Unable to spawn on ship!"))
 				spawnee.new_player_panel()
 
 		if("buy")
 			if(is_banned_from(spawnee.ckey, "Ship Purchasing"))
-				to_chat(spawnee, "<span class='danger'>You are banned from purchasing ships!</span>")
+				to_chat(spawnee, span_danger("You are banned from purchasing ships!"))
 				spawnee.new_player_panel()
 				ui.close()
 				return
 
 			var/datum/map_template/shuttle/template = SSmapping.ship_purchase_list[params["name"]]
+			// [CELADON-ADD] - CELADON_FIXES - фикс спавна пустых шаттлов (вагинобонд)
+			// Проверяем дублирование имен в самом начале
+			var/name = spawnee.client.prefs.real_name
+			if(GLOB.real_names_joined.Find(name))
+				to_chat(spawnee, span_warning("Someone has spawned with this name already."))
+				return
+			// [/CELADON-ADD]
 			if(SSovermap.ship_spawning)
-				to_chat(spawnee, "<span class='danger'>A ship is currently spawning. Try again in a little while.</span>")
+				to_chat(spawnee, span_danger("A ship is currently spawning. Try again in a little while."))
 				return
 			if(!SSovermap.player_ship_spawn_allowed())
-				to_chat(spawnee, "<span class='danger'>No more ships may be spawned at this time!</span>")
+				to_chat(spawnee, span_danger("No more ships may be spawned at this time!"))
 				return
 			if(!template.enabled)
-				to_chat(spawnee, "<span class='danger'>This ship is not currently available for purchase!</span>")
+				to_chat(spawnee, span_danger("This ship is not currently available for purchase!"))
 				return
 			if(!template.has_ship_spawn_playtime(spawnee.client))
-				to_chat(spawnee, "<span class='danger'>You do not have enough playtime to spawn this ship!</span>")
+				to_chat(spawnee, span_danger("You do not have enough playtime to spawn this ship!"))
 				return
 
 			var/num_ships_with_template = 0
@@ -89,22 +112,40 @@
 				if(template == Ship.source_template)
 					num_ships_with_template += 1
 			if(num_ships_with_template >= template.limit)
-				to_chat(spawnee, "<span class='danger'>There are already [num_ships_with_template] ships of this type; you cannot spawn more!</span>")
+				to_chat(spawnee, span_danger("There are already [num_ships_with_template] ships of this type; you cannot spawn more!"))
 				return
 
 			ui.close()
 
+			var/ship_loc
+			var/datum/overmap_star_system/selected_system //the star system we want to spawn in
+
+			if(length(SSovermap.outposts) > 1)
+				var/datum/overmap/outpost/temp_loc = input(spawnee, "Select outpost to spawn at") as null|anything in SSovermap.outposts
+				if(!temp_loc)
+					return
+				selected_system = temp_loc.current_overmap
+				ship_loc = temp_loc
+			else
+				ship_loc = SSovermap.outposts[1]
+				selected_system = SSovermap.tracked_star_systems[1]
+
+			if(!selected_system)
+				CRASH("Ship attemped to be bought at spawn menu, but spawning outpost was not selected! This is bad!") //if selected_system didnt get selected, we nope out, this is very bad
+
 			to_chat(spawnee, "<span class='danger'>Your [template.name] is being prepared. Please be patient!</span>")
-			var/datum/overmap/ship/controlled/target = SSovermap.spawn_ship_at_start(template)
+			var/datum/overmap/ship/controlled/target = SSovermap.spawn_ship_at_start(template, ship_loc, selected_system)
+
 			if(!target?.shuttle_port)
-				to_chat(spawnee, "<span class='danger'>There was an error loading the ship. Please contact admins!</span>")
+				to_chat(spawnee, span_danger("There was an error loading the ship. Please contact admins!"))
 				spawnee.new_player_panel()
 				return
-			SSblackbox.record_feedback("tally", "ship_purchased", 1, template.name) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			SSblackbox.record_feedback("tally", "ship_purchased", 1, template.name)
+			SSblackbox.record_feedback("tally", "faction_ship_purchased", 1, template.faction.name)
 			// Try to spawn as the first listed job in the job slots (usually captain)
 			// Playtime checks are overridden, to ensure the player gets to join the ship they spawned.
 			if(!spawnee.AttemptLateSpawn(target.job_slots[1], target, FALSE))
-				to_chat(spawnee, "<span class='danger'>Ship spawned, but you were unable to be spawned. You can likely try to spawn in the ship through joining normally, but if not, please contact an admin.</span>")
+				to_chat(spawnee, span_danger("Ship spawned, but you were unable to be spawned. You can likely try to spawn in the ship through joining normally, but if not, please contact an admin."))
 				spawnee.new_player_panel()
 
 /datum/ship_select/ui_data(mob/user)
@@ -119,6 +160,7 @@
 	.["ships"] = list()
 	.["shipSpawnAllowed"] = SSovermap.player_ship_spawn_allowed()
 	.["purchaseBanned"] = is_banned_from(user.ckey, "Ship Purchasing")
+	.["officerBanned"] = is_banned_from(user.ckey, "Ship Command")
 	// if the player has a client which is not eligible for playtime restriction (for admin + player DB flag playtime exemption), they "auto meet" playtime requirements
 	.["autoMeet"] = user.client && !user.client.is_playtime_restriction_eligible()
 	.["playMin"] = user.client ? user.client.get_exp_living(TRUE) : 0
@@ -132,6 +174,14 @@
 		if(!S.is_join_option())
 			continue
 
+		// [CELADON-ADD] - YOU_NOT_SEPARATIST
+		// Проверка ограничений по видам для кораблей фракции Elysium
+		if(S.source_template.faction.name == FACTION_ELYSIUM)
+			var/species_id = user.client?.prefs?.pref_species?.id
+			if(species_id != "human" && species_id != "ipc" && species_id != "lanius")
+				continue
+		// [/CELADON-ADD]
+
 		var/list/ship_jobs = list()
 		for(var/datum/job/job as anything in S.job_slots)
 			var/slots = S.job_slots[job]
@@ -141,12 +191,13 @@
 				"name" = job,
 				"slots" = slots,
 				"minTime" = job.officer ? S.source_template.get_req_officer_minutes() : 0,
+				"officer" = job.officer,
 				"ref" = REF(job),
 			))
 
 		var/list/ship_data = list(
 			"name" = S.name,
-			"faction" = S.source_template.faction_name,
+			"faction" = S.source_template.faction.name,
 			"class" = S.source_template.short_name,
 			"desc" = S.source_template.description,
 			"tags" = S.source_template.tags,
@@ -164,14 +215,23 @@
 		var/datum/map_template/shuttle/T = SSmapping.ship_purchase_list[template_name]
 		if(!T.enabled)
 			continue
+
+		// Проверка ограничений по видам для шаблонов кораблей фракции Elysium
+		if(T.faction.name == FACTION_ELYSIUM)
+			var/species_id = user.client?.prefs?.pref_species?.id
+			if(species_id != "human" && species_id != "ipc" && species_id != "lanius")
+				continue
 		var/list/ship_data = list(
 			"name" = T.name,
-			"faction" = ship_prefix_to_faction(T.prefix),
+			"faction" = T.faction.name,
 			"desc" = T.description,
 			"tags" = T.tags,
 			"crewCount" = length(T.job_slots),
 			"limit" = T.limit,
 			"curNum" = template_num_lookup[T] || 0,
 			"minTime" = T.get_req_spawn_minutes(),
+			// [CELADON-ADD] - mod_celadon/qol - Берём значение из конфига корабликов.
+			"shortName" = T.short_name,
+			// [/CELADON-ADD]
 		)
 		.["templates"] += list(ship_data)

@@ -15,20 +15,6 @@
 
 	var/obj/item/storage/book/bible/booze/B = new
 
-	if(GLOB.religion)
-		B.deity_name = GLOB.deity
-		B.name = GLOB.bible_name
-		B.icon_state = GLOB.bible_icon_state
-		B.item_state = GLOB.bible_item_state
-		to_chat(H, "<span class='boldnotice'>There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the Chaplain.</span>")
-		H.equip_to_slot_or_del(B, ITEM_SLOT_BACKPACK)
-		var/nrt = GLOB.holy_weapon_type || /obj/item/nullrod
-		var/obj/item/nullrod/N = new nrt(H)
-		H.put_in_hands(N)
-		if(GLOB.religious_sect)
-			GLOB.religious_sect.on_conversion(H)
-		return
-
 	var/new_religion = DEFAULT_RELIGION
 	if(M.client && M.client.prefs.custom_names["religion"])
 		new_religion = M.client.prefs.custom_names["religion"]
@@ -44,8 +30,10 @@
 			B.name = pick("The Holy Bible","The Dead Sea Scrolls")
 		if("buddhism")
 			B.name = "The Sutras"
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 		if("clownism","honkmother","honk","honkism","comedy")
 			B.name = pick("The Holy Joke Book", "Just a Prank", "Hymns to the Honkmother")
+// [/CELADON-ADD]
 		if("chaos")
 			B.name = "The Book of Lorgar"
 		if("cthulhu")
@@ -112,11 +100,8 @@
 	ears = /obj/item/radio/headset/headset_srv
 	uniform = /obj/item/clothing/under/rank/civilian/chaplain
 	backpack_contents = list(
-		/obj/item/stamp/chap = 1,
 		/obj/item/camera/spooky = 1
 		)
 
 	backpack = /obj/item/storage/backpack/cultpack
 	satchel = /obj/item/storage/backpack/cultpack
-
-	chameleon_extras = /obj/item/stamp/chap

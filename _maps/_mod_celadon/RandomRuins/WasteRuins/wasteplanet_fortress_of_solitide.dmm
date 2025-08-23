@@ -13,13 +13,13 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "ad" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "am" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/spawner/random/maintenance/three,
 /obj/item/flashlight/glowstick,
 /obj/item/hand_labeler_refill,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -93,14 +93,14 @@
 /area/ruin/powered)
 "aM" = (
 /obj/structure/closet/crate/hydroponics,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
-/obj/item/reagent_containers/food/snacks/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
+/obj/item/food/grown/banana,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "aP" = (
@@ -115,7 +115,7 @@
 /area/ruin/powered)
 "aY" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -145,7 +145,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "bs" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/rust,
@@ -176,7 +176,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "bC" = (
-/obj/structure/sign/poster/contraband/clown,
+/obj/structure/sign/poster/contraband/smoke,
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
 "bF" = (
@@ -222,7 +222,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
 /obj/item/trash/plate,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/toner,
 /obj/item/mop,
 /obj/item/weldingtool/empty,
@@ -330,7 +330,7 @@
 /area/ruin/powered)
 "cS" = (
 /obj/structure/table/wood/fancy/orange,
-/obj/item/reagent_containers/food/snacks/store/cake/clown_cake,
+/obj/item/food/cake/bsvc,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "cU" = (
@@ -345,10 +345,8 @@
 /obj/item/clothing/under/rank/civilian/clown/jester,
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat,
 /obj/item/borg/upgrade/transform/clown,
-/obj/item/stamp/clown,
-/obj/item/nullrod/clown,
+/obj/item/stamp,
 /obj/structure/closet/secure_closet/freezer/cream_pie,
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/item/clothing/suit/space/hardsuit/ert/clown{
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 35, "bio" = 100, "rad" = 100, "fire" =100, "acid" = 100)
 	},
@@ -471,10 +469,10 @@
 /turf/open/floor/carpet/royalblack,
 /area/ruin/powered)
 "ep" = (
-/obj/effect/spawner/lootdrop/maintenance/two,
-/obj/item/reagent_containers/food/snacks/butterdog,
+/obj/effect/spawner/random/maintenance/two,
 /obj/structure/table,
 /obj/item/coin/plastic,
+/obj/item/food/butterdog,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "er" = (
@@ -490,9 +488,7 @@
 "ev" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/old,
-/mob/living/simple_animal/hostile/rat{
-	dir = 8
-	},
+/mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "ez" = (
@@ -500,7 +496,7 @@
 /obj/structure/rack,
 /obj/item/trash/plate,
 /obj/item/trash/sosjerky,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/assembly/igniter,
 /obj/item/clipboard,
 /obj/item/electronics/airlock,
@@ -525,7 +521,7 @@
 /area/ruin/powered)
 "eO" = (
 /obj/effect/gibspawner/human,
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "eS" = (
@@ -609,13 +605,13 @@
 /obj/item/stack/sheet/mineral/wood,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/trash/waffles,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/flashlight/glowstick,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "fw" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance/five,
+/obj/effect/spawner/random/maintenance/five,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/toner/extreme,
 /obj/item/poster/random_contraband,
@@ -655,8 +651,8 @@
 /area/ruin/powered)
 "fI" = (
 /obj/structure/closet/crate,
-/obj/item/spear,
-/obj/item/spear,
+/obj/item/melee/spear,
+/obj/item/melee/spear,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/tray,
 /turf/open/floor/plating,
@@ -671,7 +667,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -705,7 +701,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "gp" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -723,7 +719,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/coin,
 /obj/machinery/light/small/directional/south,
 /turf/open/floor/plating,
@@ -733,8 +729,8 @@
 /obj/item/trash/sosjerky,
 /obj/item/trash/raisins,
 /obj/item/folder/blue,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "gG" = (
@@ -769,7 +765,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "hd" = (
-/obj/item/reagent_containers/food/snacks/cakeslice/clown_slice,
+/obj/item/food/cakeslice/bsvc,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "he" = (
@@ -859,7 +855,7 @@
 /obj/item/trash/can/food/beans,
 /obj/structure/closet/crate,
 /obj/item/trash/candy,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/assembly/prox_sensor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -906,7 +902,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "iI" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "iK" = (
@@ -914,7 +910,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "iR" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -961,7 +957,6 @@
 /area/ruin/powered)
 "jr" = (
 /obj/structure/table/reinforced,
-/obj/item/slime_cookie/green,
 /obj/item/toy/figure/chef,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -1003,7 +998,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "jF" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/rust,
@@ -1086,7 +1081,7 @@
 /area/ruin/powered)
 "ki" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "kj" = (
@@ -1121,7 +1116,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered)
 "kD" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1131,7 +1126,6 @@
 /area/ruin/powered)
 "kK" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1155,7 +1149,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/trash/plate,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/item/electronics/airlock,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -1249,9 +1243,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "lK" = (
-/mob/living/simple_animal/hostile/rat{
-	dir = 8
-	},
+/mob/living/basic/mouse/rat,
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -1275,7 +1267,7 @@
 /area/ruin/powered)
 "lO" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/mob_spawn/human/corpse/assistant,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1304,12 +1296,12 @@
 "mc" = (
 /obj/structure/closet/crate,
 /obj/item/trash/raisins,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/flashlight/glowstick,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "md" = (
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "mh" = (
@@ -1326,7 +1318,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "mo" = (
-/obj/item/spear,
+/obj/item/melee/spear,
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = 28
 	},
@@ -1361,7 +1353,7 @@
 "mP" = (
 /obj/effect/mob_spawn/human/corpse/assistant,
 /obj/effect/decal/cleanable/blood,
-/obj/item/spear,
+/obj/item/melee/spear,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -1404,7 +1396,7 @@
 /area/ruin/powered)
 "nc" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/cakeslice/brain,
+/obj/item/food/cakeslice/trumpet,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "nd" = (
@@ -1454,12 +1446,6 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
-/area/ruin/powered)
-"nw" = (
-/obj/effect/mob_spawn/human/clown/corpse,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/rust,
 /area/ruin/powered)
 "nz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1520,7 +1506,7 @@
 /area/ruin/powered)
 "nK" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance/five,
+/obj/effect/spawner/random/maintenance/five,
 /obj/item/shovel/spoon,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1537,7 +1523,7 @@
 /obj/item/toy/plush/carpplushie,
 /obj/item/toy/plush/carpplushie,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -1546,7 +1532,7 @@
 /obj/item/melee/baton/cattleprod,
 /obj/item/restraints/handcuffs/cable/pink,
 /obj/item/clothing/mask/muzzle,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "oa" = (
@@ -1571,7 +1557,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "oj" = (
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/effect/decal/cleanable/oil,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1604,7 +1590,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -1612,7 +1598,7 @@
 /area/ruin/powered)
 "oB" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/gibspawner/human,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -1634,7 +1620,7 @@
 /area/ruin/powered)
 "oM" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
@@ -1649,7 +1635,7 @@
 /area/ruin/powered)
 "oS" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1693,7 +1679,7 @@
 /obj/effect/decal/cleanable/insectguts,
 /obj/structure/rack,
 /obj/item/folder/yellow,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/electronics/airlock,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1743,7 +1729,7 @@
 /obj/effect/decal/cleanable/generic,
 /obj/structure/rack,
 /obj/item/trash/sosjerky,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/assembly/prox_sensor,
 /obj/item/photo,
 /obj/item/poster/random_contraband,
@@ -1779,7 +1765,7 @@
 /area/ruin/powered)
 "pY" = (
 /obj/structure/table,
-/obj/item/ammo_box/c9mm{
+/obj/item/storage/box/ammo/c9mm{
 	pixel_y = 6
 	},
 /obj/item/gun/ballistic/automatic/zip_pistol,
@@ -1851,7 +1837,7 @@
 /obj/item/clothing/suit/toggle/owlwings/griffinwings{
 	pixel_y = 5
 	},
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "qR" = (
@@ -1897,11 +1883,11 @@
 /area/ruin/powered)
 "rl" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/cannabis{
+/obj/item/food/grown/cannabis{
 	pixel_x = -6;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/grown/cannabis{
+/obj/item/food/grown/cannabis{
 	pixel_x = 3;
 	pixel_y = 9
 	},
@@ -1951,9 +1937,9 @@
 /area/ruin/powered)
 "rx" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -1983,14 +1969,8 @@
 	},
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
-"sg" = (
-/mob/living/simple_animal/hostile/rat{
-	dir = 1
-	},
-/turf/open/floor/plating/rust,
-/area/ruin/powered)
 "sl" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
@@ -2000,7 +1980,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -2118,7 +2098,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -2126,7 +2106,7 @@
 /area/ruin/powered)
 "tK" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/reagent_containers/food/snacks/deadmouse,
+/obj/item/food/deadmouse,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -2149,7 +2129,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "tY" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "ub" = (
@@ -2158,8 +2138,8 @@
 /area/ruin/powered)
 "ul" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/chewable/bubblegum,
-/obj/item/reagent_containers/food/snacks/chewable/bubblegum{
+/obj/item/food/chewable/bubblegum,
+/obj/item/food/chewable/bubblegum{
 	pixel_y = 5
 	},
 /turf/open/floor/plating/rust,
@@ -2182,7 +2162,7 @@
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/raisins,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/airlock_painter,
 /obj/item/tape/random,
 /obj/item/poster/random_contraband,
@@ -2270,7 +2250,7 @@
 /area/ruin/powered)
 "vp" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -2372,7 +2352,6 @@
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/dirt/dust,
 /area/ruin/powered)
 "vX" = (
@@ -2451,7 +2430,7 @@
 /area/ruin/powered)
 "wx" = (
 /obj/effect/gibspawner/human,
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -2460,7 +2439,7 @@
 /obj/item/circuitboard/machine/dnascanner,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/semki,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/photo,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -2501,7 +2480,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "xm" = (
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "xu" = (
@@ -2512,7 +2491,7 @@
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
 "xy" = (
-/obj/machinery/porta_turret/syndicate/energy,
+/obj/machinery/porta_turret/ruin/ramzi,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -2523,7 +2502,7 @@
 /area/ruin/powered)
 "xI" = (
 /obj/structure/table/wood/fancy/orange,
-/obj/item/reagent_containers/food/snacks/pie/cream,
+/obj/item/food/pie/cream,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "xL" = (
@@ -2544,10 +2523,9 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "yb" = (
-/obj/item/nullrod/hypertool,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/generic,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
@@ -2592,7 +2570,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/book/manual/random,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -2605,7 +2583,7 @@
 "yK" = (
 /obj/structure/closet/crate,
 /obj/item/folder/yellow,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "yS" = (
@@ -2617,7 +2595,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "yV" = (
@@ -2684,7 +2662,7 @@
 /area/ruin/powered)
 "zw" = (
 /obj/effect/gibspawner/human,
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "zy" = (
@@ -2864,7 +2842,7 @@
 "AH" = (
 /obj/structure/rack,
 /obj/item/trash/raisins,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/toner,
 /obj/item/assembly/prox_sensor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -2896,7 +2874,7 @@
 /obj/effect/decal/cleanable/glass,
 /obj/structure/closet/crate,
 /obj/item/trash/semki,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/airlock_painter,
 /obj/item/hand_labeler_refill,
 /turf/open/floor/plating/rust,
@@ -2940,7 +2918,6 @@
 /area/ruin/powered)
 "Bp" = (
 /obj/structure/table/wood,
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -2954,7 +2931,7 @@
 /obj/structure/closet/crate,
 /obj/item/trash/sosjerky,
 /obj/item/trash/syndi_cakes,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -3006,14 +2983,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "BI" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
@@ -3062,7 +3039,7 @@
 /area/ruin/powered)
 "BY" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Cc" = (
@@ -3111,7 +3088,7 @@
 /area/ruin/powered)
 "Cy" = (
 /obj/structure/closet/cardboard,
-/obj/item/reagent_containers/food/snacks/soup/clownstears,
+/obj/item/food/soup/clownstears,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "CE" = (
@@ -3153,13 +3130,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Db" = (
-/mob/living/simple_animal/hostile/rat{
-	dir = 8
-	},
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -3179,9 +3154,7 @@
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
 "Dl" = (
-/mob/living/simple_animal/hostile/rat{
-	dir = 8
-	},
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -3222,7 +3195,7 @@
 "DS" = (
 /obj/structure/table/wood,
 /obj/structure/bedsheetbin,
-/obj/item/dualsaber/toy,
+/obj/item/melee/duelenergy/saber/toy,
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -3232,7 +3205,7 @@
 /area/ruin/powered)
 "DX" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance/five,
+/obj/effect/spawner/random/maintenance/five,
 /obj/item/toner/extreme,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -3249,7 +3222,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Eb" = (
-/obj/item/spear,
+/obj/item/melee/spear,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Ed" = (
@@ -3259,7 +3232,7 @@
 /obj/item/clothing/under/color/grey,
 /obj/item/trash/sosjerky,
 /obj/item/folder/yellow,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/book/manual/random,
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating/rust,
@@ -3269,7 +3242,7 @@
 /obj/structure/closet/crate,
 /obj/item/trash/sosjerky,
 /obj/item/trash/candy,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/book/manual/random,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
@@ -3385,9 +3358,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Fc" = (
-/mob/living/simple_animal/hostile/rat{
-	dir = 4
-	},
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/oil/streak,
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating/rust,
@@ -3402,15 +3373,13 @@
 /area/overmap_encounter/planetoid/wasteplanet/explored)
 "Fl" = (
 /obj/effect/decal/cleanable/robot_debris,
-/mob/living/simple_animal/hostile/rat{
-	dir = 8
-	},
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Fm" = (
 /obj/effect/decal/cleanable/blood,
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -3437,7 +3406,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "FG" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "FH" = (
@@ -3462,7 +3431,7 @@
 /area/ruin/powered)
 "Gd" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Gg" = (
@@ -3528,7 +3497,7 @@
 /obj/item/clothing/head/chicken{
 	pixel_y = 11
 	},
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_x = -9
 	},
 /obj/effect/decal/cleanable/dirt/dust,
@@ -3598,14 +3567,9 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
-"HD" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/mob_spawn/human/clown/corpse,
-/turf/open/floor/plating/rust,
-/area/ruin/powered)
 "HH" = (
 /obj/effect/gibspawner/human,
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/can/food/beans,
 /turf/open/floor/plating/rust,
@@ -3636,7 +3600,7 @@
 /area/ruin/powered)
 "Ib" = (
 /obj/structure/table/wood/poker,
-/obj/item/gun/ballistic/revolver/shadow/no_mag,
+/obj/item/gun/ballistic/revolver/shadow/empty,
 /obj/item/ammo_casing/a44roum,
 /turf/open/floor/wood,
 /area/ruin/powered)
@@ -3711,7 +3675,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "IE" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/generic,
@@ -3761,11 +3725,11 @@
 /obj/structure/table,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/under/color/grey/ancient,
-/obj/item/spear/grey_tide,
+/obj/item/melee/spear,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "IY" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3833,7 +3797,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -3842,7 +3806,7 @@
 "JK" = (
 /obj/structure/closet/crate,
 /obj/item/trash/plate,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/clipboard,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -3864,10 +3828,6 @@
 /area/ruin/powered)
 "JX" = (
 /obj/effect/decal/remains/human,
-/obj/item/clothing/head/crown/fancy{
-	pixel_x = 2;
-	pixel_y = 12
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt,
@@ -3879,6 +3839,10 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/item/clothing/head/crown{
+	pixel_x = 2;
+	pixel_y = 12
 	},
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -3922,16 +3886,14 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Ky" = (
-/mob/living/simple_animal/hostile/rat{
-	dir = 8
-	},
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "KB" = (
 /obj/structure/closet/crate,
-/obj/item/spear,
-/obj/item/spear,
+/obj/item/melee/spear,
+/obj/item/melee/spear,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/boritos,
 /turf/open/floor/plating,
@@ -3957,11 +3919,6 @@
 /area/ruin/powered)
 "KN" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating/rust,
-/area/ruin/powered)
-"KR" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "KS" = (
@@ -4050,7 +4007,7 @@
 /obj/item/clothing/under/misc/assistantformal,
 /obj/item/clothing/under/misc/assistantformal,
 /obj/item/clothing/under/misc/assistantformal,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "LR" = (
@@ -4159,7 +4116,6 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Nr" = (
-/obj/effect/mob_spawn/human/clown/corpse,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
@@ -4181,7 +4137,7 @@
 /obj/structure/rack,
 /obj/item/trash/sosjerky,
 /obj/item/trash/candy,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Ny" = (
@@ -4225,7 +4181,7 @@
 /obj/structure/rack,
 /obj/item/trash/candy,
 /obj/item/folder/yellow,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/electronics/airlock,
 /obj/item/hot_potato/harmless/toy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -4255,7 +4211,7 @@
 /area/ruin/powered)
 "NT" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/human/corpse/damaged,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4283,7 +4239,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Oo" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
@@ -4321,7 +4277,7 @@
 /area/ruin/powered)
 "Ou" = (
 /obj/structure/curtain/cloth/fancy,
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating/rust,
@@ -4334,7 +4290,7 @@
 "Ox" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "OE" = (
@@ -4343,7 +4299,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "OI" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "OM" = (
@@ -4421,7 +4377,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Px" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
@@ -4435,7 +4391,7 @@
 /area/ruin/powered)
 "PA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "PE" = (
@@ -4511,7 +4467,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "Qm" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -4539,7 +4495,7 @@
 /obj/structure/closet/crate,
 /obj/item/trash/sosjerky,
 /obj/item/trash/raisins,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/toner,
 /obj/item/flashlight/glowstick,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -4579,7 +4535,7 @@
 /area/ruin/powered)
 "QI" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/mob_spawn/human/corpse/damaged,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plating,
@@ -4589,7 +4545,7 @@
 /obj/structure/rack,
 /obj/item/trash/plate,
 /obj/item/trash/raisins,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/book/manual/random,
 /obj/item/paper,
 /turf/open/floor/plating,
@@ -4662,7 +4618,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "RX" = (
-/obj/effect/spawner/lootdrop/maintenance/four,
+/obj/effect/spawner/random/maintenance/four,
 /obj/structure/table/wood/poker,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -4686,7 +4642,7 @@
 /area/ruin/powered)
 "Sb" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/item/assembly/prox_sensor,
 /obj/item/camera,
 /turf/open/floor/plating,
@@ -4723,10 +4679,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating,
-/area/ruin/powered)
-"SD" = (
-/obj/item/target/clown,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "SF" = (
@@ -4809,8 +4761,8 @@
 "Tk" = (
 /obj/structure/closet/crate,
 /obj/item/trash/popcorn,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/assembly/prox_sensor,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -4840,7 +4792,7 @@
 /obj/structure/rack,
 /obj/item/trash/boritos,
 /obj/item/trash/can/food/peaches/maint,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/decal_painter,
 /obj/item/poster/random_retro,
 /obj/item/poster/random_contraband,
@@ -4860,10 +4812,8 @@
 /area/ruin/powered)
 "TC" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
-/mob/living/simple_animal/hostile/rat{
-	dir = 4
-	},
+/obj/effect/spawner/random/bedsheet,
+/mob/living/basic/mouse/rat,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "TD" = (
@@ -4892,7 +4842,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -4935,7 +4885,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Ub" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -4989,7 +4939,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "UF" = (
@@ -5004,7 +4954,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered)
 "UJ" = (
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -5065,7 +5015,7 @@
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "UW" = (
-/obj/item/spear,
+/obj/item/melee/spear,
 /obj/machinery/light/directional/south,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -5114,13 +5064,13 @@
 /turf/closed/wall/r_wall/rust,
 /area/ruin/powered)
 "Vu" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/food/salt,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "VF" = (
 /obj/structure/bed,
-/obj/item/bedsheet/random,
+/obj/effect/spawner/random/bedsheet,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/human/corpse/pirate,
 /turf/open/floor/plating/rust,
@@ -5193,7 +5143,7 @@
 /area/ruin/powered)
 "Wv" = (
 /obj/structure/table,
-/obj/item/melee/greykingsword,
+/obj/item/melee/sword/greyking,
 /obj/item/clothing/head/delinquent,
 /turf/open/floor/plating,
 /area/ruin/powered)
@@ -5213,7 +5163,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/effect/spawner/random/waste/grille_or_trash,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "WM" = (
@@ -5281,7 +5231,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
 /obj/item/trash/plate,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/item/assembly/prox_sensor,
 /obj/item/hand_labeler_refill,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -5348,20 +5298,20 @@
 "XS" = (
 /obj/structure/rack,
 /obj/item/trash/can/food/peaches,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/fakeartefact,
 /obj/item/poster/random_retro,
 /obj/item/poster/random_contraband,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "XW" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
 "XY" = (
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /obj/effect/decal/cleanable/oil/streak,
 /turf/open/floor/plating/rust,
 /area/ruin/powered)
@@ -5372,7 +5322,7 @@
 "Yd" = (
 /obj/structure/rack,
 /obj/item/trash/plate,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/assembly/igniter,
 /obj/item/camera,
 /obj/item/tape/random,
@@ -5384,7 +5334,7 @@
 /obj/structure/chair/comfy/beige{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/rat,
+/mob/living/basic/mouse/rat,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "Yr" = (
@@ -5436,7 +5386,7 @@
 /obj/structure/rack,
 /obj/item/trash/can/food,
 /obj/item/trash/popcorn,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/toner,
 /obj/item/clipboard,
 /obj/item/flashlight/glowstick,
@@ -5531,7 +5481,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/crate,
 /obj/item/trash/plate,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/random/maintenance,
 /obj/item/assembly/igniter,
 /obj/item/flashlight/glowstick,
 /turf/open/floor/plating,
@@ -5539,7 +5489,7 @@
 "Zo" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs,
-/mob/living/simple_animal/hostile/human/cat_butcherer{
+/mob/living/simple_animal/hostile/clown/clownhulk/honcmunculus{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -5558,7 +5508,7 @@
 /area/ruin/powered)
 "ZC" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/pizza/sassysage,
+/obj/item/food/pizza/sassysage,
 /turf/open/floor/plating,
 /area/ruin/powered)
 "ZE" = (
@@ -5803,7 +5753,7 @@ hd
 Gq
 Hp
 gL
-HD
+kS
 ff
 bC
 Qu
@@ -5843,8 +5793,8 @@ Jj
 vh
 bG
 jn
-KR
-KR
+kK
+kK
 Hp
 Hp
 av
@@ -5987,7 +5937,7 @@ bG
 Sv
 vy
 OQ
-sg
+iI
 fi
 in
 in
@@ -6616,7 +6566,7 @@ XF
 In
 kS
 OI
-nw
+kK
 xx
 CF
 xx
@@ -7067,7 +7017,7 @@ By
 RY
 bG
 wz
-SD
+Hp
 xC
 ZR
 QH

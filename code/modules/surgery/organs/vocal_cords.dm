@@ -35,13 +35,13 @@
 
 /datum/action/item_action/organ_action/colossus
 	name = "Voice of God"
-	var/obj/item/organ/vocal_cords/colossus/cords = null
-
-/datum/action/item_action/organ_action/colossus/New()
-	..()
-	cords = target
 
 /datum/action/item_action/organ_action/colossus/IsAvailable()
+	if(!istype(target, /obj/item/organ/vocal_cords/colossus))
+		return FALSE
+
+	var/obj/item/organ/vocal_cords/colossus/cords = target
+
 	if(world.time < cords.next_command)
 		return FALSE
 	if(!owner)
@@ -58,8 +58,9 @@
 /datum/action/item_action/organ_action/colossus/Trigger()
 	. = ..()
 	if(!IsAvailable())
+		var/obj/item/organ/vocal_cords/colossus/cords = target
 		if(world.time < cords.next_command)
-			to_chat(owner, "<span class='notice'>You must wait [DisplayTimeText(cords.next_command - world.time)] before Speaking again.</span>")
+			to_chat(owner, span_notice("You must wait [DisplayTimeText(cords.next_command - world.time)] before Speaking again."))
 		return
 	var/command = input(owner, "Speak with the Voice of God", "Command")
 	if(QDELETED(src) || QDELETED(owner))
@@ -70,12 +71,12 @@
 
 /obj/item/organ/vocal_cords/colossus/can_speak_with()
 	if(world.time < next_command)
-		to_chat(owner, "<span class='notice'>You must wait [DisplayTimeText(next_command - world.time)] before Speaking again.</span>")
+		to_chat(owner, span_notice("You must wait [DisplayTimeText(next_command - world.time)] before Speaking again."))
 		return FALSE
 	if(!owner)
 		return FALSE
 	if(!owner.can_speak_vocal())
-		to_chat(owner, "<span class='warning'>You are unable to speak!</span>")
+		to_chat(owner, span_warning("You are unable to speak!"))
 		return FALSE
 	return TRUE
 
@@ -99,10 +100,7 @@
 
 	var/log_message = uppertext(message)
 	if(!span_list || !span_list.len)
-		if(iscultist(user))
-			span_list = list("narsiesmall")
-		else
-			span_list = list()
+		span_list = list()
 
 	user.say(message, spans = span_list, sanitize = FALSE)
 
@@ -131,13 +129,11 @@
 		//Command staff has authority
 		if(user.mind.assigned_role in GLOB.command_positions)
 			power_multiplier *= 1.4
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 		//Why are you speaking
 		if(user.mind.assigned_role == "Mime")
 			power_multiplier *= 0.5
-
-	//Cultists are closer to their gods and are more powerful, but they'll give themselves away
-	if(iscultist(user))
-		power_multiplier *= 2
+// [/CELADON-ADD]
 
 	//Try to check if the speaker specified a name or a job to focus on
 	var/list/specific_listeners = list()
@@ -148,15 +144,8 @@
 
 	for(var/V in listeners)
 		var/mob/living/L = V
-		var/datum/antagonist/devil/devilinfo = is_devil(L)
-		if(devilinfo && findtext(message, devilinfo.truename))
-			var/start = findtext(message, devilinfo.truename)
-			listeners = list(L) //Devil names are unique.
-			power_multiplier *= 5 //if you're a devil and god himself addressed you, you fucked up
-			//Cut out the name so it doesn't trigger commands
-			message = copytext(message, 1, start) + copytext(message, start + length(devilinfo.truename))
-			break
-		else if(findtext(message, L.real_name, 1, length(L.real_name) + 1))
+
+		if(findtext(message, L.real_name, 1, length(L.real_name) + 1))
 			specific_listeners += L //focus on those with the specified name
 			//Cut out the name so it doesn't trigger commands
 			found_string = L.real_name
@@ -217,7 +206,7 @@
 	var/static/regex/salute_words = regex("salute")
 	var/static/regex/deathgasp_words = regex("play dead")
 	var/static/regex/clap_words = regex("clap|applaud")
-	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
+	var/static/regex/honk_words = regex("ho+nk") //hooooooonk	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 	var/static/regex/multispin_words = regex("like a record baby|right round")
 
 	var/i = 0
@@ -251,7 +240,7 @@
 	else if((findtext(message, silence_words)))
 		cooldown = COOLDOWN_STUN
 		for(var/mob/living/carbon/C in listeners)
-			if(user.mind && (user.mind.assigned_role == "Curator" || user.mind.assigned_role == "Mime"))
+			if(user.mind && (user.mind.assigned_role == "Curator" || user.mind.assigned_role == "Mime"))	//if(user.mind.assigned_role == "Curator")	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 				power_multiplier *= 3
 			C.silent += (10 * power_multiplier)
 
@@ -266,7 +255,7 @@
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.SetSleeping(0)
+			L.set_sleeping(0)
 
 	//HEAL
 	else if((findtext(message, heal_words)))
@@ -301,14 +290,14 @@
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.adjust_bodytemperature(50 * power_multiplier)
+			L.adjust_bodytemperature(5 * power_multiplier)
 
 	//COLD
 	else if((findtext(message, cold_words)))
 		cooldown = COOLDOWN_DAMAGE
 		for(var/V in listeners)
 			var/mob/living/L = V
-			L.adjust_bodytemperature(-50 * power_multiplier)
+			L.adjust_bodytemperature(-5 * power_multiplier)
 
 	//REPULSE
 	else if((findtext(message, repulse_words)))
@@ -331,11 +320,7 @@
 		for(var/V in listeners)
 			var/mob/living/L = V
 			var/text = ""
-			if(is_devil(L))
-				var/datum/antagonist/devil/devilinfo = is_devil(L)
-				text = devilinfo.truename
-			else
-				text = L.real_name
+			text = L.real_name
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/atom/movable, say), text), 5 * i)
 			i++
 
@@ -505,15 +490,6 @@
 			var/mob/living/L = V
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, emote), "clap"), 5 * i)
 			i++
-
-	//HONK
-	else if((findtext(message, honk_words)))
-		cooldown = COOLDOWN_MEME
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), get_turf(user), 'sound/items/bikehorn.ogg', 300, 1), 25)
-		if(user.mind && user.mind.assigned_role == "Clown")
-			for(var/mob/living/carbon/C in listeners)
-				C.slip(140 * power_multiplier)
-			cooldown = COOLDOWN_MEME
 
 	//RIGHT ROUND
 	else if((findtext(message, multispin_words)))

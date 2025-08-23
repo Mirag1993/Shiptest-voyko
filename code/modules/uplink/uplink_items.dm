@@ -133,9 +133,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	if(ishuman(user) && istype(A, /obj/item))
 		var/mob/living/carbon/human/H = user
 		if(H.put_in_hands(A))
-			to_chat(H, "<span class='boldnotice'>[A] materializes into your hands!</span>")
+			to_chat(H, span_boldnotice("[A] materializes into your hands!"))
 			return A
-	to_chat(user, "<span class='boldnotice'>[A] materializes onto the floor!</span>")
+	to_chat(user, span_boldnotice("[A] materializes onto the floor!"))
 	return A
 
 //Discounts (dynamically filled above)
@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndicate/contract_kit
 	cost = 20
 	player_minimum = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/bundles_TC/bundle_A
 	name = "Syndi-kit Tactical"
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			you will receive. May contain discontinued and/or exotic items."
 	item = /obj/item/storage/box/syndicate/bundle_A
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			In Syndi-kit Special, you will recieve items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/bundles_TC/surplus
 	name = "Syndicate Surplus Crate"
@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/structure/closet/crate
 	cost = 20
 	player_minimum = 25
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	var/starting_crate_value = 50
 
 /datum/uplink_item/bundles_TC/surplus/super
@@ -325,7 +325,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "84mm Rocket Propelled Grenade Launcher"
 	desc = "A reusable rocket propelled grenade launcher preloaded with a low-yield 84mm HE round. \
 		Guaranteed to send your target out with a bang or your money back!"
-	item = /obj/item/gun/ballistic/rocketlauncher
+	item = /obj/item/gun/ballistic/rocketlauncher/mako
 	cost = 8
 	surplus = 30
 	include_modes = list(/datum/game_mode/nuclear)
@@ -338,6 +338,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 30
 	include_modes = list(/datum/game_mode/nuclear)
 
+// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -360,10 +361,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Bananium Energy Sword"
 	desc = "An energy sword that deals no damage, but will slip anyone it contacts, be it by melee attack, thrown \
 	impact, or just stepping on it. Beware friendly fire, as even anti-slip shoes will not protect against it."
-	item = /obj/item/melee/transforming/energy/sword/bananium
+	item = /obj/item/melee/energy/sword/bananium
 	cost = 3
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
+// [/CELADON-EDIT]
 
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
@@ -373,7 +375,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	cost = 20
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/throwingweapons
 	name = "Box of Throwing Weapons"
@@ -387,7 +389,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Bulldog Shotgun"
 	desc = "A fully-loaded semi-automatic drum-fed shotgun. Compatible with all 12g rounds. Designed for close \
 			quarter anti-personnel engagements."
-	item = /obj/item/gun/ballistic/shotgun/bulldog
+	item = /obj/item/gun/ballistic/shotgun/automatic/bulldog
 	cost = 8
 	surplus = 40
 	include_modes = list(/datum/game_mode/nuclear)
@@ -396,7 +398,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "C-20r Submachine Gun"
 	desc = "A fully-loaded Scarborough Arms bullpup submachine gun. The C-20r fires .45 rounds with a \
 			24-round magazine and is compatible with suppressors."
-	item = /obj/item/gun/ballistic/automatic/smg/c20r
+	item = /obj/item/gun/ballistic/automatic/smg/cobra
 	cost = 10
 	surplus = 40
 	include_modes = list(/datum/game_mode/nuclear)
@@ -405,10 +407,10 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Double-Bladed Energy Sword"
 	desc = "The double-bladed energy sword does slightly more damage than a standard energy sword and will deflect \
 			all energy projectiles, but requires two hands to wield."
-	item = /obj/item/dualsaber
+	item = /obj/item/melee/duelenergy/saber
 	player_minimum = 25
 	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -417,9 +419,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Energy Sword"
 	desc = "The energy sword is an edged weapon with a blade of pure energy. The sword is small enough to be \
 			pocketed when inactive. Activating it produces a loud, distinctive noise."
-	item = /obj/item/melee/transforming/energy/sword/saber
+	item = /obj/item/melee/energy/sword/saber
 	cost = 8
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/shield
 	name = "Energy Shield"
@@ -445,21 +447,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/gloves/rapid
 	cost = 8
 
-/datum/uplink_item/dangerous/guardian
-	name = "Holoparasites"
-	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an \
-			organic host as a home base and source of fuel. Holoparasites come in various types and share damage with their host."
-	item = /obj/item/storage/box/syndie_kit/guardian
-	cost = 18
-	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-	restricted = TRUE
-
 /datum/uplink_item/dangerous/machinegun
 	name = "L6 Squad Automatic Weapon"
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun. \
 			This deadly weapon has a massive 50-round magazine of devastating 7.12x82mm ammunition."
-	item = /obj/item/gun/ballistic/automatic/hmg/l6_saw
+	item = /obj/item/gun/ballistic/automatic/assault/hydra/lmg/extended
 	cost = 18
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
@@ -468,7 +460,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "M-90gl Carbine"
 	desc = "A fully-loaded, specialized three-round burst carbine that fires 5.56mm ammunition from a 30 round magazine \
 			with a toggleable 40mm underbarrel grenade launcher."
-	item = /obj/item/gun/ballistic/automatic/smg/m90
+	item = /obj/item/gun/ballistic/automatic/assault/hydra
 	cost = 18
 	surplus = 50
 	include_modes = list(/datum/game_mode/nuclear)
@@ -485,18 +477,18 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/sniper
 	name = "Sniper Rifle"
 	desc = "Ranged fury, Syndicate style. Guaranteed to cause shock and awe or your TC back!"
-	item = /obj/item/gun/ballistic/automatic/marksman/sniper_rifle
+	item = /obj/item/gun/ballistic/automatic/marksman/taipan
 	cost = 16
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/pistol
-	name = "Stechkin Pistol"
-	desc = "A small, easily concealable handgun that uses 10mm auto rounds in 8-round magazines and is compatible \
+	name = "Ringneck Pistol"
+	desc = "A small, easily concealable handgun that uses 10x22mm rounds in 8-round magazines and is compatible \
 			with suppressors."
-	item = /obj/item/gun/ballistic/automatic/pistol/syndicate
+	item = /obj/item/gun/ballistic/automatic/pistol/ringneck
 	cost = 7
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/bolt_action
 	name = "Surplus Rifle"
@@ -508,27 +500,27 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/dangerous/revolver
 	name = "Syndicate Revolver"
 	desc = "A brutally simple Syndicate revolver that fires .357 Magnum rounds and has 7 chambers."
-	item = /obj/item/gun/ballistic/revolver/syndicate
+	item = /obj/item/gun/ballistic/revolver/viper
 	cost = 13
 	surplus = 50
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
 	desc = "A fully-loaded Donksoft bullpup submachine gun that fires riot grade darts with a 20-round magazine."
-	item = /obj/item/gun/ballistic/automatic/smg/c20r/toy/riot
+	item = /obj/item/gun/ballistic/automatic/toy
 	cost = 5
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/foammachinegun
 	name = "Toy Machine Gun"
 	desc = "A fully-loaded Donksoft belt-fed machine gun. This weapon has a massive 50-round magazine of devastating \
 			riot grade darts, that can briefly incapacitate someone in just one volley."
-	item = /obj/item/gun/ballistic/automatic/hmg/l6_saw/toy/riot
+	item = /obj/item/gun/ballistic/automatic/toy
 	cost = 10
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/foampistol
 	name = "Toy Pistol with Riot Darts"
@@ -537,24 +529,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	cost = 2
 	surplus = 10
-
-/datum/uplink_item/dangerous/semiautoturret
-	name = "Semi-Auto Turret"
-	desc = "An autoturret which shoots semi-automatic ballistic rounds. The turret is bulky \
-			and cannot be moved; upon ordering this item, a smaller beacon will be transported to you \
-			that will teleport the actual turret to it upon activation."
-	item = /obj/item/sbeacondrop/semiautoturret
-	cost = 8
-	include_modes = list(/datum/game_mode/nuclear)
-
-/datum/uplink_item/dangerous/heavylaserturret
-	name = "Heavy Laser Turret"
-	desc = "An autoturret which shoots heavy lasers. The turret is bulky \
-			and cannot be moved; upon ordering this item, a smaller beacon will be transported to you \
-			that will teleport the actual turret to it upon activation."
-	item = /obj/item/sbeacondrop/heavylaserturret
-	cost = 12
-	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/weebstick
 	name = "Nanoforged Katana"
@@ -565,39 +539,24 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 5
 	limited_stock = 1
 
-/datum/uplink_item/dangerous/tec9
-	name = "TEC9 Machine Pistol"
-	desc = "A powerful machine pistol sporting a high rate of fire and armor-piercing rounds."
-	item = /obj/item/gun/ballistic/automatic/pistol/tec9
-	cost = 12
-	surplus = 20
-
-/datum/uplink_item/dangerous/ebr
-	name = "M514 EBR"
-	desc = "A cheap rifle with high stopping power and low capacity."
-	item = /obj/item/gun/ballistic/automatic/marksman/ebr
-	cost = 8
-	surplus = 20
-	include_modes = list(/datum/game_mode/nuclear)
-
 // Stealthy Weapons
 /datum/uplink_item/stealthy_weapons
 	category = "Stealthy Weapons"
 
 /datum/uplink_item/stealthy_weapons/combatglovesplus
 	name = "Combat Gloves Plus"
-	desc = "A pair of gloves that are fireproof and electrically insulated, however unlike the regular Combat Gloves these use nanotechnology \
+	desc = "A pair of gloves that are fireproof and acid-resistant, however unlike the regular Combat Gloves these use nanotechnology \
 			to teach the martial art of krav maga to the wearer."
 	item = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	cost = 5
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	surplus = 0
 
 /datum/uplink_item/stealthy_weapons/cqc
 	name = "CQC Manual"
 	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
 	item = /obj/item/book/granter/martial/cqc
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	cost = 13
 	surplus = 0
 
@@ -630,7 +589,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 20
 	cost = 17
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/crossbow
 	name = "Miniature Energy Crossbow"
@@ -643,7 +602,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
 	cost = 10
 	surplus = 50
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/origami_kit
 	name = "Boxed Origami Kit"
@@ -652,7 +611,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/origami_bundle
 	cost = 14
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear) //clown ops intentionally left in, because that seems like some s-tier shenanigans.
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/stealthy_weapons/traitor_chem_bottle
 	name = "Poison Kit"
@@ -678,7 +637,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			falls asleep, they will be able to move and act."
 	item = /obj/item/pen/sleepy
 	cost = 4
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/suppressor
 	name = "Suppressor"
@@ -686,7 +645,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/attachment/silencer
 	cost = 3
 	surplus = 10
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/holster
 	name = "Syndicate Holster"
@@ -724,35 +683,35 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 40
 
 /datum/uplink_item/ammo/pistol
-	name = "10mm Handgun Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol."
-	item = /obj/item/ammo_box/magazine/m10mm
+	name = "10x22mm Handgun Magazine"
+	desc = "An additional 8-round 10x22mm magazine; compatible with the Ringneck Pistol."
+	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/pistolap
-	name = "10mm Armour Piercing Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	name = "10x22mm Armour Piercing Magazine"
+	desc = "An additional 8-round 10x22mm magazine; compatible with the Ringneck Pistol. \
 			These rounds are less effective at injuring the target but penetrate protective gear."
-	item = /obj/item/ammo_box/magazine/m10mm/ap
+	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/pistolhp
-	name = "10mm Hollow Point Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	name = "10x22mm Hollow Point Magazine"
+	desc = "An additional 8-round 10x22mm magazine; compatible with the Ringneck Pistol. \
 			These rounds are more damaging but ineffective against armour."
-	item = /obj/item/ammo_box/magazine/m10mm/hp
+	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 3
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/pistolfire
-	name = "10mm Incendiary Magazine"
-	desc = "An additional 8-round 10mm magazine; compatible with the Stechkin Pistol. \
+	name = "10x22mm Incendiary Magazine"
+	desc = "An additional 8-round 10x22mm magazine; compatible with the Ringneck Pistol. \
 			Loaded with incendiary rounds which inflict little damage, but ignite the target."
-	item = /obj/item/ammo_box/magazine/m10mm/inc
+	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
@@ -767,13 +726,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/shotgun/buck
 	name = "12g Buckshot Drum"
 	desc = "An additional 8-round buckshot magazine for use with the Bulldog shotgun. Front towards enemy."
-	item = /obj/item/ammo_box/magazine/m12g
+	item = /obj/item/ammo_box/magazine/m12g_bulldog/drum
 
 /datum/uplink_item/ammo/shotgun/dragon
 	name = "12g Dragon's Breath Drum"
 	desc = "An alternative 8-round dragon's breath magazine for use in the Bulldog shotgun. \
 			'I'm a fire starter, twisted fire starter!'"
-	item = /obj/item/ammo_box/magazine/m12g/dragon
+	item = /obj/item/ammo_box/magazine/m12g_bulldog/drum/dragon
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/shotgun/meteor
@@ -782,7 +741,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	An alternative 8-round meteorslug magazine for use in the Bulldog shotgun.
 	Great for blasting airlocks off their frames and knocking down enemies.
 	"}
-	item = /obj/item/ammo_box/magazine/m12g/meteor
+	item = /obj/item/ammo_box/magazine/m12g_bulldog/drum/meteor
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/shotgun/slug
@@ -790,7 +749,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 8-round slug magazine for use with the Bulldog shotgun. \
 			Now 8 times less likely to shoot your pals."
 	cost = 3
-	item = /obj/item/ammo_box/magazine/m12g/slug
+	item = /obj/item/ammo_box/magazine/m12g_bulldog/drum/slug
 
 /datum/uplink_item/ammo/revolver
 	name = ".357 Speed Loader"
@@ -798,7 +757,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			For when you really need a lot of things dead."
 	item = /obj/item/ammo_box/a357
 	cost = 4
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 	illegal_tech = FALSE
 
 /datum/uplink_item/ammo/a40mm
@@ -819,7 +778,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/ammo/smg
 	name = ".45 SMG Magazine"
 	desc = "An additional 24-round .45 magazine suitable for use with the C-20r submachine gun."
-	item = /obj/item/ammo_box/magazine/smgm45
+	item = /obj/item/ammo_box/magazine/m45_cobra
 	cost = 3
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -849,7 +808,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "5.56mm Toploader Magazine"
 	desc = "An additional 30-round 5.56mm magazine; suitable for use with the M-90gl carbine. \
 			These bullets pack less punch than 7.12x82mm rounds, but they still offer more power than .45 ammo."
-	item = /obj/item/ammo_box/magazine/m556
+	item = /obj/item/ammo_box/magazine/m556_42_hydra
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -857,38 +816,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
-
-/datum/uplink_item/ammo/machinegun/basic
-	name = "7.12x82mm Box Magazine"
-	desc = "A 50-round magazine of 7.12x82mm ammunition for use with the L6 SAW. \
-			By the time you need to use this, you'll already be standing on a pile of corpses."
-	item = /obj/item/ammo_box/magazine/mm712x82
-
-/datum/uplink_item/ammo/machinegun/ap
-	name = "7.12x82mm (Armor Penetrating) Box Magazine"
-	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; equipped with special properties \
-			to puncture even the most durable armor."
-	item = /obj/item/ammo_box/magazine/mm712x82/ap
-	cost = 9
-
-/datum/uplink_item/ammo/machinegun/hollow
-	name = "7.12x82mm (hollow point) Box Magazine"
-	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; equipped with hollow point tips to help \
-			with the unarmored masses of crew."
-	item = /obj/item/ammo_box/magazine/mm712x82/hollow
-
-/datum/uplink_item/ammo/machinegun/incen
-	name = "7.12x82mm (Incendiary) Box Magazine"
-	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; tipped with a special flammable \
-			mixture that'll ignite anyone struck by the bullet. Some men just want to watch the world burn."
-	item = /obj/item/ammo_box/magazine/mm712x82/inc
-
-/datum/uplink_item/ammo/machinegun/match
-	name = "7.12x82mm (Match) Box Magazine"
-	desc = "A 50-round magazine of 7.12x82mm ammunition for use in the L6 SAW; you didn't know there was a demand for match grade \
-			precision bullet hose ammo, but these rounds are finely tuned and perfect for ricocheting off walls all fancy-like."
-	item = /obj/item/ammo_box/magazine/mm712x82/match
-	cost = 10
 
 /datum/uplink_item/ammo/rocket
 	include_modes = list(/datum/game_mode/nuclear)
@@ -907,16 +834,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 6
 
 /datum/uplink_item/ammo/pistolaps
-	name = "9mm Handgun Magazine"
-	desc = "An additional 15-round 9mm magazine, compatible with the Stechkin APS pistol, found in the Spetsnaz Pyro bundle."
-	item = /obj/item/ammo_box/magazine/pistolm9mm
+	name = "9x18mm Handgun Magazine"
+	desc = "An additional 15-round 9x18mm magazine, compatible with the Stechkin APS pistol, found in the Spetsnaz Pyro bundle."
+	item = /obj/item/ammo_box/magazine/m9mm_rattlesnake
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/toydarts
 	name = "Box of Riot Darts"
 	desc = "A box of 40 Donksoft riot darts, for reloading any compatible foam dart magazine. Don't forget to share!"
-	item = /obj/item/ammo_box/foambox/riot
+	item = /obj/item/storage/box/ammo/foam_darts/riot
 	cost = 2
 	surplus = 0
 	illegal_tech = FALSE
@@ -927,7 +854,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and broca systems, making it impossible for them to move or speak for some time."
 	item = /obj/item/storage/box/syndie_kit/bioterror
 	cost = 6
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/bolt_action
 	name = "Surplus Rifle Clip"
@@ -937,30 +864,30 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/mech/bag
-	name = "Mech Support Kit Bag"
-	desc = "A duffel bag containing ammo for four full reloads of the scattershotm which is equipped on standard Dark Gygax and Mauler exosuits. Also comes with some support equipment for maintaining the mech, including tools and an inducer."
+	name = "Exosuit Support Kit Bag"
+	desc = "A duffel bag containing ammo for four full reloads of the scattershot which is equipped on standard 515 EX and Touro exosuits. Also comes with some support equipment for maintaining the exosuit, including tools and an inducer."
 	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/mech
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear)
 
-/datum/uplink_item/ammo/mauler/bag
-	name = "Mauler Ammo Bag"
-	desc = "A duffel bag containing ammo for three full reloads of the LMG, scattershot carbine, and SRM-8 missile laucher that are equipped on a standard Mauler exosuit."
-	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/mauler
+/datum/uplink_item/ammo/touro/bag
+	name = "Touro Ammo Bag"
+	desc = "A duffel bag containing ammo for three full reloads of the LMG, scattershot carbine, and SRM-8 missile laucher that are equipped on a standard Touro exosuit."
+	item = /obj/item/storage/backpack/duffelbag/syndie/ammo/touro
 	cost = 6
 	include_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/ammo/tec9
 	name = "TEC9 Magazine"
-	desc = "An additional 20 round 9mm magazine for the TEC9."
-	item = /obj/item/ammo_box/magazine/tec9
+	desc = "An additional 20 round 9x18mm magazine for the TEC9."
+	item = /obj/item/ammo_box/magazine/m9mm_rattlesnake
 	cost = 3
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/ebr
 	name = "M2514 EBR Magazine"
 	desc = "An additional 10 round .308 magazine for the EBR."
-	item = /obj/item/ammo_box/magazine/ebr
+	item = /obj/item/ammo_box/magazine/m556_42_hydra/small
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -976,16 +903,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/chem_grenade/bioterrorfoam
 	cost = 5
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-
-/datum/uplink_item/explosives/bombanana
-	name = "Bombanana"
-	desc = "A banana with an explosive taste! discard the peel quickly, as it will explode with the force of a Syndicate minibomb \
-		a few seconds after the banana is eaten."
-	item = /obj/item/reagent_containers/food/snacks/grown/banana/bombanana
-	cost = 4 //it is a bit cheaper than a minibomb because you have to take off your helmet to eat it, which is how you arm it
-	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/explosives/buzzkill
 	name = "Buzzkill Grenade Box"
@@ -994,7 +912,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/bee_grenades
 	cost = 15
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/explosives/c4
 	name = "Composition C-4"
@@ -1020,18 +938,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 4 //
 	cant_discount = TRUE
 
-/datum/uplink_item/explosives/clown_bomb_clownops
-	name = "Clown Bomb"
-	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
-			with a minimum of 60 seconds, and can be bolted to the floor with a wrench to prevent \
-			movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
-			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
-			be defused, and some crew may attempt to do so."
-	item = /obj/item/sbeacondrop/clownbomb
-	cost = 15
-	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
 /datum/uplink_item/explosives/detomatix
 	name = "Detomatix PDA Cartridge"
 	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \
@@ -1056,7 +962,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	cost = 12
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	restricted = TRUE
 
 /datum/uplink_item/explosives/grenadier
@@ -1100,7 +1006,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			the blast radius before using the detonator."
 	item = /obj/item/syndicatedetonator
 	cost = 3
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	S// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/explosives/syndicate_minibomb
 	name = "Syndicate Minibomb"
@@ -1108,6 +1014,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
 	cost = 6
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/tearstache
@@ -1118,6 +1025,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
+// [/CELADON-EDIT]
 
 /datum/uplink_item/explosives/viscerators
 	name = "Viscerator Delivery Grenade"
@@ -1126,7 +1034,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/spawnergrenade/manhacks
 	cost = 5
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 //Support and Mechs
 /datum/uplink_item/support
@@ -1134,6 +1042,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/support/clown_reinforcement
 	name = "Clown Reinforcements"
 	desc = "Call in an additional clown to share the fun, equipped with full starting gear, but no telecrystals."
@@ -1141,6 +1050,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
+// [/CELADON-ADD]
 
 /datum/uplink_item/support/reinforcement
 	name = "Reinforcements"
@@ -1182,24 +1092,16 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted = TRUE
 
 /datum/uplink_item/support/gygax
-	name = "Dark Gygax Exosuit"
+	name = "515 EX Exosuit"
 	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
 			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
 	cost = 80
-
-/datum/uplink_item/support/honker
-	name = "Dark H.O.N.K."
-	desc = "A clown combat mech equipped with bombanana peel and tearstache grenade launchers, as well as the ubiquitous HoNkER BlAsT 5000."
-	item = /obj/mecha/combat/honker/dark/loaded
-	cost = 80
-	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-
-/datum/uplink_item/support/mauler
-	name = "Mauler Exosuit"
-	desc = "A massive and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
+/datum/uplink_item/support/touro
+	name = "Touro Exosuit"
+	desc = "A well-armored and incredibly deadly military-grade exosuit. Features long-range targeting, thrust vectoring \
 			and deployable smoke. Comes equipped with an LMG, scattershot carbine, missile rack, an antiprojectile armor booster and a Tesla energy array."
-	item = /obj/mecha/combat/marauder/mauler/loaded
+	item = /obj/mecha/combat/marauder/touro/loaded
 	cost = 140
 
 // Stealth Items
@@ -1231,7 +1133,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Due to budget cuts, the shoes don't provide protection against slipping."
 	item = /obj/item/storage/box/syndie_kit/chameleon
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear) //clown ops are allowed to buy this kit, since it's basically a costume
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_tools/chameleon_proj
 	name = "Chameleon Projector"
@@ -1246,16 +1148,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This manual teaches you this Codespeak. You can also hit someone else with the manual in order to teach them. This is the deluxe edition, which has unlimited uses."
 	item = /obj/item/codespeak_manual/unlimited
 	cost = 3
-
-/datum/uplink_item/stealthy_tools/combatbananashoes
-	name = "Combat Banana Shoes"
-	desc = "While making the wearer immune to most slipping attacks like regular combat clown shoes, these shoes \
-		can generate a large number of synthetic banana peels as the wearer walks, slipping up would-be pursuers. They also \
-		squeak significantly louder."
-	item = /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat
-	cost = 6
-	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/stealthy_tools/emplight
 	name = "EMP Flashlight"
@@ -1273,7 +1165,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/syringe/mulligan
 	cost = 4
 	surplus = 30
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
 	name = "No-Slip Chameleon Shoes"
@@ -1281,7 +1173,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			They do not work on heavily lubricated surfaces."
 	item = /obj/item/clothing/shoes/chameleon/noslip
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
 	item = /obj/item/clothing/shoes/chameleon/noslip
@@ -1316,7 +1208,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/toolbox/infiltrator
 	cost = 6
 	limited_stock = 1 //you only get one so you don't end up with too many gun cases
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/suits/space_suit
 	name = "Syndicate Space Suit"
@@ -1335,7 +1227,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Nanotrasen crew who spot these suits are known to panic."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi
 	cost = 8
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //you can't buy it in nuke, because the elite hardsuit costs the same while being better
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //you can't buy it in nuke, because the elite hardsuit costs the same while being better	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/suits/hardsuit/elite
 	name = "Elite Syndicate Hardsuit"
@@ -1343,7 +1235,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			provides the user with superior armor and mobility compared to the standard Syndicate hardsuit."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	cost = 8
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	exclude_modes = list()
 
 /datum/uplink_item/suits/hardsuit/shielded
@@ -1352,7 +1244,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			The shields can handle up to three impacts within a short duration and will rapidly recharge while not under fire."
 	item = /obj/item/clothing/suit/space/hardsuit/shielded/syndi
 	cost = 30
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	exclude_modes = list()
 
 // Devices and Tools
@@ -1384,7 +1276,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			'Advanced Magboots' slow you down in simulated-gravity environments much like the standard issue variety."
 	item = /obj/item/clothing/shoes/magboots/syndie
 	cost = 2
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
@@ -1441,14 +1333,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	surplus = 0
 	restricted = TRUE
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
 		return
 	U.failsafe_code = U.generate_code()
 	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
-	to_chat(user, "<span class='warning'>The new failsafe code for this uplink is now : [code].</span>")
+	to_chat(user, span_warning("The new failsafe code for this uplink is now : [code]."))
 	if(user.mind)
 		user.mind.store_memory("Failsafe code for [U.parent] : [code]")
 	return U.parent //For log icon
@@ -1485,7 +1377,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			operatives in the fight, even while under fire. Don't cross the streams!"
 	item = /obj/item/gun/medbeam
 	cost = 15
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/singularity_beacon
 	name = "Power Beacon"
@@ -1529,7 +1421,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and other supplies helpful for a field medic."
 	item = /obj/item/storage/firstaid/tactical
 	cost = 4
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/soap
 	name = "Syndicate Soap"
@@ -1573,20 +1465,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/clothing/glasses/thermal/syndi
 	cost = 4
 
-/datum/uplink_item/device_tools/potion
-	name = "Syndicate Sentience Potion"
-	item = /obj/item/slimepotion/slime/sentience/nuclear
-	desc = "A potion recovered at great risk by undercover Syndicate operatives and then subsequently modified with Syndicate technology. \
-			Using it will make any animal sentient, and bound to serve you, as well as implanting an internal radio for communication and an internal ID card for opening doors."
-	cost = 4
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-	restricted = TRUE
-
 /datum/uplink_item/device_tools/guerillagloves
 	name = "Guerilla Gloves"
 	desc = "A pair of highly robust combat gripper gloves that excels at performing takedowns at close range, with an added lining of insulation. Careful not to hit a wall!"
 	item = /obj/item/clothing/gloves/tackler/combat/insulated
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	cost = 2
 
 /datum/uplink_item/device_tools/telecrystal/bonemedipen
@@ -1701,7 +1584,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	surplus = 0
 
 /datum/uplink_item/race_restricted/syndilamp //WS edit - LepiCorp stuff
@@ -1736,7 +1619,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	surplus = 0
 
 /datum/uplink_item/role_restricted/ancient_jumpsuit
@@ -1755,6 +1638,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Assistant")
 	surplus = 0
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -1762,6 +1646,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
+// [//CELADON-ADD]
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
@@ -1773,14 +1658,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 14							//High cost because of the potential for extreme damage in the hands of a skilled scientist.
 	restricted_roles = list("Research Director", "Scientist")
 
-/datum/uplink_item/role_restricted/gorillacubes
-	name = "Box of Gorilla Cubes"
-	desc = "A box with three Waffle Co. brand gorilla cubes. Eat big to get big. \
-			Caution: Product may rehydrate when exposed to water."
-	item = /obj/item/storage/box/gorillacubes
-	cost = 6
-	restricted_roles = list("Geneticist", "Chief Medical Officer")
-
 /datum/uplink_item/role_restricted/brainwash_disk
 	name = "Brainwashing Surgery Program"
 	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
@@ -1789,17 +1666,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist")
 	cost = 5
 
-/datum/uplink_item/role_restricted/clown_bomb
-	name = "Clown Bomb"
-	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
-			with a minimum of 60 seconds, and can be bolted to the floor with a wrench to prevent \
-			movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
-			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
-			be defused, and some crew may attempt to do so."
-	item = /obj/item/sbeacondrop/clownbomb
-	cost = 15
-	restricted_roles = list("Clown")
-
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/clumsinessinjector //clown ops can buy this too, but it's in the pointless badassery section for them
 	name = "Clumsiness Injector"
 	desc = "Inject yourself with this to become as clumsy as a clown... or inject someone ELSE with it to make THEM as clumsy as a clown. Useful for clowns who wish to reconnect with their former clownish nature or for clowns who wish to torment and play with their prey before killing them."
@@ -1807,6 +1674,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	restricted_roles = list("Clown")
 	illegal_tech = FALSE
+// [/CELADON-ADD]
 
 /datum/uplink_item/role_restricted/spider_injector
 	name = "Australicus Slime Mutator"
@@ -1818,6 +1686,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 10
 	restricted_roles = list("Research Director", "Scientist", "Roboticist")
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"
 	desc = "The Clown Car is the ultimate transportation method for any worthy clown! \
@@ -1829,13 +1698,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/vehicle/sealed/car/clowncar
 	cost = 20
 	restricted_roles = list("Clown")
+// [/CELADON-ADD]
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
-	desc = "A modification for non-combat mechas that allows them to equip one piece of equipment designed for combat mechs. \
+	desc = "A modification for civilian exosuits that allows them to equip one piece of equipment designed for combat exosuits. \
 			It also hides the equipped weapon from plain sight. \
-			Only one can fit on a mecha."
-	item = /obj/item/mecha_parts/concealed_weapon_bay
+			Only one can fit on an exosuit."
+	item = /obj/item/mecha_parts/weapon_bay/concealed
 	cost = 3
 	restricted_roles = list("Roboticist", "Research Director")
 
@@ -1847,13 +1717,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	restricted_roles = list("Curator")
 	limited_stock = 1 //please don't spam deadchat
-
-/datum/uplink_item/role_restricted/cultconstructkit
-	name = "Cult Construct Kit"
-	desc = "Recovered from an abandoned Nar'sie cult lair two construct shells and a stash of empty soulstones was found. These were purified to prevent occult contamination and have been put in a belt so they may be used as an accessible source of disposable minions. The construct shells have been packaged into two beacons for rapid and portable deployment."
-	item = /obj/item/storage/box/syndie_kit/cultconstructkit
-	cost = 20
-	restricted_roles = list("Chaplain")
 
 /datum/uplink_item/role_restricted/lawnmower
 	name = "Gas powered lawn mower"
@@ -1869,7 +1732,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/hot_potato/syndicate
 	cost = 4
 	surplus = 0
-	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")
+	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")	//restricted_roles = list("Cook", "Botanist")	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/role_restricted/ez_clean_bundle
 	name = "EZ Clean Grenade Bundle"
@@ -1880,6 +1743,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 20
 	restricted_roles = list("Janitor")
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/mimery
 	name = "Guide to Advanced Mimery Series"
 	desc = "The classical two part series on how to further hone your mime skills. Upon studying the series, the user should be able to make 3x1 invisible walls, and shoot bullets out of their fingers. \
@@ -1888,6 +1752,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/mimery
 	restricted_roles = list("Mime")
 	surplus = 0
+// [/CELADON-ADD]
 
 /datum/uplink_item/role_restricted/pressure_mod
 	name = "Kinetic Accelerator Pressure Mod"
@@ -1897,14 +1762,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 5 //you need two for full damage, so total of 10 for maximum damage
 	limited_stock = 2 //you can't use more than two!
 	restricted_roles = list("Shaft Miner")
-
-/datum/uplink_item/role_restricted/magillitis_serum
-	name = "Magillitis Serum Autoinjector"
-	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \
-			Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas."
-	item = /obj/item/reagent_containers/hypospray/medipen/magillitis
-	cost = 15
-	restricted_roles = list("Geneticist", "Chief Medical Officer")
 
 /datum/uplink_item/role_restricted/modified_syringe_gun
 	name = "Modified Syringe Gun"
@@ -1920,15 +1777,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 12
 	restricted_roles = list("Chemist", "Chief Medical Officer")
 
-/datum/uplink_item/role_restricted/reverse_bear_trap
-	name = "Reverse Bear Trap"
-	desc = "An ingenious execution device worn on (or forced onto) the head. Arming it starts a 1-minute kitchen timer mounted on the bear trap. When it goes off, the trap's jaws will \
-	violently open, instantly killing anyone wearing it by tearing their jaws in half. To arm, attack someone with it while they're not wearing headgear, and you will force it onto their \
-	head after three seconds uninterrupted."
-	cost = 5
-	item = /obj/item/reverse_bear_trap
-	restricted_roles = list("Clown")
-
 /datum/uplink_item/role_restricted/laser_arm
 	name = "Laser Arm Implant"
 	desc = "An implant that grants you a recharging laser gun inside your arm. Weak to EMPs. Comes with a syndicate autosurgeon for immediate self-application."
@@ -1939,7 +1787,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/role_restricted/greykingsword
 	name = "Blade of The Grey Tide"
 	desc = "A weapon of legend, forged by the greatest crackheads of our generation."
-	item = /obj/item/melee/greykingsword
+	item = /obj/item/melee/sword/greyking
 	cost = 2
 	restricted_roles = list("Assistant", "Chemist")
 
@@ -1956,7 +1804,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/costumes
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
 	cost = 4
 	cant_discount = TRUE
 
@@ -1966,10 +1814,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Radio headset does not include encryption key. No gun included."
 	item = /obj/item/storage/box/syndie_kit/centcom_costume
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/badass/costumes/clown
 	name = "Clown Costume"
 	desc = "Nothing is more terrifying than clowns with fully automatic weaponry."
 	item = /obj/item/storage/backpack/duffelbag/clown/syndie
+// [/CELADON-ADD]
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
@@ -2006,6 +1856,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	illegal_tech = FALSE
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/badass/clownopclumsinessinjector //clowns can buy this too, but it's in the role-restricted items section for them
 	name = "Clumsiness Injector"
 	desc = "Inject yourself with this to become as clumsy as a clown... or inject someone ELSE with it to make THEM as clumsy as a clown. Useful for clown operatives who wish to reconnect with their former clownish nature or for clown operatives who wish to torment and play with their prey before killing them."
@@ -2013,6 +1864,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
+// [/CELADON-ADD]
 
 /datum/uplink_item/badass/tactical_naptime
 	name = "Sleepy Time Pajama Bundle"

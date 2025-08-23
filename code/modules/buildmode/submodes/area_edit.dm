@@ -7,7 +7,7 @@
 /datum/buildmode_mode/area_edit/New()
 	// [CELADON-EDIT] - CELADON_AREAS - Иначе никак не подсунуть свои зоны
 	// areaimage = image('icons/turf/areas.dmi', null, "yellow") // CELADON-EDIT - ORIGINAL
-	areaimage = image('mod_celadon/_storge_icons/icons/areas.dmi', null, "yellow")
+	areaimage = image('mod_celadon/_storge_icons/icons/assets/areas.dmi', null, "yellow")
 	// [CELADON-EDIT]
 	..()
 
@@ -25,7 +25,7 @@
 	return ..()
 
 /datum/buildmode_mode/area_edit/show_help(client/target_client)
-	to_chat(target_client, span_purple(examine_block(
+	to_chat(target_client, span_purple(boxed_message(
 		"[span_bold("Select corner")] -> Left Mouse Button on obj/turf/mob\n\
 		[span_bold("Paint area")] -> Left Mouse Button + Alt on turf/obj/mob\n\
 		[span_bold("Select area to paint")] -> Right Mouse Button on obj/turf/mob\n\
@@ -52,7 +52,7 @@
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(!storedarea)
-			to_chat(target_client, "<span class='warning'>Configure or select the area you want to paint first!</span>")
+			to_chat(target_client, span_warning("Configure or select the area you want to paint first!"))
 			return
 		if(LAZYACCESS(modifiers, ALT_CLICK))
 			var/turf/T = get_turf(object)

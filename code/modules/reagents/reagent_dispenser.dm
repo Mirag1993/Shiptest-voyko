@@ -9,6 +9,7 @@
 	max_integrity = 300
 	var/tank_volume = 1000 //In units, how much the dispenser can hold
 	var/reagent_id = /datum/reagent/water //The ID of the reagent that the dispenser uses
+	var/anchorable = TRUE //whether you can unwrench this thing
 
 /obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -22,6 +23,21 @@
 	else
 		return ..()
 
+/obj/structure/reagent_dispensers/wrench_act(mob/living/user, obj/item/tool)
+	if(anchorable && user.a_intent != INTENT_HARM)
+		default_unfasten_wrench(user, tool)
+		return TRUE
+	else
+		return ..()
+
+/obj/structure/reagent_dispensers/examine(mob/user)
+	. = ..()
+	if(anchorable)
+		if(anchored)
+			. += span_notice("[src] is <b>bolted</b> to the floor.")
+		else
+			. += span_notice("[src] is <b>unbolted</b> from the floor.")
+
 /obj/structure/reagent_dispensers/Initialize()
 	create_reagents(tank_volume, DRAINABLE | AMOUNT_VISIBLE)
 	if(reagent_id)
@@ -29,7 +45,7 @@
 	. = ..()
 
 /obj/structure/reagent_dispensers/proc/boom()
-	visible_message("<span class='danger'>\The [src] ruptures!</span>")
+	visible_message(span_danger("\The [src] ruptures!"))
 	chem_splash(loc, 5, list(reagents))
 	qdel(src)
 
@@ -58,6 +74,12 @@
 	reagent_id = /datum/reagent/firefighting_foam
 	tank_volume = 500
 
+/obj/structure/reagent_dispensers/foamtank/antirad
+	name = "anti-radiation foam tank"
+	desc = "A tank full of decontamination foam"
+	reagent_id = /datum/reagent/anti_radiation_foam
+	tank_volume = 1000
+
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
 	desc = "A tank full of industrial welding fuel. Do not consume."
@@ -67,9 +89,6 @@
 /obj/structure/reagent_dispensers/fueltank/boom()
 	explosion(get_turf(src), 0, 1, 5, flame_range = 5)
 	qdel(src)
-
-/obj/structure/reagent_dispensers/fueltank/blob_act(obj/structure/blob/B)
-	boom()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	boom()
@@ -92,19 +111,19 @@
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WELDER)
 		if(!reagents.has_reagent(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>[src] is out of fuel!</span>")
+			to_chat(user, span_warning("[src] is out of fuel!"))
 			return
 		var/obj/item/weldingtool/W = I
 		if(istype(W) && !W.welding)
 			if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-				to_chat(user, "<span class='warning'>Your [W.name] is already full!</span>")
+				to_chat(user, span_warning("Your [W.name] is already full!"))
 				return
 			reagents.trans_to(W, W.max_fuel, transfered_by = user)
-			user.visible_message("<span class='notice'>[user] refills [user.p_their()] [W.name].</span>", "<span class='notice'>You refill [W].</span>")
+			user.visible_message(span_notice("[user] refills [user.p_their()] [W.name]."), span_notice("You refill [W]."))
 			playsound(src, 'sound/effects/refill.ogg', 50, TRUE)
 			W.update_appearance()
 		else
-			user.visible_message("<span class='danger'>[user] catastrophically fails at refilling [user.p_their()] [I.name]!</span>", "<span class='userdanger'>That was stupid of you.</span>")
+			user.visible_message(span_danger("[user] catastrophically fails at refilling [user.p_their()] [I.name]!"), span_userdanger("That was stupid of you."))
 			log_bomber(user, "detonated a", src, "via welding tool")
 			boom()
 		return
@@ -116,6 +135,7 @@
 	desc = "Contains condensed capsaicin for use in law \"enforcement.\""
 	icon_state = "pepper"
 	anchored = TRUE
+	anchorable = FALSE
 	density = FALSE
 	reagent_id = /datum/reagent/consumable/condensedcapsaicin
 
@@ -148,9 +168,9 @@
 	if(.)
 		return
 	if(!paper_cups)
-		to_chat(user, "<span class='warning'>There aren't any cups left!</span>")
+		to_chat(user, span_warning("There aren't any cups left!"))
 		return
-	user.visible_message("<span class='notice'>[user] takes a cup from [src].</span>", "<span class='notice'>You take a paper cup from [src].</span>")
+	user.visible_message(span_notice("[user] takes a cup from [src]."), span_notice("You take a paper cup from [src]."))
 	var/obj/item/reagent_containers/food/drinks/sillycup/S = new(get_turf(src))
 	user.put_in_hands(S)
 	paper_cups--
@@ -160,12 +180,6 @@
 	desc = "Beer is liquid bread, it's good for you..."
 	icon_state = "beer"
 	reagent_id = /datum/reagent/consumable/ethanol/beer
-
-/obj/structure/reagent_dispensers/beerkeg/blob_act(obj/structure/blob/B)
-	explosion(src.loc,0,3,5,7,10)
-	if(!QDELETED(src))
-		qdel(src)
-
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "virus food dispenser"
@@ -181,6 +195,7 @@
 	desc = "A huge metal vat with a tap on the front. Filled with cooking oil for use in frying food."
 	icon_state = "vat"
 	anchored = TRUE
+	anchorable = FALSE
 	reagent_id = /datum/reagent/consumable/cooking_oil
 
 /obj/structure/reagent_dispensers/servingdish
@@ -196,11 +211,6 @@
 	anchored = TRUE
 	icon_state = "water_stationairy"
 	desc = "A stationairy, plumbed, water tank."
-
-/obj/structure/reagent_dispensers/plumbed/wrench_act(mob/living/user, obj/item/I)
-	..()
-	default_unfasten_wrench(user, I)
-	return TRUE
 
 /obj/structure/reagent_dispensers/plumbed/ComponentInitialize()
 	AddComponent(/datum/component/plumbing/simple_supply)

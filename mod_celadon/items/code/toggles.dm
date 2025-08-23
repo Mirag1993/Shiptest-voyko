@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/toggle
-	icon = 'mod_celadon/_storge_icons/icons/items/obj/tajara_items.dmi'  //icons/mob/clothing/suits/toggle.dmi
-	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/items/overlay/tajara_items_overlay.dmi'
+	icon = 'mod_celadon/_storge_icons/icons/items/clothing/tajara_items_SORTIROVATI.dmi'  //icons/mob/clothing/suits/toggle.dmi
+	mob_overlay_icon = 'mod_celadon/_storge_icons/icons/items/clothing/tajara_items_overlay_SORTIROVATI.dmi'
 	var/necktoggled = FALSE
 	var/togglename = null
 
@@ -20,7 +20,7 @@
 	if(!can_use(usr))
 		return 0
 
-	to_chat(usr, "<span class='notice'>You toggle [src]'s [togglename].</span>")
+	to_chat(usr, span_notice("You toggle [src]'s [togglename]."))
 	if(src.necktoggled)
 		src.icon_state = "[initial(icon_state)]"
 		src.necktoggled = FALSE
