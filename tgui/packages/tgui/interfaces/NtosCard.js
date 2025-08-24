@@ -25,6 +25,12 @@ export const NtosCard = (props) => {
 export const NtosCardContent = (props) => {
   const { act, data } = useBackend();
   const [tab, setTab] = useLocalState('tab', 1);
+
+  // Safe data validation to prevent crashes
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   const {
     authenticated,
     regions = [],
@@ -40,10 +46,14 @@ export const NtosCardContent = (props) => {
     id_has_ship_access,
     ship_has_unique_access,
   } = data;
+
+  // Safe initialization to prevent undefined department selection
+  const jobKeys = Object.keys(jobs);
   const [selectedDepartment, setSelectedDepartment] = useLocalState(
     'department',
-    Object.keys(jobs)[0],
+    jobKeys.length > 0 ? jobKeys[0] : 'Jobs',
   );
+
   if (!have_id_slot) {
     return (
       <NoticeBox>
@@ -51,7 +61,13 @@ export const NtosCardContent = (props) => {
       </NoticeBox>
     );
   }
-  const departmentJobs = jobs[selectedDepartment] || [];
+
+  // Safe department jobs retrieval to prevent map errors
+  const departmentJobs =
+    jobs && selectedDepartment && jobs[selectedDepartment]
+      ? jobs[selectedDepartment]
+      : [];
+
   return (
     <>
       <Section

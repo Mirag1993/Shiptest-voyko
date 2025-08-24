@@ -122,6 +122,7 @@
 	var/obj/item/card/id/id_card = card_slot.stored_card
 
 	switch(action)
+
 		if("PRG_authenticate")
 			if(!computer || !user_id_card)
 				playsound(computer, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
@@ -333,7 +334,8 @@
 	else if(ship)
 		var/jobs = list()
 		for (var/datum/job/job in ship.job_slots)
-			jobs += job.name
+			if(job && job.name)  // Check that job exists and has name
+				jobs += job.name
 		departments = list("Jobs" = jobs)
 	else if(isnull(departments))
 		departments = list(

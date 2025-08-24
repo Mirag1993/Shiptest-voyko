@@ -1,5 +1,7 @@
+import '../../styles/interfaces/AccessList.scss';
+
 import { sortBy } from 'common/collections';
-import { Button, Flex, Section, Tabs } from 'tgui-core/components';
+import { Button, Flex, Section, Table, Tabs } from 'tgui-core/components';
 
 import { useSharedState } from '../../backend';
 
@@ -28,10 +30,13 @@ export const AccessList = (props) => {
     grantDep,
     denyDep,
   } = props;
+
+  // Safe initialization to prevent undefined errors
   const [selectedAccessName, setSelectedAccessName] = useSharedState(
     'accessName',
     accesses[0]?.name,
   );
+
   const selectedAccess = accesses.find(
     (access) => access.name === selectedAccessName,
   );
@@ -80,7 +85,7 @@ export const AccessList = (props) => {
       }
     >
       <Flex>
-        <Flex.Item>
+        <Flex.Item className="AccessList__leftColumn">
           <Tabs vertical>
             {accesses.map((access) => {
               const entries = access.accesses || [];
@@ -94,6 +99,7 @@ export const AccessList = (props) => {
                   icon={icon}
                   selected={access.name === selectedAccessName}
                   onClick={() => setSelectedAccessName(access.name)}
+                  className="AccessList__tab"
                 >
                   {access.name}
                 </Tabs.Tab>
@@ -101,36 +107,48 @@ export const AccessList = (props) => {
             })}
           </Tabs>
         </Flex.Item>
-        <Flex.Item grow={1}>
-          <Flex>
-            <Flex.Column mr={0}>
-              <Button
-                fluid
-                icon="check"
-                content="Grant Region"
-                color="good"
-                onClick={() => grantDep(selectedAccess.regid)}
-              />
-            </Flex.Column>
-            <Flex.Column ml={0}>
-              <Button
-                fluid
-                icon="times"
-                content="Deny Region"
-                color="bad"
-                onClick={() => denyDep(selectedAccess.regid)}
-              />
-            </Flex.Column>
-          </Flex>
-          {selectedAccessEntries.map((entry) => (
-            <Button.Checkbox
-              fluid
-              key={entry.desc}
-              content={entry.desc}
-              checked={selectedList.includes(entry.ref)}
-              onClick={() => accessMod(entry.ref)}
-            />
-          ))}
+        <Flex.Item grow={1} className="AccessList__rightColumn">
+          <Section
+            level={2}
+            title={selectedAccess?.name?.[0] || '?'}
+            buttons={
+              <>
+                <Button
+                  icon="check"
+                  content="Grant Region"
+                  color="good"
+                  onClick={() => grantDep(selectedAccess.regid)}
+                />
+                <Button
+                  icon="times"
+                  content="Deny Region"
+                  color="bad"
+                  onClick={() => denyDep(selectedAccess.regid)}
+                />
+              </>
+            }
+          >
+            <Table>
+              {selectedAccessEntries.map((entry) => {
+                const accessBool = selectedList.includes(entry.ref);
+                const diffColor = accessBool ? 'good' : 'bad';
+                const diffIcon = accessBool ? 'check' : 'times';
+                return (
+                  <Table.Row key={entry.ref}>
+                    <Table.Cell>
+                      <Button
+                        fluid
+                        icon={diffIcon}
+                        content={entry.desc}
+                        color={diffColor}
+                        onClick={() => accessMod(entry.ref)}
+                      />
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
+            </Table>
+          </Section>
         </Flex.Item>
       </Flex>
     </Section>

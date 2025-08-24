@@ -1,0 +1,20 @@
+/**
+ * AccessList Component - BYOND 516 Visual Tweaks
+ * Extracted from inline styles to minimize diff
+ */
+
+.AccessList {
+  &__leftColumn {
+    margin-right: 10px;
+    max-width: 120px;
+  }
+
+  &__rightColumn {
+    margin-left: 4px;
+  }
+
+  &__tab {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2px;
+  }
+}
