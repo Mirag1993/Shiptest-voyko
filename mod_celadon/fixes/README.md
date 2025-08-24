@@ -24,6 +24,7 @@ FIXES_CHAMELEON
 FIXES_GOLIATH_TENTACLES
 FIXES_SHIP_LOGIN_DOUBLE_NAME
 FIXES_WETHIDE
+FIXES_DRILLCLASS
 <!--
   Название модпака прописными буквами, СОЕДИНЁННЫМИ_ПОДЧЁРКИВАНИЕМ,
   которое ты будешь использовать для обозначения файлов.
@@ -172,7 +173,7 @@ FIXES_WETHIDE
 - EDIT: `code/modules/food_and_drinks/kitchen_machinery/smartfridge.dm` : Заменен устаревший метод `update_icon()` на `update_appearance()`
 - EDIT: `code/game/objects/items/stacks/sheets/leather.dm` : Исправлен неправильный путь класса. Изменено `/obj/item/stack/sheet/leather/wetleather/Initialize` на `/obj/item/stack/sheet/wethide/Initialize`. Это позволяет мокрой коже правильно добавить элемент `dryable` при инициализации
 
-**Фикс бесконечного спавна мобов при добыче:**
+FIXES_DRILLCLASS - **Фикс бесконечного спавна мобов при добыче**
 - ADD: `code/modules/mining/drill.dm` - Добавлена проверка завершения миссии в `process()` и вызов `stop_spawning()` в `Destroy()`
 - ADD: `code/modules/mining/ore_veins.dm` - Добавлены проверки завершения миссии в `begin_spawning()`, `process()` и `increment_wave_tally()`
 - ADD: `code/modules/missions/dynamic/signaled.dm` - Добавлен вызов `stop_spawning()` при завершении миссии в `mine_success()`
