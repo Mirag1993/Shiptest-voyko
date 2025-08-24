@@ -309,11 +309,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 /obj/structure/vein/classfour
 	mining_charges = 30
 	vein_class = 4
-	// [CELADON-EDIT] - CELADON_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4
+	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4
 	max_mobs = 4				// Сбалансированное количество мобов (было 6)
 	spawn_time = 12 SECONDS		// Увеличенный интервал спавна (было 8)
 	wave_length = 30 SECONDS	// Уменьшено для более динамичной миссии (было 45)
-	// [/CELADON-EDIT]
+	// [/CELADON-ADD]
 //
 // Ice planets
 
@@ -403,11 +403,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		/obj/item/stack/ore/bluespace_crystal = 4,
 		/obj/item/stack/ore/ice = 8,
 		)
-	// [CELADON-EDIT] - CELADON_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4 (Ice)
+	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4 (Ice)
 	max_mobs = 4				// Уменьшено с 6 до 4
 	spawn_time = 12 SECONDS		// Увеличено с 8 до 12 секунд
 	wave_length = 30 SECONDS	// Уменьшено с 45 до 30 секунд для более динамичной миссии
-	// [/CELADON-EDIT]
+	// [/CELADON-ADD]
 //Jungle
 
 /obj/structure/vein/jungle
