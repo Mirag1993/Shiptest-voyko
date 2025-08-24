@@ -248,6 +248,8 @@
 			"name" = "[user]",
 			"observer" = isobserver(user),
 		),
+		// UI Scale data for TGUI frontend scaling
+		"ui_scale" = user.client?.prefs?.get_ui_scale_data(),
 	)
 	var/data = custom_data || with_data && src_object.ui_data(user)
 	if(data)

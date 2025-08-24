@@ -1,5 +1,9 @@
 GLOBAL_LIST_EMPTY(preferences_datums)
 
+// UI Scale constants - range for user interface scaling
+#define UI_SCALE_MIN 0.8
+#define UI_SCALE_MAX 1.2
+
 /datum/preferences
 	var/client/parent
 	//doohickeys for savefiles
@@ -47,7 +51,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
-	var/ui_scale = FALSE
+	var/ui_scale_enabled = FALSE  // Boolean: whether UI Scale is enabled
+	var/ui_scale_value = 1.0      // Float: scale factor value (0.8-1.2)
 
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
@@ -1288,7 +1293,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>UI Style:</b> <a href='byond://?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
 			dat += "<b>tgui Window Mode:</b> <a href='byond://?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
 			dat += "<b>tgui Window Placement:</b> <a href='byond://?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
-			dat += "<b>UI Scale:</b> <a href='byond://?_src_=prefs;preference=ui_scale'>[(ui_scale) ? "ON" : "OFF"]</a><br>"
+			dat += "<b>UI Scale:</b> <a href='byond://?_src_=prefs;preference=ui_scale_enabled'>[(ui_scale_enabled) ? "ON" : "OFF"]</a><br>"
+			if(ui_scale_enabled)
+				dat += "<b>UI Scale Value:</b> <a href='byond://?_src_=prefs;preference=ui_scale_value;task=input'>[ui_scale_value]</a><br>"
 			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='byond://?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Runechat message char limit:</b> <a href='byond://?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='byond://?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
@@ -2509,6 +2516,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
 
+				if ("ui_scale_value")
+					var/new_scale = input(user, "Choose UI Scale value. Range [UI_SCALE_MIN]-[UI_SCALE_MAX] (default: 1.0)", "UI Scale Value", ui_scale_value) as null|num
+					if (!isnull(new_scale))
+						ui_scale_value = clamp(new_scale, UI_SCALE_MIN, UI_SCALE_MAX)
+
 		else
 			switch(href_list["preference"])
 				if("showgear")
@@ -2623,8 +2635,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					buttons_locked = !buttons_locked
 				if("tgui_fancy")
 					tgui_fancy = !tgui_fancy
-				if("ui_scale")
-					ui_scale = !ui_scale
+				if("ui_scale_enabled")
+					ui_scale_enabled = !ui_scale_enabled
 				if("outline_enabled")
 					outline_enabled = !outline_enabled
 				if("outline_color")
@@ -2990,3 +3002,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 		else
 			custom_names[name_id] = sanitized_name
+
+/**
+ * Returns UI Scale data for transmission to TGUI frontend
+ * 
+ * @return list containing enabled status, scale value, and min/max bounds
+ */
+/datum/preferences/proc/get_ui_scale_data()
+	return list(
+		"enabled" = ui_scale_enabled,
+		"value" = ui_scale_value,
+		"min" = UI_SCALE_MIN,
+		"max" = UI_SCALE_MAX
+	)

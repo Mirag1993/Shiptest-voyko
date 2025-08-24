@@ -66,11 +66,21 @@
 	for (file in stylesheets)
 		head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(file)]'>"
 
-	if(user.client?.window_scaling && user.client?.window_scaling != 1 && !user.client?.prefs.ui_scale && width && height)
+	// CSS zoom to compensate window_scaling when UI Scale is disabled
+	if(user.client?.window_scaling && user.client?.window_scaling != 1 && !user.client?.prefs.ui_scale_enabled && width && height)
 		head_content += {"
 			<style>
 				body {
 					zoom: [100 / user.client?.window_scaling]%;
+				}
+			</style>
+			"}
+	// CSS zoom for UI Scale when enabled - scales browser window content
+	else if(user.client?.prefs?.ui_scale_enabled && user.client?.prefs?.ui_scale_value && user.client?.prefs.ui_scale_value != 1)
+		head_content += {"
+			<style>
+				body {
+					zoom: [user.client.prefs.ui_scale_value * 100]%;
 				}
 			</style>
 			"}
@@ -112,8 +122,9 @@
 		return
 	var/window_size = ""
 	if(width && height)
-		if(user.client?.prefs?.ui_scale)
-			var/scaling = user.client.window_scaling
+		// Apply UI Scale to window dimensions when enabled
+		if(user.client?.prefs?.ui_scale_enabled)
+			var/scaling = user.client.prefs.ui_scale_value
 			window_size = "size=[width * scaling]x[height * scaling];"
 		else
 			window_size = "size=[width]x[height];"

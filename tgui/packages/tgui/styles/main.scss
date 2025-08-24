@@ -62,6 +62,9 @@
 
 @include meta.load-css('highlight.js/scss/github-dark.scss');
 
+// UI Scale support
+@include meta.load-css('./ui-scale.scss');
+
 // NT Theme
 .Layout__content {
   background-image: url('../assets/bg-shiptest.svg');

@@ -1,0 +1,29 @@
+/**
+ * UI Scale support for TGUI content
+ * 
+ * This file provides CSS zoom-based scaling for TGUI interface elements
+ * when UI Scale is enabled in player preferences. The --tgui-scale CSS
+ * variable is set by the useUiScale React hook.
+ */
+
+// Apply scaling to main content containers and interactive elements
+.Window__content,
+.Layout__content,
+.Section__content,
+.Section,
+.Stack,
+.LabeledList,
+.Table,
+.Button,
+.Input,
+.Slider {
+  zoom: var(--tgui-scale, 1);
+}
+
+// Exclude title bars from additional scaling since they are already
+// scaled through font-size changes to avoid double scaling
+.TitleBar,
+.TitleBar__title,
+.Window__titleText {
+  zoom: 1 !important;
+}
