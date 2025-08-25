@@ -44,6 +44,12 @@ export const ShipSelect = (props, context) => {
 
   const selectedShip = findShipByRef(ships, selectedShipRef);
 
+  // Если выбранный корабль больше не существует, сбрасываем выбор
+  if (currentTab === 2 && !selectedShip) {
+    setCurrentTab(1);
+    setSelectedShipRef(null);
+  }
+
   const applyStates = {
     open: 'Open',
     apply: 'Apply',
@@ -325,33 +331,35 @@ export const ShipSelect = (props, context) => {
             <ShipBrowser />
           </Section>
         )}
-        {currentTab === 2 && (
+        {currentTab === 2 && selectedShip && (
           <>
             <Section
-              title={`Ship Details - ${decodeHtmlEntities(selectedShip.name)}`}
+              title={`Ship Details - ${decodeHtmlEntities(
+                selectedShip?.name || 'Unknown Ship'
+              )}`}
             >
               <LabeledList>
                 <LabeledList.Item label="Ship Class">
-                  {selectedShip.class}
+                  {selectedShip?.class || 'Unknown Class'}
                 </LabeledList.Item>
                 <LabeledList.Item label="Ship Faction">
-                  {selectedShip.faction}
+                  {selectedShip?.faction || 'Unknown Faction'}
                 </LabeledList.Item>
                 <LabeledList.Item label="Ship Join Status">
-                  {selectedShip.joinMode}
+                  {selectedShip?.joinMode || 'Unknown'}
                 </LabeledList.Item>
                 <LabeledList.Item label="Ship Memo">
-                  {decodeHtmlEntities(selectedShip.memo) || 'No Memo'}
+                  {decodeHtmlEntities(selectedShip?.memo) || 'No Memo'}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
             <Collapsible title={'Ship Info'}>
               <LabeledList>
                 <LabeledList.Item label="Ship Description">
-                  {selectedShip.desc || 'No Description'}
+                  {selectedShip?.desc || 'No Description'}
                 </LabeledList.Item>
                 <LabeledList.Item label="Ship Tags">
-                  {(selectedShip.tags && selectedShip.tags.join(', ')) ||
+                  {(selectedShip?.tags && selectedShip.tags.join(', ')) ||
                     'No Tags Set'}
                 </LabeledList.Item>
               </LabeledList>
@@ -376,9 +384,9 @@ export const ShipSelect = (props, context) => {
               }
             >
               <Flex direction="column" gap={1}>
-                {selectedShip.jobs.map((job) => {
+                {selectedShip?.jobs?.map((job) => {
                   const jobApplicationStatus =
-                    data.jobApplicationStatuses?.[selectedShip.ref]?.[
+                    data.jobApplicationStatuses?.[selectedShip?.ref]?.[
                       job.ref
                     ] || 'none';
                   const isApproved = jobApplicationStatus === 'approved';
@@ -390,7 +398,7 @@ export const ShipSelect = (props, context) => {
                   let isDisabled = false;
                   let showCancelButton = false;
 
-                  if (selectedShip.joinMode === 'open') {
+                  if (selectedShip?.joinMode === 'Open') {
                     buttonContent = 'Select';
                     buttonColor = 'good';
                   } else if (isApproved) {
@@ -535,7 +543,7 @@ export const ShipSelect = (props, context) => {
                               </Box>
 
                               {/* Бейдж статуса заявки */}
-                              {selectedShip.joinMode === 'apply' && (
+                              {selectedShip?.joinMode === 'apply' && (
                                 <Box
                                   className="chip"
                                   title="Статус заявки"
@@ -604,7 +612,7 @@ export const ShipSelect = (props, context) => {
                                       ? 'Вы забанены от офицерских ролей'
                                       : isDisabled
                                       ? 'Заявка на рассмотрении'
-                                      : selectedShip.joinMode === 'apply' &&
+                                      : selectedShip?.joinMode === 'Apply' &&
                                         !isApproved
                                       ? 'Подать заявку на эту должность'
                                       : 'Присоединиться к экипажу на эту должность'
@@ -619,25 +627,37 @@ export const ShipSelect = (props, context) => {
                                     }
                                     setIsJoining(true);
 
-                                    const nonce = `join:${selectedShip.ref}:${
+                                    const nonce = `join:${selectedShip?.ref}:${
                                       job.ref
                                     }:${Date.now().toString(36)}`;
 
-                                    if (
-                                      selectedShip.joinMode === 'open' ||
-                                      isApproved
-                                    ) {
+                                    // Отправляем правильное действие в зависимости от режима корабля и статуса заявки
+                                    if (selectedShip?.joinMode === 'Open') {
+                                      // Для открытых кораблей - всегда join
                                       act('join', {
-                                        ship: selectedShip.ref,
+                                        ship: selectedShip?.ref,
                                         job: job.ref,
                                         nonce: nonce,
                                       });
-                                    } else {
-                                      act('apply_for_job', {
-                                        ship: selectedShip.ref,
-                                        job: job.ref,
-                                        nonce: nonce,
-                                      });
+                                    } else if (
+                                      selectedShip?.joinMode === 'Apply'
+                                    ) {
+                                      if (isApproved) {
+                                        // Заявка одобрена - можно присоединиться
+                                        act('join', {
+                                          ship: selectedShip?.ref,
+                                          job: job.ref,
+                                          nonce: nonce,
+                                        });
+                                      } else if (!isPending && !isDenied) {
+                                        // Нет заявки - подаем заявку
+                                        act('apply_for_job', {
+                                          ship: selectedShip?.ref,
+                                          job: job.ref,
+                                          nonce: nonce,
+                                        });
+                                      }
+                                      // Если pending или denied - ничего не делаем (кнопка заблокирована)
                                     }
 
                                     setTimeout(() => setIsJoining(false), 3000);
@@ -659,11 +679,11 @@ export const ShipSelect = (props, context) => {
                                       setIsJoining(true);
 
                                       const nonce = `cancel:${
-                                        selectedShip.ref
+                                        selectedShip?.ref
                                       }:${job.ref}:${Date.now().toString(36)}`;
 
                                       act('cancel_job_application', {
-                                        ship: selectedShip.ref,
+                                        ship: selectedShip?.ref,
                                         job: job.ref,
                                         nonce: nonce,
                                       });

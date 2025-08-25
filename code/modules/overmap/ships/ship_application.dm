@@ -66,7 +66,7 @@
 		SEND_SOUND(parent_ship.owner_mob, sound('sound/misc/server-ready.ogg', volume=50))
 
 		var/message = \
-			"<span class='looc'>[app_name] [show_key ? "([app_key]) " : null]applied to your ship: [app_msg]\n" + \
+			"<span class='looc'>[app_name] [show_key ? "([app_key]) " : null]applied to your ship: [clean_html_entities(app_msg)]\n" + \
 			"<a href=?src=[REF(src)];application_accept=1>(ACCEPT)</a> / <a href=?src=[REF(src)];application_deny=1>(DENY)</a></span>"
 		to_chat(parent_ship.owner_mob, message, MESSAGE_TYPE_INFO)
 	return TRUE
@@ -106,11 +106,22 @@
 /datum/ship_application/proc/clean_html_entities(text)
 	if(!text)
 		return text
-	text = replacetext(text, "&#39;", "'")
-	text = replacetext(text, "&amp;", "&")
-	text = replacetext(text, "&lt;", "<")
-	text = replacetext(text, "&gt;", ">")
+	// Очищаем HTML-сущности в правильном порядке (сначала сложные, потом простые)
+	// Кавычки
 	text = replacetext(text, "&quot;", "\"")
+	text = replacetext(text, "&#34;", "\"")
+	text = replacetext(text, "&#x22;", "\"")
+	// Апострофы
+	text = replacetext(text, "&#39;", "'")
+	text = replacetext(text, "&#x27;", "'")
+	// Амперсанд
+	text = replacetext(text, "&amp;", "&")
+	text = replacetext(text, "&#38;", "&")
+	// Угловые скобки
+	text = replacetext(text, "&lt;", "<")
+	text = replacetext(text, "&#60;", "<")
+	text = replacetext(text, "&gt;", ">")
+	text = replacetext(text, "&#62;", ">")
 	return text
 
 //[CELADON-EDIT] - SHIP_SELECTION_REWORK - Добавляем передачу job_name в UI
@@ -130,7 +141,9 @@
 		if("submit")
 			status = SHIP_APPLICATION_PENDING
 			show_key = !!params["ckey"]
-			app_msg = clean_html_entities(copytext(sanitize(params["text"]), 1, 1024))
+			// Очищаем текст от HTML-сущностей и санитизируем
+			var/raw_text = params["text"]
+			app_msg = clean_html_entities(copytext(sanitize(raw_text), 1, 1024))
 			SStgui.close_uis(src)
 			return TRUE
 
