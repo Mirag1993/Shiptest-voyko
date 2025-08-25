@@ -31,6 +31,7 @@ GLOBAL_LIST_INIT(outpost_exports, gen_outpost_exports())
 	light_color = COLOR_BRIGHT_ORANGE
 	var/obj/machinery/outpost_selling_pad/linked_pad
 	var/list/cached_valid_exports = list()
+	var/cache_cooldown = 0  // [CELADON-ADD] - CELADON_FIXES: Cooldown for caching exports to prevent FPS drops
 
 /obj/machinery/computer/outpost_export_console/LateInitialize()
 	. = ..()
@@ -40,6 +41,11 @@ GLOBAL_LIST_INIT(outpost_exports, gen_outpost_exports())
 	desc += " This one is not linked to any outpost."
 
 /obj/machinery/computer/outpost_export_console/proc/cache_valid_exports()
+	// [CELADON-ADD] - CELADON_FIXES: Prevent constant re-caching every tick
+	if(cache_cooldown > world.time)
+		return
+	cache_cooldown = world.time + 10  // Cache for 1 second
+	// [/CELADON-ADD]
 	cached_valid_exports = list()
 	if(linked_pad)
 		var/items_on_pad = linked_pad.get_other_atoms()
@@ -105,6 +111,9 @@ GLOBAL_LIST_INIT(outpost_exports, gen_outpost_exports())
 
 	switch(action)
 		if("recalc")
+			// [CELADON-ADD] - CELADON_FIXES: Force cache refresh when recalc button is pressed
+			cache_cooldown = 0  // Reset cooldown to force immediate cache update
+			// [/CELADON-ADD]
 			update_static_data(usr, ui)
 		if("redeem")
 			var/datum/export/redeemed_exp = locate(text2path(params["redeem_type"])) in cached_valid_exports

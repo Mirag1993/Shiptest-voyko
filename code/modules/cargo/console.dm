@@ -39,6 +39,7 @@
 	var/use_beacon = FALSE
 	/// The account to charge purchases to, defaults to the cargo budget
 	var/datum/bank_account/charge_account
+	var/pack_data_cooldown = 0  // [CELADON-ADD] - CELADON_FIXES: Cooldown for generating pack data to prevent FPS drops
 
 /obj/machinery/computer/cargo/Initialize()
 	. = ..()
@@ -86,10 +87,13 @@
 /obj/machinery/computer/cargo/ui_static_data(mob/user)
 	. = ..()
 	var/outpost_docked = istype(current_ship.docked_to, /datum/overmap/outpost)
-	if(outpost_docked)
+	// [CELADON-ADD] - CELADON_FIXES: Prevent constant pack data generation every tick
+	if(outpost_docked && pack_data_cooldown <= world.time)
 		generate_pack_data()
-	else
+		pack_data_cooldown = world.time + 50  // Cache for 5 seconds
+	else if(!outpost_docked)
 		supply_pack_data = list()
+	// [/CELADON-ADD]
 
 /obj/machinery/computer/cargo/ui_data(mob/user)
 	var/list/data = list()
