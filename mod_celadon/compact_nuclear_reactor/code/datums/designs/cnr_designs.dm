@@ -39,7 +39,7 @@
 	materials = list(
 		/datum/material/iron = 5000,
 		/datum/material/glass = 2000,
-		/datum/material/copper = 1000,
+		/datum/material/iron = 1000,
 	)
 	build_path = /obj/machinery/cnr_radiator
 	category = list("Power Designs", "Misc")
@@ -53,7 +53,7 @@
 	materials = list(
 		/datum/material/iron = 8000,
 		/datum/material/glass = 3000,
-		/datum/material/copper = 2000,
+		/datum/material/iron = 2000,
 		/datum/material/gold = 500,
 	)
 	build_path = /obj/machinery/cnr_radiator/advanced
@@ -68,7 +68,7 @@
 	materials = list(
 		/datum/material/iron = 12000,
 		/datum/material/glass = 5000,
-		/datum/material/copper = 3000,
+		/datum/material/iron = 3000,
 		/datum/material/gold = 1000,
 		/datum/material/diamond = 500,
 	)
@@ -84,45 +84,40 @@
 	materials = list(
 		/datum/material/iron = 6000,
 		/datum/material/glass = 2000,
-		/datum/material/copper = 2000,
+		/datum/material/iron = 2000,
 		/datum/material/plasma = 1000,
 	)
 	build_path = /obj/machinery/cnr_heat_exchanger
 	category = list("Power Designs", "Misc")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/cnr_heat_exchanger_advanced
-	name = "Advanced Nuclear Reactor Heat Exchanger"
-	desc = "An advanced heat exchanger with improved cooling capacity."
-	id = "cnr_heat_exchanger_advanced"
+/datum/design/cnr_heat_exchanger_input
+	name = "Heat Exchanger Input Block"
+	desc = "Input block for nuclear reactor heat exchanger gas circuit."
+	id = "cnr_heat_exchanger_input"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
-		/datum/material/iron = 10000,
-		/datum/material/glass = 3000,
-		/datum/material/copper = 3000,
-		/datum/material/plasma = 2000,
-		/datum/material/gold = 1000,
+		/datum/material/iron = 2000,
+		/datum/material/glass = 1000,
 	)
-	build_path = /obj/machinery/cnr_heat_exchanger/advanced
+	build_path = /obj/machinery/cnr_heat_exchanger_input
 	category = list("Power Designs", "Misc")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
-/datum/design/cnr_heat_exchanger_heavy
-	name = "Heavy-Duty Nuclear Reactor Heat Exchanger"
-	desc = "A heavy-duty heat exchanger for high-power nuclear reactors."
-	id = "cnr_heat_exchanger_heavy"
+/datum/design/cnr_heat_exchanger_output
+	name = "Heat Exchanger Output Block"
+	desc = "Output block for nuclear reactor heat exchanger gas circuit."
+	id = "cnr_heat_exchanger_output"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(
-		/datum/material/iron = 15000,
-		/datum/material/glass = 5000,
-		/datum/material/copper = 5000,
-		/datum/material/plasma = 3000,
-		/datum/material/gold = 2000,
-		/datum/material/diamond = 1000,
+		/datum/material/iron = 2000,
+		/datum/material/glass = 1000,
 	)
-	build_path = /obj/machinery/cnr_heat_exchanger/heavy
+	build_path = /obj/machinery/cnr_heat_exchanger_output
 	category = list("Power Designs", "Misc")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
+
+// Advanced and heavy heat exchangers removed - using input/output blocks instead
 
 // Fuel cell recipes
 /datum/design/cnr_fuel_leu
@@ -176,7 +171,7 @@
 	build_type = IMPRINTER
 	materials = list(
 		/datum/material/glass = 1000,
-		/datum/material/copper = 500,
+		/datum/material/iron = 500,
 	)
 	build_path = /obj/item/circuitboard/machine/cnr
 	category = list("Machine Boards")
@@ -189,7 +184,7 @@
 	build_type = IMPRINTER
 	materials = list(
 		/datum/material/glass = 1000,
-		/datum/material/copper = 500,
+		/datum/material/iron = 500,
 	)
 	build_path = /obj/item/circuitboard/computer/cnr_console
 	category = list("Computer Boards")

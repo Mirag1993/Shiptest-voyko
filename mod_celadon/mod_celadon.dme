@@ -69,6 +69,7 @@
 #include "vending_cash/_vending_cash.dme"
 #include "reskin_customization/_reskin_customization.dme"
 #include "drinks_and_food/_drinks_and_food.dme"
+#include "compact_nuclear_reactor/compact_nuclear_reactor.dme"
 
 // --- MOBS --- //
 #include "drakeborgs/_drakeborgs.dme"

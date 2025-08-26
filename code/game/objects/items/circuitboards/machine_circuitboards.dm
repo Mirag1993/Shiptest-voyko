@@ -1200,6 +1200,8 @@
 		/obj/item/stock_parts/micro_laser/high = 2,
 	)
 
+// Moved to compact_nuclear_reactor module
+
 /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
 	name = "Booze Dispenser (Machine Board)"
 	icon_state = "service"

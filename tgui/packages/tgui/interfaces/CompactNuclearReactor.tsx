@@ -1,15 +1,11 @@
 import { useBackend, useLocalState } from '../backend';
 import {
-  Box,
   Button,
-  Chart,
-  ColorBox,
-  Flex,
+  Section,
+  Box,
   LabeledList,
   ProgressBar,
-  Section,
-  Stack,
-  Tabs,
+  NoticeBox,
 } from '../components';
 import { Window } from '../layouts';
 
@@ -33,330 +29,201 @@ interface ReactorData {
   fuel_type?: string;
   burnup?: number;
   reactivity?: number;
-  process_log: ProcessLogEntry[];
+  has_radiator: boolean;
+  has_heat_exchanger: boolean;
+  cooling_systems: {
+    radiator: boolean;
+    heat_exchanger: boolean;
+  };
 }
-
-interface ProcessLogEntry {
-  time: number;
-  power: number;
-  temp: number;
-  flux: number;
-  rad: number;
-  state: number;
-}
-
-const REAC_OFF = 0;
-const REAC_STARTING = 1;
-const REAC_RUNNING = 2;
-const REAC_SCRAM = 3;
-const REAC_MELTDOWN = 4;
 
 export const CompactNuclearReactor = (props, context) => {
-  const { data, act } = useBackend<ReactorData>(context);
+  const { act, data } = useBackend<ReactorData>(context);
   const [activeTab, setActiveTab] = useLocalState(context, 'activeTab', 'main');
 
-  const getStateColor = (state: number) => {
+  const {
+    state,
+    state_text,
+    rod_frac,
+    temp_core,
+    temp_max,
+    flux,
+    power_kw,
+    heat_kw,
+    coolant_mode,
+    coolant_flow,
+    rad_emit,
+    target_power,
+    auto_mode,
+    emergency_valve,
+    meltdown_stage,
+    has_fuel,
+    fuel_type,
+    burnup,
+    reactivity,
+    has_radiator,
+    has_heat_exchanger,
+    cooling_systems,
+  } = data;
+
+  const getStateColor = () => {
     switch (state) {
-      case REAC_OFF:
-        return 'grey';
-      case REAC_STARTING:
-        return 'yellow';
-      case REAC_RUNNING:
-        return 'green';
-      case REAC_SCRAM:
-        return 'red';
-      case REAC_MELTDOWN:
-        return 'purple';
+      case 0:
+        return 'grey'; // OFF
+      case 1:
+        return 'yellow'; // STARTING
+      case 2:
+        return 'green'; // RUNNING
+      case 3:
+        return 'orange'; // SCRAM
+      case 4:
+        return 'red'; // MELTDOWN
       default:
         return 'grey';
     }
   };
 
-  const getTemperatureColor = (temp: number, max: number) => {
-    const ratio = temp / max;
-    if (ratio < 0.5) return 'green';
-    if (ratio < 0.75) return 'yellow';
-    if (ratio < 0.9) return 'orange';
-    return 'red';
-  };
-
-  const getRadiationColor = (rad: number) => {
-    if (rad < 10) return 'green';
-    if (rad < 30) return 'yellow';
-    if (rad < 50) return 'orange';
-    return 'red';
-  };
-
-  const processLogToChartData = (log: ProcessLogEntry[]) => {
-    return log.map((entry, index) => ({
-      x: index,
-      y: entry.power,
-    }));
-  };
-
-  const tempLogToChartData = (log: ProcessLogEntry[]) => {
-    return log.map((entry, index) => ({
-      x: index,
-      y: entry.temp,
-    }));
+  const getTempColor = () => {
+    if (temp_core > temp_max * 0.9) return 'red';
+    if (temp_core > temp_max * 0.7) return 'orange';
+    if (temp_core > temp_max * 0.5) return 'yellow';
+    return 'green';
   };
 
   return (
-    <Window width={800} height={600} title="Compact Nuclear Reactor Control">
+    <Window width={600} height={500}>
       <Window.Content>
-        <Stack fill>
-          <Stack.Item width="200px">
-            <Section title="Status">
+        <Section title="Compact Nuclear Reactor Control">
+          <Box>
+            <LabeledList>
+              <LabeledList.Item label="Status" color={getStateColor()}>
+                {state_text}
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Temperature" color={getTempColor()}>
+                {temp_core}K / {temp_max}K
+                <ProgressBar
+                  value={temp_core / temp_max}
+                  color={getTempColor()}
+                  mt={1}
+                />
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Power Output">
+                {power_kw} kW
+                <ProgressBar value={power_kw / 1000} color="blue" mt={1} />
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Heat Generation">
+                {heat_kw} kW
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Neutron Flux">
+                {flux.toFixed(3)}
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Control Rods">
+                {(rod_frac * 100).toFixed(1)}% inserted
+                <ProgressBar value={rod_frac} color="purple" mt={1} />
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Coolant Mode">
+                {coolant_mode}
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Coolant Flow">
+                {coolant_flow.toFixed(1)} kg/s
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Radiation">
+                {rad_emit.toFixed(1)} units
+              </LabeledList.Item>
+
+              <LabeledList.Item label="Cooling Systems">
+                <Box>
+                  <Box color={has_radiator ? 'green' : 'red'}>
+                    Radiator: {has_radiator ? 'Connected' : 'Disconnected'}
+                  </Box>
+                  <Box color={has_heat_exchanger ? 'green' : 'red'}>
+                    Heat Exchanger:{' '}
+                    {has_heat_exchanger ? 'Connected' : 'Disconnected'}
+                  </Box>
+                </Box>
+              </LabeledList.Item>
+            </LabeledList>
+          </Box>
+
+          {has_fuel && (
+            <Section title="Fuel Cell Information" mt={2}>
               <LabeledList>
-                <LabeledList.Item label="State">
-                  <ColorBox color={getStateColor(data.state)} />
-                  {data.state_text}
+                <LabeledList.Item label="Fuel Type">
+                  {fuel_type}
                 </LabeledList.Item>
-                <LabeledList.Item label="Temperature">
-                  <ColorBox
-                    color={getTemperatureColor(data.temp_core, data.temp_max)}
-                  />
-                  {data.temp_core}K / {data.t_max}K
+                <LabeledList.Item label="Burnup">
+                  {(burnup * 100).toFixed(1)}% remaining
+                  <ProgressBar value={burnup} color="green" mt={1} />
                 </LabeledList.Item>
-                <LabeledList.Item label="Power Output">
-                  {data.power_kw} kW
-                </LabeledList.Item>
-                <LabeledList.Item label="Heat Generation">
-                  {data.heat_kw} kW
-                </LabeledList.Item>
-                <LabeledList.Item label="Neutron Flux">
-                  {data.flux.toFixed(3)}
-                </LabeledList.Item>
-                <LabeledList.Item label="Radiation">
-                  <ColorBox color={getRadiationColor(data.rad_emit)} />
-                  {data.rad_emit.toFixed(1)} units
-                </LabeledList.Item>
-                <LabeledList.Item label="Coolant Flow">
-                  {data.coolant_flow.toFixed(1)} kg/s
-                </LabeledList.Item>
-                <LabeledList.Item label="Coolant Mode">
-                  {data.coolant_mode.toUpperCase()}
+                <LabeledList.Item label="Reactivity">
+                  {reactivity?.toFixed(3)}
                 </LabeledList.Item>
               </LabeledList>
             </Section>
+          )}
 
-            <Section title="Fuel Cell">
-              {data.has_fuel ? (
-                <LabeledList>
-                  <LabeledList.Item label="Type">
-                    {data.fuel_type}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Burnup">
-                    <ProgressBar
-                      value={data.burnup}
-                      maxValue={1}
-                      color={data.burnup > 0.2 ? 'green' : 'red'}
-                    >
-                      {Math.round(data.burnup * 100)}%
-                    </ProgressBar>
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Reactivity">
-                    {data.reactivity?.toFixed(3)}
-                  </LabeledList.Item>
-                </LabeledList>
-              ) : (
-                <Box color="red">No fuel cell installed</Box>
-              )}
-            </Section>
-          </Stack.Item>
+          {meltdown_stage > 0 && (
+            <NoticeBox danger mt={2}>
+              MELTDOWN STAGE {meltdown_stage} - IMMEDIATE ACTION REQUIRED!
+            </NoticeBox>
+          )}
 
-          <Stack.Item grow>
-            <Tabs>
-              <Tabs.Tab
-                selected={activeTab === 'main'}
-                onClick={() => setActiveTab('main')}
-              >
-                Main Control
-              </Tabs.Tab>
-              <Tabs.Tab
-                selected={activeTab === 'graphs'}
-                onClick={() => setActiveTab('graphs')}
-              >
-                Graphs
-              </Tabs.Tab>
-              <Tabs.Tab
-                selected={activeTab === 'safety'}
-                onClick={() => setActiveTab('safety')}
-              >
-                Safety
-              </Tabs.Tab>
-            </Tabs>
+          <Section title="Controls" mt={2}>
+            <Box>
+              <Button
+                content={state === 0 ? 'Start Reactor' : 'SCRAM Reactor'}
+                color={state === 0 ? 'green' : 'red'}
+                onClick={() =>
+                  act(state === 0 ? 'start_reactor' : 'scram_reactor')
+                }
+                disabled={!has_fuel && state === 0}
+              />
 
-            {activeTab === 'main' && (
-              <Section title="Reactor Control">
-                <Flex>
-                  <Flex.Item grow>
-                    <Section title="Control Rods">
-                      <LabeledList>
-                        <LabeledList.Item label="Position">
-                          <ProgressBar
-                            value={1 - data.rod_frac}
-                            maxValue={1}
-                            color="blue"
-                          >
-                            {Math.round((1 - data.rod_frac) * 100)}%
-                          </ProgressBar>
-                        </LabeledList.Item>
-                      </LabeledList>
-                      <Button
-                        fluid
-                        onClick={() => act('set_rod_frac', { value: 0 })}
-                        disabled={data.state === REAC_SCRAM}
-                      >
-                        Withdraw All
-                      </Button>
-                      <Button
-                        fluid
-                        onClick={() => act('set_rod_frac', { value: 1 })}
-                      >
-                        Insert All
-                      </Button>
-                    </Section>
-                  </Flex.Item>
+              <Button
+                content="Eject Fuel"
+                color="orange"
+                onClick={() => act('eject_fuel')}
+                disabled={state === 2} // Can't eject while running
+              />
 
-                  <Flex.Item grow>
-                    <Section title="Power Control">
-                      <LabeledList>
-                        <LabeledList.Item label="Target Power">
-                          <Button
-                            onClick={() =>
-                              act('set_target_power', {
-                                value: data.target_power - 50,
-                              })
-                            }
-                            disabled={data.target_power <= 0}
-                          >
-                            -
-                          </Button>
-                          {data.target_power} kW
-                          <Button
-                            onClick={() =>
-                              act('set_target_power', {
-                                value: data.target_power + 50,
-                              })
-                            }
-                          >
-                            +
-                          </Button>
-                        </LabeledList.Item>
-                        <LabeledList.Item label="Auto Mode">
-                          <Button
-                            onClick={() => act('toggle_auto_mode')}
-                            color={data.auto_mode ? 'green' : 'red'}
-                          >
-                            {data.auto_mode ? 'ON' : 'OFF'}
-                          </Button>
-                        </LabeledList.Item>
-                      </LabeledList>
-                    </Section>
-                  </Flex.Item>
-                </Flex>
+              <Button
+                content={auto_mode ? 'Auto Mode: ON' : 'Auto Mode: OFF'}
+                color={auto_mode ? 'green' : 'grey'}
+                onClick={() => act('toggle_auto_mode')}
+              />
 
-                <Section title="Reactor Operations">
-                  <Flex>
-                    <Flex.Item grow>
-                      <Button
-                        fluid
-                        color="green"
-                        onClick={() => act('start_reactor')}
-                        disabled={data.state !== REAC_OFF || !data.has_fuel}
-                      >
-                        Start Reactor
-                      </Button>
-                    </Flex.Item>
-                    <Flex.Item grow>
-                      <Button
-                        fluid
-                        color="red"
-                        onClick={() => act('scram_reactor')}
-                        disabled={data.state === REAC_OFF}
-                      >
-                        SCRAM
-                      </Button>
-                    </Flex.Item>
-                  </Flex>
-                  <Button
-                    fluid
-                    color="orange"
-                    onClick={() => act('eject_fuel')}
-                    disabled={
-                      data.state === REAC_RUNNING || data.temp_core > 350
-                    }
-                  >
-                    Eject Fuel Cell
-                  </Button>
-                </Section>
-              </Section>
-            )}
+              <Button
+                content={
+                  emergency_valve
+                    ? 'Emergency Valve: OPEN'
+                    : 'Emergency Valve: CLOSED'
+                }
+                color={emergency_valve ? 'red' : 'green'}
+                onClick={() => act('toggle_emergency_valve')}
+              />
 
-            {activeTab === 'graphs' && (
-              <Section title="Real-time Monitoring">
-                <Flex>
-                  <Flex.Item grow>
-                    <Section title="Power Output">
-                      <Chart.Line
-                        data={processLogToChartData(data.process_log)}
-                        height={150}
-                        color="green"
-                      />
-                    </Section>
-                  </Flex.Item>
-                  <Flex.Item grow>
-                    <Section title="Temperature">
-                      <Chart.Line
-                        data={tempLogToChartData(data.process_log)}
-                        height={150}
-                        color="red"
-                      />
-                    </Section>
-                  </Flex.Item>
-                </Flex>
-              </Section>
-            )}
+              <Button
+                content="Find Cooling Systems"
+                color="blue"
+                onClick={() => act('find_cooling')}
+              />
 
-            {activeTab === 'safety' && (
-              <Section title="Safety Systems">
-                <LabeledList>
-                  <LabeledList.Item label="Meltdown Stage">
-                    {data.meltdown_stage > 0 ? (
-                      <Box color="red">Stage {data.meltdown_stage}</Box>
-                    ) : (
-                      <Box color="green">Normal</Box>
-                    )}
-                  </LabeledList.Item>
-                  <LabeledList.Item label="Emergency Valve">
-                    <Button
-                      onClick={() => act('toggle_emergency_valve')}
-                      color={data.emergency_valve ? 'red' : 'green'}
-                    >
-                      {data.emergency_valve ? 'OPEN' : 'CLOSED'}
-                    </Button>
-                  </LabeledList.Item>
-                </LabeledList>
-
-                <Section title="Safety Alerts">
-                  {data.temp_core > 900 && (
-                    <Box color="orange">High Temperature Warning</Box>
-                  )}
-                  {data.rad_emit > 50 && (
-                    <Box color="red">High Radiation Alert</Box>
-                  )}
-                  {data.meltdown_stage > 0 && (
-                    <Box color="purple">MELTDOWN IN PROGRESS</Box>
-                  )}
-                  {data.has_fuel && data.burnup && data.burnup < 0.2 && (
-                    <Box color="yellow">Fuel Cell Nearly Depleted</Box>
-                  )}
-                </Section>
-              </Section>
-            )}
-          </Stack.Item>
-        </Stack>
+              <Button
+                content="Disconnect Cooling"
+                color="orange"
+                onClick={() => act('disconnect_cooling')}
+              />
+            </Box>
+          </Section>
+        </Section>
       </Window.Content>
     </Window>
   );

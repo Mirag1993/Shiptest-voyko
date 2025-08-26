@@ -222,6 +222,8 @@
 	icon_state = "generic"
 	build_path = /obj/machinery/computer/pod/old/syndicate
 
+// Moved to compact_nuclear_reactor module
+
 //Medical
 
 /obj/item/circuitboard/computer/crew

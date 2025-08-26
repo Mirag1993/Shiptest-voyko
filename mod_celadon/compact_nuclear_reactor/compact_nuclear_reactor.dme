@@ -1,19 +1,30 @@
-# Compact Nuclear Reactor Module for Shiptest
-# Provides realistic nuclear power generation with cooling systems and safety features
+// Compact Nuclear Reactor Module for Shiptest
+// [CELADON-ADD] CELADON_FIXES
 
-# Main reactor and fuel cells
-mod_celadon/compact_nuclear_reactor/code/machinery/power/cnr.dm
-mod_celadon/compact_nuclear_reactor/code/objects/items/nuclear_fuel_cell.dm
+// Subsystem must be loaded first!
+#include "code/cnr_subsystem.dm"
 
-# Cooling systems
-mod_celadon/compact_nuclear_reactor/code/machinery/cooling/cnr_radiator.dm
-mod_celadon/compact_nuclear_reactor/code/machinery/cooling/cnr_heat_exchanger.dm
+// Core definitions and math
+#include "code/cnr_defs.dm"
+#include "code/cnr_math.dm"
 
-# Control and monitoring
-mod_celadon/compact_nuclear_reactor/code/machinery/computer/cnr_console.dm
+// Main reactor logic
+#include "code/cnr_reactor.dm"
 
-# Design recipes
-mod_celadon/compact_nuclear_reactor/code/datums/designs/cnr_designs.dm
+// Cooling systems (moved to machinery/cooling/)
+#include "code/machinery/cooling/cnr_cooler_internal.dm"
+#include "code/machinery/cooling/cnr_cooler_external.dm"
 
-# TGUI interface
-tgui/packages/tgui/interfaces/CompactNuclearReactor.tsx
+// Module system
+#include "code/cnr_modules.dm"
+
+// Debug commands
+#include "code/cnr_debug.dm"
+
+// NET_GEL network (GEL BUS architecture)
+#include "gel_net/cnr_pump.dm"
+#include "gel_net/cnr_pipe_h.dm"
+#include "gel_net/cnr_pipe_v.dm"
+#include "gel_net/cnr_pipe_angle.dm"
+
+// TGUI interface (handled by tgui build system)
