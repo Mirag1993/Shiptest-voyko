@@ -1,7 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { Button, Section, Input, Stack, Icon } from '../components';
-import { capitalize } from 'common/string';
 
 export const EmotePanel = (props, context) => {
   return (

@@ -3,9 +3,10 @@
 
 /obj/machinery/cnr_pipe_h
 	parent_type = /obj/machinery/cnr_base
+	gel_capacity = 5 // Литры
 	name = "horizontal thermogel pipe"
 	desc = "A horizontal pipe for thermogel circulation in the NET_GEL network."
-	icon = 'mod_celadon/compact_nuclear_reactor/icons/machinery/cnr.dmi'
+	icon = 'mod_celadon/compact_nuclear_reactor/icons/machinery/pipes.dmi'
 	icon_state = "pipe_h"
 	density = FALSE
 	use_power = NO_POWER_USE
@@ -16,7 +17,7 @@
 
 	// Параметры трубы
 	var/flow_resistance = 1.0
-	var/gel_temperature = 300
+
 	var/gel_flow = 0
 
 /obj/machinery/cnr_pipe_h/Initialize()
@@ -82,7 +83,7 @@
 
 	// Обновляем иконку на основе состояния
 	if(!anchored)
-		icon_state = "pipe_h_unanchored"
+		icon_state = "pipe_h_"
 	else if(gel_flow > 50)
 		icon_state = "pipe_h_flow"
 	else

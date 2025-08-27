@@ -7,6 +7,7 @@
 // Core definitions and math
 #include "code/cnr_defs.dm"
 #include "code/cnr_math.dm"
+#include "code/cnr_items.dm"
 
 // Main reactor logic
 #include "code/cnr_reactor.dm"
@@ -25,6 +26,15 @@
 #include "gel_net/cnr_pump.dm"
 #include "gel_net/cnr_pipe_h.dm"
 #include "gel_net/cnr_pipe_v.dm"
-#include "gel_net/cnr_pipe_angle.dm"
+#include "gel_net/cnr_pipe_cross.dm"
 
 // TGUI interface (handled by tgui build system)
+// BEGIN_INTERNALS
+// END_INTERNALS
+// BEGIN_FILE_DIR
+#define FILE_DIR .
+// END_FILE_DIR
+// BEGIN_PREFERENCES
+// END_PREFERENCES
+// BEGIN_INCLUDE
+// END_INCLUDE

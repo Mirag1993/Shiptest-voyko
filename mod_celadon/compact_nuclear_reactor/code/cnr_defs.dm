@@ -35,7 +35,7 @@
 #define NET_GEL   2
 
 // Константы мощности и тепла (переменные конфигурации)
-#define CNR_BASE_POWER_KW 500        // базовая шкала
+#define CNR_BASE_POWER_KW 1000       // базовая шкала (увеличена для более заметного эффекта)
 #define CNR_SAFE_IDLE_MIN_KW 50      // без модулей, минимум
 #define CNR_INTERNAL_TARGET_KW 300   // с внутренним охладителем
 #define CNR_EXTERNAL_TARGET_KW 450   // с внешним охладителем
@@ -47,6 +47,28 @@
 #define CNR_DEGRADE_PCT 1.20
 #define CNR_TILEHEAT_PCT 1.40
 #define CNR_BOOM_PCT 1.60
+
+// Температурные пороги в Цельсиях
+#define CNR_TEMP_MIN_WORK 50      // Минимальная температура для работы
+#define CNR_TEMP_WORKING 300      // Рабочая температура
+#define CNR_TEMP_HOT 500          // Горячий режим
+#define CNR_TEMP_DANGER 700       // Опасный режим
+#define CNR_TEMP_CRITICAL 1000    // Критическая температура
+#define CNR_TEMP_MELTDOWN 1500    // Температура плавления
+
+// Множители эффективности охлаждения
+#define COOLING_BASE 1.0          // База (внутренний без геля)
+#define COOLING_INTERNAL_GEL 1.5  // Внутренний через гель
+#define COOLING_EXTERNAL_SPACE 2.0 // Внешний в космосе
+#define COOLING_EXTERNAL_ATMOS 1.5 // Внешний в атмосфере
+#define COOLING_EXTERNAL_PLANET 0.75 // Внешний на планете
+#define COOLING_HYBRID 1.25       // Гибридная схема
+
+// Множители мощности помпы
+#define PUMP_OFF 0.0
+#define PUMP_LOW 0.15
+#define PUMP_MEDIUM 0.30
+#define PUMP_HIGH 0.50
 
 // Состояния реактора
 #define REAC_OFF 0
@@ -81,6 +103,7 @@
 
 // Базовый класс для всех машин CNR
 /obj/machinery/cnr_base
+	parent_type = /obj/machinery/power
 	var/net_type = NET_GEL
 	var/list/ports = list()
 	var/datum/gel_bus/bus
@@ -91,19 +114,17 @@
 /obj/machinery/cnr_base/Initialize()
 	. = ..()
 	SSgelbus.register(src)
+	// Подключаемся к powernet если закреплены
+	if(anchored)
+		connect_to_network()
 
 /obj/machinery/cnr_base/Destroy()
 	SSgelbus.unregister(src)
+	disconnect_from_network()
 	return ..()
 
 // Базовые процедуры для совместимости
-/obj/machinery/cnr_base/proc/disconnect_from_network()
-	// Заглушка для совместимости
-	return
-
-/obj/machinery/cnr_base/proc/add_avail(amount)
-	// Заглушка для совместимости с powernet
-	return
+// Методы add_avail и disconnect_from_network уже определены в /obj/machinery/power
 
 /obj/machinery/cnr_base/proc/install_module(datum/cnr_module/module)
 	// Заглушка для совместимости
@@ -112,6 +133,27 @@
 /obj/machinery/cnr_base/proc/remove_module(datum/cnr_module/module)
 	// Заглушка для совместимости
 	return
+
+// Система геля
+/obj/machinery/cnr_base
+	var/gel_volume = 0 // Текущий объем геля в узле
+	var/gel_capacity = 0 // Максимальная вместимость узла
+	var/gel_temperature = 300 // Температура геля
+
+/obj/machinery/cnr_base/proc/add_gel_volume(amount)
+	if(gel_capacity <= 0)
+		return 0
+
+	var/space_available = gel_capacity - gel_volume
+	var/amount_to_add = min(amount, space_available)
+
+	if(amount_to_add > 0)
+		gel_volume += amount_to_add
+		// Смешиваем температуру геля
+		if(gel_volume > 0)
+			gel_temperature = (gel_temperature * (gel_volume - amount_to_add) + 300 * amount_to_add) / gel_volume
+
+	return amount_to_add
 
 // ===== GEL BUS ДАТУМ =====
 
@@ -139,6 +181,8 @@
 				// Совпадение по встречному направлению
 				if(NP.dir == turn(P.dir, 180) || NP.omni || P.omni)
 					out += NP
+					// Активируем порты в охладителях при первом подключении
+					activate_cooler_port_if_needed(M, NP)
 
 	// 2) Соединение "на одном тайле" (плотное примыкание)
 	var/turf/S = get_turf(P.owner)
@@ -151,8 +195,33 @@
 			// Если любой порт omni, считаем соединёнными на одном тайле
 			if(P.omni || NP2.omni)
 				out += NP2
+				// Активируем порты в охладителях при первом подключении
+				activate_cooler_port_if_needed(M2, NP2)
+
+	// 3) Дополнительная проверка: ищем все соседние тайлы для omni портов
+	if(P.omni)
+		for(var/dir in list(NORTH, SOUTH, EAST, WEST))
+			var/turf/neighbor_turf = get_step(P.owner, dir)
+			if(neighbor_turf)
+				for(var/obj/machinery/cnr_base/M in neighbor_turf)
+					if(!M.anchored || M.net_type != NET_GEL)
+						continue
+					for(var/datum/port/gel/NP in M.ports)
+						if(NP.omni || NP.dir == turn(dir, 180))
+							out += NP
+							// Активируем порты в охладителях при первом подключении
+							activate_cooler_port_if_needed(M, NP)
 
 	return out
+
+// Активирует порт в охладителе при первом подключении
+/proc/activate_cooler_port_if_needed(obj/machinery/cnr_base/M, datum/port/gel/NP)
+	if(istype(M, /obj/machinery/cnr_cooler_internal))
+		var/obj/machinery/cnr_cooler_internal/cooler = M
+		cooler.activate_port(NP)
+	else if(istype(M, /obj/machinery/cnr_cooler_external))
+		var/obj/machinery/cnr_cooler_external/cooler = M
+		cooler.activate_port(NP)
 
 // ===== ПОСТРОЕНИЕ ШИНЫ =====
 // Определение находится в cnr_subsystem.dm

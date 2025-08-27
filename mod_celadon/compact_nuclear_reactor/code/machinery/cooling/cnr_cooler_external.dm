@@ -3,9 +3,10 @@
 
 /obj/machinery/cnr_cooler_external
 	parent_type = /obj/machinery/cnr_base
+	gel_capacity = 20 // Литры
 	name = "external thermogel cooler"
 	desc = "An external cooler for the thermogel system. Provides cooling based on environment (space/atmos/planet)."
-	icon = 'mod_celadon/compact_nuclear_reactor/icons/machinery/cnr.dmi'
+	icon = 'mod_celadon/compact_nuclear_reactor/icons/machinery/radiator.dmi'
 	icon_state = "cooler_external"
 	density = TRUE
 	use_power = IDLE_POWER_USE
@@ -17,14 +18,17 @@
 	light_color = "#00ffff"
 
 	// Параметры охлаждения
-	var/cooling_capacity = 500 // кВт базовая мощность
+	var/cooling_capacity = 800 // кВт базовая мощность (увеличена для лучшего охлаждения)
 	var/efficiency = 1.0
 	var/connected = FALSE
 	var/obj/machinery/cnr_reactor/connected_reactor
 
-	// Порты NET_GEL (обязательные)
-	var/datum/port/gel/gel_in
-	var/datum/port/gel/gel_out
+	// Порты NET_GEL - 4 порта, но только первое подключение активно
+	var/datum/port/gel/north_port
+	var/datum/port/gel/south_port
+	var/datum/port/gel/east_port
+	var/datum/port/gel/west_port
+	var/datum/port/gel/active_port = null // Только один активный порт
 
 	// Определение окружающей среды
 	var/environment = "unknown"
@@ -42,18 +46,28 @@
 /obj/machinery/cnr_cooler_external/Initialize()
 	. = ..()
 
-	// Создаём порты входа и выхода
-	gel_in = new /datum/port/gel()
-	gel_in.owner = src
-	gel_in.dir = WEST
-	gel_in.name = "Cooler Input"
+	// Создаём 4 порта для подключения с любой стороны
+	north_port = new /datum/port/gel()
+	north_port.owner = src
+	north_port.dir = NORTH
+	north_port.name = "Cooler North"
 
-	gel_out = new /datum/port/gel()
-	gel_out.owner = src
-	gel_out.dir = EAST
-	gel_out.name = "Cooler Output"
+	south_port = new /datum/port/gel()
+	south_port.owner = src
+	south_port.dir = SOUTH
+	south_port.name = "Cooler South"
 
-	ports = list(gel_in, gel_out)
+	east_port = new /datum/port/gel()
+	east_port.owner = src
+	east_port.dir = EAST
+	east_port.name = "Cooler East"
+
+	west_port = new /datum/port/gel()
+	west_port.owner = src
+	west_port.dir = WEST
+	west_port.name = "Cooler West"
+
+	ports = list(north_port, south_port, east_port, west_port)
 
 	// Проверяем окружающую среду
 	check_environment()
@@ -61,12 +75,24 @@
 	update_appearance()
 
 /obj/machinery/cnr_cooler_external/Destroy()
-	qdel(gel_in)
-	qdel(gel_out)
+	qdel(north_port)
+	qdel(south_port)
+	qdel(east_port)
+	qdel(west_port)
 	return ..()
 
+/obj/machinery/cnr_cooler_external/proc/activate_port(datum/port/gel/port)
+	// Активируем только первый подключенный порт
+	if(!active_port)
+		active_port = port
+		// Отключаем остальные порты
+		for(var/datum/port/gel/other_port in ports)
+			if(other_port != port)
+				other_port.connected = FALSE
+				other_port.connected_port = null
+
 /obj/machinery/cnr_cooler_external/process(seconds_per_tick)
-	if(!active || !anchored)
+	if(!anchored)
 		cooling_rate = 0
 		update_appearance()
 		return
@@ -75,8 +101,29 @@
 	if(world.time - last_environment_check > environment_check_interval)
 		check_environment()
 
-	// Внешний охладитель обрабатывает поток геля и применяет охлаждение
-	process_gel_cooling()
+	// Внешний охладитель работает автоматически при подключении к сети
+	active = (bus != null)
+
+	// Получаем реальную температуру геля из сети
+	var/network_gel_temperature = 300 // базовая температура
+	if(bus)
+		var/total_temp = 0
+		var/total_volume = 0
+		for(var/obj/machinery/cnr_base/node in bus.nodes)
+			if(node.gel_volume > 0)
+				total_temp += node.gel_temperature * node.gel_volume
+				total_volume += node.gel_volume
+
+		if(total_volume > 0)
+			network_gel_temperature = total_temp / total_volume
+
+	cooling_rate = active ? get_cooling_capacity(network_gel_temperature, 100) : 0 // базовая температура и поток
+
+	// Передаем тепло в атмосферу
+	if(active)
+		transfer_heat_to_atmosphere()
+
+	update_appearance()
 
 /obj/machinery/cnr_cooler_external/proc/check_environment()
 	var/turf/T = get_turf(src)
@@ -96,6 +143,10 @@
 	last_environment_check = world.time
 
 /obj/machinery/cnr_cooler_external/proc/get_cooling_capacity(gel_temperature, gel_flow)
+	// Определяем схему охлаждения
+	var/cooling_scheme = determine_cooling_scheme()
+	var/scheme_multiplier = get_scheme_multiplier(cooling_scheme)
+
 	// Базовая мощность охлаждения
 	var/base_capacity = cooling_capacity
 	var/temp_factor = 1.0
@@ -108,9 +159,48 @@
 	// Фактор потока (больше потока = лучше охлаждение)
 	var/flow_factor = min(gel_flow / 100, 2.0) // До 200% при высоком потоке
 
-	var/final_capacity = base_capacity * efficiency * temp_factor * flow_factor * environment_multiplier
+	var/final_capacity = base_capacity * efficiency * temp_factor * flow_factor * environment_multiplier * scheme_multiplier
 
 	return final_capacity
+
+/obj/machinery/cnr_cooler_external/proc/determine_cooling_scheme()
+	// Определяем схему охлаждения на основе подключений
+	if(!bus)
+		return "direct" // Прямое подключение к реактору
+
+	// Проверяем, есть ли помпа в сети
+	var/has_pump = FALSE
+	var/has_gel = FALSE
+
+	for(var/obj/machinery/cnr_base/node in bus.nodes)
+		if(istype(node, /obj/machinery/cnr_pump))
+			has_pump = TRUE
+		if(node.gel_volume > 0)
+			has_gel = TRUE
+
+	if(has_pump && has_gel)
+		return "gel" // Схема с термогелем
+	else if(has_gel)
+		return "hybrid" // Гибридная схема
+	else
+		return "direct" // Прямое охлаждение
+
+/obj/machinery/cnr_cooler_external/proc/get_scheme_multiplier(scheme)
+	switch(scheme)
+		if("direct")
+			return COOLING_BASE
+		if("gel")
+			// Для внешнего охладителя учитываем среду
+			if(environment == "space")
+				return COOLING_EXTERNAL_SPACE
+			else if(environment == "atmos")
+				return COOLING_EXTERNAL_ATMOS
+			else
+				return COOLING_EXTERNAL_PLANET // Планета
+		if("hybrid")
+			return COOLING_HYBRID
+		else
+			return COOLING_BASE
 
 /obj/machinery/cnr_cooler_external/proc/process_gel_cooling()
 	// Вызывается реактором для обработки охлаждения
@@ -118,6 +208,40 @@
 	// Эта процедура может использоваться для дополнительных эффектов или логирования
 	// В будущем здесь можно добавить логирование или дополнительные эффекты
 	return
+
+/obj/machinery/cnr_cooler_external/proc/transfer_heat_to_atmosphere()
+	// Передаем тепло в окружающую атмосферу
+	if(!active || !anchored)
+		return 0
+
+	var/turf/T = get_turf(src)
+	if(!T)
+		return 0
+
+	var/datum/gas_mixture/environment = T.return_air()
+	if(!environment)
+		return 0
+
+	// Рассчитываем тепло, которое нужно передать
+	var/heat_to_transfer = cooling_rate * 1000 // Конвертируем кВт в ватты
+	var/environment_heat_capacity = environment.heat_capacity()
+
+	if(environment_heat_capacity <= 0)
+		return 0
+
+	// Рассчитываем изменение температуры
+	var/temperature_change = heat_to_transfer / environment_heat_capacity
+
+	// Ограничиваем изменение температуры для стабильности
+	temperature_change = clamp(temperature_change, -50, 50)
+
+	// Применяем изменение температуры к атмосфере
+	environment.set_temperature(environment.return_temperature() + temperature_change)
+
+	// Обновляем тайл
+	T.air_update_turf(TRUE)
+
+	return heat_to_transfer
 
 // ===== ИНТЕРАКЦИИ =====
 
@@ -129,16 +253,7 @@
 		to_chat(user, span_warning("Охладитель должен быть закреплён!"))
 		return
 
-	active = !active
-
-	if(active)
-		to_chat(user, span_notice("Включаю внешний охладитель."))
-		icon_state = "cooler_external_on"
-	else
-		to_chat(user, span_notice("Выключаю внешний охладитель."))
-		icon_state = "cooler_external"
-
-	update_appearance()
+	to_chat(user, span_notice("Внешний охладитель работает автоматически при подключении к сети."))
 
 /obj/machinery/cnr_cooler_external/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH)
