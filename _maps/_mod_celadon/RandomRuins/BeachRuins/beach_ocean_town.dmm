@@ -1037,7 +1037,7 @@
 /area/ruin/beach/oceantown)
 "iE" = (
 /obj/effect/spawner/structure/window{
-	obj_integrity = 186
+	atom_integrity = 186
 	},
 /obj/structure/curtain/cloth/grey,
 /turf/open/floor/plating,
@@ -1330,7 +1330,7 @@
 "kL" = (
 /obj/effect/decal/cleanable/blood/splatter/over_window,
 /obj/effect/spawner/structure/window{
-	obj_integrity = 124
+	atom_integrity = 124
 	},
 /turf/open/floor/wood,
 /area/ruin/beach/oceantown)

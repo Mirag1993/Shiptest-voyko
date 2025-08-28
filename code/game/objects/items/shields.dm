@@ -127,7 +127,7 @@
 				else
 					icon_state = "[src::icon_state]"
 //	[/CELADON-ADD]
-			obj_integrity = max_integrity
+			atom_integrity = max_integrity
 			to_chat(user, span_notice("You repair [src] with [T]."))
 			name = src::name
 			broken = FALSE

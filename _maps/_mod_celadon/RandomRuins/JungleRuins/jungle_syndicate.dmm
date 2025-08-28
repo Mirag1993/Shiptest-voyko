@@ -809,7 +809,7 @@
 "lf" = (
 /obj/structure/deployable_barricade/sandbags{
 	pixel_y = -9;
-	obj_integrity = 100
+	atom_integrity = 100
 	},
 /obj/structure/spacevine,
 /turf/open/floor/plating/dirt/jungle/dark,
@@ -2357,7 +2357,7 @@
 "Fo" = (
 /obj/structure/deployable_barricade/sandbags{
 	dir = 4;
-	obj_integrity = 100
+	atom_integrity = 100
 	},
 /turf/open/floor/plasteel/patterned/brushed,
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2909,7 +2909,7 @@
 "LD" = (
 /obj/structure/deployable_barricade/sandbags{
 	pixel_y = -9;
-	obj_integrity = 100
+	atom_integrity = 100
 	},
 /turf/open/floor/plating/asteroid/dirt/grass/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)

@@ -1063,7 +1063,7 @@
 /obj/machinery/computer/cargo{
 	dir = 4;
 	name = "Cargo computer";
-	obj_integrity = null
+	atom_integrity = null
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/science/storage)

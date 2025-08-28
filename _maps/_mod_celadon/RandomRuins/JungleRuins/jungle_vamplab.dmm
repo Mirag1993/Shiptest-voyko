@@ -667,7 +667,7 @@
 /obj/machinery/computer/cargo{
 	dir = 4;
 	name = "Cargo computer";
-	obj_integrity = null
+	atom_integrity = null
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
