@@ -1237,7 +1237,7 @@
 /area/ship/science)
 "cC" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/hardsuit/rd{
+/obj/item/clothing/suit/space/hardsuit/bomb{
 	name = "anomaly protection hardsuit"
 	},
 /obj/item/tank/internals/oxygen,
@@ -1816,7 +1816,7 @@
 /area/ship/hallway/aft)
 "dG" = (
 /obj/machinery/suit_storage_unit/inherit/industrial,
-/obj/item/clothing/suit/space/hardsuit/rd{
+/obj/item/clothing/suit/space/hardsuit/bomb{
 	name = "anomaly protection hardsuit"
 	},
 /obj/item/tank/internals/oxygen,

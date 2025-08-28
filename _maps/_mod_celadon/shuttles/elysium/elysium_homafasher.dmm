@@ -247,7 +247,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/firealarm/directional/west,
-/obj/item/clothing/suit/hooded/explorer/old,
+/obj/item/clothing/suit/hooded/explorer,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/item/pickaxe/rusted,
 /obj/item/pickaxe/drill{
@@ -617,7 +617,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/clothing/suit/hooded/explorer/old,
+/obj/item/clothing/suit/hooded/explorer,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/item/pickaxe,
 /obj/item/pickaxe/drill{

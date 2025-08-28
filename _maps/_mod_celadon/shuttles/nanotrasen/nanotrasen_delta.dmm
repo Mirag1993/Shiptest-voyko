@@ -744,7 +744,7 @@
 	dir = 4;
 	layer = 4.1
 	},
-/obj/item/clothing/suit/space/hardsuit/rd,
+/obj/item/clothing/suit/space/hardsuit/bomb,
 /obj/machinery/suit_storage_unit/inherit,
 /obj/structure/window/reinforced/spawner{
 	dir = 1
