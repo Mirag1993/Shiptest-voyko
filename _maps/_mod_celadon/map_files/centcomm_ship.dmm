@@ -6674,7 +6674,7 @@
 /turf/open/floor/plating/asteroid/smoothed,
 /area/tdome/tdomeobserve)
 "tj" = (
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /turf/open/floor/grass,
 /area/centcom/holding)
 "tk" = (

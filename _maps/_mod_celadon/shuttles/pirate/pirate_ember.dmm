@@ -5045,7 +5045,7 @@
 	},
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/decal/cleanable/blood/gibs,
-/mob/living/simple_animal/cow{
+/mob/living/basic/cow{
 	desc = "Allegedly a bull.";
 	name = "Otis";
 	real_name = "Betsy"

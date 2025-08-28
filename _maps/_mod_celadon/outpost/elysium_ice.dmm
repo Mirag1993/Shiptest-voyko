@@ -6561,7 +6561,7 @@
 /area/outpost/cargo/faction/nanotrasen)
 "dTJ" = (
 /obj/structure/flora/grass/jungle,
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /turf/open/floor/plating/grass,
 /area/outpost/crew/canteen)
 "dUy" = (

@@ -447,7 +447,7 @@
 /area/ship/crew/chapel)
 "ek" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /turf/open/floor/grass/ship/jungle,
 /area/ship/crew/hydroponics)
 "eo" = (

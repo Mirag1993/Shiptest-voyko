@@ -5139,7 +5139,7 @@
 /turf/open/floor/plating/rust,
 /area/ship/crew/canteen)
 "Er" = (
-/mob/living/simple_animal/cow,
+/mob/living/basic/cow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
