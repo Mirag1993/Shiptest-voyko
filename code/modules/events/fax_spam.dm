@@ -1,3 +1,5 @@
+// [CELADON-REMOVE] - NEVER_TEXT_ME_AGAIN - НЕ ПИШИ СЮДА БОЛЬШЕ
+/*
 /datum/round_event_control/fax_spam
 	name = "Fax Spam"
 	typepath = /datum/round_event/fax_spam
@@ -47,3 +49,5 @@
 /obj/item/advertisement/cliptour
 	desc = "A pamphlet advertising tour guides on Luna-Town, most prominently an interior tour of certain restricted sections of the UNSV Lichtenstein."
 	icon_state = "cliptour"
+*/
+// [CELADON-REMOVE]
