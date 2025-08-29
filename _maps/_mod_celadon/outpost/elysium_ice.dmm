@@ -34153,7 +34153,7 @@
 /turf/open/floor/plating/rust,
 /area/outpost/fraction/separatist)
 "ubF" = (
-/obj/item/clothing/mask/gas/explorer/old,
+/obj/item/clothing/mask/gas/explorer,
 /turf/open/floor/plating/asteroid/icerock/temperate,
 /area/outpost/exterior)
 "ubI" = (
