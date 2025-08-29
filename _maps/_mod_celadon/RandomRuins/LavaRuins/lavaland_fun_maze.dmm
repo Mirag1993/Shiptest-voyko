@@ -2158,7 +2158,7 @@
 /turf/open/floor/plasteel/heavymetal/var4,
 /area/ruin/lavaland)
 "Ls" = (
-/obj/effect/mob_spawn/human/corpse/damaged/whitesands/hunter,
+/obj/effect/mob_spawn/human/corpse/damaged/whitesands,
 /obj/effect/gibspawner/generic,
 /turf/open/floor/plating/asteroid/sand,
 /area/ruin/lavaland)
@@ -2546,7 +2546,7 @@
 	},
 /area/ruin/lavaland)
 "Re" = (
-/obj/effect/mob_spawn/human/corpse/damaged/whitesands/hunter,
+/obj/effect/mob_spawn/human/corpse/damaged/whitesands,
 /turf/open/floor/plating/asteroid/sand,
 /area/ruin/lavaland)
 "Rf" = (
