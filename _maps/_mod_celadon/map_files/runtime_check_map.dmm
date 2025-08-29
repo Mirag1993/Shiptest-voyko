@@ -9812,7 +9812,7 @@
 /obj/structure/filler,
 /obj/structure/carp_rift,
 /obj/vehicle,
-/obj/vehicle/ridden/atv,
+/obj/effect/decal/cleanable/oil/slippery,
 /obj/vehicle/ridden/bicycle,
 /obj/vehicle/ridden/lavaboat,
 /obj/vehicle/ridden/lavaboat/dragon,

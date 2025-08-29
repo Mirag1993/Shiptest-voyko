@@ -1402,9 +1402,7 @@
 /turf/closed/wall/concrete,
 /area/ruin/beach/bunker/side_one)
 "rw" = (
-/obj/vehicle/ridden/atv{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/oil/slippery,
 /turf/open/floor/concrete/pavement/beachplanet,
 /area/ruin/beach/bunker/side_one)
 "rH" = (
@@ -1954,7 +1952,7 @@
 /area/ruin/beach/bunker)
 "yM" = (
 /obj/structure/rack,
-/obj/item/key,
+/obj/effect/spawner/random/maintenance/eight,
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/concrete/pavement/beachplanet,
 /area/ruin/beach/bunker/side_one)
