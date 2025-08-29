@@ -3815,7 +3815,6 @@
 /obj/item/melee/knife/survival,
 /obj/item/melee/knife/survival,
 /obj/item/melee/knife/survival,
-/obj/item/attachment/sling,
 /obj/item/melee/baton/cattleprod/loaded{
 	pixel_x = 6;
 	pixel_y = -3
