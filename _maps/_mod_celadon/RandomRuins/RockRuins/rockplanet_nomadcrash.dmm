@@ -34,7 +34,7 @@
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "bS" = (
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/rockplanet,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "cd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -159,7 +159,7 @@
 /turf/open/floor/plating,
 /area/ruin/rockplanet/nomad)
 "gY" = (
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/ruin/rockplanet/nomad)
 "ha" = (
 /obj/structure/cable{
@@ -192,7 +192,7 @@
 /obj/structure/flora/rock{
 	icon_state = "basalt"
 	},
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/ruin/rockplanet/nomad)
 "il" = (
 /obj/effect/turf_decal/spline/fancy/opaque/yellow{
@@ -297,7 +297,7 @@
 /area/ruin/rockplanet/nomad)
 "mW" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "nf" = (
 /turf/open/floor/plasteel/rockplanet,
@@ -393,7 +393,7 @@
 /area/ruin/rockplanet/nomad)
 "rD" = (
 /obj/structure/frame/machine,
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/ruin/rockplanet/nomad)
 "rY" = (
 /obj/structure/cable{
@@ -499,7 +499,7 @@
 /turf/open/floor/plating/asteroid/rockplanet/wet,
 /area/ruin/rockplanet/nomad)
 "vM" = (
-/turf/open/floor/plating/grass/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/grass/rockplanet,
 /area/ruin/rockplanet/nomad)
 "vN" = (
 /obj/effect/turf_decal/spline/fancy/opaque/yellow{
@@ -641,7 +641,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/ruin/rockplanet/nomad)
 "CN" = (
 /turf/open/floor/plasteel/stairs/rockplanet,
@@ -663,7 +663,7 @@
 /turf/open/floor/plating,
 /area/ruin/rockplanet/nomad)
 "Ec" = (
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/ruin/rockplanet/nomad)
 "Em" = (
 /obj/structure/rack,
@@ -1002,7 +1002,7 @@
 /turf/open/floor/plasteel/rockplanet,
 /area/ruin/rockplanet/nomad)
 "OR" = (
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "OS" = (
 /obj/structure/rack,
@@ -1024,7 +1024,7 @@
 	pixel_x = -15;
 	pixel_y = 8
 	},
-/turf/open/floor/plating/grass/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/grass/rockplanet,
 /area/ruin/rockplanet/nomad)
 "Pn" = (
 /obj/machinery/power/smes/engineering{
@@ -1171,7 +1171,7 @@
 /area/ruin/rockplanet/nomad)
 "UY" = (
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/rockplanet,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "Vy" = (
 /obj/effect/decal/cleanable/xenoblood/xgibs,
@@ -1210,7 +1210,7 @@
 /area/ruin/rockplanet/nomad)
 "XX" = (
 /obj/structure/mineral_door/sandstone,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/ruin/rockplanet/nomad)
 "Yl" = (
 /obj/structure/table,

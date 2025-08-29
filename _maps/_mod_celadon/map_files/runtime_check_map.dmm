@@ -1061,7 +1061,7 @@
 /turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/space)
 "cQ" = (
-/turf/open/floor/plating/dirt/icemoon,
+/turf/open/floor/plating/asteroid/dirt,
 /area/space)
 "cU" = (
 /turf/open/floor/plasteel/stairs/wood/birch,
@@ -1403,7 +1403,7 @@
 /turf/closed/wall/mineral/gold/yesdiag,
 /area/space)
 "in" = (
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/space)
 "iq" = (
 /turf/open/space/basic,
@@ -5339,9 +5339,6 @@
 "oo" = (
 /turf/open/floor/goonplaque,
 /area/space)
-"or" = (
-/turf/open/floor/plating/dirt/dry,
-/area/space)
 "os" = (
 /turf/open/space/basic,
 /area/outpost/fraction/nanotrasen)
@@ -5385,7 +5382,7 @@
 /turf/open/space/basic,
 /area/ruin/jungle/cavecrew/security)
 "pa" = (
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/space)
 "pc" = (
 /turf/open/space/basic,
@@ -10370,9 +10367,6 @@
 "qM" = (
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor/freezer_grey,
 /area/space)
-"qO" = (
-/turf/open/floor/plating/dirt,
-/area/space)
 "qR" = (
 /turf/open/space/basic,
 /area/ship/bridge)
@@ -10488,7 +10482,7 @@
 /turf/open/floor/marble,
 /area/space)
 "st" = (
-/turf/open/floor/plating/grass/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/grass/rockplanet,
 /area/space)
 "sw" = (
 /turf/open/space/basic,
@@ -10610,9 +10604,6 @@
 "ul" = (
 /turf/open/space/basic,
 /area/outpost/medical/morgue)
-"un" = (
-/turf/open/floor/plating/dirt/old,
-/area/space)
 "up" = (
 /turf/open/floor/plasteel/patterned/ridged/rockplanet/lit,
 /area/space)
@@ -11250,7 +11241,7 @@
 /turf/open/space/basic,
 /area/ship/science)
 "Ey" = (
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/space)
 "Ez" = (
 /turf/open/space/basic,
@@ -11361,9 +11352,6 @@
 "Gc" = (
 /turf/open/space/basic,
 /area/ruin/wasteplanet/wasteplanet_radiation/main)
-"Ge" = (
-/turf/open/floor/plating/dirt/dark,
-/area/space)
 "Gl" = (
 /turf/closed/indestructible/fakedoor,
 /area/space)
@@ -11449,7 +11437,7 @@
 /turf/open/floor/mineral/plastitanium/airless,
 /area/space)
 "HT" = (
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/space)
 "HX" = (
 /turf/open/space/basic,
@@ -12143,7 +12131,7 @@
 /turf/open/floor/plasteel/stairs/old,
 /area/space)
 "RG" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/space)
 "RK" = (
 /turf/open/floor/concrete/wasteplanet/lit,
@@ -14441,7 +14429,7 @@ df
 KG
 WK
 nq
-Ge
+cQ
 gG
 wN
 mM
@@ -14493,7 +14481,7 @@ nR
 kX
 cX
 ZW
-qO
+cQ
 yz
 pk
 Xx
@@ -14545,7 +14533,7 @@ HC
 gO
 cC
 ri
-or
+cQ
 Jd
 Sr
 SQ
@@ -14805,7 +14793,7 @@ fO
 NC
 Uw
 kD
-un
+cQ
 rv
 Iy
 Ya

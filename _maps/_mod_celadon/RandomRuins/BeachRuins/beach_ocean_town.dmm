@@ -6,7 +6,7 @@
 "aj" = (
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ao" = (
 /obj/structure/sink{
@@ -136,7 +136,7 @@
 /obj/structure/railing/wood{
 	dir = 10
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -159,7 +159,7 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "bV" = (
 /obj/effect/turf_decal/siding/wood/corner,
@@ -170,7 +170,7 @@
 "ca" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "cd" = (
 /obj/effect/mob_spawn/human/corpse/frontier/ranged/trooper,
@@ -207,7 +207,7 @@
 /obj/structure/railing/wood{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -215,7 +215,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "cx" = (
 /obj/structure/railing{
@@ -331,7 +331,7 @@
 /obj/structure/railing/corner/wood{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -565,7 +565,7 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "fw" = (
 /obj/structure/fluff/broken_flooring{
@@ -671,7 +671,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "gb" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "gd" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -688,7 +688,7 @@
 /area/ruin/beach/oceantown)
 "gn" = (
 /obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "gp" = (
 /obj/structure/table/wood,
@@ -719,7 +719,7 @@
 /area/ruin/beach/oceantown)
 "gx" = (
 /obj/item/shard,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -736,7 +736,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "gI" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -790,7 +790,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hu" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hv" = (
 /obj/effect/turf_decal/techfloor{
@@ -839,13 +839,13 @@
 "hL" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hM" = (
 /obj/structure/flora/tree/palm{
 	icon_state = "palm2"
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hW" = (
 /obj/structure/railing/wood{
@@ -863,7 +863,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "id" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ie" = (
 /obj/effect/turf_decal/siding/wood{
@@ -897,7 +897,7 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "io" = (
 /obj/machinery/door/airlock/public/glass{
@@ -927,7 +927,7 @@
 /area/ruin/beach/oceantown/hotel)
 "iw" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -943,14 +943,14 @@
 /area/ruin/beach/oceantown/bar)
 "iA" = (
 /obj/item/seeds/tobacco,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "iC" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown)
 "iE" = (
 /obj/effect/spawner/structure/window{
@@ -969,7 +969,7 @@
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree5"
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "iU" = (
 /obj/vehicle/ridden/lavaboat{
@@ -1054,7 +1054,7 @@
 /area/ruin/beach/oceantown)
 "jv" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "jB" = (
 /obj/effect/turf_decal/industrial/warning,
@@ -1085,7 +1085,7 @@
 "jL" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/peas,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1119,7 +1119,7 @@
 "jY" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/tower,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1129,7 +1129,7 @@
 "kd" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "kf" = (
 /obj/effect/turf_decal/siding/wood/end{
@@ -1153,7 +1153,7 @@
 "kj" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "km" = (
 /obj/structure/closet/athletic_mixed,
@@ -1279,7 +1279,7 @@
 /area/ruin/beach/oceantown)
 "lf" = (
 /obj/item/seeds/potato,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1353,7 +1353,7 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mf" = (
 /obj/effect/decal/cleanable/blood/hitsplatter,
@@ -1407,7 +1407,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mG" = (
 /obj/structure/railing/corner,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1445,7 +1445,7 @@
 "mX" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mY" = (
 /obj/effect/turf_decal/corner/opaque/white/diagonal{
@@ -1461,7 +1461,7 @@
 "ni" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "nj" = (
 /obj/machinery/door/airlock/public/glass{
@@ -1497,7 +1497,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1684,7 +1684,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "pB" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown)
 "pC" = (
 /obj/effect/turf_decal/road{
@@ -1768,7 +1768,7 @@
 /mob/living/simple_animal/hostile/human/pirate/ranged{
 	faction = list("Frontiersmen")
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "qu" = (
 /obj/structure/table/wood,
@@ -1778,7 +1778,7 @@
 /turf/open/floor/plating/asteroid/sand/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "qw" = (
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1801,7 +1801,7 @@
 /area/ruin/beach/oceantown)
 "qH" = (
 /obj/structure/flora/driftwood,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1863,11 +1863,6 @@
 /area/ruin/beach/oceantown)
 "ri" = (
 /turf/closed/wall/mineral/wood,
-/area/overmap_encounter/planetoid/beachplanet/explored)
-"rl" = (
-/turf/open/floor/plating/dirt{
-	light_range = 2
-	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ru" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -1995,7 +1990,7 @@
 "sl" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/item/seeds/sugarcane,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "sp" = (
 /obj/machinery/door/poddoor/shutters{
@@ -2046,11 +2041,11 @@
 /area/ruin/beach/oceantown/bar)
 "sD" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "sH" = (
 /obj/structure/railing/wood,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -2140,7 +2135,7 @@
 "tU" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/eggplant,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -2158,7 +2153,7 @@
 "ue" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ug" = (
 /obj/effect/turf_decal/road{
@@ -2219,12 +2214,12 @@
 "uC" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "uI" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/shovel/spade,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -2254,7 +2249,7 @@
 	},
 /obj/item/roastingstick,
 /obj/item/food/sausage,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -2270,7 +2265,7 @@
 /area/ruin/beach/oceantown/shop)
 "vE" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "vF" = (
 /obj/structure/chair/comfy/shuttle{
@@ -2308,7 +2303,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "vX" = (
 /obj/item/shovel/spade,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "we" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
@@ -2317,7 +2312,7 @@
 "wf" = (
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2351,7 +2346,7 @@
 "wF" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wH" = (
 /obj/effect/turf_decal/siding/wood{
@@ -2380,7 +2375,7 @@
 "wS" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wZ" = (
 /obj/item/stack/sheet/mineral/sandstone,
@@ -2445,13 +2440,13 @@
 "xz" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/aloe,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "xD" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "xE" = (
 /obj/structure/flora/tree/jungle/small{
@@ -2544,7 +2539,7 @@
 "yl" = (
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ys" = (
 /obj/structure/chair/comfy/shuttle{
@@ -2597,7 +2592,7 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -2717,7 +2712,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "zy" = (
 /obj/item/seeds/bamboo,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -2753,7 +2748,7 @@
 /obj/structure/railing/wood{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3023,7 +3018,7 @@
 "BP" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "BR" = (
 /obj/item/seeds/cabbage,
@@ -3061,7 +3056,7 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Cf" = (
 /obj/effect/turf_decal/siding/wood{
@@ -3085,7 +3080,7 @@
 /obj/structure/railing/corner/wood{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3184,7 +3179,7 @@
 	dir = 4
 	},
 /obj/item/roastingstick,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3200,13 +3195,7 @@
 "DD" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/watermelon,
-/turf/open/floor/plating/dirt{
-	light_range = 2
-	},
-/area/overmap_encounter/planetoid/beachplanet/explored)
-"DE" = (
-/obj/structure/railing/wood,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3230,7 +3219,7 @@
 "DP" = (
 /obj/structure/flora/ausbushes/genericbush,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "DT" = (
 /obj/structure/chair/plastic,
@@ -3309,7 +3298,7 @@
 "EC" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "EH" = (
 /obj/structure/chair/wood{
@@ -3340,7 +3329,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ER" = (
 /obj/structure/railing,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3354,13 +3343,13 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Fq" = (
 /obj/item/seeds/wheat/rice,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Fv" = (
 /mob/living/basic/bear/cave{
 	faction = list("Frontiersmen")
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3379,7 +3368,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "FF" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown)
 "FH" = (
 /obj/effect/decal/cleanable/blood,
@@ -3395,7 +3384,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3419,7 +3408,7 @@
 	dir = 4
 	},
 /obj/item/lighter,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3492,7 +3481,7 @@
 "Gq" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/tea,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3500,7 +3489,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3508,7 +3497,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "GE" = (
 /obj/effect/turf_decal/road{
@@ -3563,7 +3552,7 @@
 "GY" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/item/seeds/grape,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "GZ" = (
 /obj/effect/turf_decal/siding/wood,
@@ -3601,7 +3590,7 @@
 /obj/structure/railing/wood{
 	dir = 6
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3672,7 +3661,7 @@
 /area/ruin/beach/oceantown/bar)
 "Ia" = (
 /obj/structure/bonfire/prelit,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3732,7 +3721,7 @@
 "Io" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ip" = (
 /obj/structure/table,
@@ -3768,7 +3757,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "IJ" = (
 /obj/item/seeds/cotton,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3856,7 +3845,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "JA" = (
 /turf/open/floor/wood{
@@ -3866,7 +3855,7 @@
 "JD" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "JE" = (
 /turf/open/floor/pod/dark,
@@ -3875,7 +3864,7 @@
 /obj/structure/railing/wood{
 	dir = 5
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -3892,12 +3881,12 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "JS" = (
 /obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "JT" = (
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown/shop)
 "JU" = (
 /obj/structure/table/wood,
@@ -3981,7 +3970,7 @@
 "Kq" = (
 /obj/structure/flora/ausbushes/grassybush,
 /mob/living/simple_animal/hostile/human/frontier/ranged,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Kw" = (
 /obj/structure/barricade/sandbags,
@@ -4128,19 +4117,13 @@
 "Lr" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/orange,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Lv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech,
-/area/overmap_encounter/planetoid/beachplanet/explored)
-"Lx" = (
-/obj/structure/barricade/sandbags,
-/turf/open/floor/plating/dirt{
-	light_range = 2
-	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Lz" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
@@ -4204,7 +4187,7 @@
 "LZ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/item/seeds/chanter,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Mc" = (
 /turf/open/floor/wood{
@@ -4215,12 +4198,12 @@
 /obj/item/gun/ballistic/revolver/shadow,
 /obj/effect/mob_spawn/human/botanist,
 /obj/effect/decal/cleanable/blood/gibs/up,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Mi" = (
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Mk" = (
 /obj/machinery/door/airlock/public/glass{
@@ -4234,7 +4217,7 @@
 /obj/structure/sink{
 	pixel_y = 17
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -4288,13 +4271,13 @@
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree7"
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "MF" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "MG" = (
 /obj/structure/chair/office{
@@ -4429,7 +4412,7 @@
 /area/ruin/beach/oceantown/bar)
 "NB" = (
 /obj/structure/railing/corner/wood,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -4481,7 +4464,7 @@
 /area/ruin/beach/oceantown/shop)
 "Oa" = (
 /obj/item/seeds/plump,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -4540,7 +4523,7 @@
 /area/ruin/beach/oceantown/shop)
 "OI" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ON" = (
 /obj/structure/flora/junglebush/large,
@@ -4562,7 +4545,7 @@
 "OR" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "OT" = (
 /obj/effect/turf_decal/corner/opaque/white/diagonal{
@@ -4626,12 +4609,6 @@
 	light_range = 2
 	},
 /area/ruin/beach/oceantown/bar)
-"PC" = (
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt{
-	light_range = 2
-	},
-/area/overmap_encounter/planetoid/beachplanet/explored)
 "PE" = (
 /obj/structure/chair/sofa/brown/right/directional/south,
 /turf/open/floor/wood,
@@ -4721,7 +4698,7 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -4749,7 +4726,7 @@
 /area/ruin/beach/oceantown)
 "QK" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "QM" = (
 /obj/machinery/door/airlock{
@@ -4761,7 +4738,7 @@
 "QT" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "QU" = (
 /turf/open/floor/wood{
@@ -4818,7 +4795,7 @@
 "RQ" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/seeds/chili,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -4867,7 +4844,7 @@
 "Sh" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Sm" = (
 /obj/machinery/light/directional/west,
@@ -4907,7 +4884,7 @@
 "Sy" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown)
 "SC" = (
 /obj/structure/fence/door,
@@ -4922,14 +4899,6 @@
 	light_range = 2
 	},
 /area/ruin/beach/oceantown/bar)
-"SO" = (
-/obj/structure/railing/wood{
-	dir = 6
-	},
-/turf/open/floor/plating/dirt/dark{
-	light_range = 2
-	},
-/area/overmap_encounter/planetoid/beachplanet/explored)
 "SS" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/food_or_drink/donut,
@@ -4987,19 +4956,19 @@
 	dir = 1
 	},
 /obj/item/food/sausage,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ts" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Tu" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/leafybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "TY" = (
 /obj/machinery/porta_turret/ship/ballistic{
@@ -5028,7 +4997,7 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Un" = (
 /obj/effect/spawner/structure/window,
@@ -5048,7 +5017,7 @@
 "Uq" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/palebush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Us" = (
 /obj/effect/turf_decal/industrial/warning{
@@ -5237,7 +5206,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/beach/oceantown/bar)
 "Wl" = (
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown)
 "Ws" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
@@ -5257,7 +5226,7 @@
 "Wv" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ww" = (
 /obj/machinery/door/airlock{
@@ -5318,7 +5287,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Xv" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/oceantown)
 "XC" = (
 /obj/effect/turf_decal/siding/wood{
@@ -5547,12 +5516,12 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ZB" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ZG" = (
 /obj/effect/turf_decal/siding/wood{
@@ -5584,12 +5553,6 @@
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
-"ZW" = (
-/obj/structure/railing/corner/wood,
-/turf/open/floor/plating/dirt{
-	light_range = 2
-	},
-/area/overmap_encounter/planetoid/beachplanet/explored)
 
 (1,1,1) = {"
 pn
@@ -5611,7 +5574,7 @@ sa
 sa
 BY
 sa
-rl
+qw
 NB
 zM
 zM
@@ -5712,10 +5675,10 @@ YU
 Mi
 id
 Mi
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
 qw
 Mi
 Mi
@@ -5764,7 +5727,7 @@ ON
 sa
 sa
 BY
-rl
+qw
 sH
 fz
 Ho
@@ -5777,9 +5740,9 @@ Wl
 Wl
 ZB
 gb
-rl
-rl
-rl
+qw
+qw
+qw
 Io
 Io
 Mi
@@ -5793,8 +5756,8 @@ Mi
 Mi
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -5879,11 +5842,11 @@ Ho
 gb
 ue
 QK
-rl
-rl
-rl
 qw
-rl
+qw
+qw
+qw
+qw
 Mi
 gb
 gb
@@ -5939,7 +5902,7 @@ UX
 UX
 uC
 QT
-rl
+qw
 xh
 zX
 ev
@@ -5966,8 +5929,8 @@ sD
 sD
 Mi
 HR
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -6016,7 +5979,7 @@ CF
 Un
 sD
 sD
-rl
+qw
 xh
 tW
 ev
@@ -6045,8 +6008,8 @@ sD
 Mi
 Mi
 qw
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -6125,7 +6088,7 @@ xn
 xn
 xn
 xn
-rl
+qw
 Mi
 Mi
 YU
@@ -6170,7 +6133,7 @@ AY
 Un
 gb
 sD
-rl
+qw
 xh
 xh
 xh
@@ -6202,8 +6165,8 @@ sb
 rN
 At
 Ww
-rl
-rl
+qw
+qw
 vE
 YU
 "}
@@ -6247,19 +6210,19 @@ AY
 iE
 Mi
 gb
-rl
-rl
+qw
+qw
 Mi
 Mi
 Fq
 Ho
 Mi
-rl
+qw
 qw
 vX
 Mi
 Me
-rl
+qw
 QU
 gb
 QT
@@ -6279,8 +6242,8 @@ cN
 oc
 pE
 xn
-rl
-rl
+qw
+qw
 Mi
 YU
 "}
@@ -6303,8 +6266,8 @@ sa
 sa
 sa
 sa
-ZW
-SO
+NB
+Hi
 fG
 mi
 hu
@@ -6325,7 +6288,7 @@ fM
 Mi
 Mi
 qw
-rl
+qw
 gb
 gb
 gb
@@ -6338,7 +6301,7 @@ Fv
 lf
 sl
 Ho
-rl
+qw
 iA
 mi
 Ru
@@ -6356,8 +6319,8 @@ ay
 kP
 UW
 xn
-rl
-rl
+qw
+qw
 jv
 YU
 "}
@@ -6399,9 +6362,9 @@ YA
 Ov
 UX
 UX
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 gb
 ek
@@ -6476,7 +6439,7 @@ Wu
 OH
 UX
 Mi
-rl
+qw
 Mi
 Mi
 Wv
@@ -6559,7 +6522,7 @@ qw
 gb
 wF
 Mi
-rl
+qw
 Ho
 JS
 JS
@@ -6631,12 +6594,12 @@ Mi
 id
 Mi
 Mi
-rl
-rl
+qw
+qw
 kj
 sD
 qw
-rl
+qw
 Ho
 jL
 JS
@@ -6707,12 +6670,12 @@ Mi
 ek
 Mi
 qw
-rl
-rl
+qw
+qw
 Mi
 kj
 Mi
-rl
+qw
 Mi
 Ho
 Ho
@@ -6768,7 +6731,7 @@ sa
 Qm
 fG
 mi
-rl
+qw
 qw
 Mi
 kj
@@ -6787,16 +6750,16 @@ Mi
 Mi
 hu
 hu
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 Ho
 Mi
 sD
 wF
 IJ
-rl
+qw
 Oa
 Mi
 Ho
@@ -6840,12 +6803,12 @@ Eu
 sa
 hl
 sa
-rl
+qw
 CS
 yb
 fG
 mi
-rl
+qw
 qw
 gb
 hu
@@ -6859,23 +6822,23 @@ Ho
 Ho
 Mi
 Mi
-rl
-rl
-rl
 qw
-rl
-rl
+qw
+qw
+qw
+qw
+qw
 Mi
-rl
+qw
 Mi
 Ho
-rl
+qw
 qw
 sD
 ni
 Mi
-rl
-rl
+qw
+qw
 Ho
 Ho
 Ho
@@ -6917,12 +6880,12 @@ sa
 eM
 Xk
 hb
-rl
-DE
+qw
+sH
 uW
 zQ
 mi
-rl
+qw
 Ho
 Ho
 Ho
@@ -7348,13 +7311,13 @@ Ru
 Ru
 Ru
 fG
-rl
-rl
+qw
+qw
 Mi
 Kq
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 YU
@@ -7425,14 +7388,14 @@ yz
 yz
 yz
 Ho
-rl
+qw
 gI
-Lx
+gI
 xD
 Mi
-rl
 qw
-rl
+qw
+qw
 Mi
 YU
 YU
@@ -7481,19 +7444,19 @@ Mi
 Mi
 Mi
 Mi
-rl
+qw
 Mi
 Mi
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
 Ho
 Ho
 Ho
 hu
 Mi
-rl
+qw
 Mi
 mi
 Ru
@@ -7502,14 +7465,14 @@ Ru
 Ru
 Ru
 fG
-rl
-rl
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
+qw
+qw
 Mi
-rl
+qw
 Mi
 Mi
 YU
@@ -7548,18 +7511,18 @@ sD
 sD
 sD
 Mi
-rl
 qw
-rl
+qw
+qw
 Mi
 Mi
 Mi
 vE
-rl
-rl
+qw
+qw
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 ek
@@ -7569,8 +7532,8 @@ Ho
 Ho
 Ho
 hu
-rl
-rl
+qw
+qw
 Mi
 mi
 Ru
@@ -7580,13 +7543,13 @@ Ru
 Ru
 fG
 Mi
-rl
-rl
-rl
+qw
+qw
+qw
 qw
 Mi
 Mi
-rl
+qw
 Mi
 jv
 YU
@@ -7616,9 +7579,9 @@ fG
 mi
 Mi
 Mi
-rl
 qw
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -7627,28 +7590,28 @@ Mi
 Mi
 Mi
 Mi
-rl
-rl
-rl
+qw
+qw
+qw
 vE
-rl
+qw
 iw
-rl
+qw
 Mi
-PC
-rl
-rl
+iw
+qw
+qw
 Mi
 Mi
-rl
-rl
+qw
+qw
 Ho
 Ho
 Ho
 hu
-rl
-PC
-rl
+qw
+iw
+qw
 mi
 Ru
 Ru
@@ -7658,13 +7621,13 @@ Ru
 fG
 jv
 id
-rl
-rl
-rl
+qw
+qw
+qw
 Mq
 Mi
 Mi
-rl
+qw
 OI
 Mi
 YU
@@ -7693,8 +7656,8 @@ Ho
 mi
 Mi
 id
-rl
-rl
+qw
+qw
 YC
 YC
 YC
@@ -7705,11 +7668,11 @@ YC
 YC
 YC
 YC
-rl
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
+qw
 Mi
 xh
 xh
@@ -7725,8 +7688,8 @@ mH
 ev
 Mc
 Mi
-rl
-rl
+qw
+qw
 Ay
 Ru
 GE
@@ -7736,12 +7699,12 @@ fG
 Mi
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 QK
 vE
-rl
+qw
 OI
 OI
 YU
@@ -7770,8 +7733,8 @@ Ho
 mi
 Mi
 id
-rl
-rl
+qw
+qw
 YC
 tw
 Tp
@@ -7785,7 +7748,7 @@ YC
 Mi
 Mi
 qw
-rl
+qw
 sD
 sD
 xh
@@ -7803,7 +7766,7 @@ sp
 oN
 AA
 QU
-rl
+qw
 zD
 lG
 lG
@@ -7819,7 +7782,7 @@ uC
 ue
 QK
 qw
-rl
+qw
 Mi
 YU
 YU
@@ -7848,7 +7811,7 @@ mi
 Mi
 uC
 Mi
-rl
+qw
 YC
 Gh
 pI
@@ -7860,9 +7823,9 @@ KE
 lj
 YC
 Mi
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 wF
 xh
@@ -8002,7 +7965,7 @@ Mi
 Mi
 sD
 sD
-rl
+qw
 YC
 YC
 YC
@@ -8092,8 +8055,8 @@ YC
 Mi
 hu
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 nU
@@ -8170,8 +8133,8 @@ Mi
 Mi
 Mi
 Mi
-rl
-PC
+qw
+iw
 qw
 xh
 KO
@@ -8232,7 +8195,7 @@ mi
 Mi
 Mi
 qw
-rl
+qw
 Mi
 YC
 YC
@@ -8244,12 +8207,12 @@ YC
 YC
 YC
 YC
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 Mi
-rl
+qw
 xh
 xh
 xh
@@ -8265,7 +8228,7 @@ Gi
 Gi
 AA
 GR
-PC
+iw
 eS
 AA
 AA
@@ -8307,9 +8270,9 @@ yb
 fG
 lv
 Mi
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 YC
 tw
@@ -8323,15 +8286,15 @@ tw
 YC
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
 Mi
 qw
-rl
-rl
+qw
+qw
 gb
 gb
 qw
@@ -8385,7 +8348,7 @@ zQ
 vf
 YL
 Mi
-rl
+qw
 qw
 Mi
 YC
@@ -8400,9 +8363,9 @@ lj
 YC
 Mi
 jv
-rl
 qw
-rl
+qw
+qw
 Mi
 id
 xh
@@ -8411,11 +8374,11 @@ xh
 Mm
 sD
 sD
-rl
+qw
 Mi
 Mi
 Mi
-rl
+qw
 Mi
 An
 Mi
@@ -8478,23 +8441,23 @@ YC
 Mi
 Mi
 Mi
-PC
-rl
+iw
+qw
 hu
 hu
 xh
 cE
 Zf
-rl
+qw
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
 Mi
 mi
 ly
@@ -8562,16 +8525,16 @@ hu
 xh
 xh
 xh
-rl
+qw
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 gb
 gb
 qw
-rl
+qw
 Mi
 mi
 Ru
@@ -8636,19 +8599,19 @@ gb
 sD
 Mi
 hu
-rl
-rl
-rl
 qw
-rl
+qw
+qw
+qw
+qw
 Mi
 Mi
-rl
-rl
+qw
+qw
 gb
 JD
-PC
-rl
+iw
+qw
 Mi
 mi
 Ru
@@ -8725,7 +8688,7 @@ dU
 yS
 Mi
 Mi
-rl
+qw
 Mi
 mi
 Ru
@@ -8802,7 +8765,7 @@ Ne
 Ib
 Mi
 Mi
-rl
+qw
 Mi
 mi
 Ru
@@ -8878,7 +8841,7 @@ yE
 tr
 SC
 Mi
-rl
+qw
 qw
 jv
 mi
@@ -8939,8 +8902,8 @@ IA
 YC
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 Ib
 pr
@@ -8997,8 +8960,8 @@ yQ
 Kk
 fG
 mi
-rl
-rl
+qw
+qw
 Mi
 sa
 sa
@@ -9016,8 +8979,8 @@ Tl
 Ph
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 Ib
 tr
@@ -9075,7 +9038,7 @@ uW
 Ga
 AM
 qw
-rl
+qw
 sa
 sa
 PN
@@ -9093,7 +9056,7 @@ fC
 Ph
 Mi
 Mi
-rl
+qw
 qw
 Mi
 Ib
@@ -9169,7 +9132,7 @@ Tl
 Tl
 Ph
 Mi
-rl
+qw
 qw
 Mi
 Mi
@@ -9196,8 +9159,8 @@ Ru
 Ru
 Ru
 fG
-rl
-rl
+qw
+qw
 Mi
 ni
 Mi
@@ -9273,7 +9236,7 @@ Ru
 Ru
 Ru
 fG
-rl
+qw
 qw
 Mi
 Mi
@@ -9427,7 +9390,7 @@ Ru
 Ru
 Ru
 fG
-rl
+qw
 Mi
 iT
 Mi
@@ -9506,7 +9469,7 @@ Ru
 fG
 Mi
 Mi
-rl
+qw
 Mi
 YU
 YU
@@ -9530,19 +9493,19 @@ Xk
 Xk
 sa
 BY
-rl
+qw
 sH
 uW
 bj
 AM
 Mi
-rl
 qw
-rl
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
+qw
+qw
 Mi
 sa
 sa
@@ -9554,8 +9517,8 @@ sa
 BY
 sa
 Mi
-rl
-rl
+qw
+qw
 Mi
 hu
 Ib
@@ -9582,8 +9545,8 @@ Ru
 Ru
 fG
 Mi
-rl
-rl
+qw
+qw
 jv
 YU
 YU
@@ -9611,15 +9574,15 @@ sa
 sH
 fG
 mi
-rl
-rl
 qw
-rl
+qw
+qw
+qw
 Mi
 ni
 sD
 Mi
-rl
+qw
 qw
 sa
 BY
@@ -9631,8 +9594,8 @@ sa
 sa
 sa
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 Ib
@@ -9658,7 +9621,7 @@ Ru
 Ru
 Ru
 fG
-rl
+qw
 qw
 Mi
 Mi
@@ -9685,19 +9648,19 @@ VT
 sa
 sa
 yQ
-SO
+Hi
 fG
 mi
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 Cc
 sD
 Ts
 sD
-rl
-rl
+qw
+qw
 Mi
 sa
 sa
@@ -9709,7 +9672,7 @@ sa
 Mi
 gb
 Mi
-rl
+qw
 qw
 Mi
 Ib
@@ -9735,10 +9698,10 @@ Ru
 Ru
 Ru
 fG
-rl
+qw
 Mi
 gn
-rl
+qw
 Mi
 YU
 YU
@@ -9766,7 +9729,7 @@ uW
 zQ
 mi
 Mi
-rl
+qw
 Mi
 Mi
 ca
@@ -9774,8 +9737,8 @@ gb
 gb
 gb
 Mi
-rl
-rl
+qw
+qw
 hu
 BY
 sa
@@ -9786,8 +9749,8 @@ Mi
 gb
 ct
 mX
-PC
-rl
+iw
+qw
 Mi
 Ib
 tr
@@ -9814,7 +9777,7 @@ Ge
 Ho
 Mi
 Mi
-rl
+qw
 qw
 Mi
 YU
@@ -9847,24 +9810,24 @@ Mi
 sD
 mX
 ca
-rl
 qw
-rl
+qw
+qw
 gb
-rl
-rl
+qw
+qw
 hu
 hu
 Mi
 sD
 sD
-rl
+qw
 qw
 gb
 Wv
 mX
 Mi
-rl
+qw
 Mi
 Ib
 pr
@@ -9890,8 +9853,8 @@ Ru
 Ru
 fG
 Mi
-rl
-rl
+qw
+qw
 Mi
 sD
 YU
@@ -9924,24 +9887,24 @@ sD
 sD
 Mi
 Mi
-PC
-rl
+iw
+qw
 Mi
 gb
-rl
-rl
+qw
+qw
 ni
 ni
 sD
 Mi
 sD
 Mi
-rl
-rl
+qw
+qw
 gb
 mX
 Mi
-rl
+qw
 Mi
 Ib
 tr
@@ -9957,7 +9920,7 @@ tr
 Ib
 sD
 ni
-rl
+qw
 Mi
 RV
 Ru
@@ -9968,7 +9931,7 @@ Ru
 fG
 Mi
 qw
-rl
+qw
 Mi
 ni
 YU
@@ -10001,7 +9964,7 @@ Mi
 Mi
 Mi
 Mi
-rl
+qw
 Mi
 Wv
 gb
@@ -10034,7 +9997,7 @@ Ne
 Ib
 Mi
 jv
-rl
+qw
 Mi
 mi
 Ru
@@ -10044,8 +10007,8 @@ Ru
 BW
 fG
 Mi
-rl
-rl
+qw
+qw
 DP
 ni
 Mi
@@ -10081,8 +10044,8 @@ id
 Mi
 hu
 kd
-rl
-rl
+qw
+qw
 Mi
 Mi
 gb
@@ -10158,8 +10121,8 @@ Mi
 MF
 kd
 Mi
-rl
-rl
+qw
+qw
 Mi
 lk
 gb
@@ -10234,8 +10197,8 @@ hu
 hu
 kj
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -10302,7 +10265,7 @@ fG
 HQ
 kG
 Jh
-rl
+qw
 GU
 gA
 mi
@@ -10311,8 +10274,8 @@ hu
 kj
 sD
 Mi
-rl
-rl
+qw
+qw
 Mi
 XJ
 mX
@@ -10372,24 +10335,24 @@ yA
 nZ
 eJ
 sa
-rl
-DE
+qw
+sH
 uW
 zQ
 Ko
-rl
-rl
-rl
-rl
+qw
+qw
+qw
+qw
 MP
 mi
 hu
 kj
 sD
 Mi
-rl
 qw
-rl
+qw
+qw
 gn
 Eb
 gd
@@ -10457,26 +10420,26 @@ Jh
 qw
 hu
 bD
-rl
+qw
 MP
 mi
 hu
 Mi
 Mi
 gn
-rl
-rl
+qw
+qw
 Mi
 Mi
 Eb
 kb
 kb
-rl
+qw
 kb
 XJ
 Mi
 Mi
-rl
+qw
 Mi
 Mi
 Mi
@@ -10496,7 +10459,7 @@ Mi
 Mi
 sD
 sD
-rl
+qw
 Mi
 mi
 Ru
@@ -10530,11 +10493,11 @@ yb
 uW
 Em
 Jh
-rl
-rl
+qw
+qw
 Cd
 Uq
-rl
+qw
 GU
 GM
 YL
@@ -10548,12 +10511,12 @@ UX
 UX
 UX
 kb
-rl
-rl
+qw
+qw
 kb
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 Mi
 wQ
@@ -10566,14 +10529,14 @@ jv
 Mi
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 sD
 sD
 XJ
-rl
-rl
+qw
+qw
 Mi
 mi
 Ru
@@ -10606,13 +10569,13 @@ sa
 EJ
 Ho
 Ko
-rl
-rl
+qw
+qw
 wS
 hu
 FC
 qw
-rl
+qw
 MP
 vf
 UX
@@ -10625,12 +10588,12 @@ em
 UH
 UX
 kn
-rl
-PC
-rl
+qw
+iw
+qw
 kb
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -10644,11 +10607,11 @@ Mi
 Mi
 Mi
 qw
-rl
+qw
 Mi
 ME
 Mi
-rl
+qw
 qw
 kb
 Mi
@@ -10683,13 +10646,13 @@ sa
 EJ
 Ho
 Ko
-rl
-rl
-rl
+qw
+qw
+qw
 wS
 fv
 EC
-rl
+qw
 MP
 yH
 UX
@@ -10702,9 +10665,9 @@ Gd
 gZ
 UX
 kb
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 Mi
 jv
@@ -10725,8 +10688,8 @@ Mi
 Mi
 Mi
 Mi
-rl
-rl
+qw
+qw
 IF
 gb
 mi
@@ -10762,11 +10725,11 @@ Ho
 Oe
 mB
 ie
-rl
+qw
 qw
 hu
 hu
-rl
+qw
 MP
 Ho
 xe
@@ -10781,7 +10744,7 @@ UX
 kb
 kb
 kb
-rl
+qw
 Mi
 kd
 gb
@@ -10801,9 +10764,9 @@ hu
 wS
 OI
 Mi
-rl
-rl
-PC
+qw
+qw
+iw
 Mi
 JD
 mi
@@ -10840,10 +10803,10 @@ fA
 eY
 xY
 AP
-rl
-rl
+qw
+qw
 wS
-rl
+qw
 MP
 Ho
 UX
@@ -10877,8 +10840,8 @@ Mi
 Mi
 hu
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 Mi
@@ -10918,8 +10881,8 @@ Cq
 fA
 LP
 ie
-rl
-rl
+qw
+qw
 qw
 MP
 mR
@@ -10958,7 +10921,7 @@ Mi
 Mi
 hu
 Mi
-rl
+qw
 Mi
 mi
 Ru
@@ -10996,7 +10959,7 @@ Xc
 cS
 kI
 ie
-rl
+qw
 mm
 cW
 AM
@@ -11034,8 +10997,8 @@ sD
 sD
 wf
 hu
-rl
-rl
+qw
+qw
 id
 mi
 Ru
@@ -11079,9 +11042,9 @@ mi
 Mi
 Mi
 Mi
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 Mi
 Mi
@@ -11158,12 +11121,12 @@ hu
 hu
 id
 Mi
-rl
+qw
 gn
 Mi
 BP
 Mi
-rl
+qw
 qw
 Mi
 Mi
@@ -11194,16 +11157,16 @@ OI
 mi
 Ru
 Ru
-rl
-rl
+qw
+qw
 Ru
 fG
 Mi
 sD
 Mi
 Mi
-rl
-rl
+qw
+qw
 gn
 Mi
 YU
@@ -11224,7 +11187,7 @@ sa
 BY
 sa
 sa
-rl
+qw
 Ck
 Xc
 fG
@@ -11234,13 +11197,13 @@ Mi
 ue
 kj
 Mi
-rl
+qw
 qw
 Mi
 hu
 BP
 hu
-rl
+qw
 Mi
 Mi
 Mi
@@ -11265,14 +11228,14 @@ Mi
 jv
 Mi
 sD
-rl
+qw
 Mi
 OI
 mi
 Ru
-rl
 qw
-rl
+qw
+qw
 Ru
 fG
 OI
@@ -11301,7 +11264,7 @@ sa
 sa
 BY
 sa
-rl
+qw
 sa
 Qm
 fG
@@ -11310,13 +11273,13 @@ YL
 Mi
 kj
 hu
-rl
 qw
-rl
-rl
+qw
+qw
+qw
 Mi
 hu
-rl
+qw
 qw
 Mi
 gn
@@ -11342,18 +11305,18 @@ sa
 Mi
 Mi
 Mi
-rl
+qw
 wf
 aj
 Ho
 Ru
-rl
-rl
-rl
+qw
+qw
+qw
 Ru
 Ho
 Mi
-rl
+qw
 qw
 Mi
 YU
@@ -11388,12 +11351,12 @@ Mi
 kj
 Mi
 Mi
-PC
+iw
 Mi
 Mi
 Mi
-rl
-rl
+qw
+qw
 Mi
 Mi
 YU
@@ -11418,20 +11381,20 @@ sa
 sa
 ek
 Mi
-rl
+qw
 qw
 hu
 hu
 hu
 Ru
 Ru
-rl
+qw
 Ru
 Ru
 Mi
-rl
-rl
-rl
+qw
+qw
+qw
 Mi
 YU
 YU
@@ -11495,19 +11458,19 @@ sa
 kb
 Mi
 Mi
-rl
+qw
 hu
 hu
 Mi
 hu
 qw
 Ru
-rl
+qw
 Ru
-rl
+qw
 gn
-rl
-rl
+qw
+qw
 Mi
 Mi
 YU
@@ -11577,12 +11540,12 @@ hu
 Mi
 xE
 Mi
-rl
+qw
 Ru
 Ru
 Ru
 qw
-rl
+qw
 Mi
 Mi
 Mi
@@ -11610,8 +11573,8 @@ sa
 BY
 BY
 sa
-rl
-rl
+qw
+qw
 Ck
 cs
 id
@@ -11657,7 +11620,7 @@ YU
 Ru
 Ru
 Ru
-rl
+qw
 Ru
 YU
 YU
@@ -11685,11 +11648,11 @@ sa
 sa
 sa
 sa
-rl
 qw
-rl
-rl
-rl
+qw
+qw
+qw
+qw
 QK
 yl
 Mi

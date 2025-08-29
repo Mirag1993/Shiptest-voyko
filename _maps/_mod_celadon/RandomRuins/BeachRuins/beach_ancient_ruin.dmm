@@ -271,11 +271,11 @@
 /area/ruin/beach/complex)
 "fB" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "fC" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "fE" = (
 /obj/structure/marker_beacon,
@@ -412,7 +412,7 @@
 /area/ruin/beach/complex/wall)
 "hx" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "hE" = (
 /obj/machinery/door/airlock/grunge{
@@ -717,7 +717,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mH" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mL" = (
 /obj/structure/tank_dispenser,
@@ -1009,7 +1009,7 @@
 /area/ruin/beach/complex/wall)
 "qL" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "qR" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
@@ -1218,7 +1218,7 @@
 /turf/open/floor/concrete/slab_1,
 /area/ruin/beach/complex/wall)
 "uo" = (
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "uw" = (
 /obj/effect/turf_decal/trimline/opaque/white/filled/warning{
@@ -1266,7 +1266,7 @@
 /area/ruin/beach/complex)
 "uQ" = (
 /obj/effect/overlay/palmtree_l,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "uV" = (
 /obj/structure/railing{
@@ -1378,7 +1378,7 @@
 /area/ruin/beach/complex)
 "wo" = (
 /obj/structure/spacevine/weak,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wr" = (
 /turf/open/floor/plating/grass{
@@ -1387,7 +1387,7 @@
 /area/ruin/beach/complex)
 "wv" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "wx" = (
 /obj/structure/marker_beacon,
@@ -1505,7 +1505,7 @@
 /area/ruin/beach/complex)
 "xP" = (
 /obj/effect/overlay/palmtree_r,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "xR" = (
 /obj/structure/cable{
@@ -1637,7 +1637,7 @@
 /area/ruin/beach/complex)
 "Ao" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "At" = (
 /obj/structure/cable{
@@ -1901,7 +1901,7 @@
 /area/ruin/beach/complex)
 "Ei" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "Et" = (
 /obj/structure/table,
@@ -2331,7 +2331,7 @@
 /area/ruin/beach/complex)
 "KZ" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "Li" = (
 /obj/structure/cable{
@@ -2414,7 +2414,7 @@
 /area/ruin/beach/complex)
 "LW" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Mb" = (
 /obj/machinery/light/small/directional/south,
@@ -2424,7 +2424,7 @@
 /area/ruin/beach/complex/wall)
 "Mt" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ME" = (
 /mob/living/simple_animal/beachcarp/trout,
@@ -2432,7 +2432,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "MH" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/ruin/beach/complex)
 "MQ" = (
 /obj/structure/bed,

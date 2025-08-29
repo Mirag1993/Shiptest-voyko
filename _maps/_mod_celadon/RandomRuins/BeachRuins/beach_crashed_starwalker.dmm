@@ -6,7 +6,7 @@
 /obj/effect/decal/fakelattice{
 	icon_state = "lattice-55"
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "as" = (
 /turf/closed/mineral/random/beach,
@@ -292,7 +292,7 @@
 	name = "Starwalker"
 	})
 "di" = (
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "dm" = (
 /obj/effect/decal/fakelattice{
@@ -332,7 +332,7 @@
 /obj/effect/decal/cleanable/blood/innards{
 	pixel_y = -7
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "ef" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -418,7 +418,7 @@
 	pixel_x = -21;
 	pixel_y = 11
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "fj" = (
 /obj/structure/window/reinforced,
@@ -564,7 +564,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 5
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "hf" = (
 /obj/effect/turf_decal/industrial/outline/yellow,
@@ -609,7 +609,7 @@
 	})
 "hV" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ia" = (
 /obj/machinery/atmospherics/components/unary/shuttle/heater{
@@ -699,7 +699,7 @@
 	pixel_x = 13;
 	pixel_y = 17
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "ju" = (
 /obj/effect/decal/fakelattice{
@@ -716,13 +716,13 @@
 	pixel_x = -9;
 	pixel_y = 1
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "jH" = (
 /obj/structure/closet/crate/coffin,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/mob_spawn/human/corpse/pirate,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "jL" = (
 /obj/structure/disposalpipe/broken,
@@ -741,7 +741,7 @@
 	})
 "kh" = (
 /mob/living/simple_animal/crab,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "kv" = (
 /obj/machinery/power/terminal,
@@ -755,7 +755,7 @@
 /turf/open/floor/pod)
 "ky" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "kK" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -811,7 +811,7 @@
 "kX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "lc" = (
 /obj/machinery/atmospherics/components/binary/pump{
@@ -884,7 +884,7 @@
 	pixel_y = -6
 	},
 /obj/item/stack/cable_coil/cut/blue,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mi" = (
 /obj/effect/decal/cleanable/blood/old{
@@ -905,15 +905,15 @@
 	pixel_x = 3;
 	pixel_y = 9
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "mm" = (
 /obj/machinery/jukebox/disco,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "mU" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "nw" = (
 /mob/living/simple_animal/hostile/carp{
@@ -924,7 +924,7 @@
 	desc = "A ferociously cute, fang-less creature that resembles a fish."
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "nz" = (
 /obj/item/stack/rods{
@@ -991,7 +991,7 @@
 "oy" = (
 /mob/living/simple_animal/crab,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "oz" = (
 /obj/effect/decal/cleanable/glass{
@@ -1040,7 +1040,7 @@
 /obj/structure/bed{
 	icon_state = "dirty_mattress"
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "ph" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1127,7 +1127,7 @@
 	pixel_x = -14;
 	pixel_y = 14
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "qS" = (
 /obj/structure/railing{
@@ -1184,7 +1184,7 @@
 "rH" = (
 /obj/structure/closet/crate/silvercrate,
 /obj/item/clothing/neck/cloak/qm,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "rI" = (
 /obj/effect/turf_decal/siding/wood{
@@ -1276,7 +1276,7 @@
 	pixel_y = -22;
 	pixel_x = -20
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "sH" = (
 /obj/structure/window/reinforced,
@@ -1406,7 +1406,7 @@
 	pixel_x = -15;
 	pixel_y = -5
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "uM" = (
 /obj/structure/fermenting_barrel{
@@ -1422,7 +1422,7 @@
 	pixel_y = -3
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "uR" = (
 /obj/effect/turf_decal/industrial/warning,
@@ -1517,7 +1517,7 @@
 "wc" = (
 /obj/structure/closet/crate/coffin,
 /obj/effect/mob_spawn/human/corpse/pirate,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "wh" = (
 /obj/effect/turf_decal/techfloor{
@@ -1617,10 +1617,10 @@
 "xt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "xu" = (
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "xy" = (
 /obj/effect/decal/cleanable/blood{
@@ -1994,7 +1994,7 @@
 "Dk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Ds" = (
 /obj/structure/chair/plastic{
@@ -2033,7 +2033,7 @@
 	})
 "DK" = (
 /obj/structure/closet/crate/secure/loot,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "DS" = (
 /obj/structure/railing/corner,
@@ -2168,18 +2168,18 @@
 	pixel_x = 5;
 	pixel_y = 10
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "EZ" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ff" = (
 /obj/item/stack/ore/salvage/scraptitanium{
 	pixel_x = -12;
 	pixel_y = 11
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Fu" = (
 /turf/open/water/beach,
@@ -2384,7 +2384,7 @@
 	pixel_x = -8;
 	pixel_y = 16
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "IC" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -2519,7 +2519,7 @@
 /obj/effect/decal/fakelattice{
 	icon_state = "lattice-46"
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Kk" = (
 /obj/effect/turf_decal/techfloor{
@@ -2539,11 +2539,11 @@
 	})
 "Kq" = (
 /obj/item/clothing/under/costume/sailor,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ks" = (
 /obj/structure/flora/stump,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ky" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2640,7 +2640,7 @@
 "Lx" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "LA" = (
 /obj/machinery/light/floor,
@@ -2656,7 +2656,7 @@
 	pixel_x = 5;
 	pixel_y = 6
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "LV" = (
 /obj/effect/turf_decal/industrial/loading,
@@ -2807,7 +2807,7 @@
 	pixel_x = -5;
 	pixel_y = 16
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Of" = (
 /mob/living/simple_animal/beachcarp/salmon{
@@ -2865,7 +2865,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Pz" = (
 /obj/structure/sign/poster/ripped{
@@ -2879,7 +2879,7 @@
 	})
 "PH" = (
 /obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "PU" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
@@ -2903,7 +2903,7 @@
 	name = "Cowskin chair"
 	},
 /obj/effect/mob_spawn/human/corpse/pirate/ranged,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Qi" = (
 /turf/template_noop,
@@ -3026,7 +3026,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "RQ" = (
 /obj/structure/closet/crate/goldcrate,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "RS" = (
 /obj/effect/turf_decal/number/one{
@@ -3099,7 +3099,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Tw" = (
 /mob/living/simple_animal/crab/kreb,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "TF" = (
 /obj/structure/railing/corner{
@@ -3157,7 +3157,7 @@
 	pixel_x = 9;
 	pixel_y = -11
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ux" = (
 /obj/machinery/jukebox,
@@ -3272,7 +3272,7 @@
 	pixel_x = -11;
 	pixel_y = -12
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Vt" = (
 /obj/structure/grille/broken,
@@ -3328,7 +3328,7 @@
 	pixel_x = -11;
 	pixel_y = 6
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "VX" = (
 /obj/structure/table/reinforced,
@@ -3341,7 +3341,7 @@
 	})
 "Wa" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Wi" = (
 /turf/open/floor/plating,
@@ -3350,7 +3350,7 @@
 /obj/structure/destructible/tribal_torch/lit{
 	pixel_x = 10
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/cave/explored)
 "Wp" = (
 /turf/closed/wall/mineral/plastitanium,
@@ -3592,7 +3592,7 @@
 /obj/effect/turf_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "YG" = (
 /obj/effect/overlay/palmtree_l,

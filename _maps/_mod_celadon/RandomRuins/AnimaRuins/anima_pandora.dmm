@@ -8,7 +8,7 @@
 "aD" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/food/grown/mushroom/chanterelle,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "aL" = (
 /obj/item/ammo_casing/spent{
@@ -69,7 +69,7 @@
 /turf/open/floor/wood/waste,
 /area/ruin/anima)
 "dh" = (
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "dH" = (
 /turf/closed/indestructible/riveted/hierophant,
@@ -191,7 +191,7 @@
 	pixel_x = 7;
 	pixel_y = 10
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "jq" = (
 /obj/structure/table/wood,
@@ -211,7 +211,7 @@
 	pixel_x = 6;
 	pixel_y = 7
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "jF" = (
 /obj/structure/table/wood,
@@ -317,7 +317,7 @@
 	pixel_x = -10;
 	pixel_y = -5
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "mI" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -462,12 +462,12 @@
 	icon_state = "pistol-brass-empty"
 	},
 /obj/effect/mob_spawn/human/corpse/vigilitas_private,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "tF" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/food/grown/mushroom/jupitercup,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "tR" = (
 /obj/structure/closet/crate/grave,
@@ -597,7 +597,7 @@
 /mob/living/simple_animal/hostile/human/skeleton{
 	desc = "A villager resurrected by the power of an unknown deity, eternally seeking vengeance for its people."
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Bv" = (
 /obj/structure/bonfire,
@@ -701,7 +701,7 @@
 /area/ruin/anima)
 "Eb" = (
 /obj/item/gun/ballistic/automatic/pistol/commander/no_mag,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Eo" = (
 /obj/structure/barricade/wooden,
@@ -761,7 +761,7 @@
 /obj/item/ammo_casing/spent{
 	icon_state = "pistol-brass-empty"
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Gx" = (
 /obj/item/ammo_casing/spent{
@@ -777,7 +777,7 @@
 	pixel_x = 6;
 	pixel_y = -9
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Hl" = (
 /obj/item/ammo_casing/spent{
@@ -811,7 +811,7 @@
 "HE" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/food/grown/mushroom/libertycap,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Ih" = (
 /obj/structure/fluff/divine/defensepylon,
@@ -931,7 +931,7 @@
 	pixel_x = 6;
 	pixel_y = -9
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Mp" = (
 /obj/structure/fluff/divine/powerpylon,
@@ -985,7 +985,7 @@
 	pixel_x = -11;
 	pixel_y = -5
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "NA" = (
 /turf/open/floor/plating/asteroid/wasteplanet/lit,
@@ -1039,7 +1039,7 @@
 	pixel_x = 5;
 	pixel_y = 11
 	},
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "OO" = (
 /obj/structure/table/reinforced,
@@ -1085,7 +1085,7 @@
 /area/ruin/anima)
 "Qd" = (
 /obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Qj" = (
 /obj/structure/bonfire,
@@ -1240,7 +1240,7 @@
 "Ww" = (
 /obj/machinery/hydroponics/soil,
 /obj/item/food/grown/mushroom/plumphelmet,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Xd" = (
 /obj/structure/table/reinforced,
@@ -1297,7 +1297,7 @@
 /area/ruin/anima)
 "Yn" = (
 /obj/item/scythe,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Yw" = (
 /obj/item/gun/ballistic/automatic/pistol/commander/no_mag,
@@ -1325,7 +1325,7 @@
 /area/ruin/anima)
 "Zg" = (
 /obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/dirt/old/waste,
+/turf/open/floor/plating/asteroid/dirt,
 /area/ruin/anima)
 "Zq" = (
 /turf/closed/wall/mineral/titanium,

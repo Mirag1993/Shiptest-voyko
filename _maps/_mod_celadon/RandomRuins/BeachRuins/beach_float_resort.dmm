@@ -193,7 +193,7 @@
 /area/ruin/beach/float_resort/villa)
 "fz" = (
 /obj/structure/bonfire/prelit,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -215,7 +215,7 @@
 /area/ruin/beach/float_resort/villa)
 "gQ" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hm" = (
 /obj/structure/flora/tree/palm{
@@ -241,7 +241,7 @@
 /area/ruin/beach/float_resort/villa)
 "iS" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -277,7 +277,7 @@
 "iX" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/item/circuitboard/machine/autolathe,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "iZ" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -416,10 +416,6 @@
 	},
 /turf/open/water/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
-"nD" = (
-/obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/beach/lit,
-/area/overmap_encounter/planetoid/beachplanet/explored)
 "og" = (
 /obj/structure/flora/tree/palm{
 	icon_state = "palm2"
@@ -475,14 +471,14 @@
 /area/ruin/beach/float_resort)
 "pM" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "pY" = (
 /obj/item/tank/internals/plasma{
 	pixel_x = -6;
 	pixel_y = 25
 	},
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "qe" = (
 /obj/effect/turf_decal/sand/plating,
@@ -617,7 +613,7 @@
 	},
 /area/ruin/beach/float_resort/villa)
 "uk" = (
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -660,7 +656,7 @@
 "we" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wn" = (
 /obj/structure/chair/comfy/grey/directional/south,
@@ -678,7 +674,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wx" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "wE" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
@@ -908,7 +904,7 @@
 /area/ruin/beach/float_resort)
 "Ee" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Ey" = (
 /obj/structure/table/wood,
@@ -956,11 +952,11 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "FH" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Gb" = (
 /obj/item/tank/internals/plasma,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Gv" = (
 /obj/effect/turf_decal/sand/plating,
@@ -1005,7 +1001,7 @@
 /area/ruin/beach/float_resort)
 "HQ" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1118,7 +1114,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "KO" = (
 /obj/structure/destructible/tribal_torch/lit,
-/turf/open/floor/plating/dirt{
+/turf/open/floor/plating/asteroid/dirt{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/beachplanet/explored)
@@ -1205,7 +1201,7 @@
 	},
 /area/ruin/beach/float_resort)
 "OE" = (
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "OH" = (
 /turf/open/floor/wood{
@@ -1223,7 +1219,7 @@
 /area/ruin/beach/float_resort)
 "OT" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Pc" = (
 /obj/effect/decal/cleanable/dirt/dust{
@@ -1248,10 +1244,6 @@
 	light_range = 2
 	},
 /area/ruin/beach/float_resort)
-"Qs" = (
-/obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/grass/beach/lit,
-/area/overmap_encounter/planetoid/beachplanet/explored)
 "Qx" = (
 /obj/structure/railing/wood{
 	dir = 8
@@ -1364,19 +1356,11 @@
 	light_range = 2
 	},
 /area/ruin/beach/float_resort)
-"Vl" = (
-/turf/open/floor/plating/grass/beach/lit,
-/area/overmap_encounter/planetoid/beachplanet/explored)
 "Vr" = (
 /turf/open/floor/wood{
 	light_range = 2
 	},
 /area/ruin/beach/float_resort)
-"Vz" = (
-/turf/open/floor/plating/dirt/dark{
-	light_range = 2
-	},
-/area/overmap_encounter/planetoid/beachplanet/explored)
 "VM" = (
 /obj/item/shovel/spade,
 /turf/open/floor/plating/asteroid/sand/lit,
@@ -1404,7 +1388,7 @@
 /area/ruin/beach/float_resort)
 "WV" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/beach/lit,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "Xf" = (
 /obj/structure/table/wood,
@@ -2501,7 +2485,7 @@ Rt
 Rt
 Rt
 Zp
-Vl
+OE
 Rt
 YP
 YP
@@ -2550,10 +2534,10 @@ ED
 ED
 zO
 Rt
-Vl
+OE
 Rt
 Rt
-nD
+gQ
 kw
 Rt
 Rt
@@ -2606,7 +2590,7 @@ bA
 Rt
 Rt
 op
-Vl
+OE
 JQ
 Fu
 Rt
@@ -2656,14 +2640,14 @@ uk
 Rt
 Rt
 hm
-nD
+gQ
 Rt
 Rt
 wx
-Vl
+OE
 Yr
-Vl
-Vl
+OE
+OE
 YP
 YP
 YP
@@ -2713,10 +2697,10 @@ kw
 Rt
 Rt
 OT
-Vl
-nD
-Vl
-Vl
+OE
+gQ
+OE
+OE
 OT
 YP
 YP
@@ -2769,7 +2753,7 @@ xO
 xO
 xO
 Tr
-Vl
+OE
 gQ
 pM
 YP
@@ -2823,7 +2807,7 @@ Tr
 Tr
 Tr
 Tr
-Vl
+OE
 OE
 Ee
 YP
@@ -2879,8 +2863,8 @@ Tr
 Tr
 OT
 OE
-Vz
-Vl
+uk
+OE
 YP
 YP
 "}
@@ -2932,9 +2916,9 @@ Tr
 Tr
 Tr
 wx
-Vz
-Vz
-Vl
+uk
+uk
+OE
 YP
 YP
 "}
@@ -2985,10 +2969,10 @@ Tr
 Tr
 Tr
 Tr
-Vl
 OE
-Vz
-Vz
+OE
+uk
+uk
 YP
 YP
 "}
@@ -3039,11 +3023,11 @@ Tr
 Tr
 Tr
 Tr
-Vl
 OE
-Vz
-Vz
-Vl
+OE
+uk
+uk
+OE
 YP
 "}
 (30,1,1) = {"
@@ -3085,7 +3069,7 @@ uk
 uk
 uk
 Rt
-Vl
+OE
 Tr
 Dc
 Tr
@@ -3093,11 +3077,11 @@ Tr
 Tr
 Tr
 Tr
-Vz
+uk
 OE
 OE
-Vz
-Vl
+uk
+OE
 YP
 "}
 (31,1,1) = {"
@@ -3148,9 +3132,9 @@ Tr
 Tr
 Tr
 HQ
-Vl
+OE
 wx
-Vz
+uk
 OT
 YP
 "}
@@ -3191,8 +3175,8 @@ Rt
 zf
 Rt
 kw
-Vl
-Vl
+OE
+OE
 Fu
 Tr
 Dc
@@ -3201,11 +3185,11 @@ Rt
 Tr
 Tr
 Tr
-Qs
-Vl
-Vl
-Vl
-Vl
+pM
+OE
+OE
+OE
+OE
 YP
 "}
 (33,1,1) = {"
@@ -3243,11 +3227,11 @@ Qx
 Mw
 Rt
 Rt
-Vl
-Qs
+OE
+pM
 OT
-Vl
-Vl
+OE
+OE
 op
 ed
 xO
@@ -3257,9 +3241,9 @@ xO
 Tr
 Fu
 iX
-Vl
-Qs
-Vl
+OE
+pM
+OE
 YP
 "}
 (34,1,1) = {"
@@ -3297,23 +3281,23 @@ TF
 Rt
 Rt
 op
-Vl
+OE
 wx
-Vl
+OE
 JQ
-Vl
-Vl
+OE
+OE
 Gb
 pY
-Vl
-nD
-Vl
+OE
+gQ
+OE
 Rt
 Rt
 OT
-Vl
+OE
 WV
-Vl
+OE
 YP
 "}
 (35,1,1) = {"
@@ -3350,23 +3334,23 @@ Rs
 Rt
 Fu
 Rt
-Vl
+OE
 OT
-Vl
-Vl
-Vl
+OE
+OE
+OE
 we
-Vl
-Vl
-Qs
+OE
+OE
+pM
 iS
-Vl
+OE
 OT
-nD
-Vl
+gQ
+OE
 OT
-nD
-Vl
+gQ
+OE
 FH
 YP
 "}
@@ -3410,18 +3394,18 @@ YP
 YP
 YP
 YP
-Vl
-Vl
-Vl
-Vl
-Vl
-Vl
-Qs
-Vl
-Vl
-Vz
-Vz
-Vl
+OE
+OE
+OE
+OE
+OE
+OE
+pM
+OE
+OE
+uk
+uk
+OE
 YP
 "}
 (37,1,1) = {"
@@ -3469,12 +3453,12 @@ YP
 YP
 YP
 YP
-Vl
-Vl
-Vl
-nD
-Vl
-Vz
+OE
+OE
+OE
+gQ
+OE
+uk
 YP
 YP
 "}

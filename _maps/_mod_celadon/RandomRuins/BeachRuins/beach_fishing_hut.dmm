@@ -138,7 +138,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hq" = (
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "hY" = (
 /obj/structure/railing/wood{
@@ -672,7 +672,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "DS" = (
 /obj/machinery/light/small/directional/west,
@@ -791,7 +791,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "HF" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/grass/beach,
+/turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "HW" = (
 /obj/effect/turf_decal/corner/opaque/pink/diagonal,

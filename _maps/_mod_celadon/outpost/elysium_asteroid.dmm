@@ -2861,7 +2861,7 @@
 /area/outpost/cargo/faction/solfed)
 "hw" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/outpost/hallway/central)
 "hx" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3132,7 +3132,7 @@
 /area/outpost/cargo/office)
 "id" = (
 /obj/effect/spawner/random/food_or_drink/ration,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/outpost/hallway/central)
 "ie" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3651,7 +3651,7 @@
 /turf/open/floor/plasteel/tech/techmaint,
 /area/outpost/fraction/inteq)
 "jp" = (
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/outpost/hallway/central)
 "jq" = (
 /obj/structure/flora/rock{
@@ -7417,7 +7417,7 @@
 /obj/structure/flora/rock{
 	icon_state = "basalt2"
 	},
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/outpost/hallway/central)
 "sL" = (
 /obj/structure/railing/wood{
@@ -12806,7 +12806,7 @@
 /area/outpost/operations)
 "FS" = (
 /obj/effect/spawner/random/decoration/glowstick,
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/outpost/hallway/central)
 "FT" = (
 /obj/structure/chair/office{
@@ -13829,7 +13829,7 @@
 /area/outpost/hallway/central)
 "Ix" = (
 /obj/effect/spawner/random/structure/crate_abandoned,
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/outpost/hallway/central)
 "Iy" = (
 /obj/structure/window/reinforced/spawner/west,
@@ -14935,7 +14935,7 @@
 /area/outpost/cargo/faction/all/zone_1)
 "Lb" = (
 /mob/living/simple_animal/hostile/netherworld/migo,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/outpost/hallway/central)
 "Lc" = (
 /turf/open/lava/smooth/lava_land_surface,
@@ -18817,7 +18817,7 @@
 /area/outpost/maintenance/fore)
 "UH" = (
 /obj/structure/flora/driftlog,
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/outpost/hallway/central)
 "UI" = (
 /obj/structure/railing/corner{
@@ -19262,7 +19262,7 @@
 /turf/closed/indestructible/reinforced,
 /area/outpost/fraction/nanotrasen)
 "VE" = (
-/turf/open/floor/plating/dirt/rockplanet,
+/turf/open/floor/plating/asteroid/dirt/rockplanet,
 /area/outpost/hallway/central)
 "VF" = (
 /obj/effect/turf_decal/siding/wood{
@@ -19890,7 +19890,7 @@
 	desc = "Here lies our great brother and infamous pirate"
 	},
 /obj/effect/spawner/random/clothing/costume,
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/outpost/hallway/central)
 "Xo" = (
 /obj/effect/turf_decal/trimline/opaque/beige/filled/warning{
