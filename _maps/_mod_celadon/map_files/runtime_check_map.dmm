@@ -13165,7 +13165,7 @@
 /obj/effect/turf_decal/syndicateemblem,
 /obj/effect/turf_decal/techfloor,
 /obj/effect/turf_decal/trimline,
-/obj/effect/turf_decal/weather,
+/obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/zoo,
 /obj/effect/warp_cube,
 /obj/effect/wind,

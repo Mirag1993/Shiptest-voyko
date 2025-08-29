@@ -324,10 +324,6 @@
 /turf/open/floor/plating/asteroid/rockplanet/wet/lit,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "fa" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/obj/effect/turf_decal/weather/dirt,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "fd" = (
@@ -647,12 +643,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/rockplanet/nanotrasen)
-"lb" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
 "ln" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/rust,
@@ -802,10 +792,6 @@
 /turf/open/floor/engine,
 /area/ruin/rockplanet/nanotrasen)
 "mW" = (
-/obj/effect/turf_decal/weather/dirt,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -985,10 +971,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/rockplanet/nanotrasen)
-"pt" = (
-/obj/effect/turf_decal/weather/dirt,
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
 "pv" = (
 /obj/effect/turf_decal/industrial/traffic{
 	dir = 1
@@ -1446,12 +1428,6 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/rockplanet/nanotrasen)
-"xA" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
 "xH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -1516,12 +1492,6 @@
 /obj/structure/flora/rock,
 /turf/open/floor/plating/asteroid/rockplanet/lit,
 /area/overmap_encounter/planetoid/rockplanet/explored)
-"zb" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
 "zk" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/structure/railing,
@@ -1581,12 +1551,6 @@
 	},
 /turf/open/floor/wood,
 /area/ruin/rockplanet/nanotrasen)
-"AK" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
 "AV" = (
 /obj/machinery/door/airlock/mining{
 	dir = 4
@@ -1785,12 +1749,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/rockplanet/nanotrasen)
-"DV" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
 "DW" = (
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = 32
@@ -1888,9 +1846,6 @@
 /obj/structure/flora/ausbushes/reedbush{
 	pixel_x = -14;
 	pixel_y = 7
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
 	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/rockplanet/explored)
@@ -1990,15 +1945,6 @@
 /obj/structure/flora/rock/asteroid{
 	icon_state = "asteroid1";
 	pixel_y = 12
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/rockplanet/explored)
-"Gr" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
 	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/rockplanet/explored)
@@ -2156,12 +2102,6 @@
 /area/ruin/rockplanet/nanotrasen)
 "Kc" = (
 /obj/structure/flora/rock/pile,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/dirt/jungle/wasteland,
@@ -2352,9 +2292,6 @@
 "OQ" = (
 /obj/structure/flora/rock/asteroid{
 	icon_state = "asteroid2"
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
 	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/rockplanet/explored)
@@ -2820,9 +2757,6 @@
 	pixel_x = 12;
 	pixel_y = 6
 	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "YN" = (
@@ -3224,7 +3158,7 @@ jj
 UL
 mp
 pb
-zb
+ho
 zo
 zo
 zo
@@ -3269,7 +3203,7 @@ eX
 Ci
 qX
 Ga
-Gr
+ho
 ho
 ho
 zo
@@ -3313,12 +3247,12 @@ zo
 zo
 Qx
 YN
-zb
 ho
 ho
 ho
 ho
-lb
+ho
+ho
 Jb
 zo
 Eo
@@ -3359,11 +3293,11 @@ zo
 zo
 eX
 dh
-xA
 ho
 ho
 ho
-pt
+ho
+ho
 Sf
 Sf
 zo
@@ -3409,7 +3343,7 @@ OQ
 ho
 TH
 ho
-lb
+ho
 td
 fa
 zo
@@ -3451,10 +3385,10 @@ zo
 zo
 Qx
 dU
-AK
 ho
 ho
-pt
+ho
+ho
 kz
 Ci
 mW
@@ -3499,8 +3433,8 @@ eX
 Ci
 cR
 Fm
-DV
-lb
+ho
+ho
 Ci
 Kc
 YF

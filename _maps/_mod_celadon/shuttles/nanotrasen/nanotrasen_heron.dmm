@@ -3922,12 +3922,6 @@
 /turf/open/floor/plasteel/patterned,
 /area/ship/crew/toilet)
 "nT" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 10
-	},
 /obj/structure/flora/ausbushes/reedbush{
 	pixel_x = -6;
 	pixel_y = 18
