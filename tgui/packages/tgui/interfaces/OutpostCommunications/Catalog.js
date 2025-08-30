@@ -21,7 +21,7 @@ import { searchForSupplies } from './helpers';
 export const CargoCatalog = (props) => {
   const { act, data } = useBackend();
 
-  const { self_paid, app_cost } = data;
+  const { self_paid, app_cost, blockade } = data;
 
   const supplies = Object.values(data.supplies);
 
@@ -62,17 +62,25 @@ export const CargoCatalog = (props) => {
               content="Clear"
               onClick={() => setCart([])}
             />
-            <Button
-              color="green"
-              content="Purchase"
-              onClick={() => {
-                act('purchase', {
-                  cart: cart,
-                  total: cartTotal,
-                });
-                setCart([]);
-              }}
-            />
+            {blockade ? (
+              <Button
+                icon="triangle-exclamation"
+                color="yellow"
+                content="Purchase Unavailable"
+              />
+            ) : (
+              <Button
+                color="green"
+                content="Purchase"
+                onClick={() => {
+                  act('purchase', {
+                    cart: cart,
+                    total: cartTotal,
+                  });
+                  setCart([]);
+                }}
+              />
+            )}
           </>
         </>
         {cart.length !== 0 ? (
