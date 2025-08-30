@@ -1008,7 +1008,7 @@
 /area/ruin/beach/oceantown/bar)
 "je" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal{
-	integrity = 942
+	atom_integrity = 942
 	},
 /area/ruin/beach/oceantown)
 "jf" = (
@@ -1439,7 +1439,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "mW" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal{
-	integrity = 573
+	atom_integrity = 573
 	},
 /area/ruin/beach/oceantown)
 "mX" = (
@@ -1796,7 +1796,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "qG" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal{
-	integrity = 525
+	atom_integrity = 525
 	},
 /area/ruin/beach/oceantown)
 "qH" = (
@@ -5062,7 +5062,7 @@
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "UM" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal{
-	integrity = 751
+	atom_integrity = 751
 	},
 /area/ruin/beach/oceantown)
 "UN" = (
