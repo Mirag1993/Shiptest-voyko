@@ -81,7 +81,7 @@
 /area/ruin/anima)
 "eB" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "fF" = (
 /obj/effect/decal/remains/human,
@@ -285,7 +285,7 @@
 /area/ruin/anima)
 "mb" = (
 /obj/structure/destructible/tribal_torch,
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "mr" = (
 /obj/structure/table/wood,
@@ -321,7 +321,7 @@
 /area/ruin/anima)
 "mI" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "nq" = (
 /obj/item/stack/sheet/bone,
@@ -519,7 +519,7 @@
 /area/ruin/anima)
 "wA" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "xc" = (
 /obj/structure/closet/crate/necropolis/tendril,
@@ -604,7 +604,7 @@
 /turf/open/floor/wood/waste,
 /area/ruin/anima)
 "BB" = (
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "BL" = (
 /obj/structure/cable{
@@ -676,7 +676,7 @@
 /area/ruin/anima)
 "DF" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "DQ" = (
 /obj/structure/railing/corner/wood{
@@ -1251,7 +1251,7 @@
 /mob/living/simple_animal/hostile/human/skeleton{
 	desc = "A villager resurrected by the power of an unknown deity, eternally seeking vengeance for its people."
 	},
-/turf/open/floor/plating/grass/wasteplanet,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/ruin/anima)
 "Xx" = (
 /obj/structure/table/wood,
