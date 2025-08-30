@@ -1,8 +1,7 @@
-import { createSearch } from 'common/string';
+import { Box, Button, Flex, Input, Section, Table, Tabs } from 'tgui-core/components';
+
 import { useBackend, useLocalState } from '../backend';
-import { Box, Input, Table, Button, Tabs, Flex, Section } from '../components';
 import { Window } from '../layouts';
-import { Fragment } from 'inferno';
 
 const MAX_SEARCH_RESULTS = 25;
 
@@ -13,7 +12,7 @@ export const AdminVerbs = (_, context) => {
   const [selectedCategory, setSelectedCategory] = useLocalState(
     context,
     'category',
-    'Admin'
+    'Admin',
   );
   const testSearch = createSearch(searchText, (item) => {
     return item.name;
@@ -33,7 +32,7 @@ export const AdminVerbs = (_, context) => {
         <Section
           title={<Box inline>Admin Panel</Box>}
           buttons={
-            <Fragment>
+            <>
               Поиск
               <Input
                 autoFocus
@@ -43,9 +42,9 @@ export const AdminVerbs = (_, context) => {
                   event.preventDefault();
                   setSearchText('');
                   act('run', {
-                    'name': items[0].name,
-                    'desc': items[0].desc,
-                    'verb': items[0].verb,
+                    name: items[0].name,
+                    desc: items[0].desc,
+                    verb: items[0].verb,
                   });
                 }}
                 mx={1}
@@ -55,7 +54,7 @@ export const AdminVerbs = (_, context) => {
                 content={compactMode ? 'Компактно' : 'Детально'}
                 onClick={() => act('compact_toggle')}
               />
-            </Fragment>
+            </>
           }
         >
           <Flex>
@@ -101,9 +100,9 @@ const VerbList = (props, context) => {
               selected={obj.selected}
               onClick={() =>
                 act('run', {
-                  'name': obj.name,
-                  'desc': obj.desc,
-                  'verb': obj.verb,
+                  name: obj.name,
+                  desc: obj.desc,
+                  verb: obj.verb,
                 })
               }
             />
@@ -124,9 +123,9 @@ const VerbList = (props, context) => {
           content={obj.name}
           onClick={() =>
             act('run', {
-              'name': obj.name,
-              'desc': obj.desc,
-              'verb': obj.verb,
+              name: obj.name,
+              desc: obj.desc,
+              verb: obj.verb,
             })
           }
         />

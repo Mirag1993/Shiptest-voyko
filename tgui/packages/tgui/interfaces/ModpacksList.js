@@ -1,13 +1,14 @@
-import { useBackend, useLocalState } from '../backend';
-import { Window } from '../layouts';
 import {
   Box,
-  Section,
-  Input,
-  Stack,
   Collapsible,
+  Input,
   LabeledList,
-} from '../components';
+  Section,
+  Stack,
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
+import { Window } from '../layouts';
 
 export const ModpacksList = (props, context) => {
   return (
@@ -46,7 +47,7 @@ export const ModpacksListContent = (props, context) => {
           scrollable
           title={
             searchText.length > 0 ? (
-              <span>Результаты поиска "{searchText}":</span>
+              <span>Результаты поиска {searchText}:</span>
             ) : (
               <span>Все модификации &mdash; {modpacks.length}</span>
             )
@@ -68,7 +69,7 @@ export const ModpacksListContent = (props, context) => {
                         modpack.author
                           .toLowerCase()
                           .includes(searchText.toLowerCase())
-                      : true)
+                      : true),
                 )
                 .map((modpack) => (
                   <Collapsible

@@ -13,6 +13,13 @@ import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { logger } from '../logging';
 
+const findShipByRef = (ship_list, ship_ref) => {
+  for (let i = 0; i < ship_list.length; i++) {
+    if (ship_list[i].ref === ship_ref) return ship_list[i];
+  }
+  return null;
+};
+
 export const ShipSelect = (props) => {
   const { act, data } = useBackend();
 

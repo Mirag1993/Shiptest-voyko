@@ -6,8 +6,8 @@ import {
   Stack,
   Table,
   Tooltip,
-} from '../components';
-import { BooleanLike } from 'common/react';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -96,8 +96,8 @@ const LanguageNameAndDesc = (props: LanguageProps) => {
   );
 };
 
-const LanguageRow = (props: LanguageProps, context) => {
-  const { act, data } = useBackend<Data>(context);
+const LanguageRow = (props: LanguageProps) => {
+  const { act, data } = useBackend<Data>();
   const { is_living, admin_mode } = data;
   const { language } = props;
 

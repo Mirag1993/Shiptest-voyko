@@ -324,8 +324,8 @@
 				left_part += output_ui_materials()
 			if("search")
 				left_part += output_ui_search()
-			if("direction")
-				left_part += output_ui_direction()
+			// if("direction")
+			// 	left_part += output_ui_direction() - Где прок? Хз
 	dat = {"<html>
 			<head>
 			<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>

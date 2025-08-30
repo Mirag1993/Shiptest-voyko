@@ -1,7 +1,8 @@
+
+import { Button, Icon, Input, Section, Stack } from 'tgui-core/components';
+
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
-import { Button, Section, Input, Stack, Icon } from '../components';
-import { capitalize } from 'common/string';
 
 export const EmotePanel = (props, context) => {
   return (
@@ -21,19 +22,45 @@ export const EmotePanelContent = (props, context) => {
 
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
 
-  const [filterVisible, toggleVisualFilter] = useLocalState(context, 'filterVisible', '');
+  const [filterVisible, toggleVisualFilter] = useLocalState(
+    context,
+    'filterVisible',
+    '',
+  );
 
-  const [filterAudible, toggleAudibleFilter] = useLocalState(context, 'filterAudible', '');
+  const [filterAudible, toggleAudibleFilter] = useLocalState(
+    context,
+    'filterAudible',
+    '',
+  );
 
-  const [filterSound, toggleSoundFilter] = useLocalState(context, 'filterSound', '');
+  const [filterSound, toggleSoundFilter] = useLocalState(
+    context,
+    'filterSound',
+    '',
+  );
 
-  const [filterHands, toggleHandsFilter] = useLocalState(context, 'filterHands', '');
+  const [filterHands, toggleHandsFilter] = useLocalState(
+    context,
+    'filterHands',
+    '',
+  );
 
-  const [filterTargettable, toggleTargettableFilter] = useLocalState(context, 'filterTargettable', '');
+  const [filterTargettable, toggleTargettableFilter] = useLocalState(
+    context,
+    'filterTargettable',
+    '',
+  );
 
   const [useTarget, toggleUseTarget] = useLocalState(context, 'useTarget', '');
 
-  let searchBar = <Input placeholder="Искать эмоцию..." fluid onInput={(e, value) => setSearchText(value)} />;
+  let searchBar = (
+    <Input
+      placeholder="Искать эмоцию..."
+      fluid
+      onInput={(e, value) => setSearchText(value)}
+    />
+  );
 
   return (
     <>
@@ -89,9 +116,17 @@ export const EmotePanelContent = (props, context) => {
         <Section
           fill
           scrollable
-          title={searchText.length > 0 ? `Результаты поиска "${searchText}"` : `Все эмоции`}
+          title={
+            searchText.length > 0
+              ? `Результаты поиска "${searchText}"`
+              : `Все эмоции`
+          }
           buttons={
-            <Button icon="crosshairs" selected={useTarget} onClick={() => toggleUseTarget(!useTarget)}>
+            <Button
+              icon="crosshairs"
+              selected={useTarget}
+              onClick={() => toggleUseTarget(!useTarget)}
+            >
               Выбирать цель
             </Button>
           }
@@ -103,14 +138,18 @@ export const EmotePanelContent = (props, context) => {
                   (emote) =>
                     emote.key &&
                     (searchText.length > 0
-                      ? emote.key.toLowerCase().includes(searchText.toLowerCase()) ||
-                        emote.name.toLowerCase().includes(searchText.toLowerCase())
+                      ? emote.key
+                          .toLowerCase()
+                          .includes(searchText.toLowerCase()) ||
+                        emote.name
+                          .toLowerCase()
+                          .includes(searchText.toLowerCase())
                       : true) &&
                     (filterVisible ? emote.visible : true) &&
                     (filterAudible ? emote.audible : true) &&
                     (filterSound ? emote.sound : true) &&
                     (filterHands ? emote.hands : true) &&
-                    (filterTargettable ? emote.targettable : true)
+                    (filterTargettable ? emote.targettable : true),
                 )
                 .map((emote) => (
                   <Button

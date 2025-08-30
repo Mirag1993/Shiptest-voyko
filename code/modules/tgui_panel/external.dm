@@ -73,10 +73,10 @@
 		context = "verb/fix_tgui_panel")
 */
 
-/client/verb/refresh_tgui()
-	set name = "Refresh TGUI"
-	set category = "OOC"
+// /client/verb/refresh_tgui()
+// 	set name = "Refresh TGUI"
+// 	set category = "OOC"
 
-	for(var/window_id in tgui_windows)
-		var/datum/tgui_window/window = tgui_windows[window_id]
-		window.reinitialize()
+// 	for(var/window_id in tgui_windows)
+// 		var/datum/tgui_window/window = tgui_windows[window_id]
+// 		window.reinitialize()

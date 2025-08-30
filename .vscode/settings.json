@@ -72,5 +72,6 @@
 	"tgstationTestExplorer.project.defines": [
 		"#define ALL_TESTS",
 		"#define CIBUILDING"
-	]
+	],
+	"codium.codeCompletion.enable": true
 }

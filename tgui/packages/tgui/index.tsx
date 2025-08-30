@@ -30,8 +30,8 @@ import './styles/themes/solfed.scss';
 import './styles/themes/inteq.scss';
 import './styles/themes/independent.scss';
 import './styles/themes/nt.scss';
-// [/CELADON-ADD]
 
+// [/CELADON-ADD]
 import { perf } from 'common/perf';
 import { setupGlobalEvents } from 'tgui-core/events';
 import { setupHotKeys } from 'tgui-core/hotkeys';

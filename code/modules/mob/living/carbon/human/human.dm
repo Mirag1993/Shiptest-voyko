@@ -176,7 +176,7 @@
 		dat += "<tr><td><B>Uniform:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_ICLOTHING]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A>"
 		if(w_uniform)
 			var/obj/item/clothing/under/U = w_uniform
-			if (U.can_adjust)
+			if (U.alt_covers_chest)
 				dat += "&nbsp;<A href='byond://?src=[REF(src)];toggle_uniform=[ITEM_SLOT_ICLOTHING]'>Adjust</A>"
 		dat += "</td></tr>"
 

@@ -1,8 +1,8 @@
+import { Section, Table } from 'tgui-core/components';
+
 import { useBackend } from '../../backend';
-import { Section, Table } from '../../components';
 import { Window } from '../../layouts';
 import { Data } from './types';
-
 import { CashSection, UserSection, VendingRow } from './VendingSections';
 
 export const VendingCeladon = (props, context) => {
@@ -37,7 +37,7 @@ export const VendingCeladon = (props, context) => {
         {!all_items_free && (
           <UserSection user={user} miningvendor={miningvendor} />
         )}
-        {((!miningvendor && !all_items_free) &&
+        {!miningvendor && !all_items_free && (
           <CashSection current_amount={current_amount} act={act} />
         )}
         <Section title="Products">
@@ -62,6 +62,3 @@ export const VendingCeladon = (props, context) => {
     </Window>
   );
 };
-
-
-

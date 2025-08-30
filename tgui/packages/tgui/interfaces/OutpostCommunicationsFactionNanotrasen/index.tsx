@@ -1,17 +1,16 @@
 import { useBackend, useSharedState } from '../../backend';
 import {
-  ProgressBar,
-  Section,
-  Tabs,
+  Box,
   Button,
   LabeledList,
-  Box,
+  ProgressBar,
+  Section,
   Stack,
-} from '../../components';
+  Tabs,
+} from 'tgui-core/components';
 import { Window } from '../../layouts';
-
 import { CargoCatalog } from './Catalog';
-import { Mission, Data } from './types';
+import { Data, Mission } from './types';
 
 export const OutpostCommunicationsFactionNanotrasen = (props, context) => {
   const { act, data } = useBackend<Data>(context);

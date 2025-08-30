@@ -17,15 +17,6 @@ export const SpawnersMenu = (props) => {
               level={2}
               buttons={
                 <>
-                  <Tooltip content={spawner.can_load_appearance === 2
-                    ? "This role forces using your characters"
-                    : spawner.can_load_appearance
-                      ? "This role allows using your characters"
-                      : "This role does not allow using your characters"}>
-                    <Icon name="user" mr="4px"
-                      color={spawner.can_load_appearance === 2 ? "yellow"
-                        : spawner.can_load_appearance ? "green" : "red"} />
-                  </Tooltip>
                   <Button
                     content="Jump"
                     onClick={() =>

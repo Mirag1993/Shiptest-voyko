@@ -9,9 +9,6 @@ import {
   Stack,
   Table,
   Tabs,
-  Collapsible,
-} from '../../components';
-import { formatMoney } from '../../format';
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
 

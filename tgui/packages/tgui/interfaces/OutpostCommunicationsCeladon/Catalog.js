@@ -1,6 +1,4 @@
-import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
-import { useBackend, useSharedState } from '../../backend';
 import {
   Box,
   Button,
@@ -11,8 +9,11 @@ import {
   Stack,
   Table,
   Tabs,
-} from '../../components';
-import { formatMoney } from '../../format';
+} from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
+import { flow } from 'tgui-core/fp';
+
+import { useBackend, useSharedState } from '../../backend';
 
 export const CargoCatalog = (props, context) => {
   const { act, data } = useBackend(context);
@@ -24,13 +25,13 @@ export const CargoCatalog = (props, context) => {
   const [activeSupplyName, setActiveSupplyName] = useSharedState(
     context,
     'supply',
-    supplies[0]?.name
+    supplies[0]?.name,
   );
 
   const [searchText, setSearchText] = useSharedState(
     context,
     'search_text',
-    ''
+    '',
   );
 
   const activeSupply =
@@ -125,7 +126,7 @@ export const CargoCatalog = (props, context) => {
                       {formatMoney(
                         (self_paid && !pack.goody) || app_cost
                           ? Math.round(pack.cost * 1.1)
-                          : pack.cost
+                          : pack.cost,
                       )}
                       {' cr'}
                     </Button>
@@ -156,7 +157,7 @@ const searchForSupplies = (supplies, search) => {
     filter(
       (pack) =>
         pack.name?.toLowerCase().includes(search.toLowerCase()) ||
-        pack.desc?.toLowerCase().includes(search.toLowerCase())
+        pack.desc?.toLowerCase().includes(search.toLowerCase()),
     ),
     sortBy((pack) => pack.name),
     (packs) => packs.slice(0, 25),
