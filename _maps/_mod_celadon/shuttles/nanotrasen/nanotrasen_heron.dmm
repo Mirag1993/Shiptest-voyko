@@ -3432,7 +3432,7 @@
 	pixel_y = 8;
 	dir = 1
 	},
-/obj/item/survey_handheld{
+/obj/item/survey_handheld_rnd{
 	pixel_x = -9;
 	pixel_y = -2
 	},

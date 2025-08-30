@@ -168,6 +168,7 @@
 	description = "Big Data, in space!"
 	prereq_ids = list("base")
 	design_ids = list(
+		"survey-handheld-rnd-advanced",	// [CELADON-ADD] - RETURN_SURVEY
 		"design_disk_adv"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -413,6 +414,7 @@
 		"mining",
 		"rdcamera",
 		"seccamera",
+		"survey-handheld-rnd-elite",	// [CELADON-ADD] - RETURN_SURVEY
 		"design_disk_super",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
@@ -443,7 +445,10 @@
 	display_name = "Computerized Recordkeeping"
 	description = "Organized record databases and how they're used."
 	prereq_ids = list("comptech")
-	design_ids = list("secdata", "med_data", "prisonmanage", "vendor", "automated_announcement", "design_disk_elite")
+// [CELADON-ADD] - RETURN_SURVEY
+//	design_ids = list("secdata", "med_data", "prisonmanage", "vendor", "automated_announcement", "design_disk_elite")
+	design_ids = list("secdata", "med_data", "prisonmanage", "vendor", "automated_announcement", "survey-handheld-rnd-exp", "design_disk_elite")
+// [/CELADON-ADD]
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 

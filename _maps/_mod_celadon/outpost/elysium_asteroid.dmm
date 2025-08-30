@@ -5333,7 +5333,7 @@
 /area/outpost/cargo/faction/all)
 "nK" = (
 /obj/structure/closet/crate/goldcrate,
-/obj/item/survey_handheld/elite,
+/obj/item/survey_handheld_rnd/elite,
 /obj/effect/spawner/random/medical/memeorgans,
 /turf/open/floor/concrete,
 /area/outpost/hallway/central)

@@ -2093,7 +2093,7 @@
 /obj/effect/turf_decal/industrial/hatch/yellow,
 /obj/machinery/light/small/directional/east,
 /obj/structure/rack,
-/obj/item/survey_handheld{
+/obj/item/survey_handheld_rnd{
 	pixel_y = 4;
 	pixel_x = -2
 	},

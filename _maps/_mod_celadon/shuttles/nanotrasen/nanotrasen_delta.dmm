@@ -1101,7 +1101,7 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/obj/item/survey_handheld{
+/obj/item/survey_handheld_rnd{
 	pixel_x = -6
 	},
 /obj/item/research_notes/loot/small{

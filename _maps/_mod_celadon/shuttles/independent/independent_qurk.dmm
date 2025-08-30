@@ -465,7 +465,7 @@
 /obj/item/clothing/suit/toggle/labcoat/science,
 /obj/item/clothing/head/bio_hood/scientist,
 /obj/item/cartridge/signal/toxins,
-/obj/item/survey_handheld/advanced,
+/obj/item/survey_handheld_rnd/advanced,
 /obj/machinery/light/directional/south,
 /turf/open/floor/plasteel/mono/white,
 /area/ship/science)
@@ -1110,7 +1110,7 @@
 /obj/item/clothing/suit/toggle/labcoat/science,
 /obj/item/clothing/head/bio_hood/scientist,
 /obj/item/cartridge/signal/toxins,
-/obj/item/survey_handheld/advanced,
+/obj/item/survey_handheld_rnd/advanced,
 /turf/open/floor/plasteel/mono/white,
 /area/ship/science)
 "co" = (
