@@ -31,7 +31,7 @@ export const ShipBrowser = (props, context) => {
     const tfString = String(tf).toLowerCase();
     const factionString = String(faction).toLowerCase();
 
-    // Ищем InteQ корабли (включая полное название)
+    // Ищем InteQ корабли
     if (factionString === 'inteq') {
       return (
         tfString.includes('inteq') ||
@@ -50,7 +50,7 @@ export const ShipBrowser = (props, context) => {
       return tfString.includes('pirates') || tfString.includes('pirate');
     }
 
-    // Ищем Other корабли (все доступные корабли)
+    // Ищем Other корабли
     if (factionString === 'other') {
       return true; // Показываем все корабли
     }

@@ -593,6 +593,31 @@ export const ShipSelect = (props, context) => {
                                 </Box>
                               )}
                             </Flex>
+
+                            {/* Причина отказа */}
+                            {isDenied &&
+                              (() => {
+                                const denialReason =
+                                  data.jobApplicationStatuses?.[
+                                    selectedShip?.ref
+                                  ]?.[job.ref + '_denial_reason'];
+                                return denialReason ? (
+                                  <Box
+                                    style={{
+                                      marginTop: '8px',
+                                      padding: '8px',
+                                      background: 'rgba(231,76,60,0.1)',
+                                      border: '1px solid rgba(231,76,60,0.3)',
+                                      borderRadius: '4px',
+                                      fontSize: '12px',
+                                      color: '#E74C3C',
+                                    }}
+                                  >
+                                    <strong>Причина отказа:</strong>{' '}
+                                    {denialReason}
+                                  </Box>
+                                ) : null;
+                              })()}
                           </Flex.Item>
 
                           {/* Правая часть: кнопки */}
@@ -657,7 +682,7 @@ export const ShipSelect = (props, context) => {
                                           nonce: nonce,
                                         });
                                       }
-                                      // Если pending или denied - ничего не делаем (кнопка заблокирована)
+                                      // Если pending или denied - кнопка заблокирована
                                     }
 
                                     setTimeout(() => setIsJoining(false), 3000);

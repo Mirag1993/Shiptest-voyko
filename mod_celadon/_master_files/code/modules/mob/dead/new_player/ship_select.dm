@@ -90,6 +90,11 @@
 							application_status = "denied"
 
 			.["jobApplicationStatuses"][ship_ref][job_ref] = application_status
+			
+			// [CELADON-ADD] - Add denial reason to job application statuses
+			if(application_status == "denied" && user_application?.denial_reason)
+				.["jobApplicationStatuses"][ship_ref][job_ref + "_denial_reason"] = user_application.denial_reason
+			// [/CELADON-ADD]
 
 	// Добавляем информацию о выбранной фракции (уникальная для каждого пользователя)
 	.["selectedFaction"] = selected_faction_by_ckey[user_ckey]
