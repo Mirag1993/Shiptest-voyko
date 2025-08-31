@@ -2,6 +2,7 @@ import {
   AnimatedNumber,
   Button,
   ByondUi,
+  Divider,
   Knob,
   LabeledControls,
   LabeledList,
@@ -38,6 +39,7 @@ export const HelmConsole = (_props) => {
           params={{
             id: mapRef,
             type: 'map',
+            zoomMode: 'distort',
           }}
         />
       </div>
@@ -47,7 +49,13 @@ export const HelmConsole = (_props) => {
 
 const SharedContent = (_props) => {
   const { act, data } = useBackend();
-  const { isViewer, canRename, shipInfo = [], otherInfo = [] } = data;
+  const {
+    isViewer,
+    canRename,
+    shipInfo = [],
+    otherInfo = [],
+    sensor_range,
+  } = data;
   return (
     <>
       <Section title="Radar">
@@ -140,12 +148,8 @@ const SharedContent = (_props) => {
         <LabeledList>
           <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
           <LabeledList.Item label="Sensor Range">
-            <ProgressBar
-              value={shipInfo.sensor_range}
-              minValue={1}
-              maxValue={8}
-            >
-              <AnimatedNumber value={shipInfo.sensor_range} />
+            <ProgressBar value={sensor_range} minValue={1} maxValue={8}>
+              <AnimatedNumber value={sensor_range} />
             </ProgressBar>
             <Table.Cell>
               <Button
@@ -153,7 +157,7 @@ const SharedContent = (_props) => {
                 tooltipPosition="right"
                 icon="arrow-left"
                 // [CELADON-ADD] - subshuttle fix
-                disabled={data.issubshuttle != null}
+                disabled={data.issubshuttle !== null}
                 // [/CELADON-ADD] - subshuttle fix
                 onClick={() => act('sensor_decrease')}
               />
@@ -162,7 +166,7 @@ const SharedContent = (_props) => {
                 tooltipPosition="right"
                 icon="arrow-right"
                 // [CELADON-ADD] - subshuttle fix
-                disabled={data.issubshuttle != null}
+                disabled={data.issubshuttle !== null}
                 // [/CELADON-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
               />
@@ -371,7 +375,7 @@ const ShipControlContent = (_props) => {
             icon="sign-out-alt"
             // [CELADON-EDIT] - subshuttles fix
             disabled={
-              !data.docked || data.docking || data.motheroutpost != null
+              !data.docked || data.docking || data.motheroutpost !== null
             }
             // [/CELADON-EDIT] - subshuttles fix
             onClick={() => act('undock')}

@@ -303,23 +303,20 @@
 		var/datum/overmap/parent_ship = current_ship.docked_to
 		if(parent_ship && parent_ship.docked_to && istype(parent_ship.docked_to.parent_type, /datum/overmap/outpost))
 			.["motheroutpost"] = "true"
-	// [/CELADON-ADD] - subshuttles fix
-/obj/machinery/computer/helm/ui_static_data(mob/user)
-	. = list()
-	.["isViewer"] = viewer || (!allow_ai_control && issilicon(user))
-	.["mapRef"] = current_ship.token.map_name
+	.["sensor_range"] = current_ship.sensor_range
 	.["shipInfo"] = list(
 		name = current_ship.real_name,
 		prefixed = current_ship.name,
 		class = current_ship.source_template.name,
 		mass = current_ship.shuttle_port.turf_count,
-		// [CELADON-EDIT] CELADON_OVERMAP_ARPA - Вага бля
-		// sensor_range = 4
-		sensor_range = current_ship.sensor_range
-		// [/CELADON-EDIT]
 	)
-	.["canFly"] = TRUE
+	.["isViewer"] = viewer || (!allow_ai_control && issilicon(user))
+	.["mapRef"] = current_ship.token.map_name
 	.["aiUser"] = issilicon(user)
+/obj/machinery/computer/helm/ui_static_data(mob/user)
+	. = list()
+	.["canFly"] = TRUE
+	// [/CELADON-ADD] - subshuttles fix
 
 /obj/machinery/computer/helm/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -339,12 +336,10 @@
 			//овермап сенсорс максимальная дальность апдейт
 			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
 			//овермап сенсорс максимальная дальность апдейт конец
-			update_static_data(usr, ui)
 			current_ship.token.update_screen()
 			return
 		if("sensor_decrease")
 			current_ship.sensor_range = max(1, current_ship.sensor_range-1)
-			update_static_data(usr, ui)
 			current_ship.token.update_screen()
 			return
 		// [/CELADON-ADD]
@@ -364,11 +359,8 @@
 			if(!current_ship.Rename(new_name))
 				say("Error: [COOLDOWN_TIMELEFT(current_ship, rename_cooldown)/10] seconds until ship designation can be changed.")
 				return
-			update_static_data(usr, ui)
-			return
 		if("reload_ship")
 			reload_ship()
-			update_static_data(usr, ui)
 			return
 		if("reload_engines")
 			current_ship.refresh_engines()
