@@ -1,4 +1,4 @@
-// [CELADON-EDIT] - CELADON_FIXES - Обновленные типы для фракционных консолей
+// Обновленные типы для фракционных консолей
 export type Data = {
   points: number;
   outpostDocked: boolean;
@@ -45,8 +45,6 @@ export type SupplyPack = {
   cost: number;
   id: string;
   desc: string;
-  // [CELADON-EDIT] - CELADON_FIXES - Убираем несуществующие поля из supply_pack
+  // Убираем несуществующие поля из supply_pack
   // small_item, access, goody fields don't exist in /datum/supply_pack
-  // [/CELADON-EDIT]
 };
-// [/CELADON-EDIT]

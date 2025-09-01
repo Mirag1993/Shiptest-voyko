@@ -10,20 +10,17 @@ import {
 
 import { useBackend, useSharedState } from '../../backend';
 import { Window } from '../../layouts';
-// [CELADON-EDIT] - CELADON_FIXES - Исправляем импорты
 import { CargoCatalog } from '../OutpostCommunicationsFaction/components/CargoCatalog';
 import { Data } from '../OutpostCommunicationsFaction/types';
-// [/CELADON-EDIT]
 
-// [CELADON-EDIT] - CELADON_FIXES - Единый интерфейс для всех фракций
+// Единый интерфейс для всех фракций
 export const OutpostCommunicationsFactionUnified = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+  const { act, data } = useBackend<Data>();
   const { outpostDocked, onShip, points, faction_theme, faction_name } = data;
 
-  // [CELADON-EDIT] - CELADON_FIXES - Исправляем для TGUI 516
   const [tab, setTab] = useSharedState(context, 'outpostTab');
 
-  // [CELADON-EDIT] - CELADON_FIXES - Устанавливаем вкладку cargo по умолчанию
+  // Устанавливаем вкладку cargo по умолчанию
   useEffect(() => {
     if (!tab) {
       act('debug_log', {
@@ -34,10 +31,9 @@ export const OutpostCommunicationsFactionUnified = (props, context) => {
       setTab('cargo');
     }
   }, [tab, setTab]);
-  // [/CELADON-EDIT]
 
   return (
-    <Window theme={faction_theme} width={600} height={700} resizable>
+    <Window theme={faction_theme} width={600} height={700}>
       <Window.Content scrollable>
         <Section
           title={Math.round(points) + ' credits'}
@@ -56,8 +52,8 @@ export const OutpostCommunicationsFactionUnified = (props, context) => {
               <Stack.Item>
                 <Button.Input
                   content="Withdraw Cash"
-                  currentValue={100}
-                  defaultValue={100}
+                  currentValue="100"
+                  defaultValue="100"
                   onCommit={(e, value) =>
                     act('withdrawCash', {
                       value: value,
@@ -75,7 +71,7 @@ export const OutpostCommunicationsFactionUnified = (props, context) => {
 };
 
 const CargoExpressContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+  const { act, data } = useBackend<Data>();
   const {
     beaconZone,
     beaconName,
@@ -105,7 +101,7 @@ const CargoExpressContent = (props, context) => {
 };
 
 const ShipMissionsContent = (props, context) => {
-  const { data } = useBackend<Data>(context);
+  const { data } = useBackend<Data>();
   const { numMissions, maxMissions, outpostDocked, shipMissions } = data;
   return (
     <Section title={'Current Missions ' + numMissions + '/' + maxMissions}>
@@ -115,7 +111,7 @@ const ShipMissionsContent = (props, context) => {
 };
 
 const OutpostMissionsContent = (props, context) => {
-  const { data } = useBackend<Data>(context);
+  const { data } = useBackend<Data>();
   const { numMissions, maxMissions, outpostDocked, outpostMissions } = data;
   return (
     <Section title={'Available Missions ' + numMissions + '/' + maxMissions}>
@@ -126,7 +122,7 @@ const OutpostMissionsContent = (props, context) => {
 
 const MissionsList = (props, context) => {
   const { showButton, missions } = props;
-  const { act } = useBackend(context);
+  const { act } = useBackend();
 
   if (!missions || missions.length === 0) {
     return <Box color="label">No missions available.</Box>;
@@ -171,4 +167,3 @@ const MissionsList = (props, context) => {
     </Stack>
   );
 };
-// [/CELADON-EDIT]

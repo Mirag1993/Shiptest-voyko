@@ -1,4 +1,4 @@
-// [CELADON-EDIT] - CELADON_FIXES - Типы для единого интерфейса фракционных консолей
+// Типы для единого интерфейса фракционных консолей
 export type Data = {
   points: number;
   outpostDocked: boolean;
@@ -45,4 +45,3 @@ export type SupplyPack = {
   access?: boolean;
   goody?: boolean;
 };
-// [/CELADON-EDIT]

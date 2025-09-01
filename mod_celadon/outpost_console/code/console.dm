@@ -49,17 +49,15 @@
 			for(var/datum/mission/M as anything in out.missions)
 				data["outpostMissions"] += list(M.get_tgui_info())
 
-	// [CELADON-EDIT] - CELADON_FIXES - Передаем фракционные темы в TGUI
+	// Передаем фракционные темы в TGUI
 	if(istype(src, /obj/machinery/computer/cargo/faction))
 		var/obj/machinery/computer/cargo/faction/faction_console = src
 		data["faction_theme"] = faction_console.faction_theme
 		data["faction_name"] = faction_console.faction_name
-	// [/CELADON-EDIT]
 
 	return data
 
-// [CELADON-EDIT] - CELADON_FIXES - Удаляем дублирующий ui_static_data
-// [/CELADON-EDIT]
+
 
 // Взаимодействие с UI
 /obj/machinery/computer/cargo/faction/ui_act(action, list/params, datum/tgui/ui)
@@ -68,9 +66,7 @@
 		return
 	switch(action)
 		if("withdrawCash")
-			// [CELADON-EDIT] - CELADON_FIXES - Исправляем для TGUI 516
 			var/val = isnum(params["value"]) ? params["value"] : text2num("[params["value"]]")
-			// [/CELADON-EDIT]
 			// no giving yourself money
 			if(!charge_account || !val || val <= 0)
 				return
@@ -81,9 +77,7 @@
 					user.put_in_hands(cash_chip)
 				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				src.visible_message(span_notice("[src] dispenses a holochip."))
-			// [CELADON-EDIT] - CELADON_FIXES - Обновляем UI после изменений
 			SStgui.update_uis(src)
-			// [/CELADON-EDIT]
 			return TRUE
 
 		// if("LZCargo") // NEEDS_TO_FIX_ALARM!
@@ -103,10 +97,8 @@
 		// 		beacon.name = "Supply Pod Beacon #[printed_beacons]" // NEEDS_TO_FIX_ALARM!
 		if("add")
 			var/area/current_area = get_area(src)
-			// [CELADON-EDIT] - CELADON_FIXES - Исправляем для TGUI 516
 			var/pack_id = isnum(params["id"]) ? params["id"] : text2path("[params["id"]]")
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
-			// [/CELADON-EDIT]
 			if(!pack || !charge_account?.has_money(pack.cost) || !istype(current_area))
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 				if(!charge_account?.has_money(pack.cost) && message_cooldown <= world.time)
@@ -155,9 +147,7 @@
 				var/datum/supply_order/SO = new(pack, name, rank, usr.ckey, "")
 				new /obj/effect/pod_landingzone(landing_turf, podType, SO)
 				update_appearance()
-				// [CELADON-EDIT] - CELADON_FIXES - Обновляем UI после изменений
 				SStgui.update_uis(src)
-				// [/CELADON-EDIT]
 				return TRUE
 
 		if("mission-act")
@@ -171,18 +161,14 @@
 				if(LAZYLEN(ship.missions) >= ship.max_missions)
 					return
 				mission.accept(ship, loc)
-				// [CELADON-EDIT] - CELADON_FIXES - Обновляем UI после изменений
 				SStgui.update_uis(src)
-				// [/CELADON-EDIT]
 				return TRUE
 			else if(mission.servant == ship)
 				if(mission.can_complete())
 					mission.turn_in()
 				// else
 				// 	mission.give_up() // NEEDS_TO_FIX_ALARM!
-				// [CELADON-EDIT] - CELADON_FIXES - Обновляем UI после изменений
 				SStgui.update_uis(src)
-				// [/CELADON-EDIT]
 				return TRUE
 
 // Взаимодействие с UI для фракций
@@ -256,7 +242,7 @@
 	Без фракции
 */
 /obj/machinery/computer/cargo/faction
-	// [CELADON-EDIT] - CELADON_FIXES - Конфигурационные переменные для фракций
+	// Конфигурационные переменные для фракций
 	var/faction_theme = null
 	var/faction_name = "Unknown"
 	var/faction_desc = "Unknown faction console"
@@ -264,7 +250,6 @@
 	var/faction_color = COLOR_LIME
 	var/faction_account = ACCOUNT_FAC
 	var/faction_pod_type = /obj/structure/closet/supplypod/centcompod
-	// [/CELADON-EDIT]
 
 	// Базовые значения (будут переопределены конфигурацией)
 	name = "faction outpost console"
@@ -291,7 +276,7 @@
 	else
 		obj_flags &= ~EMAGGED
 
-	// [CELADON-EDIT] - CELADON_FIXES - Применяем конфигурацию фракции
+	// Применяем конфигурацию фракции
 	if(faction_name != "Unknown")
 		name = faction_name
 	if(faction_desc != "Unknown faction console")
@@ -304,7 +289,6 @@
 		charge_account = faction_account
 	if(faction_pod_type != /obj/structure/closet/supplypod/centcompod)
 		podType = faction_pod_type
-	// [/CELADON-EDIT]
 
 	var/datum/bank_account/B = SSeconomy.get_dep_account(charge_account)
 	if(B)
@@ -326,7 +310,6 @@
 	if(!ui)
 		// Используем единый интерфейс для всех фракций
 		ui = new(user, src, "OutpostCommunicationsFactionUnified", name)
-		// [/CELADON_EDIT]
 		ui.open()
 		if(!charge_account)
 			reconnect()
