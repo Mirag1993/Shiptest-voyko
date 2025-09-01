@@ -1,6 +1,5 @@
 import { filter, sortBy } from 'common/collections';
 import { LabeledList, ProgressBar, Section } from 'tgui-core/components';
-import { flow } from 'tgui-core/fp';
 import { toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
@@ -10,10 +9,17 @@ import { NtosWindow } from '../layouts';
 export const NtosAtmos = (props) => {
   const { act, data } = useBackend();
   const { AirTemp, AirPressure, AirData } = data;
-  const gases = flow([
-    filter((gas) => gas.percentage >= 0.01),
-    sortBy((gas) => -gas.percentage),
-  ])(AirData || []);
+
+  // Ensure AirData is always an array to prevent filter() errors
+  const safeAirData = Array.isArray(AirData) ? AirData : [];
+
+  // Use direct function calls instead of flow to prevent type errors
+  const filteredGases = filter(
+    safeAirData,
+    (gas) => gas && typeof gas === 'object' && gas.percentage >= 0.01,
+  );
+  const gases = sortBy(filteredGases, (gas) => -gas.percentage);
+
   const gasMaxPercentage = Math.max(1, ...gases.map((gas) => gas.percentage));
   return (
     <NtosWindow width={300} height={350}>
