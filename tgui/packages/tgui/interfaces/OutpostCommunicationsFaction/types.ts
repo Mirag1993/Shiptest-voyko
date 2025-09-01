@@ -1,3 +1,4 @@
+// [CELADON-EDIT] - CELADON_FIXES - Обновленные типы для фракционных консолей
 export type Data = {
   points: number;
   outpostDocked: boolean;
@@ -13,6 +14,13 @@ export type Data = {
   message: string;
   printMsg: string;
   canBuyBeacon: boolean;
+  // Фракционные параметры
+  faction_theme?: string;
+  faction_name?: string;
+  // Дополнительные параметры для CargoCatalog
+  self_paid?: boolean;
+  app_cost?: boolean;
+  supplies?: Record<string, SupplyCategory>;
 };
 
 export type Mission = {
@@ -26,3 +34,19 @@ export type Mission = {
   duration: number;
   timeStr: string;
 };
+
+export type SupplyCategory = {
+  name: string;
+  packs: Array<SupplyPack>;
+};
+
+export type SupplyPack = {
+  name: string;
+  cost: number;
+  id: string;
+  desc: string;
+  // [CELADON-EDIT] - CELADON_FIXES - Убираем несуществующие поля из supply_pack
+  // small_item, access, goody fields don't exist in /datum/supply_pack
+  // [/CELADON-EDIT]
+};
+// [/CELADON-EDIT]

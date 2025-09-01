@@ -1,23 +1,43 @@
-import { useBackend, useSharedState } from '../../backend';
+import { useEffect } from 'react';
 import {
   Box,
   Button,
   LabeledList,
-  ProgressBar,
   Section,
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { Window } from '../../layouts';
-import { CargoCatalog } from './Catalog';
-import { Data, Mission } from './types';
 
-export const OutpostCommunicationsFactionIndependent = (props, context) => {
+import { useBackend, useSharedState } from '../../backend';
+import { Window } from '../../layouts';
+// [CELADON-EDIT] - CELADON_FIXES - Исправляем импорты
+import { CargoCatalog } from '../OutpostCommunicationsFaction/components/CargoCatalog';
+import { Data } from '../OutpostCommunicationsFaction/types';
+// [/CELADON-EDIT]
+
+// [CELADON-EDIT] - CELADON_FIXES - Единый интерфейс для всех фракций
+export const OutpostCommunicationsFactionUnified = (props, context) => {
   const { act, data } = useBackend<Data>(context);
-  const { outpostDocked, onShip, points } = data;
-  const [tab, setTab] = useSharedState(context, 'outpostTab', '');
+  const { outpostDocked, onShip, points, faction_theme, faction_name } = data;
+
+  // [CELADON-EDIT] - CELADON_FIXES - Исправляем для TGUI 516
+  const [tab, setTab] = useSharedState(context, 'outpostTab');
+
+  // [CELADON-EDIT] - CELADON_FIXES - Устанавливаем вкладку cargo по умолчанию
+  useEffect(() => {
+    if (!tab) {
+      act('debug_log', {
+        message: `[DEBUG] OutpostCommunicationsFactionUnified: устанавливаем tab = 'cargo'`,
+        source: 'OutpostCommunicationsFactionUnified.tsx',
+        line: 'useEffect tab init',
+      });
+      setTab('cargo');
+    }
+  }, [tab, setTab]);
+  // [/CELADON-EDIT]
+
   return (
-    <Window theme="independent" width={600} height={700} resizable>
+    <Window theme={faction_theme} width={600} height={700} resizable>
       <Window.Content scrollable>
         <Section
           title={Math.round(points) + ' credits'}
@@ -97,83 +117,58 @@ const ShipMissionsContent = (props, context) => {
 const OutpostMissionsContent = (props, context) => {
   const { data } = useBackend<Data>(context);
   const { numMissions, maxMissions, outpostDocked, outpostMissions } = data;
-  const disabled = numMissions >= maxMissions;
   return (
     <Section title={'Available Missions ' + numMissions + '/' + maxMissions}>
-      <MissionsList
-        showButton={outpostDocked}
-        missions={outpostMissions}
-        disabled={disabled}
-        tooltip={(disabled && 'You have too many missions!') || null}
-      />
+      <MissionsList showButton={outpostDocked} missions={outpostMissions} />
     </Section>
   );
 };
 
 const MissionsList = (props, context) => {
-  const showButton = props.showButton as Boolean;
-  const disabled = props.disabled as Boolean;
-  const tooltip = props.tooltip as string;
-  const missionsArray = props.missions as Array<Mission>;
+  const { showButton, missions } = props;
   const { act } = useBackend(context);
-  //   const { numMissions, maxMissions } = data;
 
-  const buttonJSX = (mission: Mission, tooltip: string, disabled: Boolean) => {
-    return (
-      <Button
-        disabled={disabled}
-        tooltip={tooltip}
-        onClick={() =>
-          act('mission-act', {
-            ref: mission.ref,
-          })
-        }
-      >
-        {mission.actStr}
-      </Button>
-    );
-  };
+  if (!missions || missions.length === 0) {
+    return <Box color="label">No missions available.</Box>;
+  }
 
-  const missionValues = (mission: Mission) => (
+  return (
     <Stack vertical>
-      <Stack.Item>
-        <Box inline mx={1}>
-          {`${mission.value} cr, completed: ${mission.progressStr}`}
-        </Box>
-      </Stack.Item>
-
-      <Stack.Item>
-        <ProgressBar
-          ranges={{
-            good: [0.75, 1],
-            average: [0.25, 0.75],
-            bad: [0, 0.25],
-          }}
-          value={mission.remaining / mission.duration}
-        >
-          {mission.timeStr}
-        </ProgressBar>
-      </Stack.Item>
-
-      <Stack.Item>
-        {(showButton && buttonJSX(mission, tooltip, disabled)) || undefined}
-      </Stack.Item>
+      {missions.map((mission) => (
+        <Stack.Item key={mission.ref}>
+          <Section
+            title={mission.name}
+            buttons={
+              showButton && (
+                <Button
+                  content={mission.actStr}
+                  onClick={() =>
+                    act('mission-act', {
+                      ref: mission.ref,
+                    })
+                  }
+                />
+              )
+            }
+          >
+            <LabeledList>
+              <LabeledList.Item label="Description">
+                {mission.desc}
+              </LabeledList.Item>
+              <LabeledList.Item label="Progress">
+                {mission.progressStr}
+              </LabeledList.Item>
+              <LabeledList.Item label="Value">
+                {mission.value} credits
+              </LabeledList.Item>
+              <LabeledList.Item label="Time Remaining">
+                {mission.timeStr}
+              </LabeledList.Item>
+            </LabeledList>
+          </Section>
+        </Stack.Item>
+      ))}
     </Stack>
   );
-
-  const missionJSX = missionsArray.map((mission: Mission) => (
-    <>
-      <LabeledList.Item
-        verticalAlign="top"
-        labelWrap
-        label={mission.name}
-        buttons={missionValues(mission)}
-      >
-        {mission.desc}
-      </LabeledList.Item>
-      <LabeledList.Divider />
-    </>
-  ));
-
-  return <LabeledList>{missionJSX}</LabeledList>;
 };
+// [/CELADON-EDIT]
