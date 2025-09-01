@@ -27,6 +27,7 @@ const createSearch = (searchText, getText) => {
 export const AdminVerbs = (_, context) => {
   const { act, data } = useBackend(context);
   const { compactMode, categories = [] } = data;
+
   // Use simple React state instead of useLocalState to avoid conflicts
   const [searchText, setSearchText] = React.useState('');
   const [selectedCategory, setSelectedCategory] = React.useState('Admin');

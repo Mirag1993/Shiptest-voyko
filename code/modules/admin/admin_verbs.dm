@@ -837,6 +837,10 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /datum/admin_menu/ui_static_data(mob/user)
 	var/list/temp_data = list()
+
+	// Clear any existing data to prevent duplication
+	temp_data.Cut()
+
 	for(var/procpath/cur_verb as anything in holder.verbs)
 		if(!cur_verb.category)
 			continue
