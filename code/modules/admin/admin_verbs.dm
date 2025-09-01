@@ -845,13 +845,17 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		temp_data[cur_verb.category] += list(list("verb" = "[cur_verb]", "name" = cur_verb.name, "desc" = cur_verb.desc))
 
 	var/list/tgui_data = list()
+	tgui_data["categories"] = list() // Initialize categories list properly
+
 	for(var/category in temp_data)
 		var/list/cat = list(
 			"name" = category,
 			"items" = temp_data[category])
 		tgui_data["categories"] += list(cat)
 
-	LAZYADDASSOCLIST(tgui_data, "categories", list("name" = "История", "items" = reverseList(holder.last_verbs_used)))
+	// Add history category safely
+	var/list/history_items = reverseList(holder.last_verbs_used)
+	tgui_data["categories"] += list(list("name" = "History", "items" = history_items))
 	return tgui_data
 
 /datum/admin_menu/ui_act(action, params)
