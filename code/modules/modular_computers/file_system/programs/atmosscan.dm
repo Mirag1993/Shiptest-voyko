@@ -28,6 +28,7 @@
 		data["AirPressure"] = 0
 		data["AirTemp"] = 0
 		data["AirData"] = list()
+		// [/CELADON-ADD]
 	return data
 
 /datum/computer_file/program/atmosscan/ui_act(action, list/params)
