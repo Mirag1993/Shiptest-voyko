@@ -30,11 +30,6 @@
 		SStgui.update_uis(src)
 		return TRUE
 
-	// Очистка превью при возврате к списку фракций
-	if(action == "back_factions")
-		current_preview_faction = null
-		return TRUE
-
 	// Обработка открытия ссылок на вики
 	if(action == "open_wiki")
 		var/wiki_url = params["url"]
