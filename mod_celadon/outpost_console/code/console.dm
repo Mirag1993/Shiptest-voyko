@@ -49,37 +49,24 @@
 			for(var/datum/mission/M as anything in out.missions)
 				data["outpostMissions"] += list(M.get_tgui_info())
 
+	// Передаем фракционные темы в TGUI
+	if(istype(src, /obj/machinery/computer/cargo/faction))
+		var/obj/machinery/computer/cargo/faction/faction_console = src
+		data["faction_theme"] = faction_console.faction_theme
+		data["faction_name"] = faction_console.faction_name
+
 	return data
 
-// UI статика	// КОД JOPA
-/obj/machinery/computer/cargo/faction/ui_static_data(mob/user)
-	var/list/data = list()
-	data["supplies"] = list()
-	for(var/pack in SSshuttle.supply_packs)
-		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
-		if(!data["supplies"][P.category])
-			data["supplies"][P.category] = list(
-				"name" = P.category,
-				"packs" = list()
-			)
 
-		data["supplies"][P.category]["packs"] += list(list(
-			"name" = P.name,
-			"cost" = P.cost,
-			"id" = pack,
-			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
-			// "small_item" = P.small_item,
-		))
-	return data
 
 // Взаимодействие с UI
-/obj/machinery/computer/cargo/faction/ui_act(action, params, datum/tgui/ui)
+/obj/machinery/computer/cargo/faction/ui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
 	switch(action)
 		if("withdrawCash")
-			var/val = text2num(params["value"])
+			var/val = isnum(params["value"]) ? params["value"] : text2num("[params["value"]]")
 			// no giving yourself money
 			if(!charge_account || !val || val <= 0)
 				return
@@ -90,6 +77,7 @@
 					user.put_in_hands(cash_chip)
 				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				src.visible_message(span_notice("[src] dispenses a holochip."))
+			SStgui.update_uis(src)
 			return TRUE
 
 		// if("LZCargo") // NEEDS_TO_FIX_ALARM!
@@ -109,7 +97,8 @@
 		// 		beacon.name = "Supply Pod Beacon #[printed_beacons]" // NEEDS_TO_FIX_ALARM!
 		if("add")
 			var/area/current_area = get_area(src)
-			var/datum/supply_pack/pack = SSshuttle.supply_packs[text2path(params["id"])]
+			var/pack_id = isnum(params["id"]) ? params["id"] : text2path("[params["id"]]")
+			var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
 			if(!pack || !charge_account?.has_money(pack.cost) || !istype(current_area))
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 				if(!charge_account?.has_money(pack.cost) && message_cooldown <= world.time)
@@ -157,7 +146,8 @@
 					rank = "Silicon"
 				var/datum/supply_order/SO = new(pack, name, rank, usr.ckey, "")
 				new /obj/effect/pod_landingzone(landing_turf, podType, SO)
-				update_appearance() // ??????????????????
+				update_appearance()
+				SStgui.update_uis(src)
 				return TRUE
 
 		if("mission-act")
@@ -171,12 +161,14 @@
 				if(LAZYLEN(ship.missions) >= ship.max_missions)
 					return
 				mission.accept(ship, loc)
+				SStgui.update_uis(src)
 				return TRUE
 			else if(mission.servant == ship)
 				if(mission.can_complete())
 					mission.turn_in()
 				// else
 				// 	mission.give_up() // NEEDS_TO_FIX_ALARM!
+				SStgui.update_uis(src)
 				return TRUE
 
 // Взаимодействие с UI для фракций
@@ -250,6 +242,16 @@
 	Без фракции
 */
 /obj/machinery/computer/cargo/faction
+	// Конфигурационные переменные для фракций
+	var/faction_theme = null
+	var/faction_name = "Unknown"
+	var/faction_desc = "Unknown faction console"
+	var/faction_icon = "civ_bounty"
+	var/faction_color = COLOR_LIME
+	var/faction_account = ACCOUNT_FAC
+	var/faction_pod_type = /obj/structure/closet/supplypod/centcompod
+
+	// Базовые значения (будут переопределены конфигурацией)
 	name = "faction outpost console"
 	desc = "Looks like that console hasn't correct faction connection. Please, message to our specialists!"
 	icon_screen = "civ_bounty"
@@ -264,7 +266,6 @@
 	podType = /obj/structure/closet/supplypod/centcompod
 
 	flags_1 = NODECONSTRUCT_1
-	tgui_shared_states = list(outpostTab = "\"cargo\"")
 
 /obj/machinery/computer/cargo/faction/Initialize()
 	. = ..()
@@ -274,6 +275,21 @@
 		obj_flags |= EMAGGED
 	else
 		obj_flags &= ~EMAGGED
+
+	// Применяем конфигурацию фракции
+	if(faction_name != "Unknown")
+		name = faction_name
+	if(faction_desc != "Unknown faction console")
+		desc = faction_desc
+	if(faction_icon != "civ_bounty")
+		icon_screen = faction_icon
+	if(faction_color != COLOR_LIME)
+		light_color = faction_color
+	if(faction_account != ACCOUNT_FAC)
+		charge_account = faction_account
+	if(faction_pod_type != /obj/structure/closet/supplypod/centcompod)
+		podType = faction_pod_type
+
 	var/datum/bank_account/B = SSeconomy.get_dep_account(charge_account)
 	if(B)
 		charge_account = B
@@ -292,10 +308,31 @@
 /obj/machinery/computer/cargo/faction/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "OutpostCommunicationsFaction", name)
+		// Используем единый интерфейс для всех фракций
+		ui = new(user, src, "OutpostCommunicationsFactionUnified", name)
 		ui.open()
 		if(!charge_account)
 			reconnect()
+
+/obj/machinery/computer/cargo/faction/ui_static_data(mob/user)
+	// Правильный ui_static_data для базового класса
+	var/list/data = list()
+	data["supplies"] = list()
+	for(var/pack in SSshuttle.supply_packs)
+		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
+		if(!data["supplies"][P.category])
+			data["supplies"][P.category] = list(
+				"name" = P.category,
+				"packs" = list()
+			)
+
+		data["supplies"][P.category]["packs"] += list(list(
+			"name" = P.name,
+			"cost" = P.cost,
+			"id" = pack,
+			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
+		))
+	return data
 
 // Генерация инфы о всех товарах для нефракционного карго
 /obj/machinery/computer/cargo/faction/generate_pack_data()
@@ -319,21 +356,20 @@
 	Syndicate
 */
 /obj/machinery/computer/cargo/faction/syndicate
-	name = "syndicate outpost console"
-	desc = "That outpost console belongs to Syndicate."
-	icon_screen = "syndishuttle"
-	circuit = /obj/item/circuitboard/computer/cargo
-	light_color = COLOR_DARK_RED
+	// Конфигурация для рефакторинга
+	faction_theme = "syndicate"
+	faction_name = "syndicate outpost console"
+	faction_desc = "That outpost console belongs to Syndicate."
+	faction_icon = "syndishuttle"
+	faction_color = COLOR_DARK_RED
+	faction_account = ACCOUNT_SYN
+	faction_pod_type = /obj/structure/closet/supplypod/syndicate
 
 	contraband = FALSE
 	self_paid = FALSE
 
-	podType = /obj/structure/closet/supplypod/syndicate
-
-	charge_account = ACCOUNT_SYN
-
-/obj/machinery/computer/cargo/faction/syndicate/ui_interact(mob/user, datum/tgui/ui)
-	faction_ui_interact(user, ui, "OutpostCommunicationsFactionSyndicate", src)
+// Используем базовый ui_interact с единым интерфейсом
+// Убираем дублирующийся ui_interact - используем базовый класс
 
 
 /obj/machinery/computer/cargo/faction/syndicate/generate_pack_data()
@@ -362,21 +398,20 @@
 	Inteq
 */
 /obj/machinery/computer/cargo/faction/inteq
-	name = "inteq outpost console"
-	desc = "That outpost console belongs to Inteq."
-	icon_screen = "ratvar1"
-	circuit = /obj/item/circuitboard/computer/cargo
-	light_color = COLOR_TAN_ORANGE
+	// Конфигурация для рефакторинга
+	faction_theme = "inteq"
+	faction_name = "inteq outpost console"
+	faction_desc = "That outpost console belongs to Inteq."
+	faction_icon = "ratvar1"
+	faction_color = COLOR_TAN_ORANGE
+	faction_account = ACCOUNT_INT
+	faction_pod_type = /obj/structure/closet/supplypod/centcompod
 
 	contraband = FALSE
 	self_paid = FALSE
 
-	podType = /obj/structure/closet/supplypod/centcompod
-
-	charge_account = ACCOUNT_INT
-
-/obj/machinery/computer/cargo/faction/inteq/ui_interact(mob/user, datum/tgui/ui)
-	faction_ui_interact(user, ui, "OutpostCommunicationsFactionInteq", src)
+// Используем базовый ui_interact с единым интерфейсом
+// Убираем дублирующийся ui_interact - используем базовый класс
 
 /obj/machinery/computer/cargo/faction/inteq/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/inteq)
@@ -389,21 +424,20 @@
 	SolFed
 */
 /obj/machinery/computer/cargo/faction/solfed
-	name = "SolFed outpost console"
-	desc = "That outpost console belongs to SolFed."
-	icon_screen = "vault"
-	circuit = /obj/item/circuitboard/computer/cargo
-	light_color = COLOR_DARK_CYAN
+	// Конфигурация для рефакторинга
+	faction_theme = "solfed"
+	faction_name = "SolFed outpost console"
+	faction_desc = "That outpost console belongs to SolFed."
+	faction_icon = "vault"
+	faction_color = COLOR_DARK_CYAN
+	faction_account = ACCOUNT_SLF
+	faction_pod_type = /obj/structure/closet/supplypod/centcompod
 
 	contraband = FALSE
 	self_paid = FALSE
 
-	podType = /obj/structure/closet/supplypod/centcompod
-
-	charge_account = ACCOUNT_SLF
-
-/obj/machinery/computer/cargo/faction/solfed/ui_interact(mob/user, datum/tgui/ui)
-	faction_ui_interact(user, ui, "OutpostCommunicationsFactionSolfed", src)
+// Используем базовый ui_interact с единым интерфейсом
+// Убираем дублирующийся ui_interact - используем базовый класс
 
 /obj/machinery/computer/cargo/faction/solfed/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/solgov)
@@ -416,21 +450,20 @@
 	Independent
 */
 /obj/machinery/computer/cargo/faction/independent
-	name = "Independent outpost console"
-	desc = "That outpost console belongs to Independent faction."
-	icon_screen = "idce"
-	circuit = /obj/item/circuitboard/computer/cargo
-	light_color = COLOR_VIVID_YELLOW
+	// Конфигурация для рефакторинга
+	faction_theme = "independent"
+	faction_name = "Independent outpost console"
+	faction_desc = "That outpost console belongs to Independent faction."
+	faction_icon = "idce"
+	faction_color = COLOR_VIVID_YELLOW
+	faction_account = ACCOUNT_IND
+	faction_pod_type = /obj/structure/closet/supplypod/elysiumpod
 
 	contraband = FALSE
 	self_paid = FALSE
 
-	podType = /obj/structure/closet/supplypod/elysiumpod
-
-	charge_account = ACCOUNT_IND
-
-/obj/machinery/computer/cargo/faction/independent/ui_interact(mob/user, datum/tgui/ui)
-	faction_ui_interact(user, ui, "OutpostCommunicationsFactionIndependent", src)
+// Используем базовый ui_interact с единым интерфейсом
+// Убираем дублирующийся ui_interact - используем базовый класс
 
 /obj/machinery/computer/cargo/faction/independent/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/independent)
@@ -463,21 +496,20 @@
 	Nanotrasen
 */
 /obj/machinery/computer/cargo/faction/nanotrasen
-	name = "Nanotrasen outpost console"
-	desc = "That outpost console belongs to Nanotrasen."
-	icon_screen = "idcentcom"
-	circuit = /obj/item/circuitboard/computer/cargo
-	light_color = LIGHT_COLOR_DARK_BLUE
+	// Конфигурация для рефакторинга
+	faction_theme = "nanotrasen"
+	faction_name = "Nanotrasen outpost console"
+	faction_desc = "That outpost console belongs to Nanotrasen."
+	faction_icon = "idcentcom"
+	faction_color = LIGHT_COLOR_DARK_BLUE
+	faction_account = ACCOUNT_NTN
+	faction_pod_type = /obj/structure/closet/supplypod/centcompod
 
 	contraband = FALSE
 	self_paid = FALSE
 
-	podType = /obj/structure/closet/supplypod/centcompod
-
-	charge_account = ACCOUNT_NTN
-
-/obj/machinery/computer/cargo/faction/nanotrasen/ui_interact(mob/user, datum/tgui/ui)
-	faction_ui_interact(user, ui, "OutpostCommunicationsFactionNanotrasen", src)
+// Используем базовый ui_interact с единым интерфейсом
+// Убираем дублирующийся ui_interact - используем базовый класс
 
 /obj/machinery/computer/cargo/faction/nanotrasen/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/nt)

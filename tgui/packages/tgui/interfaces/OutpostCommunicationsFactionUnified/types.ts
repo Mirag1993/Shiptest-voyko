@@ -1,3 +1,4 @@
+// Типы для единого интерфейса фракционных консолей
 export type Data = {
   points: number;
   outpostDocked: boolean;
@@ -13,6 +14,9 @@ export type Data = {
   message: string;
   printMsg: string;
   canBuyBeacon: boolean;
+  // Фракционные параметры
+  faction_theme?: string;
+  faction_name?: string;
 };
 
 export type Mission = {
@@ -25,4 +29,19 @@ export type Mission = {
   remaining: number;
   duration: number;
   timeStr: string;
+};
+
+export type SupplyCategory = {
+  name: string;
+  packs: Array<SupplyPack>;
+};
+
+export type SupplyPack = {
+  name: string;
+  cost: number;
+  id: string;
+  desc: string;
+  small_item?: boolean;
+  access?: boolean;
+  goody?: boolean;
 };
