@@ -23,6 +23,12 @@
 				if(gas_level > 0)
 					airlist += list(list("name" = "[GLOB.gas_data.names[id]]", "percentage" = round(gas_level*100, 0.01), "id" = id))
 		data["AirData"] = airlist
+	else
+		// [CELADON-ADD] Provide default values when no turf is available to prevent TGUI errors
+		data["AirPressure"] = 0
+		data["AirTemp"] = 0
+		data["AirData"] = list()
+		// [/CELADON-ADD]
 	return data
 
 /datum/computer_file/program/atmosscan/ui_act(action, list/params)
