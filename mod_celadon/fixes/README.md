@@ -197,6 +197,9 @@ FIXES_NETWORK_NT
 FIXES_TESLA_ON_OVERMAP
 - EDIT: `code/modules/power/tesla/energy_ball.dm`
 
+FIXES_VORACIOUS
+- ADD: `code/datums/components/food/edible.dm` - добавляем проверку на квирк и ускоряем процес поедания в 2 раза
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
