@@ -1,12 +1,10 @@
-// [CELADON-ADD] - SHIP_SELECTION_REWORK - Enhanced ship owner interface
+// SHIP_SELECTION_REWORK - Enhanced ship owner interface
 // Улучшенный интерфейс владельца корабля с фото персонажей
-
-#ifdef ENHANCED_SHIP_OWNER_INTERFACE
 
 /datum/action/ship_owner/ui_data(mob/user)
 	. = ..()
 
-	// [CELADON-EDIT] - Enhance application data with character info
+	// Enhance application data with character info
 	.["applications"] = list()
 	for(var/a_key as anything in parent_ship.applications)
 		var/datum/ship_application/app = parent_ship.applications[a_key]
@@ -33,7 +31,6 @@
 			name = app.app_name,
 			text = app.app_msg,
 			status = app.status,
-			// [CELADON-ADD] - Character info
 			character_photo = app.character_photo_base64,
 			character_age = app.character_age,
 			character_quirks = app.get_formatted_quirks(),
@@ -42,19 +39,15 @@
 			target_job = app.target_job?.name,
 			denial_reason = app.denial_reason,
 			character_valid = app.status == SHIP_APPLICATION_ACCEPTED ? app.validate_character(app.app_mob?.client?.prefs) : TRUE
-			// [/CELADON-ADD]
 		))
-	// [/CELADON-EDIT]
 
 /datum/action/ship_owner/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		// [CELADON-EDIT] - Use enhanced interface
 		ui = new(user, src, "ShipOwnerEnhanced", name)
-		// [/CELADON-EDIT]
 		ui.open()
 
-// [CELADON-ADD] - Enhanced UI actions for denial with reason and character validation
+// Enhanced UI actions for denial with reason and character validation
 /datum/action/ship_owner/ui_act(action, list/params)
 	. = ..()
 	if(.)
@@ -73,7 +66,6 @@
 
 			switch(params["newStatus"])
 				if("yes")
-					// [CELADON-ADD] - Enhanced character validation with fresh data
 					var/datum/preferences/current_prefs = target_app.app_mob?.client?.prefs
 					if(!current_prefs)
 						to_chat(user, span_warning("Игрок не в сети или недоступен. Невозможно проверить персонажа."))
@@ -109,7 +101,6 @@
 
 					// Если все проверки пройдены - принимаем заявку
 					to_chat(user, span_notice("Персонаж проверен успешно. Заявка принята."))
-					// [/CELADON-ADD]
 					target_app.application_status_change(SHIP_APPLICATION_ACCEPTED)
 				if("no")
 					target_app.application_status_change(SHIP_APPLICATION_DENIED)
@@ -129,5 +120,3 @@
 			target_app.application_status_change(SHIP_APPLICATION_DENIED)
 			check_blinking()
 			return TRUE
-
-#endif

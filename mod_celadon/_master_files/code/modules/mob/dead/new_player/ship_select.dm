@@ -1,12 +1,16 @@
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Статические переменные для защиты от дублированных запросов
+// SHIP_SELECTION_REWORK
+// Статические переменные для защиты от дублированных запросов
 /datum/ship_select
 	var/static/list/join_cooldown_by_ckey = list()
 	var/static/list/recently_cancelled_by_ckey = list()
 	var/static/list/join_lock_by_ckey = list()
 	var/static/list/processed_nonces = list()
-//[/CELADON-EDIT]
 
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - OVERRIDE ui_act - перехватываем join action
+// Добавляем assets для логотипов фракций
+/datum/ship_select/ui_assets(mob/user)
+	return list(get_asset_datum(/datum/asset/simple/faction_logos))
+
+// OVERRIDE ui_act - перехватываем join action
 /datum/ship_select/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(!isnewplayer(usr))
 		return ..()
@@ -34,9 +38,8 @@
 
 	// Для всех остальных actions - вызываем оригинальную логику
 	return ..()
-//[/CELADON-EDIT]
 
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - OVERRIDE ui_data - добавляем динамическую информацию о статусах заявок
+// OVERRIDE ui_data - добавляем динамическую информацию о статусах заявок
 /datum/ship_select/ui_data(mob/user)
 	. = ..()  // Получаем оригинальные данные
 
@@ -90,19 +93,15 @@
 							application_status = "denied"
 
 			.["jobApplicationStatuses"][ship_ref][job_ref] = application_status
-			
-			// [CELADON-ADD] - Add denial reason to job application statuses
+
+			// Добавляем причину отказа в статусы заявлений о приеме на роль
 			if(application_status == "denied" && user_application?.denial_reason)
 				.["jobApplicationStatuses"][ship_ref][job_ref + "_denial_reason"] = user_application.denial_reason
-			// [/CELADON-ADD]
 
 	// Добавляем информацию о выбранной фракции (уникальная для каждого пользователя)
 	.["selectedFaction"] = selected_faction_by_ckey[user_ckey]
 
 	return .
-//[/CELADON-EDIT]
-
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Защищённые процедуры для обработки actions
 
 // Защищённая обработка join action
 /datum/ship_select/proc/handle_protected_join(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -190,7 +189,7 @@
 			spawnee.new_player_panel()
 			return FALSE
 
-		// Attempts the spawn itself. This checks for playtime requirements.
+		// Пытается запустить спавн самостоятельно. При этом проверяются требования ко времени воспроизведения.
 		if(!spawnee.AttemptLateSpawn(selected_job, target))
 			to_chat(spawnee, span_danger("Unable to spawn on ship!"))
 			spawnee.new_player_panel()
@@ -365,13 +364,11 @@
 
 	return TRUE
 
-//[/CELADON-EDIT] - Конец защищённых процедур
-
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Переменная для хранения выбранной фракции (уникальная для каждого пользователя)
+// Переменная для хранения выбранной фракции (уникальная для каждого пользователя)
 /datum/ship_select
 	var/static/list/selected_faction_by_ckey = list()
 
-//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Очистка данных при закрытии UI
+// Очистка данных при закрытии UI
 /datum/ship_select/ui_close(mob/user)
 	. = ..()
 
@@ -381,5 +378,3 @@
 		var/user_ckey = ckey(spawnee.key)
 		if(user_ckey)
 			selected_faction_by_ckey[user_ckey] = null
-
-//[/CELADON-EDIT] - Конец модификаций SHIP_SELECTION_REWORK

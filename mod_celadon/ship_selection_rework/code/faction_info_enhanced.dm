@@ -1,7 +1,5 @@
-// [CELADON-ADD] - SHIP_SELECTION_REWORK - Faction information and outfit previews
+// SHIP_SELECTION_REWORK - Faction information and outfit previews
 // Система генерации превью экипировки фракций и информации о них
-
-#ifdef ENHANCED_SHIP_OWNER_INTERFACE
 
 // Кэш для превью экипировки (ленивая загрузка)
 GLOBAL_LIST_INIT(faction_preview_cache, list())
@@ -186,6 +184,3 @@ GLOBAL_LIST_INIT(faction_info_data, list(
 	// Генерируем и кэшируем
 	GLOB.faction_preview_cache[faction_name] = generate_faction_outfit_previews(faction_name)
 	return GLOB.faction_preview_cache[faction_name]
-
-#endif
-// [/CELADON-ADD]

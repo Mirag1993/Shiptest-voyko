@@ -1,7 +1,5 @@
 // Отслеживание изменений персонажа для аннулирования заявок
 
-#ifdef ENHANCED_SHIP_OWNER_INTERFACE
-
 // Сохраняем хеш персонажа перед изменениями
 /datum/preferences
 	var/last_saved_character_hash
@@ -87,6 +85,4 @@
 	// Логируем результат
 	if(invalidated_count > 0)
 		log_admin("Invalidated [invalidated_count] applications for [player_ckey] due to character change: [old_name] -> [new_name]")
-
-#endif
 

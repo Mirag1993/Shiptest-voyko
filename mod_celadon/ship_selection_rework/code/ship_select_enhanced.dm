@@ -1,7 +1,5 @@
 // Расширение функциональности выбора кораблей с превью фракций
 
-#ifdef ENHANCED_SHIP_OWNER_INTERFACE
-
 // Добавляем состояние для превью фракций
 /datum/ship_select
 	var/current_preview_faction
@@ -199,5 +197,3 @@
 	// Очищаем превью при закрытии окна
 	current_preview_faction = null
 	. = ..()
-
-#endif

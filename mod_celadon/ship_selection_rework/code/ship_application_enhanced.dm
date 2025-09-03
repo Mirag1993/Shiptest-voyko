@@ -1,4 +1,4 @@
-// [CELADON-ADD] - SHIP_SELECTION_REWORK - Enhanced ship application with character photo and info
+// SHIP_SELECTION_REWORK - Enhanced ship application with character photo and info
 // Расширение заявки на корабль с фото и информацией о персонаже
 
 /datum/ship_application
@@ -20,7 +20,7 @@
 /datum/ship_application/New(mob/dead/new_player/applicant, datum/overmap/ship/controlled/parent)
 	. = ..()
 
-	// [CELADON-ADD] - Collect character information from preferences
+	// Collect character information from preferences
 	if(applicant?.client?.prefs)
 		var/datum/preferences/prefs = applicant.client.prefs
 		character_age = prefs.age
@@ -31,7 +31,6 @@
 
 		// Generate character photo
 		character_photo_base64 = generate_character_photo_base64(prefs)
-	// [/CELADON-ADD]
 
 /// Generate base64 character photo from preferences
 /datum/ship_application/proc/generate_character_photo_base64(datum/preferences/prefs)
@@ -114,9 +113,8 @@
 	var/current_hash = generate_character_hash(current_prefs)
 	return current_hash == character_hash
 
-// [CELADON-ADD] - Enhanced application status change with denial reason notification
+// Enhanced application status change with denial reason notification
 /datum/ship_application/application_status_change(new_status)
-	// no alternating accept / deny spam
 	if(status != SHIP_APPLICATION_PENDING)
 		return
 	status = new_status
@@ -131,26 +129,16 @@
 	switch(status)
 		if(SHIP_APPLICATION_ACCEPTED)
 			to_chat(app_mob, span_notice("Your application to [parent_ship] was accepted!"), MESSAGE_TYPE_INFO)
-			//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Автообновление Ship Select UI после принятия заявки
-			// Обновляем Ship Select UI если оно открыто
 			for(var/datum/tgui/ui in SStgui.open_uis)
 				if(ui.interface == "ShipSelect" && ui.user == app_mob)
 					ui.send_update()
 					break
-			//[/CELADON-EDIT]
 		if(SHIP_APPLICATION_DENIED)
-			// [CELADON-EDIT] - Enhanced denial notification with reason
 			var/denial_message = "Your application to [parent_ship] was denied!"
 			if(denial_reason && length(denial_reason))
 				denial_message += "\nПричина: [denial_reason]"
 			to_chat(app_mob, span_warning(denial_message), MESSAGE_TYPE_INFO)
-			// [/CELADON-EDIT]
-			//[CELADON-EDIT] - SHIP_SELECTION_REWORK - Автообновление Ship Select UI после отклонения заявки
-			// Обновляем Ship Select UI если оно открыто
 			for(var/datum/tgui/ui in SStgui.open_uis)
 				if(ui.interface == "ShipSelect" && ui.user == app_mob)
 					ui.send_update()
 					break
-			//[/CELADON-EDIT]
-
-// [/CELADON-ADD]

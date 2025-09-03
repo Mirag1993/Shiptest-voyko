@@ -6,13 +6,6 @@
 /datum/ship_select/ui_status(mob/user, datum/ui_state/state)
 	return isnewplayer(user) ? UI_INTERACTIVE : UI_CLOSE
 
-// [CELADON-EDIT] - SHIP_SELECTION_REWORK - Добавляем assets для логотипов фракций
-/datum/ship_select/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/simple/faction_logos),
-	)
-// [/CELADON-EDIT]
-
 /datum/ship_select/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
