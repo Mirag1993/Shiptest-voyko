@@ -187,6 +187,9 @@ FIXES_DEBUG_SUIT
 FIXES_MOTH_EATING_CLOTHING
 - EDIT: `code/modules/clothing/clothing.dm` - Фикс поедание молями еды в виде одежды. Убираем создание временных новых объектов еды, обращаемся напрямую к объектам еды
 
+FIXES_PIZZABOX_AND_PIZZA - фиксим коробки с пиццей и возможность расам есть любимое блюдо с их ингридиентами, даже если там есть то что они не любят
+- ADD: `code/modules/food_and_drinks/pizzabox.dm`
+- ADD: `code/datums/components/food/edible.dm`
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
