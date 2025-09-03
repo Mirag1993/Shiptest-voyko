@@ -194,6 +194,9 @@ FIXES_PIZZABOX_AND_PIZZA - фиксим коробки с пиццей и воз
 FIXES_NETWORK_NT
 - ADD: `code/modules/modular_computers/file_system/programs/ntdownloader.dm` - показываем информацию о отсутвующей сети
 
+FIXES_TESLA_ON_OVERMAP
+- EDIT: `code/modules/power/tesla/energy_ball.dm`
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
