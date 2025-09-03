@@ -837,6 +837,11 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /datum/admin_menu/ui_static_data(mob/user)
 	var/list/temp_data = list()
+
+	// [CELADON-ADD] Clear any existing data to prevent duplication
+	temp_data.Cut()
+	// [/CELADON-ADD]
+
 	for(var/procpath/cur_verb as anything in holder.verbs)
 		if(!cur_verb.category)
 			continue
@@ -845,13 +850,20 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		temp_data[cur_verb.category] += list(list("verb" = "[cur_verb]", "name" = cur_verb.name, "desc" = cur_verb.desc))
 
 	var/list/tgui_data = list()
+	// [CELADON-ADD] Initialize categories list properly
+	tgui_data["categories"] = list()
+	// [/CELADON-ADD]
+
 	for(var/category in temp_data)
 		var/list/cat = list(
 			"name" = category,
 			"items" = temp_data[category])
 		tgui_data["categories"] += list(cat)
 
-	LAZYADDASSOCLIST(tgui_data, "categories", list("name" = "История", "items" = reverseList(holder.last_verbs_used)))
+	// [CELADON-ADD] Add history category safely
+	var/list/history_items = reverseList(holder.last_verbs_used)
+	tgui_data["categories"] += list(list("name" = "History", "items" = history_items))
+	// [/CELADON-ADD]
 	return tgui_data
 
 /datum/admin_menu/ui_act(action, params)

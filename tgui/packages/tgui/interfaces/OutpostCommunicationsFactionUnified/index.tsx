@@ -10,11 +10,11 @@ import {
 
 import { useBackend, useSharedState } from '../../backend';
 import { Window } from '../../layouts';
-import { CargoCatalog } from './components/CargoCatalog';
-import { Data } from './types';
+import { CargoCatalog } from '../OutpostCommunicationsFaction/components/CargoCatalog';
+import { Data } from '../OutpostCommunicationsFaction/types';
 
 // Единый интерфейс для всех фракций
-export const OutpostCommunicationsFaction = (props, context) => {
+export const OutpostCommunicationsFactionUnified = (props, context) => {
   const { act, data } = useBackend<Data>();
   const { outpostDocked, onShip, points, faction_theme, faction_name } = data;
 
@@ -23,6 +23,11 @@ export const OutpostCommunicationsFaction = (props, context) => {
   // Устанавливаем вкладку cargo по умолчанию
   useEffect(() => {
     if (!tab) {
+      act('debug_log', {
+        message: `[DEBUG] OutpostCommunicationsFactionUnified: устанавливаем tab = 'cargo'`,
+        source: 'OutpostCommunicationsFactionUnified.tsx',
+        line: 'useEffect tab init',
+      });
       setTab('cargo');
     }
   }, [tab, setTab]);
@@ -42,24 +47,6 @@ export const OutpostCommunicationsFaction = (props, context) => {
                   >
                     Cargo
                   </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={tab === 'requests'}
-                    onClick={() => setTab('requests')}
-                  >
-                    Requests
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={tab === 'log'}
-                    onClick={() => setTab('log')}
-                  >
-                    Log
-                  </Tabs.Tab>
-                  <Tabs.Tab
-                    selected={tab === 'missions'}
-                    onClick={() => setTab('missions')}
-                  >
-                    Missions
-                  </Tabs.Tab>
                 </Tabs>
               </Stack.Item>
               <Stack.Item>
@@ -78,9 +65,6 @@ export const OutpostCommunicationsFaction = (props, context) => {
           }
         />
         {tab === 'cargo' && <CargoExpressContent />}
-        {tab === 'requests' && <RequestsContent />}
-        {tab === 'log' && <LogContent />}
-        {tab === 'missions' && <MissionsContent />}
       </Window.Content>
     </Window>
   );
@@ -112,46 +96,6 @@ const CargoExpressContent = (props, context) => {
         </LabeledList>
       </Section>
       <CargoCatalog />
-    </>
-  );
-};
-
-// Добавляем недостающие компоненты
-const RequestsContent = (props, context) => {
-  const { data } = useBackend<Data>();
-  return (
-    <Section title="Cargo Requests">
-      <Box color="label" textAlign="center" p={2}>
-        Cargo requests functionality coming soon.
-      </Box>
-    </Section>
-  );
-};
-
-const LogContent = (props, context) => {
-  const { data } = useBackend<Data>();
-  return (
-    <Section title="Cargo Log">
-      <Box color="label" textAlign="center" p={2}>
-        Cargo log functionality coming soon.
-      </Box>
-    </Section>
-  );
-};
-
-const MissionsContent = (props, context) => {
-  const { data } = useBackend<Data>();
-  const {
-    numMissions,
-    maxMissions,
-    outpostDocked,
-    shipMissions,
-    outpostMissions,
-  } = data;
-  return (
-    <>
-      <ShipMissionsContent />
-      <OutpostMissionsContent />
     </>
   );
 };
