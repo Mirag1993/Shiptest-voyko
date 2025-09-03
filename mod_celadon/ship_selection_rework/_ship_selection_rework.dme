@@ -1,5 +1,5 @@
+#ifndef SHIP_SELECTION_REWORK
 #define SHIP_SELECTION_REWORK
-#define ENHANCED_SHIP_OWNER_INTERFACE
 
 #include "_ship_selection_rework.dm"
 #include "code/ship_application_enhanced.dm"
