@@ -190,6 +190,10 @@ FIXES_MOTH_EATING_CLOTHING
 FIXES_PIZZABOX_AND_PIZZA - фиксим коробки с пиццей и возможность расам есть любимое блюдо с их ингридиентами, даже если там есть то что они не любят
 - ADD: `code/modules/food_and_drinks/pizzabox.dm`
 - ADD: `code/datums/components/food/edible.dm`
+
+FIXES_NETWORK_NT
+- ADD: `code/modules/modular_computers/file_system/programs/ntdownloader.dm` - показываем информацию о отсутвующей сети
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
