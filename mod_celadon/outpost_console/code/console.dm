@@ -16,22 +16,11 @@
 	data["outpostDocked"] = outpost_docked
 	data["points"] = charge_account ? charge_account.account_balance : 0
 	data["siliconUser"] = user.has_unlimited_silicon_privilege && check_ship_ai_access(user)
-	// data["beaconZone"] = beacon ? get_area(beacon) : ""//where is the beacon located? outputs in the tgui // NEEDS_TO_FIX_ALARM!
 	data["usingBeacon"] = use_beacon //is the mode set to deliver to the beacon or the cargobay?
-	// data["canBeacon"] = !use_beacon || canBeacon //is the mode set to beacon delivery, and is the beacon in a valid location? // NEEDS_TO_FIX_ALARM!
-	// data["canBuyBeacon"] = charge_account ? (cooldown <= 0 && charge_account.account_balance >= BEACON_COST) : FALSE
-	// data["beaconError"] = use_beacon && !canBeacon ? "(BEACON ERROR)" : ""//changes button text to include an error alert if necessary // NEEDS_TO_FIX_ALARM!
-	// data["hasBeacon"] = beacon != null//is there a linked beacon? // NEEDS_TO_FIX_ALARM!
-	// data["beaconName"] = beacon ? beacon.name : "No Beacon Found" // NEEDS_TO_FIX_ALARM!
-	// data["printMsg"] = cooldown > 0 ? "Print Beacon for [BEACON_COST] credits ([cooldown])" : "Print Beacon for [BEACON_COST] credits"//buttontext for printing beacons
 	data["supplies"] = list()
 	message = "Sales are near-instantaneous - please choose carefully."
 	if(SSshuttle.supplyBlocked)
 		message = blockade_warning
-	// if(use_beacon && !beacon) // NEEDS_TO_FIX_ALARM!
-		// message = "BEACON ERROR: BEACON MISSING"//beacon was destroyed
-	// else if (use_beacon && !canBeacon) // NEEDS_TO_FIX_ALARM!
-	// 	message = "BEACON ERROR: MUST BE EXPOSED"//beacon's loc/user's loc must be a turf
 	data["message"] = message
 
 	data["supplies"] = supply_pack_data
@@ -54,13 +43,28 @@
 		var/obj/machinery/computer/cargo/faction/faction_console = src
 		data["faction_theme"] = faction_console.faction_theme
 		data["faction_name"] = faction_console.faction_name
-
 	return data
 
+/obj/machinery/computer/cargo/faction/ui_static_data(mob/user)
+	var/list/data = list()
+	data["supplies"] = list()
+	for(var/pack in SSshuttle.supply_packs)
+		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
+		if(!data["supplies"][P.category])
+			data["supplies"][P.category] = list(
+				"name" = P.category,
+				"packs" = list()
+			)
 
+		data["supplies"][P.category]["packs"] += list(list(
+			"name" = P.name,
+			"cost" = P.cost,
+			"id" = pack,
+			"desc" = P.desc || P.name,
+		))
+	return data
 
-// Взаимодействие с UI
-/obj/machinery/computer/cargo/faction/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/cargo/faction/ui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -80,72 +84,45 @@
 			SStgui.update_uis(src)
 			return TRUE
 
-		// if("LZCargo") // NEEDS_TO_FIX_ALARM!
-			// use_beacon = FALSE
-			// if (beacon)
-			// 	beacon.update_status(SP_UNREADY) //ready light on beacon will turn off
-		// if("LZBeacon")
-		// 	use_beacon = TRUE
-			// if (beacon)
-			// 	beacon.update_status(SP_READY) //turns on the beacon's ready light
-		// if("printBeacon")
-		// 	if(charge_account?.adjust_money(-BEACON_COST))
-		// 		cooldown = 10//a ~ten second cooldown for printing beacons to prevent spam
-		// 		var/obj/item/supplypod_beacon/C = new /obj/item/supplypod_beacon(drop_location())
-		// 		C.link_console(src, usr)//rather than in beacon's Initialize(), we can assign the computer to the beacon by reusing this proc)
-		// 		printed_beacons++//printed_beacons starts at 0, so the first one out will be called beacon # 1
-		// 		beacon.name = "Supply Pod Beacon #[printed_beacons]" // NEEDS_TO_FIX_ALARM!
-		if("add")
+		if("purchase")
+			var/list/purchasing = params["cart"]
+			var/total_cost = text2num(params["total"])
 			var/area/current_area = get_area(src)
-			var/pack_id = isnum(params["id"]) ? params["id"] : text2path("[params["id"]]")
-			var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
-			if(!pack || !charge_account?.has_money(pack.cost) || !istype(current_area))
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
-				if(!charge_account?.has_money(pack.cost) && message_cooldown <= world.time)
-					say("ERROR: Infufficient funds! Transaction canceled.")
-					message_cooldown = world.time + 5 SECONDS
-				return
+			var/list/packs = list()
+			for(var/item in purchasing)
+				var/pack_id = isnum(params["id"]) ? params["id"] : text2path("[params["id"]]")
+				var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
+				if(pack)
+					packs += pack
+
+			if(!length(packs) || !charge_account?.has_money(total_cost) || !istype(current_area))
+				message_cooldown = console_cooldown_feedback(src, "ERROR: Insufficent funds! Transaction canceled.", message_cooldown)
+				return TRUE
 
 			var/turf/landing_turf
-			// if(!isnull(beacon) && use_beacon) // prioritize beacons over landing in cargobay // NEEDS_TO_FIX_ALARM!
-			// 	landing_turf = get_turf(beacon) // NEEDS_TO_FIX_ALARM!
-			// 	beacon.update_status(SP_LAUNCH) // NEEDS_TO_FIX_ALARM!
-			// else // NEEDS_TO_FIX_ALARM!
-			if(!use_beacon)// find a suitable supplypod landing zone in cargobay
+			if(!use_beacon)
 				var/list/empty_turfs = list()
 				if(!landingzone)
 					reconnect()
 					if(!landingzone)
 						WARNING("[src] couldnt find a Ship/Cargo (aka cargobay) area on a ship, and as such it has set the supplypod landingzone to the area it resides in.")
 						landingzone = get_area(src)
-				for(var/turf/open/floor/T in landingzone.contents)//uses default landing zone
+
+				for(var/turf/open/floor/T in landingzone.contents)
 					if(T.is_blocked_turf())
 						continue
 					empty_turfs += T
 					CHECK_TICK
 				if(!length(empty_turfs))
-					playsound(src, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
-					if(message_cooldown <= world.time)
-						say("ERROR: Landing zone full! No space for drop!")
-						message_cooldown = world.time + 5 SECONDS
-					return
+					message_cooldown = console_cooldown_feedback(src, "ERROR: Landing zone full! No space for drop!", message_cooldown)
+					return TRUE
 				landing_turf = pick(empty_turfs)
 
-			// note that, because of CHECK_TICK above, we aren't sure if we can
-			// afford the pack, even though we checked earlier. luckily adjust_money
-			// returns false if the account can't afford the price
-			if(landing_turf && charge_account.adjust_money(-pack.cost))
-				var/name = "*None Provided*"
-				var/rank = "*None Provided*"
-				if(ishuman(usr))
-					var/mob/living/carbon/human/H = usr
-					name = H.get_authentification_name()
-					rank = H.get_assignment(hand_first = TRUE)
-				else if(issilicon(usr))
-					name = usr.real_name
-					rank = "Silicon"
-				var/datum/supply_order/SO = new(pack, name, rank, usr.ckey, "")
+			if(landing_turf && charge_account.adjust_money(-total_cost))
+				var/datum/supply_order/SO = new(packs, usr.ckey, "")
 				new /obj/effect/pod_landingzone(landing_turf, podType, SO)
+				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
+				say("Order incoming!")
 				update_appearance()
 				SStgui.update_uis(src)
 				return TRUE
@@ -171,7 +148,13 @@
 				SStgui.update_uis(src)
 				return TRUE
 
-// Взаимодействие с UI для фракций
+/proc/console_cooldown_feedback(obj/source, msg, cooldown)
+	playsound(source, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
+	if(cooldown <= world.time)
+		source.say(msg)
+		cooldown = world.time + 5 SECONDS
+	return cooldown
+
 /obj/machinery/computer/cargo/faction/proc/faction_ui_interact(mob/user, datum/tgui/ui, var/text, obj/src)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -180,7 +163,6 @@
 		if(!charge_account)
 			reconnect()
 
-// Генерация информации о доступных товарах для фракций
 /obj/machinery/computer/cargo/faction/proc/generate_faction_pack_data(datum/faction)
 	. = supply_pack_data = list()
 	for(var/pack in SSshuttle.supply_packs)
@@ -192,10 +174,6 @@
 			is_faction = TRUE
 
 		if (is_faction)
-			// Если скрыто, не добавляем товар
-			// if(P.hidden)
-			// 	continue
-			// Если нет группы, создаём группу
 			if(!supply_pack_data[P.category])
 				supply_pack_data[P.category] = list(
 					"name" = P.category,
@@ -211,7 +189,6 @@
 
 	return supply_pack_data
 
-// Создание UI статики для фракций
 /obj/machinery/computer/cargo/faction/proc/faction_ui_static_data(mob/user, datum/faction)	// КОД JOPA
 	var/list/data = list()
 	data["supplies"] = list()
@@ -239,8 +216,9 @@
 	return data
 
 /*
-	Без фракции
+	MARK: Без фракции
 */
+
 /obj/machinery/computer/cargo/faction
 	// Конфигурационные переменные для фракций
 	var/faction_theme = null
@@ -309,7 +287,8 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		// Используем единый интерфейс для всех фракций
-		ui = new(user, src, "OutpostCommunicationsFactionUnified", name)
+		// ui = new(user, src, "OutpostCommunicationsFactionUnified", name)
+		ui = new(user, src, "OutpostCommunicationsCeladon", name)
 		ui.open()
 		if(!charge_account)
 			reconnect()
@@ -353,24 +332,24 @@
 		))
 
 /*
-	Syndicate
+	MARK: Syndicate
 */
 /obj/machinery/computer/cargo/faction/syndicate
 	// Конфигурация для рефакторинга
+	name = "syndicate outpost console"
+	desc = "That outpost console belongs to Syndicate."
+	icon_screen = "syndishuttle"
 	faction_theme = "syndicate"
 	faction_name = "syndicate outpost console"
 	faction_desc = "That outpost console belongs to Syndicate."
 	faction_icon = "syndishuttle"
-	faction_color = COLOR_DARK_RED
+	circuit = /obj/item/circuitboard/computer/cargo
+	light_color = COLOR_DARK_RED
 	faction_account = ACCOUNT_SYN
 	faction_pod_type = /obj/structure/closet/supplypod/syndicate
 
 	contraband = FALSE
 	self_paid = FALSE
-
-// Используем базовый ui_interact с единым интерфейсом
-// Убираем дублирующийся ui_interact - используем базовый класс
-
 
 /obj/machinery/computer/cargo/faction/syndicate/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/syndicate)
@@ -395,7 +374,7 @@
 	reverse_dropoff_coords = list(picked_turf.x, picked_turf.y, picked_turf.z)
 
 /*
-	Inteq
+	MARK: Inteq
 */
 /obj/machinery/computer/cargo/faction/inteq
 	// Конфигурация для рефакторинга
@@ -410,9 +389,6 @@
 	contraband = FALSE
 	self_paid = FALSE
 
-// Используем базовый ui_interact с единым интерфейсом
-// Убираем дублирующийся ui_interact - используем базовый класс
-
 /obj/machinery/computer/cargo/faction/inteq/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/inteq)
 
@@ -421,7 +397,7 @@
 	return data
 
 /*
-	SolFed
+	MARK: SolFed
 */
 /obj/machinery/computer/cargo/faction/solfed
 	// Конфигурация для рефакторинга
@@ -436,9 +412,6 @@
 	contraband = FALSE
 	self_paid = FALSE
 
-// Используем базовый ui_interact с единым интерфейсом
-// Убираем дублирующийся ui_interact - используем базовый класс
-
 /obj/machinery/computer/cargo/faction/solfed/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/solgov)
 
@@ -447,7 +420,7 @@
 	return data
 
 /*
-	Independent
+	MARK: Independent
 */
 /obj/machinery/computer/cargo/faction/independent
 	// Конфигурация для рефакторинга
@@ -461,9 +434,6 @@
 
 	contraband = FALSE
 	self_paid = FALSE
-
-// Используем базовый ui_interact с единым интерфейсом
-// Убираем дублирующийся ui_interact - используем базовый класс
 
 /obj/machinery/computer/cargo/faction/independent/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/independent)
@@ -493,7 +463,7 @@
 	charge_account = ACCOUNT_IND_4
 
 /*
-	Nanotrasen
+	MARK: Nanotrasen
 */
 /obj/machinery/computer/cargo/faction/nanotrasen
 	// Конфигурация для рефакторинга
@@ -507,9 +477,6 @@
 
 	contraband = FALSE
 	self_paid = FALSE
-
-// Используем базовый ui_interact с единым интерфейсом
-// Убираем дублирующийся ui_interact - используем базовый класс
 
 /obj/machinery/computer/cargo/faction/nanotrasen/generate_pack_data()
 	supply_pack_data = generate_faction_pack_data(/datum/faction/nt)

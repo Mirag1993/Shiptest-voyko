@@ -25,31 +25,31 @@ export const EmotePanelContent = (props, context) => {
   const [filterVisible, toggleVisualFilter] = useLocalState(
     context,
     'filterVisible',
-    '',
+    ''
   );
 
   const [filterAudible, toggleAudibleFilter] = useLocalState(
     context,
     'filterAudible',
-    '',
+    ''
   );
 
   const [filterSound, toggleSoundFilter] = useLocalState(
     context,
     'filterSound',
-    '',
+    ''
   );
 
   const [filterHands, toggleHandsFilter] = useLocalState(
     context,
     'filterHands',
-    '',
+    ''
   );
 
   const [filterTargettable, toggleTargettableFilter] = useLocalState(
     context,
     'filterTargettable',
-    '',
+    ''
   );
 
   const [useTarget, toggleUseTarget] = useLocalState(context, 'useTarget', '');
@@ -143,6 +143,9 @@ export const EmotePanelContent = (props, context) => {
                           .includes(searchText.toLowerCase()) ||
                         emote.name
                           .toLowerCase()
+                          .includes(searchText.toLowerCase()) ||
+                        capitalize(emote.name)
+                          .toLowerCase()
                           .includes(searchText.toLowerCase())
                       : true) &&
                     (filterVisible ? emote.visible : true) &&
@@ -166,7 +169,7 @@ export const EmotePanelContent = (props, context) => {
                     {emote.sound ? <Icon name="volume-up" /> : ''}
                     {emote.hands ? <Icon name="hand-paper" /> : ''}
                     {emote.targettable ? <Icon name="crosshairs" /> : ''}
-                    {emote.name}
+                    {capitalize(emote.name)}
                   </Button>
                 ))}
             </Stack.Item>
