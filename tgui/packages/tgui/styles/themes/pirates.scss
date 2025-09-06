@@ -1,22 +1,22 @@
 /*
-  Copyright (c) 2024 Feenie
-  Discord: @feenie_
+  Copyright (c) 2024 Celadon
+  Pirates theme for TGUI
 */
 
 @use 'sass:color';
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #774b27,
+  $primary: #8b4513,
   $fg-map-keys: (),
   $bg-map-keys: ()
 );
 @use '../base.scss' with (
-  $color-bg: #3a1a0a,
+  $color-bg: #1a0a0a,
   $color-bg-grad-spread: 6%
 );
 
-.theme-independent {
+.theme-pirates {
   // Atomic classes
   @include meta.load-css('../atomic/color.scss');
 
@@ -24,25 +24,24 @@
   @include meta.load-css(
     '../components/Button.scss',
     $with: (
-      'color-transparent-text': #e6c878,
       'color-default': colors.$primary,
       'color-disabled': #363636,
-      'color-selected': #e6c878,
-      'color-caution': #ffae00,
+      'color-selected': #ffd700,
+      'color-caution': #be6209,
       'color-danger': #ff0000
     )
   );
   @include meta.load-css(
     '../components/Input.scss',
-    $with: ('border-color': #e6c878)
+    $with: ('border-color': #ffd700)
   );
   @include meta.load-css(
     '../components/NoticeBox.scss',
-    $with: ('background-color': #774b27)
+    $with: ('background-color': #2a0a0a)
   );
   @include meta.load-css(
     '../components/NumberInput.scss',
-    $with: ('border-color': #e6c878)
+    $with: ('border-color': #ffd700)
   );
   @include meta.load-css(
     '../components/ProgressBar.scss',
@@ -51,7 +50,7 @@
   @include meta.load-css('../components/Section.scss');
   @include meta.load-css(
     '../components/Tooltip.scss',
-    $with: ('background-color': #3a1a0a)
+    $with: ('background-color': #1a0a0a)
   );
 
   // Layouts
@@ -59,10 +58,10 @@
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css(
     '../layouts/TitleBar.scss',
-    $with: ('background-color': #774b27)
+    $with: ('background-color': #2a0a0a)
   );
 
   .Layout__content {
-    background-image: url('../../assets/bg-independent.svg');
+    background-image: url('../../assets/bg-pirate.svg');
   }
 }
