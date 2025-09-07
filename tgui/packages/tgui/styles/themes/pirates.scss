@@ -22,7 +22,7 @@
 
   // Components
   @include meta.load-css(
-    'tgui-core/components/Button.scss',
+    '~tgui-core/styles/components/Button',
     $with: (
       'color-default': colors.$primary,
       'color-disabled': #363636,
@@ -32,24 +32,24 @@
     )
   );
   @include meta.load-css(
-    'tgui-core/components/Input.scss',
+    '~tgui-core/styles/components/Input',
     $with: ('border-color': #ffd700)
   );
   @include meta.load-css(
-    'tgui-core/components/NoticeBox.scss',
+    '~tgui-core/styles/components/NoticeBox',
     $with: ('background-color': #2a0a0a)
   );
   @include meta.load-css(
-    'tgui-core/components/NumberInput.scss',
+    '~tgui-core/styles/components/NumberInput',
     $with: ('border-color': #ffd700)
   );
   @include meta.load-css(
-    'tgui-core/components/ProgressBar.scss',
+    '~tgui-core/styles/components/ProgressBar',
     $with: ('background-color': rgba(0, 0, 0, 0.5))
   );
-  @include meta.load-css('tgui-core/components/Section.scss');
+  @include meta.load-css('~tgui-core/styles/components/Section');
   @include meta.load-css(
-    'tgui-core/components/Tooltip.scss',
+    '~tgui-core/styles/components/Tooltip',
     $with: ('background-color': #1a0a0a)
   );
 

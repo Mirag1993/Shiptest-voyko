@@ -71,7 +71,7 @@
 
   // Components specific to tgui-panel
   @include meta.load-css(
-    'tgui-core/components/Chat.scss',
+    '../components/Chat.scss',
     $with: ('text-color': hsl(0, 0%, 0%))
   );
 
