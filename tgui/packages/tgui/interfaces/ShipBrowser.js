@@ -1,17 +1,17 @@
-import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
-  Flex,
-  Section,
   Collapsible,
-  LabeledList,
+  Flex,
   Icon,
   Input,
-} from '../components';
+  LabeledList,
+  Section,
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { getFactionColor } from './FactionButtons';
-import { createSearch } from 'common/string';
 
 export const ShipBrowser = (props, context) => {
   const { act, data } = useBackend(context);
@@ -87,13 +87,13 @@ export const ShipBrowser = (props, context) => {
     sorted.sort((a, b) => (a?.name || '').localeCompare(b?.name || ''));
   } else if (sortBy === 'crew') {
     sorted.sort(
-      (a, b) => (Number(b?.crewCount) || 0) - (Number(a?.crewCount) || 0)
+      (a, b) => (Number(b?.crewCount) || 0) - (Number(a?.crewCount) || 0),
     );
   }
 
   const toggleTag = (tag) => {
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
   };
 

@@ -1,6 +1,7 @@
-import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Stack } from '../components';
+import { Box, Button, Stack } from 'tgui-core/components';
+
 import { resolveAsset } from '../assets';
+import { useBackend, useLocalState } from '../backend';
 import FactionInfo from './FactionInfo';
 
 // Список всех доступных фракций
@@ -111,18 +112,18 @@ export const getFactionColor = (factionName) => {
 
   // Цвета фракций для стилизации
   const FACTION_COLORS = {
-    'nanotrasen': { bg: '#283674', text: 'white' },
-    'syndicate': { bg: '#9C0808', text: 'white' },
-    'inteq': { bg: '#4D291F', text: 'rgb(230, 200, 120)' },
+    nanotrasen: { bg: '#283674', text: 'white' },
+    syndicate: { bg: '#9C0808', text: 'white' },
+    inteq: { bg: '#4D291F', text: 'rgb(230, 200, 120)' },
     'inteq risk management group': {
       bg: '#4D291F',
       text: 'rgb(230, 200, 120)',
     },
-    'solfed': { bg: '#191970', text: '#FFD700' },
-    'independent': { bg: '#7E6641', text: '#FFD700' },
-    'elysium': { bg: '#006400', text: 'white' },
-    'pirates': { bg: '#000000', text: 'white' },
-    'other': { bg: '#000080', text: 'white' },
+    solfed: { bg: '#191970', text: '#FFD700' },
+    independent: { bg: '#7E6641', text: '#FFD700' },
+    elysium: { bg: '#006400', text: 'white' },
+    pirates: { bg: '#000000', text: 'white' },
+    other: { bg: '#000080', text: 'white' },
   };
 
   // Проверяем точные совпадения
@@ -167,20 +168,20 @@ export const FactionButtons = (props, context) => {
   const [hoveredFaction, setHoveredFaction] = useLocalState(
     context,
     'hoveredFaction',
-    null
+    null,
   );
 
   // Состояние для запоминания выбранной фракции (не исчезает при уходе мыши)
   const [selectedFaction, setSelectedFaction] = useLocalState(
     context,
     'selectedFaction',
-    null
+    null,
   );
 
   const [factionPreviews, setFactionPreviews] = useLocalState(
     context,
     'factionPreviews',
-    {}
+    {},
   );
 
   // Получаем информацию о фракциях с сервера
@@ -266,10 +267,10 @@ export const FactionButtons = (props, context) => {
                     {/* Линии отношений между фракциями */}
                     {FACTION_RELATIONS.map((relation, index) => {
                       const fromIndex = FACTIONS.findIndex(
-                        (f) => f.id === relation.from
+                        (f) => f.id === relation.from,
                       );
                       const toIndex = FACTIONS.findIndex(
-                        (f) => f.id === relation.to
+                        (f) => f.id === relation.to,
                       );
 
                       if (fromIndex === -1 || toIndex === -1) return null;
@@ -405,8 +406,8 @@ const FactionButton = ({
         transform: isSelected
           ? 'scale(1.05)'
           : isHovered
-          ? 'scale(1.02)'
-          : 'scale(1)',
+            ? 'scale(1.02)'
+            : 'scale(1)',
       }}
       onClick={() => act('open_faction', { faction: faction.id })}
       onMouseEnter={() => setHoveredFaction(faction.id)}
@@ -424,7 +425,7 @@ const FactionLogo = ({ faction, context, isCentral = false }) => {
   const [hasError, setHasError] = useLocalState(
     context,
     `faction_logo_error_${faction.id}`,
-    false
+    false,
   );
 
   const logoSize = isCentral ? '80px' : '96px';

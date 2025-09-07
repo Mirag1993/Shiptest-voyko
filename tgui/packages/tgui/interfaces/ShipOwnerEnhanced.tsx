@@ -1,19 +1,20 @@
-import { useBackend, useLocalState } from '../backend';
-import { decodeHtmlEntities } from 'common/string';
+import './ShipOwnerEnhanced.scss';
+
 import {
+  Box,
   Button,
+  Divider,
+  Flex,
   LabeledList,
+  NumberInput,
   Section,
+  Stack,
   Table,
   Tabs,
-  Divider,
-  NumberInput,
-  Box,
-  Flex,
-  Stack,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
-import './ShipOwnerEnhanced.scss';
 
 type ShipOwnerData = {
   crew: [CrewData];
@@ -126,8 +127,8 @@ const ShipOwnerContent = (_, context: any) => {
                     joinMode === 'Open'
                       ? 'good'
                       : joinMode === 'Apply'
-                      ? 'average'
-                      : 'bad'
+                        ? 'average'
+                        : 'bad'
                   }
                   onClick={() => act('cycleJoin')}
                 />
@@ -368,7 +369,7 @@ const ApplicationCard = ({ app, act }) => {
                           {quirk.name} ({quirk.value > 0 ? '+' : ''}
                           {quirk.value})
                         </span>
-                      )
+                      ),
                     )}
                   </div>
                 </div>

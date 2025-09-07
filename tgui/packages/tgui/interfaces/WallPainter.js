@@ -1,5 +1,13 @@
 import { useBackend } from '../backend';
-import { Box, Button, Section, ColorBox, Stack, ProgressBar, Divider } from '../components';
+import {
+  Box,
+  Button,
+  Section,
+  ColorBox,
+  Stack,
+  ProgressBar,
+  Divider,
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 
 export const WallPainter = (props, context) => {
@@ -68,14 +76,14 @@ export const WallPainter = (props, context) => {
                   <Box mb={1} fontSize="1.1em" bold>
                     Selected Color:
                   </Box>
-                  <ColorBox 
-                    color={paint_color} 
-                    width="120px" 
-                    height="40px" 
+                  <ColorBox
+                    color={paint_color}
+                    width="120px"
+                    height="40px"
                     style={{
                       border: '3px solid #4a4a4a',
                       borderRadius: '8px',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
                     }}
                   />
                   <Box mt={1} textAlign="center" color="label">
@@ -108,17 +116,21 @@ export const WallPainter = (props, context) => {
                       height="32px"
                       backgroundColor={colorData.color}
                       selected={paint_color === colorData.color}
-                      onClick={() => act('set_color', { color: colorData.color })}
+                      onClick={() =>
+                        act('set_color', { color: colorData.color })
+                      }
                       tooltip={colorData.name}
                       style={{
-                        border: paint_color === colorData.color 
-                          ? '3px solid #ffffff' 
-                          : '2px solid #4a4a4a',
+                        border:
+                          paint_color === colorData.color
+                            ? '3px solid #ffffff'
+                            : '2px solid #4a4a4a',
                         borderRadius: '6px',
-                        boxShadow: paint_color === colorData.color 
-                          ? '0 0 8px rgba(255,255,255,0.6)' 
-                          : '0 1px 3px rgba(0,0,0,0.3)',
-                        transition: 'all 0.2s ease'
+                        boxShadow:
+                          paint_color === colorData.color
+                            ? '0 0 8px rgba(255,255,255,0.6)'
+                            : '0 1px 3px rgba(0,0,0,0.3)',
+                        transition: 'all 0.2s ease',
                       }}
                     />
                   </Stack.Item>

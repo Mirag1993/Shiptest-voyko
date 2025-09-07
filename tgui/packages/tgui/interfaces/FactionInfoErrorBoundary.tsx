@@ -1,4 +1,4 @@
-import { Box } from '../components';
+import { Box } from 'tgui-core/components';
 
 // Простая функция-обертка для защиты от ошибок
 export const FactionInfoErrorBoundary = ({ children }: { children: any }) => {

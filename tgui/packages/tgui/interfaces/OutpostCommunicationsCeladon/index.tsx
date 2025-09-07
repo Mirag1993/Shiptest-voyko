@@ -1,3 +1,4 @@
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -7,8 +8,8 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+
 import { useBackend, useSharedState } from '../../backend';
-import { Window } from '../layouts';
 import { CargoCatalog } from './Catalog';
 import { Data, Mission } from './types';
 
@@ -60,7 +61,9 @@ export const OutpostCommunicationsCeladon = (props, context) => {
         />
         {tab === 'cargo' && <CargoExpressContent />}
         {tab === 'shipMissions' && !!onShip && <ShipMissionsContent />}
-        {tab === 'outpostMissions' && !!outpostDocked && (<OutpostMissionsContent />)}
+        {tab === 'outpostMissions' && !!outpostDocked && (
+          <OutpostMissionsContent />
+        )}
       </Window.Content>
     </Window>
   );

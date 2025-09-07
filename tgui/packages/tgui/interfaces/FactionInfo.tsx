@@ -1,6 +1,8 @@
-import { Box, Button, Section, Stack } from '../components';
-import { useBackend } from '../backend';
 import './FactionInfo.scss';
+
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { FactionInfoErrorBoundary } from './FactionInfoErrorBoundary';
 
 interface OutfitPreview {

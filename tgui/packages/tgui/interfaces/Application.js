@@ -1,17 +1,16 @@
-import { Button, Stack, TextArea } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Section,
+  Stack,
+  TextArea,
+} from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
-import {
-  Button,
-  TextArea,
-  Stack,
-  Section,
-  Box,
-  Flex,
-  Icon,
-  Divider,
-} from '../components';
 
 export const Application = (props, context) => {
   const { act, data } = useBackend(context);
@@ -20,12 +19,12 @@ export const Application = (props, context) => {
   const [isSubmitting, setIsSubmitting] = useLocalState(
     context,
     'isSubmitting',
-    false
+    false,
   );
   const [isCancelling, setIsCancelling] = useLocalState(
     context,
     'isCancelling',
-    false
+    false,
   );
 
   const { ship_name, player_name, job_name } = data;
