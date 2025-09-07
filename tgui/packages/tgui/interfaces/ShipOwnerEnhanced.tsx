@@ -12,6 +12,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
@@ -66,9 +67,9 @@ type JobData = {
   def: number;
 };
 
-export const ShipOwnerEnhanced = (props, context) => {
+export const ShipOwnerEnhanced = (props) => {
   return (
-    <Window width={800} height={700} resizable>
+    <Window width={800} height={700}>
       <Window.Content scrollable>
         <ShipOwnerContent />
       </Window.Content>
@@ -76,9 +77,9 @@ export const ShipOwnerEnhanced = (props, context) => {
   );
 };
 
-const ShipOwnerContent = (_, context: any) => {
-  const { act, data } = useBackend<ShipOwnerData>(context);
-  const [tab, setTab] = useLocalState(context, 'tab', 1);
+const ShipOwnerContent = () => {
+  const { act, data } = useBackend<ShipOwnerData>();
+  const [tab, setTab] = useLocalState('tab', 1);
   const {
     crew = [],
     jobs = [],
@@ -191,14 +192,14 @@ const ShipOwnerContent = (_, context: any) => {
             <LabeledList>
               <LabeledList.Item label="Crew Profit Share">
                 <NumberInput
-                  animate
+                  animated
                   unit="%"
                   step={1}
                   stepPixelSize={15}
                   minValue={0}
                   maxValue={7}
                   value={crew_share * 100}
-                  onDrag={(e, value) =>
+                  onDrag={(value) =>
                     act('adjustshare', {
                       adjust: value,
                     })

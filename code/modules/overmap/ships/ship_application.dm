@@ -15,17 +15,21 @@
 	var/app_msg
 	/// The application's status -- whether or not it has been accepted, rejected, or hasn't been answered yet.
 	var/status = SHIP_APPLICATION_UNFINISHED
-	// [CELADON-ADD] - SHIP_SELECTION_REWORK - Добавляем поле для хранения целевой профессии
+	// [CELADON-ADD] - SHIP_SELECTION_REWORK - Расширение для системы валидации персонажа
 	/// Target job for job-specific applications (optional)
 	var/datum/job/target_job
+	/// Character gender for validation
+	var/character_gender
 	// [/CELADON-ADD]
 
 /datum/ship_application/New(mob/dead/new_player/applicant, datum/overmap/ship/controlled/parent)
 	// If the admin is in stealth mode, we use their fakekey.
 	app_mob = applicant
-	// [CELADON-EDIT] - SHIP_SELECTION_REWORK
+	// [CELADON-EDIT] - SHIP_SELECTION_REWORK - Улучшение валидации персонажа
 	//app_name = app_mob.client?.prefs.real_name
 	app_name = clean_html_entities(app_mob.client?.prefs.real_name)
+	// Сохраняем пол персонажа для валидации
+	character_gender = "[app_mob.client?.prefs.gender]"
 	// [/CELADON-EDIT]
 	app_key = app_mob.client?.holder?.fakekey ? app_mob.client.holder.fakekey : applicant.key
 	parent_ship = parent

@@ -12,20 +12,12 @@ import {
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
-export const Application = (props, context) => {
-  const { act, data } = useBackend(context);
-  const [message, setMessage] = useLocalState(context, 'message', '');
-  const [showCkey, setShowCkey] = useLocalState(context, 'showCkey', false);
-  const [isSubmitting, setIsSubmitting] = useLocalState(
-    context,
-    'isSubmitting',
-    false,
-  );
-  const [isCancelling, setIsCancelling] = useLocalState(
-    context,
-    'isCancelling',
-    false,
-  );
+export const Application = (props) => {
+  const { act, data } = useBackend();
+  const [message, setMessage] = useLocalState('message', '');
+  const [showCkey, setShowCkey] = useLocalState('showCkey', false);
+  const [isSubmitting, setIsSubmitting] = useLocalState('isSubmitting', false);
+  const [isCancelling, setIsCancelling] = useLocalState('isCancelling', false);
 
   const { ship_name, player_name, job_name } = data;
 
@@ -43,7 +35,7 @@ export const Application = (props, context) => {
     }
     return Math.min(18, Math.max(6, approx));
   };
-  const [textRows, setTextRows] = useLocalState(context, 'textRows', 6);
+  const [textRows, setTextRows] = useLocalState('textRows', 6);
 
   const handleCancel = () => {
     if (isCancelling || isSubmitting) return;
@@ -92,11 +84,11 @@ export const Application = (props, context) => {
         <Stack fill vertical gap={1}>
           <Stack.Item>
             <Section>
-              <Flex align="center" justify="center">
-                <Flex.Item shrink>
-                  <Icon name="file-alt" size={2.5} color="blue" mr={2} />
+              <Flex align="center" justify="flex-start">
+                <Flex.Item>
+                  <Icon name="file-alt" size={2.5} color="blue" ml={2} mr={2} />
                 </Flex.Item>
-                <Flex.Item grow style={{ textAlign: 'center' }}>
+                <Flex.Item grow>
                   <Box
                     fontSize="20px"
                     bold
@@ -146,30 +138,30 @@ export const Application = (props, context) => {
                 </Box>
 
                 <Box
-                  mb={2}
+                  mb={1}
                   style={{
-                    lineHeight: '1.5',
-                    fontSize: '14px',
+                    lineHeight: '1.4',
+                    fontSize: '13px',
                   }}
                 >
                   • Данный корабль требует <b>одобрения заявки</b> владельцем
                   для вступления
                 </Box>
                 <Box
-                  mb={2}
+                  mb={1}
                   style={{
-                    lineHeight: '1.5',
-                    fontSize: '14px',
+                    lineHeight: '1.4',
+                    fontSize: '13px',
                   }}
                 >
                   • Это <b>OOC утилита</b> для координации между игроками
                 </Box>
                 {isJobSpecific ? (
                   <Box
-                    mb={2}
+                    mb={1}
                     style={{
-                      lineHeight: '1.5',
-                      fontSize: '14px',
+                      lineHeight: '1.4',
+                      fontSize: '13px',
                     }}
                   >
                     • Вы подаёте заявку на{' '}
@@ -177,10 +169,10 @@ export const Application = (props, context) => {
                   </Box>
                 ) : (
                   <Box
-                    mb={2}
+                    mb={1}
                     style={{
-                      lineHeight: '1.5',
-                      fontSize: '14px',
+                      lineHeight: '1.4',
+                      fontSize: '13px',
                     }}
                   >
                     • Заявка на <b>общее вступление</b> в экипаж корабля
@@ -188,8 +180,8 @@ export const Application = (props, context) => {
                 )}
                 <Box
                   style={{
-                    lineHeight: '1.5',
-                    fontSize: '14px',
+                    lineHeight: '1.4',
+                    fontSize: '13px',
                   }}
                 >
                   • У вас есть <b>одна заявка на корабль</b>, разные персонажи
@@ -332,7 +324,7 @@ export const Application = (props, context) => {
                     style={{
                       height: '24px',
                       fontSize: '13px',
-                      borderRadius: '6px',
+                      borderRadius: '0px',
                       padding: '0 10px',
                     }}
                   />
@@ -350,7 +342,7 @@ export const Application = (props, context) => {
                     style={{
                       height: '24px',
                       fontSize: '13px',
-                      borderRadius: '6px',
+                      borderRadius: '0px',
                       padding: '0 10px',
                     }}
                   />

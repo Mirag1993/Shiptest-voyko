@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(faction_preview_cache, list())
 GLOBAL_LIST_INIT(faction_info_data, list(
 	"elysium" = list(
 		"name" = "Elysium",
-		"description" = "Радикальное движение за независимость Элизиума и «очищение» родной земли. Дисциплина, вера и готовность к жертве делают их опасными противниками; в ход идёт трофейное и самодельное вооружение.",
+		"description" = "Радикальное движение за независимость Элизиума и «очищение» родной земли. Дисциплина, вера и готовность к жертве делают их опасными противниками; в ход идёт трофейное и самодельное вооружение.\n\nПредупреждение: Только расса \"Human\"",
 		"wiki_url" = "https://wiki.celadon.pro/index.php/Elysim_Separatists",
 		"outfits" = list(
 			/datum/outfit/job/elysium/captain,
@@ -38,8 +38,8 @@ GLOBAL_LIST_INIT(faction_info_data, list(
 		"description" = "Разношёрстные экипажи, живущие налётами, выкупом и охотой на одиночные цели. Они полагаются на скорость, хитрость и знание маршрутов, но иногда готовы торговаться, если риск не оправдывает трофей.",
 		"wiki_url" = "https://wiki.celadon.pro/index.php/Pirates",
 		"outfits" = list(
-			/datum/outfit/job/independent/captain/pirate,
-			/datum/outfit/job/independent/security/pirate
+			/datum/outfit/job/independent/captain/pirate/preview,
+			/datum/outfit/job/independent/engineer/pirate/preview
 		)
 	),
 	"solfed" = list(

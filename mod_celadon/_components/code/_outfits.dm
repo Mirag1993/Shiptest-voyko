@@ -62,8 +62,8 @@
 	box = /obj/item/storage/box/hug/survival
 
 // Pirate: Powder Monkey Outfit
-/datum/outfit/job/independent/engineer/pirate/celadon
-	name = "Powder Monkey (Pirate)"
+/datum/outfit/job/independent/engineer/pirate/preview
+	name = "Powder Monkey"
 
 // DEBUG OUTFIT
 /datum/outfit/debug //Даем изолиррованность перчаткам

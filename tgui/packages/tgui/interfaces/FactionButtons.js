@@ -160,26 +160,23 @@ export const getFactionColor = (factionName) => {
   return FACTION_COLORS.other;
 };
 
-export const FactionButtons = (props, context) => {
-  const { act, data } = useBackend(context);
+export const FactionButtons = (props) => {
+  const { act, data } = useBackend();
   const { showCloseButton = false } = props;
 
   // Состояние для отслеживания наведенной фракции
   const [hoveredFaction, setHoveredFaction] = useLocalState(
-    context,
     'hoveredFaction',
     null,
   );
 
   // Состояние для запоминания выбранной фракции (не исчезает при уходе мыши)
   const [selectedFaction, setSelectedFaction] = useLocalState(
-    context,
     'selectedFaction',
     null,
   );
 
   const [factionPreviews, setFactionPreviews] = useLocalState(
-    context,
     'factionPreviews',
     {},
   );
@@ -212,7 +209,12 @@ export const FactionButtons = (props, context) => {
   return (
     <Stack fill>
       {/* Левый информационный блок */}
-      <Stack.Item basis="180px" grow={0}>
+      <Stack.Item
+        basis="180px"
+        grow={0}
+        shrink={1}
+        style={{ minWidth: 0, minHeight: 0 }}
+      >
         <Box fill style={{ height: '100%' }}>
           <FactionInfo
             selectedFaction={selectedFaction}
@@ -323,7 +325,6 @@ export const FactionButtons = (props, context) => {
                     >
                       <FactionButton
                         faction={pos.faction}
-                        context={context}
                         act={act}
                         hoveredFaction={hoveredFaction}
                         setHoveredFaction={handleFactionHover}
@@ -343,7 +344,6 @@ export const FactionButtons = (props, context) => {
                   >
                     <FactionButton
                       faction={CENTRAL_FACTION}
-                      context={context}
                       act={act}
                       hoveredFaction={hoveredFaction}
                       setHoveredFaction={handleFactionHover}
@@ -367,7 +367,12 @@ export const FactionButtons = (props, context) => {
       </Stack.Item>
 
       {/* Правый информационный блок */}
-      <Stack.Item basis="180px" grow={0}>
+      <Stack.Item
+        basis="180px"
+        grow={0}
+        shrink={1}
+        style={{ minWidth: 0, minHeight: 0 }}
+      >
         <Box fill style={{ height: '100%' }}>
           <FactionInfo
             selectedFaction={selectedFaction}
@@ -384,7 +389,6 @@ export const FactionButtons = (props, context) => {
 // Компонент для отдельной кнопки фракции
 const FactionButton = ({
   faction,
-  context,
   act,
   hoveredFaction,
   setHoveredFaction,
@@ -412,7 +416,7 @@ const FactionButton = ({
       onClick={() => act('open_faction', { faction: faction.id })}
       onMouseEnter={() => setHoveredFaction(faction.id)}
     >
-      <FactionLogo faction={faction} context={context} isCentral={isCentral} />
+      <FactionLogo faction={faction} isCentral={isCentral} />
       <Box mt={isCentral ? 0.2 : 0.5} textAlign="center" fontSize="11px">
         {faction.name}
       </Box>
@@ -421,9 +425,8 @@ const FactionButton = ({
 };
 
 // Показывает логотип фракции или fallback
-const FactionLogo = ({ faction, context, isCentral = false }) => {
+const FactionLogo = ({ faction, isCentral = false }) => {
   const [hasError, setHasError] = useLocalState(
-    context,
     `faction_logo_error_${faction.id}`,
     false,
   );

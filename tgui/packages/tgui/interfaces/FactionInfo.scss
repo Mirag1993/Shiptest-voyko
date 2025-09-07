@@ -24,6 +24,11 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.1);
+  /* правая колонка не шире 300 и не уже 220 */
+  flex: 0 0 clamp(220px, 28%, 300px);
+  max-width: clamp(220px, 28%, 300px);
+  min-width: 0; /* КРИТИЧНО для flex в Chromium 1xx */
+  min-height: 0; /* если родитель – flex/column, убирает вертикальные протяжки */
 }
 
 .faction-info-right {
@@ -33,6 +38,11 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.1);
+  /* правая колонка не шире 360 и не уже 260 */
+  flex: 0 0 clamp(260px, 32%, 360px);
+  max-width: clamp(260px, 32%, 360px);
+  min-width: 0; /* КРИТИЧНО для flex в Chromium 1xx */
+  min-height: 0; /* если родитель – flex/column, убирает вертикальные протяжки */
 }
 
 .faction-description {
@@ -176,6 +186,8 @@
   --gap: 8px;
   --frame-pad: 6px;
   --card-pad-x: 6px;
+  min-width: 0; /* КРИТИЧНО для flex в Chromium 1xx */
+  min-height: 0; /* если родитель – flex/column, убирает вертикальные протяжки */
 
   /* Чтоб внутренняя геометрия считалась по границам бокса */
   &,
@@ -198,6 +210,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
 
     &:hover {
       background: rgba(0, 0, 0, 0.4);
@@ -210,7 +223,7 @@
     padding: var(--frame-pad);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
-    overflow: hidden; /* страховка от 1px артефактов */
+    overflow: auto; /* если контент больше рамки — прокрутка */
     text-align: center;
     margin: 0.25rem 0;
     display: flex;
@@ -226,9 +239,9 @@
     grid-auto-rows: var(--cell);
     gap: var(--gap);
 
-    /* ширина сетки = 2 ячейки + отступ */
-    width: calc(var(--cell) * 2 + var(--gap));
-    max-width: 100%;
+    /* было: width: calc(var(--cell)*2 + var(--gap)); */
+    width: auto; /* отдай ширину на откуп контейнеру */
+    max-width: 100%; /* и не вылезай за пределы */
     margin: 0 auto; /* центрируем внутри рамки */
 
     /* центрируем иконку в сетке */
@@ -245,7 +258,7 @@
     max-height: none !important;
     image-rendering: pixelated !important;
     display: block;
-    object-fit: contain;
+    object-fit: contain; /* на случай неровных источников */
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     background: rgba(0, 0, 0, 0.4);

@@ -20,7 +20,10 @@
 		return
 	var/mob/dead/new_player/spawnee = usr
 	switch(action)
-		if("join")
+
+//[CELADON-DELETE]
+/*
+	if("join")
 			var/datum/overmap/ship/controlled/target = locate(params["ship"]) in SSovermap.controlled_ships
 			if(!target)
 				to_chat(spawnee, span_danger("Unable to locate ship. Please contact admins!"))
@@ -78,6 +81,8 @@
 			if(!spawnee.AttemptLateSpawn(selected_job, target))
 				to_chat(spawnee, span_danger("Unable to spawn on ship!"))
 				spawnee.new_player_panel()
+*/
+//[/CELADON-DELETE]
 
 		if("buy")
 			if(is_banned_from(spawnee.ckey, "Ship Purchasing"))

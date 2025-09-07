@@ -1,10 +1,9 @@
-
 import { Button, Icon, Input, Section, Stack } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
-export const EmotePanel = (props, context) => {
+export const EmotePanel = (props) => {
   return (
     <Window width={500} height={550}>
       <Window.Content>
@@ -16,43 +15,32 @@ export const EmotePanel = (props, context) => {
   );
 };
 
-export const EmotePanelContent = (props, context) => {
-  const { act, data } = useBackend(context);
+export const EmotePanelContent = (props) => {
+  const { act, data } = useBackend();
   const { emotes } = data;
 
-  const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
+  const [searchText, setSearchText] = useLocalState('searchText', '');
 
   const [filterVisible, toggleVisualFilter] = useLocalState(
-    context,
     'filterVisible',
-    ''
+    '',
   );
 
   const [filterAudible, toggleAudibleFilter] = useLocalState(
-    context,
     'filterAudible',
-    ''
+    '',
   );
 
-  const [filterSound, toggleSoundFilter] = useLocalState(
-    context,
-    'filterSound',
-    ''
-  );
+  const [filterSound, toggleSoundFilter] = useLocalState('filterSound', '');
 
-  const [filterHands, toggleHandsFilter] = useLocalState(
-    context,
-    'filterHands',
-    ''
-  );
+  const [filterHands, toggleHandsFilter] = useLocalState('filterHands', '');
 
   const [filterTargettable, toggleTargettableFilter] = useLocalState(
-    context,
     'filterTargettable',
-    ''
+    '',
   );
 
-  const [useTarget, toggleUseTarget] = useLocalState(context, 'useTarget', '');
+  const [useTarget, toggleUseTarget] = useLocalState('useTarget', '');
 
   let searchBar = (
     <Input
