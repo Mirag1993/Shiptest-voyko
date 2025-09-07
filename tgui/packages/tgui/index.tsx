@@ -5,6 +5,7 @@
  */
 
 // Themes
+// eslint-disable-next-line simple-import-sort/imports
 import './styles/main.scss';
 import './styles/themes/abductor.scss';
 import './styles/themes/cardtable.scss';
