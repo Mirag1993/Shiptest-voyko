@@ -8,16 +8,17 @@ import {
   LabeledList,
   Section,
 } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 import { getFactionColor } from './FactionButtons';
 
-export const ShipBrowser = (props, context) => {
-  const { act, data } = useBackend(context);
-  const [selectedTags, setSelectedTags] = useLocalState(context, 'sb_tags', []);
-  const [sortBy, setSortBy] = useLocalState(context, 'sb_sort', 'alphabet');
-  const [searchQuery, setSearchQuery] = useLocalState(context, 'sb_search', '');
+export const ShipBrowser = (props) => {
+  const { act, data } = useBackend();
+  const [selectedTags, setSelectedTags] = useLocalState('sb_tags', []);
+  const [sortBy, setSortBy] = useLocalState('sb_sort', 'alphabet');
+  const [searchQuery, setSearchQuery] = useLocalState('sb_search', '');
 
   const faction = String(data.selectedFaction || '');
   const templates = Array.isArray(data.templates) ? data.templates : [];
@@ -131,7 +132,7 @@ export const ShipBrowser = (props, context) => {
     <Window
       title={String(faction || 'Ships')}
       width={860}
-      height={faction === 'syndicate' ? 800 : 640}
+      height={640}
       theme={getWindowTheme(faction)}
     >
       <Window.Content scrollable>

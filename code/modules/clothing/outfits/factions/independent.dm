@@ -185,6 +185,9 @@
 	head = /obj/item/clothing/head/pirate/captain
 	suit = /obj/item/clothing/suit/pirate/captain
 
+/datum/outfit/job/independent/captain/pirate/preview
+	name = "Captain"
+
 /datum/outfit/job/independent/captain/pirate/jupiter
 	name = "Independent - Captain (Nodesman)" // technically, this is part of SEC, but we have jackshit for SEC
 

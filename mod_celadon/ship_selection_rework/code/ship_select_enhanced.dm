@@ -7,7 +7,10 @@
 
 // Расширяем ui_act для обработки faction_preview
 /datum/ship_select/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	// Сначала обрабатываем наши действия
+	// Логируем важные действия для администратора
+	log_admin("SHIP_SELECT: UI_ACT called with action='[action]' for [usr?.ckey || "unknown"]")
+
+	// Обрабатываем наши дополнительные действия
 	if(action == "faction_preview")
 		var/faction_name = lowertext(params["faction"])
 
@@ -45,6 +48,12 @@
 
 	switch(action)
 		if("join")
+			// Логируем попытку присоединения для администратора
+			log_admin("SHIP_SELECT: JOIN action triggered for [spawnee?.ckey || "unknown"] on ship [params["ship"]]")
+			to_chat(spawnee, span_notice("Attempting to join ship..."))
+
+			// Определяем переменные в начале блока
+			var/did_application = FALSE
 			var/datum/overmap/ship/controlled/target = locate(params["ship"]) in SSovermap.controlled_ships
 			if(!target)
 				to_chat(spawnee, span_danger("Unable to locate ship. Please contact admins!"))
@@ -62,7 +71,6 @@
 					to_chat(spawnee, span_warning("Someone has spawned with this name already."))
 					spawnee.new_player_panel()
 					return
-			var/did_application = FALSE
 			if(target.join_mode == SHIP_JOIN_MODE_APPLY)
 				var/datum/ship_application/current_application = target.get_application(spawnee)
 				if(isnull(current_application))
@@ -72,16 +80,20 @@
 					else
 						to_chat(spawnee, span_notice("Application cancelled, or there was an error sending the application."))
 					return
-				switch(current_application.status)
-					if(SHIP_APPLICATION_ACCEPTED)
-						to_chat(spawnee, span_notice("Your ship application was accepted, continuing..."))
-					if(SHIP_APPLICATION_PENDING)
-						alert(spawnee, "You already have a pending application for this ship!")
+				if(current_application.status == SHIP_APPLICATION_ACCEPTED)
+					// [CELADON-ADD] - Валидация персонажа после принятия заявки
+					if(!validate_character_for_ship_join(spawnee, current_application))
 						return
-					if(SHIP_APPLICATION_DENIED)
-						alert(spawnee, "You can't join this ship, as a previous application was denied!")
-						return
-				did_application = TRUE
+					// [/CELADON-ADD]
+					to_chat(spawnee, span_notice("Your ship application was accepted, continuing..."))
+				else if(current_application.status == SHIP_APPLICATION_PENDING)
+					// Для заявок в ожидании не нужна строгая валидация - просто уведомляем
+					alert(spawnee, "You already have a pending application for this ship!")
+					return
+				else if(current_application.status == SHIP_APPLICATION_DENIED)
+					alert(spawnee, "You can't join this ship, as a previous application was denied!")
+					return
+			did_application = TRUE
 
 			if(target.join_mode == SHIP_JOIN_MODE_CLOSED || (target.join_mode == SHIP_JOIN_MODE_APPLY && !did_application))
 				to_chat(spawnee, span_warning("You cannot join this ship anymore, as its join mode has changed!"))

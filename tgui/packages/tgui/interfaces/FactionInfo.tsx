@@ -30,7 +30,7 @@ interface FactionInfoProps {
   showOnlyRight?: boolean;
 }
 
-export const FactionInfo = (props: FactionInfoProps, context) => {
+export const FactionInfo = (props: FactionInfoProps) => {
   // Защита от undefined props
   const {
     selectedFaction,
@@ -45,10 +45,11 @@ export const FactionInfo = (props: FactionInfoProps, context) => {
   // Включаем превью обратно
   const DISABLE_PREVIEWS = false;
 
-  const CELL = 180; // возвращаем оригинальный размер
+  // базовый размер спрайта: от 64px до 112px, в зависимости от ширины
+  const CELL = undefined; // больше не нужен как число
 
   // Получаем act для отправки действий на сервер
-  const { act, data: backendData } = useBackend(context);
+  const { act, data: backendData } = useBackend();
 
   // Валидация входящих данных перед рендером
   const validatePreviews = (raw: any[]): any[] => {
@@ -221,7 +222,7 @@ export const FactionInfo = (props: FactionInfoProps, context) => {
                   <Box className="preview-frame">
                     <Box
                       className="sprite-grid"
-                      style={{ ['--cell' as any]: `${CELL}px` }}
+                      style={{ ['--cell' as any]: 'clamp(155px, 9vw, 155px)' }}
                     >
                       {outfit?.image ? (
                         <img
@@ -229,8 +230,8 @@ export const FactionInfo = (props: FactionInfoProps, context) => {
                           alt={outfit.label || 'Preview'}
                           className="sprite-img"
                           style={{
-                            width: `${CELL}px`,
-                            height: `${CELL}px`,
+                            width: 'var(--cell)',
+                            height: 'var(--cell)',
                             imageRendering: 'pixelated',
                           }}
                           onError={(e) => {
@@ -240,8 +241,8 @@ export const FactionInfo = (props: FactionInfoProps, context) => {
                       ) : (
                         <Box
                           style={{
-                            width: `${CELL}px`,
-                            height: `${CELL}px`,
+                            width: 'var(--cell)',
+                            height: 'var(--cell)',
                             backgroundColor: 'rgba(255, 0, 0, 0.3)',
                             display: 'flex',
                             alignItems: 'center',
@@ -321,7 +322,9 @@ export const FactionInfo = (props: FactionInfoProps, context) => {
                     <Box className="preview-frame">
                       <Box
                         className="sprite-grid"
-                        style={{ ['--cell' as any]: `${CELL}px` }}
+                        style={{
+                          ['--cell' as any]: 'clamp(155px, 9vw, 155px)',
+                        }}
                       >
                         {outfit?.image ? (
                           <img

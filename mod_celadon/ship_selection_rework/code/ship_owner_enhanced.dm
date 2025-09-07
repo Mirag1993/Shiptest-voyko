@@ -11,19 +11,9 @@
 		if(app.status == SHIP_APPLICATION_PENDING)
 			.["pending"] = TRUE
 
-		// Populate character info if not already done
-		if(!app.character_photo_base64 && app.app_mob?.client?.prefs)
-			var/datum/preferences/prefs = app.app_mob.client.prefs
-			if(!app.character_age)
-				app.character_age = prefs.age
-			if(!length(app.character_quirks))
-				app.character_quirks = prefs.all_quirks?.Copy() || list()
-			if(!app.character_species)
-				app.character_species = prefs.pref_species?.name || "Human"
-			if(!app.character_gender)
-				app.character_gender = prefs.gender
-			if(!app.character_photo_base64)
-				app.character_photo_base64 = app.generate_character_photo_base64(prefs)
+		// [CELADON-ADD] - Заполняем пустые поля только при создании заявки
+		// Убираем перезапись полей для валидации персонажа
+		// [/CELADON-ADD]
 
 		.["applications"] += list(list(
 			ref = REF(app),
@@ -66,41 +56,9 @@
 
 			switch(params["newStatus"])
 				if("yes")
-					var/datum/preferences/current_prefs = target_app.app_mob?.client?.prefs
-					if(!current_prefs)
-						to_chat(user, span_warning("Игрок не в сети или недоступен. Невозможно проверить персонажа."))
-						return TRUE
-
-					// Получаем текущий хеш персонажа игрока
-					var/current_hash = target_app.generate_character_hash(current_prefs)
-					var/stored_hash = target_app.character_hash
-
-					// Сравниваем с сохраненным хешем из заявки
-					if(!stored_hash)
-						to_chat(user, span_warning("Ошибка: отсутствуют данные о персонаже в заявке. Попросите игрока подать заявку заново."))
-						return TRUE
-
-					if(current_hash != stored_hash)
-						// Получаем детали изменений для информативного сообщения
-						var/original_name = target_app.app_name || "Неизвестно"
-						var/current_name = current_prefs.real_name || "Неизвестно"
-						var/original_species = target_app.character_species || "Неизвестно"
-						var/current_species = current_prefs.pref_species?.name || "Неизвестно"
-						var/original_gender = target_app.character_gender || "Неизвестно"
-						var/current_gender = current_prefs.gender || "Неизвестно"
-
-						to_chat(user, span_warning("Персонаж заявителя изменился!"))
-						to_chat(user, span_notice("Было: [original_name] ([original_species], [original_gender])"))
-						to_chat(user, span_notice("Стало: [current_name] ([current_species], [current_gender])"))
-						to_chat(user, span_warning("Заявка автоматически отклонена."))
-
-						target_app.denial_reason = "Персонаж изменён: было '[original_name] ([original_species], [original_gender])', стало '[current_name] ([current_species], [current_gender])'"
-						target_app.application_status_change(SHIP_APPLICATION_DENIED)
-						check_blinking()
-						return TRUE
-
-					// Если все проверки пройдены - принимаем заявку
-					to_chat(user, span_notice("Персонаж проверен успешно. Заявка принята."))
+					// Валидация персонажа происходит при входе на корабль, а не при принятии заявки
+					// Это устраняет конфликт и упрощает логику
+					to_chat(user, span_notice("Заявка принята. Персонаж будет проверен при входе на корабль."))
 					target_app.application_status_change(SHIP_APPLICATION_ACCEPTED)
 				if("no")
 					target_app.application_status_change(SHIP_APPLICATION_DENIED)

@@ -10,8 +10,8 @@
 	var/list/character_quirks = list()
 	/// Character species name
 	var/character_species
-	/// Character gender
-	var/character_gender
+	/// Character species ID (stable type path)
+	var/character_species_id
 	/// Reason for denial (if denied)
 	var/denial_reason
 	/// Character hash to validate character hasn't changed after acceptance
@@ -22,15 +22,18 @@
 
 	// Collect character information from preferences
 	if(applicant?.client?.prefs)
-		var/datum/preferences/prefs = applicant.client.prefs
-		character_age = prefs.age
-		character_quirks = prefs.all_quirks?.Copy() || list()
-		character_species = prefs.pref_species?.name || "Human"
-		character_gender = prefs.gender
-		character_hash = generate_character_hash(prefs)
+		var/datum/preferences/p = applicant.client.prefs
+		character_age = p.age
+		character_quirks = p.all_quirks?.Copy() || list()
+		character_species = p.pref_species?.name || "Human"
+		character_species_id = p.pref_species?.id || "[p.pref_species?.type]"
+		// НЕ перезаписываем app_name и character_gender - они уже записаны в базовом конструкторе
+		// character_gender = "[p.gender]"  // ← УБРАНО
+		// app_name = p.real_name           // ← УБРАНО
+		character_hash = generate_character_hash(p)
 
 		// Generate character photo
-		character_photo_base64 = generate_character_photo_base64(prefs)
+		character_photo_base64 = generate_character_photo_base64(p)
 
 /// Generate base64 character photo from preferences
 /datum/ship_application/proc/generate_character_photo_base64(datum/preferences/prefs)
@@ -96,14 +99,14 @@
 	return formatted
 
 /// Generate unique hash for character validation (simplified - only core identity)
-/datum/ship_application/proc/generate_character_hash(datum/preferences/prefs)
-	if(!prefs)
+/datum/ship_application/proc/generate_character_hash(datum/preferences/p)
+	if(!p)
 		return null
 
-	// Create hash from core character identity: name, gender, species
-	var/hash_string = "[prefs.real_name]|[prefs.gender]|[prefs.pref_species?.id]"
-
-	return md5(hash_string)
+	var/name_norm = lowertext(trim(p?.real_name || ""))
+	var/gender = "[p?.gender]"
+	var/spec_id = p?.pref_species?.id || "[p?.pref_species?.type]" // стабильнее, чем локализованное имя
+	return md5("[name_norm]|[gender]|[spec_id]")
 
 /// Check if current character matches the one from application
 /datum/ship_application/proc/validate_character(datum/preferences/current_prefs)
