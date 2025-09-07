@@ -21,6 +21,69 @@
 	var/mob/dead/new_player/spawnee = usr
 	switch(action)
 
+//[CELADON-DELETE]
+/*
+	if("join")
+			var/datum/overmap/ship/controlled/target = locate(params["ship"]) in SSovermap.controlled_ships
+			if(!target)
+				to_chat(spawnee, span_danger("Unable to locate ship. Please contact admins!"))
+				spawnee.new_player_panel()
+				return
+			if(!target.is_join_option())
+				to_chat(spawnee, span_danger("This ship is not currently accepting new players!"))
+				spawnee.new_player_panel()
+				return
+
+			// [CELADON-ADD] - CELADON_FIXES
+			// Проверяем дублирование имен при входе на корабль
+			if(!spawnee.client.prefs.randomise[RANDOM_NAME])
+				var/name = spawnee.client.prefs.real_name
+				if(GLOB.real_names_joined.Find(name))
+					to_chat(spawnee, span_warning("Someone has spawned with this name already."))
+					spawnee.new_player_panel()
+					return
+			// [/CELADON-ADD]
+			var/did_application = FALSE
+			if(target.join_mode == SHIP_JOIN_MODE_APPLY)
+				var/datum/ship_application/current_application = target.get_application(spawnee)
+				if(isnull(current_application))
+					var/datum/ship_application/app = new(spawnee, target)
+					if(app.get_user_response())
+						to_chat(spawnee, span_notice("Ship application sent. You will be notified if the application is accepted."))
+					else
+						to_chat(spawnee, span_notice("Application cancelled, or there was an error sending the application."))
+					return
+				switch(current_application.status)
+					if(SHIP_APPLICATION_ACCEPTED)
+						to_chat(spawnee, span_notice("Your ship application was accepted, continuing..."))
+					if(SHIP_APPLICATION_PENDING)
+						alert(spawnee, "You already have a pending application for this ship!")
+						return
+					if(SHIP_APPLICATION_DENIED)
+						alert(spawnee, "You can't join this ship, as a previous application was denied!")
+						return
+				did_application = TRUE
+
+			if(target.join_mode == SHIP_JOIN_MODE_CLOSED || (target.join_mode == SHIP_JOIN_MODE_APPLY && !did_application))
+				to_chat(spawnee, span_warning("You cannot join this ship anymore, as its join mode has changed!"))
+				return
+
+			ui.close()
+			var/datum/job/selected_job = locate(params["job"]) in target.job_slots
+			//boots you out if you're banned from officer roles
+			if(selected_job.officer && is_banned_from(spawnee.ckey, "Ship Command"))
+				to_chat(spawnee, span_danger("You are banned from Officer roles!"))
+				spawnee.new_player_panel()
+				ui.close()
+				return
+
+			// Attempts the spawn itself. This checks for playtime requirements.
+			if(!spawnee.AttemptLateSpawn(selected_job, target))
+				to_chat(spawnee, span_danger("Unable to spawn on ship!"))
+				spawnee.new_player_panel()
+*/
+//[/CELADON-DELETE]
+
 		if("buy")
 			if(is_banned_from(spawnee.ckey, "Ship Purchasing"))
 				to_chat(spawnee, span_danger("You are banned from purchasing ships!"))
