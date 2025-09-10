@@ -102,6 +102,8 @@
 		/obj/item/bodycamera,
 	))
 
+// [CELADON-REMOVE] - CELADON_HOLSTER_PARADISE - Replaced by Paradise-style holster system
+/*
 /datum/component/storage/concrete/pockets/holster
 	max_items = 3
 	max_w_class = WEIGHT_CLASS_NORMAL
@@ -150,3 +152,5 @@
 		/obj/item/gun/energy/dueling,
 		/obj/item/gun/ballistic/shotgun,
 		/obj/item/gun/ballistic/rocketlauncher))
+*/
+// [/CELADON-REMOVE]

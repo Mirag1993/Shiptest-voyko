@@ -82,7 +82,7 @@ VERB_MANAGER_SUBSYSTEM_DEF(input)
 		"E" = "E", // quick equip
 		"F" = "F", // intent left
 		"G" = "G", // intent right
-		"H" = "H", // stop pulling
+		"C" = "C", // stop pulling
 		"Q" = "Q", // drop
 		"R" = "R", // throw
 		"X" = "X", // switch hands

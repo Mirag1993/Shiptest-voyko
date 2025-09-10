@@ -394,6 +394,8 @@
 	minimize_when_attached = FALSE
 	attachment_slot = GROIN
 
+// [CELADON-REMOVE] - CELADON_HOLSTER_PARADISE - Replaced by Paradise-style holster system
+/*
 /obj/item/clothing/accessory/holster
 	name = "shoulder holster"
 	desc = "A holster to carry a handgun and ammo. WARNING: Badasses only."
@@ -445,6 +447,8 @@
 /obj/item/clothing/accessory/holster/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
+*/
+// [/CELADON-REMOVE]
 
 /obj/item/clothing/accessory/holster/marine
 	name = "marine's holster"

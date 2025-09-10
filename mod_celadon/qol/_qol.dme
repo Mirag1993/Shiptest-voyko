@@ -20,4 +20,7 @@
 #include "code/launchpad.dm"
 #include "code/silicon.dm"
 
+// Paradise-style holster system
+#include "holster_paradise/holster_paradise.dme"
+
 #endif
