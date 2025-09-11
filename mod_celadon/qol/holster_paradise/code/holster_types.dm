@@ -80,8 +80,13 @@
 		to_chat(user, span_warning("[I.name] не помещается в [src]!"))
 		return FALSE
 
-	// Просим компонент положить предмет (он сам проверит лимиты и типы)
-	if(STR.handle_item_insertion(I, FALSE, user))
+	// Сначала проверяем, можно ли вставить предмет
+	if(!STR.can_be_inserted(I, TRUE, user))
+		to_chat(user, span_warning("[I.name] не помещается в [src]!"))
+		return FALSE
+
+	// Просим компонент положить предмет
+	if(STR.handle_item_insertion(I, TRUE, user))
 		playsound(user, 'mod_celadon/qol/holster_paradise/sounds/1holster.ogg', 50, TRUE)
 		to_chat(user, span_notice("Вы убрали [I] в кобуру."))
 		return TRUE
@@ -322,6 +327,8 @@
 	if(istype(original_parent, /obj/item/clothing/accessory/holster))
 		var/obj/item/clothing/accessory/holster/holster = original_parent
 		if(!holster.can_holster(I, M))
+			if(!stop_messages)
+				to_chat(M, span_warning("[I.name] не помещается в [holster]!"))
 			return FALSE
 	return ..()
 
