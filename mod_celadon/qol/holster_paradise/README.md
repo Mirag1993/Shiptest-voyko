@@ -19,7 +19,6 @@ ID мода: CELADON_HOLSTER_PARADISE
 - `_holster_paradise.dm` - главный файл, включает все части
 - `code/holster_types.dm` - типы кобур (обычная, детектив, нюкер)
 - `code/holster_keybind.dm` - клавиша H и логика работы
-- `code/holster_weapon_types.dm` - какие пушки можно кобурить
 - `code/holster_components.dm` - кнопки действий
 
 ## Особенности:

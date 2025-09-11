@@ -40,6 +40,7 @@
 
 	// Проверяем, есть ли у нас кобура
 	var/obj/item/clothing/accessory/holster/holster = null
+	var/datum/component/storage/STR = null
 
 	// Ищем кобуру в униформе
 	if(istype(w_uniform))
@@ -47,77 +48,79 @@
 		// Проверяем attached_accessory
 		if(istype(uniform.attached_accessory, /obj/item/clothing/accessory/holster))
 			holster = uniform.attached_accessory
+			// Когда кобура прикреплена, компонент storage может быть в униформе
+			STR = uniform.GetComponent(/datum/component/storage)
 
 	if(!holster || QDELETED(holster))
 		to_chat(src, span_warning("У вас нет кобуры!"))
 		return
 
+	// Если не нашли storage в униформе, ищем в самой кобуре
+	if(!STR)
+		STR = holster.GetComponent(/datum/component/storage)
+
 	var/obj/item/weapon = get_active_held_item()
 
-	// --- УБРАТЬ В КОБУРУ ---
-	// Проверяем, есть ли активная рука для работы
-	if(!has_active_hand())
-		to_chat(src, span_warning("У вас нет активной руки для работы с оружием!"))
-		return
 	if(weapon)
+		// --- УБРАТЬ В КОБУРУ ---
 		if(!istype(weapon, /obj/item/gun))
 			to_chat(src, span_warning("В кобуру можно убрать только огнестрел."))
 			return
 
-		var/obj/item/gun/gun = weapon
-		if(!gun.can_holster)
-			to_chat(src, span_warning("Это оружие не помещается в кобуру!"))
+		if(!has_active_hand())
+			to_chat(src, span_warning("У вас нет активной руки для работы с оружием!"))
 			return
 
-		var/move_result = _move_from_hand_to_holster(src, weapon, holster)
-		if(move_result)
+		// Проверяем, можно ли убрать оружие в кобуру
+		if(!holster.can_holster(weapon))
+			to_chat(src, span_warning("[weapon.name] не помещается в [holster]!"))
+			return
+
+
+		// Используем найденный компонент storage
+		if(!STR)
+			to_chat(src, span_warning("Storage компонент не найден!"))
+			return
+
+		// Сначала проверяем, можно ли вставить предмет
+		if(!STR.can_be_inserted(weapon, TRUE, src))
+			to_chat(src, span_warning("[weapon.name] не помещается в [holster]!"))
+			return
+
+		if(STR.handle_item_insertion(weapon, TRUE, src))
+			playsound(src, 'mod_celadon/qol/holster_paradise/sounds/1holster.ogg', 50, TRUE)
 			to_chat(src, span_notice("Вы убрали [weapon.name] в кобуру."))
 		else
 			to_chat(src, span_warning("Не удалось убрать [weapon.name] в кобуру."))
-		return
-
-	// --- ДОСТАТЬ ИЗ КОБУРЫ ---
-	if(holster.holstered && holster.holstered.len)
-		var/obj/item/holstered_weapon = holster.holstered[holster.holstered.len]
-		if(_move_from_holster_to_hand(src, holstered_weapon, holster))
-			to_chat(src, span_notice("Вы достали [holstered_weapon.name] из кобуры."))
-		else
-			to_chat(src, span_warning("Не удалось достать оружие из кобуры."))
 	else
-		to_chat(src, span_warning("В кобуре нет оружия!"))
+		// --- ДОСТАТЬ ИЗ КОБУРЫ ---
+		if(!STR)
+			to_chat(src, span_warning("Storage компонент не найден!"))
+			return
 
-// Вспомогательные функции для безопасного перемещения предметов
-/proc/_move_from_hand_to_holster(mob/living/user, obj/item/I, obj/item/clothing/accessory/holster/H)
-	if(!user || !I || !H || QDELETED(user) || QDELETED(I) || QDELETED(H))
-		return FALSE
+		var/list/contents = STR.contents()
+		if(contents && length(contents))
+			var/obj/item/holstered_weapon = contents[length(contents)]
+			if(STR.remove_from_storage(holstered_weapon, src))
+				// Принудительно берем предмет в руку
+				if(!src.put_in_active_hand(holstered_weapon))
+					// Если не получилось в активную руку, пробуем в неактивную
+					if(!src.put_in_inactive_hand(holstered_weapon))
+						// Если и это не получилось, кладем на пол
+						holstered_weapon.forceMove(get_turf(src))
 
-	if(I.loc != user)
-		return FALSE
+				playsound(src, 'mod_celadon/qol/holster_paradise/sounds/1unholster.ogg', 50, TRUE)
+				holstered_weapon.add_fingerprint(src)
+				// Показываем сообщение в зависимости от интента
+				if(src.a_intent == INTENT_HARM)
+					src.visible_message(span_warning("[src] достает [holstered_weapon], готовясь стрелять!"),
+										span_warning("Вы достаете [holstered_weapon], готовясь стрелять!"))
+				else
+					src.visible_message(span_notice("[src] достает [holstered_weapon], направляя в землю."),
+										span_notice("Вы достаете [holstered_weapon], направляя в землю."))
+			else
+				to_chat(src, span_warning("Не удалось достать оружие из кобуры."))
+		else
+			to_chat(src, span_warning("В кобуре нет оружия!"))
 
-	// Используем transferItemToLoc для корректного перемещения предмета
-	if(!user.transferItemToLoc(I, H))
-		return FALSE
-
-	// Обновляем список кобуры
-	if(isnull(H.holstered))
-		H.holstered = list()
-	H.holstered += I
-	return TRUE
-
-/proc/_move_from_holster_to_hand(mob/living/user, obj/item/I, obj/item/clothing/accessory/holster/H)
-	if(!user || !I || !H || QDELETED(user) || QDELETED(I) || QDELETED(H))
-		return FALSE
-
-	if(I.loc != H)
-		return FALSE
-
-	// Сначала пытаемся положить в руки
-	if(user.put_in_hands(I))
-		H.holstered -= I
-		return TRUE
-
-	// Если рук нет, кладем на землю И удаляем из списка кобуры
-	I.forceMove(get_turf(user))
-	H.holstered -= I
-	return FALSE
 
