@@ -4,7 +4,7 @@
 		if((to_dock.death_time - world.time) < 15 SECONDS)	// Если таймер истек или скоро истечет (менее 30 секунд), блокируем стыковку
 			return "Объект нестабилен и скоро исчезнет. Стыковка отменена."
 
-	return ..(to_dock, ticket, force)
+	return ..(to_dock, ticket, force) // А вот это, вызовет родителя со всеми параметрами как обычно
 
 /datum/overmap/ship/controlled/dock_in_empty_space()
 	// Проверяем существующее пустое место на опасность
