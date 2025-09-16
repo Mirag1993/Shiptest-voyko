@@ -5,6 +5,7 @@
 			return "Объект нестабилен и скоро исчезнет. Стыковка отменена."
 
 	return ..(to_dock, ticket, force) // А вот это, вызовет родителя со всеми параметрами как обычно
+
 /datum/overmap/proc/is_docking_safe()
 	if(!istype(src, /datum/overmap/dynamic) || !token?.countdown || !death_time)
 		return TRUE
