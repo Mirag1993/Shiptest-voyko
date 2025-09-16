@@ -5,13 +5,15 @@
 			return "Объект нестабилен и скоро исчезнет. Стыковка отменена."
 
 	return ..(to_dock, ticket, force) // А вот это, вызовет родителя со всеми параметрами как обычно
+/datum/overmap/proc/is_docking_safe()
+	if(!istype(src, /datum/overmap/dynamic) || !token?.countdown || !death_time)
+		return TRUE
+	return (death_time - world.time) >= 15 SECONDS // Осталось больше 15 секунд?
 
 /datum/overmap/ship/controlled/dock_in_empty_space()
-	// Проверяем существующее пустое место на опасность
 	var/datum/overmap/dynamic/empty/empty_space = locate() in current_overmap.overmap_container[x][y]
-	if(empty_space && empty_space.token?.countdown && empty_space.death_time)
-		if((empty_space.death_time - world.time) < 15 SECONDS)	// Если таймер истек или скоро истечет (менее 30 секунд), блокируем стыковку
-			return "Объект нестабилен и скоро исчезнет. Стыковка отменена."
+	if(empty_space && !empty_space.is_docking_safe())
+		return "Объект нестабилен и скоро исчезнет. Стыковка отменена."
 
 	if(!empty_space)
 		empty_space = new(list("x" = x, "y" = y), current_overmap)
