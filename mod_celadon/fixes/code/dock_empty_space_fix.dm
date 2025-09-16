@@ -1,7 +1,7 @@
 /datum/overmap/ship/controlled/Dock(datum/overmap/to_dock, datum/docking_ticket/ticket, force = FALSE)
 	// Проверяем все динамические объекты с активным таймером удаления - планеты тоже сюда попадают
 	if(istype(to_dock, /datum/overmap/dynamic) && to_dock.token?.countdown && to_dock.death_time)
-		if((to_dock.death_time - world.time) < 15 SECONDS)	// Если таймер истек или скоро истечет (менее 30 секунд), блокируем стыковку
+		if((to_dock.death_time - world.time) < 15 SECONDS)	// Если таймер истек или скоро истечет (менее 15 секунд), блокируем стыковку
 			return "Объект нестабилен и скоро исчезнет. Стыковка отменена."
 
 	return ..(to_dock, ticket, force) // А вот это, вызовет родителя со всеми параметрами как обычно
