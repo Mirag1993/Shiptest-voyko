@@ -90,6 +90,7 @@
 	. = ..()
 	outpost_docked = current_ship.docked_to
 	 // [CELADON-EDIT] - CELADON_FIXES: Prevent constant pack data generation every tick
+	 if(istype(outpost_docked))
 	if(istype(outpost_docked) && pack_data_cooldown <= world.time)
 		generate_pack_data()
 		pack_data_cooldown = world.time + 50  // Cache for 5 seconds
