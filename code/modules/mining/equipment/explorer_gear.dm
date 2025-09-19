@@ -10,10 +10,10 @@
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/explorer
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
 	// [CELADON-EDIT] - CELADON_BALANCE
-	// 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe) // CELADON-EDIT - ORIGINAL
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/kinetic_crusher)
+	// 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe) // CELADON-EDIT - ORIGINAL
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/kinetic_crusher)
 	// [/CELADON-EDIT]
 	resistance_flags = FIRE_PROOF
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
@@ -26,7 +26,7 @@
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/hooded/explorer/Initialize()
@@ -71,7 +71,7 @@
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 30, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize()
 	. = ..()
@@ -82,14 +82,14 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/clothing/suit/space/hostile_environment/process()
+/obj/item/clothing/suit/space/hostile_environment/process(seconds_per_tick)
 	var/mob/living/carbon/C = loc
-	if(istype(C) && prob(2)) //cursed by bubblegum
-		if(prob(10))
+	if(istype(C) && SPT_PROB(1, seconds_per_tick)) //cursed by bubblegum
+		if(SPT_PROB(7.5, seconds_per_tick))
 			new /datum/hallucination/oh_yeah(C)
-			to_chat(C, "<span class='colossus'><b>[pick("I AM IMMORTAL.","I SHALL TAKE BACK WHAT'S MINE.","I SEE YOU.","YOU CANNOT ESCAPE ME FOREVER.","DEATH CANNOT HOLD ME.")]</b></span>")
+			to_chat(C, span_colossus("<b>[pick("I AM IMMORTAL.","I SHALL TAKE BACK WHAT'S MINE.","I SEE YOU.","YOU CANNOT ESCAPE ME FOREVER.","DEATH CANNOT HOLD ME.")]</b>"))
 		else
-			to_chat(C, "<span class='warning'>[pick("You hear faint whispers.","You smell ash.","You feel hot.","You hear a roar in the distance.")]</span>")
+			to_chat(C, span_warning("[pick("You hear faint whispers.","You smell ash.","You feel hot.","You hear a roar in the distance.")]"))
 
 /obj/item/clothing/head/helmet/space/hostile_environment
 	name = "H.E.C.K. helmet"
@@ -120,31 +120,11 @@
 		. += M
 
 //the legacy NT exploration gear, flavoured to be old but reliable.
-/obj/item/clothing/suit/hooded/explorer/old
-	name = "prototype exploration suit"
-	desc = "A limited-production heavy-armor softsuit, designed by NT to outfit their fleets of hostile-territory miners. Known as uncomfortable to some and clunky to many, it nonetheless gets the job done. </br> Replicas and redesigns of this suit abound anywhere a little protection goes a long way."
-	icon_state = "miningold"
-	slowdown = 0.1
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 65, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 75)
-	hoodtype = /obj/item/clothing/head/hooded/explorer/old
-
-/obj/item/clothing/head/hooded/explorer/old
-	name = "prototype exploration hood"
-	desc = "An armoured hood, generously-padded and optimized for the rigours of hostile enviroment mining. Will definitely chafe."
-	icon_state = "explorerold"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 65, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 75)
-
-/obj/item/clothing/mask/gas/explorer/old
-	name = "prototype exploration mask"
-	desc = "An outdated Nanotrasen enviromask, designed for extended deployment in regions without a safe air supply. Armor-plated to a discomfort-inducing fault."
-	icon_state = "old_mining"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 65, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 75)
-
 /obj/item/clothing/gloves/explorer
 	name = "explorer gloves"
-	desc = "Thick, fire-resistant gloves with a small armor-plated bracer, sold by EXOCOM to protect your precious fingers from the rigours of planetary exploration."
+	desc = "Thick, fire-resistant gloves with a small bracer, sold by EXOCOM to protect your precious fingers from the rigours of planetary exploration."
 	icon_state = "explorer"
-	armor = list("melee" = 15, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 60, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 60)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60)
 	resistance_flags = FIRE_PROOF
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
@@ -153,10 +133,10 @@
 
 /obj/item/clothing/gloves/explorer/old
 	name = "prototype exploration gauntlets"
-	desc = "Thick-fingered gloves with a heavy layer of armor plating, meant to stop all but the most brutal of stovetop-touching accidents in the field. This premium pre-run prototype comes with an added layer of electrical insulation."
+	desc = "Thick-fingered, durable gloves, meant to stop all but the most brutal of stovetop-touching accidents in the field."
 	icon_state = "explorerold"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 15, "energy" = 15, "bomb" = 65, "bio" = 100, "rad" = 75, "fire" = 75, "acid" = 75)
-	siemens_coefficient = 0
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 75)
+	siemens_coefficient = 0.5
 	permeability_coefficient = 0.05
 
 /obj/item/clothing/suit/hooded/survivor
@@ -165,7 +145,7 @@
 	lefthand_file = 'icons/mob/inhands/clothing_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/clothing_righthand.dmi'
 	icon_state = "survivor"
-	item_state = "survivor_suit"
+	item_state = "survivor"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = (FIRE_SUIT_MIN_TEMP_PROTECT * 2)
 	cold_protection = CHEST|GROIN|LEGS|ARMS
@@ -173,14 +153,15 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/survivor_hood
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 10, "bomb" = 20, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 30)
-	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
 	resistance_flags = FIRE_PROOF
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
 
 /obj/item/clothing/head/hooded/survivor_hood
 	name = "survivor hood"
 	desc = "A loose-fitting hood, patched up with sealant and adhesive. Somewhat protects the head from the environment, but gets the job done."
-	icon_state = "explorerold"
+	icon_state = "survivor"
+	item_state = "survivor"
 	suit = /obj/item/clothing/suit/hooded/survivor
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
@@ -196,3 +177,52 @@
 /obj/item/clothing/head/hooded/survivor_hood/Initialize()
 	. = ..()
 	AddComponent(/datum/component/armor_plate)
+
+/obj/item/clothing/suit/hooded/survivor/brown
+	icon_state = "survivorbrown"
+	item_state = "survivorbrown"
+	hoodtype = /obj/item/clothing/head/hooded/survivor_hood/brown
+
+
+/obj/item/clothing/head/hooded/survivor_hood/brown
+	icon_state = "survivorbrown"
+	item_state = "survivorbrown"
+	suit = /obj/item/clothing/suit/hooded/survivor/brown
+
+
+/obj/item/clothing/suit/hooded/survivor/yellow
+	icon_state = "survivoryellow"
+	item_state = "survivoryellow"
+	hoodtype = /obj/item/clothing/head/hooded/survivor_hood/yellow
+
+/obj/item/clothing/head/hooded/survivor_hood/yellow
+	icon_state = "survivoryellow"
+	item_state = "survivoryellow"
+	suit = /obj/item/clothing/suit/hooded/survivor/yellow
+
+/obj/item/clothing/suit/hooded/survivor/green
+	icon_state = "survivorgreen"
+	item_state = "survivorgreen"
+	hoodtype = /obj/item/clothing/head/hooded/survivor_hood/green
+
+/obj/item/clothing/head/hooded/survivor_hood/green
+	icon_state = "survivorgreen"
+	item_state = "survivorgreen"
+	suit = /obj/item/clothing/suit/hooded/survivor/green
+
+/obj/item/clothing/suit/hooded/survivor/jermit
+	icon_state = "survivorjermit"
+	item_state = "survivorjermit"
+	hoodtype = /obj/item/clothing/head/hooded/survivor_hood/jermit
+
+/obj/item/clothing/head/hooded/survivor_hood/jermit
+	icon_state = "survivorjermit"
+	item_state = "survivorjermit"
+	suit = /obj/item/clothing/suit/hooded/survivor/jermit
+
+/obj/item/clothing/suit/armor/vest/scrap
+	name = "scrap armor"
+	desc = "An 'armor' vest consisting of sheet metal held together with cable. Who thought this was a good idea?"
+	icon_state = "scraparmor"
+	item_state = "scraparmor"
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 15, "bomb" = 20, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 30)

@@ -455,7 +455,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/closet/cardboard,
-/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/effect/spawner/random/maintenance/three,
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/central)
 "ju" = (
@@ -676,7 +676,7 @@
 	icon_state = "0-10"
 	},
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/bridge)
 "nI" = (
@@ -739,13 +739,6 @@
 	dir = 1
 	},
 /turf/open/floor/engine/airless,
-/area/ship/engineering/atmospherics)
-"oZ" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "cyka";
-	color = "red"
-	},
-/turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "pg" = (
 /obj/machinery/cryopod{
@@ -846,15 +839,15 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/maintenance/central)
 "rt" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "prolizard";
-	pixel_y = 32
-	},
 /obj/structure/closet/crate,
 /obj/item/circuitboard/machine/autolathe,
 /obj/item/circuitboard/machine/cell_charger,
 /obj/item/circuitboard/machine/fax,
 /obj/item/circuitboard/machine/microwave,
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "electricdanger";
+	pixel_y = 32
+	},
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
 "rD" = (
@@ -1025,6 +1018,13 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/cargo)
+"vi" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "body";
+	color = "blue"
+	},
+/turf/open/floor/plating,
+/area/ship/engineering/atmospherics)
 "vG" = (
 /obj/machinery/power/shuttle/engine/electric/bad{
 	icon_state = "burst";
@@ -1044,6 +1044,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
+/area/ship/engineering/atmospherics)
+"wg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/crayon{
+	color = "red"
+	},
+/turf/open/floor/plating,
 /area/ship/engineering/atmospherics)
 "wn" = (
 /obj/item/radio/intercom/wideband/table{
@@ -1283,7 +1290,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/closet/cardboard,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/central)
 "AV" = (
@@ -1760,10 +1767,10 @@
 /obj/structure/closet/crate{
 	name = "food crate"
 	},
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
 /obj/machinery/light_switch{
 	pixel_x = -12;
 	pixel_y = 23
@@ -1848,7 +1855,7 @@
 /obj/effect/decal/cleanable/greenglow{
 	color = "#808080"
 	},
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/industrial/fire/corner,
 /obj/structure/closet/cardboard,
@@ -2064,10 +2071,10 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/light/directional/east,
-/obj/item/ammo_box/c38_box,
-/obj/item/ammo_box/c38_box,
-/obj/item/ammo_box/c38_box,
-/obj/item/ammo_box/c38_box,
+/obj/item/storage/box/ammo/c38,
+/obj/item/storage/box/ammo/c38,
+/obj/item/storage/box/ammo/c38,
+/obj/item/storage/box/ammo/c38,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/cargo)
 "Pm" = (
@@ -2291,19 +2298,18 @@
 /obj/structure/table/reinforced,
 /obj/machinery/light/directional/east,
 /obj/item/book{
-	color = 000fff;
 	desc = "Эта книга издания 1986 года.";
 	name = "Атлас галактики";
 	title = "Атлас галактики";
 	author = "Мама кошка"
 	},
-/obj/effect/spawner/lootdrop/prison_contraband,
+/obj/effect/spawner/random/stockparts,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/bridge)
 "Uu" = (
 /obj/effect/turf_decal/box,
 /obj/effect/decal/cleanable/sprayweb,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -2376,14 +2382,6 @@
 	color = "fff000"
 	},
 /area/ship/cargo)
-"WG" = (
-/obj/effect/decal/cleanable/crayon{
-	icon_state = "engie";
-	color = "blue"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/ship/engineering/atmospherics)
 "WI" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -2478,7 +2476,7 @@
 /obj/effect/turf_decal/industrial/warning{
 	dir = 8
 	},
-/obj/effect/spawner/lootdrop/gambling,
+/obj/effect/spawner/random/entertainment/gambling,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/cargo)
 
@@ -2763,7 +2761,7 @@ GA
 GA
 "}
 (15,1,1) = {"
-EX
+vi
 cN
 Ls
 tl
@@ -2783,7 +2781,7 @@ xL
 EX
 "}
 (16,1,1) = {"
-oZ
+EX
 JH
 zj
 Qt
@@ -3020,7 +3018,7 @@ ik
 dm
 GJ
 OX
-WG
+wg
 "}
 (28,1,1) = {"
 GA

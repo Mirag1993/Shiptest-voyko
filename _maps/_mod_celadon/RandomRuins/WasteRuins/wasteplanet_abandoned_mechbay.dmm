@@ -108,7 +108,6 @@
 /area/ruin/wasteplanet/abandoned_mechbay/crewquarters)
 "bU" = (
 /obj/effect/gibspawner/human,
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
 "bZ" = (
@@ -480,7 +479,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/bay1)
 "fe" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/human/syndicate/melee{
+/mob/living/simple_animal/hostile/human/ramzi/melee{
 	name = "Syndicate Mech Pilot"
 	},
 /turf/open/floor/concrete/slab_1,
@@ -612,7 +611,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/mainhall)
 "fX" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/four,
+/obj/effect/spawner/random/maintenance/four,
 /obj/machinery/light/dim/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
@@ -884,7 +883,6 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/disabler,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/bay1)
 "jj" = (
@@ -1084,8 +1082,8 @@
 /obj/effect/turf_decal/industrial/outline/yellow,
 /obj/item/mop,
 /obj/item/reagent_containers/glass/bucket,
-/obj/effect/spawner/lootdrop/maintenance/two,
-/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/random/maintenance/two,
+/obj/effect/spawner/random/clothing/costume,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/wasteplanet/abandoned_mechbay/crewquarters)
@@ -1376,7 +1374,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/plastic,
-/mob/living/simple_animal/hostile/human/syndicate/ranged/shotgun,
+/mob/living/simple_animal/hostile/human/ramzi/ranged/shotgun,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/mechlab)
 "pA" = (
@@ -1445,7 +1443,7 @@
 "qH" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/maintenance/six,
+/obj/effect/spawner/random/maintenance/six,
 /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
@@ -1454,11 +1452,11 @@
 /turf/open/floor/plating/wasteplanet,
 /area/overmap_encounter/planetoid/cave/explored)
 "qN" = (
-/obj/machinery/computer/rdconsole{
-	dir = 1
-	},
 /obj/effect/turf_decal/box/white,
 /obj/machinery/light/broken/directional/south,
+/obj/structure/salvageable/computer{
+	dir = 1
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/wasteplanet/abandoned_mechbay/mechlab)
 "qO" = (
@@ -1499,7 +1497,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_animal/hostile/human/syndicate{
+/mob/living/simple_animal/hostile/human/ramzi{
 	name = "Syndicate Engineer";
 	desc = "Death to bad mechanics."
 	},
@@ -1516,7 +1514,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
 "ro" = (
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
@@ -1558,7 +1555,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/bay1)
 "rT" = (
 /obj/structure/chair/sofa/brown/right/directional/south,
-/mob/living/simple_animal/hostile/human/syndicate{
+/mob/living/simple_animal/hostile/human/ramzi{
 	name = "Syndicate Engineer";
 	desc = "Death to bad mechanics."
 	},
@@ -1779,7 +1776,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/human/syndicate/ranged/smg/space,
+/mob/living/simple_animal/hostile/human/ramzi/ranged/space/smg,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ruin/wasteplanet/abandoned_mechbay/crewquarters)
 "uM" = (
@@ -1907,7 +1904,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_animal/hostile/human/syndicate/ranged/shotgun,
+/mob/living/simple_animal/hostile/human/ramzi/ranged/shotgun,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/mechlab)
 "vS" = (
@@ -1931,6 +1928,10 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 10
 	},
+/obj/item/documents/syndicate{
+	pixel_y = 4
+	},
+/obj/effect/landmark/mission_poi/main,
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/commandcontrol)
 "wc" = (
@@ -2047,7 +2048,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/mob/living/simple_animal/hostile/human/syndicate{
+/mob/living/simple_animal/hostile/human/ramzi{
 	name = "Syndicate Launderer";
 	desc = "Death to Dirty Laundry?"
 	},
@@ -2180,7 +2181,7 @@
 	dir = 8
 	},
 /obj/machinery/light/floor,
-/mob/living/simple_animal/hostile/human/syndicate/ranged/smg/space,
+/mob/living/simple_animal/hostile/human/ramzi/ranged/space/smg,
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
@@ -2278,7 +2279,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/mainhall)
 "Bg" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/four,
+/obj/effect/spawner/random/maintenance/four,
 /obj/effect/turf_decal/box/white,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/plasteel/tech/grid,
@@ -2360,13 +2361,13 @@
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
 "BF" = (
 /obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/effect/turf_decal/industrial/outline/yellow,
 /obj/machinery/light/small/directional/north,
 /obj/effect/decal/cleanable/food/salt,
@@ -2411,7 +2412,7 @@
 "Cp" = (
 /obj/structure/table,
 /obj/effect/turf_decal/industrial/outline/yellow,
-/obj/effect/spawner/lootdrop/materials,
+/obj/effect/spawner/random/materials,
 /obj/item/stack/sheet/metal/fifty,
 /obj/item/stack/sheet/glass/twenty,
 /turf/open/floor/plasteel/tech/grid,
@@ -2473,7 +2474,7 @@
 	pixel_y = 19
 	},
 /obj/structure/curtain,
-/mob/living/simple_animal/hostile/human/syndicate/civilian{
+/mob/living/simple_animal/hostile/human/ramzi/civilian{
 	desc = "Can an armored mook not shower in peace?"
 	},
 /turf/open/floor/carpet/blue,
@@ -2722,7 +2723,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/human/syndicate/melee{
+/mob/living/simple_animal/hostile/human/ramzi/melee{
 	name = "Syndicate Mech Pilot"
 	},
 /turf/open/floor/plasteel/tech/techmaint,
@@ -2770,7 +2771,7 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "Hj" = (
 /obj/machinery/light/dim/directional/south,
-/mob/living/simple_animal/hostile/human/syndicate/melee{
+/mob/living/simple_animal/hostile/human/ramzi/melee{
 	name = "Syndicate Mech Pilot"
 	},
 /turf/open/floor/plasteel/tech/techmaint,
@@ -2909,7 +2910,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/engineering)
 "Ix" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/mecha_wreckage/gygax,
+/obj/structure/mecha_wreckage/gygax/dark,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
 "Iy" = (
@@ -2950,7 +2951,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/mainhall)
 "IJ" = (
 /obj/effect/decal/cleanable/oil,
-/obj/structure/mecha_wreckage/gygax,
+/obj/structure/mecha_wreckage/gygax/dark,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)
 "IL" = (
@@ -3015,7 +3016,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/directional/south,
-/mob/living/simple_animal/hostile/human/syndicate/melee{
+/mob/living/simple_animal/hostile/human/ramzi/melee{
 	name = "Syndicate Mech Pilot"
 	},
 /turf/open/floor/plasteel/dark,
@@ -3056,7 +3057,7 @@
 /obj/effect/turf_decal/industrial/warning{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/human/syndicate{
+/mob/living/simple_animal/hostile/human/ramzi{
 	name = "Syndicate Engineer";
 	desc = "Death to bad mechanics."
 	},
@@ -3375,7 +3376,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/intercom/directional/west,
-/mob/living/simple_animal/hostile/human/syndicate{
+/mob/living/simple_animal/hostile/human/ramzi{
 	name = "Syndicate Engineer";
 	desc = "Death to bad mechanics."
 	},
@@ -3424,7 +3425,7 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "Oj" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/minor/pirate_or_bandana,
+/obj/effect/spawner/random/clothing/pirate_or_bandana,
 /turf/open/floor/plasteel,
 /area/ruin/wasteplanet/abandoned_mechbay/crewquarters)
 "Om" = (
@@ -3453,7 +3454,7 @@
 /area/ruin/wasteplanet/abandoned_mechbay/crewquarters)
 "OY" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/snacks/donut/jelly/choco,
+/obj/item/food/donut/jelly/choco,
 /obj/effect/turf_decal/box/white,
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/plasteel/tech/grid,
@@ -3509,10 +3510,15 @@
 /area/ruin/wasteplanet/abandoned_mechbay/bay1)
 "PW" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/mecha/combat/gygax{
-	name = "\improper Gygax #2"
-	},
 /obj/effect/decal/cleanable/blood/innards,
+/obj/structure/mecha_wreckage/gygax/dark{
+	name = "515 EX 'Lucky #2'"
+	},
+/obj/effect/landmark/mission_poi/main{
+	already_spawned = 1;
+	type_to_spawn = /obj/structure/mecha_wreckage/gygax/dark;
+	mission_index = 2
+	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/ruin/wasteplanet/abandoned_mechbay/bay1)
 "Qe" = (
@@ -3933,7 +3939,7 @@
 "Vx" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/spawner/random/maintenance/two,
 /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,
 /turf/open/floor/plasteel/dark,
 /area/ruin/wasteplanet/abandoned_mechbay/bay2)

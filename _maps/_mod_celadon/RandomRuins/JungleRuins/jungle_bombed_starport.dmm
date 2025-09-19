@@ -9,7 +9,7 @@
 "ac" = (
 /obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -24,12 +24,12 @@
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam2"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "an" = (
 /obj/structure/door_assembly,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "as" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/girder/displaced,
@@ -42,26 +42,19 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "az" = (
 /obj/structure/railing,
 /turf/open/floor/plasteel/stairs{
 	dir = 8
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"aD" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "aF" = (
 /obj/structure/girder,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "aH" = (
 /obj/structure/spider/stickyweb,
 /obj/machinery/light/broken/directional/east,
@@ -75,17 +68,17 @@
 "aK" = (
 /obj/structure/spacevine,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "aL" = (
 /obj/structure/chair/office{
 	dir = 8
 	},
 /obj/machinery/light/broken/directional/south,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "aO" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -108,13 +101,13 @@
 "aQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "aT" = (
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -125,14 +118,14 @@
 	dir = 4
 	},
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "aZ" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "bd" = (
 /turf/open/floor/plasteel/stairs{
 	dir = 8
@@ -146,7 +139,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "bh" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating{
@@ -157,7 +150,7 @@
 /obj/machinery/door/airlock/hatch,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "bm" = (
 /obj/structure/railing{
 	dir = 4
@@ -180,25 +173,25 @@
 	dir = 5
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "bt" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "bu" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "by" = (
 /obj/structure/spacevine,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -218,7 +211,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "bF" = (
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "bH" = (
 /obj/item/chair,
 /turf/open/floor/plasteel,
@@ -226,7 +219,7 @@
 "bK" = (
 /obj/structure/flora/rock/jungle,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -243,13 +236,13 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "bN" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "bP" = (
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -257,20 +250,20 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "bT" = (
 /obj/structure/girder/displaced,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "bU" = (
 /obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "bX" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -282,7 +275,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "ce" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -291,7 +284,7 @@
 /obj/structure/spider/stickyweb,
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -305,7 +298,7 @@
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/junglebush/b,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -314,15 +307,9 @@
 	dir = 8
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"cv" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "cy" = (
 /obj/effect/decal/cleanable/vomit/old,
@@ -330,7 +317,7 @@
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "floor5-old"
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -362,7 +349,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "cQ" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -373,19 +360,19 @@
 	},
 /obj/machinery/light/floor,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "cT" = (
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/midwife,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "cW" = (
 /obj/machinery/computer/security{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "cX" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -396,7 +383,7 @@
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "da" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland9"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -407,7 +394,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "dd" = (
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -433,7 +420,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "do" = (
 /obj/item/stack/sheet/mineral/plastitanium,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -464,7 +451,7 @@
 "dv" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -473,7 +460,7 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "dx" = (
 /turf/open/floor/plasteel/stairs,
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -484,26 +471,21 @@
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"dA" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt,
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "dB" = (
 /obj/structure/table,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "dC" = (
 /obj/item/stack/cable_coil/cut/red,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "dF" = (
 /obj/structure/spacevine,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -520,11 +502,11 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "dP" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "dS" = (
 /obj/effect/decal/cleanable/insectguts,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -547,7 +529,7 @@
 /obj/item/book/manual/wiki/engineering,
 /obj/machinery/light/small/broken/directional/west,
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "eb" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
@@ -556,12 +538,12 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "ec" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -571,7 +553,7 @@
 "eh" = (
 /obj/structure/flora/junglebush/b,
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -597,28 +579,28 @@
 "et" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "ev" = (
 /obj/machinery/light/directional/west,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ew" = (
 /obj/structure/spacevine,
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "ex" = (
 /obj/structure/curtain,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "eA" = (
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -627,10 +609,10 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "eC" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland7"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -648,12 +630,12 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "eO" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -668,7 +650,7 @@
 /obj/structure/table,
 /obj/item/toy/eightball,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "eU" = (
 /obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -686,7 +668,7 @@
 	rad_power = 66;
 	rad_range = 2
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -703,7 +685,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -727,7 +709,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/tech/techmaint,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "fl" = (
 /obj/structure/spacevine,
 /turf/open/water/jungle,
@@ -756,7 +738,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "fx" = (
 /obj/item/geiger_counter,
 /obj/effect/decal/cleanable/blood/old,
@@ -774,7 +756,7 @@
 /obj/structure/door_assembly,
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "fB" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 1
@@ -794,7 +776,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -805,16 +787,16 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "fE" = (
 /obj/effect/decal/cleanable/insectguts,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "fJ" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /turf/open/floor/plasteel/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "fL" = (
@@ -843,7 +825,7 @@
 	},
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "fZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating{
@@ -882,20 +864,14 @@
 "gv" = (
 /obj/structure/spacevine/dense,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"gC" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "gG" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -931,7 +907,7 @@
 	icon_state = "fokrads";
 	desc = "A crudely made sign with the universal radiation hazard symbol painted onto it."
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -955,14 +931,14 @@
 "gU" = (
 /obj/effect/decal/cleanable/shreds,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "gV" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland4"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -977,7 +953,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "gY" = (
 /obj/structure/flora/rock,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -992,7 +968,7 @@
 /obj/machinery/light/directional/west,
 /obj/item/wrench/combat,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "he" = (
 /obj/machinery/door/airlock/command{
 	name = "Flight Control";
@@ -1005,7 +981,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "hf" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/rust,
@@ -1024,21 +1000,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"hk" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "hp" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1048,7 +1017,7 @@
 	},
 /obj/machinery/light/small/broken/directional/north,
 /turf/open/floor/plasteel/patterned,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "hy" = (
 /obj/effect/decal/remains/human,
 /obj/structure/spider/stickyweb,
@@ -1059,17 +1028,17 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "hF" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "hH" = (
 /obj/structure/spacevine,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1084,7 +1053,7 @@
 /obj/machinery/vending/games,
 /obj/machinery/light/broken/directional/south,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "hL" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable{
@@ -1092,7 +1061,7 @@
 	},
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plasteel/tech/techmaint,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "hM" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
@@ -1103,7 +1072,7 @@
 "hN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "hO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/concrete/slab_1{
@@ -1128,7 +1097,7 @@
 	dir = 8
 	},
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "hZ" = (
 /obj/structure/spider/stickyweb,
 /obj/machinery/atmospherics/pipe/simple/orange/hidden,
@@ -1138,7 +1107,7 @@
 /obj/item/stack/sheet/metal,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ic" = (
 /obj/effect/turf_decal/industrial/warning/corner{
 	dir = 1
@@ -1154,7 +1123,7 @@
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam5"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "if" = (
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -1164,18 +1133,18 @@
 /obj/effect/decal/cleanable/vomit/old,
 /obj/machinery/light/directional/east,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "ih" = (
 /obj/machinery/power/shuttle/engine/fueled/plasma{
 	dir = 4
 	},
 /turf/open/floor/engine/hull,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ii" = (
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1187,7 +1156,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "io" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland7"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1201,21 +1170,21 @@
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "ir" = (
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "iz" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "iB" = (
 /obj/effect/decal/cleanable/molten_object/large,
 /obj/effect/radiation{
 	rad_power = 66;
 	rad_range = 2
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug";
 	light_color = "#a0ad20";
 	light_range = 3
@@ -1246,13 +1215,13 @@
 /obj/structure/table,
 /obj/item/toy/clockwork_watch,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "jh" = (
 /obj/machinery/door/airlock{
 	dir = 4
 	},
 /turf/open/floor/plasteel/tech/techmaint,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ji" = (
 /obj/item/stack/cable_coil/cut/red,
 /turf/open/floor/plating/rust,
@@ -1267,7 +1236,7 @@
 "jk" = (
 /obj/structure/flora/junglebush,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1283,38 +1252,32 @@
 	rad_range = 2
 	},
 /obj/effect/decal/cleanable/molten_object/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "js" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"ju" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "jv" = (
 /obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "jx" = (
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "jy" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1345,7 +1308,7 @@
 /obj/structure/cable{
 	icon_state = "5-8"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -1356,27 +1319,27 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "jM" = (
 /obj/effect/decal/cleanable/molten_object,
 /obj/effect/radiation{
 	rad_power = 66;
 	rad_range = 2
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "jN" = (
 /obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "jO" = (
 /obj/structure/spacevine,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1385,7 +1348,7 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "jT" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating{
@@ -1394,11 +1357,11 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "kf" = (
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "kg" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1408,7 +1371,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "ki" = (
 /obj/structure/catwalk/over/plated_catwalk,
 /obj/structure/cable{
@@ -1435,19 +1398,19 @@
 	},
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "km" = (
 /obj/structure/cable{
 	icon_state = "2-9"
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "kn" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "kt" = (
 /obj/effect/decal/remains/human,
 /obj/structure/spider/stickyweb,
@@ -1465,7 +1428,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "kw" = (
 /obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland5"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1482,14 +1445,14 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "kz" = (
 /obj/structure/railing/corner,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "kG" = (
 /obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1498,7 +1461,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -1539,7 +1502,7 @@
 "kN" = (
 /obj/structure/spacevine,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "kP" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1549,18 +1512,9 @@
 "kX" = (
 /obj/structure/flora/rock/jungle,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"lb" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "ll" = (
 /obj/effect/radiation{
@@ -1569,7 +1523,7 @@
 	},
 /obj/effect/decal/cleanable/molten_object,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1579,7 +1533,7 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ln" = (
 /obj/structure/railing{
 	dir = 10
@@ -1587,7 +1541,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1596,7 +1550,7 @@
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "lp" = (
 /obj/item/geiger_counter,
 /obj/effect/decal/cleanable/blood/old,
@@ -1611,7 +1565,7 @@
 "lu" = (
 /obj/structure/flora/junglebush,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1643,14 +1597,14 @@
 "lG" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "lI" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "lM" = (
 /obj/structure/spacevine,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
@@ -1680,21 +1634,14 @@
 	dir = 8
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"me" = (
-/obj/effect/turf_decal/weather/dirt,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "mg" = (
 /obj/structure/spacevine/dense,
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1716,7 +1663,7 @@
 /obj/structure/cable{
 	icon_state = "4-10"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -1727,7 +1674,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "mz" = (
 /obj/machinery/telecomms/processor,
 /turf/open/floor/mineral/plastitanium{
@@ -1739,7 +1686,7 @@
 	dir = 1
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1789,7 +1736,7 @@
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1806,7 +1753,7 @@
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -1815,13 +1762,6 @@
 "mW" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/plasteel/dark,
-/area/overmap_encounter/planetoid/jungle/explored)
-"nb" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "nc" = (
 /obj/structure/spider/stickyweb,
@@ -1832,7 +1772,7 @@
 "ne" = (
 /obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1849,10 +1789,10 @@
 /obj/structure/table,
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "nj" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -1871,12 +1811,12 @@
 /obj/item/radio/intercom/directional/east,
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "nq" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/grass/jungle,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1894,13 +1834,6 @@
 	dir = 1
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"nw" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "ny" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/structure/spider/stickyweb,
@@ -1908,24 +1841,24 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "nA" = (
 /obj/effect/decal/cleanable/insectguts,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "nB" = (
 /obj/structure/flora/rock,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "nF" = (
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "nG" = (
 /obj/structure/flora/rock/jungle,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -1944,16 +1877,16 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "nM" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "nS" = (
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -1987,13 +1920,13 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "oc" = (
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "od" = (
 /obj/structure/flora/rock,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2001,7 +1934,7 @@
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2013,7 +1946,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "og" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
 /turf/open/floor/plating/rust,
@@ -2036,10 +1969,10 @@
 "oq" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "os" = (
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2054,19 +1987,19 @@
 /turf/open/floor/plasteel/stairs{
 	dir = 1
 	},
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "oy" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "oA" = (
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "oD" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2075,14 +2008,14 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "oI" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "oK" = (
 /obj/structure/spacevine/dense,
 /obj/structure/cable{
@@ -2091,7 +2024,7 @@
 /obj/structure/cable{
 	icon_state = "1-10"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -2105,13 +2038,6 @@
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"oN" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "oQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/concrete/reinforced{
@@ -2120,7 +2046,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "oS" = (
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2175,7 +2101,7 @@
 	icon_state = "6-9"
 	},
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -2194,14 +2120,14 @@
 /turf/open/floor/plating,
 /area/overmap_encounter/planetoid/jungle/explored)
 "pu" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland6"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "pv" = (
 /obj/structure/spacevine,
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -2221,7 +2147,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "pH" = (
 /obj/effect/turf_decal/industrial/traffic/corner,
 /turf/open/floor/concrete{
@@ -2232,11 +2158,11 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken2"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "pM" = (
 /obj/structure/table,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "pO" = (
 /obj/effect/turf_decal/atmos/plasma,
 /obj/effect/turf_decal/industrial/warning{
@@ -2249,10 +2175,10 @@
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "pQ" = (
 /obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland3"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2286,7 +2212,7 @@
 "qc" = (
 /obj/structure/flora/junglebush/b,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2302,7 +2228,7 @@
 /obj/structure/cable{
 	icon_state = "2-5"
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "qt" = (
 /obj/structure/door_assembly,
@@ -2310,12 +2236,12 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/tech/techmaint,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "qu" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "qv" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 1
@@ -2327,11 +2253,11 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "qx" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "qD" = (
 /obj/item/chair,
 /obj/structure/spider/stickyweb,
@@ -2349,7 +2275,7 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "qJ" = (
 /obj/structure/spacevine,
 /obj/machinery/door/poddoor{
@@ -2357,7 +2283,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "qL" = (
 /obj/effect/turf_decal/number/zero{
 	pixel_x = -7;
@@ -2396,7 +2322,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "qN" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland4"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2421,10 +2347,10 @@
 	desc = "An 84mm high explosive rocket. Looks like they'd fit into a launcher"
 	},
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "qQ" = (
 /obj/structure/flora/rock,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2444,7 +2370,7 @@
 /obj/effect/decal/cleanable/plastic,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2454,7 +2380,7 @@
 	},
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -2465,17 +2391,17 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rd" = (
 /obj/machinery/mech_bay_recharge_port{
 	dir = 2
 	},
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rf" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2485,26 +2411,26 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rk" = (
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "rl" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/cocoon,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rm" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ro" = (
 /obj/structure/curtain,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ru" = (
 /obj/effect/turf_decal/industrial/traffic/corner{
 	dir = 8
@@ -2519,12 +2445,12 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rE" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -2536,7 +2462,7 @@
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rO" = (
 /obj/structure{
 	desc = "A devastating strike weapon of times past. The mountings seem broken now.";
@@ -2556,11 +2482,11 @@
 /obj/structure/curtain,
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "rS" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2578,11 +2504,11 @@
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "se" = (
 /obj/structure/closet,
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "sf" = (
 /obj/effect/turf_decal/industrial/stand_clear{
 	dir = 8
@@ -2595,13 +2521,13 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "sg" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "sh" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland3"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2622,13 +2548,13 @@
 /obj/machinery/light/broken/directional/south,
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "sm" = (
 /obj/structure/cable{
 	icon_state = "5-10"
 	},
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -2655,12 +2581,12 @@
 	rad_range = 2
 	},
 /obj/effect/decal/cleanable/molten_object,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "sA" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland3"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2675,7 +2601,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "sD" = (
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2689,19 +2615,19 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "sH" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/item/stack/ore/salvage/scrapmetal/five,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "sK" = (
 /obj/structure/table,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "sN" = (
 /obj/structure/closet/emcloset/anchored,
 /obj/structure/railing{
@@ -2722,7 +2648,7 @@
 /obj/item/binoculars,
 /obj/item/pen/fountain,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "td" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 4
@@ -2746,19 +2672,19 @@
 "tm" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/rock,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland9"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "tn" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland7"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "to" = (
 /obj/structure/chair/comfy/orange/directional/south,
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "tp" = (
 /obj/structure/railing,
 /obj/effect/decal/cleanable/oil,
@@ -2777,21 +2703,14 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "tw" = (
 /obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"ty" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "tD" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2805,14 +2724,14 @@
 /obj/structure/cable{
 	icon_state = "6-9"
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "tJ" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "tK" = (
 /obj/structure/railing,
 /obj/structure/spacevine,
@@ -2830,7 +2749,7 @@
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam2"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "tP" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
@@ -2853,9 +2772,6 @@
 /obj/structure/railing{
 	dir = 10
 	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "tV" = (
@@ -2868,7 +2784,7 @@
 /obj/structure/railing/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2876,25 +2792,16 @@
 /obj/structure/railing{
 	dir = 6
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "uf" = (
 /obj/item/stack/cable_coil/cut/red,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"um" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "un" = (
 /obj/effect/turf_decal/industrial/stand_clear{
@@ -2908,7 +2815,7 @@
 /obj/structure/table,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "us" = (
 /obj/structure/table/wood,
 /obj/item/storage/book/bible,
@@ -2916,16 +2823,16 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "uv" = (
 /obj/machinery/atmospherics/components/binary/pump,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "uy" = (
 /obj/structure/flora/tree/jungle/small{
 	icon_state = "tree3"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2935,19 +2842,19 @@
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "uC" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spacevine,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "uE" = (
 /obj/structure/railing{
 	dir = 10
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -2980,7 +2887,7 @@
 /obj/structure/cable,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "uR" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 8
@@ -3008,11 +2915,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/floor,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "uU" = (
 /obj/structure/spacevine/dense,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3042,7 +2949,7 @@
 "vg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3051,13 +2958,13 @@
 	dir = 8
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "vn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3089,11 +2996,11 @@
 /turf/open/floor/plating/rust,
 /area/overmap_encounter/planetoid/jungle/explored)
 "vA" = (
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "vC" = (
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3105,10 +3012,10 @@
 	id = "jbs3"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "vE" = (
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3118,14 +3025,14 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "vJ" = (
 /obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3136,18 +3043,18 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "vT" = (
 /obj/structure/spacevine/dense,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "vU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3155,7 +3062,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "vW" = (
 /obj/structure/railing{
 	dir = 8
@@ -3164,13 +3071,13 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "vX" = (
 /obj/structure/railing,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "vZ" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3182,13 +3089,13 @@
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "wc" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "wd" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8
@@ -3197,7 +3104,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "wf" = (
 /obj/item/rack_parts,
 /turf/open/floor/plating/rust,
@@ -3213,30 +3120,21 @@
 	dir = 4
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"wt" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "wv" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
-/obj/item/reagent_containers/food/snacks/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
+/obj/item/food/canned/beans,
 /turf/open/floor/plating/rust,
 /area/overmap_encounter/planetoid/jungle/explored)
 "ww" = (
@@ -3249,28 +3147,28 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "wx" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland3"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "wy" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "wB" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "wC" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "wH" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "wI" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/concrete/slab_1{
@@ -3280,7 +3178,7 @@
 "wM" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3305,7 +3203,7 @@
 /obj/item/mecha_parts/mecha_equipment/extinguisher,
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "wR" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 4
@@ -3318,7 +3216,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "wY" = (
 /obj/structure/frame/machine,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "xd" = (
 /obj/effect/decal/cleanable/oil,
@@ -3332,7 +3230,7 @@
 "xf" = (
 /obj/structure/railing,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3342,14 +3240,14 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "xh" = (
 /obj/structure/cable{
 	icon_state = "4-9"
 	},
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3360,7 +3258,7 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "xq" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 4
@@ -3369,14 +3267,14 @@
 	dir = 6
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "xs" = (
 /obj/item/radio/intercom/directional/north{
 	pixel_y = 24
 	},
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "xu" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -3384,7 +3282,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "xw" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
@@ -3393,10 +3291,10 @@
 /obj/structure/spider/stickyweb,
 /obj/machinery/light/directional/north,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "xC" = (
 /obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3405,7 +3303,7 @@
 "xD" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3414,7 +3312,7 @@
 /obj/structure/curtain,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "xF" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -3427,7 +3325,7 @@
 	rad_power = 66;
 	rad_range = 2
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug";
 	light_color = "#a0ad20";
 	light_range = 3
@@ -3456,7 +3354,7 @@
 "xO" = (
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3497,7 +3395,7 @@
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3507,7 +3405,7 @@
 	id = "jbs2"
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "yf" = (
 /obj/effect/turf_decal/borderfloor{
 	dir = 1
@@ -3540,14 +3438,14 @@
 "yx" = (
 /obj/structure/spacevine,
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "yA" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel/tech/techmaint,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "yI" = (
 /obj/item/chair,
 /obj/structure/spider/stickyweb,
@@ -3559,7 +3457,7 @@
 	rad_power = 180;
 	rad_range = 3
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug";
 	light_color = "#a0ad20";
 	light_range = 3
@@ -3567,14 +3465,14 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "yP" = (
 /obj/structure/flora/rock,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland9"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "yQ" = (
 /obj/structure/table/rolling,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "yU" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/concrete{
@@ -3594,20 +3492,20 @@
 	dir = 5
 	},
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "zd" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland5"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "zg" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3621,7 +3519,7 @@
 "zl" = (
 /obj/structure/spacevine,
 /obj/structure/spacevine,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3639,10 +3537,10 @@
 	},
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/patterned,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "zt" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3656,14 +3554,14 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/tech/techmaint,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "zv" = (
 /obj/effect/decal/cleanable/molten_object,
 /obj/effect/radiation{
 	rad_power = 66;
 	rad_range = 2
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3676,14 +3574,14 @@
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "zF" = (
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3708,7 +3606,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "zL" = (
 /obj/structure/frame/machine,
 /turf/open/floor/vault,
@@ -3727,7 +3625,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Aa" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3739,7 +3637,7 @@
 "Ab" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ac" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -3749,7 +3647,7 @@
 /obj/structure/flora/tree/jungle/small{
 	icon_state = "tree1"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3767,7 +3665,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Ap" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3775,7 +3673,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3789,7 +3687,7 @@
 	start_charge = 0
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "AA" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/shreds,
@@ -3798,14 +3696,14 @@
 "AE" = (
 /obj/structure/spacevine/dense,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "AK" = (
 /obj/structure/spacevine,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3825,15 +3723,12 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "AP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "AQ" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "AS" = (
 /obj/structure/sign/syndicate{
 	anchored = 0
@@ -3844,7 +3739,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "AT" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3856,7 +3751,7 @@
 	rad_range = 2
 	},
 /obj/effect/decal/cleanable/molten_object/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug";
 	light_color = "#a0ad20";
 	light_range = 3
@@ -3865,7 +3760,7 @@
 "AV" = (
 /obj/structure/spacevine,
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3875,11 +3770,11 @@
 	icon_state = "cocoon3"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "AY" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3888,7 +3783,7 @@
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ba" = (
 /obj/effect/turf_decal/industrial/stand_clear{
 	dir = 8
@@ -3902,7 +3797,7 @@
 /obj/structure/cable{
 	icon_state = "6-8"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -3925,7 +3820,7 @@
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
 /mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3936,7 +3831,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Bo" = (
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3948,7 +3843,7 @@
 "Bu" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3967,7 +3862,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Bx" = (
 /turf/closed/wall/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "BA" = (
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
 /turf/open/floor/concrete{
@@ -3976,17 +3871,17 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "BB" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland4"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "BD" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "BE" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -3995,7 +3890,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4005,37 +3900,34 @@
 	pixel_y = 24
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "BK" = (
 /obj/structure/bed,
 /obj/structure/curtain/cloth/fancy,
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "BL" = (
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree8"
 	},
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "BM" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "BT" = (
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
 /turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "BU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dense,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4045,7 +3937,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "BX" = (
 /obj/effect/decal/cleanable/vomit/old,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4053,7 +3945,7 @@
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4061,7 +3953,7 @@
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree9"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4070,12 +3962,12 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Cg" = (
 /obj/structure/flora/tree/jungle/small{
 	icon_state = "tree4"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4083,15 +3975,9 @@
 /obj/structure/spacevine/dense,
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"Ck" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 10
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Cl" = (
 /obj/structure/spider/stickyweb,
@@ -4124,13 +4010,13 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Cq" = (
 /obj/structure/railing{
 	dir = 10
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4184,7 +4070,7 @@
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "CK" = (
 /obj/structure/railing/corner,
 /obj/structure/spacevine,
@@ -4197,7 +4083,7 @@
 	dir = 4
 	},
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4209,7 +4095,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "CN" = (
 /obj/item/watertank/atmos,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4219,11 +4105,11 @@
 	icon_state = "cocoon2"
 	},
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "CQ" = (
 /obj/structure/spacevine,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4231,7 +4117,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "CU" = (
 /obj/structure/spacevine,
 /turf/open/floor/concrete/slab_1{
@@ -4245,7 +4131,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Dl" = (
 /obj/structure/railing{
 	dir = 10
@@ -4264,24 +4150,24 @@
 /obj/machinery/light/directional/west,
 /obj/structure/spider/cocoon,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Dr" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Ds" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Dt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4291,14 +4177,14 @@
 	rad_range = 2
 	},
 /obj/effect/decal/cleanable/molten_object,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "DF" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4306,13 +4192,13 @@
 /obj/item/wallframe/apc,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "DJ" = (
 /obj/structure/cable{
 	icon_state = "6-9"
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -4321,7 +4207,7 @@
 "DK" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland5"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4335,11 +4221,11 @@
 	},
 /obj/machinery/light/small/directional/north,
 /turf/open/floor/plasteel/patterned,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "DS" = (
 /obj/effect/decal/cleanable/ash,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4361,16 +4247,16 @@
 /obj/structure/table/reinforced,
 /obj/machinery/light/broken/directional/south,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Ed" = (
 /obj/structure/flora/rock,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland4"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Ee" = (
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4380,7 +4266,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Eh" = (
 /obj/machinery/power/shuttle/engine/fueled/plasma{
 	dir = 8
@@ -4395,7 +4281,7 @@
 	pixel_y = 30
 	},
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ej" = (
 /obj/effect/turf_decal/industrial/traffic/corner{
 	dir = 4
@@ -4408,14 +4294,14 @@
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree10"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Es" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4432,7 +4318,7 @@
 	icon_state = "4-10"
 	},
 /obj/item/stack/ore/salvage/scrapmetal/five,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -4479,7 +4365,7 @@
 	icon_state = "1-10"
 	},
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -4487,7 +4373,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "EB" = (
 /obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4495,7 +4381,7 @@
 /obj/structure/table,
 /obj/structure/spacevine,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "EM" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 4
@@ -4509,7 +4395,7 @@
 /obj/machinery/suit_storage_unit/inherit,
 /obj/item/clothing/under/syndicate/combat,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "EP" = (
 /obj/structure/rack,
 /turf/open/floor/vault,
@@ -4518,7 +4404,7 @@
 /obj/structure/table,
 /obj/item/toy/cards/deck/syndicate,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "EX" = (
 /turf/open/floor/plasteel/stairs/right,
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4534,18 +4420,11 @@
 	},
 /turf/open/floor/plating/rust,
 /area/overmap_encounter/planetoid/jungle/explored)
-"Fa" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 10
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "Fb" = (
 /obj/machinery/light/directional/north,
 /obj/machinery/suit_storage_unit/inherit/industrial,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Fe" = (
 /obj/structure/railing,
 /turf/open/floor/plating{
@@ -4618,7 +4497,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Fr" = (
 /obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4627,18 +4506,18 @@
 	id = "jbs3"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Fu" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/glass/plasma,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Fv" = (
 /obj/structure/frame/machine,
 /obj/item/circuitboard/machine/telecomms/receiver,
-/turf/open/floor/plating/dirt/jungle/wasteland,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Fw" = (
 /obj/structure/railing{
@@ -4657,18 +4536,9 @@
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Fz" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"FB" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 10
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "FG" = (
 /obj/structure/railing{
@@ -4732,7 +4602,7 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Gd" = (
 /obj/effect/turf_decal/box/corners,
 /obj/structure/spacevine,
@@ -4744,7 +4614,7 @@
 /obj/structure/flora/rock/jungle,
 /obj/structure/flora/grass/jungle,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4753,7 +4623,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Gi" = (
 /obj/structure/cable{
 	icon_state = "2-9"
@@ -4762,18 +4632,11 @@
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"Gk" = (
-/obj/structure/spacevine/dense,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "Gn" = (
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree6"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4790,7 +4653,7 @@
 /obj/structure/cable{
 	icon_state = "4-9"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -4803,7 +4666,7 @@
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Gv" = (
-/turf/open/floor/plating/grass{
+/turf/open/floor/plating/asteroid/dirt/grass{
 	desc = "A patch of grass. It looks well manicured";
 	light_range = 2
 	},
@@ -4813,7 +4676,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "GB" = (
 /obj/effect/decal/cleanable/shreds,
 /turf/closed/wall,
@@ -4830,7 +4693,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "GE" = (
 /obj/effect/turf_decal/borderfloor{
 	dir = 1
@@ -4846,13 +4709,13 @@
 /obj/structure/curtain,
 /obj/machinery/light/directional/south,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "GQ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -4867,7 +4730,7 @@
 "GS" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "GU" = (
 /obj/structure/spacevine/dense,
 /turf/open/floor/plating{
@@ -4890,7 +4753,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Hc" = (
 /obj/structure/railing{
 	dir = 1
@@ -4898,24 +4761,17 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
 /area/overmap_encounter/planetoid/jungle/explored)
-"Hd" = (
-/obj/structure/spacevine/dense,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "He" = (
 /obj/structure/flora/rock/jungle,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Hk" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4933,7 +4789,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ht" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -4951,7 +4807,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Hw" = (
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/grass{
+/turf/open/floor/plating/asteroid/dirt/grass{
 	desc = "A patch of grass. It looks well manicured";
 	light_range = 2
 	},
@@ -4959,7 +4815,7 @@
 "Hy" = (
 /obj/structure/railing,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4983,7 +4839,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "HE" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -4992,10 +4848,10 @@
 /obj/item/radio/intercom/directional/east,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "HH" = (
 /obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland0"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5004,12 +4860,12 @@
 /obj/item/stack/sheet/metal,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "HO" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland0"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5021,7 +4877,7 @@
 /obj/structure/cable{
 	icon_state = "1-10"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -5038,14 +4894,14 @@
 "HV" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "HW" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "HY" = (
 /obj/effect/turf_decal/industrial/stand_clear{
 	dir = 8
@@ -5056,11 +4912,11 @@
 "HZ" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Ic" = (
 /obj/structure/chair,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ig" = (
 /obj/structure/spider/stickyweb,
 /obj/machinery/light/broken/directional/south,
@@ -5069,7 +4925,7 @@
 "Ik" = (
 /obj/structure/flora/junglebush,
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5079,7 +4935,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Is" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5124,14 +4980,14 @@
 "IC" = (
 /obj/structure/spacevine/dense,
 /mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "ID" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "IH" = (
 /obj/machinery/light/broken/directional/east,
 /turf/open/floor/concrete/slab_1{
@@ -5144,7 +5000,7 @@
 	},
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "IM" = (
 /obj/structure{
 	desc = "A devastating strike weapon of times past. The mountings seem broken now.";
@@ -5163,7 +5019,7 @@
 "IO" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5173,35 +5029,26 @@
 	rad_power = 99;
 	rad_range = 3
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug";
 	light_color = "#a0ad20";
 	light_range = 3
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "IT" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "IY" = (
 /obj/structure/table/rolling,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ja" = (
 /obj/structure/table/reinforced,
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
-/area/overmap_encounter/planetoid/jungle/explored)
-"Jb" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Jc" = (
 /obj/structure/frame/computer,
@@ -5220,14 +5067,14 @@
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree4"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Jm" = (
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Jw" = (
 /obj/structure/railing{
 	dir = 10
@@ -5237,11 +5084,11 @@
 	pixel_x = 23
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Jx" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Jz" = (
 /obj/effect/turf_decal/arrows,
@@ -5271,11 +5118,11 @@
 "JL" = (
 /obj/machinery/atmospherics/components/unary/portables_connector,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "JM" = (
 /obj/structure/spacevine/dense,
 /obj/structure/flora/junglebush/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5305,7 +5152,7 @@
 "JX" = (
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "JY" = (
 /obj/effect/turf_decal/industrial/stand_clear{
 	dir = 8
@@ -5315,7 +5162,7 @@
 "Ka" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5330,7 +5177,7 @@
 "Kd" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5343,7 +5190,7 @@
 "Ki" = (
 /obj/effect/decal/remains/human,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -5368,7 +5215,7 @@
 /obj/structure/flora/junglebush,
 /obj/structure/flora/junglebush/b,
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5395,7 +5242,7 @@
 /obj/effect/turf_decal/industrial/warning,
 /obj/machinery/light/directional/west,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "KB" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/machinery/light/broken/directional/north,
@@ -5405,7 +5252,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5423,7 +5270,7 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "KF" = (
 /obj/effect/turf_decal/industrial/warning/corner,
 /turf/open/floor/concrete{
@@ -5442,14 +5289,14 @@
 /obj/item/stack/cable_coil/cut/red,
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "KN" = (
 /obj/item/stack/cable_coil/cut/red,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -5461,15 +5308,15 @@
 	},
 /obj/item/wallframe/apc,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "KQ" = (
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "KR" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5489,10 +5336,10 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Lb" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland2"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5500,7 +5347,7 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5516,7 +5363,7 @@
 /obj/structure/spacevine,
 /obj/structure/flora/rock/jungle,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5525,19 +5372,19 @@
 	dir = 4
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Lo" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Lp" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Lq" = (
 /obj/structure/railing{
 	dir = 1
@@ -5551,7 +5398,7 @@
 /obj/structure/flora/tree/jungle/small{
 	icon_state = "tree5"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5561,7 +5408,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Lx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5570,14 +5417,14 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Ly" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "LC" = (
 /obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "LF" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/vomit/old,
@@ -5589,7 +5436,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -5613,13 +5460,13 @@
 /obj/structure/closet,
 /obj/item/clothing/suit/armor/ngr/captain,
 /obj/item/clothing/under/syndicate/ngr/officer,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/gun/ballistic/automatic/pistol/syndicate,
+/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/gun/ballistic/automatic/pistol/ringneck,
 /turf/open/floor/wood{
 	icon_state = "wood-broken2"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "LN" = (
 /obj/structure/catwalk/over/plated_catwalk,
 /obj/structure/spider/stickyweb,
@@ -5631,11 +5478,11 @@
 	dir = 9
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "LY" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5643,7 +5490,7 @@
 /obj/structure/spacevine/dense,
 /obj/structure/flora/junglebush/large,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5660,7 +5507,7 @@
 "Mi" = (
 /obj/machinery/light/broken/directional/west,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Mk" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/mineral/plastitanium,
@@ -5668,7 +5515,7 @@
 "Ml" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland0"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5686,7 +5533,7 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Mt" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -5709,10 +5556,10 @@
 	dir = 10
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "ME" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland9"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5733,11 +5580,11 @@
 "MQ" = (
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "MS" = (
 /obj/item/stack/sheet/mineral/plastitanium,
 /obj/item/stack/sheet/mineral/plastitanium,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5757,7 +5604,7 @@
 /obj/structure/curtain,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "MZ" = (
 /obj/item/chair,
 /turf/open/floor/plating/rust,
@@ -5772,7 +5619,7 @@
 /obj/structure/spider/stickyweb,
 /obj/structure/spacevine,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ne" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5787,11 +5634,11 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Nh" = (
 /obj/structure/filingcabinet,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/ammo_box/magazine/m10mm,
-/obj/item/gun/ballistic/automatic/pistol/syndicate,
+/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/gun/ballistic/automatic/pistol/ringneck,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Nj" = (
 /obj/effect/turf_decal/borderfloor{
 	dir = 1
@@ -5817,13 +5664,13 @@
 "No" = (
 /obj/effect/decal/cleanable/insectguts,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Nq" = (
 /obj/structure/door_assembly/door_assembly_eng,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -5833,7 +5680,7 @@
 /obj/structure/spacevine,
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5843,7 +5690,7 @@
 	},
 /obj/machinery/power/rtg/geothermal,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Nw" = (
 /obj/effect/turf_decal/arrows{
 	dir = 4
@@ -5851,12 +5698,6 @@
 /turf/open/floor/concrete/slab_1{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"NA" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "ND" = (
 /turf/open/floor/concrete/slab_1{
@@ -5920,25 +5761,25 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Oc" = (
 /obj/item/stack/sheet/metal,
 /obj/item/stack/sheet/metal,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Od" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Oe" = (
 /obj/structure/cable{
 	icon_state = "5-8"
 	},
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -5948,7 +5789,7 @@
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree2"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5966,7 +5807,7 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Om" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/twenty,
@@ -5983,7 +5824,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Os" = (
 /obj/structure/door_assembly,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6001,17 +5842,17 @@
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom/wideband/directional/east,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "OB" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/remains/human,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "OI" = (
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "OK" = (
 /obj/structure/sign/syndicate{
 	pixel_x = -32
@@ -6024,7 +5865,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6034,13 +5875,13 @@
 	},
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/engine/hull,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "OQ" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/tree/jungle{
 	icon_state = "tree10"
 	},
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6056,18 +5897,18 @@
 "OW" = (
 /obj/item/stack/ore/salvage/scrapmetal/five,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "OY" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Pa" = (
 /obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Pc" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland6"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6080,21 +5921,21 @@
 /obj/structure/cable,
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Pg" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ph" = (
 /obj/machinery/atmospherics/pipe/manifold/orange{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Pk" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6114,7 +5955,7 @@
 "Pn" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6148,11 +5989,11 @@
 	},
 /obj/item/paper_bin,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Px" = (
 /obj/structure/spacevine/dense,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Py" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6163,16 +6004,12 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/chair,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "PA" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/overmap_encounter/planetoid/jungle/explored)
-"PB" = (
-/obj/effect/turf_decal/weather/dirt,
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "PC" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -6180,12 +6017,12 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "PG" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "PI" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/shreds,
@@ -6195,10 +6032,10 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "PJ" = (
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "PN" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland0"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6215,16 +6052,9 @@
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"PQ" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 1
-	},
-/obj/effect/turf_decal/weather/dirt,
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "PR" = (
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "PV" = (
 /obj/structure/closet,
@@ -6237,20 +6067,20 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "PX" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "PY" = (
 /obj/structure/flora/rock,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6259,7 +6089,7 @@
 	dir = 10
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6275,7 +6105,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6310,21 +6140,12 @@
 	},
 /turf/open/floor/plating,
 /area/overmap_encounter/planetoid/jungle/explored)
-"Qp" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "Qq" = (
 /obj/machinery/atmospherics/components/unary/tank/toxins{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Qy" = (
 /obj/structure/railing{
 	dir = 8
@@ -6337,7 +6158,7 @@
 	},
 /obj/structure/spacevine,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6350,18 +6171,18 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "QE" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "QF" = (
 /obj/structure/flora/tree/jungle/small,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "QJ" = (
 /obj/structure/spider/stickyweb,
 /obj/item/stack/ore/salvage/scrapmetal/five,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6388,11 +6209,11 @@
 /obj/item/watertank/atmos,
 /obj/machinery/light/broken/directional/south,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "QS" = (
 /obj/structure/girder/displaced,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6422,11 +6243,11 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "QW" = (
 /obj/structure/spider/stickyweb,
 /obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -6435,7 +6256,7 @@
 "QY" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6443,7 +6264,7 @@
 /obj/structure/spider/stickyweb,
 /obj/item/stack/ore/salvage/scrapmetal/five,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Rc" = (
 /obj/structure/closet,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -6451,14 +6272,14 @@
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate/combat,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Rd" = (
 /obj/effect/radiation{
 	rad_power = 180;
 	rad_range = 2
 	},
 /obj/effect/decal/cleanable/molten_object/large,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland_dug";
 	light_color = "#a0ad20";
 	light_range = 3
@@ -6466,11 +6287,11 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Rf" = (
 /obj/structure/railing,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/dirt,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Rg" = (
 /obj/effect/decal/cleanable/insectguts,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland8"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6481,7 +6302,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6494,19 +6315,19 @@
 /obj/item/folder,
 /obj/item/paper_bin,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Rq" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Rw" = (
 /obj/item/ammo_casing/caseless/rocket{
 	desc = "An 84mm high explosive rocket. Looks like they'd fit into a launcher"
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6528,7 +6349,7 @@
 "RC" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6541,14 +6362,14 @@
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "RP" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spacevine,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6569,7 +6390,7 @@
 	icon_state = "4-9"
 	},
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -6578,11 +6399,6 @@
 "RU" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/plasteel,
-/area/overmap_encounter/planetoid/jungle/explored)
-"RV" = (
-/obj/structure/spacevine/dense,
-/obj/effect/turf_decal/weather/dirt,
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "RZ" = (
 /obj/structure/railing,
@@ -6602,10 +6418,10 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Se" = (
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Sf" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -6614,11 +6430,11 @@
 	name = "Power Shack"
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Sl" = (
 /obj/structure/rack,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Sm" = (
 /turf/closed/wall/rust,
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6627,10 +6443,10 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Sv" = (
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Sz" = (
 /obj/effect/turf_decal/borderfloor{
 	dir = 8
@@ -6648,27 +6464,21 @@
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam5"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "SG" = (
 /obj/structure/spacevine,
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/junglebush/b,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"SH" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "SM" = (
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6676,13 +6486,13 @@
 /obj/structure/bed/pod,
 /obj/structure/curtain,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "SX" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -6692,14 +6502,7 @@
 /obj/structure/table,
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
-"Tb" = (
-/obj/structure/spacevine,
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
+/area/ruin/jungle/airbase)
 "Td" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 1
@@ -6708,17 +6511,17 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Te" = (
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam4"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Tn" = (
 /obj/machinery/washing_machine,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "To" = (
 /obj/item/weldingtool,
 /turf/open/floor/concrete/slab_1{
@@ -6729,7 +6532,7 @@
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Tt" = (
 /obj/effect/turf_decal/arrows{
 	dir = 8
@@ -6747,7 +6550,7 @@
 "TA" = (
 /obj/structure/flora/grass/jungle,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6764,10 +6567,10 @@
 /obj/item/pen,
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "TK" = (
 /obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6796,7 +6599,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "TU" = (
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6804,11 +6607,11 @@
 /obj/structure/spider/stickyweb,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "TY" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6816,32 +6619,26 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
-"Ua" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "Uc" = (
 /obj/structure/spacevine,
 /obj/structure/salvageable/autolathe,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ue" = (
 /obj/structure/spacevine,
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam4"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ug" = (
 /obj/structure/chair{
 	dir = 8
 	},
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Uj" = (
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Up" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6868,7 +6665,7 @@
 /turf/open/floor/plating,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Ut" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland5"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6882,13 +6679,13 @@
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Uz" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "UB" = (
 /obj/structure/spacevine,
 /turf/open/floor/plating/rust,
@@ -6905,10 +6702,10 @@
 /obj/effect/turf_decal/rechargefloor,
 /obj/mecha/working/ripley/firefighter,
 /turf/open/floor/vault,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "UI" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland6"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6923,21 +6720,21 @@
 /obj/structure/railing{
 	dir = 9
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "UR" = (
 /obj/structure/flora/junglebush/large,
 /obj/structure/flora/grass/jungle/b,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "US" = (
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -6969,13 +6766,13 @@
 "Vh" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Vl" = (
 /obj/machinery/atmospherics/pipe/manifold/orange/visible{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/plasma)
+/area/ruin/jungle/airbase/hangar)
 "Vm" = (
 /turf/open/floor/plasteel/stairs/right{
 	dir = 1
@@ -6994,7 +6791,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -7010,7 +6807,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7018,11 +6815,11 @@
 /obj/structure/spider/stickyweb,
 /obj/item/radio/intercom/directional/east,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "VB" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "VF" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
@@ -7030,7 +6827,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "VJ" = (
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7038,7 +6835,7 @@
 /obj/structure/spacevine,
 /obj/structure/flora/junglebush/b,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7058,7 +6855,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7074,14 +6871,14 @@
 "We" = (
 /obj/structure/spacevine/dense,
 /obj/item/stack/cable_coil/cut/red,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Wg" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7106,10 +6903,10 @@
 	pixel_y = 30
 	},
 /turf/open/floor/plasteel/patterned,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Wo" = (
 /turf/closed/wall,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Wp" = (
 /obj/effect/turf_decal/atmos/plasma,
 /obj/structure/spacevine,
@@ -7119,7 +6916,7 @@
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/ash,
 /obj/item/stack/ore/salvage/scrapmetal/five,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7132,7 +6929,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Wv" = (
 /obj/structure/spacevine/dense,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland7"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7152,7 +6949,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Wx" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7160,7 +6957,7 @@
 /obj/effect/decal/cleanable/ash/large,
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/shreds,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7193,13 +6990,13 @@
 /obj/machinery/door/airlock/hatch,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "WR" = (
 /obj/structure/frame/computer{
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "WT" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
@@ -7215,26 +7012,26 @@
 	id = "jbs2"
 	},
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "WV" = (
 /obj/structure/frame/machine,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "WZ" = (
 /obj/structure/chair,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Xb" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland3"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Xe" = (
 /obj/structure/door_assembly,
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -7246,29 +7043,29 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Xk" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Xm" = (
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Xq" = (
 /obj/structure/girder,
 /turf/open/floor/plating/rust,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Xr" = (
 /obj/machinery/atmospherics/pipe/manifold/orange{
 	dir = 8
 	},
 /obj/machinery/light/directional/west,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Xw" = (
 /obj/machinery/atmospherics/components/unary/shuttle/heater{
 	dir = 8
@@ -7281,7 +7078,7 @@
 "Xz" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/grimy,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "XA" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
@@ -7291,7 +7088,7 @@
 	name = "Emergency Blast Shutters"
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "XC" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/vomit/old,
@@ -7299,11 +7096,11 @@
 /obj/item/clothing/suit/armor/ngr/captain,
 /obj/item/clothing/shoes/combat,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "XN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7328,7 +7125,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating/dirt/dark{
+/turf/open/floor/plating/asteroid/dirt{
 	name = "beaten path";
 	desc = "Upon closer examination, it's dirt, compacted down by much walking";
 	light_range = 2
@@ -7343,7 +7140,7 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ya" = (
 /obj/structure/spacevine/dense,
 /turf/open/water/jungle,
@@ -7351,7 +7148,7 @@
 "Yh" = (
 /obj/structure/spacevine,
 /obj/structure/spider/stickyweb,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7361,14 +7158,14 @@
 	dir = 4
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Yj" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Ym" = (
 /obj/effect/turf_decal/industrial/stand_clear{
 	dir = 8
@@ -7382,7 +7179,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/glass,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7393,10 +7190,10 @@
 "Yr" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "Yw" = (
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-/turf/open/floor/plating/grass{
+/turf/open/floor/plating/asteroid/dirt/grass{
 	desc = "A patch of grass. It looks well manicured";
 	light_range = 2
 	},
@@ -7407,7 +7204,7 @@
 	},
 /obj/structure/spacevine,
 /turf/open/floor/mineral/plastitanium,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Yz" = (
 /obj/effect/decal/cleanable/glass,
 /mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
@@ -7416,7 +7213,7 @@
 "YA" = (
 /obj/machinery/blackbox_recorder,
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "YC" = (
 /obj/effect/turf_decal/industrial/warning/corner{
 	dir = 8
@@ -7433,21 +7230,21 @@
 	dir = 1
 	},
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "YE" = (
 /obj/effect/decal/cleanable/shreds,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "YH" = (
 /obj/effect/decal/cleanable/shreds,
 /obj/item/stack/sheet/metal,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7457,21 +7254,21 @@
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "YL" = (
 /obj/structure/spacevine,
 /turf/closed/wall/concrete/reinforced,
 /area/overmap_encounter/planetoid/jungle/explored)
 "YN" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland5"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "YP" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7485,7 +7282,7 @@
 /obj/structure/closet,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "YS" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/cocoon{
@@ -7496,13 +7293,13 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "YV" = (
 /obj/structure/flora/junglebush/large,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "YW" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/grass/jungle{
+/turf/open/floor/plating/asteroid/dirt/grass/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7523,7 +7320,7 @@
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Zg" = (
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland4"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7538,7 +7335,7 @@
 "Zl" = (
 /obj/structure/flora/rock,
 /obj/structure/spacevine,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7549,14 +7346,14 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "Zp" = (
 /obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "Zr" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "Zw" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1
@@ -7582,24 +7379,15 @@
 "ZA" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
 "ZB" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland9"
 	},
-/area/overmap_encounter/planetoid/jungle/explored)
-"ZE" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 10
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 9
-	},
-/turf/open/water/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "ZF" = (
 /obj/structure/spacevine/dense,
@@ -7627,25 +7415,16 @@
 	},
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/viper,
 /turf/open/floor/plating,
-/area/ruin/jungle/starport)
+/area/ruin/jungle/airbase)
 "ZO" = (
 /obj/item/stack/cable_coil/cut/red,
 /turf/open/floor/mineral/plastitanium{
 	icon_state = "plastitanium_dam4"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
-"ZP" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 10
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 6
-	},
-/turf/open/water/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "ZR" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt/jungle/wasteland{
+/turf/open/floor/plating/asteroid/dirt/wasteland{
 	icon_state = "wasteland1"
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7653,7 +7432,7 @@
 /obj/structure/railing{
 	dir = 5
 	},
-/turf/open/floor/plating/dirt/jungle{
+/turf/open/floor/plating/asteroid/dirt/jungle{
 	light_range = 2
 	},
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -7664,7 +7443,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/jungle/starport/tower)
+/area/ruin/jungle/airbase/tower)
 "ZX" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating{
@@ -7802,7 +7581,7 @@ Ee
 jO
 ce
 ir
-FB
+zN
 ir
 ir
 ir
@@ -7856,7 +7635,7 @@ zN
 zN
 zN
 zN
-Ck
+zN
 ce
 ce
 zt
@@ -7878,11 +7657,11 @@ jO
 Ap
 ce
 ir
-SH
 zN
-NA
-NA
-Ck
+zN
+zN
+zN
+zN
 ir
 UE
 UE
@@ -7928,14 +7707,14 @@ zN
 zN
 zN
 zN
-gC
-gC
-gC
-gC
 zN
 zN
-NA
-Ck
+zN
+zN
+zN
+zN
+zN
+zN
 ce
 ir
 ce
@@ -7954,12 +7733,12 @@ Ap
 ce
 ir
 ir
-SH
 zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 ir
 ir
@@ -7997,24 +7776,24 @@ UE
 zN
 zN
 fl
-hk
-gC
-gC
-gC
-gC
-gC
-gC
-cv
-ir
-ir
-ir
-ir
-Ua
-gC
+fl
 zN
 zN
-NA
-Ck
+zN
+zN
+zN
+zN
+zN
+ir
+ir
+ir
+ir
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 ce
 Ap
@@ -8030,24 +7809,24 @@ ce
 ce
 ir
 ir
-SH
 zN
 zN
 zN
 zN
 zN
 zN
-NA
-Ck
+zN
+zN
+zN
 ir
 ir
 ir
-SH
-NA
-NA
-NA
-NA
-Ck
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 ir
 ir
@@ -8072,26 +7851,26 @@ UE
 UE
 zN
 zN
-gC
-ty
-zt
-zt
-dP
-QE
-QE
-QE
-dP
-ir
-dP
-QE
-QE
-QE
-dP
-ir
-Ua
-gC
 zN
-PB
+fl
+zt
+zt
+dP
+QE
+QE
+QE
+dP
+ir
+dP
+QE
+QE
+QE
+dP
+ir
+zN
+zN
+zN
+zN
 ir
 gP
 Ap
@@ -8104,9 +7883,6 @@ YV
 YW
 ir
 ir
-SH
-NA
-NA
 zN
 zN
 zN
@@ -8116,16 +7892,19 @@ zN
 zN
 zN
 zN
-NA
-NA
-NA
 zN
 zN
 zN
 zN
 zN
 zN
-Ck
+zN
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 ir
 Xm
@@ -8148,7 +7927,7 @@ UE
 zN
 zN
 zN
-PB
+zN
 zt
 zt
 zt
@@ -8167,9 +7946,9 @@ QE
 dP
 ir
 ir
-ju
 zN
-Ck
+zN
+zN
 ir
 ir
 Xm
@@ -8180,16 +7959,6 @@ Ap
 ce
 ir
 ir
-SH
-zN
-zN
-zN
-zN
-zN
-zN
-zN
-gC
-gC
 zN
 zN
 zN
@@ -8203,7 +7972,17 @@ zN
 zN
 zN
 zN
-Ck
+zN
+zN
+zN
+zN
+zN
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 ir
 Xm
@@ -8225,7 +8004,7 @@ UE
 zN
 zN
 zN
-PB
+zN
 ce
 Lu
 Xm
@@ -8244,9 +8023,9 @@ Sv
 QE
 ir
 ir
-ju
 zN
-PB
+zN
+zN
 ir
 ir
 ce
@@ -8256,18 +8035,17 @@ ce
 ce
 ir
 ir
-SH
 zN
-gC
-gC
-gC
-gC
-gC
-gC
-cv
+zN
+zN
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 ir
-ju
 zN
 zN
 zN
@@ -8281,7 +8059,8 @@ zN
 zN
 zN
 zN
-Ck
+zN
+zN
 ir
 ir
 ir
@@ -8302,7 +8081,7 @@ zN
 zN
 zN
 zN
-cv
+zN
 ce
 Ap
 ce
@@ -8321,20 +8100,20 @@ QO
 QE
 ir
 ce
-Ua
 zN
 zN
-NA
-NA
-NA
-nb
-nb
-nb
-NA
-NA
-NA
 zN
-cv
+zN
+zN
+zN
+fl
+fl
+fl
+zN
+zN
+zN
+zN
+zN
 zt
 zt
 ir
@@ -8343,7 +8122,6 @@ ir
 ir
 ir
 gP
-SH
 zN
 zN
 zN
@@ -8359,7 +8137,8 @@ zN
 zN
 zN
 zN
-ZP
+zN
+zN
 ir
 UE
 UE
@@ -8378,7 +8157,7 @@ zN
 zN
 zN
 zN
-cv
+zN
 ir
 ir
 ir
@@ -8399,7 +8178,6 @@ QE
 ir
 Ap
 ce
-Ua
 zN
 zN
 zN
@@ -8408,8 +8186,9 @@ zN
 zN
 zN
 zN
-gC
-cv
+zN
+zN
+zN
 ir
 ce
 ce
@@ -8420,7 +8199,6 @@ Xm
 Jh
 sD
 ir
-ju
 zN
 zN
 zN
@@ -8435,7 +8213,8 @@ zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 ir
 UE
@@ -8453,8 +8232,8 @@ UE
 zN
 zN
 zN
-gC
-cv
+zN
+zN
 ir
 ir
 ir
@@ -8477,14 +8256,14 @@ ir
 uy
 Ap
 ce
-Ua
-gC
-gC
-gC
-gC
-gC
-gC
-cv
+zN
+zN
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 ir
 ir
@@ -8497,7 +8276,6 @@ Xm
 Xm
 sD
 ir
-ju
 zN
 zN
 zN
@@ -8513,7 +8291,8 @@ zN
 zN
 zN
 zN
-Ck
+zN
+zN
 ir
 qQ
 UE
@@ -8528,8 +8307,8 @@ UE
 UE
 zN
 zN
-gC
-cv
+zN
+zN
 ir
 ir
 ir
@@ -8574,7 +8353,6 @@ CQ
 UR
 sD
 ce
-ju
 zN
 zN
 zN
@@ -8590,7 +8368,8 @@ zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 ir
 UE
@@ -8651,11 +8430,6 @@ jO
 Xm
 ce
 ir
-ju
-zN
-zN
-zN
-gC
 zN
 zN
 zN
@@ -8668,7 +8442,12 @@ zN
 zN
 zN
 zN
-Ck
+zN
+zN
+zN
+zN
+zN
+zN
 ir
 UE
 UE
@@ -8727,13 +8506,12 @@ KR
 vT
 jO
 ce
-SH
 zN
-gC
 zN
-PB
+zN
+zN
+zN
 ir
-ju
 zN
 zN
 zN
@@ -8745,7 +8523,8 @@ zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 UE
 UE
@@ -8755,7 +8534,7 @@ UE
 UE
 UE
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -8804,13 +8583,12 @@ Cj
 Xm
 ce
 ir
-ju
-PB
+zN
+zN
 ir
-ju
-cv
+zN
+zN
 ir
-ju
 zN
 zN
 zN
@@ -8822,7 +8600,8 @@ zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 UE
 UE
@@ -8832,7 +8611,7 @@ UE
 ir
 ce
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -8880,14 +8659,13 @@ JM
 qc
 jO
 ce
-SH
 zN
-cv
+zN
+zN
 ir
-lb
+zN
 ir
 ir
-ju
 zN
 zN
 zN
@@ -8899,7 +8677,8 @@ zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 UE
 UE
@@ -8909,7 +8688,7 @@ ce
 ir
 sA
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -8957,13 +8736,12 @@ Gn
 Xm
 Ee
 ir
-ju
-PB
+zN
+zN
 ir
 ce
 ir
 ir
-SH
 zN
 zN
 zN
@@ -8974,9 +8752,10 @@ zN
 zN
 zN
 zN
-gC
-gC
-cv
+zN
+zN
+zN
+zN
 ir
 UE
 UE
@@ -8986,7 +8765,7 @@ ir
 sA
 sA
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -9033,14 +8812,13 @@ Xm
 ir
 ir
 ir
-SH
 zN
-cv
+zN
+zN
 ce
 ce
 ir
 ir
-ju
 zN
 zN
 zN
@@ -9050,7 +8828,8 @@ zN
 zN
 zN
 zN
-PB
+zN
+zN
 ir
 ir
 ir
@@ -9063,7 +8842,7 @@ pu
 zv
 IT
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -9108,26 +8887,26 @@ ir
 Xm
 ir
 ir
-SH
-NA
 zN
-cv
+zN
+zN
+zN
 ir
 ce
 Ee
 ir
 ir
-oN
+fl
 zN
 zN
 zN
 zN
 zN
 zN
-gC
 zN
 zN
-PB
+zN
+zN
 ir
 ir
 UE
@@ -9140,7 +8919,7 @@ pu
 tn
 ir
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -9184,27 +8963,27 @@ ir
 Xm
 ir
 ir
-SH
 zN
 zN
-cv
+zN
+zN
 ir
 ir
 Ap
 Ee
 Cc
 ir
-aD
-hk
-gC
-gC
-gC
-gC
-cv
-ir
-ju
+fl
+fl
 zN
-PB
+zN
+zN
+zN
+zN
+ir
+zN
+zN
+zN
 ir
 UE
 UE
@@ -9217,7 +8996,7 @@ ir
 ce
 ir
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -9260,10 +9039,10 @@ CQ
 ir
 ir
 ir
-SH
 zN
 zN
-cv
+zN
+zN
 ir
 ir
 Xm
@@ -9279,9 +9058,9 @@ ir
 ir
 ir
 ce
-aD
 fl
-PB
+fl
+zN
 ir
 ir
 UE
@@ -9294,7 +9073,7 @@ UE
 UE
 UE
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -9335,11 +9114,11 @@ ir
 ir
 ce
 ir
-wt
-Qp
 zN
 zN
-cv
+zN
+zN
+zN
 ir
 ir
 Xm
@@ -9357,9 +9136,9 @@ eA
 gP
 ce
 ce
-aD
+fl
 zN
-Ck
+zN
 ir
 ir
 UE
@@ -9371,7 +9150,7 @@ UE
 UE
 ce
 ir
-ju
+zN
 zN
 RZ
 qW
@@ -9414,8 +9193,8 @@ CQ
 ce
 ir
 Bo
-Ua
-cv
+zN
+zN
 ir
 ir
 Xm
@@ -9435,9 +9214,9 @@ YW
 ir
 ir
 ir
-Ua
 zN
-Ck
+zN
+zN
 ir
 UE
 UE
@@ -9448,9 +9227,9 @@ UE
 ce
 ce
 ir
-ju
 zN
-nw
+zN
+RZ
 qW
 MU
 ND
@@ -9513,8 +9292,8 @@ ir
 Ee
 ir
 ir
-ju
-PB
+zN
+zN
 ir
 ir
 UE
@@ -9524,9 +9303,9 @@ UE
 ir
 ce
 ir
-SH
 zN
-cv
+zN
+zN
 ub
 qW
 MU
@@ -9590,19 +9369,19 @@ Ee
 Ek
 Xm
 ce
-Ua
 zN
-Ck
+zN
+zN
 ir
 UE
 UE
 "}
 (26,1,1) = {"
 ir
-SH
-NA
 zN
-cv
+zN
+zN
+zN
 ir
 ns
 JY
@@ -9668,15 +9447,15 @@ sD
 CQ
 CQ
 ir
-ju
-PB
+zN
+zN
 ir
 UE
 UE
 "}
 (27,1,1) = {"
 ir
-ju
+zN
 xL
 KY
 KY
@@ -9745,14 +9524,14 @@ fC
 zt
 KR
 ir
-ju
-PB
+zN
+zN
 ir
 UE
 UE
 "}
 (28,1,1) = {"
-NA
+zN
 xL
 oX
 qW
@@ -9822,8 +9601,8 @@ pU
 ir
 KR
 ir
-ju
-PB
+zN
+zN
 ir
 ir
 UE
@@ -9899,9 +9678,9 @@ pU
 ir
 Ee
 zt
-Ua
 zN
-Ck
+zN
+zN
 ir
 UE
 "}
@@ -9977,8 +9756,8 @@ ce
 Ee
 zt
 ir
-ju
-PB
+zN
+zN
 ir
 UE
 "}
@@ -10054,8 +9833,8 @@ ce
 jO
 ce
 ir
-ju
-PB
+zN
+zN
 ir
 UE
 "}
@@ -10130,9 +9909,9 @@ pU
 ir
 Xm
 ce
-SH
 zN
-cv
+zN
+zN
 ir
 UE
 "}
@@ -10206,9 +9985,9 @@ pU
 pU
 ir
 ce
-SH
 zN
-PB
+zN
+zN
 ir
 ir
 UE
@@ -10283,9 +10062,9 @@ pU
 pU
 ir
 ce
-ju
 zN
-PB
+zN
+zN
 ir
 ir
 UE
@@ -10359,10 +10138,10 @@ pU
 Jz
 pU
 ir
-SH
 zN
-gC
-cv
+zN
+zN
+zN
 ir
 UE
 UE
@@ -10436,8 +10215,8 @@ pU
 pU
 pU
 ir
-ju
-PB
+zN
+zN
 ir
 ir
 dF
@@ -10513,8 +10292,8 @@ pU
 Jz
 pU
 ir
-ju
-cv
+zN
+zN
 ce
 ce
 ce
@@ -10590,7 +10369,7 @@ pU
 Jz
 pU
 ir
-me
+zN
 ir
 Zg
 ir
@@ -10599,7 +10378,7 @@ ir
 UE
 "}
 (39,1,1) = {"
-Ua
+zN
 xF
 tT
 qW
@@ -10667,7 +10446,7 @@ pU
 pU
 pU
 ir
-me
+zN
 ir
 HO
 Zg
@@ -10677,7 +10456,7 @@ UE
 "}
 (40,1,1) = {"
 ir
-lb
+zN
 Lf
 KY
 KY
@@ -10744,7 +10523,7 @@ VW
 VW
 VW
 ir
-me
+zN
 ir
 IP
 Fz
@@ -10820,8 +10599,8 @@ ir
 ir
 ir
 Xm
-NA
-PB
+zN
+zN
 Zg
 Fz
 gY
@@ -10893,12 +10672,12 @@ bN
 qW
 ir
 ir
-SH
-Ck
+zN
+zN
 ir
 Xm
 fl
-cv
+zN
 ir
 IT
 ir
@@ -10969,12 +10748,12 @@ XA
 ya
 ir
 ir
-SH
 zN
-PB
+zN
+zN
 ir
 ir
-PQ
+zN
 ce
 ce
 ir
@@ -11046,12 +10825,12 @@ aL
 bN
 ir
 ir
-Gk
+Ya
 fl
 fl
-Fa
+fl
 ce
-PQ
+zN
 ir
 ce
 ce
@@ -11124,11 +10903,11 @@ bN
 ir
 ir
 zt
-Ua
 zN
 zN
-nb
-dA
+zN
+fl
+fl
 ir
 ir
 Ap
@@ -11202,10 +10981,10 @@ ir
 KR
 zt
 ir
-Ua
 zN
 zN
-dA
+zN
+fl
 ce
 gP
 Ap
@@ -11283,7 +11062,7 @@ zt
 zt
 Ya
 zN
-Fa
+fl
 ir
 Xm
 Xm
@@ -11358,14 +11137,14 @@ dd
 zt
 KR
 ir
-Ua
-gC
 zN
-Ck
+zN
+zN
+zN
 ir
 Xm
 ce
-ZE
+zN
 ce
 "}
 (49,1,1) = {"
@@ -11437,12 +11216,12 @@ os
 TU
 ir
 ir
-ju
-PB
+zN
+zN
 ir
 ce
-Tb
-PB
+fl
+zN
 ce
 "}
 (50,1,1) = {"
@@ -11513,13 +11292,13 @@ Xm
 Xm
 os
 vC
-um
-gC
 zN
-NA
-NA
 zN
-PB
+zN
+zN
+zN
+zN
+zN
 ir
 "}
 (51,1,1) = {"
@@ -11592,11 +11371,11 @@ eG
 Py
 vC
 vC
-ju
 zN
 zN
 zN
-ty
+zN
+fl
 ce
 "}
 (52,1,1) = {"
@@ -11669,10 +11448,10 @@ sS
 BV
 Py
 ir
-ju
+zN
 Gp
 zN
-ty
+fl
 ce
 ir
 "}
@@ -11745,10 +11524,10 @@ mz
 vA
 vA
 eG
-wt
+zN
 zN
 Pe
-dA
+fl
 ce
 ir
 UE
@@ -11823,9 +11602,9 @@ jr
 HH
 BV
 ir
-Ua
+zN
 fl
-dA
+fl
 ir
 UE
 UE
@@ -11901,8 +11680,8 @@ wY
 BV
 ir
 ir
-ju
-PB
+zN
+zN
 ir
 UE
 UE
@@ -11979,7 +11758,7 @@ BV
 vC
 BT
 zN
-PB
+zN
 ir
 UE
 UE
@@ -12056,7 +11835,7 @@ vC
 Bu
 zN
 zN
-RV
+Ya
 TU
 UE
 UE
@@ -12130,10 +11909,10 @@ ir
 Xm
 vC
 vC
-SH
 zN
 zN
-Hd
+zN
+Ya
 ir
 UE
 UE
@@ -12209,7 +11988,7 @@ vC
 BT
 zN
 zN
-Hd
+Ya
 zt
 ir
 UE
@@ -12283,9 +12062,9 @@ eV
 YN
 vC
 vC
-ju
 zN
-Hd
+zN
+Ya
 zt
 ir
 UE
@@ -12359,9 +12138,9 @@ ir
 ir
 dv
 vC
-SH
 zN
-RV
+zN
+Ya
 zt
 ir
 UE
@@ -12436,9 +12215,9 @@ Xm
 Ap
 ce
 ce
-ju
 zN
-PB
+zN
+zN
 ir
 UE
 UE
@@ -12513,9 +12292,9 @@ dd
 Ap
 gP
 ce
-oN
+fl
 zN
-PB
+zN
 ir
 UE
 UE
@@ -12590,9 +12369,9 @@ Ap
 ce
 ne
 ir
-oN
 fl
-PB
+fl
+zN
 ir
 UE
 UE
@@ -12667,9 +12446,9 @@ ir
 Li
 kG
 ir
-ju
+zN
 fl
-PB
+zN
 ir
 UE
 UE
@@ -12744,9 +12523,9 @@ Xm
 aO
 Ap
 ir
-Ua
 zN
-PB
+zN
+zN
 ir
 ir
 ir
@@ -12822,10 +12601,10 @@ aO
 sg
 ce
 ce
-Ua
 zN
-nb
-Ck
+zN
+fl
+zN
 ir
 UE
 UE
@@ -12900,9 +12679,9 @@ Xm
 dd
 ce
 ir
-Ua
+zN
 fl
-PB
+zN
 ir
 ir
 UE
@@ -12978,9 +12757,9 @@ Xm
 TA
 ir
 ce
-oN
+fl
 zN
-Ck
+zN
 ir
 UE
 UE
@@ -13055,9 +12834,9 @@ Ee
 TA
 aO
 ce
-ju
 zN
-PB
+zN
+zN
 ir
 UE
 UE
@@ -13132,9 +12911,9 @@ Ee
 YW
 nG
 ce
-ju
 zN
-PB
+zN
+zN
 ir
 UE
 UE
@@ -13209,9 +12988,9 @@ Ka
 Xm
 kG
 Wx
-ju
 zN
-cv
+zN
+zN
 ir
 UE
 UE
@@ -13286,8 +13065,8 @@ oe
 dd
 ir
 Wx
-ju
-PB
+zN
+zN
 ir
 ir
 UE
@@ -13364,7 +13143,7 @@ Ap
 ir
 AP
 zN
-PB
+zN
 ir
 UE
 UE
@@ -13439,9 +13218,9 @@ os
 sD
 by
 ce
-oN
 fl
-dA
+fl
+fl
 ir
 UE
 UE
@@ -13516,9 +13295,9 @@ ir
 ir
 ir
 ce
-Ua
 zN
-dA
+zN
+fl
 ir
 UE
 UE
@@ -13594,8 +13373,8 @@ Xm
 Xm
 Ap
 ir
-ju
-dA
+zN
+fl
 ir
 UE
 UE
@@ -13671,8 +13450,8 @@ Xm
 kX
 Ap
 ir
-ju
-dA
+zN
+fl
 ce
 UE
 UE
@@ -13748,8 +13527,8 @@ YW
 YP
 ir
 ir
-ju
-PB
+zN
+zN
 ir
 UE
 UE
@@ -13824,9 +13603,9 @@ Xm
 nq
 Ee
 ir
-Tb
+fl
 zN
-PB
+zN
 ir
 UE
 UE
@@ -13903,7 +13682,7 @@ ir
 ce
 fl
 fl
-ty
+fl
 ir
 UE
 UE
@@ -13977,9 +13756,9 @@ Ap
 xO
 os
 ce
-Tb
+fl
 zN
-dA
+fl
 ir
 ir
 UE
@@ -14056,7 +13835,7 @@ ce
 ce
 zN
 fl
-cv
+zN
 ir
 UE
 UE
@@ -14130,9 +13909,9 @@ xD
 Yh
 Yh
 ir
-SH
+zN
 fl
-ty
+fl
 ir
 ir
 UE
@@ -14206,9 +13985,9 @@ vC
 ir
 od
 ir
-SH
 zN
-cv
+zN
+zN
 ir
 ir
 UE
@@ -14282,9 +14061,9 @@ Ut
 Fz
 HO
 ir
-SH
-gC
-cv
+zN
+zN
+zN
 ir
 ir
 UE
@@ -14359,7 +14138,7 @@ Ut
 jr
 sA
 ir
-Jb
+zN
 ir
 ir
 ir

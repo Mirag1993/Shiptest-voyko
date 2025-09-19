@@ -110,6 +110,8 @@
 
 /datum/config_entry/flag/auth_admin_testing // auth server allows admin testing and other actions
 
+/datum/config_entry/flag/DiscordVerify // [CELADON-ADD] - Добавляем систему верификации аккаунтов через Discord
+
 /datum/config_entry/number/vote_delay	// minimum time between voting sessions (deciseconds, 10 minute default)
 	config_entry_value = 6000
 	integer = FALSE
@@ -136,8 +138,6 @@
 
 
 /datum/config_entry/flag/no_dead_vote	// dead people can't vote
-
-/datum/config_entry/flag/allow_metadata	// Metadata is supported.
 
 /// Gives the ability to send players a maptext popup.
 /datum/config_entry/flag/popup_admin_pm
@@ -233,22 +233,22 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "https://shiptest.net/wiki/"
+	config_entry_value = "https://wiki.celadon.pro/"
 
 /datum/config_entry/string/loreurl
 	config_entry_value = "https://shiptest.net/wiki/Lore_Primer"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "https://shiptest.net/wiki/Rules"
+	config_entry_value = "https://wiki.celadon.pro/index.php/Правила_игры"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/shiptest-ss13/Shiptest"
+	config_entry_value = "https://github.com/CeladonSS13/Shiptest"
 
 /datum/config_entry/string/discordurl
-	config_entry_value = "https://shiptest.net/discord"
+	config_entry_value = "https://discord.gg/rxsggTJzY3"
 
 /datum/config_entry/string/mapviewerurl
-	config_entry_value = "https://shiptest.net/map"
+	config_entry_value = "https://map.celadon.pro/"
 
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
@@ -289,8 +289,6 @@
 
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
-/datum/config_entry/flag/load_jobs_from_txt
-
 /datum/config_entry/flag/forbid_singulo_possession
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention
@@ -321,8 +319,6 @@
 	config_entry_value = null
 	min_val = 0
 	integer = FALSE
-
-/datum/config_entry/flag/maprotation
 
 /datum/config_entry/number/auto_lag_switch_pop //Number of clients at which drastic lag mitigation measures kick in
 	config_entry_value = null
@@ -407,14 +403,6 @@
 /datum/config_entry/flag/announce_admin_logout
 
 /datum/config_entry/flag/announce_admin_login
-
-/datum/config_entry/flag/allow_map_voting
-	deprecated_by = /datum/config_entry/flag/preference_map_voting
-
-/datum/config_entry/flag/allow_map_voting/DeprecationUpdate(value)
-	return value
-
-/datum/config_entry/flag/preference_map_voting
 
 /datum/config_entry/number/client_warn_version
 	config_entry_value = null
@@ -525,35 +513,12 @@
 
 /datum/config_entry/flag/auto_profile
 
-//BeginWS Edit
-/datum/config_entry/flag/minimaps_enabled
-	config_entry_value = TRUE
-//EndWS Edit
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
 /datum/config_entry/string/centcom_source_whitelist
 
-/datum/config_entry/number/whitesands_atmos_moles
-	config_entry_value = 103
-	integer = FALSE
-	min_val = 10
-	max_val = 200
-
-/datum/config_entry/keyed_list/whitesands_atmos_mix
-	key_mode = KEY_MODE_TEXT
-	value_mode = VALUE_MODE_NUM
-	lowercase = FALSE
-	splitter = " "
-
-
-/datum/config_entry/keyed_list/whitesands_atmos_mix/ValidateListEntry(key_name, key_value)
-	var/list/gas_types = gas_types()
-	for (var/type in gas_types)
-		var/datum/gas/T = type
-		if (initial(T.id) == key_name)
-			// even a high pressure zone will be less than 1.5x one atmos
-			return key_value > 0 && key_value < 1.5
-	return FALSE
+/// URL for admins to be redirected to for 2FA
+/datum/config_entry/string/admin_2fa_url
 
 // Elasticsearch stuffs
 /datum/config_entry/flag/elasticsearch_metrics_enabled

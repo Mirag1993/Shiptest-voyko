@@ -98,7 +98,7 @@
 		rewarded = caster
 
 /datum/status_effect/bounty/on_apply()
-	to_chat(owner, "<span class='boldnotice'>You hear something behind you talking...</span> <span class='notice'>You have been marked for death by [rewarded]. If you die, they will be rewarded.</span>")
+	to_chat(owner, span_boldnotice("You hear something behind you talking...</span> <span class='notice'>You have been marked for death by [rewarded]. If you die, they will be rewarded."))
 	playsound(owner, 'sound/weapons/gun/shotgun/rack.ogg', 75, FALSE)
 	return ..()
 
@@ -109,9 +109,9 @@
 
 /datum/status_effect/bounty/proc/rewards()
 	if(rewarded && rewarded.mind && rewarded.stat != DEAD)
-		to_chat(owner, "<span class='boldnotice'>You hear something behind you talking...</span> <span class='notice'>Bounty claimed.</span>")
+		to_chat(owner, span_boldnotice("You hear something behind you talking...</span> <span class='notice'>Bounty claimed."))
 		playsound(owner, 'sound/weapons/gun/shotgun/shot.ogg', 75, FALSE)
-		to_chat(rewarded, "<span class='greentext'>You feel a surge of mana flow into you!</span>")
+		to_chat(rewarded, span_greentext("You feel a surge of mana flow into you!"))
 		for(var/obj/effect/proc_holder/spell/spell in rewarded.mind.spell_list)
 			spell.charge_counter = spell.charge_max
 			spell.recharging = FALSE
@@ -211,7 +211,7 @@
 		return
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_owner_in_range))
-	RegisterSignal(offered_item, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_DROPPED), PROC_REF(dropped_item))
+	RegisterSignals(offered_item, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_DROPPED), PROC_REF(dropped_item))
 	//RegisterSignal(owner, COMSIG_PARENT_EXAMINE_MORE, PROC_REF(check_fake_out))
 
 /datum/status_effect/offering/Destroy()
@@ -241,6 +241,12 @@
 /// One of our possible takers moved, see if they left us hanging
 /datum/status_effect/offering/proc/check_taker_in_range(mob/living/carbon/taker)
 	SIGNAL_HANDLER
+	// [CELADON-ADD] - FIXES_OFFERING_EFFECTS
+	// Check if we still have the item first
+	if(!offered_item || owner.get_active_held_item() != offered_item)
+		qdel(src)
+		return
+	// [/CELADON-ADD]
 	if(owner.CanReach(taker) && !taker.incapacitated())
 		return
 
@@ -249,6 +255,12 @@
 /// The offerer moved, see if anyone is out of range now
 /datum/status_effect/offering/proc/check_owner_in_range(mob/living/carbon/source)
 	SIGNAL_HANDLER
+	// [CELADON-ADD] - FIXES_OFFERING_EFFECTS
+	// Check if we still have the item
+	if(!offered_item || owner.get_active_held_item() != offered_item)
+		qdel(src)
+		return
+	// [/CELADON-ADD]
 
 	for(var/i in possible_takers)
 		var/mob/living/carbon/checking_taker = i
@@ -257,6 +269,7 @@
 
 /// We lost the item, give it up
 /datum/status_effect/offering/proc/dropped_item(obj/item/source)
+	SIGNAL_HANDLER	// [CELADON-ADD] - FIXES_OFFERING_EFFECTS
 	qdel(src)
 
 //this effect gives the user an alert they can use to surrender quickly

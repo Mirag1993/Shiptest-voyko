@@ -17,3 +17,28 @@
 	display_name = "archaeologist hat"
 	description = "A well-worn fedora favored by explorers and archaeologists. Not very protective but still very stylish."
 	path = /obj/item/clothing/head/archeologist
+
+// Pirat Hat
+
+/datum/gear/hat/pirate
+	display_name = "pirate hat"
+	description = "Yarr."
+	path = /obj/item/clothing/head/pirate
+
+// Marisa
+/datum/gear/hat/marisa
+	display_name = "marisa hat"
+	description = "wizard? No, it's Marisa"
+	path = /obj/item/clothing/head/wizard/marisa/fake
+
+// Beret
+/datum/gear/hat/beret_navyblue
+	display_name = "beret, navy blue"
+	description = "A navy blue beret."
+	path = /obj/item/clothing/head/beret/navyblue
+
+// Cap
+/datum/gear/hat/cap_navyblue
+	display_name = "utility cover, navy blue"
+	description = "A navy blue cap."
+	path = /obj/item/clothing/head/cap_navyblue

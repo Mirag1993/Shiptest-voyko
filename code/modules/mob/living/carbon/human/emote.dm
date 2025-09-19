@@ -4,10 +4,7 @@
 /datum/emote/living/carbon/human/cry
 	key = "cry"
 	key_third_person = "cries"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "cries." // CELADON-EDIT - ORIGINAL
-	message = "плачет."
-	// [/CELADON-EDIT]
+	message = "cries."
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/dap
@@ -19,18 +16,12 @@
 
 /datum/emote/living/carbon/human/eyebrow
 	key = "eyebrow"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "raises an eyebrow." // CELADON-EDIT - ORIGINAL
-	message = "приподнимает бровь."
-	// [/CELADON-EDIT]
+	message = "raises an eyebrow."
 
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"
 	key_third_person = "grumbles"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "grumbles!" // CELADON-EDIT - ORIGINAL
-	message = "ворчит!"
-	// [/CELADON-EDIT]
+	message = "grumbles!"
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/handshake
@@ -43,31 +34,21 @@
 /datum/emote/living/carbon/human/hug
 	key = "hug"
 	key_third_person = "hugs"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "hugs themself." // CELADON-EDIT - ORIGINAL
-	// message_param = "hugs %t." // CELADON-EDIT - ORIGINAL
-	message = "обнимает себя."
-	message_param = "обнимает %t."
-	// [/CELADON-EDIT]
+	message = "hugs themself."
+	message_param = "hugs %t."
 	hands_use_check = TRUE
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/mumble
 	key = "mumble"
 	key_third_person = "mumbles"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "mumbles!" // CELADON-EDIT - ORIGINAL
-	message = "бормочет!"
-	// [/CELADON-EDIT]
+	message = "mumbles!"
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/scream
 	key = "scream"
 	key_third_person = "screams"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "screams!" // CELADON-EDIT - ORIGINAL
-	message = "кричит!"
-	// [/CELADON-EDIT]
+	message = "screams!"
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 
@@ -75,8 +56,6 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	if(H.mind?.miming)
-		return
 	if(ishumanbasic(H))
 		if(user.gender == FEMALE)
 			return pick('sound/voice/human/femalescream_1.ogg', 'sound/voice/human/femalescream_2.ogg', 'sound/voice/human/femalescream_3.ogg', 'sound/voice/human/femalescream_4.ogg', 'sound/voice/human/femalescream_5.ogg')
@@ -86,24 +65,25 @@
 			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg', 'sound/voice/human/malescream_6.ogg')
 	else if(ismoth(H))
 		return 'sound/voice/moth/scream_moth.ogg'
+	else if(isvox(H))
+		return 'sound/voice/vox/vox_scream_1.ogg'
 	else if(islizard(H))
 		return pick('sound/voice/lizard/lizard_scream_1.ogg', 'sound/voice/lizard/lizard_scream_2.ogg', 'sound/voice/lizard/lizard_scream_3.ogg', 'sound/voice/lizard/lizard_scream_4.ogg')
 
-/datum/emote/living/carbon/human/hiss //lizard
-	key = "hiss"
-	key_third_person = "hisses"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "hisses!" // CELADON-EDIT - ORIGINAL
-	message = "шипит!"
-	// [/CELADON-EDIT]
-	emote_type = EMOTE_AUDIBLE
-	vary = TRUE
+// [CELADON-REMOVE] - CELADON_EMOTES - Перемещено в пак Эмоутов
+// /datum/emote/living/carbon/human/hiss //lizard
+// 	key = "hiss"
+// 	key_third_person = "hisses"
+// 	message = "hisses!"
+// 	emote_type = EMOTE_AUDIBLE
+// 	vary = TRUE
 
-/datum/emote/living/carbon/human/hiss/get_sound(mob/living/user)
-	if(!ishuman(user))
-		return
-	if(islizard(user))
-		return 'sound/voice/lizard/hiss.ogg'
+// /datum/emote/living/carbon/human/hiss/get_sound(mob/living/user)
+// 	if(!ishuman(user))
+// 		return
+// 	if(islizard(user))
+// 		return 'sound/voice/lizard/hiss.ogg'
+// [/CELADON-REMOVE]
 
 /datum/emote/living/carbon/human/squeal //lizard
 	key = "squeal"
@@ -146,46 +126,48 @@
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "goes pale for a second." // CELADON-EDIT - ORIGINAL
-	message = "бледнеет."
-	// [/CELADON-EDIT]
+	message = "goes pale for a second."
 
 /datum/emote/living/carbon/human/raise
 	key = "raise"
 	key_third_person = "raises"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "raises a hand." // CELADON-EDIT - ORIGINAL
-	message = "поднимает руки."
-	// [/CELADON-EDIT]
+	message = "raises a hand."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/human/salute
 	key = "salute"
 	key_third_person = "salutes"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "salutes." // CELADON-EDIT - ORIGINAL
-	// message_param = "salutes to %t." // CELADON-EDIT - ORIGINAL
-	message = "салютует."
-	message_param = "салютует %t."
-	// [/CELADON-EDIT]
+	message = "salutes."
+	message_param = "salutes to %t."
 	hands_use_check = TRUE
 
 /datum/emote/living/carbon/human/shrug
 	key = "shrug"
 	key_third_person = "shrugs"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "shrugs." // CELADON-EDIT - ORIGINAL
-	message = "пожимает плечами."
-	// [/CELADON-EDIT]
+	message = "shrugs."
 
 /datum/emote/living/carbon/human/wag
 	key = "wag"
 	key_third_person = "wags"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// message = "wags their tail." // CELADON-EDIT - ORIGINAL
-	message = "начинает махать хвостом."
-	// [/CELADON-EDIT]
+	message = "wags their tail."
+
+// [CELADON-ADD] - CELADON_EMOTES
+/datum/emote/living/carbon/human/proc/can_wag(mob/user)
+	var/mob/living/carbon/human/H = user
+	if(!(H.dna.species.bodyflags & TAIL_WAGGING))
+		return FALSE
+	var/obscured = H.wear_suit && (H.wear_suit.flags_inv & HIDETAIL)
+	if(!istype(H))
+		return FALSE
+	// if(istype(H.sprite, /datum/sprite_accessory/tails)) // Требуется реализовать маркинги хвостов для этого
+	// 	if(!H.body_accessory.try_restrictions(user))
+	// 		return FALSE
+
+	if(H.dna.species.bodyflags & TAIL_WAGGING && obscured)
+		return FALSE
+
+	return TRUE
+// [/CELADON-ADD]
 
 /datum/emote/living/carbon/human/wag/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
@@ -194,6 +176,10 @@
 	var/mob/living/carbon/human/H = user
 	if(!istype(H) || !H.dna || !H.dna.species || !H.dna.species.can_wag_tail(H))
 		return
+	// [CELADON-ADD] - CELADON_FIX_TAIL
+	if(H.wear_suit && (H.wear_suit.flags_inv & HIDETAIL))
+		return
+	// [/CELADON-ADD]
 	if(!H.dna.species.is_wagging_tail())
 		H.dna.species.start_wagging_tail(H)
 	else
@@ -314,7 +300,7 @@
 /datum/emote/living/carbon/human/robot_tongue/no
 	key = "no"
 	key_third_person = "no"
-	message = "emits an negative blip."
+	message = "emits a negative blip."
 
 /datum/emote/living/carbon/human/robot_tongue/no/run_emote(mob/user, params)
 	. = ..()
@@ -351,9 +337,6 @@
 	. = ..()
 	if(.)
 		playsound(user.loc, 'sound/machines/synth_yes.ogg', 50)
-
-// the following emote were originally clown-locked and synthetic exclusive
-// since clowns have been removed I see no reason to let it collect dust
 
 /datum/emote/living/carbon/human/robot_tongue/sad
 	key = "sad"

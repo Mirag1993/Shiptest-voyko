@@ -38,7 +38,10 @@
 
 /obj/item/reagent_containers/blood/random/Initialize()
 	icon_state = "bloodpack"
-	blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L", "E", "Coolant")
+	// [CELADON-EDIT] - CELADON_ETHEREAL_FIX
+	// blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L", "E", "Coolant") // CELADON-EDIT - ORIGINAL
+	blood_type = pick("A+", "A-", "B+", "B-", "O+", "O-", "L", "Coolant")
+	// [/CELADON-EDIT]
 	return ..()
 
 /obj/item/reagent_containers/blood/APlus
@@ -62,8 +65,12 @@
 /obj/item/reagent_containers/blood/lizard
 	blood_type = "L"
 
+// [CELADON-REMOVE] - CELADON_ETHEREAL_FIX - Типа крови у Эльзуосов больше нет, сделал пакет с жидким электричеством, поэтому переместил в мод mod_celadon\ethereal_fix\code\blood_pack.dm
+/*
 /obj/item/reagent_containers/blood/elzuose
 	blood_type = "E"
+*/
+// [/CELADON-REMOVE]
 
 /obj/item/reagent_containers/blood/synthetic
 	blood_type = "Coolant"
@@ -74,7 +81,7 @@
 /obj/item/reagent_containers/blood/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/pen) || istype(I, /obj/item/toy/crayon))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on the label of [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on the label of [src]!"))
 			return
 		var/t = stripped_input(user, "What would you like to label the blood pack?", name, null, 53)
 		if(!user.canUseTopic(src, BE_CLOSE))

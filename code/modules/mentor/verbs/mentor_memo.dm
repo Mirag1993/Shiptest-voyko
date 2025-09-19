@@ -1,10 +1,10 @@
 /client/proc/mentor_memo()
-	set name = "Mentor Memos"
-	set category = "Server"
+	// set name = "Mentor Memos" // [CELADON-DELETE] Mentors not works!!!
+	// set category = "Server"
 	if(!check_rights(0))
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return
 	var/memotask = input(usr,"Choose task.","Memo") in list("Show","Write","Edit","Remove")
 	if(!memotask)
@@ -12,12 +12,12 @@
 	mentor_memo_output(memotask)
 
 /client/proc/show_mentor_memo()
-	set name = "Show Memos"
-	set category = "Mentor"
+	// set name = "Show Memos" // [CELADON-DELETE] Mentors not works!!!
+	// set category = "Mentor"
 	if(!check_mentor())
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return
 	mentor_memo_output("Show")
 
@@ -25,7 +25,7 @@
 	if(!task)
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, span_danger("Failed to establish database connection."))
 		return
 	switch(task)
 		if("Write")
@@ -106,9 +106,9 @@
 				var/memotext = query_memoshow.item[2]
 				var/timestamp = query_memoshow.item[3]
 				var/last_editor = query_memoshow.item[4]
-				output += "<span class='memo'>Mentor memo by <span class='prefix'>[ckey]</span> on [timestamp]"
+				output += "[span_memo("Mentor memo by <span class='prefix'>[ckey]")] on [timestamp]"
 				if(last_editor)
-					output += "<br><span class='memoedit'>Last edit by [last_editor] <A href='?_src_=holder;mentormemoeditlist=[ckey]'>(Click here to see edit log)</A></span>"
+					output += "<br>[span_memoedit("Last edit by [last_editor] <A href='byond://?_src_=holder;mentormemoeditlist=[ckey]'>(Click here to see edit log)</A>")]"
 				output += "<br>[memotext]</span><br>"
 			if(!output)
 				to_chat(src, "No memos found in database.")

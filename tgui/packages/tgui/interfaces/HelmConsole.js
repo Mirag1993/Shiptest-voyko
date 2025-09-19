@@ -9,6 +9,7 @@ import {
   Knob,
   LabeledControls,
   NumberInput,
+  Divider,
 } from '../components';
 import { Window } from '../layouts';
 import { Table } from '../components/Table';
@@ -46,55 +47,15 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, shipInfo = [], otherInfo = [] } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [] } = data;
   return (
     <>
-      <Section
-        title={
-          <Button.Input
-            content={decodeHtmlEntities(shipInfo.name)}
-            currentValue={shipInfo.name}
-            disabled={isViewer}
-            onCommit={(_e, value) =>
-              act('rename_ship', {
-                newName: value,
-              })
-            }
-          />
-        }
-        buttons={
-          <Button
-            tooltip="Refresh Ship Stats"
-            tooltipPosition="left"
-            icon="sync"
-            disabled={isViewer}
-            onClick={() => act('reload_ship')}
-          />
-        }
-      >
-        <LabeledList>
-          <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
-          <LabeledList.Item label="Sensor Range">
-            <ProgressBar
-              value={shipInfo.sensor_range}
-              minValue={1}
-              maxValue={8}
-            >
-              <AnimatedNumber value={shipInfo.sensor_range} />
-            </ProgressBar>
-          </LabeledList.Item>
-          {shipInfo.mass && (
-            <LabeledList.Item label="Mass">
-              {shipInfo.mass + 'tonnes'}
-            </LabeledList.Item>
-          )}
-        </LabeledList>
-      </Section>
       <Section title="Radar">
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
             {!isViewer && <Table.Cell>Act</Table.Cell>}
+            {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
           {otherInfo.map((ship) => (
             <Table.Row key={ship.name}>
@@ -107,7 +68,7 @@ const SharedContent = (_props, context) => {
                     icon="circle"
                     disabled={
                       // I hate this so much
-                      isViewer || data.speed > 0 || data.docked || data.docking
+                      isViewer
                     }
                     onClick={() =>
                       act('act_overmap', {
@@ -117,9 +78,102 @@ const SharedContent = (_props, context) => {
                   />
                 </Table.Cell>
               )}
+              {!isViewer && (
+                <Table.Cell>
+                  <Button
+                    tooltip="Quick Dock"
+                    tooltipPosition="left"
+                    icon="anchor"
+                    color={'red'}
+                    disabled={
+                      // I hate this so much
+                      isViewer ||
+                      data.speed > 0 ||
+                      data.docked ||
+                      data.docking ||
+                      !ship.candock
+                    }
+                    onClick={() =>
+                      act('quick_dock', {
+                        ship_to_act: ship.ref,
+                      })
+                    }
+                  />
+                </Table.Cell>
+              )}
             </Table.Row>
           ))}
         </Table>
+      </Section>
+      <Section
+        title={
+          <Button.Input
+            content={decodeHtmlEntities(shipInfo.prefixed)}
+            currentValue={shipInfo.name}
+            disabled={isViewer || !canRename}
+            onCommit={(_e, value) =>
+              act('rename_ship', {
+                newName: value,
+              })
+            }
+          />
+        }
+        buttons={
+          <>
+            <Button
+              tooltip="Refresh Ship Stats"
+              tooltipPosition="left"
+              icon="sync"
+              disabled={isViewer}
+              onClick={() => act('reload_ship')}
+            />
+            <Button // [CELADON-ADD] - Signal S.O.S - mod_celadon\wideband\code\signal.dm
+              tooltip="Send S.O.S."
+              tooltipPosition="left"
+              icon="globe"
+              disabled={isViewer}
+              onClick={() => act('send_sos')}
+            />
+          </>
+        }
+      >
+        <LabeledList>
+          <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
+          <LabeledList.Item label="Sensor Range">
+            <ProgressBar
+              value={shipInfo.sensor_range}
+              minValue={1}
+              maxValue={8}
+            >
+              <AnimatedNumber value={shipInfo.sensor_range} />
+            </ProgressBar>
+            <Table.Cell>
+              <Button
+                tooltip="Decrease Signal Length"
+                tooltipPosition="right"
+                icon="arrow-left"
+				// [CELADON-ADD] - subshuttle fix
+				disabled={data.issubshuttle != null}
+				// [/CELADON-ADD] - subshuttle fix
+                onClick={() => act('sensor_decrease')}
+              />
+              <Button
+                tooltip="Increase Signal Length"
+                tooltipPosition="right"
+                icon="arrow-right"
+				// [CELADON-ADD] - subshuttle fix
+				disabled={data.issubshuttle != null}
+				// [/CELADON-ADD] - subshuttle fix
+                onClick={() => act('sensor_increase')}
+              />
+            </Table.Cell>
+          </LabeledList.Item>
+          {shipInfo.mass && (
+            <LabeledList.Item label="Mass">
+              {shipInfo.mass + 'tonnes'}
+            </LabeledList.Item>
+          )}
+        </LabeledList>
       </Section>
     </>
   );
@@ -134,10 +188,13 @@ const ShipContent = (_props, context) => {
     estThrust,
     burnPercentage,
     speed,
+    course,
     heading,
+    sector,
     eta,
     x,
     y,
+    arpa_ships = [],
   } = data;
   return (
     <>
@@ -166,16 +223,33 @@ const ShipContent = (_props, context) => {
           <LabeledList.Item label="Heading">
             <AnimatedNumber value={heading} />
           </LabeledList.Item>
+          <LabeledList.Item label="Course">
+            <AnimatedNumber value={course} />
+          </LabeledList.Item>
           <LabeledList.Item label="Position">
             X
             <AnimatedNumber value={x} />
             /Y
             <AnimatedNumber value={y} />
           </LabeledList.Item>
+          <LabeledList.Item label="Sector">
+            <AnimatedNumber value={sector} />
+          </LabeledList.Item>
           <LabeledList.Item label="ETA">
             <AnimatedNumber value={eta} />
           </LabeledList.Item>
         </LabeledList>
+      </Section>
+      <Section title="ARPA">
+        {arpa_ships.map((ship) => (
+          <Table.Row key={ship.name}>
+            <Table.Cell>{ship.name}</Table.Cell>
+            <Divider vertical hidden />
+            <Table.Cell>BRG:{ship.brg}°</Table.Cell>
+            <Table.Cell>T/CPA:{ship.cpa}m {ship.tcpa}s</Table.Cell>
+          </Table.Row>
+        ))}
+
       </Section>
       <Section
         title="Engines"
@@ -269,6 +343,7 @@ const ShipControlContent = (_props, context) => {
     burnPercentage,
     speed,
     estThrust,
+    rotating,
   } = data;
   let flyable = !data.docking && !data.docked;
 
@@ -293,14 +368,16 @@ const ShipControlContent = (_props, context) => {
             tooltip="Undock"
             tooltipPosition="left"
             icon="sign-out-alt"
-            disabled={!data.docked || data.docking}
+			// [CELADON-EDIT] - subshuttles fix
+            disabled={!data.docked || data.docking || data.motheroutpost != null}
+			// [/CELADON-EDIT] - subshuttles fix
             onClick={() => act('undock')}
           />
           <Button
             tooltip="Dock in Empty Space"
             tooltipPosition="left"
             icon="sign-in-alt"
-            disabled={!flyable}
+            disabled={!flyable || speed}
             onClick={() => act('dock_empty')}
           />
           <Button
@@ -331,12 +408,10 @@ const ShipControlContent = (_props, context) => {
                   icon="arrow-left"
                   iconRotation={45}
                   mb={1}
-                  color={burnDirection === DIRECTIONS.northwest && 'good'}
+                  color={rotating === -1 && 'good'}
                   disabled={!flyable}
                   onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.northwest,
-                    })
+                    act('rotate_left')
                   }
                 />
               </Table.Cell>
@@ -358,30 +433,15 @@ const ShipControlContent = (_props, context) => {
                   icon="arrow-right"
                   iconRotation={-45}
                   mb={1}
-                  color={burnDirection === DIRECTIONS.northeast && 'good'}
+                  color={rotating === 1 && 'good'}
                   disabled={!flyable}
                   onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.northeast,
-                    })
+                    act('rotate_right')
                   }
                 />
               </Table.Cell>
             </Table.Row>
             <Table.Row height={1}>
-              <Table.Cell width={1}>
-                <Button
-                  icon="arrow-left"
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.west && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.west,
-                    })
-                  }
-                />
-              </Table.Cell>
               <Table.Cell width={1}>
                 <Button
                   tooltip={burnDirection === 0 ? 'Slow down' : 'Stop thrust'}
@@ -398,35 +458,6 @@ const ShipControlContent = (_props, context) => {
               </Table.Cell>
               <Table.Cell width={1}>
                 <Button
-                  icon="arrow-right"
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.east && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.east,
-                    })
-                  }
-                />
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row height={1}>
-              <Table.Cell width={1}>
-                <Button
-                  icon="arrow-left"
-                  iconRotation={-45}
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.southwest && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.southwest,
-                    })
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell width={1}>
-                <Button
                   icon="arrow-down"
                   mb={1}
                   color={burnDirection === DIRECTIONS.south && 'good'}
@@ -434,20 +465,6 @@ const ShipControlContent = (_props, context) => {
                   onClick={() =>
                     act('change_heading', {
                       dir: DIRECTIONS.south,
-                    })
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell width={1}>
-                <Button
-                  icon="arrow-right"
-                  iconRotation={45}
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.southeast && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.southeast,
                     })
                   }
                 />

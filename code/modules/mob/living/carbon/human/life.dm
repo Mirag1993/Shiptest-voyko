@@ -41,10 +41,10 @@
 
 		dna.species.spec_life(src) // for mutantraces
 
-	//WS Begin - Broken bones
-	if(stat != DEAD)
-		handle_fractures()
-	//WS End
+	else
+		for(var/i in all_wounds)
+			var/datum/wound/iter_wound = i
+			iter_wound.on_stasis()
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
@@ -61,6 +61,21 @@
 			return ONE_ATMOSPHERE
 	return pressure
 
+/mob/living/carbon/human/proc/check_for_seal()
+	var/obj/item/clothing/clothing_suit = wear_suit
+	var/obj/item/clothing/clothing_head = head
+	if(istype(clothing_suit) && istype(clothing_head))
+		if (clothing_suit.clothing_flags & clothing_head.clothing_flags & STOPSPRESSUREDAMAGE)
+			return TRUE
+	return FALSE
+
+/mob/living/carbon/human/proc/check_for_goggles()
+	if(head?.flags_cover & SEALS_EYES)
+		return head
+	if(wear_mask?.flags_cover & SEALS_EYES)
+		return wear_mask
+	if(glasses?.flags_cover & SEALS_EYES)
+		return glasses
 
 /mob/living/carbon/human/handle_traits()
 	if (getOrganLoss(ORGAN_SLOT_BRAIN) >= 60)
@@ -105,6 +120,7 @@
 		if(istype(L, /obj/item/organ/lungs))
 			var/obj/item/organ/lungs/lun = L
 			lun.check_breath(breath,src)
+			lun.handle_breath_temperature(breath,src)
 
 /// Environment handlers for species
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
@@ -322,22 +338,6 @@
 		Unconscious(80)
 	// Tissues die without blood circulation
 	adjustBruteLoss(2)
-
-/mob/living/carbon/human/proc/handle_fractures()
-	//this whole thing is hacky and WILL NOT work right with multiple hands
-	//you've been warned
-	var/obj/item/bodypart/L = get_bodypart("l_arm")
-	var/obj/item/bodypart/R = get_bodypart("r_arm")
-
-	if(istype(L) && L.bone_status == BONE_FLAG_BROKEN && held_items[1] && prob(30))
-		emote("scream")
-		visible_message("<span class='warning'>[src] screams and lets go of [held_items[1]] in pain.</span>", "<span class='userdanger'>A horrible pain in your [parse_zone(L)] makes it impossible to hold [held_items[1]]!</span>")
-		dropItemToGround(held_items[1])
-
-	if(istype(R) && R.bone_status == BONE_FLAG_BROKEN && held_items[2] && prob(30))
-		emote("scream")
-		visible_message("<span class='warning'>[src] screams and lets go of [held_items[2]] in pain.</span>", "<span class='userdanger'>A horrible pain in your [parse_zone(R)] makes it impossible to hold [held_items[2]]!</span>")
-		dropItemToGround(held_items[2])
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

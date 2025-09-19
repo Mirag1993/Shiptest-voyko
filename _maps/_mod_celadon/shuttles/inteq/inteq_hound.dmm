@@ -27,10 +27,10 @@
 	locked = 0;
 	name = "fridge"
 	},
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
 /obj/item/storage/cans/sixbeer,
-/obj/item/reagent_containers/food/snacks/icecreamsandwich,
+/obj/item/food/icecreamsandwich,
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/corner/opaque/yellow,
 /obj/effect/turf_decal/corner/opaque/brown{
@@ -42,22 +42,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/crew)
 "aE" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/fancy/cigarettes/cigars{
-	pixel_x = 8
+/obj/machinery/suit_storage_unit/inherit{
+	req_access_txt = "1"
 	},
-/obj/item/lighter{
-	pixel_x = -11;
-	pixel_y = 5
-	},
-/obj/item/ammo_box/a762_40/inteq{
-	pixel_x = 5;
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/drinks/bottle/whiskey{
-	pixel_x = -7;
-	pixel_y = 6
-	},
+/obj/item/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/hardsuit/syndi/inteq,
 /turf/open/floor/carpet/orange,
 /area/ship/bridge)
 "aX" = (
@@ -167,6 +156,11 @@
 /obj/effect/turf_decal/corner_techfloor_gray{
 	dir = 6
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 21;
+	pixel_y = 9
+	},
 /turf/open/floor/plating,
 /area/ship/maintenance/port)
 "dV" = (
@@ -223,8 +217,8 @@
 	},
 /obj/machinery/light_switch{
 	dir = 8;
-	pixel_x = 25;
-	pixel_y = 7
+	pixel_x = 21;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/storage/eva)
@@ -355,7 +349,6 @@
 /obj/machinery/suit_storage_unit/inherit{
 	req_access_txt = "1"
 	},
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -364,6 +357,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/hardsuit/security/inteq,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage/eva)
 "hY" = (
@@ -376,15 +370,6 @@
 "ih" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/maintenance/port)
-"iw" = (
-/obj/machinery/button/door{
-	id = "hound_windows";
-	name = "Window Lockdown";
-	pixel_x = -6;
-	pixel_y = 25
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ship/bridge)
 "jb" = (
 /obj/structure/table,
 /obj/effect/turf_decal/corner/opaque/yellow,
@@ -482,7 +467,6 @@
 /obj/machinery/suit_storage_unit/inherit{
 	req_access_txt = "1"
 	},
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
 /obj/machinery/airalarm/directional/west,
 /obj/structure/sign/poster/contraband/missing_gloves{
 	pixel_y = 32
@@ -492,6 +476,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/hardsuit/security/inteq,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage/eva)
 "mw" = (
@@ -563,10 +548,6 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/storage/eva)
 "nq" = (
-/obj/machinery/suit_storage_unit/inherit{
-	req_access_txt = "1"
-	},
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -574,7 +555,7 @@
 /obj/effect/turf_decal/trimline/opaque/yellow/line{
 	dir = 8
 	},
-/obj/item/tank/jetpack/oxygen,
+/obj/structure/closet/emcloset,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage/eva)
 "nL" = (
@@ -892,7 +873,8 @@
 	},
 /mob/living/simple_animal/pet/dog/pug{
 	desc = "Steadfast defender of the realm, destroyer of countless donuts, and seatwarmer for the Vanguard.";
-	name = "\proper Sentinel"
+	name = "\proper Sentinel";
+	faction = list("neutral","playerInteq")
 	},
 /obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/corner/opaque/brown{
@@ -971,7 +953,6 @@
 	req_access_txt = "58"
 	},
 /obj/item/clothing/glasses/hud/security/sunglasses/inteq,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
 /obj/item/clothing/gloves/tackler/combat/insulated,
 /obj/item/clothing/shoes/combat,
 /obj/item/storage/belt/military/assault,
@@ -984,6 +965,10 @@
 /obj/item/radio/headset/inteq/alt/captain,
 /obj/item/shield/riot/tele,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/item/ammo_box/a357,
+/obj/item/ammo_box/a357,
+/obj/item/ammo_box/a357,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/carpet/orange,
 /area/ship/bridge)
 "ve" = (
@@ -1086,9 +1071,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
-/obj/item/clothing/suit/armor/vest/bulletproof,
-/obj/item/clothing/suit/armor/vest/bulletproof,
-/obj/item/clothing/suit/armor/vest/bulletproof,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
@@ -1103,6 +1085,12 @@
 	name = "equipment locker";
 	req_one_access_txt = "1"
 	},
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
 /turf/open/floor/plasteel/patterned/grid,
 /area/ship/crew)
 "vY" = (
@@ -1110,14 +1098,20 @@
 /obj/machinery/door/firedoor/window,
 /turf/open/floor/plating,
 /area/ship/cargo)
+"wb" = (
+/obj/machinery/porta_turret/ship/inteq/light{
+	id = "Hound_turret"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
 "wu" = (
-/obj/machinery/suit_storage_unit/standard_unit,
 /obj/machinery/advanced_airlock_controller{
 	pixel_x = 25;
 	req_access = null
 	},
 /obj/machinery/light/small/directional/south,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage/eva)
 "wX" = (
@@ -1295,6 +1289,7 @@
 	pixel_x = -7;
 	pixel_y = -25
 	},
+/obj/machinery/rnd/server,
 /turf/open/floor/carpet/orange,
 /area/ship/bridge)
 "BQ" = (
@@ -1358,27 +1353,6 @@
 /turf/open/floor/plasteel/patterned/grid,
 /area/ship/crew)
 "Ek" = (
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_x = 5
-	},
-/obj/item/ammo_box/magazine/co9mm,
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_x = -5
-	},
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_x = 5
-	},
-/obj/item/ammo_box/magazine/co9mm,
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_x = -5
-	},
-/obj/item/gun/ballistic/automatic/pistol/commander/inteq{
-	pixel_y = 5
-	},
-/obj/item/gun/ballistic/automatic/pistol/commander/inteq,
-/obj/item/gun/ballistic/automatic/pistol/commander/inteq{
-	pixel_y = -5
-	},
 /obj/item/ammo_box/magazine/skm_762_40{
 	pixel_x = -7
 	},
@@ -1396,6 +1370,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
+/obj/item/gun/ballistic/automatic/pistol/rattlesnake/inteq,
+/obj/item/gun/ballistic/automatic/pistol/rattlesnake/inteq,
+/obj/item/gun/ballistic/automatic/pistol/rattlesnake/inteq,
+/obj/item/ammo_box/magazine/m9mm_rattlesnake,
+/obj/item/ammo_box/magazine/m9mm_rattlesnake,
+/obj/item/ammo_box/magazine/m9mm_rattlesnake,
+/obj/item/ammo_box/magazine/m9mm_rattlesnake,
+/obj/item/ammo_box/magazine/m9mm_rattlesnake,
+/obj/item/ammo_box/magazine/m9mm_rattlesnake,
 /turf/open/floor/carpet/orange,
 /area/ship/bridge)
 "EC" = (
@@ -1407,6 +1390,11 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/corner_techfloor_gray/diagonal,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 21;
+	pixel_y = -10
+	},
 /turf/open/floor/plating,
 /area/ship/maintenance/starboard)
 "EE" = (
@@ -1606,6 +1594,12 @@
 	},
 /turf/open/floor/plasteel/patterned/grid,
 /area/ship/crew)
+"Is" = (
+/obj/machinery/porta_turret/ship/inteq/light{
+	id = "Hound_turret"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ship/bridge)
 "Iu" = (
 /obj/effect/turf_decal/borderfloorblack{
 	dir = 8
@@ -2048,11 +2042,11 @@
 	dir = 4
 	},
 /obj/structure/closet/crate,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
 /turf/open/floor/plasteel/patterned/cargo_one,
@@ -2086,6 +2080,21 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/fax/inteq,
+/obj/item/storage/fancy/cigarettes/cigars{
+	pixel_x = 8
+	},
+/obj/item/storage/box/ammo/a762_40/inteq{
+	pixel_x = 5;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/whiskey{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/lighter{
+	pixel_x = -11;
+	pixel_y = 5
+	},
 /turf/open/floor/carpet/orange,
 /area/ship/bridge)
 "Sh" = (
@@ -2225,7 +2234,6 @@
 /obj/machinery/suit_storage_unit/inherit{
 	req_access_txt = "1"
 	},
-/obj/item/clothing/suit/space/hardsuit/security/independent/inteq,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
@@ -2233,6 +2241,7 @@
 	dir = 8
 	},
 /obj/item/tank/jetpack/oxygen,
+/obj/item/clothing/suit/space/hardsuit/security/inteq,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage/eva)
 "Wf" = (
@@ -2339,19 +2348,35 @@
 /obj/item/spacecash/bundle/c1000{
 	pixel_y = 9
 	},
-/obj/item/spacecash/bundle/c1000,
+/obj/item/spacecash/bundle/c1000{
+	pixel_y = 8;
+	pixel_x = 11
+	},
 /obj/item/folder/syndicate{
 	desc = "A slick black folder stamped 'Property of Inteq Risk Management Group.'";
-	name = "folder"
+	name = "folder";
+	pixel_y = 6;
+	pixel_x = -8
 	},
-/obj/item/paper_bin,
+/obj/item/paper_bin{
+	pixel_y = 9;
+	pixel_x = -9
+	},
 /obj/item/gps{
 	pixel_x = 12
 	},
 /obj/item/stamp/hos{
-	name = "vanguard's rubber stamp"
+	name = "vanguard's rubber stamp";
+	pixel_x = -10;
+	pixel_y = 12
 	},
-/obj/item/pen/fountain,
+/obj/item/pen/fountain{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/obj/machinery/turretid/ship{
+	id = "Hound_turret"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "Yj" = (
@@ -2405,7 +2430,7 @@
 /obj/effect/turf_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/machinery/rnd/server,
+/obj/structure/tank_dispenser/oxygen,
 /turf/open/floor/plasteel/patterned,
 /area/ship/cargo)
 
@@ -2490,7 +2515,7 @@ qU
 cX
 "}
 (5,1,1) = {"
-ih
+Is
 ZR
 oq
 ih
@@ -2507,7 +2532,7 @@ Nd
 cX
 Qn
 go
-cX
+Is
 "}
 (6,1,1) = {"
 ih
@@ -2693,7 +2718,7 @@ ib
 ib
 ib
 ib
-Vk
+Is
 Vk
 Vk
 Vk
@@ -2877,14 +2902,14 @@ pe
 HV
 KK
 BQ
-iw
+pe
 ib
 ib
 ib
 ib
 ib
 hi
-hi
+wb
 ib
 ib
 ib
@@ -2897,7 +2922,7 @@ km
 Xn
 Xn
 Xn
-km
+wb
 ib
 ib
 ib

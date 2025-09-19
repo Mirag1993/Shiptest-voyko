@@ -1087,37 +1087,38 @@
 "kD" = (
 /obj/structure/table,
 /obj/machinery/vending/boozeomat/all_access{
-	pixel_y = -32
+	pixel_y = -32;
+	all_items_free = 1
 	},
 /obj/item/storage/bag/tray,
-/obj/effect/spawner/lootdrop/ration{
+/obj/effect/spawner/random/food_or_drink/ration{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/snacks/doughslice{
+/obj/item/food/doughslice{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/doughslice{
+/obj/item/food/doughslice{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/snacks/grown/carrot{
+/obj/item/food/grown/carrot{
 	pixel_y = 6;
 	pixel_x = 6
 	},
-/obj/item/reagent_containers/food/snacks/grown/tomato{
+/obj/item/food/grown/tomato{
 	pixel_x = 3;
 	pixel_y = 2
 	},
-/obj/item/reagent_containers/food/snacks/grown/soybeans{
+/obj/item/food/grown/soybeans{
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/snacks/grown/soybeans{
+/obj/item/food/grown/soybeans{
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/snacks/grown/soybeans{
+/obj/item/food/grown/soybeans{
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -1456,29 +1457,29 @@
 /obj/item/storage/bag/tray{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/condiment/soysauce{
+/obj/item/reagent_containers/condiment/soysauce{
 	pixel_x = 6;
 	pixel_y = 11
 	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/obj/item/reagent_containers/condiment/saltshaker{
 	desc = "Salt. From space oceans, presumably. A staple of modern medicine.";
 	pixel_x = -5;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/condiment/peppermill{
+/obj/item/reagent_containers/condiment/peppermill{
 	desc = "Often used to flavor food or make people sneeze. Fashionably moved to the left side of the table.";
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/food/condiment/pack/ketchup{
+/obj/item/reagent_containers/condiment/pack/ketchup{
 	pixel_x = -8;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/condiment/pack/ketchup{
+/obj/item/reagent_containers/condiment/pack/ketchup{
 	pixel_x = -8;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/condiment/pack/ketchup{
+/obj/item/reagent_containers/condiment/pack/ketchup{
 	pixel_x = -8;
 	pixel_y = -4
 	},
@@ -1529,7 +1530,7 @@
 	dir = 8
 	},
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/eggplantparm{
+/obj/item/food/eggplantparm{
 	pixel_x = -1;
 	pixel_y = 10
 	},
@@ -1743,33 +1744,33 @@
 "qo" = (
 /obj/effect/turf_decal/industrial/outline/yellow,
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/food/snacks/grown/cabbage{
+/obj/item/food/grown/cabbage{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/snacks/grown/cabbage{
+/obj/item/food/grown/cabbage{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/snacks/grown/potato{
+/obj/item/food/grown/potato{
 	pixel_x = 3;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/snacks/grown/potato{
+/obj/item/food/grown/potato{
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/obj/item/reagent_containers/food/snacks/grown/onion{
+/obj/item/food/grown/onion{
 	pixel_x = -8;
 	pixel_y = -6
 	},
-/obj/item/reagent_containers/food/snacks/grown/onion{
+/obj/item/food/grown/onion{
 	pixel_x = -3;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/snacks/grown/corn{
+/obj/item/food/grown/corn{
 	pixel_x = 4;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/food/snacks/grown/corn{
+/obj/item/food/grown/corn{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -1792,18 +1793,18 @@
 	},
 /obj/item/trash/semki,
 /obj/item/trash/can,
-/obj/item/reagent_containers/food/snacks/candy_trash{
+/obj/item/cigbutt{
 	pixel_y = -5
 	},
-/obj/item/reagent_containers/food/snacks/candy_trash{
+/obj/item/cigbutt{
 	pixel_x = 1;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/food/snacks/candy_trash{
+/obj/item/cigbutt{
 	pixel_x = -6;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/snacks/candy_trash{
+/obj/item/cigbutt{
 	pixel_x = -5;
 	pixel_y = 1
 	},
@@ -1883,10 +1884,10 @@
 	dir = 1;
 	color = "#543C30"
 	},
-/obj/item/reagent_containers/food/snacks/cheesewedge{
+/obj/item/food/cheese/wedge{
 	pixel_x = 3
 	},
-/obj/item/reagent_containers/food/snacks/cheesewedge{
+/obj/item/food/cheese/wedge{
 	pixel_x = 3
 	},
 /obj/machinery/computer/security/telescreen{
@@ -2422,10 +2423,10 @@
 /turf/open/floor/carpet/nanoweave,
 /area/ship/hallway/central)
 "xe" = (
-/obj/structure/chair/comfy{
+/obj/machinery/newscaster/directional/west,
+/obj/structure/chair/comfy/purple{
 	dir = 1
 	},
-/obj/machinery/newscaster/directional/west,
 /turf/open/floor/carpet/nanoweave/beige,
 /area/ship/crew)
 "xg" = (
@@ -2611,7 +2612,7 @@
 /obj/machinery/light/small/directional/west,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/toilet/secret{
-	secret_type = /obj/item/storage/box/donkpockets/donkpocketgondola;
+	secret_type = /obj/item/storage/box/donkpockets;
 	pixel_y = 10
 	},
 /turf/open/floor/plasteel/white,
@@ -2640,7 +2641,7 @@
 "zh" = (
 /obj/structure/bed,
 /obj/structure/curtain/cloth/grey,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/light/directional/south,
 /turf/open/floor/wood,
 /area/ship/crew/dorm)
@@ -2751,14 +2752,14 @@
 	pixel_y = 1
 	},
 /obj/structure/table,
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_x = 11;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/chicken{
+/obj/item/food/meat/slab/chicken{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/snacks/meat/rawcutlet/chicken{
+/obj/item/food/meat/rawcutlet/chicken{
 	pixel_x = 1;
 	pixel_y = 3
 	},
@@ -3204,58 +3205,58 @@
 /area/ship/crew/dorm)
 "EP" = (
 /obj/structure/closet/secure_closet/freezer/wall/directional/north,
-/obj/item/reagent_containers/food/condiment/rice{
+/obj/item/reagent_containers/condiment/rice{
 	pixel_y = 17
 	},
-/obj/item/reagent_containers/food/condiment/flour{
+/obj/item/reagent_containers/condiment/flour{
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/obj/item/reagent_containers/food/condiment/flour{
+/obj/item/reagent_containers/condiment/flour{
 	pixel_x = 6;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/condiment/sugar{
+/obj/item/reagent_containers/condiment/sugar{
 	pixel_x = -7;
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/food/condiment/sugar{
+/obj/item/reagent_containers/condiment/sugar{
 	pixel_x = -7;
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/food/condiment/milk{
+/obj/item/reagent_containers/condiment/milk{
 	pixel_x = -10;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/condiment/milk{
+/obj/item/reagent_containers/condiment/milk{
 	pixel_x = -10;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/condiment/milk{
+/obj/item/reagent_containers/condiment/milk{
 	pixel_x = -10;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/condiment/soymilk{
+/obj/item/reagent_containers/condiment/soymilk{
 	pixel_y = -5;
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/condiment/soymilk{
+/obj/item/reagent_containers/condiment/soymilk{
 	pixel_y = -5;
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/corgi{
+/obj/item/food/meat/slab/corgi{
 	pixel_x = 6;
 	pixel_y = -11
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/corgi{
+/obj/item/food/meat/slab/corgi{
 	pixel_x = 6;
 	pixel_y = -8
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/corgi{
+/obj/item/food/meat/slab/corgi{
 	pixel_x = 6;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/snacks/butter{
+/obj/item/food/butter{
 	pixel_x = 6;
 	pixel_y = 1
 	},
@@ -3437,7 +3438,7 @@
 /area/ship/crew/canteen)
 "Hq" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/structure/curtain/bounty,
 /obj/structure/sign/poster/official/ian{
 	pixel_x = 32
@@ -3814,7 +3815,7 @@
 "Kc" = (
 /obj/structure/bed,
 /obj/structure/curtain/cloth/grey,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/machinery/light_switch{
 	pixel_x = -8;
 	pixel_y = -20;
@@ -3838,7 +3839,7 @@
 /area/ship/crew)
 "Ko" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /obj/structure/curtain/bounty,
 /turf/open/floor/carpet/red,
 /area/ship/crew)
@@ -3909,10 +3910,7 @@
 /obj/item/clothing/suit/toggle/lawyer/burgundy{
 	pixel_y = -3
 	},
-/obj/item/clothing/head/beanie/stripedgreen{
-	pixel_x = 2;
-	pixel_y = -5
-	},
+/obj/item/clothing/head/beanie/green,
 /obj/item/clothing/glasses/regular/hipster,
 /obj/machinery/button/door{
 	id = "beluga_dorm1_window";
@@ -4131,7 +4129,7 @@
 "Nv" = (
 /obj/structure/bed,
 /obj/structure/curtain/cloth/grey,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
 /turf/open/floor/wood,
 /area/ship/crew/dorm)
 "Nw" = (
@@ -4151,7 +4149,7 @@
 	pixel_y = 17;
 	pixel_x = -7
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/condiment/enzyme{
 	pixel_x = -6;
 	pixel_y = 10
 	},
@@ -4962,7 +4960,6 @@
 /obj/item/storage/belt/security/webbing/inteq,
 /obj/item/clothing/glasses/hud/security/sunglasses/inteq,
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch,
-/obj/item/clothing/mask/gas/sechailer/balaclava/inteq,
 /obj/item/clothing/under/syndicate/inteq/skirt,
 /obj/item/clothing/under/syndicate/inteq,
 /obj/item/clothing/head/beret/sec/inteq,
@@ -4972,6 +4969,7 @@
 	pixel_y = -3
 	},
 /obj/effect/turf_decal/trimline/opaque/yellow/line,
+/obj/item/clothing/mask/balaclava/inteq,
 /turf/open/floor/plasteel/dark,
 /area/ship/security)
 "WS" = (
@@ -4991,10 +4989,10 @@
 /turf/open/floor/plating,
 /area/ship/engineering)
 "WV" = (
-/obj/structure/chair/comfy{
+/obj/machinery/newscaster/directional/east,
+/obj/structure/chair/comfy/purple{
 	dir = 1
 	},
-/obj/machinery/newscaster/directional/east,
 /turf/open/floor/carpet/red,
 /area/ship/crew)
 "Xm" = (
@@ -5183,7 +5181,7 @@
 /obj/effect/turf_decal/spline/fancy/opaque/bottlegreen{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/snacks/cheesewedge{
+/obj/item/food/cheese/wedge{
 	pixel_x = 3
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{

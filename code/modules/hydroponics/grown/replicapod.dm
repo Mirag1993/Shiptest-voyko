@@ -6,7 +6,9 @@
 	icon_state = "seed-replicapod"
 	species = "replicapod"
 	plantname = "Replica Pod"
-	product = /mob/living/carbon/human //verrry special -- Urist
+	// [CELADON EDIT] - CELADON FIXES
+	product = null //verrry special -- Urist
+	// [CELADON EDIT]
 	lifespan = 50
 	endurance = 8
 	maturation = 10
@@ -46,10 +48,10 @@
 				quirks = B.data["quirks"]
 				sampleDNA = B.data["blood_DNA"]
 				contains_sample = TRUE
-				visible_message("<span class='notice'>The [src] is injected with a fresh blood sample.</span>")
+				visible_message(span_notice("The [src] is injected with a fresh blood sample."))
 				log_cloning("[key_name(mind)]'s cloning record was added to [src] at [AREACOORD(src)].")
 			else
-				visible_message("<span class='warning'>The [src] rejects the sample!</span>")
+				visible_message(span_warning("The [src] rejects the sample!"))
 
 	if(!reagents.has_reagent(/datum/reagent/blood))
 		mind = null
@@ -65,7 +67,9 @@
 /obj/item/seeds/replicapod/get_analyzer_text()
 	var/text = ..()
 	if(contains_sample)
-		text += "\n It contains a blood sample with blood DNA (UE) \"sampleDNA\"." //blood DNA (UE) shows in medical records and is readable by forensics scanners
+	// [CELADON EDIT] - CELADON FIXES
+		text += "\n It contains a blood sample with blood DNA (UE) \"[sampleDNA]\"." //blood DNA (UE) shows in medical records and is readable by forensics scanners
+	// [CELADON EDIT]
 	return text
 
 /obj/item/seeds/replicapod/harvest(mob/user) //now that one is fun -- Urist

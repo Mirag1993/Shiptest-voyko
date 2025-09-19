@@ -1,5 +1,3 @@
-//Ethereal Disco Grenade for Ethereal traitors
-//Does not affect ethereals.
 //Some basic code pieces taken from flashbang, spawner grenade and ethereal disco ball for functionality (basically a combination of the 3).
 
 //////////////////////
@@ -7,8 +5,8 @@
 //////////////////////
 
 /obj/item/grenade/discogrenade
-	name = "Ethereal Disco Grenade"
-	desc = "An unethical micro-party that will make all non-Ethereal beings dance to its beat!"
+	name = "Portable Disco Grenade"
+	desc = "An exotic prototype grenade. Through powerful audiovisual hypnotic cues, victims are afflicted with an unstoppable urge to boogie down. "
 	icon_state = "disco"
 	item_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -16,7 +14,7 @@
 	var/list/messages = list("This party is great!", "Wooo!!!", "Party!", "Check out these moves!", "Hey, want to dance with me?")
 	var/list/message_social_anxiety = list("I want to go home...", "Where are the toilets?", "I don't like this song.")
 
-/obj/item/grenade/discogrenade/prime(mob/living/lanced_by)
+/obj/item/grenade/discogrenade/prime()
 	. = ..()
 	update_mob()
 	var/current_turf = get_turf(src)
@@ -30,7 +28,7 @@
 	for(var/i in 1 to 6)
 		new /obj/item/grenade/discogrenade/subgrenade(current_turf, TRUE)
 
-	qdel(src)
+	resolve()
 
 //////////////////////
 //   Sub grenades   //
@@ -58,7 +56,7 @@
 	addtimer(CALLBACK(src, PROC_REF(prime)), rand(10, 60))
 	randomiseLightColor()
 
-/obj/item/grenade/discogrenade/subgrenade/prime(mob/living/lanced_by)
+/obj/item/grenade/discogrenade/subgrenade/prime()
 	update_mob()
 	var/current_turf = get_turf(src)
 	if(!current_turf)
@@ -76,7 +74,7 @@
 
 	for(var/mob/living/carbon/human/victim in hearers(4, src))
 		forcedance(get_turf(victim), victim)
-	qdel(src)
+	resolve()
 
 /obj/item/grenade/discogrenade/subgrenade/proc/randomiseLightColor()
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
@@ -91,38 +89,43 @@
 		return
 	if(target.stat != CONSCIOUS)	//Only conscious people can dance
 		return
-	if(!target || iselzuose(target))	//Non humans and non etherals can't dance
+	if(!target)	//Non humans and non etherals can't dance
 		return
 
 	var/distance = max(0,get_dist(get_turf(src), target_turf))
 	if(distance > 2.5)
 		return
 
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_QUIRKS
 	if(target.has_quirk(/datum/quirk/social_anxiety))
 		target.say(pick(message_social_anxiety))
 		if(rand(3) && target.get_ear_protection() == 0)
 			target.drop_all_held_items()
-			target.show_message("<span class='warning'>You cover your ears, the music is just too loud for you.</span>", 2)
+			target.show_message(span_warning("You cover your ears, the music is just too loud for you."), 2)
 		return
+	// [/CELADON-ADD]
 
 	if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
-		target.show_message("<span class='warning'>You resist your inner urges to break out your best moves.</span>", 2)
+		target.show_message(span_warning("You resist your inner urges to break out your best moves."), 2)
 		target.set_drugginess(5)
 		return
+
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
 	if(istype(target.get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/foilhat))
-		to_chat(target, "<span class = 'userdanger'>THOSE GLOW-IN-THE-DARK NANOTRASEN LIGHTBULBS WON'T CORRUPT ME WITH THEIR AGENDA!</span>")
+		to_chat(target, span_userdanger("BIG DISCO WON'T CORRUPT ME WITH THEIR POST ICW PSY-OP MUSIC!"))
 		target.emote("scream")
 		return
+	// [/CELADON-ADD]
 
 	target.set_drugginess(10)
-	target.show_message("<span class='warning'>You feel a strong rythme and your muscles spasm uncontrollably, you begin dancing and cannot move!</span>", 2)
+	target.show_message(span_warning("You feel a strong rythme and your muscles spasm uncontrollably, you begin dancing and cannot move!"), 2)
 	target.Immobilize(30)
 
 	//Special actions
 	switch(rand(0, 6))
 		if(0)
 			target.Knockdown(4)
-			target.show_message("<span class='warning'>You [pick("mess", "screw")] up your moves and trip!</span>", 2)
+			target.show_message(span_warning("You [pick("mess", "screw")] up your moves and trip!"), 2)
 		if(1 to 3)
 			target.emote("spin")
 		if(3 to 4)

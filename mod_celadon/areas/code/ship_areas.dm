@@ -32,7 +32,7 @@
 /area/ship/general/engineering
 	name = "Engineering"
 	icon_state = "eng"
-	ambientsounds = ENGINEERING
+	ambientsounds = AMBIENCE_ENGI
 	lighting_colour_tube = "#ffce93"
 	lighting_colour_bulb = "#ffbc6f"
 	sound_environment = SOUND_AREA_LARGE_ENCLOSED
@@ -60,7 +60,7 @@
 /area/ship/general/medical
 	name = "Medbay 1"
 	icon_state = "med_1"
-	ambientsounds = MEDICAL
+	ambientsounds = AMBIENCE_MEDICAL
 	lighting_colour_tube = "#e7f8ff"
 	lighting_colour_bulb = "#d5f2ff"
 	min_ambience_cooldown = 90 SECONDS
@@ -99,3 +99,17 @@
 /area/ship/general/other/zone_4
 	name = "Other Shuttle 4"
 	icon_state = "osz_4"
+
+/// Hallways ///
+/area/ship/hallway/starboard_fore
+	name = "Starboard Fore Hallway"
+	icon_state = "starforehallway"
+
+/area/ship/hallway/port_fore
+	name = "Port Fore Hallway"
+	icon_state = "portforehallway"
+
+/// Security ///
+/area/ship/security/weapons_control
+	name = "Weapons Control Room"
+	icon_state = "weaponscontrolroom"

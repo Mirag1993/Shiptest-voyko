@@ -158,7 +158,9 @@
 	},
 /obj/machinery/power/terminal,
 /obj/structure/cable,
-/obj/machinery/vending/snack/random,
+/obj/machinery/vending/snack{
+	all_items_free = 1
+	},
 /turf/open/floor/carpet/green,
 /area/ship/crew/cryo)
 "gE" = (
@@ -246,13 +248,15 @@
 /obj/effect/turf_decal/trimline/opaque/green/arrow_ccw{
 	dir = 1
 	},
-/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/effect/spawner/random/structure/crate_abandoned,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "kT" = (
-/obj/machinery/turretid{
+/obj/machinery/turretid/ship{
 	dir = 8;
-	pixel_x = -32
+	pixel_x = -32;
+	req_access = null;
+	id = "iron_turrets"
 	},
 /obj/machinery/holopad,
 /obj/structure/cable{
@@ -419,7 +423,6 @@
 /turf/open/floor/plating,
 /area/ship/bridge)
 "qh" = (
-/obj/machinery/airalarm/directional/east,
 /obj/structure/chair/comfy/shuttle{
 	dir = 8;
 	name = "Operations"
@@ -438,8 +441,19 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = 31;
+	pixel_y = 0
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
+"qp" = (
+/obj/machinery/porta_turret/ship/elysium{
+	id = "iron_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ship/bridge)
 "rv" = (
 /obj/effect/turf_decal/industrial/stand_clear{
 	dir = 8
@@ -447,7 +461,8 @@
 /obj/docking_port/stationary{
 	dwidth = 15;
 	height = 15;
-	width = 30
+	width = 30;
+	dir = 8
 	},
 /obj/effect/turf_decal/trimline/opaque/green/warning{
 	dir = 4
@@ -458,10 +473,10 @@
 "rB" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/snacks/grown/ambrosia{
+/obj/item/food/grown/ambrosia{
 	pixel_y = 11
 	},
-/obj/item/reagent_containers/food/snacks/grown/ambrosia{
+/obj/item/food/grown/ambrosia{
 	pixel_y = -3;
 	pixel_x = -11
 	},
@@ -469,12 +484,8 @@
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/item/reagent_containers/food/snacks/pizzaslice/arnold{
-	pixel_y = -6;
-	pixel_x = 9;
-	name = "pizza slice"
-	},
 /obj/machinery/newscaster/directional/south,
+/obj/item/food/pizzaslice/meat,
 /turf/open/floor/carpet/green,
 /area/ship/crew/cryo)
 "tb" = (
@@ -489,8 +500,7 @@
 	},
 /obj/machinery/door/airlock/security/glass{
 	dir = 4;
-	name = "Шлюз";
-	req_access_txt = "12"
+	name = "Шлюз"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -636,15 +646,27 @@
 /obj/effect/turf_decal/trimline/opaque/green/arrow_ccw{
 	dir = 1
 	},
-/obj/item/ammo_box/a762_40{
+/obj/item/storage/box/ammo/a762_40{
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/item/ammo_box/a762_40{
+/obj/item/storage/box/ammo/a762_40{
 	pixel_x = -5;
 	pixel_y = -3
 	},
 /obj/structure/closet/crate/secure/exo,
+/obj/item/storage/box/ammo/a762_40{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/item/storage/box/ammo/a762_40{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/item/storage/box/ammo/a762_40{
+	pixel_x = -5;
+	pixel_y = -3
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "xk" = (
@@ -667,6 +689,10 @@
 /obj/item/clothing/head/shemag/white,
 /obj/item/clothing/mask/bandana/green,
 /obj/item/clothing/mask/bandana/black,
+/obj/item/clothing/suit/armor/vest/elysium{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "xA" = (
@@ -676,7 +702,6 @@
 /obj/item/clothing/suit/space/elysm/junk,
 /obj/item/clothing/head/space/elysm/space_helm,
 /obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/bandana/black,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "ye" = (
@@ -704,7 +729,7 @@
 /obj/machinery/firealarm/directional/west,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/oil,
-/obj/item/banner/elysium,
+/obj/item/banner/separatist/mundane,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -740,6 +765,10 @@
 /obj/item/clothing/head/shemag/white,
 /obj/item/clothing/mask/bandana/green,
 /obj/item/clothing/mask/bandana/black,
+/obj/item/clothing/suit/armor/vest/elysium{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/plating/wasteplanet/rust,
 /area/ship/cargo)
 "yV" = (
@@ -758,7 +787,6 @@
 "yX" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/porta_turret/ship/faction/elysium/laser/cover,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
 "zc" = (
@@ -790,8 +818,19 @@
 /obj/item/clothing/head/shemag/white,
 /obj/item/clothing/mask/bandana/green,
 /obj/item/clothing/mask/bandana/black,
+/obj/item/clothing/suit/armor/vest/elysium{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
+"zI" = (
+/obj/machinery/porta_turret/ship/elysium{
+	dir = 1;
+	id = "iron_turrets"
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ship/bridge)
 "Ah" = (
 /turf/closed/wall/r_wall/rust,
 /area/ship/crew/cryo)
@@ -853,7 +892,6 @@
 /turf/open/floor/plating,
 /area/ship/cargo)
 "EH" = (
-/obj/machinery/airalarm/directional/west,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -865,6 +903,11 @@
 /obj/item/clothing/mask/cigarette/rollie/cannabis{
 	pixel_y = 13;
 	pixel_x = 14
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = -30;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/crew/cryo)
@@ -915,7 +958,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/food/snacks/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
 /turf/open/floor/plating,
 /area/ship/bridge)
 "Jn" = (
@@ -927,22 +970,22 @@
 "JS" = (
 /obj/effect/turf_decal/box,
 /obj/effect/turf_decal/trimline/opaque/green/arrow_cw,
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/item/food/burger{
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/item/food/burger{
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/item/food/burger{
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/item/food/burger{
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/item/food/burger{
 	pixel_x = 4
 	},
-/obj/item/reagent_containers/food/snacks/burger{
+/obj/item/food/burger{
 	pixel_x = 4
 	},
 /obj/structure/closet/crate/large,
@@ -1108,7 +1151,10 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/cryo)
 "MP" = (
-/obj/machinery/porta_turret/ship/faction/elysium/laser/cover,
+/obj/machinery/porta_turret/ship/elysium{
+	dir = 10;
+	id = "iron_turrets"
+	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
 "MV" = (
@@ -1162,6 +1208,10 @@
 /obj/item/clothing/head/shemag/white,
 /obj/item/clothing/mask/bandana/green,
 /obj/item/clothing/mask/bandana/black,
+/obj/item/clothing/suit/armor/vest/elysium{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "Nw" = (
@@ -1277,9 +1327,7 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/melee/skimitar{
-	pixel_y = 6
-	},
+/obj/item/storage/belt/skimitar/full,
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "Sv" = (
@@ -1287,8 +1335,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1;
-	filter_types = list("n2")
+	dir = 1
 	},
 /obj/item/trash/energybar,
 /turf/open/floor/plasteel/tech,
@@ -1384,8 +1431,7 @@
 /area/ship/crew/cryo)
 "UR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 1;
-	filter_types = list("n2")
+	dir = 1
 	},
 /obj/structure/closet/secure_closet/wall{
 	icon_state = "generic_wall";
@@ -1406,12 +1452,16 @@
 /obj/item/clothing/head/shemag/white,
 /obj/item/clothing/mask/bandana/green,
 /obj/item/clothing/mask/bandana/black,
+/obj/item/clothing/suit/armor/vest/elysium{
+	pixel_y = 2;
+	pixel_x = 4
+	},
 /turf/open/floor/plating/wasteplanet/rust,
 /area/ship/cargo)
 "UU" = (
 /obj/effect/turf_decal/industrial/outline/yellow,
-/obj/structure/frame,
 /obj/item/circuitboard/machine/autolathe,
+/obj/structure/frame/machine,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "Vf" = (
@@ -1588,10 +1638,17 @@
 /obj/effect/turf_decal/corner/opaque/lime{
 	dir = 4
 	},
-/obj/item/storage/book/bible/koran,
 /obj/item/elysm_manual{
 	pixel_y = 6;
 	pixel_x = -9
+	},
+/obj/item/storage/book/bible/koran{
+	name = "Терик-аль-Шаед"
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = -33;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
@@ -1642,7 +1699,7 @@
 /obj/item/clothing/mask/cigarette/rollie/cannabis{
 	pixel_y = 13
 	},
-/obj/item/banner/elysium,
+/obj/item/banner/separatist/mundane,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 
@@ -1803,7 +1860,7 @@ gD
 JU
 "}
 (13,1,1) = {"
-CO
+zI
 yM
 oZ
 Gh
@@ -1813,7 +1870,7 @@ gL
 Sv
 Uj
 uZ
-MP
+qp
 "}
 (14,1,1) = {"
 CO
@@ -1860,7 +1917,7 @@ Cf
 QG
 dB
 CO
-MP
+CO
 CO
 bX
 vg

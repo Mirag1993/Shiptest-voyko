@@ -578,7 +578,7 @@
 /obj/effect/turf_decal/industrial/caution{
 	pixel_y = -15
 	},
-/turf/open/floor/plasteel/tech/airless,
+/turf/open/floor/plating/airless,
 /area/ship/construction)
 "gv" = (
 /obj/structure/table,
@@ -1518,7 +1518,7 @@
 "oF" = (
 /obj/structure/closet/crate/bin,
 /obj/item/trash/syndi_cakes,
-/obj/item/kitchen/knife/shiv,
+/obj/item/melee/knife/shiv,
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/canteen)
 "oP" = (
@@ -2886,7 +2886,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/turf/open/floor/plasteel/tech/airless,
+/turf/open/floor/plating/airless,
 /area/ship/construction)
 "zC" = (
 /turf/open/floor/engine/co2,
@@ -3486,11 +3486,11 @@
 	color = "#4c535b"
 	},
 /obj/machinery/button/door{
-	dir = 8;
+	dir = 2;
 	id = "airmixchamber";
 	name = "Air Mix Drain";
-	pixel_x = 27;
-	pixel_y = -5
+	pixel_x = 25;
+	pixel_y = 23
 	},
 /turf/open/floor/plating/airless,
 /area/ship/construction)
@@ -3600,6 +3600,12 @@
 /obj/structure/railing/corner,
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
+"Fb" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/airless,
+/area/ship/construction)
 "Fe" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /obj/structure/curtain/cloth/grey,
@@ -3768,7 +3774,7 @@
 /obj/structure/table,
 /obj/machinery/light/directional/west,
 /obj/item/trash/plate,
-/obj/item/reagent_containers/food/snacks/pizzaslice/pineapple{
+/obj/item/food/pizzaslice/pineapple{
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel,
@@ -3807,7 +3813,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/tech/airless,
+/turf/open/floor/plating/airless,
 /area/ship/construction)
 "GO" = (
 /obj/structure/bed,
@@ -4137,6 +4143,7 @@
 	},
 /obj/item/stack/sheet/plastic/fifty,
 /obj/item/stack/rods/fifty,
+/obj/item/construction/rld,
 /turf/open/floor/plating/airless,
 /area/ship/construction)
 "IK" = (
@@ -4636,7 +4643,7 @@
 	name = "Secure Storage";
 	pixel_x = -27
 	},
-/turf/open/floor/plasteel/tech/airless,
+/turf/open/floor/plating/airless,
 /area/ship/construction)
 "LE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -4648,7 +4655,7 @@
 /obj/structure/catwalk/over/plated_catwalk/white{
 	color = "#4c535b"
 	},
-/obj/structure/fireaxecabinet{
+/obj/structure/cabinet/fireaxe{
 	dir = 1;
 	pixel_y = -32
 	},
@@ -4840,6 +4847,11 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light_switch{
+	pixel_y = 11;
+	pixel_x = -20;
+	dir = 4
+	},
 /turf/open/floor/plasteel/tech,
 /area/ship/hallway/central)
 "MT" = (
@@ -5434,7 +5446,7 @@
 	dir = 1;
 	pixel_y = 15
 	},
-/turf/open/floor/plasteel/tech/airless,
+/turf/open/floor/plating/airless,
 /area/ship/construction)
 "Tb" = (
 /obj/effect/turf_decal/corner/transparent/bar/diagonal,
@@ -5501,7 +5513,9 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering/atmospherics)
 "Tg" = (
-/obj/machinery/vending/boozeomat/syndicate_access,
+/obj/machinery/vending/boozeomat/syndicate_access{
+	all_items_free = 1
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/crew/canteen)
 "To" = (
@@ -5708,7 +5722,7 @@
 	dir = 4;
 	pixel_x = 15
 	},
-/turf/open/floor/plasteel/tech/airless,
+/turf/open/floor/plating/airless,
 /area/ship/construction)
 "Uy" = (
 /turf/closed/wall/mineral/plastitanium,
@@ -7243,13 +7257,13 @@ vQ
 Qs
 rg
 up
-ia
-ia
-ia
+wl
+wl
+wl
 Lx
-ia
-ia
-ia
+wl
+wl
+wl
 lc
 rg
 NE
@@ -7270,25 +7284,25 @@ kD
 Mb
 rg
 Ej
-ia
+wl
 GF
 vU
 pp
 BA
 Et
-We
-We
-We
+Fb
+Fb
+Fb
 zA
-ia
-ia
-ia
+wl
+wl
+wl
 LS
 BT
 hw
 YK
 Ws
-ia
+wl
 Ls
 rg
 kD
@@ -7303,25 +7317,25 @@ kD
 kD
 rg
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 GN
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 rg
 kD
@@ -7344,9 +7358,9 @@ Aq
 Aq
 Aq
 pU
-ia
+wl
 lc
-ia
+wl
 ak
 Aq
 Aq
@@ -7369,7 +7383,7 @@ kD
 kD
 xI
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7377,9 +7391,9 @@ wl
 wl
 wl
 Sp
-ia
+wl
 GN
-ia
+wl
 Jj
 wl
 wl
@@ -7387,7 +7401,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 xI
 kD
@@ -7402,7 +7416,7 @@ kD
 kD
 xI
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7410,9 +7424,9 @@ wl
 wl
 wl
 Sp
-ia
+wl
 GN
-ia
+wl
 Jj
 wl
 wl
@@ -7420,7 +7434,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 xI
 kD
@@ -7435,7 +7449,7 @@ kD
 kD
 xI
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7443,9 +7457,9 @@ wl
 wl
 wl
 Sp
-ia
+wl
 GN
-ia
+wl
 Jj
 wl
 wl
@@ -7453,7 +7467,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 xI
 kD
@@ -7468,7 +7482,7 @@ kD
 kD
 rg
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7476,9 +7490,9 @@ wl
 wl
 wl
 Sp
-ia
+wl
 lc
-ia
+wl
 Jj
 wl
 wl
@@ -7486,7 +7500,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 rg
 kD
@@ -7501,7 +7515,7 @@ kD
 kD
 rg
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7509,9 +7523,9 @@ wl
 wl
 wl
 Sp
-ia
+wl
 GN
-ia
+wl
 Jj
 wl
 wl
@@ -7519,7 +7533,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 rg
 kD
@@ -7534,7 +7548,7 @@ kD
 kD
 rg
 Ls
-ia
+wl
 Oh
 bR
 bR
@@ -7542,9 +7556,9 @@ bR
 bR
 bR
 oC
-ia
+wl
 GN
-ia
+wl
 Oh
 bR
 bR
@@ -7552,7 +7566,7 @@ bR
 bR
 bR
 oC
-ia
+wl
 Ls
 rg
 kD
@@ -7567,25 +7581,25 @@ kD
 kD
 xI
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 GN
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 xI
 kD
@@ -7600,25 +7614,25 @@ kD
 kD
 xI
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 aP
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 xI
 kD
@@ -7633,25 +7647,25 @@ kD
 kD
 xI
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 xI
 kD
@@ -7666,7 +7680,7 @@ kD
 kD
 xI
 Ls
-ia
+wl
 ak
 Aq
 Aq
@@ -7674,9 +7688,9 @@ Aq
 Aq
 Aq
 pU
-ia
-ia
-ia
+wl
+wl
+wl
 ak
 Aq
 Aq
@@ -7684,7 +7698,7 @@ Aq
 Aq
 Aq
 pU
-ia
+wl
 Ls
 xI
 kD
@@ -7699,7 +7713,7 @@ kD
 kD
 rg
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7707,9 +7721,9 @@ wl
 wl
 wl
 Sp
-ia
-ia
-ia
+wl
+wl
+wl
 Jj
 wl
 wl
@@ -7717,7 +7731,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 rg
 kD
@@ -7732,7 +7746,7 @@ kD
 kD
 rg
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7740,9 +7754,9 @@ wl
 wl
 wl
 Sp
-ia
-ia
-ia
+wl
+wl
+wl
 Jj
 wl
 wl
@@ -7750,7 +7764,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 rg
 kD
@@ -7765,7 +7779,7 @@ kD
 kD
 rg
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7773,9 +7787,9 @@ wl
 wl
 wl
 Sp
-ia
-ia
-ia
+wl
+wl
+wl
 Jj
 ON
 wl
@@ -7783,7 +7797,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 rg
 kD
@@ -7798,7 +7812,7 @@ kD
 kD
 xI
 Ls
-ia
+wl
 Jj
 wl
 wl
@@ -7806,9 +7820,9 @@ wl
 wl
 wl
 Sp
-ia
-ia
-ia
+wl
+wl
+wl
 Jj
 IK
 wl
@@ -7816,7 +7830,7 @@ wl
 wl
 wl
 Sp
-ia
+wl
 Ls
 xI
 kD
@@ -7839,9 +7853,9 @@ wl
 wl
 wl
 Sp
-ia
-ia
-ia
+wl
+wl
+wl
 Jj
 lH
 wl
@@ -7864,7 +7878,7 @@ kD
 kD
 xI
 Ls
-ia
+wl
 Oh
 bR
 bR
@@ -7872,9 +7886,9 @@ bR
 bR
 bR
 oC
-ia
-ia
-ia
+wl
+wl
+wl
 Oh
 bR
 bR
@@ -7882,7 +7896,7 @@ bR
 bR
 bR
 oC
-ia
+wl
 Ls
 xI
 kD
@@ -7898,23 +7912,23 @@ kD
 xI
 Ls
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 Ls
 xI
@@ -7932,21 +7946,21 @@ Md
 rg
 Ls
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 Ls
 rg
@@ -7967,17 +7981,17 @@ rg
 Ls
 Ls
 Ls
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
+wl
 Ls
 Ls
 Ls
@@ -8002,13 +8016,13 @@ rg
 Ls
 Ls
 Ls
-ia
-ia
-ia
+wl
+wl
+wl
 Ut
-ia
-ia
-ia
+wl
+wl
+wl
 Ls
 Ls
 Ls

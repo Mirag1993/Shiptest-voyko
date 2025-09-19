@@ -21,6 +21,11 @@
 		. += pick(syllables)
 	. = capitalize(.)
 
+/proc/spider_name()
+	. = pick(GLOB.spider_names)
+	for (var/x = rand(0,4) to 0 step -1)
+		. += "'[pick(GLOB.spider_names)]"
+
 GLOBAL_VAR(command_name)
 /proc/command_name()
 	if (GLOB.command_name)
@@ -72,9 +77,9 @@ GLOBAL_VAR(command_name)
 		name = ""
 
 	// Prefix
-	var/holiday_name = pick(SSevents.holidays)
+	var/holiday_name = pick(GLOB.holidays)
 	if(holiday_name)
-		var/datum/holiday/holiday = SSevents.holidays[holiday_name]
+		var/datum/holiday/holiday = GLOB.holidays[holiday_name]
 		if(istype(holiday, /datum/holiday/friday_thirteenth))
 			random = 13
 		name = holiday.getStationPrefix()
@@ -200,6 +205,9 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 							// [CELADON-ADD] - TAJARA
 							if(prob(5))
 								. += pick(tajara_name(MALE),tajara_name(FEMALE))
+							// [CELADON-ADD] - CELADON_RIOL
+							if(prob(5))
+								. += pick(riol_name(MALE),riol_name(FEMALE))
 							// [/CELADON-ADD]
 							else
 								var/new_name = pick(pick(GLOB.first_names_male,GLOB.first_names_female))
@@ -233,56 +241,6 @@ GLOBAL_DATUM(syndicate_code_response_regex, /regex)
 				. += "."
 			else
 				. += ", "
-
-// [CELADON-REMOVE] - PREFIXES - (Перемещено в code/__DEFINES/~mod_celadon/prefixes.dm)
-// #define FACTION_SYNDICATE "Syndicate"
-// 	#define FACTION_NGR "New Gorlex Republic"
-// 	#define FACTION_CYBERSUN "CyberSun"
-// 	#define FACTION_SUNS "Student-Union of Naturalistic Sciences"
-// #define FACTION_SOLGOV "SolGov"
-// #define FACTION_SRM "Saint-Roumain Militia"
-// #define FACTION_INTEQ "Inteq Risk Management Group"
-// #define FACTION_CLIP "CLIP Minutemen"
-// #define FACTION_NT "Nanotrasen"
-// 	#define FACTION_NS_LOGI "N+S Logistics"
-// 	#define FACTION_VIGILITAS "Vigilitas Interstellar"
-// #define FACTION_FRONTIER "Frontiersmen Fleet"
-// #define FACTION_PGF "Pan-Gezenan Federation"
-// #define FACTION_INDEPENDENT "Independent"
-
-// #define PREFIX_SYNDICATE list("SEV", "SSV")
-// 	#define PREFIX_NGR list("NGRV")
-// 	#define PREFIX_CYBERSUN list("CSSV")
-// 	#define PREFIX_SUNS list("SUNS")
-// #define PREFIX_SOLGOV list("SCSV")
-// #define PREFIX_SRM list("SRSV")
-// #define PREFIX_INTEQ list("IRMV")
-// #define PREFIX_CLIP list("CMSV", "CMGSV")
-// #define PREFIX_NT list("NTSV")
-// 	#define PREFIX_NS_LOGI list("NSSV")
-// 	#define PREFIX_VIGILITAS list("VISV")
-// #define PREFIX_FRONTIER list("FFV")
-// #define PREFIX_PGF list("PGF", "PGFMC", "PGFN")
-// #define PREFIX_INDEPENDENT list("SV", "IMV", "ISV")
-
-/// List of all ship factions to their prefixes.
-// GLOBAL_LIST_INIT(ship_faction_to_prefixes, list(
-// 	FACTION_SYNDICATE = PREFIX_SYNDICATE,
-// 	FACTION_NGR = PREFIX_NGR,
-// 	FACTION_CYBERSUN = PREFIX_CYBERSUN,
-// 	FACTION_SUNS = PREFIX_SUNS,
-// 	FACTION_SOLGOV = PREFIX_SOLGOV,
-// 	FACTION_SRM = PREFIX_SRM,
-// 	FACTION_INTEQ = PREFIX_INTEQ,
-// 	FACTION_CLIP = PREFIX_CLIP,
-// 	FACTION_NT = PREFIX_NT,
-// 	FACTION_NS_LOGI = PREFIX_NS_LOGI,
-// 	FACTION_VIGILITAS = PREFIX_VIGILITAS,
-// 	FACTION_FRONTIER = PREFIX_FRONTIER,
-// 	FACTION_PGF = PREFIX_PGF,
-// 	FACTION_INDEPENDENT = PREFIX_INDEPENDENT
-// ))
-// [CELADON-REMOVE]
 
 /proc/ship_prefix_to_faction(prefix)
 	for(var/faction in GLOB.ship_faction_to_prefixes)

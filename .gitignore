@@ -1,5 +1,8 @@
 ###Files and folders specified here will never be tracked.
 
+# Local overrides--you can use this to change the config for your dev environment (like setting up SQL) without worrying about committing it
+/config/dev_overrides.txt
+
 #Ignore everything in datafolder and subdirectories
 /data/**/*
 /tmp/**/*
@@ -20,6 +23,7 @@
 *.lk
 *.int
 *.backup
+/shiptest.json
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Linux.gitignore
 
 *~
@@ -201,3 +205,7 @@ check_regex_output.txt
 
 # Autowiki
 /tools/autowiki/node_modules
+
+# Celadon stuff
+dmm-tools.exe
+pngcrush.exe

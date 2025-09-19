@@ -5,7 +5,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	slot_flags = ITEM_SLOT_ID
-	component_type = /datum/component/storage/concrete/wallet
+	component_type = /datum/component/storage/concrete	// [CELADON-EDIT] - DONT_ALTCLICK_WALLET
 
 	var/obj/item/card/id/front_id = null
 	var/list/combined_access
@@ -13,22 +13,21 @@
 
 /obj/item/storage/wallet/ComponentInitialize()
 	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage/concrete/wallet)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage/concrete)	// [CELADON-EDIT] - DONT_ALTCLICK_WALLET
 	STR.max_items = 4
 	STR.set_holdable(list(
 		/obj/item/spacecash/bundle,
 		/obj/item/holochip,
 		/obj/item/card,
-		/obj/item/clothing/mask/cigarette,
 		/obj/item/flashlight/pen,
 		/obj/item/seeds,
-		/obj/item/stack/medical,
 		/obj/item/toy/crayon,
 		/obj/item/coin,
 		/obj/item/dice,
 		/obj/item/disk,
-		/obj/item/implanter,
 		/obj/item/lighter,
+		/obj/item/key/ship,
+		/obj/item/gun/ballistic/derringer,
 		/obj/item/lipstick,
 		/obj/item/match,
 		/obj/item/paper,
@@ -39,11 +38,12 @@
 		/obj/item/screwdriver,
 		/obj/item/stamp,
 		// [CELADON-ADD] - CELADON_QOL - Добавляем ключи и нож для писем
-		/obj/item/kitchen/knife/letter_opener,
+		/obj/item/melee/knife/letter_opener,
 		/obj/item/key,
 		/obj/item/clothing/gloves/ring,
 		/obj/item/clothing/gloves/ring/silver,
-		/obj/item/clothing/gloves/ring/diamond),
+		/obj/item/clothing/gloves/ring/diamond,
+		/obj/item/stamp),
 		// [/CELADON-ADD]
 		list(/obj/item/screwdriver/power))
 
@@ -100,7 +100,7 @@
 /obj/item/storage/wallet/examine()
 	. = ..()
 	if(front_id)
-		. += "<span class='notice'>Alt-click to remove the id.</span>"
+		. += span_notice("Alt-click to remove the id.")
 
 /obj/item/storage/wallet/GetID()
 	return front_id
@@ -135,5 +135,5 @@
 	icon_state = "random_wallet"
 
 /obj/item/storage/wallet/random/PopulateContents()
-	new /obj/item/spacecash/bundle/pocketchange(src)
+	new /obj/effect/spawner/random/entertainment/wallet_storage(src)
 	icon_state = "wallet"

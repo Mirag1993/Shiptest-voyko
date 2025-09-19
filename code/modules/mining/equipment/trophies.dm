@@ -1,5 +1,3 @@
-// [CELADON-REMOVE] - CRUSHER_TROPHEY - Вынужденное зло ради возраждения легенды
-/*
 //trophies
 /obj/item/mob_trophy
 	name = "tail spike"
@@ -25,7 +23,6 @@
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "fang"
 
-/*
 //goliath
 /obj/item/mob_trophy/goliath_tentacle
 	name = "goliath tentacle"
@@ -96,7 +93,7 @@
 	force = 10
 	throwforce = 15
 	throw_speed = 4
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("cut", "sliced", "diced")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
@@ -108,7 +105,7 @@
 	force = 15
 	throwforce = 20
 	throw_speed = 4
-	sharpness = IS_SHARP
+	sharpness = SHARP_EDGED
 	attack_verb = list("cut", "braised", "singed")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
@@ -183,6 +180,3 @@
 	desc = "It's a paw from a true warrior. Still remembers the basics of CQB."
 	icon_state = "armor_paw"
 	icon ='icons/obj/lavaland/elite_trophies.dmi'
-*/
-*/
-// [/CELADON-REMOVE]
