@@ -15,6 +15,7 @@
 ID мода: 
 CELADON_FIXES
 CELADON_FIXES_BLOOD
+CELADON_FIXES_DEBUG_ROOM
 FIX_DISPLAY_TRUSTER
 FIXES_ICON_IN_HAND_MOB
 FIXES_ICON
@@ -206,7 +207,51 @@ FIXES_VORACIOUS
 FIXES_JUKEBOX
 - EDIT: `code/controllers/subsystem/jukeboxes.dm` - правим нахождение звука и типа, для работы muz-tv. Попытка исправить просачивание музыки сквозь EDGE
 
+CELADON_FIXES_DEBUG_ROOM
+- EDIT: `code/modules/awaymissions/super_secret_room.dm` - фиксит сообщения для чата
+- ADD: `code/modules/awaymissions/signpost.dm` - фиксит лестницу, тепешает на координаты 139, 31, 3
 
+FIXES_AMBIENT_NO_EARS
+- ADD: `code/controllers/subsystem/ambience.dm` - Проверка на уши для эмбиента
+
+FIXES_REPAIR_BONE_COMPOUND
+- EDIT: `code/modules/surgery/bone_fractures.dm` - Исправил неверное название прока
+
+FIXES_SPAWN_SHIP
+- EDIT: `code/controllers/subsystem/overmap.dm` - Изменен порядок приоритетов, теперь space_spawn имеет выше приоритет над позицией
+
+CRUSHER_MARK_ON_MOBS
+- EDIT: `code/datums/status_effects/debuffs.dm` - изменения от Ганзы
+- ADD: `code/datums/status_effects/debuffs.dm` - добавляем проверку на труп для метки крашера
+- REMOVE: `code/modules/mining/equipment/kinetic_crusher.dm` - изменения от Ганзы
+- ADD: `code/modules/mining/equipment/kinetic_crusher.dm` - добавляем проверку на труп для метки крашера
+
+FIXES_JELLY_BLOOD
+- EDIT, ADD: `code/modules/mob/living/carbon/human/species_types/jellypeople.dm` - Фиксим уровень крови здоровья
+
+FIXES_MOB_SPAWNER
+- REMOVE: `code/modules/mining/ore_veins.dm` - убраны селинги из спавнера Т3 бура в джунглях
+
+FIXES_CALL_TO_SHIP
+- ADD: `code/game/machinery/hologram.dm` - добавлено возвращение TRUE, чтобы интерфейс обновлялся
+
+FIXES_ICON_OUT_OF_BORDER
+- ADD, EDIT: `code/datums/components/storage/ui.dm` - чиним позиционирование иснтрументов в контейнерах
+- ADD: `code/datums/components/storage/concrete/_concrete.dm`
+
+FIXES_MODSUITS
+- ADD, REMOVE, EDIT: `code/modules/mod/modules/modules_antag.dm` - Выпиливаем неиспользуемые и сломанные опции модов
+
+FIXES_DYNAMIC_MISSION
+- EDIT: `code/modules/overmap/objects/dynamic_datum.dm` - Изменена логика в функции can_reset_dynamic(). Теперь объект не будет диспавниться если миссия все еще может быть завершена
+
+FIXES_OFFERING_EFFECTS
+- ADD: `code/datums/status_effects/neutral.dm`
+- EDIT: `code/modules/mob/living/carbon/inventory.dm`
+
+FIXES_SPAWNERS_ON_SPACE - Проверка на космотурф
+- ADD: `code/game/objects/effects/spawners/mobspawner.dm`
+- ADD: `code/modules/events/spacevine.dm`
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
@@ -218,6 +263,11 @@ FIXES_JUKEBOX
 ### Оверрайды
 
 - `mod_celadon/fixes/code/research_mission.dm` - вроде перезаписывает
+
+dock_empty_space_fix.dm:
+- `Dock(datum/overmap/to_dock, datum/docking_ticket/ticket, force = FALSE)`
+- `dock_in_empty_space()`
+- `post_undocked(datum/overmap/dock_requester)`
 
 <!-- fax_name -->
 <!-- 
