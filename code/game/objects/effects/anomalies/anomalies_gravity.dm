@@ -9,10 +9,9 @@
 /obj/effect/anomaly/grav
 	name = "throngler"
 	icon_state = "gravity"
-	desc = "A mysterious anomaly that sucks things towards it with a gravitational field, ending in what has been termed a 'throngling'."
+	desc = "A miniature gravity well, constantly pulling the world around it into a 'throngling'."
 	density = FALSE
-	aSignal = /obj/item/assembly/signaler/anomaly/grav
-	bSignal = null
+	core = /obj/item/assembly/signaler/anomaly/grav
 	effectrange = 4
 	var/boing = 0
 	///Warp effect holder for displacement filter to "pulse" the anomaly
@@ -51,11 +50,8 @@
 
 	COOLDOWN_START(src, pulse_cooldown, pulse_delay)
 	for(var/mob/living/carbon/carbon in orange(effectrange/2, src))
-		if(carbon.run_armor_check(attack_flag = "melee") >= 40)
-			carbon.break_random_bone()
-		if(carbon.run_armor_check(attack_flag = "melee") >= 60)
-			carbon.break_all_bones() //crunch
-		carbon.apply_damage(10, BRUTE)
+		var/target_armor = carbon.run_armor_check(attack_flag = "melee")
+		carbon.apply_damage(15, BRUTE, spread_damage = TRUE, wound_bonus = target_armor, bare_wound_bonus = 0, sharpness = 0)
 
 /obj/effect/anomaly/grav/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
@@ -76,11 +72,9 @@
 		boing = 0
 		if(iscarbon(Guy))
 			for(var/mob/living/carbon/carbon in range(0,src))
-				if(carbon.run_armor_check(attack_flag = "melee") >= 20)
-					carbon.break_random_bone()
-				else if(carbon.run_armor_check(attack_flag = "melee") >= 40)
-					carbon.break_all_bones() //crunch
-				carbon.apply_damage(10, BRUTE)
+				var/target_armor = carbon.run_armor_check(attack_flag = "melee")
+				carbon.apply_damage(15, BRUTE, spread_damage = TRUE, wound_bonus = target_armor, bare_wound_bonus = 0, sharpness = 0)
+
 
 /obj/effect/anomaly/grav/high
 	effectrange = 5
@@ -88,9 +82,6 @@
 
 /obj/effect/anomaly/grav/high/Initialize(mapload, new_lifespan)
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(setup_grav_field))
-
-/obj/effect/anomaly/grav/high/proc/setup_grav_field()
 	grav_field = new(src, effectrange, TRUE, 2)
 
 /obj/effect/anomaly/grav/high/Destroy()

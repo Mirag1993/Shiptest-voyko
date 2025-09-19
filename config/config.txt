@@ -6,7 +6,8 @@ $include dbconfig.txt
 $include comms.txt
 $include resources.txt
 $include interviews.txt
-$include atmos_mix.txt
+
+$include /_celadon/config.txt
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -156,9 +157,6 @@ LOG_CLONING
 ## log shuttle actions
 LOG_SHUTTLE
 
-## Enable the demo subsystem
-# DEMOS_ENABLED
-
 ## Log all timers on timer auto reset
 # LOG_TIMERS_ON_BUCKET_RESET
 
@@ -209,9 +207,6 @@ VOTE_AUTOTRANSFER_INTERVAL 18000
 
 ## disable abandon mob
 #NORESPAWN
-
-## disables calling del(src) on newmobs if they logout before spawnin in
-# DONT_DEL_NEWMOB
 
 ## set a hosted by name for unix platforms
 HOSTEDBY Yournamehere
@@ -300,8 +295,6 @@ CHECK_RANDOMIZER
 # INVOKE_YOUTUBEDL youtube-dl
 
 ## In-game features
-##Toggle for having jobs load up from the .txt
-# LOAD_JOBS_FROM_TXT
 
 ## Uncomment this to forbid admins from possessing the singularity.
 #FORBID_SINGULO_POSSESSION
@@ -399,22 +392,13 @@ NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
 #AGGRESSIVE_CHANGELOG
 
 ## Comment this out if you've used the mass conversion sql proc for notes or want to stop converting notes
-AUTOCONVERT_NOTES
+#AUTOCONVERT_NOTES
 
 ## Comment this out to stop admin messages sent anytime an admin disconnects from a round in play, you can edit the messages in admin.dm
 ANNOUNCE_ADMIN_LOGOUT
 
 ## Uncomment to have an admin message sent anytime an admin connects to a round in play, you can edit the messages in admin.dm
 #ANNOUNCE_ADMIN_LOGIN
-
-## Map rotation
-## You should edit maps.txt to match your configuration when you enable this.
-MAPROTATION
-
-## Map voting
-## Allows players to vote with their preffered map setting
-## When it's set to zero, the map will be randomly picked each round
-PREFERENCE_MAP_VOTING 1
 
 ## AUTOADMIN
 ## The default admin rank
@@ -543,6 +527,11 @@ AUTO_PROFILE
 ## Uncomment to enable source whitelisting, a comma-separated list (no spaces) of CentCom sources (sourceName).
 ## If enabled, only bans from these servers will be shown to admins using CentCom. The default sources list is an example.
 #CENTCOM_SOURCE_WHITELIST Beestation MRP,TGMC,FTL13
+
+## If uncommented, this will enable admin 2FA (two-factor authentication).
+## The URL admins will be asked to go to will be here, with %ID% being the ID
+## of their connection attempt.
+#ADMIN_2FA_URL https://example.com/id/%ID%
 
 #### DISCORD STUFFS ####
 ## MAKE SURE ALL SECTIONS OF THIS ARE FILLED OUT BEFORE ENABLING

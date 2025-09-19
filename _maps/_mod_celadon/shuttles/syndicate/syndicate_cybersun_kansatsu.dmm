@@ -34,9 +34,9 @@
 /area/ship/engineering)
 "bJ" = (
 /obj/machinery/suit_storage_unit/inherit,
-/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/white_red,
 /obj/item/tank/jetpack/oxygen/harness,
-/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/suit/space/syndicate/white_red,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -52,8 +52,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "bX" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 10
+/obj/machinery/porta_turret/ship/syndicate/ballistic/light{
+	dir = 10;
+	id = "kansatsu_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -348,12 +349,13 @@
 /obj/item/storage/box/syndie_kit/chameleon,
 /obj/item/storage/box/syndie_kit/chameleon,
 /obj/item/chameleon,
-/obj/item/chameleon,
 /obj/structure/rack,
 /obj/item/card/id/syndicate/anyone,
 /obj/item/card/id/syndicate/anyone,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
+/obj/item/chameleon,
+/obj/item/pinpointer/crew/contractor,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "hP" = (
@@ -474,8 +476,9 @@
 	dir = 4;
 	name = "Captain's Chair"
 	},
-/obj/machinery/turretid{
-	pixel_y = 24
+/obj/machinery/turretid/ship{
+	pixel_y = 24;
+	id = "kansatsu_turrets"
 	},
 /obj/effect/turf_decal/trimline/opaque/bar,
 /turf/open/floor/plasteel/dark,
@@ -501,8 +504,9 @@
 /turf/open/floor/plating,
 /area/ship/cargo)
 "lg" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 9
+/obj/machinery/porta_turret/ship/syndicate/ballistic/light{
+	dir = 9;
+	id = "kansatsu_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -591,6 +595,10 @@
 /area/ship/engineering)
 "mT" = (
 /obj/structure/table/wood,
+/obj/machinery/recharger{
+	pixel_x = 0;
+	pixel_y = 9
+	},
 /turf/open/floor/carpet/red_gold,
 /area/ship/crew)
 "mZ" = (
@@ -944,9 +952,9 @@
 /area/ship/engineering)
 "vm" = (
 /obj/machinery/suit_storage_unit/inherit,
-/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/white_red,
 /obj/item/tank/jetpack/oxygen/harness,
-/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/suit/space/syndicate/white_red,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -1001,10 +1009,9 @@
 /turf/template_noop,
 /area/template_noop)
 "xc" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	pixel_x = 7;
-	dir = 4;
-	pixel_y = 4
+/obj/machinery/porta_turret/ship/syndicate/ballistic{
+	dir = 6;
+	id = "kansatsu_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -1040,12 +1047,12 @@
 	pixel_y = 1
 	},
 /obj/structure/closet/crate/wooden,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
-/obj/effect/spawner/lootdrop/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
+/obj/effect/spawner/random/food_or_drink/ration,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/cargo)
 "xF" = (
@@ -1083,6 +1090,10 @@
 	pixel_y = 4
 	},
 /obj/machinery/airalarm/directional/north,
+/obj/item/melee/knife/letter_opener,
+/obj/item/storage/box/rxglasses/spyglasskit{
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/office)
 "yv" = (
@@ -1289,12 +1300,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/crew)
-"Do" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 6
-	},
-/turf/closed/wall/mineral/plastitanium,
-/area/ship/bridge)
 "DG" = (
 /obj/machinery/advanced_airlock_controller{
 	pixel_x = -27
@@ -1314,10 +1319,8 @@
 /turf/open/floor/plasteel/white,
 /area/ship/engineering)
 "DL" = (
-/obj/structure/safe/floor{
-	number_of_tumblers = 3
-	},
-/obj/item/kitchen/knife/combat,
+/obj/structure/safe/floor,
+/obj/item/melee/knife/combat,
 /obj/item/paper/crumpled{
 	default_raw_text = "Кажется, эти шприцы не то, чем кажутся.. Надо быть с ними поосторожнее.."
 	},
@@ -1329,10 +1332,13 @@
 	name = "implanter (The last resort)";
 	icon_state = "implanter1"
 	},
-/obj/item/kitchen/knife/combat,
+/obj/item/melee/knife/combat,
 /obj/item/clothing/glasses/thermal/syndi,
 /obj/item/clothing/glasses/thermal/syndi,
-/obj/item/card/emag/limited,
+/obj/item/card/emag/limited{
+	uses_left = 3
+	},
+/obj/item/gun/energy/plasmacutter/adv,
 /obj/item/toy/plush/goatplushie/angry{
 	name = "goat plushie"
 	},
@@ -1571,14 +1577,6 @@
 /obj/machinery/power/ship_gravity,
 /turf/open/floor/plating,
 /area/ship/engineering)
-"KS" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	pixel_x = 7;
-	dir = 4;
-	pixel_y = 5
-	},
-/turf/closed/wall/mineral/plastitanium,
-/area/ship/bridge)
 "Lm" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall/mineral/plastitanium,
@@ -1651,7 +1649,9 @@
 "MY" = (
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/firealarm/directional/west,
-/obj/machinery/vending/boozeomat/syndicate_access,
+/obj/machinery/vending/boozeomat/syndicate_access{
+	all_items_free = 1
+	},
 /obj/structure/sign/poster/contraband/red_rum{
 	pixel_y = 32;
 	pixel_x = -32
@@ -1770,13 +1770,13 @@
 	pixel_y = 8;
 	pixel_x = -26
 	},
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
 /obj/structure/closet/crate/wooden{
 	name = "survival kit"
 	},
-/obj/item/kitchen/knife/combat/survival,
-/obj/item/kitchen/knife/combat/survival,
-/obj/item/kitchen/knife/combat/survival,
+/obj/item/melee/knife/survival,
+/obj/item/melee/knife/survival,
+/obj/item/melee/knife/survival,
 /obj/item/pickaxe,
 /obj/item/pickaxe,
 /obj/item/pickaxe,
@@ -1948,17 +1948,17 @@
 /turf/open/floor/plasteel/white,
 /area/ship/hallway/central)
 "VL" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/rxglasses/spyglasskit{
-	pixel_y = 6
-	},
-/obj/item/kitchen/knife/letter_opener,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
 /obj/machinery/light/small/directional/south,
 /obj/structure/sign/poster/official/here_for_your_safety{
 	pixel_x = -28
+	},
+/obj/machinery/computer/crew{
+	dir = 4;
+	pixel_x = -8;
+	pixel_y = 0
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/office)
@@ -1983,8 +1983,9 @@
 /turf/open/floor/carpet/red_gold,
 /area/ship/crew)
 "WB" = (
-/obj/machinery/porta_turret/ship/faction/syndicate/ballistic{
-	dir = 5
+/obj/machinery/porta_turret/ship/syndicate/ballistic{
+	dir = 5;
+	id = "kansatsu_turrets"
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/bridge)
@@ -2029,18 +2030,22 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/binoculars,
+/obj/item/melee/classic_baton/telescopic,
+/obj/item/melee/classic_baton/telescopic,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/gun/energy/disabler,
+/obj/item/gun/energy/disabler,
+/obj/item/gun/ballistic/automatic/pistol/ringneck/no_mag,
+/obj/item/storage/box/ammo/c10mm_rubber,
+/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/storage/box/ammo/c10mm_ap,
+/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/book/granter/martial/cqc,
 /obj/item/camera_bug,
-/obj/item/melee/classic_baton/telescopic,
-/obj/item/melee/classic_baton/telescopic,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/gun/energy/disabler,
-/obj/item/gun/energy/disabler,
-/obj/item/gun/ballistic/automatic/pistol/syndicate/no_mag,
-/obj/item/ammo_box/c10mm/rubbershot,
-/obj/item/ammo_box/magazine/m10mm/rubber,
-/obj/item/ammo_box/c10mm/ap,
-/obj/item/ammo_box/magazine/m10mm/ap,
+/obj/item/attachment/silencer,
+/obj/item/storage/box/handcuffs,
+/obj/item/gun/energy/kinetic_accelerator/crossbow,
 /turf/open/floor/plasteel/stairs{
 	dir = 4
 	},
@@ -2093,7 +2098,7 @@
 "Yp" = (
 /obj/structure/window/reinforced/spawner,
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/maintenance/five,
+/obj/effect/spawner/random/maintenance/five,
 /obj/item/stack/marker_beacon/thirty,
 /obj/effect/turf_decal/box,
 /obj/item/stack/sheet/metal/twenty{
@@ -2114,6 +2119,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/item/storage/backpack/satchel/flat/cthonian,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ship/cargo)
 "YX" = (
@@ -2275,7 +2281,7 @@ Ur
 DN
 DN
 DN
-Do
+xc
 wQ
 "}
 (8,1,1) = {"
@@ -2482,7 +2488,7 @@ wQ
 wQ
 wQ
 wQ
-KS
+WB
 YX
 YX
 YX

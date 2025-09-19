@@ -1,56 +1,39 @@
 //	Syndicate
 /datum/outfit/job/syndicate/post_equip(mob/living/carbon/human/H, visualsOnly)
- 	. = ..()
- 	H.faction |= list(FACTION_PLAYER_SYNDICATE,FACTION_ANTAG_SYNDICATE)
-
-//	Elysium
-/datum/outfit/job/elysium/assistant
-	name = "Elysium - Assistant"
-	job_icon = "captain"
-	jobtype = /datum/job/captain
-
-	uniform = /obj/item/clothing/under/utility
-	shoes = /obj/item/clothing/shoes/sneakers/black
-	box = /obj/item/storage/box/survival
-	id = /obj/item/card/id/silver
-
-/datum/outfit/job/elysium/proc/get_elysium_access(mob/living/carbon/human/H)
-	var/obj/item/storage/wallet/W = null
-	for (var/obj/item/O in H.contents)
-		if (istype(O, /obj/item/storage/wallet))
-			W = O
-			break
-	if (W)
-		var/obj/item/card/id/I = null
-		for (var/obj/item/O in W.contents)
-			if (istype(O, /obj/item/card/id/silver))
-				I = O
-				break
-		if (I)
-			I.access = list(ACCESS_MAINT_TUNNELS)
-			I.update_label()
-		W.combined_access = list()
-		for (var/obj/item/card/id/card in W.contents)
-			W.combined_access |= card.access
-
-/datum/outfit/job/elysium/assistant/post_equip(mob/living/carbon/human/H)
 	. = ..()
-	get_elysium_access(H)
-
-/datum/outfit/job/elysium/post_equip(mob/living/carbon/human/H)
-	H.faction |= list(FACTION_PLAYER_ELYSIUM)
+	H.faction |= list(FACTION_PLAYER_SYNDICATE)
 
 //	Nanotrasen
 /datum/outfit/job/nanotrasen/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
-	H.faction |= list(FACTION_PLAYER_NANOTRASEN,FACTION_PLAYER_SOLGOV)
+	H.faction |= list(FACTION_PLAYER_NANOTRASEN, FACTION_PLAYER_SOLFED)
 
 //	SolFed
-/datum/outfit/job/solgov/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/job/solfed/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
-	H.faction |= list(FACTION_PLAYER_SOLGOV,FACTION_PLAYER_NANOTRASEN)
+	H.faction |= list(FACTION_PLAYER_SOLFED, FACTION_PLAYER_NANOTRASEN)
 
 //	InteQ
 /datum/outfit/job/inteq/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	H.faction |= list(FACTION_PLAYER_INTEQ)
+
+/datum/faction/elysium
+	name = FACTION_ELYSIUM
+	prefixes = list("EUSM", "EUSQ", "EUSF", "EUSR", "ESV")
+
+/datum/faction/pirate
+	name = FACTION_PIRATES
+	prefixes = list("PIRATE", "RSV")
+
+/datum/faction/nt
+	prefixes = list("NTSV", "NTBSV", "NTASV", "NTSSV", "NTTSV", "NTMSV", "NTLSV", "NTDSV", "NTSPSV", "NTESV", "NTRSV")
+
+/datum/faction/inteq
+	prefixes = list("IRMV", "IQMSSV", "BIQSV", "LIQSV", "SPIQSV")
+
+/datum/faction/solgov
+	prefixes = list("SFSV", "BSFSV", "ASFSV", "SSFSV", "MDSFSV", "LSFSV", "MSFSV", "SPSFSV")
+
+/datum/faction/syndicate
+	prefixes = list("SEV", "SSV", "SMMV", "PCAC", "SSASV", "SSSV", "SOSSV", "TSSV", "SABSV", "BSSV", "ASSV", "MSSV", "LSSV", "DSSV", "RSSV",)

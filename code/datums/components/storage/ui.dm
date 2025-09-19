@@ -42,10 +42,18 @@
 		for(var/type in numbered_contents)
 			var/datum/numbered_display/ND = numbered_contents[type]
 			ND.sample_object.mouse_opacity = MOUSE_OPACITY_OPAQUE
-			ND.sample_object.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"
+			// [CELADON-ADD] - FIXES_ICON_OUT_OF_BORDER - Убеждаемся, что координаты находятся в допустимых пределах
+			var/safe_cx = clamp(cx, screen_start_x, screen_start_x + columns - 1)
+			var/safe_cy = clamp(cy, screen_start_y, screen_start_y + rows - 1)
+			ND.sample_object.screen_loc = "[safe_cx]:[screen_pixel_x],[safe_cy]:[screen_pixel_y]"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = ABOVE_HUD_LAYER
 			ND.sample_object.plane = ABOVE_HUD_PLANE
+			// [/CELADON-ADD]
+			// [CELADON-ADD] - FIXES_ICON_OUT_OF_BORDER - Сбрасываем позицию элемента для предотвращения смещения
+			ND.sample_object.pixel_x = 0
+			ND.sample_object.pixel_y = 0
+			// [/CELADON-ADD]
 			. += ND.sample_object
 			cx++
 			if(cx - screen_start_x >= columns)
@@ -59,10 +67,21 @@
 				continue
 			var/atom/movable/screen/storage/item_holder/D = new(null, src, O)
 			D.mouse_opacity = MOUSE_OPACITY_OPAQUE //This is here so storage items that spawn with contents correctly have the "click around item to equip"
-			D.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"
+			// [CELADON-ADD] - FIXES_ICON_OUT_OF_BORDER - Убеждаемся, что координаты находятся в допустимых пределах
+			var/safe_cx = clamp(cx, screen_start_x, screen_start_x + columns - 1)
+			var/safe_cy = clamp(cy, screen_start_y, screen_start_y + rows - 1)
+			// [/CELADON-ADD]
+			// [CELADON-EDIT] - FIXES_ICON_OUT_OF_BORDER
+			// D.screen_loc = "[cx]:[screen_pixel_x],[cy]:[screen_pixel_y]"	// ORIGINAL
+			D.screen_loc = "[safe_cx]:[screen_pixel_x],[safe_cy]:[screen_pixel_y]"
+			// [/CELADON-EDIT]
 			O.maptext = ""
 			O.layer = ABOVE_HUD_LAYER
 			O.plane = ABOVE_HUD_PLANE
+			// [CELADON-ADD] - FIXES_ICON_OUT_OF_BORDER - Сбрасываем позицию элемента для предотвращения смещения
+			O.pixel_x = 0
+			O.pixel_y = 0
+			// [/CELADON-ADD]
 			. += D
 			cx++
 			if(cx - screen_start_x >= columns)
@@ -101,7 +120,7 @@
 	var/min_pixels = (MINIMUM_PIXELS_PER_ITEM * length(percentage_by_item)) + padding_pixels
 	// do the check for fallback for when someone has too much gamer gear
 	if((min_pixels) > (max_horizontal_pixels + 4))	// 4 pixel grace zone
-		to_chat(user, "<span class='warning'>[parent] was showed to you in legacy mode due to your items overrunning the three row limit! Consider not carrying too much or bugging a maintainer to raise this limit!</span>")
+		to_chat(user, span_warning("[parent] was showed to you in legacy mode due to your items overrunning the three row limit! Consider not carrying too much or bugging a maintainer to raise this limit!"))
 		return orient2hud_legacy(user, maxcolumns)
 	// after this point we are sure we can somehow fit all items into our max number of rows.
 
@@ -111,7 +130,7 @@
 	var/overrun = FALSE
 	if(used > our_volume)
 		// congratulations we are now in overrun mode. everything will be crammed to minimum storage pixels.
-		to_chat(user, "<span class='warning'>[parent] rendered in overrun mode due to more items inside than the maximum volume supports.</span>")
+		to_chat(user, span_warning("[parent] rendered in overrun mode due to more items inside than the maximum volume supports."))
 		overrun = TRUE
 
 	// how much we are using

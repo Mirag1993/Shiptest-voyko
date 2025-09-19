@@ -23,20 +23,20 @@
 /area/ruin/unpowered)
 "e" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
-/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
+/obj/effect/spawner/random/food_or_drink/donkpockets,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "f" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/cornchips,
-/obj/item/reagent_containers/food/snacks/butterdog,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/canned/peaches,
+/obj/item/food/cornchips,
+/obj/item/food/candy,
+/obj/item/food/canned/peaches,
 /obj/item/reagent_containers/food/drinks/bottle/sarsaparilla,
+/obj/item/food/butterdog,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "g" = (
@@ -66,9 +66,9 @@
 /area/ruin/unpowered)
 "k" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/cheesyfries,
-/obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/food/cheesyfries,
+/obj/item/food/chips,
+/obj/item/food/cheese/wedge,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
@@ -126,14 +126,21 @@
 /area/ruin/unpowered)
 "t" = (
 /obj/structure/rack,
-/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
-/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
+/obj/effect/spawner/random/clothing/kittyears_or_rabbitears,
+/obj/effect/spawner/random/clothing/kittyears_or_rabbitears,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "u" = (
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
+/area/ruin/unpowered)
+"v" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/human/hermit/ranged,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
 /area/ruin/unpowered)
 "w" = (
 /obj/structure/window,
@@ -156,6 +163,7 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "z" = (
+/mob/living/simple_animal/hostile/human/hermit/ranged,
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
@@ -176,8 +184,8 @@
 	},
 /area/ruin/unpowered)
 "E" = (
-/obj/effect/spawner/lootdrop/costume,
-/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/spawner/random/clothing/costume,
+/obj/effect/spawner/random/clothing/gloves,
 /obj/structure/window,
 /obj/structure/rack,
 /turf/open/floor/wood,
@@ -195,7 +203,7 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "G" = (
-/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/random/clothing/costume,
 /obj/structure/window,
 /obj/structure/rack,
 /turf/open/floor/wood,
@@ -214,16 +222,16 @@
 /area/ruin/unpowered)
 "J" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/chewable/bubblegum/nicotine,
-/obj/item/reagent_containers/food/snacks/burger/fivealarm,
-/obj/item/reagent_containers/food/snacks/cherrycupcake,
+/obj/item/food/chewable/bubblegum/nicotine,
+/obj/item/food/burger/fivealarm,
+/obj/item/food/cherrycupcake,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "K" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/chococornet,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/canned/peaches,
+/obj/item/food/chococornet,
+/obj/item/food/candy,
+/obj/item/food/canned/peaches,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "L" = (
@@ -231,8 +239,8 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "M" = (
-/obj/effect/spawner/lootdrop/costume,
-/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/spawner/random/clothing/costume,
+/obj/effect/spawner/random/clothing/gloves,
 /obj/item/shard{
 	icon_state = "tiny"
 	},
@@ -243,31 +251,32 @@
 /area/ruin/unpowered)
 "N" = (
 /obj/structure/bed,
-/obj/item/bedsheet/dorms,
+/obj/effect/spawner/random/bedsheet,
+/mob/living/simple_animal/hostile/human/hermit/ranged,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "O" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/chewable/bubblegum/happiness,
-/obj/item/reagent_containers/food/snacks/candy_corn,
-/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/food/chewable/bubblegum/happiness,
+/obj/item/food/candy_corn,
+/obj/item/food/chocolatebar,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "P" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/chocolatebunny,
-/obj/item/reagent_containers/food/snacks/candy,
-/obj/item/reagent_containers/food/snacks/canned/beans,
+/obj/item/food/chocolatebunny,
+/obj/item/food/candy,
+/obj/item/food/canned/beans,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/directional/north,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "R" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/snacks/cheesynachos,
-/obj/item/reagent_containers/food/snacks/branrequests,
-/obj/item/reagent_containers/food/snacks/canned/beans,
+/obj/item/food/cheesynachos,
+/obj/item/food/branrequests,
+/obj/item/food/canned/beans,
 /obj/item/reagent_containers/food/drinks/bottle/sarsaparilla,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
@@ -275,7 +284,7 @@
 /turf/template_noop,
 /area/template_noop)
 "T" = (
-/obj/machinery/vending/cola/random,
+/obj/effect/spawner/random/vending/cola,
 /obj/machinery/light/directional/west,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
@@ -359,7 +368,7 @@ G
 (7,1,1) = {"
 s
 F
-H
+v
 V
 b
 e

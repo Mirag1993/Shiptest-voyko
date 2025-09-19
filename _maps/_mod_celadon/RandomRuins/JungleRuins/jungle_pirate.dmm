@@ -49,12 +49,12 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "iw" = (
-/obj/item/ammo_box/c45,
+/obj/item/storage/box/ammo/c45,
 /obj/structure/table/wood/poker,
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "iC" = (
-/obj/item/ammo_box/c9mm,
+/obj/item/storage/box/ammo/c9mm,
 /obj/structure/table/wood/poker,
 /mob/living/simple_animal/hostile/human/pirate/melee,
 /turf/open/floor/wood,
@@ -78,7 +78,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle/dark/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "kh" = (
 /turf/closed/wall/mineral/wood,
@@ -144,7 +144,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle/dark/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "tG" = (
 /turf/open/water/jungle/lit,
@@ -154,7 +154,7 @@
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "xd" = (
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "xT" = (
 /obj/structure/bonfire/prelit,
@@ -180,11 +180,11 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle/dark/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "BV" = (
 /obj/structure/bonfire/prelit,
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "CG" = (
 /obj/structure/curtain/bounty,
@@ -243,7 +243,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "IH" = (
 /obj/item/reagent_containers/glass/bucket/wooden,
@@ -257,7 +257,7 @@
 /turf/open/floor/wood,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Kl" = (
-/turf/open/floor/plating/dirt/jungle/dark/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "KD" = (
 /obj/machinery/grill,
@@ -317,6 +317,10 @@
 /obj/item/gun/ballistic/shotgun/brimstone,
 /obj/item/gun/ballistic/shotgun/brimstone,
 /obj/item/gun/grenadelauncher,
+/obj/item/storage/box/donkpockets/donkpocketspicy{
+	desc = "Produced personally be CHUVAK TM. Ultra-spicy";
+	name = "CHUVAK TM Donk-pockets"
+	},
 /turf/open/floor/wood,
 /area/ruin/unpowered)
 "SA" = (
@@ -352,7 +356,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "UX" = (
 /mob/living/simple_animal/hostile/human/pirate/melee,
@@ -386,8 +390,7 @@
 /area/ruin/unpowered)
 "Xt" = (
 /obj/structure/table/wood/poker,
-/obj/item/nullrod/claymore/saber/pirate,
-/obj/item/melee/transforming/energy/sword/saber/pirate,
+/obj/item/melee/energy/sword/saber/pirate,
 /turf/open/floor/carpet/red,
 /area/ruin/unpowered)
 "XA" = (

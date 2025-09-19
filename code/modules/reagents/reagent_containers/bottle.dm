@@ -39,6 +39,26 @@
 	desc = "A small bottle of morphine."
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 
+/obj/item/reagent_containers/glass/bottle/dimorlin
+	name = "dimorlin bottle"
+	desc = "A small bottle of dimorlin. Apply one dose at a time."
+	list_reagents = list(/datum/reagent/medicine/dimorlin = 30)
+
+/obj/item/reagent_containers/glass/bottle/tramal
+	name = "tramal bottle"
+	desc = "A small bottle of tramal."
+	list_reagents = list(/datum/reagent/medicine/tramal = 30)
+
+/obj/item/reagent_containers/glass/bottle/chitosan
+	name = "chitosan bottle"
+	desc = "A small bottle of chitosan."
+	list_reagents = list(/datum/reagent/medicine/chitosan = 30)
+
+/obj/item/reagent_containers/glass/bottle/painkiller_booze
+	name = "'painkiller' bottle"
+	desc = "A small bottle of an unmarked substance called 'painkiller.' Will this really work?"
+	list_reagents = list(/datum/reagent/consumable/ethanol/painkiller = 30)
+
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
@@ -204,10 +224,12 @@
 	desc = "A small bottle. Contains an untested viral culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/random
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /obj/item/reagent_containers/glass/bottle/pierrot_throat
 	name = "Pierrot's Throat culture bottle"
 	desc = "A small bottle. Contains H0NI<42 virion culture in synthblood medium."
 	spawned_disease = /datum/disease/pierrot_throat
+// [CELADON-ADD]S
 
 /obj/item/reagent_containers/glass/bottle/cold
 	name = "Rhinovirus culture bottle"
@@ -433,39 +455,3 @@
 
 /obj/item/reagent_containers/glass/bottle/morphine/sleeper
 	cap_on = FALSE
-
-//types of syrups
-
-/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/caramel
-	name = "bottle of caramel syrup"
-	desc = "A pump bottle containing caramalized sugar, also known as caramel. Do not lick."
-	list_reagents = list(/datum/reagent/consumable/caramel = 50)
-
-/obj/item/reagent_containers/food/drinks/bottle/syrup_bottle/liqueur
-	name = "bottle of coffee liqueur syrup"
-	desc = "A pump bottle containing mexican coffee-flavoured liqueur syrup. In production since 1936, HONK."
-	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 50)
-
-//Coffeepots: for reference, a standard cup is 30u, to allow 20u for sugar/sweetener/milk/creamer
-/obj/item/reagent_containers/food/drinks/bottle/coffeepot
-	icon = 'icons/obj/food/containers.dmi'
-	name = "coffeepot"
-	desc = "A large pot for dispensing that ambrosia of corporate life known to mortals only as coffee. Contains 4 standard cups."
-	volume = 120
-	icon_state = "coffeepot"
-	fill_icon_state = "coffeepot"
-	fill_icon_thresholds = list(0, 1, 30, 60, 100)
-
-/obj/item/reagent_containers/glass/coffee_cup
-	name = "coffee cup"
-	desc = "A heat-formed plastic coffee cup. Can theoretically be used for other hot drinks, if you're feeling adventurous."
-	icon = 'icons/obj/machines/coffeemaker.dmi'
-	icon_state = "coffee_cup_e"
-	base_icon_state = "coffee_cup"
-	possible_transfer_amounts = list(10)
-	volume = 30
-	spillable = TRUE
-
-/obj/item/reagent_containers/glass/coffee_cup/update_icon_state()
-	icon_state = reagents.total_volume ? base_icon_state : "[base_icon_state]_e"
-	return ..()

@@ -55,7 +55,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "bd" = (
 /obj/structure/flora/ausbushes/grassybush/hell,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "bg" = (
 /turf/closed/mineral/random/volcanic,
@@ -92,7 +92,7 @@
 	name = "armory locker";
 	req_one_access_txt = "1"
 	},
-/obj/item/ammo_box/a12g,
+/obj/item/storage/box/ammo/a12g_buckshot,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/unpowered/crashed_starwalker)
 "bL" = (
@@ -237,7 +237,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "cT" = (
 /obj/effect/turf_decal/industrial/loading,
-/obj/item/reagent_containers/food/snacks/monkeycube,
+/obj/item/food/monkeycube,
 /turf/open/floor/plasteel/patterned/ridged,
 /area/ruin/unpowered/crashed_starwalker)
 "dh" = (
@@ -547,7 +547,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "id" = (
 /obj/structure/flora/ausbushes/fernybush/hell,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "it" = (
 /obj/effect/turf_decal/industrial/warning{
@@ -637,7 +637,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/directional/east,
-/obj/item/kitchen/knife{
+/obj/item/melee/knife/kitchen{
 	pixel_x = 7;
 	pixel_y = 10
 	},
@@ -720,9 +720,6 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "1-4"
-	},
-/obj/item/reagent_containers/food/snacks/breadslice/moldy{
-	pixel_x = 5
 	},
 /turf/open/floor/pod,
 /area/ruin/unpowered/crashed_starwalker)
@@ -942,7 +939,7 @@
 /obj/effect/turf_decal/industrial/outline/yellow,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/closet/crate/secure/gear,
-/obj/item/ammo_box/c10mm/surplus,
+/obj/item/storage/box/ammo/c10mm_surplus,
 /obj/item/weaponcrafting/stock,
 /obj/item/weaponcrafting/stock{
 	pixel_x = -6
@@ -955,7 +952,7 @@
 /turf/open/floor/plasteel/patterned,
 /area/ruin/unpowered/crashed_starwalker)
 "pk" = (
-/obj/item/reagent_containers/food/snacks/monkeycube{
+/obj/item/food/monkeycube{
 	pixel_y = -1;
 	pixel_x = 6
 	},
@@ -1027,7 +1024,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "rl" = (
 /obj/item/grown/log/tree,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "rt" = (
 /obj/structure/catwalk/over,
@@ -1243,7 +1240,7 @@
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/obj/item/ammo_box/a357{
+/obj/item/storage/box/ammo/a357{
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -1337,7 +1334,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "vw" = (
 /obj/structure/flora/tree/tall/whitesands,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "vy" = (
 /obj/effect/decal/fakelattice{
@@ -1393,7 +1390,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "wp" = (
 /obj/structure/flora/ash/fireblossom,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "ws" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
@@ -1683,7 +1680,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "Ba" = (
 /obj/structure/flora/tree/dead/hell,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/cave/explored)
 "BB" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -1954,7 +1951,7 @@
 /area/overmap_encounter/planetoid/lava/explored)
 "Fu" = (
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion,
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/cave/explored)
 "Fv" = (
 /obj/structure/catwalk/over,
@@ -1972,7 +1969,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "FC" = (
 /obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "FM" = (
 /obj/effect/turf_decal/industrial/outline/yellow,
@@ -2003,7 +2000,7 @@
 	req_one_access_txt = "1"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/clothing/suit/armor/vest/bulletproof/frontier,
+/obj/item/clothing/suit/armor/vest/frontier,
 /obj/item/clothing/head/helmet/bulletproof/x11/frontier{
 	pixel_y = 6
 	},
@@ -2024,7 +2021,7 @@
 /turf/open/floor/engine/hull/interior,
 /area/overmap_encounter/planetoid/lava/explored)
 "Hl" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
@@ -2195,7 +2192,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "Jw" = (
 /obj/structure/flora/firebush,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Jx" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2254,7 +2251,7 @@
 /area/overmap_encounter/planetoid/lava/explored)
 "Ks" = (
 /obj/structure/flora/stump,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Ky" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2362,7 +2359,7 @@
 /area/overmap_encounter/planetoid/cave/explored)
 "LV" = (
 /obj/effect/turf_decal/industrial/loading,
-/obj/item/reagent_containers/food/snacks/monkeycube{
+/obj/item/food/monkeycube{
 	pixel_y = 5;
 	pixel_x = 3
 	},
@@ -2380,7 +2377,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/crashed_starwalker)
 "Mk" = (
-/obj/structure/statue/sandstone/assistant,
+/obj/item/statuebust,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
@@ -2417,7 +2414,7 @@
 	pixel_x = -26
 	},
 /obj/structure/spider/stickyweb,
-/obj/effect/spawner/lootdrop/glowstick,
+/obj/effect/spawner/random/decoration/glowstick,
 /turf/open/floor/pod/light,
 /area/ruin/unpowered/crashed_starwalker)
 "MO" = (
@@ -2449,7 +2446,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface/lit,
 /area/ruin/unpowered/crashed_starwalker)
 "MX" = (
-/obj/machinery/vending/snack/random,
+/obj/effect/spawner/random/vending/snack,
 /obj/structure/railing{
 	dir = 4
 	},
@@ -2482,7 +2479,7 @@
 	icon_state = "gib3-old";
 	pixel_x = -6
 	},
-/obj/item/melee/transforming/energy/sword/saber/pirate/yellow{
+/obj/item/melee/energy/sword/saber/pirate/yellow{
 	pixel_x = -5;
 	pixel_y = 16
 	},
@@ -2532,7 +2529,7 @@
 /turf/open/floor/plating/moss,
 /area/overmap_encounter/planetoid/cave/explored)
 "Pk" = (
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "Pv" = (
 /obj/structure/foamedmetal,
@@ -2543,6 +2540,8 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/mission_poi/main/blackbox,
+/obj/machinery/blackbox_recorder,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface/lit,
 /area/ruin/unpowered/crashed_starwalker)
 "PH" = (
@@ -3040,7 +3039,7 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/crashed_starwalker)
 "Xj" = (
-/turf/open/floor/plating/grass/lava,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/cave/explored)
 "Xs" = (
 /obj/effect/turf_decal/techfloor{
@@ -3119,7 +3118,7 @@
 /area/ruin/unpowered/crashed_starwalker)
 "XR" = (
 /obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "XT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3133,7 +3132,7 @@
 /obj/structure/closet/secure_closet/freezer/kitchen/wall{
 	pixel_y = 29
 	},
-/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/condiment/rice,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/crashed_starwalker)
@@ -3173,7 +3172,7 @@
 /area/overmap_encounter/planetoid/lava/explored)
 "YG" = (
 /obj/structure/flora/tree/dead_pine,
-/turf/open/floor/plating/grass/lava/orange,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
 /area/overmap_encounter/planetoid/lava/explored)
 "YN" = (
 /obj/structure/grille,

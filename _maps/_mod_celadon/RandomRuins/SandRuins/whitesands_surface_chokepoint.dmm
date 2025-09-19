@@ -45,11 +45,11 @@
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/ruin)
 "j" = (
-/obj/item/banner/security,
+/obj/item/banner/security/mundane,
 /turf/open/floor/plating/asteroid/whitesands/dried,
 /area/ruin)
 "k" = (
-/obj/effect/mob_spawn/human/corpse/damaged/whitesands/survivor,
+/obj/effect/mob_spawn/human/corpse/damaged/whitesands,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroid/whitesands/lit,
 /area/overmap_encounter/planetoid/sand/explored)
@@ -59,10 +59,6 @@
 "n" = (
 /obj/structure/sign/poster/official/ion_carbine,
 /turf/closed/wall/mineral/sandstone,
-/area/ruin)
-"o" = (
-/obj/item/banner/security/mundane,
-/turf/open/floor/plating/asteroid/whitesands/dried,
 /area/ruin)
 "p" = (
 /obj/structure/sign/poster/official/safety_report,
@@ -75,7 +71,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/head/helmet/knight/blue,
 /obj/item/clothing/suit/armor/riot/knight/blue,
-/obj/item/spear,
+/obj/item/melee/spear,
 /obj/item/shield/riot/buckler,
 /turf/open/floor/plating/asteroid/whitesands,
 /area/ruin)
@@ -139,7 +135,7 @@
 /turf/closed/mineral/random/whitesands,
 /area/overmap_encounter/planetoid/sand/explored)
 "S" = (
-/obj/effect/mob_spawn/human/corpse/damaged/whitesands/survivor,
+/obj/effect/mob_spawn/human/corpse/damaged/whitesands,
 /obj/effect/decal/cleanable/blood{
 	icon_state = "floor3"
 	},
@@ -227,7 +223,7 @@ a
 "}
 (4,1,1) = {"
 V
-o
+j
 q
 k
 q

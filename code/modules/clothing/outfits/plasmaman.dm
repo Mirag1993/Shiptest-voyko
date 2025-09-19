@@ -17,7 +17,7 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/botany
 	uniform = /obj/item/clothing/under/plasmaman/botany
-	gloves = /obj/item/clothing/gloves/color/botanic_leather/plasmaman
+	gloves = /obj/item/clothing/gloves/botanic_leather/plasmaman
 
 /datum/outfit/plasmaman/curator
 	name = "Curator Plasmaman"
@@ -196,6 +196,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/hop
 	gloves = /obj/item/clothing/gloves/color/plasmaman/black
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 /datum/outfit/plasmaman/mime
 	name = "Plasmamime"
 
@@ -211,6 +212,7 @@
 	uniform = /obj/item/clothing/under/plasmaman/clown
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	gloves = /obj/item/clothing/gloves/color/plasmaman/clown
+// [/CELADON-ADD]
 
 /datum/outfit/plasmaman/solgov //WS edit sgr
 	name = "Plasmasolgov"
@@ -222,4 +224,10 @@
 	name = "Plasmangr"
 	head = /obj/item/clothing/head/helmet/space/plasmaman/ngr
 	uniform= /obj/item/clothing/under/plasmaman/ngr
+	gloves = /obj/item/clothing/gloves/color/plasmaman/black
+
+/datum/outfit/plasmaman/Hardliners
+	name = "Plasmahl"
+	head = /obj/item/clothing/head/helmet/space/plasmaman/hardliners
+	uniform = /obj/item/clothing/under/plasmaman/hardliners
 	gloves = /obj/item/clothing/gloves/color/plasmaman/black

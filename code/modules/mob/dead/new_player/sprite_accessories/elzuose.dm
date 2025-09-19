@@ -37,6 +37,22 @@
 	name = "Sharp"
 	icon_state = "sharp"
 
+/datum/sprite_accessory/elzu_horns/cervid
+	name = "Cervid"
+	icon_state = "cervid"
+
+/datum/sprite_accessory/elzu_horns/prong
+	name = "Prong"
+	icon_state = "prong"
+
+/datum/sprite_accessory/elzu_horns/brow
+	name = "Brow"
+	icon_state = "brow"
+
+/datum/sprite_accessory/elzu_horns/branch
+	name = "Branch"
+	icon_state = "branch"
+
 //Start tails
 
 /datum/sprite_accessory/tails/elzu

@@ -7,7 +7,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	movement_type = FLYING
 	generic_canpass = FALSE
-	//The sound this plays on impact.
+	plane = GAME_PLANE_FOV_HIDDEN
+	wound_bonus = CANT_WOUND // can't wound by default
+	///The sound this plays on impact.
 	var/hitsound = 'sound/weapons/pierce.ogg'
 	var/hitsound_non_living = ""
 	var/hitsound_glass
@@ -19,11 +21,14 @@
 	var/near_miss_sound = ""
 	var/ricochet_sound = ""
 
-
+	///what we should call the fired bullet
+	var/bullet_identifier = null
 
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/def_zone = ""	//Aiming at
 	var/atom/movable/firer = null//Who shot it
+	// if the projectile was the result of a misfire. For logging.
+	var/misfire = FALSE
 	var/atom/fired_from = null // the atom that the projectile was fired from (gun, turret)
 	var/suppressed = FALSE	//Attack message
 	var/yo = null
@@ -71,7 +76,10 @@
 	/// number of times we've pierced something. Incremented BEFORE bullet_act and on_hit proc!
 	var/pierces = 0
 
-	var/speed = 0.8			//Amount of deciseconds it takes for projectile to travel
+	///Amount of deciseconds it takes for projectile to travel
+	var/speed = 0.8
+	///plus/minus modifier to projectile speed
+	var/speed_mod = 0
 	var/Angle = 0
 	var/original_angle = 0		//Angle at firing
 	var/nondirectional_sprite = FALSE //Set TRUE to prevent projectiles from having their sprites rotated based on firing angle
@@ -93,6 +101,8 @@
 	var/ricochet_auto_aim_angle = 30
 	/// the angle of impact must be within this many degrees of the struck surface, set to 0 to allow any angle
 	var/ricochet_incidence_leeway = 40
+	/// accuracy modifier. Used as a multiplier
+	var/accuracy_mod = 1
 
 	///If the object being hit can pass ths damage on to something else, it should not do it for this bullet
 	var/force_hit = FALSE
@@ -139,6 +149,7 @@
 	var/decayedRange			//stores original range
 	var/reflect_range_decrease = 5			//amount of original range that falls off when reflecting, so it doesn't go forever
 	var/reflectable = NONE // Can it be reflected or not?
+
 		//Effects
 	var/stun = 0
 	var/knockdown = 0
@@ -156,10 +167,22 @@
 	var/impact_effect_type //what type of impact effect to show when hitting something
 	var/log_override = FALSE //is this type spammed enough to not log? (KAs)
 
+	// if the projectile has the matching flags when hitting a wall, it deals it's override damage instead
+	var/wall_damage_flags = PROJECTILE_BONUS_DAMAGE_NONE
+	var/wall_damage_override = 0
+
 	///If defined, on hit we create an item of this type then call hitby() on the hit target with this, mainly used for embedding items (bullets) in targets
 	var/shrapnel_type
+	///If we have a shrapnel_type defined, these embedding stats will be passed to the spawned shrapnel type, which will roll for embedding on the target
+	var/list/embedding
 	///If TRUE, hit mobs even if they're on the floor and not our target
 	var/hit_stunned_targets = FALSE
+	//For what kind of brute wounds we're rolling for, if we're doing such a thing. Lasers obviously don't care since they do burn instead.
+	var/sharpness = SHARP_NONE
+	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
+	var/wound_falloff_tile
+	///How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
+	var/embed_falloff_tile
 	/// If true directly targeted turfs can be hit
 	var/can_hit_turfs = FALSE
 
@@ -170,10 +193,22 @@
 /obj/projectile/Initialize()
 	. = ..()
 	decayedRange = range
+	speed = speed + speed_mod
+
+	if(embedding)
+		updateEmbedding()
+
+	if(!bullet_identifier)
+		bullet_identifier = name
 	AddElement(/datum/element/connect_loc, projectile_connections)
 
 /obj/projectile/proc/Range()
 	range--
+	if(wound_bonus != CANT_WOUND)
+		wound_bonus += wound_falloff_tile
+		bare_wound_bonus = max(0, bare_wound_bonus + wound_falloff_tile)
+	if(embedding)
+		embedding["embed_chance"] += embed_falloff_tile
 	if(range <= 0 && loc)
 		on_range()
 
@@ -210,6 +245,10 @@
 		var/mob/living/L = target
 		hit_limb = L.check_limb_hit(def_zone)
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_SELF_ON_HIT, firer, target, Angle, hit_limb)
+
+	if(QDELETED(src)) // in case one of the above signals deleted the projectile for whatever reason
+		return
+
 	var/turf/target_loca = get_turf(target)
 
 	var/hitx
@@ -248,11 +287,13 @@
 			if(B && !IS_ORGANIC_LIMB(B)) // So if you hit a robotic, it sparks instead of bloodspatters
 				do_sparks(2, FALSE, target.loc)
 			else
+
 				var/splatter_color = null
 				if(iscarbon(L))
+				//if((iscarbon(L)) && !HAS_TRAIT(L, NOBLOOD)) // [CELADON - EDIT] Lanius
 					var/mob/living/carbon/carbon_target = L
 					splatter_color = carbon_target.dna.blood_type.color
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, splatter_color)
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir, splatter_color)
 			if(prob(33))
 				L.add_splatter_floor(target_loca)
 		else if(impact_effect_type && !hitscan)
@@ -266,12 +307,12 @@
 			playsound(loc, hitsound, 5, TRUE, -1)
 		else if(suppressed)
 			playsound(loc, hitsound, 5, TRUE, -1)
-			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
+			to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
 		else
 			if(hitsound)
 				playsound(get_turf(L), hitsound, 100, TRUE, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>You're hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
+			L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
+					span_userdanger("You're hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
 
 	var/reagent_note
@@ -280,7 +321,9 @@
 		for(var/datum/reagent/R in reagents.reagent_list)
 			reagent_note += "[R.name] ([num2text(R.volume)])"
 
-	if(ismob(firer))
+	if(misfire)
+		L.log_message("has been hit by a misfired [src] from \a [fired_from] last touched by [fired_from.fingerprintslast]", LOG_ATTACK, color = "orange")
+	else if(ismob(firer))
 		log_combat(firer, L, "shot", src, reagent_note)
 	else
 		L.log_message("has been shot by [firer] with [src]", LOG_ATTACK, color="orange")
@@ -359,7 +402,7 @@
 			return TRUE
 
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
-	def_zone = ran_zone(def_zone, max(100-(7*distance), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
+	def_zone = ran_zone(def_zone, max(80-(7*distance*accuracy_mod), 5)) //Lower accurancy/longer range tradeoff. 7 is a balanced number to use.
 
 	return process_hit(T, select_target(T, A))		// SELECT TARGET FIRST!
 
@@ -487,12 +530,26 @@
 			return FALSE
 	else
 		var/mob/living/L = target
-		if(direct_target)
+		// [CELADON-EDIT] - CELADON_BALANCE - Делаем шансы на попадания
+		if(iscarbon(L))
+			if(direct_target && !L.density && firer.density && prob(85)) // 85% что пуля попадет в лежащую цель от стоящего стрелка
+				return TRUE
+			if(direct_target && !L.density && !firer.density && prob(70)) // 70% что пуля попадет в лежащую цель от лежащего стрелка
+				return TRUE
+			if(direct_target && L.density && !firer.density && prob(90)) // 90% пуля попадет в стоящую цель от лежачего стрелка
+				return TRUE
+		else if(direct_target)
 			return TRUE
+		// [/CELADON-EDIT]
 		// If target not able to use items, move and stand - or if they're just dead, pass over.
 		if(L.stat || (!hit_stunned_targets && HAS_TRAIT(L, TRAIT_IMMOBILIZED) && HAS_TRAIT(L, TRAIT_FLOORED) && HAS_TRAIT(L, TRAIT_HANDS_BLOCKED)))
 			return FALSE
-	return TRUE
+	// [CELADON-EDIT] - CELADON_BALANCE - Делаем шансы на попадания
+	// return TRUE 	// CELADON-EDIT - ORIGINAL
+	if(prob(25))	// С вероятность 20% шальная пуля зацепит лежащего
+		return TRUE
+	return FALSE
+	// [/CELADON-EDIT]
 
 /**
  * Scan if we should hit something and hit it if we need to
@@ -588,7 +645,7 @@
 	return PROJECTILE_PIERCE_NONE
 
 /obj/projectile/proc/check_ricochet(atom/A)
-	var/chance = ricochet_chance * A.ricochet_chance_mod
+	var/chance = ricochet_chance * A.receive_ricochet_chance_mod
 	if(firer && HAS_TRAIT(firer, TRAIT_NICE_SHOT))
 		chance += NICE_SHOT_RICOCHET_BONUS
 	if(prob(chance))
@@ -622,7 +679,7 @@
 /obj/projectile/Process_Spacemove(movement_dir = 0)
 	return TRUE	//Bullets don't drift in space
 
-/obj/projectile/process()
+/obj/projectile/process(seconds_per_tick)
 	last_process = world.time
 	if(!loc || !fired || !trajectory)
 		fired = FALSE
@@ -680,7 +737,9 @@
 	trajectory_ignore_forcemove = FALSE
 	trajectory = new(starting.x, starting.y, starting.z, pixel_x, pixel_y, Angle, SSprojectiles.global_pixel_speed)
 	last_projectile_move = world.time
+	name = bullet_identifier
 	fired = TRUE
+	play_fov_effect(starting, 6, "gunfire", dir = NORTH, angle = Angle)
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_FIRE)
 	if(hitscan)
 		process_hitscan()
@@ -823,63 +882,102 @@
 	if(prob(50))
 		homing_offset_y = -homing_offset_y
 
-//Spread is FORCED!
-/obj/projectile/proc/preparePixelProjectile(atom/target, atom/source, params, spread = 0)
-	var/turf/curloc = get_turf(source)
-	var/turf/targloc = get_turf(target)
-	trajectory_ignore_forcemove = TRUE
-	forceMove(get_turf(source))
-	trajectory_ignore_forcemove = FALSE
-	starting = get_turf(source)
-	original = target
-	if(targloc || !params)
-		yo = targloc.y - curloc.y
-		xo = targloc.x - curloc.x
-		setAngle(Get_Angle(src, targloc) + spread)
+/**
+ * Aims the projectile at a target.
+ *
+ * Must be passed at least one of a target or a list of click parameters.
+ * If only passed the click modifiers the source atom must be a mob with a client.
+ *
+ * Arguments:
+ * - [target][/atom]: (Optional) The thing that the projectile will be aimed at.
+ * - [source][/atom]: The initial location of the projectile or the thing firing it.
+ * - [modifiers][/list]: (Optional) A list of click parameters to apply to this operation.
+ * - deviation: (Optional) How the trajectory should deviate from the target in degrees.
+ *   - //Spread is FORCED!
+ */
+/obj/projectile/proc/preparePixelProjectile(atom/target, atom/source, list/modifiers = null, spread = 0)
+	if(!(isnull(modifiers) || islist(modifiers)))
+		stack_trace("WARNING: Projectile [type] fired with non-list modifiers, likely was passed click params.")
+		modifiers = null
 
-	if(isliving(source) && params)
-		var/list/calculated = calculate_projectile_angle_and_pixel_offsets(source, params)
+	var/turf/source_loc = get_turf(source)
+	var/turf/target_loc = get_turf(target)
+	if(isnull(source_loc))
+		stack_trace("WARNING: Projectile [type] fired from nullspace.")
+		qdel(src)
+		return FALSE
+
+	trajectory_ignore_forcemove = TRUE
+	forceMove(source_loc)
+	trajectory_ignore_forcemove = FALSE
+
+	starting = source_loc
+	pixel_x = source.pixel_x
+	pixel_y = source.pixel_y
+	original = target
+	if(length(modifiers))
+		var/list/calculated = calculate_projectile_angle_and_pixel_offsets(source, target_loc && target, modifiers)
+
 		p_x = calculated[2]
 		p_y = calculated[3]
-
 		setAngle(calculated[1] + spread)
-	else if(targloc)
-		yo = targloc.y - curloc.y
-		xo = targloc.x - curloc.x
-		setAngle(Get_Angle(src, targloc) + spread)
-	else
-		stack_trace("WARNING: Projectile [type] fired without either mouse parameters, or a target atom to aim at!")
-		qdel(src)
+		return TRUE
 
-/proc/calculate_projectile_angle_and_pixel_offsets(mob/user, params)
-	var/list/modifiers = params2list(params)
-	var/p_x = 0
-	var/p_y = 0
+	if(target_loc)
+		yo = target_loc.y - source_loc.y
+		xo = target_loc.x - source_loc.x
+		setAngle(get_angle(src, target_loc) + spread)
+		return TRUE
+
+	stack_trace("WARNING: Projectile [type] fired without a target or mouse parameters to aim with.")
+	qdel(src)
+	return FALSE
+
+/proc/calculate_projectile_angle_and_pixel_offsets(atom/source, atom/target, modifiers)
 	var/angle = 0
-	if(LAZYACCESS(modifiers, ICON_X))
-		p_x = text2num(LAZYACCESS(modifiers, ICON_X))
-	if(LAZYACCESS(modifiers, ICON_Y))
-		p_y = text2num(LAZYACCESS(modifiers, ICON_Y))
-	if(LAZYACCESS(modifiers, SCREEN_LOC))
-		//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
-		var/list/screen_loc_params = splittext(LAZYACCESS(modifiers, SCREEN_LOC), ",")
+	var/p_x = LAZYACCESS(modifiers, ICON_X) ? text2num(LAZYACCESS(modifiers, ICON_X)) : world.icon_size / 2 // ICON_(X|Y) are measured from the bottom left corner of the icon.
+	var/p_y = LAZYACCESS(modifiers, ICON_Y) ? text2num(LAZYACCESS(modifiers, ICON_Y)) : world.icon_size / 2 // This centers the target if modifiers aren't passed.
 
-		//Split X+Pixel_X up into list(X, Pixel_X)
-		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
 
-		//Split Y+Pixel_Y up into list(Y, Pixel_Y)
-		var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
-		var/x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 32
-		var/y = text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32
+	var/static/list/snowflake_matrix_list = list(/turf/open/floor/grass/ship, /turf/open/floor/plating/asteroid, /turf/open/floor/plating/asteroid/dry_seafloor, /turf/open/floor/plating/asteroid/snow, /turf/open/floor/plating/asteroid/icerock, /turf/open/floor/plating/asteroid/sand) //List of turfs that get translated by -19/-19 for smoothing (this breaks projectiles)
+	if(target)
+		if(is_type_in_list(target, snowflake_matrix_list)) //yes, this is stupid
+			if(target.smoothing_flags)
+				p_x -= 19 //In short, smoothing flags being active on certain turfs means they are the Big Ones and get translated by -19 x/y to mesh together
+				p_y -= 19 //Issue: this also moves ICON_X/Y up by 19 since it accounts for the 0,0 of the icon (moved down by 19 x/y), Giving us a wonderful projectile offset of +19 pixels. Which we remove here
+		var/turf/source_loc = get_turf(source)
+		var/turf/target_loc = get_turf(target)
+		var/dx = ((target_loc.x - source_loc.x) * world.icon_size) + (target.pixel_x - source.pixel_x) + (p_x - (world.icon_size / 2))
+		var/dy = ((target_loc.y - source_loc.y) * world.icon_size) + (target.pixel_y - source.pixel_y) + (p_y - (world.icon_size / 2))
 
-		//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
-		var/list/screenview = getviewsize(user.client.view)
-		var/screenviewX = screenview[1] * world.icon_size
-		var/screenviewY = screenview[2] * world.icon_size
+		angle = ATAN2(dy, dx)
+		return list(angle, p_x, p_y)
 
-		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
-		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = ATAN2(y - oy, x - ox)
+	if(!ismob(source) || !LAZYACCESS(modifiers, SCREEN_LOC))
+		CRASH("Can't make trajectory calculations without a target or click modifiers and a client.")
+
+	var/mob/user = source
+	if(!user.client)
+		CRASH("Can't make trajectory calculations without a target or click modifiers and a client.")
+
+	//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
+	var/list/screen_loc_params = splittext(LAZYACCESS(modifiers, SCREEN_LOC), ",")
+	//Split X+Pixel_X up into list(X, Pixel_X)
+	var/list/screen_loc_X = splittext(screen_loc_params[1],":")
+	//Split Y+Pixel_Y up into list(Y, Pixel_Y)
+	var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
+
+	var/tx = (text2num(screen_loc_X[1]) - 1) * world.icon_size + text2num(screen_loc_X[2])
+	var/ty = (text2num(screen_loc_Y[1]) - 1) * world.icon_size + text2num(screen_loc_Y[2])
+
+	//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
+	var/list/screenview = getviewsize(user.client.view)
+	var/screenviewX = screenview[1] * world.icon_size
+	var/screenviewY = screenview[2] * world.icon_size
+
+	var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
+	var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
+	angle = ATAN2(tx - oy, ty - ox)
 	return list(angle, p_x, p_y)
 
 /obj/projectile/Destroy()
@@ -889,6 +987,8 @@
 	cleanup_beam_segments()
 	if(trajectory)
 		QDEL_NULL(trajectory)
+	//Empties out the list, MIGHT help with landmines hardeling but not all that confident.
+	LAZYCLEARLIST(impacted)
 	return ..()
 
 /obj/projectile/proc/cleanup_beam_segments()
@@ -934,3 +1034,27 @@
 
 /obj/projectile/experience_pressure_difference()
 	return
+
+///Like [/obj/item/proc/updateEmbedding] but for projectiles instead, call this when you want to add embedding or update the stats on the embedding element
+/obj/projectile/proc/updateEmbedding()
+	if(!shrapnel_type || !LAZYLEN(embedding))
+		return
+
+	AddElement(/datum/element/embed,\
+		embed_chance = (!isnull(embedding["embed_chance"]) ? embedding["embed_chance"] : EMBED_CHANCE),\
+		fall_chance = (!isnull(embedding["fall_chance"]) ? embedding["fall_chance"] : EMBEDDED_ITEM_FALLOUT),\
+		pain_chance = (!isnull(embedding["pain_chance"]) ? embedding["pain_chance"] : EMBEDDED_PAIN_CHANCE),\
+		pain_mult = (!isnull(embedding["pain_mult"]) ? embedding["pain_mult"] : EMBEDDED_PAIN_MULTIPLIER),\
+		remove_pain_mult = (!isnull(embedding["remove_pain_mult"]) ? embedding["remove_pain_mult"] : EMBEDDED_UNSAFE_REMOVAL_PAIN_MULTIPLIER),\
+		rip_time = (!isnull(embedding["rip_time"]) ? embedding["rip_time"] : EMBEDDED_UNSAFE_REMOVAL_TIME),\
+		ignore_throwspeed_threshold = (!isnull(embedding["ignore_throwspeed_threshold"]) ? embedding["ignore_throwspeed_threshold"] : FALSE),\
+		impact_pain_mult = (!isnull(embedding["impact_pain_mult"]) ? embedding["impact_pain_mult"] : EMBEDDED_IMPACT_PAIN_MULTIPLIER),\
+		jostle_chance = (!isnull(embedding["jostle_chance"]) ? embedding["jostle_chance"] : EMBEDDED_JOSTLE_CHANCE),\
+		jostle_pain_mult = (!isnull(embedding["jostle_pain_mult"]) ? embedding["jostle_pain_mult"] : EMBEDDED_JOSTLE_PAIN_MULTIPLIER),\
+		pain_stam_pct = (!isnull(embedding["pain_stam_pct"]) ? embedding["pain_stam_pct"] : EMBEDDED_PAIN_STAM_PCT),\
+		projectile_payload = shrapnel_type)
+	return TRUE
+
+///Checks if the projectile can embed into someone
+/obj/projectile/proc/can_embed_into(atom/hit)
+	return embedding && shrapnel_type && iscarbon(hit) && !HAS_TRAIT(hit, TRAIT_PIERCEIMMUNE)

@@ -6,7 +6,7 @@
 
 	. = ..()
 	RegisterSignal(target, COMSIG_ATOM_GET_EXAMINE_NAME, PROC_REF(get_examine_name), TRUE)
-	RegisterSignal(target, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(redraw), TRUE)
+	RegisterSignals(target, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(redraw), TRUE)
 
 /datum/element/decal/blood/Detach(atom/source, force)
 	UnregisterSignal(source, COMSIG_ATOM_GET_EXAMINE_NAME)
@@ -39,4 +39,8 @@
 
 	var/atom/bloodsource = source
 	Detach(source)
-	bloodsource.AddElement(/datum/element/decal/blood, bloodsource.icon, bloodsource.icon_state, _color = get_blood_dna_color(bloodsource.return_blood_DNA()))
+	var/icon_state_adj = bloodsource.icon_state
+	if(isbodypart(source))//bettericons :D
+		var/obj/item/bodypart/parent_part = source
+		icon_state_adj = parent_part.stored_icon_state
+	bloodsource.AddElement(/datum/element/decal/blood, bloodsource.icon, icon_state_adj, _color = get_blood_dna_color(bloodsource.return_blood_DNA()))

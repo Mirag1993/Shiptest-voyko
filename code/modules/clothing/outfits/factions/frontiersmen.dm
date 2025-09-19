@@ -1,6 +1,6 @@
 /datum/outfit/job/frontiersmen
 	name = "Frontiersmen - Base Outfit"
-
+	faction = FACTION_PLAYER_FRONTIERSMEN
 	// faction_icon = "bg_frontiersmen"
 
 	uniform = /obj/item/clothing/under/frontiersmen
@@ -14,12 +14,6 @@
 	satchel = /obj/item/storage/backpack/satchel
 	duffelbag = /obj/item/storage/backpack/duffelbag
 	courierbag = /obj/item/storage/backpack/messenger
-
-/datum/outfit/job/frontiersmen/post_equip(mob/living/carbon/human/H, visualsOnly)
-	. = ..()
-	if(visualsOnly)
-		return
-	H.faction |= list(FACTION_PLAYER_FRONTIERSMEN)
 
 // Assistant
 
@@ -92,7 +86,7 @@
 	uniform = /obj/item/clothing/under/frontiersmen/officer
 	head = /obj/item/clothing/head/hardhat/frontier
 	shoes = /obj/item/clothing/shoes/combat
-	gloves = /obj/item/clothing/gloves/combat
+	gloves = /obj/item/clothing/gloves/color/yellow
 	belt = /obj/item/storage/belt/utility/full
 
 // Engineer
@@ -133,7 +127,7 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/beret/sec/frontier/officer
 	gloves = /obj/item/clothing/gloves/combat
-	r_pocket = /obj/item/kitchen/knife/combat/survival
+	r_pocket = /obj/item/melee/knife/survival
 
 // Head of Security
 /datum/outfit/job/frontiersmen/hos
@@ -184,7 +178,7 @@
 	accessory = /obj/item/clothing/accessory/armband/med
 	uniform = /obj/item/clothing/under/frontiersmen
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_pocket = /obj/item/kitchen/knife/combat/survival
+	r_pocket = /obj/item/melee/knife/survival
 	suit = /obj/item/clothing/suit/frontiersmen
 	head = /obj/item/clothing/head/frontier
 	belt = /obj/item/storage/belt/medical/webbing/frontiersmen

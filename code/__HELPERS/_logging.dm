@@ -10,14 +10,22 @@
 #define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
 #define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
-//print a warning message to world.log
+#ifdef UNIT_TESTS
+#define WARNING(MSG) log_world("::warning file=[__FILE__],line=[__LINE__]::[MSG] src: [UNLINT(src)] usr: [usr].")
+#else
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [UNLINT(src)] usr: [usr].")
+#endif
+/// Print a warning message to world.log
 /proc/warning(msg)
 	msg = "## WARNING: [msg]"
 	log_world(msg)
 
-//not an error or a warning, but worth to mention on the world log, just in case.
+#ifdef UNIT_TESTS
+#define NOTICE(MSG) log_world("::notice file=[__FILE__],line=[__LINE__]::[MSG] src: [UNLINT(src)] usr: [usr].")
+#else
 #define NOTICE(MSG) notice(MSG)
+#endif
+///not an error or a warning, but worth to mention on the world log, just in case.
 /proc/notice(msg)
 	msg = "## NOTICE: [msg]"
 	log_world(msg)
@@ -107,6 +115,10 @@
 /proc/log_attack(text)
 	if (CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
+
+/proc/log_wounded(text)
+	if (CONFIG_GET(flag/log_attack))
+		WRITE_LOG(GLOB.world_attack_log, "WOUND: [text]")
 
 /proc/log_econ(text)
 	if (CONFIG_GET(flag/log_econ))
@@ -206,6 +218,12 @@
 /proc/log_job_debug(text)
 	if (CONFIG_GET(flag/log_job_debug))
 		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
+
+// [CELADON-ADD] - Logging for admin actions.
+/proc/log_celadon_admin(text)
+	if (CONFIG_GET(flag/log_admin))
+		WRITE_LOG(GLOB.world_celadon_admin_log, "[text]")
+// [/CELADON-ADD]
 
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
@@ -329,11 +347,11 @@
 	if(key)
 		if(C && C.holder && C.holder.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.findStealthKey()]'>"
+				. += "<a href='byond://?priv_msg=[C.findStealthKey()]'>"
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[ckey]'>"
+				. += "<a href='byond://?priv_msg=[ckey]'>"
 			. += key
 		if(!C)
 			. += "\[DC\]"

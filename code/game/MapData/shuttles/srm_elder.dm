@@ -1,14 +1,11 @@
-/obj/item/melee/transforming/cleaving_saw/old
+/obj/item/melee/cleaving_saw/old
 	name = "old cleaving saw"
 	desc = "This saw, old and rusted, is still an effective tool at bleeding beasts and monsters."
 	force = 10
-	force_on = 15 //force when active
+	active_force = 15 //force when active
 	throwforce = 15
-	throwforce_on = 15
-	faction_bonus_force = 5
-	nemesis_factions = list("mining", "boss")
+	active_throwforce = 15
 	bleed_stacks_per_hit = 1.5
-
 
 /obj/structure/closet/secure_closet/medicalsrm
 	name = "hunter doctor closet"
@@ -104,13 +101,13 @@
 		return
 	var/static/list/items_inside = list(
 		/obj/item/healthanalyzer = 1,
-		/obj/item/reagent_containers/food/snacks/grown/ash_flora/puce = 1,
+		/obj/item/food/grown/ash_flora/puce = 1,
 		/obj/item/reagent_containers/glass/mortar = 1,
 		/obj/item/reagent_containers/glass/bowl/mushroom_bowl = 1,
 		/obj/item/pestle = 1,
-		/obj/item/reagent_containers/food/snacks/grown/ash_flora/cactus_fruit = 3,
-		/obj/item/reagent_containers/food/snacks/meat/slab/bear = 3,
-		/obj/item/reagent_containers/food/snacks/grown/ash_flora/mushroom_leaf = 3,
+		/obj/item/food/grown/ash_flora/cactus_fruit = 3,
+		/obj/item/food/meat/slab/bear = 3,
+		/obj/item/food/grown/ash_flora/mushroom_leaf = 3,
 	)
 	generate_items_inside(items_inside, src)
 
@@ -128,7 +125,7 @@
 			The SRM originated on the planet Illestren, a planet colonized early in the
 			expansionist period of space exploration by solgov colonists. Formed by large
 			group of hunters who banded together to form a sort of citizen's militia.
-			When these Solgov colonists came to Illestren, the brought with them the
+			When these SolGov colonists came to Illestren, the brought with them the
 			tales of the Ashen Hunter, a figure who came to be venerated by this militia.
 			The Ashen Huntsman is a religious figure venerated by the SRM, said to be able
 			to survive any conditions on their own, and fell any man, creature, or beast

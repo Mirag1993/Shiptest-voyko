@@ -39,10 +39,10 @@
 
 /// Deactivates the functionality defines by the element on the given datum
 /datum/element/proc/Detach(datum/source, ...)
+	SHOULD_CALL_PARENT(TRUE)
 	SIGNAL_HANDLER
 
 	SEND_SIGNAL(source, COMSIG_ELEMENT_DETACH, src)
-	SHOULD_CALL_PARENT(TRUE)
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 
 /datum/element/Destroy(force)
@@ -60,7 +60,7 @@
 	var/datum/element/ele = SSdcs.GetElement(arguments)
 	arguments[1] = src
 	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
-		CRASH("Incompatible [arguments[1]] assigned to a [type]! args: [json_encode(args)]")
+		CRASH("Incompatible [ele] assigned to a [type]! args: [json_encode(args)]")
 
 /**
  * Finds the singleton for the element type given and detaches it from src

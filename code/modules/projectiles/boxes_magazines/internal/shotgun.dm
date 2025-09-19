@@ -7,20 +7,10 @@
 /obj/item/ammo_box/magazine/internal/shot/tube
 	name = "dual feed shotgun internal tube"
 	ammo_type = /obj/item/ammo_casing/shotgun/rubbershot
-	max_ammo = 4
+	max_ammo = 6
 
 /obj/item/ammo_box/magazine/internal/shot/lethal
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
-
-/obj/item/ammo_box/magazine/internal/shot/com
-	name = "combat shotgun internal magazine"
-	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
-	max_ammo = 6
-
-/obj/item/ammo_box/magazine/internal/shot/com/compact
-	name = "compact combat shotgun internal magazine"
-	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
-	max_ammo = 4
 
 /obj/item/ammo_box/magazine/internal/shot/dual
 	name = "double-barrel shotgun internal magazine"
@@ -39,7 +29,7 @@
 /obj/item/ammo_box/magazine/internal/shot/riot
 	name = "riot shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
-	max_ammo = 7
+	max_ammo = 8
 
 /obj/item/ammo_box/magazine/internal/shot/bounty
 	name = "triple-barrel shotgun internal magazine"
@@ -52,22 +42,30 @@
 	caliber = ".38"
 	max_ammo = 12
 
+/obj/item/ammo_box/magazine/internal/shot/winchester/absolution
+	name = "absolution internal magazine"
+	ammo_type = /obj/item/ammo_casing/a357
+	caliber = ".357"
+	max_ammo = 8
+
+/obj/item/ammo_box/magazine/internal/shot/winchester/conflagration
+	name = "conflagration internal magazine"
+	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
+	caliber = "12ga"
+	max_ammo = 5
+
 /obj/item/ammo_box/magazine/internal/shot/beacon
 	name = "beacon internal magazine"
 	ammo_type = /obj/item/ammo_casing/a4570
 	caliber = ".45-70"
-	max_ammo = 1
+	max_ammo = 2
 	multiload = FALSE
 
-/obj/item/ammo_box/magazine/internal/shot/com/compact/compact
-	name = "compact compact combat shotgun internal magazine"
-	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
-	max_ammo = 3
-
-/obj/item/ammo_box/magazine/internal/shot/com/compact/compact/compact
-	name = "compact compact compact combat shotgun internal magazine"
+/obj/item/ammo_box/magazine/internal/shot/underbarrel
+	name = "underbarrel shotgun internal magazine"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	max_ammo = 2
+	start_empty = TRUE
 
 /obj/item/ammo_box/magazine/internal/shot/sex
 	name = "six-barrel shotgun internal magazine"
