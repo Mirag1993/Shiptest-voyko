@@ -67,7 +67,8 @@
 	var/datum/component/storage/STR = holster_data["storage"]
 	var/obj/item/weapon = get_active_held_item()
 	// Если в кобуре уже есть предмет — всегда достаём, даже если рука занята
-	if(STR && STR.contents() && STR.contents().len)
+	var/list/_holster_contents = STR ? STR.contents() : null
+	if(STR && LAZYLEN(_holster_contents))
 		HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "holster_weapon: holster has item, delegating unholster() for user [src.ckey]")
 		holster.unholster(src)
 		holster_processing = FALSE
