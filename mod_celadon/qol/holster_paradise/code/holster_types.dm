@@ -9,6 +9,35 @@
 #define HOLSTER_SND_IN 'mod_celadon/qol/holster_paradise/sounds/1holster.ogg'
 #define HOLSTER_SND_OUT 'mod_celadon/qol/holster_paradise/sounds/1unholster.ogg'
 
+// Константы для кэширования
+#define HOLSTER_STORAGE_CACHE_TICKS (5 SECONDS) // баланс: уменьшает GetComponent() спам, не держит устаревшее дольше 5с
+
+// Конфигурация DEBUG логов
+#define HOLSTER_DEBUG 0
+
+// Макрос для условного логирования
+#if HOLSTER_DEBUG
+#define HOLSTER_DBG(lvl, who, msg) HOLSTER_LOG(lvl, who, msg)
+#else
+#define HOLSTER_DBG(lvl, who, msg)
+#endif
+
+// Константы для сообщений об ошибках
+#define HOLSTER_OK 0
+#define HOLSTER_FAIL_NO_HOLSTER 1
+#define HOLSTER_FAIL_UNINIT 2
+#define HOLSTER_FAIL_DISABLED 3
+#define HOLSTER_FAIL_NESTED 4
+#define HOLSTER_FAIL_EMPTY 5
+#define HOLSTER_FAIL_BROKEN_ITEM 6
+#define HOLSTER_FAIL_CANT_TAKE 7
+#define HOLSTER_FAIL_DOESNT_FIT 8
+
+// Константы для позитивных сообщений
+#define HOLSTER_OK_PUT 9
+#define HOLSTER_OK_TAKE 10
+
+
 // ===============================
 // Компонент хранения для кобур (должен быть объявлен до использования)
 // ===============================
@@ -31,7 +60,7 @@
 		var/obj/item/clothing/accessory/holster/holster = original_parent
 		if(!holster.can_holster(I, M))
 			if(!stop_messages)
-				to_chat(M, span_warning("[I.name] не помещается в [holster]!"))
+				holster.notify_fail(M, HOLSTER_FAIL_DOESNT_FIT, I)
 			return FALSE
 	return ..()
 
@@ -57,26 +86,26 @@
 /obj/item/clothing/accessory/holster/proc/can_use_holster(mob/user, require_free_active_hand = TRUE, allow_hands_blocked = FALSE)
 	if(!istype(user) || QDELETED(user))
 		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "can_use_holster: invalid user")
-		return FALSE
+		return HOLSTER_FAIL_DISABLED
 	if(user.stat != CONSCIOUS)
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] not conscious (stat: [user.stat])")
-		return FALSE
+		return HOLSTER_FAIL_DISABLED
 	if(user.incapacitated())
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] incapacitated")
-		return FALSE
+		return HOLSTER_FAIL_DISABLED
 	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) && !allow_hands_blocked)
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] hands blocked")
-		return FALSE
+		return HOLSTER_FAIL_DISABLED
 	if(require_free_active_hand && !user.has_active_hand())
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] no active hand")
-		return FALSE
-	return TRUE
+		return HOLSTER_FAIL_DISABLED
+	return HOLSTER_OK
 
 // Кэширование
 /obj/item/clothing/accessory/holster
 	var/datum/component/storage/cached_storage = null
 	var/cache_timestamp = 0
-	var/cache_duration_ticks = (5 SECONDS)
+	var/cache_duration_ticks = HOLSTER_STORAGE_CACHE_TICKS
 	actions_types = list(/datum/action/item_action/accessory/holster)
 	// Предотвращаем снятие униформы кликом через компонент карманов
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/holster_paradise
@@ -95,15 +124,14 @@
 
 /obj/item/clothing/accessory/holster/Destroy()
 	HOLSTER_LOG(HOLSTER_LOG_INFO, null, "holster destroyed: [src.type]")
-	cached_storage = null
-	cache_timestamp = 0
+	invalidate_storage_cache()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
 		var/list/contents = STR.contents()
 		for(var/obj/item/I in contents)
 			if(I && !QDELETED(I))
 				I.forceMove(get_turf(src))
-				HOLSTER_LOG(HOLSTER_LOG_DEBUG, null, "holster destroy: moved [I.type] to ground")
+				HOLSTER_DBG(HOLSTER_LOG_DEBUG, null, "holster destroy: moved [I.type] to ground")
 	return ..()
 
 /obj/item/clothing/accessory/holster/proc/can_holster(obj/item/I, mob/user = null)
@@ -120,10 +148,10 @@
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: item [I.type] not allowed in holster [src.type]")
 		return FALSE
 	if(user)
-		if(!can_use_holster(user, TRUE))
+		if(can_use_holster(user, TRUE) != HOLSTER_OK)
 			return FALSE
 	if(istype(src, /obj/item/clothing/accessory/holster/nukie))
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "can_holster: nukie holster allows [I.type]")
+		HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "can_holster: nukie holster allows [I.type]")
 		return TRUE
 	var/obj/item/gun/G = I
 	// I уже проверен как подтип holster_allow (/obj/item/gun), поэтому istype(G) всегда TRUE
@@ -139,14 +167,13 @@
 	if(!allow_fullauto && G.gun_firemodes && (FIREMODE_FULLAUTO in G.gun_firemodes))
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] has full auto mode")
 		return FALSE
-	HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "can_holster: gun [G.type] allowed")
+	HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "can_holster: gun [G.type] allowed")
 	return TRUE
 
 /obj/item/clothing/accessory/holster/attack_self(mob/user)
 	var/datum/component/storage/STR = get_storage_component(user)
-	var/list/L = STR?.contents()
 	// Предпочитаем достать, если в кобуре есть предмет
-	if(L && L.len)
+	if(has_contents(STR))
 		unholster(user)
 		return
 	var/holsteritem = user.get_active_held_item()
@@ -161,7 +188,7 @@
 	if(!I)
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: item is null")
 		if(user)
-			to_chat(user, span_warning("Ошибка: предмет не найден."))
+			notify_fail(user, HOLSTER_FAIL_BROKEN_ITEM)
 		return FALSE
 	if(!user)
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: user is null")
@@ -169,33 +196,34 @@
 	if(QDELETED(I) || QDELETED(user) || QDELETED(src))
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: object deleted during operation")
 		return FALSE
-	if(!can_use_holster(user, TRUE))
-		to_chat(user, span_warning("Сейчас вы не можете использовать кобуру."))
+	var/reason = can_use_holster(user, TRUE)
+	if(reason != HOLSTER_OK)
+		notify_fail(user, reason)
 		return FALSE
 	if(istype(I, /obj/item/clothing/accessory/holster))
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "holster: user [user.ckey] tried to holster holster in holster")
-		to_chat(user, span_warning("Нельзя положить кобуру в кобуру!"))
+		notify_fail(user, HOLSTER_FAIL_NESTED)
 		return FALSE
 	var/datum/component/storage/STR = get_storage_component(user)
 	if(!STR)
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: storage component not found for user [user.ckey]")
-		to_chat(user, span_warning("Хранилище кобуры не инициализировано."))
+		notify_fail(user, HOLSTER_FAIL_UNINIT)
 		return FALSE
 	if(!can_holster(I, user))
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "holster: item [I.type] cannot be holstered by user [user.ckey]")
-		to_chat(user, span_warning("[I.name] не помещается в [src]!"))
+		notify_fail(user, HOLSTER_FAIL_DOESNT_FIT, I)
 		return FALSE
 	if(!STR.can_be_inserted(I, TRUE, user))
 		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "holster: storage cannot insert item [I.type]")
-		to_chat(user, span_warning("[I.name] не помещается в [src]!"))
+		notify_fail(user, HOLSTER_FAIL_CANT_TAKE, I)
 		return FALSE
 	if(STR.handle_item_insertion(I, TRUE, user))
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "holster: successfully holstered [I.type] for user [user.ckey]")
 		playsound(user, HOLSTER_SND_IN, HOLSTER_SND_VOL, TRUE)
-		to_chat(user, span_notice("Вы убрали [I] в кобуру."))
+		holster_notify_success(user, HOLSTER_OK_PUT, I)
 		return TRUE
 	HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: failed to insert item [I.type] into storage")
-	to_chat(user, span_warning("Не удалось убрать [I] в кобуру."))
+	notify_fail(user, HOLSTER_FAIL_CANT_TAKE, I)
 	return FALSE
 
 /obj/item/clothing/accessory/holster/proc/unholster(mob/user)
@@ -206,77 +234,68 @@
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: object deleted during operation")
 		return
 	// Требуем доступные руки для извлечения
-	if(!can_use_holster(user, FALSE))
-		to_chat(user, span_warning("Сейчас вы не можете использовать кобуру."))
+	var/reason = can_use_holster(user, FALSE)
+	if(reason != HOLSTER_OK)
+		notify_fail(user, reason)
 		return
 	var/datum/component/storage/STR = get_storage_component(user)
 	if(!STR)
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: storage component not found for user [user.ckey]")
-		to_chat(user, span_warning("Хранилище кобуры не инициализировано."))
+		notify_fail(user, HOLSTER_FAIL_UNINIT)
+		return
+	if(!has_contents(STR))
+		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "unholster: holster is empty for user [user.ckey]")
+		notify_fail(user, HOLSTER_FAIL_EMPTY)
 		return
 	var/list/L = STR.contents()
-	if(!L || !L.len)
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "unholster: holster is empty for user [user.ckey]")
-		to_chat(user, span_warning("Кобура пуста!"))
-		return
 	var/obj/item/I = L[L.len]
 	if(!I || QDELETED(I))
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: item in holster is null or deleted")
-		to_chat(user, span_warning("Ошибка: предмет в кобуре поврежден."))
+		notify_fail(user, HOLSTER_FAIL_BROKEN_ITEM)
 		return
 	if(STR.remove_from_storage(I, null))
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "unholster: removed [I.type] from storage for user [user.ckey]")
+		HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "unholster: removed [I.type] from storage for user [user.ckey]")
 		if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 			I.forceMove(get_turf(user))
 			HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "unholster: hands blocked, placed [I.type] on ground for user [user.ckey]")
 		else
-			// В HARM‑интенции — освобождаем руки и сразу берём в две руки, если предмет поддерживает 2h
+			// В HARM‑интенции — освобождаем руки и берём в две руки, если предмет поддерживает 2h
 			if(user.a_intent == INTENT_HARM)
-				var/obj/item/ah = user.get_active_held_item()
-				if(ah && ah != I)
-					user.dropItemToGround(ah, force=TRUE)
-				var/obj/item/ih = user.get_inactive_held_item()
-				if(ih && ih != I)
-					user.dropItemToGround(ih, force=TRUE)
-				// Кладём предмет в активную руку
-				if(!user.is_holding(I))
-					if(!user.put_in_active_hand(I))
-						if(!user.put_in_inactive_hand(I))
-							I.forceMove(get_turf(user))
-							HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "unholster: could not place [I.type] in hands (HARM)")
-				// Пробуем сразу взять в две руки через компонент
-				var/datum/component/two_handed/comp2h = I.GetComponent(/datum/component/two_handed)
-				if(comp2h)
-					comp2h.wield(user, TRUE)
-					HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "unholster: wielded [I.type] two‑handed (HARM)")
+				var/obj/item/active_item = user.get_active_held_item()
+				var/obj/item/inactive_item = user.get_inactive_held_item()
+
+				// не дропаем сам I, если вдруг уже в руке
+				if(active_item && active_item != I)
+					user.dropItemToGround(active_item, force=TRUE)
+				if(inactive_item && inactive_item != I)
+					user.dropItemToGround(inactive_item, force=TRUE)
+
+				if(place_item_in_hands(user, I))
+					var/datum/component/two_handed/comp2h = I.GetComponent(/datum/component/two_handed)
+					if(comp2h && user.is_holding(I))
+						comp2h.wield(user, TRUE)
+						HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "unholster: wielded [I.type] two‑handed (HARM)")
 			else
 				// Обычная логика: освободить активную руку, потом поместить туда предмет
 				var/obj/item/ah2 = user.get_active_held_item()
 				if(ah2 && ah2 != I)
 					user.dropItemToGround(ah2, force=TRUE)
-				if(!user.put_in_active_hand(I))
-					if(!user.put_in_inactive_hand(I))
-						I.forceMove(get_turf(user))
-						HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "unholster: placed [I.type] on ground for user [user.ckey] (no free hands)")
-					else
-						HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "unholster: placed [I.type] in inactive hand for user [user.ckey]")
-				else
-					HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "unholster: placed [I.type] in active hand for user [user.ckey]")
+				place_item_in_hands(user, I)
 		playsound(user, HOLSTER_SND_OUT, HOLSTER_SND_VOL, TRUE)
 		I.add_fingerprint(user)
 		unholster_message(user, I)
 		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "unholster: successfully unholstered [I.type] for user [user.ckey]")
 		return
 	HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: failed to remove [I.type] from storage for user [user.ckey]")
-	to_chat(user, span_warning("Сейчас вы не можете взять [I]!"))
+	notify_fail(user, HOLSTER_FAIL_CANT_TAKE, I)
 
 /obj/item/clothing/accessory/holster/proc/unholster_message(mob/user, obj/item/I)
 	if(user.a_intent == INTENT_HARM)
-		user.visible_message(span_warning("[user] достает [I], готовясь стрелять!"),
-			span_warning("Вы достаете [I], готовясь стрелять!"))
+		user.visible_message(span_warning("[user] draws [I], ready to fire!"),
+			span_warning("You draw [I], ready to fire!"))
 	else
-		user.visible_message(span_notice("[user] достает [I], направляя в землю."),
-			span_notice("Вы достаете [I], направляя в землю."))
+		user.visible_message(span_notice("[user] draws [I], pointing it at the ground."),
+			span_notice("You draw [I], pointing it at the ground."))
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user)
 	if(QDELETED(user))
@@ -308,25 +327,26 @@
 	return ..()
 
 /obj/item/clothing/accessory/holster/emp_act(severity)
+	..() // сперва воздействие на саму кобуру (базовый класс)
 	var/datum/component/storage/STR = null
 	var/mob/living/carbon/human/H = loc
-	if(istype(H))
-		STR = get_storage_component(H)
-	else
-		STR = get_storage_component()
-	var/list/L = STR?.contents()
-	if(STR && L)
-		for(var/obj/item/I in L)
+	STR = istype(H) ? get_storage_component(H) : get_storage_component()
+	if(!STR || QDELETED(STR))
+		return
+	var/list/L = STR.contents()
+	if(!islist(L) || !L.len)
+		return
+	for(var/obj/item/I in L)
+		if(!QDELETED(I))
 			I.emp_act(severity)
-	..()
 
 /obj/item/clothing/accessory/holster/examine(mob/user)
 	. = ..(user)
 	var/datum/component/storage/STR = get_storage_component(user)
-	var/list/L = STR?.contents()
-	if(STR && L && L.len)
+	if(STR && has_contents(STR))
+		var/list/L = STR.contents()
 		for(var/obj/item/I in L)
-			. += span_notice("В кобуре [I.name]")
+			. += span_notice("In the holster: [I.name]")
 
 /obj/item/clothing/accessory/holster/attach(obj/item/clothing/under/S, mob/user)
 	. = ..()
@@ -336,8 +356,7 @@
 		if(STR && STR.is_using)
 			for(var/mob/M in STR.is_using)
 				STR.ui_hide(M)
-		cached_storage = null
-		cache_timestamp = 0
+		invalidate_storage_cache()
 
 /obj/item/clothing/accessory/holster/detach(obj/item/clothing/under/S, mob/user)
 	. = ..()
@@ -347,11 +366,10 @@
 		if(STR && STR.is_using)
 			for(var/mob/M in STR.is_using)
 				STR.ui_hide(M)
-		cached_storage = null
-		cache_timestamp = 0
+		invalidate_storage_cache()
 
 /obj/item/clothing/accessory/holster/verb/holster_verb()
-	set name = "Кобура"
+	set name = "Holster"
 	set category = "Object"
 	set src in usr
 	if(!isliving(usr))
@@ -364,23 +382,22 @@
 		holster = uniform.attached_accessory
 	if(!holster)
 		return
-	if(!holster.can_use_holster(usr, TRUE))
+	var/reason = holster.can_use_holster(usr, TRUE)
+	if(reason != HOLSTER_OK)
+		holster.notify_fail(usr, reason)
 		return
 
 	// Унифицированная логика: приоритет извлечению из кобуры
 	var/datum/component/storage/STR = holster.get_storage_component(usr)
-	var/list/holster_contents = STR?.contents()
 
-	if(LAZYLEN(holster_contents)) {
+	if(has_contents(STR))
 		holster.unholster(usr)
-	} else {
+	else
 		var/holsteritem = usr.get_active_held_item()
-		if(holsteritem) {
+		if(holsteritem)
 			holster.holster(holsteritem, usr)
-		} else {
+		else
 			holster.unholster(usr)
-		}
-	}
 
 // Detective holster
 /obj/item/clothing/accessory/holster/detective
@@ -414,7 +431,11 @@
 	chameleon_action.initialize_disguises()
 
 /obj/item/clothing/accessory/holster/chameleon/Destroy()
-	QDEL_NULL(chameleon_action)
+	if(chameleon_action)
+		qdel(chameleon_action)
+		chameleon_action = null
+	invalidate_storage_cache()
+	// отписаться от сигналов, если есть
 	return ..()
 
 /obj/item/clothing/accessory/holster/chameleon/emp_act(severity)
@@ -428,6 +449,47 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 // Helpers
+/obj/item/clothing/accessory/holster/proc/notify_fail(mob/user, reason, obj/item/I = null)
+	switch(reason)
+		if(HOLSTER_FAIL_NO_HOLSTER)
+			to_chat(user, span_warning("You don't have a holster."))
+		if(HOLSTER_FAIL_UNINIT)
+			to_chat(user, span_warning("Holster storage is not initialized."))
+		if(HOLSTER_FAIL_DISABLED)
+			to_chat(user, span_warning("You can't use the holster right now."))
+		if(HOLSTER_FAIL_NESTED)
+			to_chat(user, span_warning("You can't put a holster in a holster!"))
+		if(HOLSTER_FAIL_EMPTY)
+			to_chat(user, span_warning("The holster is empty."))
+		if(HOLSTER_FAIL_BROKEN_ITEM)
+			to_chat(user, span_warning("Error: item in holster is damaged."))
+		if(HOLSTER_FAIL_CANT_TAKE)
+			to_chat(user, span_warning("You can't take [I ? I.name : "the item"] right now."))
+		if(HOLSTER_FAIL_DOESNT_FIT)
+			to_chat(user, span_warning("[I ? I.name : "The item"] doesn't fit in [src]."))
+
+/obj/item/clothing/accessory/holster/proc/has_contents(var/datum/component/storage/STR)
+	if(!STR || QDELETED(STR))
+		return FALSE
+	var/list/L = STR.contents()
+	return (islist(L) && L.len > 0)
+
+/obj/item/clothing/accessory/holster/proc/place_item_in_hands(mob/user, obj/item/I)
+	if(!I || !user)
+		return FALSE
+	if(user.is_holding(I))
+		return TRUE
+	if(user.put_in_active_hand(I))
+		return TRUE
+	if(user.put_in_inactive_hand(I))
+		return TRUE
+	I.forceMove(get_turf(user))
+	return FALSE
+
+/obj/item/clothing/accessory/holster/proc/invalidate_storage_cache()
+	cached_storage = null
+	cache_timestamp = 0
+
 /obj/item/clothing/accessory/holster/proc/get_storage_component(mob/user = null)
 	if(!src || QDELETED(src))
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "get_storage_component: holster is null or deleted")
@@ -437,15 +499,16 @@
 		if(!STR || QDELETED(STR))
 			HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: no storage component on holster")
 			return null
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "get_storage_component: found storage on holster")
 		return STR
 	if(!istype(user) || QDELETED(user))
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "get_storage_component: invalid user")
 		return null
 	var/current_time = world.time
-	if(cached_storage && !QDELETED(cached_storage) && (current_time - cache_timestamp) < cache_duration_ticks)
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "get_storage_component: using cached storage for user [user.ckey]")
-		return cached_storage
+	if(cached_storage)
+		if(QDELETED(cached_storage) || (current_time - cache_timestamp) >= cache_duration_ticks)
+			invalidate_storage_cache()
+		else
+			return cached_storage
 	var/mob/living/carbon/human/H = user
 	if(!istype(H))
 		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: user [user.ckey] is not human")
@@ -463,15 +526,43 @@
 	var/datum/component/storage/STR = uniform.GetComponent(/datum/component/storage)
 	if(!STR)
 		STR = GetComponent(/datum/component/storage)
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "get_storage_component: found storage on holster (fallback) for user [user.ckey]")
-	else
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "get_storage_component: found storage on uniform for user [user.ckey]")
 	if(!STR || QDELETED(STR))
 		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "get_storage_component: storage component is null or deleted for user [user.ckey]")
-		cached_storage = null
-		cache_timestamp = 0
+		invalidate_storage_cache()
 		return null
 	cached_storage = STR
 	cache_timestamp = current_time
 	return STR
+
+// ===============================
+// Глобальные роутеры сообщений
+// ===============================
+
+// Глобальный роутер сообщений для случаев без доступа к экземпляру кобуры
+/proc/holster_notify_fail(mob/M, reason, obj/item/I = null)
+	switch(reason)
+		if(HOLSTER_FAIL_NO_HOLSTER)
+			to_chat(M, span_warning("You don't have a holster."))
+		if(HOLSTER_FAIL_UNINIT)
+			to_chat(M, span_warning("Holster storage is not initialized."))
+		if(HOLSTER_FAIL_DISABLED)
+			to_chat(M, span_warning("You can't use the holster right now."))
+		if(HOLSTER_FAIL_NESTED)
+			to_chat(M, span_warning("You can't put a holster in a holster!"))
+		if(HOLSTER_FAIL_EMPTY)
+			to_chat(M, span_warning("The holster is empty."))
+		if(HOLSTER_FAIL_BROKEN_ITEM)
+			to_chat(M, span_warning("Error: item in holster is damaged."))
+		if(HOLSTER_FAIL_CANT_TAKE)
+			to_chat(M, span_warning("You can't take [I ? I.name : "the item"] right now."))
+		if(HOLSTER_FAIL_DOESNT_FIT)
+			to_chat(M, span_warning("[I ? I.name : "The item"] doesn't fit in the holster."))
+
+// Глобальный роутер позитивных сообщений
+/proc/holster_notify_success(mob/M, reason, obj/item/I = null)
+	switch(reason)
+		if(HOLSTER_OK_PUT)
+			to_chat(M, span_notice("You holster [I]."))
+		if(HOLSTER_OK_TAKE)
+			to_chat(M, span_notice("You unholster [I]."))
 

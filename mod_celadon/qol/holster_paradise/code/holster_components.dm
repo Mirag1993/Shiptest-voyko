@@ -11,15 +11,15 @@
 		return
 
 	// Единая проверка состояния пользователя через helper
-	if(!holster.can_use_holster(owner, TRUE))
-		to_chat(owner, span_warning("Сейчас вы не можете использовать кобуру."))
+	var/reason = holster.can_use_holster(owner, TRUE)
+	if(reason != HOLSTER_OK)
+		holster.notify_fail(owner, reason)
 		return
 
 	// Унифицированная логика: приоритет извлечению из кобуры
 	var/datum/component/storage/STR = holster.get_storage_component(owner)
-	var/list/L = STR?.contents()
 	// Предпочитаем достать, если в кобуре есть предмет
-	if(L && L.len)
+	if(holster.has_contents(STR))
 		holster.unholster(owner)
 		return
 	var/holsteritem = owner.get_active_held_item()
