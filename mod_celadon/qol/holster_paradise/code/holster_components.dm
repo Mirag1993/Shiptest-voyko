@@ -10,19 +10,26 @@
 	if(!holster)
 		return
 
-	var/holsteritem = owner.get_active_hand()
 	// Единая проверка состояния пользователя через helper
-	// Требуем доступные руки
-	if(!holster.can_use_holster(owner, holsteritem != null))
+	if(!holster.can_use_holster(owner, TRUE))
 		to_chat(owner, span_warning("Сейчас вы не можете использовать кобуру."))
 		return
-	if(!holsteritem)
-		// Пустая рука — достаем оружие из кобуры
+
+	// Унифицированная логика: приоритет извлечению из кобуры
+	var/datum/component/storage/STR = holster.get_storage_component(owner)
+	var/list/L = STR?.contents()
+	// Предпочитаем достать, если в кобуре есть предмет
+	if(L && L.len)
 		holster.unholster(owner)
-	else if(istype(holsteritem, /obj/item/clothing/accessory/holster))
-		// В руке другая кобура — ничего не делаем
-		to_chat(owner, span_warning("Нельзя положить кобуру в кобуру!"))
-	else
+		return
+	var/holsteritem = owner.get_active_held_item()
+	if(istype(holsteritem, /obj/item/clothing/accessory/holster))
+		// В руке другая кобура — достаем из кобуры
+		holster.unholster(owner)
+	else if(holsteritem)
 		// В руке оружие — пытаемся его спрятать
 		holster.holster(holsteritem, owner)
+	else
+		// Пустая рука — достаем из кобуры (сообщение, если пуста)
+		holster.unholster(owner)
 

@@ -126,22 +126,20 @@
 		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "can_holster: nukie holster allows [I.type]")
 		return TRUE
 	var/obj/item/gun/G = I
-	if(istype(G))
-		if(G.w_class > max_allowed_w_class)
-			HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] too large (w_class: [G.w_class])")
+	// I уже проверен как подтип holster_allow (/obj/item/gun), поэтому istype(G) всегда TRUE
+	if(G.w_class > max_allowed_w_class)
+		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] too large (w_class: [G.w_class])")
+		return FALSE
+	if(allowed_typecache && is_type_in_typecache(G, allowed_typecache))
+		// Оружие в разрешенном typecache - пропускаем проверку веса
+	else
+		if(G.weapon_weight < min_weapon_weight || G.weapon_weight > max_weapon_weight)
+			HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] weight [G.weapon_weight] outside range [min_weapon_weight]-[max_weapon_weight]")
 			return FALSE
-		if(allowed_typecache && is_type_in_typecache(G, allowed_typecache))
-			. = TRUE
-		else
-			if(G.weapon_weight < min_weapon_weight || G.weapon_weight > max_weapon_weight)
-				HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] weight [G.weapon_weight] outside range [min_weapon_weight]-[max_weapon_weight]")
-				return FALSE
-		if(!allow_fullauto && G.gun_firemodes && (FIREMODE_FULLAUTO in G.gun_firemodes))
-			HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] has full auto mode")
-			return FALSE
-		HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "can_holster: gun [G.type] allowed")
-		return TRUE
-	HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "can_holster: non-gun item [I.type] allowed")
+	if(!allow_fullauto && G.gun_firemodes && (FIREMODE_FULLAUTO in G.gun_firemodes))
+		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] has full auto mode")
+		return FALSE
+	HOLSTER_LOG(HOLSTER_LOG_DEBUG, user, "can_holster: gun [G.type] allowed")
 	return TRUE
 
 /obj/item/clothing/accessory/holster/attack_self(mob/user)
@@ -366,13 +364,23 @@
 		holster = uniform.attached_accessory
 	if(!holster)
 		return
-	var/holsteritem = usr.get_active_held_item()
-	if(!holster.can_use_holster(usr, holsteritem != null))
+	if(!holster.can_use_holster(usr, TRUE))
 		return
-	if(holsteritem)
-		holster.holster(holsteritem, usr)
-	else
+
+	// Унифицированная логика: приоритет извлечению из кобуры
+	var/datum/component/storage/STR = holster.get_storage_component(usr)
+	var/list/holster_contents = STR?.contents()
+
+	if(LAZYLEN(holster_contents)) {
 		holster.unholster(usr)
+	} else {
+		var/holsteritem = usr.get_active_held_item()
+		if(holsteritem) {
+			holster.holster(holsteritem, usr)
+		} else {
+			holster.unholster(usr)
+		}
+	}
 
 // Detective holster
 /obj/item/clothing/accessory/holster/detective
@@ -467,5 +475,3 @@
 	cache_timestamp = current_time
 	return STR
 
-/obj/item/clothing/accessory/holster/proc/get_holster_storage(mob/user)
-	return get_storage_component(user)
