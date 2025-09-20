@@ -32,13 +32,7 @@
 	if(holster_processing)
 		HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "handle_holster_keybind: already processing for user [src.ckey]")
 		return COMSIG_KB_ACTIVATED
-	// Проверяем состояние пользователя
-	if(stat != CONSCIOUS)
-		HOLSTER_LOG(HOLSTER_LOG_INFO, src, "handle_holster_keybind: user [src.ckey] not conscious (stat: [stat])")
-		return COMSIG_KB_ACTIVATED
-	if(incapacitated())
-		HOLSTER_LOG(HOLSTER_LOG_INFO, src, "handle_holster_keybind: user [src.ckey] incapacitated")
-		return COMSIG_KB_ACTIVATED
+	// Проверки состояния пользователя делегируются в низкоуровневые методы кобуры
 	HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "handle_holster_keybind: processing holster request for user [src.ckey]")
 	holster_processing = TRUE
 	addtimer(CALLBACK(src, PROC_REF(holster_weapon)), 0)

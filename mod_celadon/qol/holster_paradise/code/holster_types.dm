@@ -297,7 +297,7 @@
 	return ..(user)
 
 /obj/item/clothing/accessory/holster/AltClick(mob/user)
-	if(istype(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)) && !user.incapacitated())
+	if(istype(user) && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		var/datum/component/storage/STR = get_storage_component(user)
 		if(STR)
 			STR.ui_show(user)
