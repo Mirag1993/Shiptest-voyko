@@ -1,10 +1,10 @@
-// Система клавиш для кобур - Автор: Mirag1993
+// Система клавиш для кобур — Автор: Mirag1993
 // Переменная для защиты от двойного нажатия
-/mob/var/last_holster_tick
+/mob/var/holster_processing = FALSE
 
-// Хоткей для кобуры (клавиша H - теперь свободна)
+// Хоткей для кобуры (настраиваемая клавиша)
 /datum/keybinding/human/holster
-	hotkey_keys = list("H")
+	hotkey_keys = list("Unbound")
 	name = "holster"
 	full_name = "Кобура"
 	description = "Спрятать или достать оружие из кобуры"
@@ -14,7 +14,6 @@
 	. = ..()
 	if(.)
 		return
-
 	return SEND_SIGNAL(user.mob, keybind_signal) & COMSIG_KB_ACTIVATED
 
 /mob/living/carbon/human/Initialize(mapload)
@@ -25,102 +24,97 @@
 // Обработчик хоткея кобуры
 /mob/living/carbon/human/proc/handle_holster_keybind()
 	SIGNAL_HANDLER
+	// Валидация базовых инвариантов
+	if(!src || !istype(src) || QDELETED(src))
+		HOLSTER_LOG(HOLSTER_LOG_ERROR, src, "handle_holster_keybind: mob is null or deleted")
+		return COMSIG_KB_ACTIVATED
+	// Проверяем, не обрабатывается ли уже запрос
+	if(holster_processing)
+		HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "handle_holster_keybind: already processing for user [src.ckey]")
+		return COMSIG_KB_ACTIVATED
+	// Проверяем состояние пользователя
+	if(stat != CONSCIOUS)
+		HOLSTER_LOG(HOLSTER_LOG_INFO, src, "handle_holster_keybind: user [src.ckey] not conscious (stat: [stat])")
+		return COMSIG_KB_ACTIVATED
+	if(incapacitated())
+		HOLSTER_LOG(HOLSTER_LOG_INFO, src, "handle_holster_keybind: user [src.ckey] incapacitated")
+		return COMSIG_KB_ACTIVATED
+	HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "handle_holster_keybind: processing holster request for user [src.ckey]")
+	holster_processing = TRUE
 	addtimer(CALLBACK(src, PROC_REF(holster_weapon)), 0)
 	return COMSIG_KB_ACTIVATED
 
-// Функция для работы с кобурой (спрятать/достать оружие)
+// Спрятать/достать оружие (делегирование в методы кобуры)
 /mob/living/carbon/human/proc/holster_weapon()
-	if(!src || !istype(src))
+	// Валидация базовых инвариантов
+	if(!src || !istype(src) || QDELETED(src))
+		HOLSTER_LOG(HOLSTER_LOG_ERROR, src, "holster_weapon: mob is null or deleted")
+		holster_processing = FALSE
 		return
-
-	// Защита от двойного нажатия
-	if(world.time == last_holster_tick)
+	// Дополнительная проверка состояния флага
+	if(holster_processing == FALSE)
+		HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "holster_weapon: not processing for user [src.ckey]")
 		return
-	last_holster_tick = world.time
-
-	// Проверяем, есть ли у нас кобура
-	var/obj/item/clothing/accessory/holster/holster = null
-	var/datum/component/storage/STR = null
-
-	// Ищем кобуру в униформе
-	if(istype(w_uniform))
-		var/obj/item/clothing/under/uniform = w_uniform
-		// Проверяем attached_accessory
-		if(istype(uniform.attached_accessory, /obj/item/clothing/accessory/holster))
-			holster = uniform.attached_accessory
-			// Когда кобура прикреплена, компонент storage может быть в униформе
-			STR = uniform.GetComponent(/datum/component/storage)
-
-	if(!holster || QDELETED(holster))
+	HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "holster_weapon: starting holster operation for user [src.ckey]")
+	// Получаем кобуру
+	var/list/holster_data = get_holster_and_storage()
+	var/obj/item/clothing/accessory/holster/holster = holster_data["holster"]
+	if(!holster)
+		HOLSTER_LOG(HOLSTER_LOG_WARNING, src, "holster_weapon: no holster for user [src.ckey]")
 		to_chat(src, span_warning("У вас нет кобуры!"))
+		holster_processing = FALSE
 		return
-
-	// Если не нашли storage в униформе, ищем в самой кобуре
-	if(!STR)
-		STR = holster.GetComponent(/datum/component/storage)
-
+	var/datum/component/storage/STR = holster_data["storage"]
 	var/obj/item/weapon = get_active_held_item()
-
+	// Если в кобуре уже есть предмет — всегда достаём, даже если рука занята
+	if(STR && STR.contents() && STR.contents().len)
+		HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "holster_weapon: holster has item, delegating unholster() for user [src.ckey]")
+		holster.unholster(src)
+		holster_processing = FALSE
+		return
+	// Иначе — если в руке предмет, пытаемся убрать его в кобуру
 	if(weapon)
-		// --- УБРАТЬ В КОБУРУ ---
-		if(!istype(weapon, /obj/item/gun))
-			to_chat(src, span_warning("В кобуру можно убрать только огнестрел."))
-			return
+		HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "holster_weapon: delegating holster() for [weapon.type] user [src.ckey]")
+		holster.holster(weapon, src)
+		holster_processing = FALSE
+		return
+	// Иначе — достаём из кобуры (если пусто — придёт сообщение)
+	HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "holster_weapon: delegating unholster() for user [src.ckey]")
+	holster.unholster(src)
+	holster_processing = FALSE
 
-		if(!has_active_hand())
-			to_chat(src, span_warning("У вас нет активной руки для работы с оружием!"))
-			return
-
-		// Проверяем, можно ли убрать оружие в кобуру
-		if(!holster.can_holster(weapon))
-			to_chat(src, span_warning("[weapon.name] не помещается в [holster]!"))
-			return
-
-
-		// Используем найденный компонент storage
-		if(!STR)
-			to_chat(src, span_warning("Storage компонент не найден!"))
-			return
-
-		// Сначала проверяем, можно ли вставить предмет
-		if(!STR.can_be_inserted(weapon, TRUE, src))
-			to_chat(src, span_warning("[weapon.name] не помещается в [holster]!"))
-			return
-
-		if(STR.handle_item_insertion(weapon, TRUE, src))
-			playsound(src, 'mod_celadon/qol/holster_paradise/sounds/1holster.ogg', 50, TRUE)
-			to_chat(src, span_notice("Вы убрали [weapon.name] в кобуру."))
-		else
-			to_chat(src, span_warning("Не удалось убрать [weapon.name] в кобуру."))
-	else
-		// --- ДОСТАТЬ ИЗ КОБУРЫ ---
-		if(!STR)
-			to_chat(src, span_warning("Storage компонент не найден!"))
-			return
-
-		var/list/contents = STR.contents()
-		if(contents && length(contents))
-			var/obj/item/holstered_weapon = contents[length(contents)]
-			if(STR.remove_from_storage(holstered_weapon, src))
-				// Принудительно берем предмет в руку
-				if(!src.put_in_active_hand(holstered_weapon))
-					// Если не получилось в активную руку, пробуем в неактивную
-					if(!src.put_in_inactive_hand(holstered_weapon))
-						// Если и это не получилось, кладем на пол
-						holstered_weapon.forceMove(get_turf(src))
-
-				playsound(src, 'mod_celadon/qol/holster_paradise/sounds/1unholster.ogg', 50, TRUE)
-				holstered_weapon.add_fingerprint(src)
-				// Показываем сообщение в зависимости от интента
-				if(src.a_intent == INTENT_HARM)
-					src.visible_message(span_warning("[src] достает [holstered_weapon], готовясь стрелять!"),
-										span_warning("Вы достаете [holstered_weapon], готовясь стрелять!"))
-				else
-					src.visible_message(span_notice("[src] достает [holstered_weapon], направляя в землю."),
-										span_notice("Вы достаете [holstered_weapon], направляя в землю."))
-			else
-				to_chat(src, span_warning("Не удалось достать оружие из кобуры."))
-		else
-			to_chat(src, span_warning("В кобуре нет оружия!"))
+// Единая функция для получения кобуры и storage-компонента (валидация)
+/mob/living/carbon/human/proc/get_holster_and_storage()
+	var/list/result = list("holster" = null, "storage" = null)
+	// Проверяем базовые инварианты
+	if(!src || !istype(src) || QDELETED(src))
+		HOLSTER_LOG(HOLSTER_LOG_ERROR, src, "get_holster_and_storage: mob is null or deleted")
+		return result
+	if(!istype(w_uniform) || QDELETED(w_uniform))
+		HOLSTER_LOG(HOLSTER_LOG_WARNING, src, "get_holster_and_storage: user [src.ckey] has no uniform")
+		return result
+	var/obj/item/clothing/under/uniform = w_uniform
+	// Проверяем attached_accessory
+	if(!uniform.attached_accessory || QDELETED(uniform.attached_accessory))
+		HOLSTER_LOG(HOLSTER_LOG_WARNING, src, "get_holster_and_storage: user [src.ckey] has no attached accessory")
+		return result
+	if(!istype(uniform.attached_accessory, /obj/item/clothing/accessory/holster))
+		HOLSTER_LOG(HOLSTER_LOG_WARNING, src, "get_holster_and_storage: user [src.ckey] attached accessory is not holster")
+		return result
+	var/obj/item/clothing/accessory/holster/holster = uniform.attached_accessory
+	// Дополнительная проверка
+	if(QDELETED(holster))
+		HOLSTER_LOG(HOLSTER_LOG_ERROR, src, "get_holster_and_storage: holster is deleted for user [src.ckey]")
+		return result
+	result["holster"] = holster
+	// Получаем storage через функцию (если нужно)
+	var/datum/component/storage/STR = holster.get_storage_component(src)
+	if(!STR || QDELETED(STR))
+		HOLSTER_LOG(HOLSTER_LOG_ERROR, src, "get_holster_and_storage: storage component is null or deleted for user [src.ckey]")
+		result["holster"] = null
+		return result
+	result["storage"] = STR
+	HOLSTER_LOG(HOLSTER_LOG_DEBUG, src, "get_holster_and_storage: found holster and storage for user [src.ckey]")
+	return result
 
 

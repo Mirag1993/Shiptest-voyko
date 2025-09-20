@@ -1,63 +1,73 @@
 
-#### Список PRов:
+### Holster Paradise (Celadon QoL) — документация
 
-- https://github.com/MysticalFaceLesS/Shiptest/pulls/#####
+- ID модуля: `CELADON_HOLSTER_PARADISE`
+- Замена стандартной системы кобур на стиль Paradise‑220.
 
-## Модуль кобур Paradise
+### Ключевые изменения
 
-Система кобур в стиле Paradise 220. Полная замена стандартной системы Shiptest.
+- Хоткей кобуры настраиваемый (Unbound по умолчанию). Stop pulling остаётся на H.
+- Вся логика действий — в методах кобуры; keybind/action только делегируют.
+- Централизованное логирование и обработка ошибок.
+- Поиск storage вынесен в `get_storage_component()` с кэшированием и правильной инвалидацией.
+- Параметры ограничений на типе кобуры:
+  - `max_allowed_w_class`
+  - `allow_fullauto`
+  - `min_weapon_weight`, `max_weapon_weight`
+  - `allowed_typecache` (typecache разрешённых типов оружия)
 
-ID мода: CELADON_HOLSTER_PARADISE
+### Поведение (коротко)
 
-## Что делает:
-- Заменяет стандартные кобуры Shiptest
-- Добавляет клавишу H для быстрого доступа
-- Проверяет размер оружия (только маленькое и нормальное)
-- Поддерживает разные типы кобур
+- Извлечение:
+  - Если в кобуре есть предмет, хоткей/действие сначала пытается достать его (даже если активная рука занята — предмет из руки будет сброшен по логике ниже).
+  - Если кобура пуста и в активной руке есть предмет — будет попытка убрать его в кобуру.
+- Спрятать в кобуру: соблюдает `can_holster()` и ограничения типа/веса/режимов.
+- Достать из кобуры: единая реализация в `unholster()`.
 
-## Файлы:
-- `_holster_paradise.dm` - главный файл, включает все части
-- `code/holster_types.dm` - типы кобур (обычная, детектив, нюкер)
-- `code/holster_keybind.dm` - клавиша H и логика работы
-- `code/holster_components.dm` - кнопки действий
+### Интенты и руки
 
-## Особенности:
-- **Обычные кобуры**: только TINY/SMALL/NORMAL оружие
-- **Кобура нюкера**: принимает даже BULKY оружие
-- **Все кобуры**: МАКСИМУМ 1 предмет
-- **Клавиша H**: прячет/достает оружие из активной руки
+- Non-HARM: при извлечении, если активная рука занята, предмет в активной руке сбрасывается на пол, оружие кладётся в активную руку; если невозможно — в неактивную; если и это невозможно — на пол.
+- HARM: при извлечении очищаются обе руки (оба предмета сбрасываются), оружие кладётся в активную руку и, если у него есть компонент `/datum/component/two_handed`, автоматически берётся в две руки.
+- Заблокированные руки (наручники, эффекты): извлечение и прятание запрещены; выводится предупреждение.
 
-## Как использовать:
-1. Надень кобуру на униформу
-2. Возьми пистолет в руку
-3. Нажми H - оружие спрячется в кобуру
-4. Нажми H еще раз - оружие достанется обратно
+### Хоткей и приоритеты
 
-## Изменения *кор кода*
+- Хоткей Unbound: игрок настраивает сам.
+- При нажатии:
+  - Если в кобуре есть предмет — приоритет на извлечение.
+  - Иначе — если в руке предмет — попытка спрятать.
+  - Иначе — попытка извлечения (сообщение, если кобура пуста).
+- Анти‑дребезг: `mob/var/holster_processing` предотвращает двойную обработку в один тик.
 
-### Закомментированные оригинальные кобуры:
-- EDIT: `code/modules/clothing/under/accessories.dm` - Закомментированы все определения типов кобур (`/obj/item/clothing/accessory/holster`, detective, nukie, chameleon)
-- EDIT: `code/datums/components/storage/concrete/pockets.dm` - Закомментированы определения кобур в компонентах хранения (`/datum/component/storage/concrete/pockets/holster`)
+### Логирование
 
-### Изменения для клавиши H:
-- EDIT: `code/controllers/subsystem/input.dm` - Изменена клавиша "Stop pulling" с H на C в `default_hotkeys`
-- EDIT: `code/datums/keybinding/mob.dm` - Изменены `hotkey_keys` для `/datum/keybinding/mob/stop_pulling` с `list("H", "Delete")` на `list("C", "Delete")`
+- Макрос: `HOLSTER_LOG(level, user, message)`
+- Уровни: ERROR, WARNING, INFO, DEBUG (контролируются `HOLSTER_LOG_LEVEL`)
+- Никогда не использовать `usr`; всегда передавать явный `mob`.
 
-### Добавления для новой системы кобур:
-- ADD: `code/__DEFINES/keybinding.dm` - Добавлен сигнал `COMSIG_KB_HUMAN_HOLSTER_DOWN`
-- EDIT: `code/modules/mob/living/carbon/human/human.dm` - Добавлена регистрация сигнала и обработчик `handle_holster_keybind()` в `Initialize()`
+### Кэширование
 
-## Автор:
-Mirag1993
+- `cached_storage` с TTL: `cache_duration_ticks = (5 SECONDS)`
+- Инвалидация при `attach/detach` и при ошибках получения storage
 
-## Оверрайды
+### Проверка состояний
 
-Отсутствуют
+- `can_use_holster(user, require_free_active_hand)` — используется в `can_holster()`, `holster()`, `unholster()`, action, verb; блокирует действия при недоступных/заблокированных руках.
 
-## Дефайны
+### Звуки
 
-- ADD: `code/__DEFINES/keybinding.dm` - `COMSIG_KB_HUMAN_HOLSTER_DOWN`
+- Константы: `HOLSTER_SND_IN`, `HOLSTER_SND_OUT`, `HOLSTER_SND_VOL`.
 
-## Используемые файлы, не содержащиеся в модпаке
+### Миграция (из старого PR)
 
-Отсутствуют
+- Отменён ребинд H→C; хоткей кобуры оставлен Unbound, чтобы игрок сам назначил.
+- Убран дублирующий поиск storage; добавлен `get_storage_component(user)`.
+- Безопасная логика достания предмета перенесена в `unholster()`.
+
+### Файлы
+
+- `mod_celadon/qol/holster_paradise/_holster_paradise.dm`
+- `mod_celadon/qol/holster_paradise/code/holster_logging.dm`
+- `mod_celadon/qol/holster_paradise/code/holster_types.dm`
+- `mod_celadon/qol/holster_paradise/code/holster_keybind.dm`
+- `mod_celadon/qol/holster_paradise/code/holster_components.dm`
