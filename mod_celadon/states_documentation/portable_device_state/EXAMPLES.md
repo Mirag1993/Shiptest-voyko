@@ -189,32 +189,23 @@
 // ==================
 ```
 
-## Примеры для разных устройств
+## Дополнительные устройства
 
-### Рация с дополнительными проверками:
+### Умные очки:
 ```dm
-/obj/item/radio/ui_state(mob/user)
-	// Дополнительная проверка для раций
-	if(!on)
-		return UI_CLOSE
+/obj/item/clothing/glasses/smart/ui_state(mob/user)
 	return GLOB.portable_device_state
 ```
 
-### PDA с проверкой батареи:
+### Портативный терминал:
 ```dm
-/obj/item/pda/ui_state(mob/user)
-	// Дополнительная проверка для PDA
-	if(!battery || battery.charge <= 0)
-		return UI_CLOSE
+/obj/item/portable_terminal/ui_state(mob/user)
 	return GLOB.portable_device_state
 ```
 
-### Планшет с проверкой питания:
+### Голографический проектор:
 ```dm
-/obj/item/tablet/ui_state(mob/user)
-	// Дополнительная проверка для планшета
-	if(!powered())
-		return UI_CLOSE
+/obj/item/holographic_projector/ui_state(mob/user)
 	return GLOB.portable_device_state
 ```
 
@@ -256,25 +247,6 @@
 		tablet.ui_interact(src)
 ```
 
-## Будущие примеры
-
-### Пример 1: Умные очки
-```dm
-/obj/item/clothing/glasses/smart/ui_state(mob/user)
-	return GLOB.portable_device_state
-```
-
-### Пример 2: Портативный терминал
-```dm
-/obj/item/portable_terminal/ui_state(mob/user)
-	return GLOB.portable_device_state
-```
-
-### Пример 3: Голографический проектор
-```dm
-/obj/item/holographic_projector/ui_state(mob/user)
-	return GLOB.portable_device_state
-```
 
 ---
 
