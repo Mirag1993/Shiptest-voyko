@@ -73,8 +73,12 @@ export const setClientTheme = (name) => {
     'lore.text-color': themeColor.TEXT,
     'github.background-color': themeColor.BUTTON,
     'github.text-color': themeColor.TEXT,
+    'discord.background-color': themeColor.BUTTON,
+    'discord.text-color': themeColor.TEXT,
     'report-issue.background-color': themeColor.BUTTON,
     'report-issue.text-color': themeColor.TEXT,
+    'fullscreen-toggle.background-color': themeColor.BUTTON,
+    'fullscreen-toggle.text-color': themeColor.TEXT,
     // Status and verb tabs
     'output.background-color': themeColor.BG_BASE,
     'output.text-color': themeColor.TEXT,
