@@ -1,6 +1,7 @@
 import { filter, sortBy } from 'common/collections';
 import {
   Button,
+  Collapsible,
   Flex,
   Icon,
   Input,
@@ -8,40 +9,41 @@ import {
   Stack,
   Table,
   Tabs,
-  Collapsible,
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
 import { flow } from 'tgui-core/fp';
+
 import { useBackend, useSharedState } from '../../backend';
 
-export const CargoCatalog = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CargoCatalog = (props) => {
+  const { act, data } = useBackend();
 
   const { self_paid, app_cost } = data;
 
   const supplies = Object.values(data.supplies);
 
   const [activeSupplyName, setActiveSupplyName] = useSharedState(
-    context,
     'supply',
     supplies[0]?.name,
   );
 
-  const [searchText, setSearchText] = useSharedState(
-    context,
-    'search_text',
-    '',
-  );
+  const [searchText, setSearchText] = useSharedState('search_text', '');
 
-  const [cart, setCart] = useSharedState(context, 'cart', []);
+  const [cart, setCart] = useSharedState('cart', []);
 
   const MAX_CART_ITEMS = 20;
 
-  const cartTotal = cart.reduce(
-    (cartTotal, entry) =>
-      cartTotal + (entry.discountedcost ? entry.discountedcost : entry.cost),
-    0
-  );
+  const cartTotal = cart.reduce((cartTotal, itemId) => {
+    const pack = supplies
+      .flatMap((supply) => supply.packs)
+      .find((p) => p.id === itemId);
+    if (pack) {
+      return (
+        cartTotal + (pack.discountedcost ? pack.discountedcost : pack.cost)
+      );
+    }
+    return cartTotal;
+  }, 0);
 
   const activeSupply =
     activeSupplyName === 'search_results'
@@ -51,6 +53,24 @@ export const CargoCatalog = (props, context) => {
   const removeFromCart = (indexToRemove) => {
     setCart(cart.filter((_, index) => index !== indexToRemove));
   };
+
+  // Простая группировка для отображения
+  const groupedCart = cart.reduce((groups, itemId) => {
+    const key = itemId;
+    if (!groups[key]) {
+      // Находим полные данные предмета из supplies
+      const fullPack = supplies
+        .flatMap((supply) => supply.packs)
+        .find((pack) => pack.id === itemId);
+      if (fullPack) {
+        groups[key] = { pack: fullPack, count: 0 };
+      }
+    }
+    if (groups[key]) {
+      groups[key].count++;
+    }
+    return groups;
+  }, {});
 
   return (
     <>
@@ -69,7 +89,7 @@ export const CargoCatalog = (props, context) => {
               disabled={cart.length === 0 || cart.length > MAX_CART_ITEMS}
               onClick={() => {
                 act('purchase', {
-                  cart: cart,
+                  cart: cart, // Теперь это массив ID
                   total: cartTotal,
                 });
                 setCart([]);
@@ -83,18 +103,25 @@ export const CargoCatalog = (props, context) => {
         {cart.length !== 0 ? (
           <Collapsible title="Order Contents">
             <Table>
-              {cart.map((pack, index) => {
+              {Object.values(groupedCart).map((group, index) => {
+                const { pack, count } = group;
                 return (
-                  <Table.Row key={index} className="candystripe">
+                  <Table.Row key={`${pack.id}-group`} className="candystripe">
                     <Table.Cell collapsing>
                       <Button
-                        icon="times"
+                        icon="minus"
                         color="transparent"
-                        tooltip="Remove from order"
-                        onClick={() => removeFromCart(index)}
+                        tooltip="Remove one from order"
+                        onClick={() => {
+                          const itemIndex = cart.findIndex(
+                            (id) => id === pack.id,
+                          );
+                          removeFromCart(itemIndex);
+                        }}
                       />
                     </Table.Cell>
                     <Table.Cell>
+                      {count > 1 ? `${count}x ` : ''}
                       {(pack.discountedcost ? pack.discountedcost : pack.cost) +
                         ' cr'}
                     </Table.Cell>
@@ -196,12 +223,15 @@ export const CargoCatalog = (props, context) => {
                         tooltip={pack.desc}
                         tooltipPosition="left"
                         disabled={cart.length >= MAX_CART_ITEMS}
-                        onClick={() => setCart(cart.concat(pack))}
+                        onClick={() => {
+                          // Отправляем только id для покупки
+                          setCart(cart.concat(pack.id));
+                        }}
                       >
                         {formatMoney(
                           (self_paid && !pack.goody) || app_cost
                             ? Math.round(pack.cost * 1.1)
-                            : pack.cost
+                            : pack.cost,
                         )}
                         {' cr'}
                       </Button>

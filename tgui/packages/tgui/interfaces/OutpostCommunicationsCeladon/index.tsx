@@ -8,17 +8,18 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../../backend';
 import { CargoCatalog } from './Catalog';
 import { Data, Mission } from './types';
 
-export const OutpostCommunicationsCeladon = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+export const OutpostCommunicationsCeladon = (props) => {
+  const { act, data } = useBackend<Data>();
   const { outpostDocked, onShip, points, faction_theme } = data;
-  const [tab, setTab] = useSharedState(context, 'outpostTab');
+  const [tab, setTab] = useSharedState('outpostTab', '');
   return (
-    <Window theme={faction_theme} width={600} height={700} resizable>
+    <Window theme={faction_theme || 'independent'} width={600} height={700}>
       <Window.Content scrollable>
         <Section
           title={Math.round(points) + ' credits'}
@@ -47,19 +48,24 @@ export const OutpostCommunicationsCeladon = (props, context) => {
               <Stack.Item>
                 <Button.Input
                   content="Withdraw Cash"
-                  currentValue={100}
-                  defaultValue={100}
-                  onCommit={(e, value) =>
+                  currentValue={'100'}
+                  defaultValue={'100'}
+                  onCommit={(e, value) => {
+                    const inputValue = parseInt(value, 10) || 0;
+                    const maxAmount = points || 0;
+                    // Если введенная сумма больше доступной, используем всю доступную сумму
+                    const finalAmount =
+                      inputValue > maxAmount ? maxAmount : inputValue;
                     act('withdrawCash', {
-                      value: value,
-                    })
-                  }
+                      value: finalAmount.toString(),
+                    });
+                  }}
                 />
               </Stack.Item>
             </Stack>
           }
         />
-        {tab === 'cargo' && <CargoExpressContent />}
+        {(!tab || tab === 'cargo') && <CargoExpressContent />}
         {tab === 'shipMissions' && !!onShip && <ShipMissionsContent />}
         {tab === 'outpostMissions' && !!outpostDocked && (
           <OutpostMissionsContent />
@@ -69,8 +75,8 @@ export const OutpostCommunicationsCeladon = (props, context) => {
   );
 };
 
-const CargoExpressContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
+const CargoExpressContent = (props) => {
+  const { act, data } = useBackend<Data>();
   const { message } = data;
   return (
     <>
@@ -84,8 +90,8 @@ const CargoExpressContent = (props, context) => {
   );
 };
 
-const ShipMissionsContent = (props, context) => {
-  const { data } = useBackend<Data>(context);
+const ShipMissionsContent = (props) => {
+  const { data } = useBackend<Data>();
   const { numMissions, maxMissions, outpostDocked, shipMissions } = data;
   return (
     <Section title={'Current Missions ' + numMissions + '/' + maxMissions}>
@@ -94,8 +100,8 @@ const ShipMissionsContent = (props, context) => {
   );
 };
 
-const OutpostMissionsContent = (props, context) => {
-  const { data } = useBackend<Data>(context);
+const OutpostMissionsContent = (props) => {
+  const { data } = useBackend<Data>();
   const { numMissions, maxMissions, outpostDocked, outpostMissions } = data;
   const disabled = numMissions >= maxMissions;
   return (
@@ -110,15 +116,19 @@ const OutpostMissionsContent = (props, context) => {
   );
 };
 
-const MissionsList = (props, context) => {
-  const showButton = props.showButton as Boolean;
-  const disabled = props.disabled as Boolean;
+const MissionsList = (props) => {
+  const showButton = props.showButton as BooleanLike;
+  const disabled = props.disabled as BooleanLike;
   const tooltip = props.tooltip as string;
   const missionsArray = props.missions as Array<Mission>;
-  const { act } = useBackend(context);
+  const { act } = useBackend();
   //   const { numMissions, maxMissions } = data;
 
-  const buttonJSX = (mission: Mission, tooltip: string, disabled: Boolean) => {
+  const buttonJSX = (
+    mission: Mission,
+    tooltip: string,
+    disabled: BooleanLike,
+  ) => {
     return (
       <Button
         disabled={disabled}
