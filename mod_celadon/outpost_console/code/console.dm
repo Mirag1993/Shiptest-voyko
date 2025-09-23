@@ -10,10 +10,17 @@
 		ship = D.current_ship
 		outpost_docked = istype(ship.docked_to, /datum/overmap/outpost)
 
-	data["onShip"] = !isnull(ship)
-	data["numMissions"] = ship ? LAZYLEN(ship.missions) : 0
-	data["maxMissions"] = ship ? ship.max_missions : 0
-	data["outpostDocked"] = outpost_docked
+	// Для фракционных консолей — вовсе не трогаем шаттл
+	if(istype(src, /obj/machinery/computer/cargo/faction))
+		data["onShip"] = FALSE
+		data["outpostDocked"] = TRUE
+		data["numMissions"] = 0
+		data["maxMissions"] = 0
+	else
+		data["onShip"] = !isnull(ship)
+		data["numMissions"] = ship ? LAZYLEN(ship.missions) : 0
+		data["maxMissions"] = ship ? ship.max_missions : 0
+		data["outpostDocked"] = outpost_docked
 	data["points"] = charge_account ? charge_account.account_balance : 0
 	data["siliconUser"] = user.has_unlimited_silicon_privilege && check_ship_ai_access(user)
 	data["usingBeacon"] = use_beacon //is the mode set to deliver to the beacon or the cargobay?
@@ -65,56 +72,53 @@
 	return data
 
 /obj/machinery/computer/cargo/faction/ui_act(action, params, datum/tgui/ui)
-	. = ..()
-	if(.)
-		return
 	switch(action)
-		if("withdrawCash")
-			var/val = isnum(params["value"]) ? params["value"] : text2num("[params["value"]]")
-			// no giving yourself money
-			if(!charge_account || !val || val <= 0)
-				return
-			if(charge_account.adjust_money(-val))
-				var/obj/item/holochip/cash_chip = new /obj/item/holochip(drop_location(), val)
-				if(ishuman(usr))
-					var/mob/living/carbon/human/user = usr
-					user.put_in_hands(cash_chip)
-				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
-				src.visible_message(span_notice("[src] dispenses a holochip."))
-			SStgui.update_uis(src)
-			return TRUE
-
 		if("purchase")
+			// Обрабатываем purchase сами, НЕ вызываем базовый класс
 			var/list/purchasing = params["cart"]
-			var/total_cost = text2num(params["total"])
-			var/area/current_area = get_area(src)
-			var/list/packs = list()
-			for(var/item in purchasing)
-				var/pack_id = isnum(params["id"]) ? params["id"] : text2path("[params["id"]]")
-				var/datum/supply_pack/pack = SSshuttle.supply_packs[pack_id]
-				if(pack)
-					packs += pack
+			if(istext(purchasing))
+				purchasing = json_decode(purchasing) || list()
 
-			if(!length(packs) || !charge_account?.has_money(total_cost) || !istype(current_area))
-				message_cooldown = console_cooldown_feedback(src, "ERROR: Insufficent funds! Transaction canceled.", message_cooldown)
+			var/list/packs = list()
+			for(var/i in 1 to purchasing.len)
+				var/pack_id = purchasing[i]
+				// Проверяем, что это строка (ID)
+				if(!istext(pack_id))
+					continue
+				pack_id = text2path("[pack_id]")
+				var/datum/supply_pack/P = SSshuttle.supply_packs[pack_id]
+				if(P)
+					packs += P
+
+			if(!length(packs))
+				message_cooldown = console_cooldown_feedback(src, "ERROR: No items selected!", message_cooldown)
 				return TRUE
 
+			// Авторитет сервера по цене
+			var/total_cost = 0
+			for(var/datum/supply_pack/P in packs)
+				var/effective = P.cost
+				// если нужно 10%: if((self_paid && !P.goody) || app_cost) effective = round(P.cost * 1.1)
+				total_cost += effective
+
+			if(!charge_account?.has_money(total_cost))
+				message_cooldown = console_cooldown_feedback(src, "ERROR: Insufficient funds!", message_cooldown)
+				return TRUE
+
+			// Посадка БЕЗ корабля — через landingzone / get_area
 			var/turf/landing_turf
 			if(!use_beacon)
-				var/list/empty_turfs = list()
 				if(!landingzone)
 					reconnect()
 					if(!landingzone)
-						WARNING("[src] couldnt find a Ship/Cargo (aka cargobay) area on a ship, and as such it has set the supplypod landingzone to the area it resides in.")
 						landingzone = get_area(src)
-
+				var/list/empty_turfs = list()
 				for(var/turf/open/floor/T in landingzone.contents)
-					if(T.is_blocked_turf())
-						continue
-					empty_turfs += T
+					if(!T.is_blocked_turf())
+						empty_turfs += T
 					CHECK_TICK
 				if(!length(empty_turfs))
-					message_cooldown = console_cooldown_feedback(src, "ERROR: Landing zone full! No space for drop!", message_cooldown)
+					message_cooldown = console_cooldown_feedback(src, "ERROR: Landing zone full!", message_cooldown)
 					return TRUE
 				landing_turf = pick(empty_turfs)
 
@@ -123,34 +127,55 @@
 				new /obj/effect/pod_landingzone(landing_turf, podType, SO)
 				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				say("Order incoming!")
-				// Логирование покупок
-				for(var/datum/supply_pack/pack in packs)
-					log_econ("[key_name(usr)] purchased [pack.name] for [pack.cost] credits from [src.name] at [AREACOORD(src)]")
+				for(var/datum/supply_pack/P in packs)
+					log_econ("[key_name(usr)] purchased [P.name] for [P.cost] credits from [src.name] at [AREACOORD(src)]")
 				log_econ("[key_name(usr)] total purchase cost: [total_cost] credits from [src.name] at [AREACOORD(src)]")
 				update_appearance()
 				SStgui.update_uis(src)
 				return TRUE
-
-		if("mission-act")
-			var/datum/mission/mission = locate(params["ref"])
-			var/obj/docking_port/mobile/D = SSshuttle.get_containing_shuttle(src)
-			var/datum/overmap/ship/controlled/ship = D.current_ship
-			var/datum/overmap/outpost/outpost = ship.docked_to
-			if(!istype(outpost) || mission.source_outpost != outpost) // important to check these to prevent href fuckery
+		else
+			// Для всех остальных действий вызываем базовый класс
+			. = ..()
+			if(.)
 				return
-			if(!mission.accepted)
-				if(LAZYLEN(ship.missions) >= ship.max_missions)
-					return
-				mission.accept(ship, loc)
-				SStgui.update_uis(src)
-				return TRUE
-			else if(mission.servant == ship)
-				if(mission.can_complete())
-					mission.turn_in()
-				// else
-				// 	mission.give_up() // NEEDS_TO_FIX_ALARM!
-				SStgui.update_uis(src)
-				return TRUE
+			switch(action)
+				if("withdrawCash")
+					var/val = isnum(params["value"]) ? params["value"] : text2num("[params["value"]]")
+					// no giving yourself money
+					if(!charge_account || !val || val <= 0)
+						return
+					if(charge_account.adjust_money(-val))
+						var/obj/item/holochip/cash_chip = new /obj/item/holochip(drop_location(), val)
+						if(ishuman(usr))
+							var/mob/living/carbon/human/user = usr
+							user.put_in_hands(cash_chip)
+						playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
+						src.visible_message(span_notice("[src] dispenses a holochip."))
+					SStgui.update_uis(src)
+					return TRUE
+
+
+
+				if("mission-act")
+					var/datum/mission/mission = locate(params["ref"])
+					var/obj/docking_port/mobile/D = SSshuttle.get_containing_shuttle(src)
+					var/datum/overmap/ship/controlled/ship = D.current_ship
+					var/datum/overmap/outpost/outpost = ship.docked_to
+					if(!istype(outpost) || mission.source_outpost != outpost) // important to check these to prevent href fuckery
+						return
+					if(!mission.accepted)
+						if(LAZYLEN(ship.missions) >= ship.max_missions)
+							return
+						mission.accept(ship, loc)
+						SStgui.update_uis(src)
+						return TRUE
+					else if(mission.servant == ship)
+						if(mission.can_complete())
+							mission.turn_in()
+						// else
+						// 	mission.give_up() // NEEDS_TO_FIX_ALARM!
+						SStgui.update_uis(src)
+						return TRUE
 
 /proc/console_cooldown_feedback(obj/source, msg, cooldown)
 	playsound(source, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
@@ -200,7 +225,7 @@
 		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
 		var/is_faction = ispath(P.faction, faction)
 
-		if (is_faction)
+		if(is_faction)
 			// Если нет группы, создаём группу
 			if(!data["supplies"][P.category])
 				data["supplies"][P.category] = list(
@@ -215,8 +240,6 @@
 				"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
 				// "small_item" = P.small_item,
 			))
-
-
 	return data
 
 /*
@@ -471,7 +494,7 @@
 */
 /obj/machinery/computer/cargo/faction/nanotrasen
 	// Конфигурация для рефакторинга
-	faction_theme = "nanotrasen"
+	faction_theme = "nt"
 	faction_name = "Nanotrasen outpost console"
 	faction_desc = "That outpost console belongs to Nanotrasen."
 	faction_icon = "idcentcom"
