@@ -1,5 +1,6 @@
+import { Button, Section } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Button, Section } from '../components';
 import { Window } from '../layouts';
 
 interface SoundSetting {
@@ -35,14 +36,22 @@ export function SoundPanelSettings(props: SoundPanelSettingsProps, context) {
       <Window.Content>
         <Section title="Основное">
           {[
-            { k: 'midi', v: midi,  t: 'Админские мидис' },
+            { k: 'midi', v: midi, t: 'Админские мидис' },
             { k: 'lobby', v: lobby, t: 'Музыка в лобби' },
             { k: 'instruments', v: instruments, t: 'Музыкальные инструменты' },
             { k: 'endofround', v: endofround, t: 'Звук конца раунда' },
             { k: 'jukebox', v: jukebox, t: 'Музыкальный автомат' },
-            { k: 'announcements', v: announcements, t: 'Оповещения (Announcements)' },
+            {
+              k: 'announcements',
+              v: announcements,
+              t: 'Оповещения (Announcements)',
+            },
             { k: 'ambience', v: ambience, t: 'Окружение (Ambience)' },
-            { k: 'ship_ambience', v: ship_ambience, t: 'Шум корабля (Ambience)' },
+            {
+              k: 'ship_ambience',
+              v: ship_ambience,
+              t: 'Шум корабля (Ambience)',
+            },
           ].map(({ k, v, t }) => (
             <Button
               key={k}
