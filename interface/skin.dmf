@@ -141,14 +141,14 @@ window "infobuttons"
 	elem "infobuttons"
 		type = MAIN
 		pos = 291,0
-		size = 640x30
+		size = 640x25
 		anchor1 = 0,0
 		anchor2 = 100,100
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "changelog"
 		type = BUTTON
-		pos = 0,5
+		pos = 10,5
 		size = 80x20
 		anchor1 = 0,0
 		anchor2 = 10,100
@@ -157,7 +157,7 @@ window "infobuttons"
 		command = "changelog"
 	elem "rules"
 		type = BUTTON
-		pos = 90,5
+		pos = 100,5
 		size = 80x20
 		anchor1 = 10,0
 		anchor2 = 25,100
@@ -166,7 +166,7 @@ window "infobuttons"
 		command = "rules"
 	elem "wiki"
 		type = BUTTON
-		pos = 180,5
+		pos = 190,5
 		size = 80x20
 		anchor1 = 25,0
 		anchor2 = 40,100
@@ -175,7 +175,7 @@ window "infobuttons"
 		command = "wiki"
 	elem "github"
 		type = BUTTON
-		pos = 270,5
+		pos = 280,5
 		size = 80x20
 		anchor1 = 40,0
 		anchor2 = 55,100
@@ -184,7 +184,7 @@ window "infobuttons"
 		command = "github"
 	elem "discord"
 		type = BUTTON
-		pos = 360,5
+		pos = 370,5
 		size = 80x20
 		anchor1 = 55,0
 		anchor2 = 70,100
@@ -192,7 +192,7 @@ window "infobuttons"
 		command = "discord"
 	elem "report-issue"
 		type = BUTTON
-		pos = 450,5
+		pos = 460,5
 		size = 80x20
 		anchor1 = 70,0
 		anchor2 = 85,100
@@ -201,7 +201,7 @@ window "infobuttons"
 		command = "report-issue"
 	elem "fullscreen-toggle"
 		type = BUTTON
-		pos = 540,5
+		pos = 550,5
 		size = 80x20
 		anchor1 = 85,0
 		anchor2 = 100,100
