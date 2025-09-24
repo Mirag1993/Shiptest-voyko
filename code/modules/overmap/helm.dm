@@ -177,6 +177,7 @@
 		current_ship.sensor_range = 1;
 		current_ship.token.update_screen();
 	}
+	current_ship.token.update_screen()
 	// [/CELADON-ADD]
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
