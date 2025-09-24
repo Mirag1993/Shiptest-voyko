@@ -19,7 +19,7 @@ export const OutpostCommunicationsCeladon = (props) => {
   const { outpostDocked, onShip, points, faction_theme } = data;
   const [tab, setTab] = useSharedState('outpostTab', '');
   return (
-    <Window theme={faction_theme || 'independent'} width={600} height={700}>
+    <Window theme={faction_theme} width={600} height={700}>
       <Window.Content scrollable>
         <Section
           title={Math.round(points) + ' credits'}
