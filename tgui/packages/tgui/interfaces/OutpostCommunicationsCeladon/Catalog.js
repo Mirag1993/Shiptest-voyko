@@ -1,4 +1,4 @@
-import { filter, sortBy } from 'common/collections';
+import { useState } from 'react';
 import {
   Button,
   Collapsible,
@@ -11,43 +11,86 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
-import { flow } from 'tgui-core/fp';
 
 import { useBackend, useSharedState } from '../../backend';
 
+// DIY: Единая функция валидации данных
+const validateData = (data) => ({
+  supplies: Array.isArray(data.supplies)
+    ? data.supplies
+    : Object.values(data.supplies || {}),
+  cart: Array.isArray(data.cart) ? data.cart : [],
+  self_paid: Boolean(data.self_paid),
+  app_cost: Boolean(data.app_cost),
+  blockade: Boolean(data.blockade),
+});
+
+// KISS: Простая функция поиска без избыточной сложности
+const searchForSupplies = (supplies, search, limit = 25) => {
+  if (!search?.trim() || !Array.isArray(supplies)) return [];
+
+  const searchLower = search.toLowerCase();
+
+  return supplies
+    .flatMap((supply) => supply.packs || [])
+    .filter((pack) => pack?.name?.toLowerCase().includes(searchLower))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(0, limit);
+};
+
 export const CargoCatalog = (props) => {
   const { act, data } = useBackend();
-
-  const { self_paid, app_cost } = data;
-
-  const supplies = Object.values(data.supplies);
+  const validated = validateData(data);
+  const { supplies, self_paid, app_cost, blockade } = validated;
 
   const [activeSupplyName, setActiveSupplyName] = useSharedState(
     'supply',
     supplies[0]?.name,
   );
-
   const [searchText, setSearchText] = useSharedState('search_text', '');
-
   const [cart, setCart] = useSharedState('cart', []);
+  const [purchasing, setPurchasing] = useState(false);
 
-  const MAX_CART_ITEMS = 20;
+  // KISS: Получаем константы из сервера, fallback на клиентские значения
+  const MAX_CART_ITEMS = data.max_cart_items || 20;
+  const SEARCH_RESULTS_LIMIT = data.search_results_limit || 25;
 
-  const cartTotal = cart.reduce((cartTotal, itemId) => {
-    const pack = supplies
-      .flatMap((supply) => supply.packs)
-      .find((p) => p.id === itemId);
-    if (pack) {
-      return (
-        cartTotal + (pack.discountedcost ? pack.discountedcost : pack.cost)
-      );
+  // KISS: Асинхронная обработка покупки с ожиданием подтверждения сервера
+  const handlePurchase = async () => {
+    if (purchasing || cart.length === 0 || cart.length > MAX_CART_ITEMS) return;
+
+    setPurchasing(true);
+    try {
+      // Отправляем запрос и ждем ответа
+      const result = await act('purchase', {
+        cart: cart,
+        total: cartTotal,
+      });
+
+      // Очищаем корзину только если покупка была успешной
+      // (сервер не вернул ошибку)
+      if (result?.success !== false) {
+        setCart([]);
+      }
+    } catch (error) {
+      console.error('Purchase failed:', error);
+      // При ошибке корзина остается нетронутой
+    } finally {
+      setPurchasing(false);
     }
-    return cartTotal;
+  };
+
+  // KISS: Простое вычисление общей стоимости
+  const cartTotal = cart.reduce((total, itemId) => {
+    const pack = supplies
+      .flatMap((s) => s.packs || [])
+      .find((p) => p.id === itemId);
+    return total + (pack?.discountedcost || pack?.cost || 0);
   }, 0);
 
   const activeSupply =
     activeSupplyName === 'search_results'
-      ? { packs: searchForSupplies(supplies, searchText) }
+      ? { packs: searchForSupplies(supplies, searchText, SEARCH_RESULTS_LIMIT) }
       : supplies.find((supply) => supply.name === activeSupplyName);
 
   const removeFromCart = (indexToRemove) => {
@@ -56,25 +99,19 @@ export const CargoCatalog = (props) => {
 
   // Простая группировка для отображения
   const groupedCart = cart.reduce((groups, itemId) => {
-    const key = itemId;
-    if (!groups[key]) {
-      // Находим полные данные предмета из supplies
-      const fullPack = supplies
-        .flatMap((supply) => supply.packs)
-        .find((pack) => pack.id === itemId);
-      if (fullPack) {
-        groups[key] = { pack: fullPack, count: 0 };
-      }
+    if (!groups[itemId]) {
+      const pack = supplies
+        .flatMap((s) => s.packs || [])
+        .find((p) => p.id === itemId);
+      groups[itemId] = { pack, count: 0 };
     }
-    if (groups[key]) {
-      groups[key].count++;
-    }
+    groups[itemId].count++;
     return groups;
   }, {});
 
   return (
     <>
-      <Section title="Order">
+      <Section title="Cart">
         <Table.Row>
           <Table.Cell>
             <Button
@@ -85,29 +122,26 @@ export const CargoCatalog = (props) => {
             />
             <Button
               color="green"
-              content="Purchase"
-              disabled={cart.length === 0 || cart.length > MAX_CART_ITEMS}
-              onClick={() => {
-                act('purchase', {
-                  cart: cart, // Теперь это массив ID
-                  total: cartTotal,
-                });
-                setCart([]);
-              }}
+              content={purchasing ? 'Processing...' : 'Purchase'}
+              disabled={
+                cart.length === 0 || cart.length > MAX_CART_ITEMS || purchasing
+              }
+              onClick={handlePurchase}
             />
           </Table.Cell>
           <Table.Cell textAlign="right" collapsing>
             {cart.length === 0 && 'Order is empty'}
+            {cart.length > 0 && `Items: ${cart.length}/${MAX_CART_ITEMS}`}
           </Table.Cell>
         </Table.Row>
-        {cart.length !== 0 ? (
+        {cart.length !== 0 && (
           <Collapsible title="Order Contents">
             <Table>
               {Object.values(groupedCart).map((group, index) => {
                 const { pack, count } = group;
                 return (
-                  <Table.Row key={`${pack.id}-group`} className="candystripe">
-                    <Table.Cell collapsing>
+                  <Table.Row key={index} className="candystripe">
+                    <Table.Cell>
                       <Button
                         icon="minus"
                         color="transparent"
@@ -121,33 +155,24 @@ export const CargoCatalog = (props) => {
                       />
                     </Table.Cell>
                     <Table.Cell>
-                      {count > 1 ? `${count}x ` : ''}
-                      {(pack.discountedcost ? pack.discountedcost : pack.cost) +
-                        ' cr'}
+                      {pack.discountedcost ? pack.discountedcost : pack.cost} cr
                     </Table.Cell>
                     <Table.Cell collapsing color="label" textAlign="right">
-                      {pack.name}
+                      {pack.name} x{count}
                     </Table.Cell>
                   </Table.Row>
                 );
               })}
             </Table>
           </Collapsible>
-        ) : (
-          ''
         )}
         {cartTotal > 0 && (
           <Table.Row>
             <Table.Cell colSpan={2} bold>
               Total: {formatMoney(cartTotal)} cr
             </Table.Cell>
-            <Table.Cell
-              textAlign="right"
-              collapsing
-              color={cart.length >= MAX_CART_ITEMS ? 'red' : ''}
-            >
-              {cart.length >= 1 &&
-                'Contains: ' + cart.length + `/${MAX_CART_ITEMS} items`}{' '}
+            <Table.Cell textAlign="right" collapsing>
+              {cart.length >= 1 && `Contains: ${cart.length} items`}
             </Table.Cell>
           </Table.Row>
         )}
@@ -170,21 +195,14 @@ export const CargoCatalog = (props) => {
                       placeholder="Search..."
                       value={searchText}
                       onInput={(e, value) => {
-                        if (value === searchText) {
-                          return;
-                        }
+                        if (value === searchText) return;
+
                         if (value.length) {
                           setActiveSupplyName('search_results');
                         } else if (activeSupplyName === 'search_results') {
                           setActiveSupplyName(supplies[0]?.name);
                         }
                         setSearchText(value);
-                      }}
-                      onChange={(e, value) => {
-                        const onInput = e.target?.props?.onInput;
-                        if (onInput) {
-                          onInput(e, value);
-                        }
                       }}
                     />
                   </Stack.Item>
@@ -199,14 +217,14 @@ export const CargoCatalog = (props) => {
                     setSearchText('');
                   }}
                 >
-                  {supply.name} ({supply.packs.length})
+                  {supply.name} ({(supply.packs || []).length})
                 </Tabs.Tab>
               ))}
             </Tabs>
           </Flex.Item>
           <Flex.Item grow={1} basis={0}>
             <Table>
-              {activeSupply?.packs.map((pack) => {
+              {(activeSupply?.packs || []).map((pack) => {
                 const tags = [];
                 if (pack.access) {
                   tags.push('Restricted');
@@ -221,18 +239,22 @@ export const CargoCatalog = (props) => {
                       <Button
                         fluid
                         tooltip={pack.desc}
+                        color={pack.discountedcost ? 'green' : 'default'}
                         tooltipPosition="left"
                         disabled={cart.length >= MAX_CART_ITEMS}
                         onClick={() => {
-                          // Отправляем только id для покупки
-                          setCart(cart.concat(pack.id));
+                          if (cart.length < MAX_CART_ITEMS) {
+                            setCart(cart.concat(pack.id));
+                          }
                         }}
                       >
-                        {formatMoney(
-                          (self_paid && !pack.goody) || app_cost
-                            ? Math.round(pack.cost * 1.1)
-                            : pack.cost,
-                        )}
+                        {pack.discountedcost
+                          ? `(-${pack.discountpercent}%) ${pack.discountedcost}`
+                          : formatMoney(
+                              (self_paid && !pack.goody) || app_cost
+                                ? Math.round(pack.cost * 1.1)
+                                : pack.cost,
+                            )}
                         {' cr'}
                       </Button>
                     </Table.Cell>
@@ -245,27 +267,4 @@ export const CargoCatalog = (props) => {
       </Section>
     </>
   );
-};
-
-/**
- * Take entire supplies tree
- * and return a flat supply pack list that matches search,
- * sorted by name and only the first page.
- * @param {any[]} supplies Supplies list.
- * @param {string} search The search term
- * @returns {any[]} The flat list of supply packs.
- */
-const searchForSupplies = (supplies, search) => {
-  search = search.toLowerCase();
-
-  return flow([
-    (categories) => categories.flatMap((category) => category.packs),
-    filter(
-      (pack) =>
-        pack.name?.toLowerCase().includes(search.toLowerCase()) ||
-        pack.desc?.toLowerCase().includes(search.toLowerCase()),
-    ),
-    sortBy((pack) => pack.name),
-    (packs) => packs.slice(0, 25),
-  ])(supplies);
 };

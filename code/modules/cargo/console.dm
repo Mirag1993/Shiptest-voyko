@@ -42,6 +42,11 @@
 	var/datum/bank_account/charge_account
 	var/pack_data_cooldown = 0  // [CELADON-ADD] - CELADON_FIXES: Cooldown for generating pack data to prevent FPS drops
 
+	// [CELADON-ADD] - CELADON_FIXES: Cart and UI behavior constants
+	var/max_cart_items = 20
+	var/search_results_limit = 25
+	var/enable_cart_persistence = FALSE
+
 /obj/machinery/computer/cargo/Initialize()
 	. = ..()
 	var/obj/item/circuitboard/computer/cargo/board = circuit
@@ -81,7 +86,7 @@
 /obj/machinery/computer/cargo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "OutpostCommunicationsCeladon", name) // [CELADON-EDIT] - CELADON_OUTPOST_CONSOLE - instead of "OutpostCommunications"
+		ui = new(user, src, "ShipCommunicationsCeladon", name) // [CELADON-EDIT] - CELADON_SHIP_CONSOLE - ship consoles use missions interface
 		ui.open()
 		if(!charge_account)
 			reconnect()
@@ -115,6 +120,11 @@
 		data["blockade"] = TRUE
 	data["message"] = message
 	data["supplies"] = supply_pack_data
+
+	// [CELADON-ADD] - CELADON_FIXES: UI behavior constants
+	data["max_cart_items"] = max_cart_items
+	data["search_results_limit"] = search_results_limit
+	data["enable_cart_persistence"] = enable_cart_persistence
 
 	data["shipMissions"] = list()
 	data["outpostMissions"] = list()
