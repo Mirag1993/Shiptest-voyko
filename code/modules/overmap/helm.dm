@@ -173,11 +173,11 @@
 		user.put_in_hands(key)
 		return
 
-	// Ensure minimal sensor range and render frame BEFORE registering map objects
+	// [CELADON-ADD] - CELADON_TGUI_FIX - // Ensure minimal sensor range and render frame BEFORE registering map objects
 	if(current_ship.sensor_range < 1)
 		current_ship.sensor_range = 1
 	current_ship.token.update_screen()
-
+	// [/CELADON-ADD]
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		var/user_ref = REF(user)
@@ -351,7 +351,6 @@
 					O.cam_background.assigned_map = O.map_name
 					O.cam_screen.set_position(1, 1)
 			return
-		// [CELADON-ADD] - CELADON_OVERMAP_FIX - Двухходовка для исправления овермапы
 		if("refresh_map") // Двухходовка: сначала больше радиус, потом нормальный
 			if(current_ship?.token)
 				var/obj/overmap/O = current_ship.token
@@ -368,8 +367,7 @@
 				// Ход 2: сразу отрисовать реальный кадр
 				O.update_screen()
 			return
-		// [/CELADON-ADD]
-		// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
+		// CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		if("sensor_increase")
 			//овермап сенсорс максимальная дальность апдейт
 			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
