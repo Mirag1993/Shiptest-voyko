@@ -135,6 +135,26 @@
 /**
  * Updates the screen object, which is displayed on all connected helms
  */
+// [CELADON-EDIT] - Fix Helm Console
+/* /obj/overmap/proc/update_screen()
+	if(render_map)
+		var/list/visible_turfs = list()
+		// [CELADON-EDIT] - OVERMAP SENSOR - Это вагабонд насрал
+		// for(var/turf/T in view(4, get_turf(src)))
+		for(var/turf/T in view(parent.sensor_range, get_turf(src)))
+		// [/CELADON-EDIT]
+			visible_turfs += T
+
+		var/list/bbox = get_bbox_of_atoms(visible_turfs)
+		var/size_x = bbox[3] - bbox[1] + 1
+		var/size_y = bbox[4] - bbox[2] + 1
+
+		cam_screen?.vis_contents = visible_turfs
+		cam_background.icon_state = "clear"
+		cam_background.fill_rect(1, 1, size_x, size_y)
+		return TRUE
+*/
+
 /obj/overmap/proc/update_screen(var/tmp_radius = null)
 	if(!render_map) return
 	var/r = tmp_radius ? tmp_radius : parent.sensor_range
@@ -151,6 +171,7 @@
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, sx, sy)
 	return TRUE
+// [/CELADON-EDIT]
 
 /obj/overmap/proc/choose_token(mob/user)
 	var/nearby_objects = parent.current_overmap.overmap_container[parent.x][parent.y]
