@@ -215,7 +215,7 @@ export const NtosCognitiveResearchSuite = (props, context) => {
                         <Box color="bad" mt={1}>
                           Conflicts:{' '}
                           {session.payload.conflicts
-                            .map((p) => `${p[1]}→${p[2]}`)
+                            .map((p) => `${p[0]}→${p[1]}`)
                             .join(', ')}
                         </Box>
                       )}

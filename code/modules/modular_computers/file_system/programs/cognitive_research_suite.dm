@@ -50,8 +50,8 @@
 			// Выберем режим с учётом кулдауна пер-игрока
 			if(!mode_cd_by_ckey)
 				mode_cd_by_ckey = list()
-			var/mob/living/carbon/human/H = ui?.user
-			var/ck = H?.client?.ckey
+			var/mob/living/user_mob = ui?.user
+			var/ck = user_mob?.client?.ckey
 			var/list/available_modes = ALL_MODES
 			var/list/player_cds = islist(mode_cd_by_ckey[ck]) ? mode_cd_by_ckey[ck] : list()
 			var/list/filtered = list()
@@ -81,11 +81,11 @@
 			return TRUE
 
 		if("debug_solve")
-			var/mob/living/carbon/human/H = ui?.user
+			var/mob/living/user_mob = ui?.user
 			if(!simulation_active || !ch)
 				return TRUE
 			// Админ-гейт на отладочную кнопку
-			if(!H?.client?.holder)
+			if(!user_mob?.client?.holder)
 				return TRUE
 			ch.force_solved()
 			SStgui.update_uis(src)
@@ -93,25 +93,25 @@
 
 		if("collect_data")
 			// Spawn research notes item with current score points
-			var/mob/living/carbon/human/H = ui?.user
+			var/mob/living/user_mob = ui?.user
 			if(score <= 0)
-				to_chat(H, span_notice("No telemetry available to print."))
+				to_chat(user_mob, span_notice("No telemetry available to print."))
 				return TRUE
 			var/points = max(0, round(score))
 			// reset local score after printing
 			score = 0
-			var/turf/T = H ? get_turf(H) : get_turf(computer)
+			var/turf/T = user_mob ? get_turf(user_mob) : get_turf(computer)
 			if(T)
 				var/obj/item/research_notes/result = new /obj/item/research_notes(null, points, "cognitive")
 				var/obj/item/research_notes/stack_on_floor = locate() in T
 				if(stack_on_floor)
 					stack_on_floor.merge(result)
-				else if(H && !H.put_in_hands(result) && istype(H.get_inactive_held_item(), /obj/item/research_notes))
-					var/obj/item/research_notes/hand_stack = H.get_inactive_held_item()
+				else if(user_mob && !user_mob.put_in_hands(result) && istype(user_mob.get_inactive_held_item(), /obj/item/research_notes))
+					var/obj/item/research_notes/hand_stack = user_mob.get_inactive_held_item()
 					hand_stack.merge(result)
 				else
 					result.forceMove(T)
-				to_chat(H, span_notice("Printed research packet: [points] points."))
+				to_chat(user_mob, span_notice("Printed research packet: [points] points."))
 			SStgui.update_uis(src)
 			return TRUE
 
@@ -124,8 +124,8 @@
 			simulation_active = FALSE
 			status_message = "Simulation completed. Gained [score] research points."
 			// Устанавливаем кулдаун на пройденный режим для этого игрока
-			var/mob/living/carbon/human/H = ui?.user
-			var/ck = H?.client?.ckey
+			var/mob/living/user_mob = ui?.user
+			var/ck = user_mob?.client?.ckey
 			if(!mode_cd_by_ckey)
 				mode_cd_by_ckey = list()
 			var/list/cd_map = islist(mode_cd_by_ckey[ck]) ? mode_cd_by_ckey[ck] : list()
@@ -164,10 +164,10 @@
 	data["status_message"] = status_message
 	data["session"] = ch ? ch.export_for_client() : null
 	// Признак админа для UI (для отладочной кнопки)
-	var/mob/living/carbon/human/H = user
-	data["is_admin"] = !!(H?.client?.holder)
+	var/mob/living/user_mob = user
+	data["is_admin"] = !!(user_mob?.client?.holder)
 	// Для UX: блокируем старт только если ВСЕ режимы на кулдауне
-	var/ck = H?.client?.ckey
+	var/ck = user_mob?.client?.ckey
 	// Перечень всех режимов
 	var/list/all_modes = ALL_MODES
 	var/earliest = 0
@@ -175,16 +175,17 @@
 	if(islist(mode_cd_by_ckey) && islist(mode_cd_by_ckey[ck]))
 		var/list/cd_map = mode_cd_by_ckey[ck]
 		any_available = FALSE
-		var/tmp_earliest = 0
+		var/min_cooldown_end
 		for(var/m in all_modes)
-			var/end_t = cd_map[m] || 0
-			if(end_t <= world.time)
+			var/end_t = cd_map[m]
+			if(!end_t || end_t <= world.time)
 				any_available = TRUE
-			else
-				var/rem = end_t - world.time
-				tmp_earliest = (tmp_earliest == 0) ? rem : min(tmp_earliest, rem)
+				break
+			if(!min_cooldown_end || end_t < min_cooldown_end)
+				min_cooldown_end = end_t
+
 		if(!any_available)
-			earliest = tmp_earliest
+			earliest = min_cooldown_end - world.time
 	data["cooldown_remaining"] = any_available ? 0 : earliest
 
 	return data

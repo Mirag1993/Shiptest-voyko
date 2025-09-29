@@ -88,149 +88,150 @@
 
 /datum/cogrs_challenge/proc/apply_client_step(params)
 	attempts++
-	if(mode == "lightsout")
-		var/r = text2num(params?["row"]) || 1
-		var/c = text2num(params?["col"]) || 1
-		lightsout_toggle(r, c)
-		return TRUE
-	else if(mode == "mastermind")
-		var/action = params?["mm"]
-		if(action == "push")
-			var/ch = uppertext(copytext_char(params?["ch"] || "", 1, 2))
-			if(!ch)
-				return TRUE
-			var/list/colors = client_view?["colors"]
-			if(colors && (ch in colors))
-				var/len = client_view?["code_length"] || 0
-				if(length(mm_buffer) >= len)
+	switch(mode)
+		if("lightsout")
+			var/r = text2num(params?["row"]) || 1
+			var/c = text2num(params?["col"]) || 1
+			lightsout_toggle(r, c)
+			return TRUE
+		if("mastermind")
+			var/action = params?["mm"]
+			if(action == "push")
+				var/ch = uppertext(copytext_char(params?["ch"] || "", 1, 2))
+				if(!ch)
 					return TRUE
-				mm_buffer += ch
-				client_view["buffer"] = mm_buffer.Copy()
+				var/list/colors = client_view?["colors"]
+				if(colors && (ch in colors))
+					var/len = client_view?["code_length"] || 0
+					if(length(mm_buffer) >= len)
+						return TRUE
+					mm_buffer += ch
+					client_view["buffer"] = mm_buffer.Copy()
+					refresh_mastermind_view()
+					return TRUE
+			if(action == "back")
+				if(length(mm_buffer))
+					mm_buffer.Cut(length(mm_buffer), length(mm_buffer)+1)
+					client_view["buffer"] = mm_buffer.Copy()
+					refresh_mastermind_view()
+				return TRUE
+			if(action == "submit")
+				var/len = client_view?["code_length"] || 0
+				if(!islist(mm_buffer) || length(mm_buffer) != len)
+					return TRUE
+				// Defensive copies
+				var/list/secret
+				if(islist(state))
+					secret = state.Copy()
+				else
+					secret = list()
+				var/list/guess = mm_buffer.Copy()
+				var/black = 0
+				var/white = 0
+				// First pass: exact matches
+				for(var/i in 1 to len)
+					if(i > length(secret) || i > length(guess))
+						continue
+					if(guess[i] == secret[i])
+						black++
+						guess[i] = null
+						secret[i] = null
+				// Build frequency map for remaining secret colors
+				var/list/freq = list()
+				for(var/i in 1 to len)
+					var/s = secret[i]
+					if(isnull(s))
+						continue
+					freq[s] = (freq[s] || 0) + 1
+				// Second pass: color-only matches
+				for(var/i in 1 to len)
+					var/g = guess[i]
+					if(isnull(g))
+						continue
+					if(freq[g] && freq[g] > 0)
+						white++
+						freq[g] -= 1
+				client_view["guesses"] += list(mm_buffer.Copy())
+				client_view["feedback"] += list(list("black" = black, "white" = white))
+				client_view["last_result"] = list("black" = black, "white" = white)
+				client_view["last_result_text"] = "[black]B / [white]W"
+				mm_buffer = list()
+				client_view["buffer"] = list()
+				if(black == len)
+					solved = TRUE
 				refresh_mastermind_view()
 				return TRUE
-		if(action == "back")
-			if(length(mm_buffer))
-				mm_buffer.Cut(length(mm_buffer), length(mm_buffer)+1)
-				client_view["buffer"] = mm_buffer.Copy()
-				refresh_mastermind_view()
-			return TRUE
-		if(action == "submit")
-			var/len = client_view?["code_length"] || 0
-			if(!islist(mm_buffer) || length(mm_buffer) != len)
+		if("logic")
+			var/action = params?["lg"]
+			if(action == "toggle")
+				var/idx = text2num(params?["idx"]) || 1
+				if(!islist(state) || !islist(state["inputs"]))
+					return TRUE
+				idx = max(1, min(length(state["inputs"]), idx))
+				state["inputs"][idx] = state["inputs"][idx] ? 0 : 1
+				var/out = logic_eval(state["inputs"], state["op"])
+				var/list/_inputs_list = state["inputs"]
+				client_view["inputs"] = _inputs_list.Copy()
+				client_view["output"] = out
+				solved = (out == client_view["target"])
 				return TRUE
-			// Defensive copies
-			var/list/secret
-			if(islist(state))
-				secret = state.Copy()
-			else
-				secret = list()
-			var/list/guess = mm_buffer.Copy()
-			var/black = 0
-			var/white = 0
-			// First pass: exact matches
-			for(var/i in 1 to len)
-				if(i > length(secret) || i > length(guess))
-					continue
-				if(guess[i] == secret[i])
-					black++
-					guess[i] = null
-					secret[i] = null
-			// Build frequency map for remaining secret colors
-			var/list/freq = list()
-			for(var/i in 1 to len)
-				var/s = secret[i]
-				if(isnull(s))
-					continue
-				freq[s] = (freq[s] || 0) + 1
-			// Second pass: color-only matches
-			for(var/i in 1 to len)
-				var/g = guess[i]
-				if(isnull(g))
-					continue
-				if(freq[g] && freq[g] > 0)
-					white++
-					freq[g] -= 1
-			client_view["guesses"] += list(mm_buffer.Copy())
-			client_view["feedback"] += list(list("black" = black, "white" = white))
-			client_view["last_result"] = list("black" = black, "white" = white)
-			client_view["last_result_text"] = "[black]B / [white]W"
-			mm_buffer = list()
-			client_view["buffer"] = list()
-			if(black == len)
-				solved = TRUE
-			refresh_mastermind_view()
-			return TRUE
-	else if(mode == "logic")
-		var/action = params?["lg"]
-		if(action == "toggle")
-			var/idx = text2num(params?["idx"]) || 1
-			if(!islist(state) || !islist(state["inputs"]))
+		if("sudoku4")
+			var/action = params?["sd"]
+			if(!islist(state) || !islist(client_view))
 				return TRUE
-			idx = max(1, min(length(state["inputs"]), idx))
-			state["inputs"][idx] = state["inputs"][idx] ? 0 : 1
-			var/out = logic_eval(state["inputs"], state["op"])
-			var/list/_inputs_list = state["inputs"]
-			client_view["inputs"] = _inputs_list.Copy()
-			client_view["output"] = out
-			solved = (out == client_view["target"])
-			return TRUE
-	else if(mode == "sudoku4")
-		var/action = params?["sd"]
-		if(!islist(state) || !islist(client_view))
-			return TRUE
-		var/r = text2num(params?["row"]) || 1
-		r = max(1, min(4, r))
-		var/c = text2num(params?["col"]) || 1
-		c = max(1, min(4, c))
-		if(action == "cycle" || action == "set")
-			if(islist(sudoku_fixed) && sudoku_fixed[r][c])
+			var/r = text2num(params?["row"]) || 1
+			r = max(1, min(4, r))
+			var/c = text2num(params?["col"]) || 1
+			c = max(1, min(4, c))
+			if(action == "cycle" || action == "set")
+				if(islist(sudoku_fixed) && sudoku_fixed[r][c])
+					return TRUE
+				var/val
+				if(action == "cycle")
+					val = ((state[r][c] || 0) % 4) + 1
+				else
+					val = text2num(params?["val"]) || 0
+					val = max(0, min(4, val))
+				state[r][c] = val
+				if(islist(client_view?["grid"]))
+					client_view["grid"][r][c] = val
+				// Check solved
+				var/ok = TRUE
+				if(!islist(sudoku_solution))
+					ok = FALSE
+				else
+					for(var/i in 1 to 4)
+						for(var/j in 1 to 4)
+							if(state[i][j] != sudoku_solution[i][j])
+								ok = FALSE
+								break
+						if(!ok) break
+				solved = ok
 				return TRUE
-			var/val
-			if(action == "cycle")
-				val = ((state[r][c] || 0) % 4) + 1
-			else
-				val = text2num(params?["val"]) || 0
-				val = max(0, min(4, val))
-			state[r][c] = val
-			if(islist(client_view?["grid"]))
-				client_view["grid"][r][c] = val
-			// Check solved
-			var/ok = TRUE
-			if(!islist(sudoku_solution))
-				ok = FALSE
-			else
-				for(var/i in 1 to 4)
-					for(var/j in 1 to 4)
-						if(state[i][j] != sudoku_solution[i][j])
-							ok = FALSE
-							break
-					if(!ok) break
-			solved = ok
-			return TRUE
-	else if(mode == "topsort")
-		var/action = params?["ts"]
-		if(action == "push")
-			var/n = params?["n"]
-			if(!n) return TRUE
-			if(!islist(client_view?["solution"]))
+		if("topsort")
+			var/action = params?["ts"]
+			if(action == "push")
+				var/n = params?["n"]
+				if(!n) return TRUE
+				if(!islist(client_view?["solution"]))
+					client_view["solution"] = list()
+				if(!(n in client_view["solution"]))
+					client_view["solution"] += n
+				// Refresh conflicts/solved
+				topsort_refresh()
+				return TRUE
+			if(action == "back")
+				if(islist(client_view?["solution"]) && length(client_view["solution"]))
+					var/list/_sol = client_view["solution"]
+					_sol.Cut(length(_sol), length(_sol) + 1)
+					client_view["solution"] = _sol
+				topsort_refresh()
+				return TRUE
+			if(action == "reset")
 				client_view["solution"] = list()
-			if(!(n in client_view["solution"]))
-				client_view["solution"] += n
-			// Refresh conflicts/solved
-			topsort_refresh()
-			return TRUE
-		if(action == "back")
-			if(islist(client_view?["solution"]) && length(client_view["solution"]))
-				var/list/_sol = client_view["solution"]
-				_sol.Cut(length(_sol), length(_sol) + 1)
-				client_view["solution"] = _sol
-			topsort_refresh()
-			return TRUE
-		if(action == "reset")
-			client_view["solution"] = list()
-			topsort_refresh()
-		return TRUE
-	// stubs for other modes
+				topsort_refresh()
+				return TRUE
+		// stubs for other modes
 	return TRUE
 
 /datum/cogrs_challenge/proc/validate_and_score()
@@ -264,9 +265,7 @@
 	score += base * (0.3 * speed_bonus + 0.3 * eff_bonus)
 	score += fatigue_bonus
 
-	var/hard_cap = 4 * base
-	if(score < min_reward)
-		score = min_reward
+	var/hard_cap = min_reward + (base * 2) // hard_cap should be greater than min_reward
 	if(score > hard_cap)
 		score = hard_cap
 	return round(score)
@@ -498,15 +497,20 @@
 	for(var/i in 1 to difficulty)
 		nodes += "N[i]"
 
-	// Создаем случайные связи (избегая циклов)
-	for(var/i in 1 to difficulty - 1)
-		var/from = pick(nodes)
-		var/target = pick(nodes)
-		if(from != target)
-			if(!edges[from])
-				edges[from] = list()
-			if(!(target in edges[from]))
-				edges[from] += target
+	// Создаем случайные связи (гарантируя ацикличность)
+	// Минимум 1 связь, максимум difficulty-1 связей
+	var/num_edges = rand(1, difficulty - 1)
+	for(var/i in 1 to num_edges)
+		var/from_idx = rand(1, difficulty - 1) // Исключаем последний узел как источник
+		var/from = nodes[from_idx]
+		var/list/possible_targets = nodes.Copy()
+		possible_targets.Cut(1, from_idx + 1)
+		if(!possible_targets.len) continue
+		var/target = pick(possible_targets)
+		if(!edges[from])
+			edges[from] = list()
+		if(!(target in edges[from]))
+			edges[from] += target
 
 	state = list("nodes" = nodes, "edges" = edges)
 	client_view = list(
@@ -550,8 +554,10 @@
 				par_moves = 9; par_time = 70
 			else if(n == 6)
 				par_moves = 12; par_time = 95
-			else
+			else if(n == 7)
 				par_moves = 16; par_time = 120
+			else
+				par_moves = 20; par_time = 150
 			return list("par_moves" = par_moves, "par_time" = par_time)
 		if("mastermind")
 			var/L = min(CRS_MASTERMIND_MAX_CODE, 3 + difficulty)
