@@ -83,14 +83,9 @@ export const NtosCognitiveResearchSuite = (props, context) => {
                 <Section title="Mastermind">
                   <Box mb={1}>
                     <Box mb={0.5}>
-                      Buffer (
-                      {(Array.isArray(session.payload?.buffer)
-                        ? session.payload.buffer.length
-                        : 0) || 0}
-                      /{session.payload?.code_length || 0}){': '}
-                      {Array.isArray(session.payload?.buffer)
-                        ? session.payload.buffer.join(' ')
-                        : ''}
+                      Buffer ({session.payload?.buffer?.length || 0}/
+                      {session.payload?.code_length || 0}){': '}
+                      {session.payload?.buffer?.join(' ') || ''}
                     </Box>
                     <Box>
                       {(session.payload?.colors || []).map((c) => (
@@ -113,9 +108,8 @@ export const NtosCognitiveResearchSuite = (props, context) => {
                         ml={1}
                         onClick={() => act('submit_step', { mm: 'submit' })}
                         disabled={
-                          !Array.isArray(session.payload?.buffer) ||
-                          session.payload.buffer.length !==
-                            (session.payload?.code_length || 0)
+                          (session.payload?.buffer?.length || 0) !==
+                          (session.payload?.code_length || 0)
                         }
                       >
                         Submit

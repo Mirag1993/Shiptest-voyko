@@ -97,14 +97,14 @@
 		if("mastermind")
 			var/action = params?["mm"]
 			if(action == "push")
-				var/ch = uppertext(copytext_char(params?["ch"] || "", 1, 2))
+				var/ch = uppertext(copytext(params?["ch"] || "", 1, 2))
 				if(!ch)
-					return TRUE
+					return FALSE
 				var/list/colors = client_view?["colors"]
 				if(colors && (ch in colors))
 					var/len = client_view?["code_length"] || 0
 					if(length(mm_buffer) >= len)
-						return TRUE
+						return FALSE
 					mm_buffer += ch
 					client_view["buffer"] = mm_buffer.Copy()
 					refresh_mastermind_view()
@@ -114,11 +114,12 @@
 					mm_buffer.Cut(length(mm_buffer), length(mm_buffer)+1)
 					client_view["buffer"] = mm_buffer.Copy()
 					refresh_mastermind_view()
-				return TRUE
+					return TRUE
+				return FALSE
 			if(action == "submit")
 				var/len = client_view?["code_length"] || 0
 				if(!islist(mm_buffer) || length(mm_buffer) != len)
-					return TRUE
+					return FALSE
 				// Defensive copies
 				var/list/secret
 				if(islist(state))
@@ -166,7 +167,7 @@
 			if(action == "toggle")
 				var/idx = text2num(params?["idx"]) || 1
 				if(!islist(state) || !islist(state["inputs"]))
-					return TRUE
+					return FALSE
 				idx = max(1, min(length(state["inputs"]), idx))
 				state["inputs"][idx] = state["inputs"][idx] ? 0 : 1
 				var/out = logic_eval(state["inputs"], state["op"])
@@ -178,14 +179,14 @@
 		if("sudoku4")
 			var/action = params?["sd"]
 			if(!islist(state) || !islist(client_view))
-				return TRUE
+				return FALSE
 			var/r = text2num(params?["row"]) || 1
 			r = max(1, min(4, r))
 			var/c = text2num(params?["col"]) || 1
 			c = max(1, min(4, c))
 			if(action == "cycle" || action == "set")
 				if(islist(sudoku_fixed) && sudoku_fixed[r][c])
-					return TRUE
+					return FALSE
 				var/val
 				if(action == "cycle")
 					val = ((state[r][c] || 0) % 4) + 1
@@ -212,19 +213,19 @@
 			var/action = params?["ts"]
 			if(action == "push")
 				var/n = params?["n"]
-				if(!n) return TRUE
+				if(!n) return FALSE
 				if(!islist(client_view?["solution"]))
 					client_view["solution"] = list()
-				if(!(n in client_view["solution"]))
-					client_view["solution"] += n
+				if(n in client_view["solution"])
+					return FALSE // Node already in solution
+				client_view["solution"] += n
 				// Refresh conflicts/solved
 				topsort_refresh()
 				return TRUE
 			if(action == "back")
 				if(islist(client_view?["solution"]) && length(client_view["solution"]))
-					var/list/_sol = client_view["solution"]
-					_sol.Cut(length(_sol), length(_sol) + 1)
-					client_view["solution"] = _sol
+					var/list/sol = client_view["solution"]
+					sol.Cut(length(sol), length(sol) + 1)
 				topsort_refresh()
 				return TRUE
 			if(action == "reset")
@@ -463,25 +464,17 @@
 	solved = (out == target)
 
 /datum/cogrs_challenge/proc/logic_eval(list/inputs, op)
-	var/result
-	if(op == "AND")
-		result = 1
-		for(var/v in inputs)
-			if(!v)
-				result = 0
-				break
-	else if(op == "OR")
-		result = 0
-		for(var/v in inputs)
-			if(v)
-				result = 1
-				break
-	else // XOR
-		var/sum = 0
-		for(var/v in inputs)
-			if(v) sum++
-		result = (sum % 2)
-	return result
+	switch(op)
+		if("AND")
+			return !(0 in inputs)
+		if("OR")
+			return (1 in inputs)
+		if("XOR")
+			var/sum = 0
+			for(var/v in inputs)
+				sum += v
+			return sum % 2
+	return 0
 
 // Topological Sort - порядок подключения проводов
 /datum/cogrs_challenge/proc/gen_topsort()
@@ -548,9 +541,7 @@
 			var/n = 3 + difficulty
 			var/par_moves
 			var/par_time
-			if(n == 4)
-				par_moves = 6; par_time = 45
-			else if(n == 5)
+			if(n == 5)
 				par_moves = 9; par_time = 70
 			else if(n == 6)
 				par_moves = 12; par_time = 95

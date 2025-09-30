@@ -22,7 +22,7 @@
 	/// Текущий вызов
 	var/datum/cogrs_challenge/ch
 	/// Пер-игрок кулдауны по режимам: ckey -> (mode -> world.time)
-	var/list/mode_cd_by_ckey
+	var/list/mode_cd_by_ckey = list()
 	/// Время кулдауна на режим (децисекунды BYOND)
 	var/mode_cooldown = 3 MINUTES
 	/// Единый список доступных режимов (источник правды)
@@ -48,8 +48,6 @@
 			if(ch)
 				qdel(ch)
 			// Выберем режим с учётом кулдауна пер-игрока
-			if(!mode_cd_by_ckey)
-				mode_cd_by_ckey = list()
 			var/mob/living/user_mob = ui?.user
 			var/ck = user_mob?.client?.ckey
 			var/list/available_modes = ALL_MODES
@@ -66,14 +64,7 @@
 			SStgui.update_uis(src)
 			return TRUE
 
-		if("step")
-			if(!simulation_active || !ch)
-				return TRUE
-			ch.apply_client_step(params)
-			SStgui.update_uis(src)
-			return TRUE
-
-		if("submit_step")
+		if("step", "submit_step")
 			if(!simulation_active || !ch)
 				return TRUE
 			if(ch.apply_client_step(params))
@@ -126,8 +117,6 @@
 			// Устанавливаем кулдаун на пройденный режим для этого игрока
 			var/mob/living/user_mob = ui?.user
 			var/ck = user_mob?.client?.ckey
-			if(!mode_cd_by_ckey)
-				mode_cd_by_ckey = list()
 			var/list/cd_map = islist(mode_cd_by_ckey[ck]) ? mode_cd_by_ckey[ck] : list()
 			cd_map[ch.mode] = world.time + mode_cooldown
 			mode_cd_by_ckey[ck] = cd_map

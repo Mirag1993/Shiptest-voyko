@@ -38,8 +38,9 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 
 ### Cooldowns (anti‑abuse)
 - Per‑player, per‑mode cooldown: 3 minutes (`mode_cooldown = 3 MINUTES`)
-- Mode selection excludes modes on cooldown for the player; if all are on cooldown, any mode may roll
-- UI "Cooldown" shows only when all modes are on cooldown (button disabled)
+- Mode selection excludes modes on cooldown for the player
+- If all modes are on cooldown, the "Begin Simulation" button is disabled until at least one mode becomes available
+- UI "Cooldown" displays the time remaining until the earliest mode becomes available
 
 ### Scoring (balanced, simple and fair)
 Implemented in `validate_and_score()` with guard: only if `solved == TRUE`.
@@ -59,7 +60,8 @@ eff_bonus   = clamp(par_moves / attempts, 0..1)
 score = CRS_MIN_SCORE
       + base * (0.3 * speed_bonus + 0.3 * eff_bonus)
       + fatigue_bonus
-score = clamp(round(score), CRS_MIN_SCORE, 4 * base)
+hard_cap = CRS_MIN_SCORE + (base * 2)
+score = clamp(round(score), CRS_MIN_SCORE, hard_cap)
 ```
 
 Notes:
@@ -82,7 +84,7 @@ Notes:
 - Edit in `cogrs_challenges.dm` defines:
   - `CRS_MIN_SCORE` — guaranteed minimum for any solved task (default 1000)
   - `CRS_SCORE_PER_DIFFICULTY` — scales the mode difficulty into base payout
-- Resulting base used by `validate_and_score()`; hard cap is `4 * base`.
+- Resulting base used by `validate_and_score()`; hard cap is `CRS_MIN_SCORE + (base * 2)`.
 
 2) Par values per mode (speed/efficiency targets)
 - Function: `/datum/cogrs_challenge/proc/get_pars()`
@@ -103,12 +105,14 @@ Notes:
 
 5) Cooldowns
 - Per‑mode cooldown is set in `cognitive_research_suite.dm` via `mode_cooldown` (default `3 MINUTES`).
-- UI blocks Begin only if all modes are on cooldown for the player.
+- "Begin Simulation" button is disabled when all modes are on cooldown for the player.
+- When disabled, UI displays countdown to when the earliest mode becomes available.
 
 6) Quick iteration checklist
 - Change defines and/or `get_pars()`.
 - `bin/build.cmd` and test a few runs per mode.
-- Check score distribution: with default weights, fast/clean solve should land at ~1.3×base, slow solve near `CRS_MIN_SCORE`.
+- Check score distribution: with default weights, perfect solve (speed + efficiency bonuses) should land at `CRS_MIN_SCORE + (base * 0.6)`, slow solve at `CRS_MIN_SCORE`.
+- Maximum possible score is capped at `CRS_MIN_SCORE + (base * 2)`.
 
 7) Example presets
 - High‑reward server: `CRS_MIN_SCORE = 1500`, `CRS_SCORE_PER_DIFFICULTY = 40`.
@@ -120,7 +124,8 @@ Notes:
 ### Anti‑abuse & safety
 - Per‑mode cooldown to prevent repeating the same puzzle.
 - Research notes printing: refuses zero, merges with floor/in‑hand stacks, resets local score.
-- UI cooldown hides unless all modes are locked, to avoid confusing the player.
+- UI "Begin Simulation" button disabled when all modes are on cooldown, preventing abuse.
+- Cooldown timer displays time remaining until earliest mode becomes available.
 
 ### File map
 - Program: `code/modules/modular_computers/file_system/programs/cognitive_research_suite.dm`
@@ -137,7 +142,7 @@ Created
 - `mod_celadon/docs/CRS/README.md` — this documentation
 
 Modified
-- No core files changed. The module integrates via standard NTOS program registration; `shiptest.dme` already includes the directory.
+- `shiptest.dme` — added includes for new CRS program files (required for compilation)
 
 Referenced (not modified)
 - `code/__DEFINES/access.dm` — access constants used (`ACCESS_RD`, `ACCESS_CAPTAIN`, `ACCESS_RESEARCH` where applicable)
