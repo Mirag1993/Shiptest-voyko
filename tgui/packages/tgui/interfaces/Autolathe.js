@@ -10,12 +10,16 @@ import {
   NumberInput,
   ProgressBar,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { capitalize, createSearch } from 'tgui-core/string';
 
-import { useBackend, useSharedState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { useState } from 'react';
+
+const MAX_SEARCH_RESULTS = 25;
 
 export const Autolathe = (props) => {
   const { act, data } = useBackend();
@@ -25,18 +29,27 @@ export const Autolathe = (props) => {
     materialsmax,
     materials = [],
     categories = [],
-    designs = [],
+    all_designs = [],
     hasDisk,
     active,
   } = data;
-  const [current_category, setCategory] = useSharedState(
-    'autolathe_category',
-    'None',
-  );
-  const [searchText, setSearchText] = useSharedState('autolathe_search', '');
+  const [current_category, setCategory] = useState(categories[0] || 'None');
+  const [searchText, setSearchText] = useState('');
+  const [inputKey, setInputKey] = useState(0);
   const filteredmaterials = materials.filter(
     (material) => material.mineral_amount > 0,
   );
+
+  // Client-side search and filtering
+  const testSearch = createSearch(searchText, (design) => design.name);
+  const designs =
+    (searchText.length > 0 &&
+      all_designs.filter(testSearch).slice(0, MAX_SEARCH_RESULTS)) ||
+    (current_category !== 'None' &&
+      all_designs.filter((design) =>
+        design.categories?.includes(current_category),
+      )) ||
+    [];
   return (
     <Window title="Autolathe" theme="ntos_terminal" width={600} height={700}>
       <Window.Content scrollable>
@@ -91,21 +104,30 @@ export const Autolathe = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Search">
+        <Section
+          title="Search"
+          buttons={
+            <Button
+              icon="times"
+              content="Clear"
+              disabled={!searchText}
+              onClick={() => {
+                setSearchText('');
+                setCategory(categories[0] || 'None');
+                setInputKey((k) => k + 1); // Force remount
+              }}
+            />
+          }
+        >
           <Input
+            key={inputKey}
             fluid
             placeholder="Search Recipes..."
             value={searchText}
-            onChange={(e, value) => {
+            onInput={(_, value) => {
               setSearchText(value);
-              if (value.length) {
-                act('search', {
-                  to_search: value,
-                });
-                setCategory('results for "' + value + '"');
-              } else {
-                act('menu');
-                setCategory('None');
+              if (!value.length) {
+                setCategory(categories[0] || 'None');
               }
             }}
           />
@@ -118,25 +140,27 @@ export const Autolathe = (props) => {
                 selected={current_category === category}
                 content={category}
                 onClick={() => {
-                  act('category', {
-                    selectedCategory: category,
-                  });
                   setCategory(category);
+                  setSearchText('');
                 }}
               />
             ))}
           </Box>
         </Section>
-        {current_category.toString() !== 'None' && (
+        {(searchText.length > 0 || current_category !== 'None') && (
           <Section
-            title={'Displaying ' + current_category.toString()}
+            title={
+              searchText.length > 0
+                ? 'Search results for "' + searchText + '"'
+                : 'Displaying ' + current_category
+            }
             buttons={
               <Button
                 icon="times"
                 content="Close Category"
                 onClick={() => {
-                  act('menu');
                   setCategory('None');
+                  setSearchText('');
                 }}
               />
             }
@@ -169,23 +193,23 @@ export const Autolathe = (props) => {
                           <Flex.Item grow={1}>
                             <Button
                               icon="hammer"
-                              content="10"
-                              disabled={!design.mult10}
+                              content="15"
+                              disabled={!design.mult15}
                               onClick={() =>
                                 act('make', {
                                   id: design.id,
-                                  multiplier: '10',
+                                  multiplier: '15',
                                 })
                               }
                             />
                             <Button
                               icon="hammer"
-                              content="25"
-                              disabled={!design.mult25}
+                              content="30"
+                              disabled={!design.mult30}
                               onClick={() =>
                                 act('make', {
                                   id: design.id,
-                                  multiplier: '25',
+                                  multiplier: '30',
                                 })
                               }
                             />

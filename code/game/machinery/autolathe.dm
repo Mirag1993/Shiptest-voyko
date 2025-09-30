@@ -81,7 +81,6 @@
 	data["materialtotal"] = materials.total_amount
 	data["materialsmax"] = materials.max_amount
 	data["categories"] = categories
-	data["designs"] = list()
 	data["active"] = busy
 	data["hasDisk"] = d_disk ? TRUE : FALSE
 	for(var/mat_id in materials.materials)
@@ -95,14 +94,89 @@
 			matcolour = M.color,
 		)
 		data["materials"] += list(material_data)
-	// [CELADON-FIX] - CELADON_AUTOLATHE: Fixed display logic for search results
-	if(selected_category && selected_category != "None" && !length(matching_designs))
-		data["designs"] = handle_designs(stored_research.researched_designs, TRUE)
-	else if(length(matching_designs))
-		data["designs"] = handle_designs(matching_designs, FALSE)
-	else
-		data["designs"] = list()
+	// [CELADON-EDIT] - CELADON_AUTOLATHE: Client-side filtering - send all designs
+	data["all_designs"] = handle_all_designs(stored_research.researched_designs)
+	// [/CELADON-EDIT]
 	return data
+
+// [CELADON-ADD] - CELADON_AUTOLATHE: New proc for client-side filtering
+/obj/machinery/autolathe/proc/handle_all_designs(list/researched_designs)
+	var/list/output = list()
+	var/list/all_blueprints = list()
+
+	// Collect all designs from research
+	for(var/w in researched_designs)
+		var/datum/design/d = SSresearch.techweb_design_by_id(w)
+		if(d && !(d in all_blueprints))
+			all_blueprints += d
+
+	// Add designs from disk if present
+	if(d_disk)
+		for(var/datum/design/w in d_disk.blueprints)
+			if(!(w.build_type & AUTOLATHE))
+				continue
+			if(!(w in all_blueprints))
+				all_blueprints += w
+				// Add disk name as category for disk designs
+				if(!(d_disk.name in w.category))
+					w.category += d_disk.name
+
+	// Process each design
+	for(var/datum/design/D in all_blueprints)
+		var/unbuildable = FALSE
+		var/m10 = FALSE
+		var/m15 = FALSE
+		var/m30 = FALSE
+		var/m50 = FALSE
+		var/m5 = FALSE
+		var/sheets = FALSE
+
+		if(disabled || !can_build(D))
+			unbuildable = TRUE
+
+		var/max_multiplier = unbuildable ? 0 : 1
+
+		if(ispath(D.build_path, /obj/item/stack))
+			sheets = TRUE
+			if(!unbuildable)
+				var/datum/component/material_container/mats = GetComponent(/datum/component/material_container)
+				for(var/datum/material/mat in D.materials)
+					max_multiplier = min(D.maxstack, round(mats.get_material_amount(mat)/D.materials[mat]))
+				if(max_multiplier >= 10 && !disabled)
+					m10 = TRUE
+				if(max_multiplier >= 15 && !disabled)
+					m15 = TRUE
+				if(max_multiplier >= 30 && !disabled)
+					m30 = TRUE
+		else
+			if(!unbuildable)
+				if(!disabled && can_build(D, 5))
+					m5 = TRUE
+				if(!disabled && can_build(D, 10))
+					m10 = TRUE
+				var/datum/component/material_container/mats = GetComponent(/datum/component/material_container)
+				for(var/datum/material/mat in D.materials)
+					max_multiplier = min(50, round(mats.get_material_amount(mat)/(D.materials[mat] * creation_efficiency)))
+
+		var/list/design = list(
+			name = D.name,
+			id = D.id,
+			ref = REF(src),
+			cost = get_design_cost(D),
+			buildable = unbuildable,
+			mult5 = m5,
+			mult10 = m10,
+			mult15 = m15,
+			mult30 = m30,
+			mult50 = m50,
+			sheet = sheets,
+			maxmult = max_multiplier,
+			categories = D.category // Send categories array for client-side filtering
+		)
+		output += list(design)
+
+	return output
+// [/CELADON-ADD]
 
 /obj/machinery/autolathe/proc/handle_designs(list/researched_designs, categorycheck)
 	var/list/output = list()
@@ -185,6 +259,8 @@
 	. = ..()
 	if(.)
 		return
+	// [CELADON-REMOVE] - CELADON_AUTOLATHE: Removed server-side search/category actions - now handled client-side
+	/*
 	if(action == "menu")
 		selected_category = null
 		matching_designs.Cut()
@@ -200,10 +276,11 @@
 
 		for(var/v in stored_research.researched_designs)
 			var/datum/design/D = SSresearch.techweb_design_by_id(v)
-			// [CELADON-FIX] - CELADON_AUTOLATHE: Case-insensitive search
 			if(findtext(lowertext(D.name), lowertext(params["to_search"])))
 				matching_designs.Add(D)
 		. = TRUE
+	*/
+	// [/CELADON-REMOVE]
 	if(action == "diskEject")
 		eject(usr)
 
