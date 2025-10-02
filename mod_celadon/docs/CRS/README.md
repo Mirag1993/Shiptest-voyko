@@ -21,8 +21,9 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 - Lights Out: toggle grid cells to turn all lights off. Click tiles to flip it and neighbors.
 - Mastermind (Codebook): choose colors to fill buffer (max length ≤ 6), Submit; feedback shows "Right color & position" and "Right color, wrong position".
 - Sudoku 4×4: click non‑fixed cells to cycle 1→4, match solution.
-- Logic (AND/OR/XOR): toggle inputs so current output equals target.
-- Topsort (Wiring Order): click nodes to form an order so all edges A→B go from earlier to later. Back and Reset available; conflicts listed.
+- Logic (AND/OR/NAND/NOR/XNOR/IMPLIES/EQUIVALENCE): toggle inputs so current output equals target.
+- Topsort (Wiring Order): click nodes to form an order so all edges A→B go from earlier to later. Back and Reset available; conflicts listed. **ENHANCED** with complex dependency graphs!
+- Cryptogram: decode Dead Space themed words from numerical cipher (A=1, B=2, ..., Z=26). Use hints to reveal letters, check your answer.
 
 ### UI actions (client → server)
 - `begin_simulation`
@@ -31,6 +32,7 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 - `submit_step { sd:'cycle'|'set', row, col, val? }` — Sudoku4
 - `submit_step { lg:'toggle', idx }` — Logic
 - `submit_step { ts:'push'|'back'|'reset', n? }` — Topsort
+- `submit_step { cg:'set'|'clear'|'hint'|'check', text? }` — Cryptogram
 - `complete_simulation` — finalize and compute score
 - `collect_data` — print `/obj/item/research_notes` with earned points, merges stacks, prevents zero
 - `reset_simulation`
@@ -47,22 +49,42 @@ Implemented in `validate_and_score()` with guard: only if `solved == TRUE`.
 
 Formula components:
 - Defines (see below):
-  - `CRS_MIN_SCORE` — guaranteed minimum for a solved task (currently 1000)
+  - `CRS_MIN_SCORE` — guaranteed minimum for a solved task (currently 700)
   - `CRS_SCORE_PER_DIFFICULTY` — base per difficulty step (25)
 - Par values: `get_pars()` returns `par_moves` and `par_time` (seconds) per mode
 - Runtime inputs: `attempts`, `completion_time` (BYOND ticks → seconds)
+- **Progression system**: Players gain experience multipliers based on total completed puzzles
 
 Computation:
 ```
 base = CRS_SCORE_PER_DIFFICULTY * difficulty
 speed_bonus = clamp(par_time / time_secs, 0..1)
 eff_bonus   = clamp(par_moves / attempts, 0..1)
-score = CRS_MIN_SCORE
-      + base * (0.3 * speed_bonus + 0.3 * eff_bonus)
-      + fatigue_bonus
+base_score = CRS_MIN_SCORE
+           + base * (0.3 * speed_bonus + 0.3 * eff_bonus)
+           + fatigue_bonus
 hard_cap = CRS_MIN_SCORE + (base * 2)
-score = clamp(round(score), CRS_MIN_SCORE, hard_cap)
+base_score = clamp(round(base_score), CRS_MIN_SCORE, hard_cap)
+
+// NEW: Progression multiplier based on player experience
+progression_multiplier = get_progression_multiplier(player_ckey)
+final_score = round(base_score * progression_multiplier)
 ```
+
+### Progression System
+Players gain experience multipliers based on total completed puzzles:
+
+- **0-9 completed**: 1.0x (base multiplier)
+- **10-24 completed**: 1.5x (+50% bonus)
+- **25-34 completed**: 2.0x (+100% bonus)
+- **35-49 completed**: 2.5x (+150% bonus)
+- **50-69 completed**: 3.0x (+200% bonus)
+- **70-89 completed**: 3.5x (+250% bonus)
+- **90-119 completed**: 4.0x (+300% bonus)
+- **120-149 completed**: 4.5x (+350% bonus)
+- **150+ completed**: 5.0x (+400% bonus, legendary master!)
+
+This creates a smooth progression with meaningful milestones. Bonuses start at 10 puzzles, with larger steps between levels!
 
 Notes:
 - Lights Out also uses a direct solved check for safety.
@@ -82,7 +104,7 @@ Notes:
 
 1) Minimum and base payout
 - Edit in `cogrs_challenges.dm` defines:
-  - `CRS_MIN_SCORE` — guaranteed minimum for any solved task (default 1000)
+  - `CRS_MIN_SCORE` — guaranteed minimum for any solved task (default 700)
   - `CRS_SCORE_PER_DIFFICULTY` — scales the mode difficulty into base payout
 - Resulting base used by `validate_and_score()`; hard cap is `CRS_MIN_SCORE + (base * 2)`.
 
@@ -116,7 +138,7 @@ Notes:
 
 7) Example presets
 - High‑reward server: `CRS_MIN_SCORE = 1500`, `CRS_SCORE_PER_DIFFICULTY = 40`.
-- Casual: keep `CRS_MIN_SCORE = 1000`, lower par values to make bonuses easier.
+- Casual: keep `CRS_MIN_SCORE = 700`, lower par values to make bonuses easier.
 
 ### Admin / Debug
 - `Solved` button visible only to admins (`client.holder`) and gated server‑side in `debug_solve`.
@@ -151,6 +173,17 @@ Referenced (not modified)
 1) Build: `bin/build.cmd`
 2) Open NTOS laptop/console, search NTNet software hub, install CRS
 3) Begin Simulation, complete any mode, press `Submit Telemetry`, then `Collect Data`
+
+### Revolutionary Improvements (Latest Updates)
+- **Enhanced Topological Sort**: Now generates complex dependency graphs instead of simple linear sequences
+- **New Cryptogram Mode**: Dead Space themed word decoding with hint system
+- **Global Cooldowns**: Fixed abuse vulnerability - cooldowns now work across all computers
+- **Progression System**: Player experience multipliers (1.0x to 5.0x) based on completed puzzles
+- **Memory Management**: Automatic cleanup of old cooldown entries
+- **Input Validation**: Robust parameter validation to prevent runtime errors
+- **Centralized Configuration**: All game balance parameters in one location
+- **Improved Logic Puzzles**: More complex operators and guaranteed solvability
+- **Better Scoring**: Minimum score reduced to 700, improved bonus calculations
 
 ### Future knobs (optional)
 - Add per‑seed single‑payout tracking (prevent re‑running identical seed for points)

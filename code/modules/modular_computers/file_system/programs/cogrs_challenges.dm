@@ -3,11 +3,107 @@
 
 // ===== Balance Defines =====
 #define CRS_SCORE_PER_DIFFICULTY 25
-#define CRS_MIN_SCORE 1000
+#define CRS_MIN_SCORE 700
 #define CRS_MASTERMIND_MAX_CODE 6
 #define CRS_LIGHTSOUT_ON_PROB 40
 #define CRS_SUDOKU4_BASE_HOLES 6
 #define CRS_SUDOKU4_HOLES_PER_DIFF 2
+
+// ===== Scoring Weights =====
+#define CRS_SPEED_BONUS_WEIGHT 0.3    // 30% веса за скорость решения
+#define CRS_EFFICIENCY_BONUS_WEIGHT 0.3 // 30% веса за эффективность (меньше попыток)
+
+// ===== Global Constants =====
+/// Принцип 2 - ЦЕНТРАЛИЗМ: единый список режимов для всех файлов!
+/// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: cryptogram теперь полный режим с UI!
+GLOBAL_LIST_INIT(cogrs_all_modes, list("topsort", "cryptogram", "mastermind", "sudoku4", "lightsout"))
+
+// ===== Configuration Datum =====
+/// Принцип 2 - ЦЕНТРАЛИЗМ: вся конфигурация в одном месте!
+/datum/cogrs_config
+	/// Пар-значения для каждого режима и сложности
+	/// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: используем строковые ключи для избежания bad index
+	var/list/par_values = list(
+		"lightsout" = list(
+			"2" = list("par_moves" = 6, "par_time" = 50),   // 5x5 grid
+			"3" = list("par_moves" = 8, "par_time" = 60),   // 6x6 grid
+			"4" = list("par_moves" = 12, "par_time" = 80),  // 7x7 grid
+			"5" = list("par_moves" = 16, "par_time" = 100)  // 8x8 grid
+		),
+		"mastermind" = list(
+			"2" = list("par_moves" = 4, "par_time" = 40),
+			"3" = list("par_moves" = 5, "par_time" = 60),
+			"4" = list("par_moves" = 6, "par_time" = 80),
+			"5" = list("par_moves" = 7, "par_time" = 100)
+		),
+		"sudoku4" = list(
+			"1" = list("par_moves" = 10, "par_time" = 120),
+			"2" = list("par_moves" = 12, "par_time" = 150),
+			"3" = list("par_moves" = 14, "par_time" = 180)
+		),
+		"cryptogram" = list(
+			"1" = list("par_moves" = 5, "par_time" = 30),   // Короткие слова (4-5 букв)
+			"2" = list("par_moves" = 7, "par_time" = 45),   // Средние слова (6-7 букв)
+			"3" = list("par_moves" = 12, "par_time" = 90)   // Длинные слова (8+ букв)
+		),
+		"topsort" = list(
+			"3" = list("par_moves" = 3, "par_time" = 75),
+			"4" = list("par_moves" = 4, "par_time" = 90),
+			"5" = list("par_moves" = 5, "par_time" = 105),
+			"6" = list("par_moves" = 6, "par_time" = 120)
+		)
+	)
+
+
+/datum/cogrs_config/proc/get_pars(mode, difficulty)
+	// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: понимаем что par_values может быть null
+	if(!par_values)
+		// Принцип 2 - ЦЕНТРАЛИЗМ: инициализируем конфигурацию в одном месте
+		par_values = list(
+			"lightsout" = list(
+				"2" = list("par_moves" = 6, "par_time" = 50),
+				"3" = list("par_moves" = 8, "par_time" = 60),
+				"4" = list("par_moves" = 12, "par_time" = 80),
+				"5" = list("par_moves" = 16, "par_time" = 100)
+			),
+			"mastermind" = list(
+				"2" = list("par_moves" = 4, "par_time" = 40),
+				"3" = list("par_moves" = 5, "par_time" = 60),
+				"4" = list("par_moves" = 6, "par_time" = 80),
+				"5" = list("par_moves" = 7, "par_time" = 100)
+			),
+			"sudoku4" = list(
+				"1" = list("par_moves" = 10, "par_time" = 120),
+				"2" = list("par_moves" = 12, "par_time" = 150),
+				"3" = list("par_moves" = 14, "par_time" = 180)
+			),
+			"cryptogram" = list(
+				"1" = list("par_moves" = 5, "par_time" = 30),
+				"2" = list("par_moves" = 7, "par_time" = 45),
+				"3" = list("par_moves" = 12, "par_time" = 90)
+			),
+			"topsort" = list(
+				"3" = list("par_moves" = 3, "par_time" = 75),
+				"4" = list("par_moves" = 4, "par_time" = 90),
+				"5" = list("par_moves" = 5, "par_time" = 105),
+				"6" = list("par_moves" = 6, "par_time" = 120)
+			)
+		)
+
+	var/list/mode_config = par_values[mode]
+	if(!islist(mode_config))
+		return list("par_moves" = 10, "par_time" = 60)
+
+	// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: используем строковый ключ для избежания bad index
+	var/dkey = "[difficulty]"
+	var/list/diff_config = mode_config[dkey]
+	if(!islist(diff_config))
+		return list("par_moves" = 10, "par_time" = 60)
+
+	return diff_config.Copy()
+
+// Глобальный экземпляр конфигурации с автоматической инициализацией
+GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 
 /datum/cogrs_challenge
 	var/mode = "lightsout"
@@ -38,11 +134,12 @@
 	seed = md5(seed_str)
 
 	// Выбор режима: если задан, используем принудительный; иначе случайный
+	// Принцип 2 - ЦЕНТРАЛИЗМ: используем единый глобальный список режимов!
 	var/choice
 	if(forced_mode)
 		choice = forced_mode
 	else
-		choice = pick("lightsout", "mastermind", "sudoku4", "logic", "topsort")
+		choice = pick(GLOB.cogrs_all_modes)
 
 	switch(choice)
 		if("lightsout")
@@ -60,11 +157,11 @@
 			title = "Stability Matrix"
 			subtitle = "4x4"
 			gen_sudoku4()
-		if("logic")
-			mode = "logic"
-			title = "Neuroboolean Probe"
-			subtitle = "AND/OR/NOT"
-			gen_logic()
+		if("cryptogram")
+			mode = "cryptogram"
+			title = "Cryptographic Analysis"
+			subtitle = "Decode Message"
+			gen_cryptogram()
 		if("topsort")
 			mode = "topsort"
 			title = "Wiring Order"
@@ -87,11 +184,15 @@
 	)
 
 /datum/cogrs_challenge/proc/apply_client_step(params)
-	attempts++
+	if(!islist(params)) return FALSE
+
 	switch(mode)
 		if("lightsout")
-			var/r = text2num(params?["row"]) || 1
-			var/c = text2num(params?["col"]) || 1
+			// Валидация координат для предотвращения крашей
+			if(!validate_coordinates(params, length(board || list()), length(board?[1] || list())))
+				return FALSE
+			var/r = text2num(params["row"])
+			var/c = text2num(params["col"])
 			lightsout_toggle(r, c)
 			return TRUE
 		if("mastermind")
@@ -165,10 +266,12 @@
 		if("logic")
 			var/action = params?["lg"]
 			if(action == "toggle")
-				var/idx = text2num(params?["idx"]) || 1
+				// Валидация индекса для предотвращения крашей
+				if(!validate_index(params, length(state?["inputs"] || list())))
+					return FALSE
+				var/idx = text2num(params["idx"])
 				if(!islist(state) || !islist(state["inputs"]))
 					return FALSE
-				idx = max(1, min(length(state["inputs"]), idx))
 				state["inputs"][idx] = state["inputs"][idx] ? 0 : 1
 				var/out = logic_eval(state["inputs"], state["op"])
 				var/list/_inputs_list = state["inputs"]
@@ -180,10 +283,11 @@
 			var/action = params?["sd"]
 			if(!islist(state) || !islist(client_view))
 				return FALSE
-			var/r = text2num(params?["row"]) || 1
-			r = max(1, min(4, r))
-			var/c = text2num(params?["col"]) || 1
-			c = max(1, min(4, c))
+			// Валидация координат для 4x4 судоку
+			if(!validate_coordinates(params, 4, 4))
+				return FALSE
+			var/r = text2num(params["row"])
+			var/c = text2num(params["col"])
 			if(action == "cycle" || action == "set")
 				if(islist(sudoku_fixed) && sudoku_fixed[r][c])
 					return FALSE
@@ -196,18 +300,93 @@
 				state[r][c] = val
 				if(islist(client_view?["grid"]))
 					client_view["grid"][r][c] = val
-				// Check solved
+				// Check solved - только НЕфиксированные клетки!
 				var/ok = TRUE
-				if(!islist(sudoku_solution))
+				if(!islist(sudoku_solution) || !islist(sudoku_fixed))
 					ok = FALSE
 				else
 					for(var/i in 1 to 4)
 						for(var/j in 1 to 4)
-							if(state[i][j] != sudoku_solution[i][j])
+							// Проверяем только НЕфиксированные клетки
+							if(!sudoku_fixed[i][j] && state[i][j] != sudoku_solution[i][j])
 								ok = FALSE
 								break
 						if(!ok) break
 				solved = ok
+				return TRUE
+		if("cryptogram")
+			var/action = params?["cg"]
+
+			// Удобная ссылка на client_view поля
+			var/len         = client_view?["solution_length"] || 0
+			var/max_hints   = client_view?["max_hints"] || 0
+			var/hints_used  = client_view?["hints_used"] || 0
+			var/list/hpos   = client_view?["hint_positions"]
+			if(!islist(hpos)) hpos = list()
+
+			if(action == "set")
+				// игрок прислал целую строку
+				var/s = params?["text"] || ""
+				s = normalize_text(s)
+				// обрезаем/паддим до нужной длины (вниз — строгая длина)
+				if(length(s) > len) s = copytext(s, 1, len+1)
+				client_view["user_input_text"] = s
+				client_view["status"] = "idle"
+				refresh_cryptogram_view()
+				return TRUE
+
+			if(action == "clear")
+				client_view["user_input_text"] = ""
+				client_view["status"] = "idle"
+				refresh_cryptogram_view()
+				return TRUE
+
+			if(action == "hint")
+				if(hints_used >= max_hints) return FALSE
+				// Выбираем случайную позицию для раскрытия цифра → буква
+				var/list/solution = state?["solution"]
+				var/list/encrypted = state?["encrypted"]
+				if(!islist(solution) || !islist(encrypted) || !len) return FALSE
+
+				var/list/candidates = list()
+				for(var/i in 1 to len)
+					if(!(i in hpos))
+						candidates += i
+
+				if(!candidates.len) return FALSE
+				var/pos = pick(candidates)
+				hpos |= pos
+				client_view["hint_positions"] = hpos
+
+				// НАКОПЛЕНИЕ подсказок: заменяем цифру на букву в исходном encrypted
+				// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: подсказки накапливаются, не заменяются!
+				var/list/new_encrypted = list()
+				for(var/i in 1 to len)
+					if(i in hpos)
+						new_encrypted += solution[i]  // раскрытая буква
+					else
+						new_encrypted += encrypted[i]  // зашифрованная цифра
+
+				client_view["encrypted_message"] = new_encrypted
+
+				// учтём штраф за подсказку — уводим в fatigue_bonus
+				client_view["hints_used"] = hints_used + 1
+				fatigue_bonus -= 5
+				client_view["status"] = "idle"
+				refresh_cryptogram_view()
+				return TRUE
+
+			if(action == "check")
+				// Проверка ответа — только тут считаем попытку
+				attempts++
+				client_view["attempts"] = attempts
+
+				if(is_cryptogram_solved())
+					solved = TRUE
+					client_view["status"] = "ok"
+				else
+					client_view["status"] = "fail"
+				refresh_cryptogram_view()
 				return TRUE
 		if("topsort")
 			var/action = params?["ts"]
@@ -246,6 +425,11 @@
 	var/base = CRS_SCORE_PER_DIFFICULTY * difficulty
 	var/min_reward = CRS_MIN_SCORE
 	var/list/P = get_pars()
+
+	// БЕЗОПАСНОСТЬ: проверяем что пар-значения получены корректно
+	if(!islist(P))
+		P = list("par_moves" = 10, "par_time" = 60)
+
 	var/par_moves = max(1, P["par_moves"] || 10)
 	var/par_time = max(10, P["par_time"] || 60)
 
@@ -263,7 +447,7 @@
 	var/eff_bonus = min(1, max(0, par_moves / moves_used))
 
 	var/score = min_reward
-	score += base * (0.3 * speed_bonus + 0.3 * eff_bonus)
+	score += base * (CRS_SPEED_BONUS_WEIGHT * speed_bonus + CRS_EFFICIENCY_BONUS_WEIGHT * eff_bonus)
 	score += fatigue_bonus
 
 	var/hard_cap = min_reward + (base * 2) // hard_cap should be greater than min_reward
@@ -275,7 +459,7 @@
 
 // Lights Out - ксенологическая сетка
 /datum/cogrs_challenge/proc/gen_lightsout()
-	difficulty = rand(2, 4)
+	difficulty = rand(2, 5)  // Соответствует конфигурации 2,3,4,5
 	var/grid_size = 3 + difficulty
 
 	state = list()
@@ -344,14 +528,44 @@
 
 /datum/cogrs_challenge/proc/force_solved()
 	// Force mark the current challenge as solved (debug)
+	// Принцип 2 - ЦЕНТРАЛИЗМ: используем switch для всех режимов!
+	switch(mode)
+		if("lightsout")
+			if(!islist(board))
+				return
+			for(var/i in 1 to length(board))
+				for(var/j in 1 to length(board[i]))
+					board[i][j] = 0
+			refresh_lightsout_view()
+		if("mastermind")
+			// Force complete mastermind
+			state["guess_history"] = list()
+			state["current_guess"] = list()
+		if("sudoku4")
+			// Force complete sudoku
+			if(islist(state) && islist(sudoku_solution))
+				for(var/i in 1 to length(state))
+					for(var/j in 1 to length(state[i]))
+						state[i][j] = sudoku_solution[i][j]
+		if("cryptogram")
+			// Force complete cryptogram
+			var/list/solution = state?["solution"]
+			if(islist(solution))
+				var/s = ""
+				for(var/i in 1 to length(solution))
+					s += solution[i]
+				client_view["user_input_text"] = s
+			client_view["status"] = "ok"
+		if("topsort")
+			// Force complete topological sort
+			if(islist(state) && islist(state["solution"]))
+				state["current_order"] = state["solution"].Copy()
+
+	solved = TRUE // Принудительно помечаем как решенную для дебаг кнопки
+
+	// Обновляем клиентское представление только для lightsout (единственный с refresh)
 	if(mode == "lightsout")
-		if(!islist(board))
-			return
-		for(var/i in 1 to length(board))
-			for(var/j in 1 to length(board[i]))
-				board[i][j] = 0
 		refresh_lightsout_view()
-	solved = TRUE
 
 // Mastermind - декодер код-книг
 /datum/cogrs_challenge/proc/gen_mastermind()
@@ -445,23 +659,51 @@
 /datum/cogrs_challenge/proc/gen_logic()
 	difficulty = rand(1, 3)
 
-	// Количество входов 2..3
-	var/num_inputs = 1 + difficulty
+	// Количество входов 3..6 (усложнено!)
+	var/num_inputs = 2 + difficulty
 	var/list/inputs = list()
 	for(var/i in 1 to num_inputs)
 		inputs += 0
-	var/op = pick("AND", "OR", "XOR")
-	var/target = rand(0, 1)
-	var/out = logic_eval(inputs, op)
+	// Усложненные операции - XOR временно закомментирован для доработки
+	// TODO: Доработать XOR головоломку позже
+	var/op = pick("AND", "OR", "NAND", "NOR", "XNOR", "IMPLIES", "EQUIVALENCE")
+
+	// ИСПРАВЛЕНИЕ БАГА: генерируем РЕШАЕМЫЙ target
+	// Сначала пробуем разные комбинации входов для данной операции
+	var/list/possible_targets = list()
+	for(var/attempt = 0, attempt < 10, attempt++)
+		var/list/test_inputs = list()
+		for(var/i in 1 to num_inputs)
+			test_inputs += rand(0, 1)
+		var/test_out = logic_eval(test_inputs, op)
+		possible_targets |= test_out
+
+	// Выбираем случайный target из возможных
+	var/target = pick(possible_targets)
+
+	// Устанавливаем начальные входы для достижения target
+	var/found = FALSE
+	for(var/attempt = 0, attempt < 20 && !found, attempt++)
+		var/list/test_inputs = list()
+		for(var/i in 1 to num_inputs)
+			test_inputs += rand(0, 1)
+		if(logic_eval(test_inputs, op) == target)
+			inputs = test_inputs
+			found = TRUE
+
+	// Если не нашли, используем нули
+	if(!found)
+		for(var/i in 1 to num_inputs)
+			inputs[i] = 0
 
 	state = list("inputs" = inputs, "op" = op)
 	client_view = list(
 		"operator" = op,
 		"inputs" = inputs.Copy(),
 		"target" = target,
-		"output" = out
+		"output" = logic_eval(inputs, op)
 	)
-	solved = (out == target)
+	solved = (logic_eval(inputs, op) == target)
 
 /datum/cogrs_challenge/proc/logic_eval(list/inputs, op)
 	switch(op)
@@ -474,7 +716,175 @@
 			for(var/v in inputs)
 				sum += v
 			return sum % 2
+		if("NAND")
+			return (0 in inputs) // NOT AND
+		if("NOR")
+			return !(1 in inputs) // NOT OR
+		if("XNOR")
+			var/sum = 0
+			for(var/v in inputs)
+				sum += v
+			return !(sum % 2) // NOT XOR
+		if("IMPLIES")
+			// A → B = NOT A OR B
+			if(length(inputs) >= 2)
+				return !inputs[1] || inputs[2]
+			return 0
+		if("EQUIVALENCE")
+			// A ≡ B = (A AND B) OR (NOT A AND NOT B)
+			if(length(inputs) >= 2)
+				return (inputs[1] && inputs[2]) || (!inputs[1] && !inputs[2])
+			return 0
 	return 0
+
+// Cryptogram - криптографическая головоломка
+/datum/cogrs_challenge/proc/gen_cryptogram()
+	difficulty = rand(1, 3)
+
+	// Справочник A=1..Z=26
+	var/list/cipher_alphabet = list(
+		"A" = "1", "B" = "2", "C" = "3", "D" = "4", "E" = "5",
+		"F" = "6", "G" = "7", "H" = "8", "I" = "9", "J" = "10",
+		"K" = "11", "L" = "12", "M" = "13", "N" = "14", "O" = "15",
+		"P" = "16", "Q" = "17", "R" = "18", "S" = "19", "T" = "20",
+		"U" = "21", "V" = "22", "W" = "23", "X" = "24", "Y" = "25", "Z" = "26"
+	)
+
+	// Сообщения для расшифровки (от простых к сложным)
+	// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: тематические слова из Dead Space!
+	var/list/messages = list(
+		1 = list( // 4–7 символов, простые и частотные
+			"MARKER","ALTAR","CULT","RITUAL","PRAYER",
+			"PLASMA","CUTTER","BENCH","STORE","NODE",
+			"VENT","OXYGEN","TETHER","OBELISK","BLOOD",
+			"FLESH","SEVER","BLADE","SCREAM","TERROR",
+			"GRIME","SPORE","TOXIN","ACID","SALVAGE",
+			"BRUTE","HUNTER","LURKER","SLASHER","DIVIDER"
+		),
+		2 = list( // 6–9 символов, средняя сложность
+			"UNITOLOGY","NECROSIS","HIVEMIND","INFECTOR","TWITCHER",
+			"SPITTER","STALKER","PREGNANT","OBELISK","QUARANTINE",
+			"SEVERANCE","AFTERMATH","DOWNFALL","MARTYR","CATALYST",
+			"SALVAGE","LIBATION","CONTAGION","BIOHAZARD","RADIATION",
+			"GRAVITY","PRESSURE","MADNESS","DELIRIUM","INFECTION",
+			"CEREMONY","PROPHECY","CULTISTS","CONTROLS","VENTILATE"
+		),
+		3 = list( // 10+ символов, длинные, но реальные слова
+			"CONVERGENCE","DECOMPRESSION","DISMEMBERMENT","REANIMATION","CONTAMINATION",
+			"INDOCTRINATION","VENTILATION","PRESSURIZATION","CATASTROPHE","PUTREFACTION",
+			"PROPAGATION","HALLUCINATION","MUTILATION","TRANSFORMATION","CONTAINMENT",
+			"CORRUPTION","DESECRATION","MALIGNANCY","EXHUMATION","OBLITERATION",
+			"SINGULARITY","ERADICATION","RESURRECTION","REPLICATION","RECALIBRATION",
+			"MONSTROSITY","RECLAMATION","BIOENGINEERING","QUARANTINING","EXTRACTION"
+		)
+	)
+
+	// Выбираем сообщение по сложности
+	var/list/difficulty_messages = messages[difficulty]
+	var/selected_message = pick(difficulty_messages)
+
+	// Шифруем в список строк-чисел ("8","5","12","12","15")
+	var/list/encrypted = list()
+	var/list/decrypted = list()
+	for(var/i in 1 to length(selected_message))
+		var/letter = copytext(selected_message, i, i+1)
+		encrypted += cipher_alphabet[letter]
+		decrypted += letter
+
+	// Серверное состояние
+	state = list(
+		"encrypted" = encrypted,     // список "1".."26"
+		"solution"  = decrypted,     // список букв
+		"message"   = selected_message
+	)
+
+	// Клиентское представление/мета
+	var/len = length(decrypted)
+	var/max_hints = clamp(difficulty, 1, 3) // 1..3 подсказки по сложности
+
+	client_view = list(
+		"encrypted_message" = encrypted, // как показываем на клиенте
+		"user_input_text"   = "",        // строка, ввод игрока
+		"solution_length"   = len,       // для валидации
+		"attempts"          = 0,
+		"max_hints"         = max_hints,
+		"hints_used"        = 0,
+		"hint_positions"    = list(),    // позиции (1..len), раскрытые подсказкой
+		"hint"              = "A=1, B=2, ..., Z=26",
+		"status"            = "idle"     // idle|ok|fail
+	)
+
+	solved = FALSE
+
+/// Хэлпер: нормализация текста (только A..Z, uppercase)
+/datum/cogrs_challenge/proc/normalize_text(t)
+	if(!istext(t)) return ""
+	// только A..Z и upper
+	var/u = uppertext(t)
+	// фильтруем всё, кроме A..Z
+	var/out = ""
+	for(var/i in 1 to length(u))
+		var/ch = copytext(u, i, i+1)
+		if(("A" <= ch) && (ch <= "Z"))
+			out += ch
+	return out
+
+/// Обновление клиентского представления для cryptogram
+/datum/cogrs_challenge/proc/refresh_cryptogram_view()
+	if(mode != "cryptogram") return
+	// Ничего тяжёлого: статус/поля уже в client_view
+	// Оставлено для симметрии с другими режимами.
+	return
+
+/// Проверка решения cryptogram (true/false)
+/datum/cogrs_challenge/proc/is_cryptogram_solved()
+	if(mode != "cryptogram") return FALSE
+	if(!islist(state)) return FALSE
+	var/list/solution = state["solution"]
+	if(!islist(solution)) return FALSE
+
+	var/len = length(solution)
+	var/user = client_view["user_input_text"]
+	if(!user) user = ""
+	user = normalize_text(user)
+	if(length(user) != len) return FALSE
+
+	// сравниваем посимвольно
+	for(var/i in 1 to len)
+		if(copytext(user, i, i+1) != solution[i])
+			return FALSE
+	return TRUE
+
+/// Проверяет создаст ли добавление ребра from в target цикл в графе
+/datum/cogrs_challenge/proc/would_create_cycle(edges, from, target)
+	if(!islist(edges)) return FALSE
+
+	// Если target уже ведет к from (прямо или через цепочку), то создастся цикл
+	return can_reach(edges, target, from)
+
+/// Проверяет может ли узел from достичь узел target через граф
+/datum/cogrs_challenge/proc/can_reach(edges, from, target)
+	if(!islist(edges)) return FALSE
+	if(from == target) return TRUE
+
+	var/list/visited = list()
+	var/list/queue = list(from)
+
+	while(queue.len)
+		var/current = queue[1]
+		queue.Cut(1, 2)
+
+		if(current == target) return TRUE
+		if(current in visited) continue
+		visited += current
+
+		var/list/neighbors = edges[current]
+		if(islist(neighbors))
+			for(var/neighbor in neighbors)
+				if(!(neighbor in visited))
+					queue += neighbor
+
+	return FALSE
 
 // Topological Sort - порядок подключения проводов
 /datum/cogrs_challenge/proc/gen_topsort()
@@ -490,16 +900,32 @@
 	for(var/i in 1 to difficulty)
 		nodes += "N[i]"
 
-	// Создаем случайные связи (гарантируя ацикличность)
-	// Минимум 1 связь, максимум difficulty-1 связей
-	var/num_edges = rand(1, difficulty - 1)
+	// Создаем СЛОЖНЫЕ связи (гарантируя ацикличность)
+	// Принцип 3 - ПЛАНОВОСТЬ: создаем реальные графы, не линейные!
+	var/min_edges = max(2, difficulty)  // минимум 2 связи
+	var/max_edges = difficulty * 2      // максимум difficulty*2 связей
+	var/num_edges = rand(min_edges, max_edges)
+
+	var/attempts = 0
+	var/max_attempts = 50
+
 	for(var/i in 1 to num_edges)
-		var/from_idx = rand(1, difficulty - 1) // Исключаем последний узел как источник
+		attempts++
+		if(attempts > max_attempts) break
+
+		var/from_idx = rand(1, difficulty)
+		var/to_idx = rand(1, difficulty)
+
+		// Избегаем самосвязей
+		if(from_idx == to_idx) continue
+
 		var/from = nodes[from_idx]
-		var/list/possible_targets = nodes.Copy()
-		possible_targets.Cut(1, from_idx + 1)
-		if(!possible_targets.len) continue
-		var/target = pick(possible_targets)
+		var/target = nodes[to_idx]
+
+		// Проверяем ацикличность: не создаем циклы
+		if(would_create_cycle(edges, from, target))
+			continue
+
 		if(!edges[from])
 			edges[from] = list()
 		if(!(target in edges[from]))
@@ -535,34 +961,8 @@
 // ===== ВСПОМОГАТЕЛЬНЫЕ ПРОЦЕДУРЫ =====
 
 /datum/cogrs_challenge/proc/get_pars()
-	// Возвращает list("par_moves", "par_time")
-	switch(mode)
-		if("lightsout")
-			var/n = 3 + difficulty
-			var/par_moves
-			var/par_time
-			if(n == 5)
-				par_moves = 9; par_time = 70
-			else if(n == 6)
-				par_moves = 12; par_time = 95
-			else if(n == 7)
-				par_moves = 16; par_time = 120
-			else
-				par_moves = 20; par_time = 150
-			return list("par_moves" = par_moves, "par_time" = par_time)
-		if("mastermind")
-			var/L = min(CRS_MASTERMIND_MAX_CODE, 3 + difficulty)
-			return list("par_moves" = L + 2, "par_time" = 20 * L)
-		if("sudoku4")
-			var/holes = CRS_SUDOKU4_BASE_HOLES + (difficulty * CRS_SUDOKU4_HOLES_PER_DIFF)
-			return list("par_moves" = holes + 4, "par_time" = (90 + 30 * difficulty))
-		if("logic")
-			var/ni = 1 + difficulty
-			return list("par_moves" = (ni + 1), "par_time" = (30 + 10 * difficulty))
-		if("topsort")
-			var/N = difficulty
-			return list("par_moves" = N, "par_time" = (60 + 15 * N))
-	return list("par_moves" = 10, "par_time" = 60)
+	// Принцип 2 - ЦЕНТРАЛИЗМ: используем централизованную конфигурацию
+	return GLOB.cogrs_config.get_pars(mode, difficulty)
 
 /datum/cogrs_challenge/proc/get_difficulty_name()
 	switch(difficulty)
@@ -587,3 +987,34 @@
 			return "Determine correct wiring sequence for acyclic network connections."
 		else
 			return "Unknown simulation mode."
+
+/// Валидация координат для предотвращения крашей
+/// Принцип 5 - ПРОЛЕТАРСКАЯ СОЛИДАРНОСТЬ: код должен быть безопасен для всех товарищей!
+/datum/cogrs_challenge/proc/validate_coordinates(list/params, max_row = 10, max_col = 10)
+	if(!islist(params))
+		return FALSE
+
+	var/r = text2num(params["row"])
+	var/c = text2num(params["col"])
+
+	if(!isnum(r) || !isnum(c))
+		return FALSE
+
+	if(r < 1 || r > max_row || c < 1 || c > max_col)
+		return FALSE
+
+	return TRUE
+
+/// Валидация индекса для списков
+/datum/cogrs_challenge/proc/validate_index(list/params, list_size = 10)
+	if(!islist(params))
+		return FALSE
+
+	var/idx = text2num(params["idx"])
+	if(!isnum(idx))
+		return FALSE
+
+	if(idx < 1 || idx > list_size)
+		return FALSE
+
+	return TRUE

@@ -1,5 +1,13 @@
 import { useBackend } from '../backend';
-import { Button, Section, LabeledList, Box, NoticeBox } from '../components';
+import {
+  Button,
+  Section,
+  LabeledList,
+  Box,
+  NoticeBox,
+  Input,
+  Stack,
+} from '../components';
 import { NtosWindow } from '../layouts';
 
 export const NtosCognitiveResearchSuite = (props, context) => {
@@ -13,6 +21,7 @@ export const NtosCognitiveResearchSuite = (props, context) => {
     session,
     cooldown_remaining,
     is_admin,
+    player_progress,
   } = data;
 
   return (
@@ -28,6 +37,14 @@ export const NtosCognitiveResearchSuite = (props, context) => {
             {!!cooldown_remaining && (
               <LabeledList.Item label="Cooldown">
                 {Math.ceil(cooldown_remaining / 10)} s
+              </LabeledList.Item>
+            )}
+            {player_progress && (
+              <LabeledList.Item label="Progress">
+                {player_progress.completed} completed
+                {player_progress.multiplier > 1.0 && (
+                  <span> (x{player_progress.multiplier})</span>
+                )}
               </LabeledList.Item>
             )}
           </LabeledList>
@@ -178,6 +195,79 @@ export const NtosCognitiveResearchSuite = (props, context) => {
                       </Button>
                     ))}
                   </Box>
+                </Section>
+              ) : session?.mode === 'cryptogram' ? (
+                <Section title="Cryptogram">
+                  <LabeledList>
+                    <LabeledList.Item label="Encrypted">
+                      {(session.payload?.encrypted_message || [])
+                        .map(String)
+                        .join(' ')}
+                    </LabeledList.Item>
+
+                    <LabeledList.Item label="Your Input">
+                      <Input
+                        fluid
+                        value={session.payload?.user_input_text || ''}
+                        placeholder="Type decoded text (A..Z)"
+                        onChange={(e, value) =>
+                          act('submit_step', {
+                            cg: 'set',
+                            text: value,
+                          })
+                        }
+                      />
+                    </LabeledList.Item>
+
+                    <LabeledList.Item label="Status">
+                      {session.payload?.status === 'ok'
+                        ? '✅ Correct'
+                        : session.payload?.status === 'fail'
+                        ? '❌ Try again'
+                        : '…'}
+                    </LabeledList.Item>
+
+                    <LabeledList.Item label="Hints">
+                      {session.payload?.hints_used || 0}/
+                      {session.payload?.max_hints || 0}
+                    </LabeledList.Item>
+
+                    <LabeledList.Item label="Attempts">
+                      {session.payload?.attempts || 0}
+                    </LabeledList.Item>
+                  </LabeledList>
+
+                  <Stack mt={1} justify="space-between">
+                    <Stack.Item grow>
+                      <Button
+                        onClick={() => act('submit_step', { cg: 'check' })}
+                        color="good"
+                      >
+                        Check Answer
+                      </Button>
+                      <Button
+                        onClick={() => act('submit_step', { cg: 'clear' })}
+                        ml={1}
+                      >
+                        Clear
+                      </Button>
+                      <Button
+                        onClick={() => act('submit_step', { cg: 'hint' })}
+                        ml={1}
+                        disabled={
+                          (session.payload?.hints_used || 0) >=
+                          (session.payload?.max_hints || 0)
+                        }
+                      >
+                        Hint
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <span style={{ opacity: 0.7 }}>
+                        {session.payload?.hint}
+                      </span>
+                    </Stack.Item>
+                  </Stack>
                 </Section>
               ) : session?.mode === 'topsort' ? (
                 <Section title="Wiring Order">

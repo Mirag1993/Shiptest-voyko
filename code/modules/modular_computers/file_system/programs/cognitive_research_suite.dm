@@ -21,12 +21,29 @@
 	var/status_message = "Ready to begin cognitive simulation."
 	/// Текущий вызов
 	var/datum/cogrs_challenge/ch
-	/// Пер-игрок кулдауны по режимам: ckey -> (mode -> world.time)
-	var/list/mode_cd_by_ckey = list()
+	/// ГЛОБАЛЬНЫЕ кулдауны по игрокам: ckey -> (mode -> world.time)
+	/// Принцип 2 - ЦЕНТРАЛИЗМ: кулдауны должны быть едиными для всех компьютеров!
 	/// Время кулдауна на режим (децисекунды BYOND)
 	var/mode_cooldown = 3 MINUTES
 	/// Единый список доступных режимов (источник правды)
-	var/list/ALL_MODES = list("topsort", "logic", "mastermind", "sudoku4", "lightsout")
+	/// Принцип 2 - ЦЕНТРАЛИЗМ: используем глобальный список из cogrs_challenges.dm!
+	var/list/ALL_MODES
+	/// Последняя очистка памяти (для предотвращения утечек)
+	var/last_cleanup = 0
+
+/// Инициализация программы
+/datum/computer_file/program/cognitive_research_suite/New()
+	. = ..()
+	// Принцип 2 - ЦЕНТРАЛИЗМ: инициализируем список режимов из глобального источника!
+	ALL_MODES = GLOB.cogrs_all_modes
+
+// Глобальные кулдауны для всех компьютеров
+// Принцип 2 - ЦЕНТРАЛИЗМ: единая система кулдаунов!
+GLOBAL_LIST_EMPTY(cogrs_global_cooldowns)
+
+// Глобальная статистика игроков для прогрессии
+// Принцип 3 - ПЛАНОВОСТЬ: прогрессия по количеству пройденных головоломок!
+GLOBAL_LIST_EMPTY(cogrs_player_stats)
 
 /datum/computer_file/program/cognitive_research_suite/run_program(mob/living/user)
 	if(!..())
@@ -42,22 +59,35 @@
 			if(simulation_active)
 				return TRUE
 
+			// Очистка памяти перед началом симуляции
+			cleanup_old_cooldowns()
+
+			var/mob/living/user_mob = ui?.user
+			var/ck = user_mob?.client?.ckey
+
+			// Проверяем доступные режимы с учётом ГЛОБАЛЬНОГО кулдауна
+			var/list/player_cds = islist(GLOB.cogrs_global_cooldowns[ck]) ? GLOB.cogrs_global_cooldowns[ck] : list()
+			var/list/available_modes = list()
+			for(var/m in ALL_MODES)
+				if(!player_cds[m] || player_cds[m] <= world.time)
+					available_modes += m
+
+			if(!available_modes.len)
+				to_chat(user_mob, span_warning("All simulation modes are on cooldown! Please wait."))
+				return TRUE
+
+			var/selected_mode = pick(available_modes)
+
+			// УСТАНАВЛИВАЕМ ГЛОБАЛЬНЫЙ КУЛДАУН ДО ЗАПУСКА СИМУЛЯЦИИ
+			player_cds[selected_mode] = world.time + mode_cooldown
+			GLOB.cogrs_global_cooldowns[ck] = player_cds
+
 			simulation_active = TRUE
 			score = 0
 			status_message = "Cognitive simulation started. Complete the pattern analysis."
 			if(ch)
 				qdel(ch)
-			// Выберем режим с учётом кулдауна пер-игрока
-			var/mob/living/user_mob = ui?.user
-			var/ck = user_mob?.client?.ckey
-			var/list/available_modes = ALL_MODES
-			var/list/player_cds = islist(mode_cd_by_ckey[ck]) ? mode_cd_by_ckey[ck] : list()
-			var/list/filtered = list()
-			for(var/m in available_modes)
-				if(player_cds[m] && player_cds[m] > world.time)
-					continue
-				filtered += m
-			var/selected_mode = pick(filtered.len ? filtered : available_modes)
+
 			ch = new /datum/cogrs_challenge()
 			ch.generate_for(computer, selected_mode)
 			computer?.say("Simulation initialized. Begin cognitive testing.")
@@ -85,12 +115,25 @@
 		if("collect_data")
 			// Spawn research notes item with current score points
 			var/mob/living/user_mob = ui?.user
-			if(score <= 0)
-				to_chat(user_mob, span_notice("No telemetry available to print."))
+			var/points = 0
+
+			// Печатаем накопленные очки игрока
+			var/ck = user_mob?.client?.ckey
+			if(ck)
+				var/list/player_stats = get_player_stats(ck)
+				points = player_stats["total_score"] || 0
+
+				if(points <= 0)
+					to_chat(user_mob, span_notice("No research points to print."))
+					return TRUE
+
+				// Принцип 4 - РЕВОЛЮЦИОННАЯ НЕПРИМИРИМОСТЬ:
+				// После печати ОБНУЛЯЕМ общий счет игрока!
+				player_stats["total_score"] = 0
+				GLOB.cogrs_player_stats[ck] = player_stats
+			else
+				to_chat(user_mob, span_notice("No completed simulation to print."))
 				return TRUE
-			var/points = max(0, round(score))
-			// reset local score after printing
-			score = 0
 			var/turf/T = user_mob ? get_turf(user_mob) : get_turf(computer)
 			if(T)
 				var/obj/item/research_notes/result = new /obj/item/research_notes(null, points, "cognitive")
@@ -111,19 +154,32 @@
 				return TRUE
 
 			var/gain = ch ? ch.validate_and_score() : 0
-			score = max(0, round(gain))
-			simulation_active = FALSE
-			status_message = "Simulation completed. Gained [score] research points."
-			// Устанавливаем кулдаун на пройденный режим для этого игрока
+
+			// Применяем прогрессию игрока
 			var/mob/living/user_mob = ui?.user
 			var/ck = user_mob?.client?.ckey
-			var/list/cd_map = islist(mode_cd_by_ckey[ck]) ? mode_cd_by_ckey[ck] : list()
-			cd_map[ch.mode] = world.time + mode_cooldown
-			mode_cd_by_ckey[ck] = cd_map
+			var/progression_multiplier = get_progression_multiplier(ck)
+			var/base_score = max(0, round(gain))
+			var/final_score = max(0, round(base_score * progression_multiplier))
 
-			// Начисление RP (упрощенная версия)
-			to_chat(ui?.user, span_notice("Gained [score] research points from cognitive simulation."))
-			computer?.say("Telemetry collected: [score] research points.")
+			score = final_score
+			simulation_active = FALSE
+
+			// Обновляем статистику игрока
+			update_player_stats(ck, final_score)
+
+			var/list/player_stats = get_player_stats(ck)
+			var/completed_count = player_stats["completed"] || 0
+			var/multiplier_text = progression_multiplier > 1.0 ? " (x[progression_multiplier] progression)" : ""
+
+			status_message = "Simulation completed. Gained [final_score] research points[multiplier_text]. Total completed: [completed_count]."
+
+			// Начисление RP с прогрессией
+			to_chat(ui?.user, span_notice("Gained [final_score] research points from cognitive simulation[multiplier_text]."))
+			computer?.say("Telemetry collected: [final_score] research points.")
+
+			// Принцип 6 - КРИТИКА И САМОКРИТИКА: логируем для анализа
+			log_game("CRS: [ck] completed [ch.mode] simulation - base: [base_score], final: [final_score], multiplier: [progression_multiplier], total_completed: [completed_count]")
 			if(ch)
 				qdel(ch)
 				ch = null
@@ -131,6 +187,17 @@
 			return TRUE
 
 		if("reset_simulation")
+			// Возвращаем кулдаун если симуляция не была завершена
+			if(simulation_active && ch)
+				var/mob/living/user_mob = ui?.user
+				var/ck = user_mob?.client?.ckey
+				var/list/cd_map = islist(GLOB.cogrs_global_cooldowns[ck]) ? GLOB.cogrs_global_cooldowns[ck] : list()
+				cd_map[ch.mode] = 0 // Сбрасываем кулдаун
+				GLOB.cogrs_global_cooldowns[ck] = cd_map
+				to_chat(user_mob, span_notice("Cooldown for [ch.mode] mode has been reset."))
+				// Логируем сброс симуляции
+				log_game("CRS: [ck] reset [ch.mode] simulation after [ch.attempts] attempts")
+
 			simulation_active = FALSE
 			score = 0
 			status_message = "Simulation reset. Ready to begin."
@@ -148,21 +215,28 @@
 		data = list()
 
 	data["simulation_active"] = simulation_active
-	data["score"] = score
-	data["difficulty"] = difficulty
-	data["status_message"] = status_message
-	data["session"] = ch ? ch.export_for_client() : null
 	// Признак админа для UI (для отладочной кнопки)
 	var/mob/living/user_mob = user
 	data["is_admin"] = !!(user_mob?.client?.holder)
 	// Для UX: блокируем старт только если ВСЕ режимы на кулдауне
 	var/ck = user_mob?.client?.ckey
+
+	// Показываем только общий счет игрока
+	if(ck)
+		var/list/player_stats = get_player_stats(ck)
+		data["score"] = player_stats["total_score"] || 0
+	else
+		data["score"] = 0
+
+	data["difficulty"] = difficulty
+	data["status_message"] = status_message
+	data["session"] = ch ? ch.export_for_client() : null
 	// Перечень всех режимов
 	var/list/all_modes = ALL_MODES
 	var/earliest = 0
 	var/any_available = TRUE
-	if(islist(mode_cd_by_ckey) && islist(mode_cd_by_ckey[ck]))
-		var/list/cd_map = mode_cd_by_ckey[ck]
+	if(islist(GLOB.cogrs_global_cooldowns) && islist(GLOB.cogrs_global_cooldowns[ck]))
+		var/list/cd_map = GLOB.cogrs_global_cooldowns[ck]
 		any_available = FALSE
 		var/min_cooldown_end
 		for(var/m in all_modes)
@@ -177,4 +251,98 @@
 			earliest = min_cooldown_end - world.time
 	data["cooldown_remaining"] = any_available ? 0 : earliest
 
+	// Добавляем информацию о прогрессе игрока
+	if(ck)
+		var/list/player_stats = get_player_stats(ck)
+		var/progression_multiplier = get_progression_multiplier(ck)
+		data["player_progress"] = list(
+			"completed" = player_stats["completed"] || 0,
+			"total_score" = player_stats["total_score"] || 0,
+			"multiplier" = progression_multiplier
+		)
+
 	return data
+
+/// Очистка старых кулдаунов для предотвращения утечек памяти
+/// Принцип 4 - РЕВОЛЮЦИОННАЯ НЕПРИМИРИМОСТЬ: каждый баг - враг народа!
+/datum/computer_file/program/cognitive_research_suite/proc/cleanup_old_cooldowns()
+	// Очищаем раз в 10 минут, чтобы не нагружать систему
+	if(world.time - last_cleanup < 10 MINUTES)
+		return
+
+	last_cleanup = world.time
+	var/cutoff = world.time - (1 HOURS) // Удаляем кулдауны старше часа
+	var/cleaned = 0
+
+	for(var/ckey in GLOB.cogrs_global_cooldowns)
+		var/list/cds = GLOB.cogrs_global_cooldowns[ckey]
+		if(!islist(cds))
+			GLOB.cogrs_global_cooldowns -= ckey
+			continue
+
+		var/list/old_modes = list()
+		for(var/mode in cds)
+			if(cds[mode] < cutoff)
+				old_modes += mode
+
+		for(var/mode in old_modes)
+			cds -= mode
+			cleaned++
+
+		// Удаляем пустые записи игроков
+		if(!cds.len)
+			GLOB.cogrs_global_cooldowns -= ckey
+
+	if(cleaned > 0)
+		log_game("CRS: Cleaned up [cleaned] old cooldown entries")
+
+/// Получить статистику игрока
+/datum/computer_file/program/cognitive_research_suite/proc/get_player_stats(ckey)
+	if(!ckey)
+		return list("completed" = 0, "total_score" = 0)
+
+	var/list/stats = GLOB.cogrs_player_stats[ckey]
+	if(!islist(stats))
+		stats = list("completed" = 0, "total_score" = 0)
+		GLOB.cogrs_player_stats[ckey] = stats
+
+	return stats
+
+/// Обновить статистику игрока после завершения головоломки
+/datum/computer_file/program/cognitive_research_suite/proc/update_player_stats(ckey, score_gained)
+	if(!ckey)
+		return
+
+	var/list/stats = get_player_stats(ckey)
+	stats["completed"] = (stats["completed"] || 0) + 1
+	stats["total_score"] = (stats["total_score"] || 0) + score_gained
+	GLOB.cogrs_player_stats[ckey] = stats
+
+/// Получить множитель прогрессии для игрока
+/datum/computer_file/program/cognitive_research_suite/proc/get_progression_multiplier(ckey)
+	var/list/stats = get_player_stats(ckey)
+	var/completed = stats["completed"] || 0
+
+	// Принцип 3 - ПЛАНОВОСТЬ: прогрессия с большими шагами, старт с 10!
+	// Принцип 2 - ЦЕНТРАЛИЗМ: вся логика прогрессии в одном switch!
+	switch(completed)
+		if(-INFINITY to 9)      // 0-9: новички
+			return 1.0  // Базовый множитель
+		if(10 to 24)           // 10-24: начинающие
+			return 1.5  // 50% бонус для новичков
+		if(25 to 34)           // 25-34: средние
+			return 2.0  // 100% бонус для начинающих
+		if(35 to 49)           // 35-49: продвинутые
+			return 2.5  // 150% бонус для средних
+		if(50 to 69)           // 50-69: опытные
+			return 3.0  // 200% бонус для опытных
+		if(70 to 89)           // 70-89: эксперты
+			return 3.5  // 250% бонус для продвинутых
+		if(90 to 119)          // 90-119: мастера
+			return 4.0  // 300% бонус для экспертов
+		if(120 to 149)         // 120-149: легенды
+			return 4.5  // 350% бонус для мастеров
+		if(150 to INFINITY)    // 150+: легендарные мастера!
+			return 5.0  // 400% бонус для легендарных мастеров!
+		else
+			return 1.0  // Fallback (никогда не должно сработать)
