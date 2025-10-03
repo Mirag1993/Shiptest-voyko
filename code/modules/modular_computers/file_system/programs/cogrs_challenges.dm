@@ -56,40 +56,8 @@ GLOBAL_LIST_INIT(cogrs_all_modes, list("topsort", "cryptogram", "mastermind", "s
 
 
 /datum/cogrs_config/proc/get_pars(mode, difficulty)
-	// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: понимаем что par_values может быть null
-	if(!par_values)
-		// Принцип 2 - ЦЕНТРАЛИЗМ: инициализируем конфигурацию в одном месте
-		par_values = list(
-			"lightsout" = list(
-				"2" = list("par_moves" = 6, "par_time" = 50),
-				"3" = list("par_moves" = 8, "par_time" = 60),
-				"4" = list("par_moves" = 12, "par_time" = 80),
-				"5" = list("par_moves" = 16, "par_time" = 100)
-			),
-			"mastermind" = list(
-				"2" = list("par_moves" = 4, "par_time" = 40),
-				"3" = list("par_moves" = 5, "par_time" = 60),
-				"4" = list("par_moves" = 6, "par_time" = 80),
-				"5" = list("par_moves" = 7, "par_time" = 100)
-			),
-			"sudoku4" = list(
-				"1" = list("par_moves" = 10, "par_time" = 120),
-				"2" = list("par_moves" = 12, "par_time" = 150),
-				"3" = list("par_moves" = 14, "par_time" = 180)
-			),
-			"cryptogram" = list(
-				"1" = list("par_moves" = 5, "par_time" = 30),
-				"2" = list("par_moves" = 7, "par_time" = 45),
-				"3" = list("par_moves" = 12, "par_time" = 90)
-			),
-			"topsort" = list(
-				"3" = list("par_moves" = 3, "par_time" = 75),
-				"4" = list("par_moves" = 4, "par_time" = 90),
-				"5" = list("par_moves" = 5, "par_time" = 105),
-				"6" = list("par_moves" = 6, "par_time" = 120)
-			)
-		)
-
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: убрали избыточную инициализацию!
+	// par_values уже инициализирован при создании объекта (глобальный синглтон)
 	var/list/mode_config = par_values[mode]
 	if(!islist(mode_config))
 		return list("par_moves" = 10, "par_time" = 60)
@@ -538,9 +506,9 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 					board[i][j] = 0
 			refresh_lightsout_view()
 		if("mastermind")
-			// Force complete mastermind
-			state["guess_history"] = list()
-			state["current_guess"] = list()
+			// Force complete mastermind - просто помечаем как решенную
+			// Принцип 4 - НЕПРИМИРИМОСТЬ: не пытаемся изменить несуществующие ключи!
+			// Для mastermind достаточно просто установить solved = TRUE
 		if("sudoku4")
 			// Force complete sudoku
 			if(islist(state) && islist(sudoku_solution))
@@ -558,14 +526,19 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 			client_view["status"] = "ok"
 		if("topsort")
 			// Force complete topological sort
-			if(islist(state) && islist(state["solution"]))
-				state["current_order"] = state["solution"].Copy()
+			// Принцип 4 - НЕПРИМИРИМОСТЬ: используем правильную структуру данных!
+			// Для topsort нужно заполнить client_view["solution"] и вызвать topsort_refresh()
+			if(islist(client_view) && islist(state) && islist(state["nodes"]))
+				var/list/nodes = state["nodes"]
+				client_view["solution"] = nodes.Copy()
+				topsort_refresh()
 
 	solved = TRUE // Принудительно помечаем как решенную для дебаг кнопки
 
-	// Обновляем клиентское представление только для lightsout (единственный с refresh)
+	// Обновляем клиентское представление для режимов с refresh
 	if(mode == "lightsout")
 		refresh_lightsout_view()
+	// topsort_refresh() уже вызван выше для topsort
 
 // Mastermind - декодер код-книг
 /datum/cogrs_challenge/proc/gen_mastermind()

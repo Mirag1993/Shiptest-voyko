@@ -45,9 +45,25 @@ GLOBAL_LIST_EMPTY(cogrs_global_cooldowns)
 // Принцип 3 - ПЛАНОВОСТЬ: прогрессия по количеству пройденных головоломок!
 GLOBAL_LIST_EMPTY(cogrs_player_stats)
 
+// Принцип 3 - ПЛАНОВОСТЬ: очистка статистики при завершении раунда!
+// Принцип 4 - НЕПРИМИРИМОСТЬ: не даем памяти засоряться между раундами!
+GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
+
+// Принцип 3 - ПЛАНОВОСТЬ: регистрируем очистку при завершении раунда!
+// Принцип 2 - ЦЕНТРАЛИЗМ: вся очистка в одном месте!
+/proc/cogrs_register_round_end_cleanup()
+	if(!GLOB.cogrs_round_cleanup_done)
+		var/datum/computer_file/program/cognitive_research_suite/cleaner = new()
+		SSticker.round_end_events += CALLBACK(cleaner, TYPE_PROC_REF(/datum/computer_file/program/cognitive_research_suite, cleanup_round_end))
+
 /datum/computer_file/program/cognitive_research_suite/run_program(mob/living/user)
 	if(!..())
 		return FALSE
+
+	// Принцип 3 - ПЛАНОВОСТЬ: регистрируем очистку при первом запуске!
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: гарантируем очистку памяти!
+	cogrs_register_round_end_cleanup()
+
 	return TRUE
 
 /datum/computer_file/program/cognitive_research_suite/ui_act(action, params, datum/tgui/ui)
@@ -263,8 +279,9 @@ GLOBAL_LIST_EMPTY(cogrs_player_stats)
 
 	return data
 
-/// Очистка старых кулдаунов для предотвращения утечек памяти
+/// Очистка старых кулдаунов и статистики для предотвращения утечек памяти
 /// Принцип 4 - РЕВОЛЮЦИОННАЯ НЕПРИМИРИМОСТЬ: каждый баг - враг народа!
+/// Принцип 2 - ЦЕНТРАЛИЗМ: вся очистка памяти в одном месте!
 /datum/computer_file/program/cognitive_research_suite/proc/cleanup_old_cooldowns()
 	// Очищаем раз в 10 минут, чтобы не нагружать систему
 	if(world.time - last_cleanup < 10 MINUTES)
@@ -274,6 +291,7 @@ GLOBAL_LIST_EMPTY(cogrs_player_stats)
 	var/cutoff = world.time - (1 HOURS) // Удаляем кулдауны старше часа
 	var/cleaned = 0
 
+	// Очистка кулдаунов
 	for(var/ckey in GLOB.cogrs_global_cooldowns)
 		var/list/cds = GLOB.cogrs_global_cooldowns[ckey]
 		if(!islist(cds))
@@ -293,8 +311,51 @@ GLOBAL_LIST_EMPTY(cogrs_player_stats)
 		if(!cds.len)
 			GLOB.cogrs_global_cooldowns -= ckey
 
-	if(cleaned > 0)
-		log_game("CRS: Cleaned up [cleaned] old cooldown entries")
+	// Очистка статистики игроков - УСТРАНЯЕМ УТЕЧКУ ПАМЯТИ!
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: неактивные игроки не должны засорять память!
+	var/stats_cleaned = 0
+	for(var/ckey in GLOB.cogrs_player_stats)
+		var/list/stats = GLOB.cogrs_player_stats[ckey]
+		if(!islist(stats))
+			GLOB.cogrs_player_stats -= ckey
+			stats_cleaned++
+			continue
+
+		// Проверяем, активен ли игрок (есть ли у него активный кулдаун)
+		var/list/player_cds = GLOB.cogrs_global_cooldowns[ckey]
+		var/has_active_cooldown = FALSE
+
+		if(islist(player_cds))
+			for(var/mode in player_cds)
+				if(player_cds[mode] > world.time)
+					has_active_cooldown = TRUE
+					break
+
+		// Если нет активных кулдаунов, удаляем статистику
+		// Это означает, что игрок давно не играл
+		if(!has_active_cooldown)
+			GLOB.cogrs_player_stats -= ckey
+			stats_cleaned++
+
+	if(cleaned > 0 || stats_cleaned > 0)
+		log_game("CRS: Cleaned up [cleaned] old cooldown entries and [stats_cleaned] inactive player stats")
+
+/// Полная очистка всех данных CRS при завершении раунда
+/// Принцип 3 - ПЛАНОВОСТЬ: системная очистка при завершении раунда!
+/// Принцип 4 - НЕПРИМИРИМОСТЬ: никаких остатков данных между раундами!
+/datum/computer_file/program/cognitive_research_suite/proc/cleanup_round_end()
+	if(GLOB.cogrs_round_cleanup_done)
+		return // Уже очистили
+
+	GLOB.cogrs_round_cleanup_done = TRUE
+
+	var/cooldowns_cleaned = GLOB.cogrs_global_cooldowns.len
+	var/stats_cleaned = GLOB.cogrs_player_stats.len
+
+	GLOB.cogrs_global_cooldowns.Cut()
+	GLOB.cogrs_player_stats.Cut()
+
+	log_game("CRS: Round end cleanup - cleared [cooldowns_cleaned] cooldown entries and [stats_cleaned] player stats")
 
 /// Получить статистику игрока
 /datum/computer_file/program/cognitive_research_suite/proc/get_player_stats(ckey)

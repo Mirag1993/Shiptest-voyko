@@ -21,7 +21,7 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 - Lights Out: toggle grid cells to turn all lights off. Click tiles to flip it and neighbors.
 - Mastermind (Codebook): choose colors to fill buffer (max length ≤ 6), Submit; feedback shows "Right color & position" and "Right color, wrong position".
 - Sudoku 4×4: click non‑fixed cells to cycle 1→4, match solution.
-- Logic (AND/OR/NAND/NOR/XNOR/IMPLIES/EQUIVALENCE): toggle inputs so current output equals target.
+- ~~Logic (AND/OR/NAND/NOR/XNOR/IMPLIES/EQUIVALENCE)~~: **TEMPORARILY DISABLED** - режим оказался слишком простым и был отключен для доработки сложности.
 - Topsort (Wiring Order): click nodes to form an order so all edges A→B go from earlier to later. Back and Reset available; conflicts listed. **ENHANCED** with complex dependency graphs!
 - Cryptogram: decode Dead Space themed words from numerical cipher (A=1, B=2, ..., Z=26). Use hints to reveal letters, check your answer.
 
@@ -30,7 +30,7 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 - `step {row, col}` — Lights Out
 - `submit_step { mm:'push'|'back'|'submit', ch:'R|G|B|Y|P|C' }` — Mastermind
 - `submit_step { sd:'cycle'|'set', row, col, val? }` — Sudoku4
-- `submit_step { lg:'toggle', idx }` — Logic
+- ~~`submit_step { lg:'toggle', idx }` — Logic~~ **DISABLED**
 - `submit_step { ts:'push'|'back'|'reset', n? }` — Topsort
 - `submit_step { cg:'set'|'clear'|'hint'|'check', text? }` — Cryptogram
 - `complete_simulation` — finalize and compute score
@@ -93,7 +93,7 @@ Notes:
 ### Balance defines (at file top of `cogrs_challenges.dm`)
 ```
 #define CRS_SCORE_PER_DIFFICULTY 25
-#define CRS_MIN_SCORE 1000
+#define CRS_MIN_SCORE 700
 #define CRS_MASTERMIND_MAX_CODE 6
 #define CRS_LIGHTSOUT_ON_PROB 40
 #define CRS_SUDOKU4_BASE_HOLES 6
@@ -122,7 +122,7 @@ Notes:
 - Lights Out: `CRS_LIGHTSOUT_ON_PROB` — chance to spawn a lit cell; increases problem density.
 - Mastermind: `CRS_MASTERMIND_MAX_CODE` — maximum code length; difficulty sets length as `3 + difficulty` up to the cap.
 - Sudoku 4×4: `CRS_SUDOKU4_BASE_HOLES` and `CRS_SUDOKU4_HOLES_PER_DIFF` control number of empty cells.
-- Logic: difficulty controls number of inputs (2..4) and operator is random AND/OR/XOR.
+- ~~Logic~~: **DISABLED** - режим оказался слишком простым (2-4 входа, случайные операторы AND/OR/XOR).
 - Topsort: node count equals `difficulty` (3..6).
 
 5) Cooldowns
@@ -179,13 +179,25 @@ Referenced (not modified)
 - **New Cryptogram Mode**: Dead Space themed word decoding with hint system
 - **Global Cooldowns**: Fixed abuse vulnerability - cooldowns now work across all computers
 - **Progression System**: Player experience multipliers (1.0x to 5.0x) based on completed puzzles
-- **Memory Management**: Automatic cleanup of old cooldown entries
+- **Memory Management**: **CRITICAL FIX** - Automatic cleanup of old cooldown entries AND player statistics to prevent memory leaks
+- **Round End Cleanup**: Complete data cleanup between rounds to prevent memory accumulation
 - **Input Validation**: Robust parameter validation to prevent runtime errors
 - **Centralized Configuration**: All game balance parameters in one location
-- **Improved Logic Puzzles**: More complex operators and guaranteed solvability
+- **Logic Mode Temporarily Disabled**: Mode was too simple and disabled for complexity rework
+- **Debug Function Fixed**: Fixed force_solved() function for mastermind and topsort modes
+- **DRY Principle Applied**: Removed redundant code duplication in get_pars() function
+- **Documentation Consistency**: Fixed CRS_MIN_SCORE value mismatch between code (700) and docs (1000)
 - **Better Scoring**: Minimum score reduced to 700, improved bonus calculations
 
+### Memory Management (Technical Details)
+- **Automatic Cleanup**: Runs every 10 minutes during gameplay to remove inactive player data
+- **Inactivity Detection**: Players without active cooldowns are considered inactive and their stats are removed
+- **Round End Cleanup**: Complete data wipe between rounds to prevent memory accumulation
+- **Logging**: All cleanup operations are logged to server logs for monitoring
+- **Performance**: Cleanup operations are throttled to prevent server lag
+
 ### Future knobs (optional)
+- **Re-enable Logic Mode**: Redesign with more complex boolean logic chains and multi-stage puzzles
 - Add per‑seed single‑payout tracking (prevent re‑running identical seed for points)
 - Surface breakdown in UI (show speed/eff bonuses)
 - Difficulty ramping based on recent performance
