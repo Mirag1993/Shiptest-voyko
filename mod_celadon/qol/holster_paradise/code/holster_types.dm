@@ -12,15 +12,11 @@
 // Константы для кэширования
 #define HOLSTER_STORAGE_CACHE_TICKS (5 SECONDS) // баланс: уменьшает GetComponent() спам, не держит устаревшее дольше 5с
 
-// Конфигурация DEBUG логов
+// Конфигурация DEBUG логов - отключено для производительности
 #define HOLSTER_DEBUG 0
 
-// Макрос для условного логирования
-#if HOLSTER_DEBUG
-#define HOLSTER_DBG(lvl, who, msg) HOLSTER_LOG(lvl, who, msg)
-#else
+// Макрос для условного логирования - полностью отключен
 #define HOLSTER_DBG(lvl, who, msg)
-#endif
 
 // Константы для сообщений об ошибках
 #define HOLSTER_OK 0
@@ -85,19 +81,14 @@
 // Единый helper: может ли пользователь сейчас использовать кобуру
 /obj/item/clothing/accessory/holster/proc/can_use_holster(mob/user, require_free_active_hand = TRUE, allow_hands_blocked = FALSE)
 	if(!istype(user) || QDELETED(user))
-		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "can_use_holster: invalid user")
 		return HOLSTER_FAIL_DISABLED
 	if(user.stat != CONSCIOUS)
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] not conscious (stat: [user.stat])")
 		return HOLSTER_FAIL_DISABLED
 	if(user.incapacitated())
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] incapacitated")
 		return HOLSTER_FAIL_DISABLED
 	if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) && !allow_hands_blocked)
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] hands blocked")
 		return HOLSTER_FAIL_DISABLED
 	if(require_free_active_hand && !user.has_active_hand())
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_use_holster: user [user.ckey] no active hand")
 		return HOLSTER_FAIL_DISABLED
 	return HOLSTER_OK
 
@@ -123,7 +114,6 @@
 		))
 
 /obj/item/clothing/accessory/holster/Destroy()
-	HOLSTER_LOG(HOLSTER_LOG_INFO, null, "holster destroyed: [src.type]")
 	invalidate_storage_cache()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
@@ -131,43 +121,29 @@
 		for(var/obj/item/I in contents)
 			if(I && !QDELETED(I))
 				I.forceMove(get_turf(src))
-				HOLSTER_DBG(HOLSTER_LOG_DEBUG, null, "holster destroy: moved [I.type] to ground")
 	return ..()
 
 /obj/item/clothing/accessory/holster/proc/can_holster(obj/item/I, mob/user = null)
-	if(!I)
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "can_holster: item is null")
-		return FALSE
-	if(QDELETED(I))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "can_holster: item is deleted")
-		return FALSE
-	if(QDELETED(src))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "can_holster: holster is deleted")
+	if(!I || QDELETED(I) || QDELETED(src))
 		return FALSE
 	if(!istype(I, holster_allow))
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: item [I.type] not allowed in holster [src.type]")
 		return FALSE
 	if(user)
 		if(can_use_holster(user, TRUE) != HOLSTER_OK)
 			return FALSE
 	if(istype(src, /obj/item/clothing/accessory/holster/nukie))
-		HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "can_holster: nukie holster allows [I.type]")
 		return TRUE
 	var/obj/item/gun/G = I
 	// I уже проверен как подтип holster_allow (/obj/item/gun), поэтому istype(G) всегда TRUE
 	if(G.w_class > max_allowed_w_class)
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] too large (w_class: [G.w_class])")
 		return FALSE
 	if(allowed_typecache && is_type_in_typecache(G, allowed_typecache))
 		// Оружие в разрешенном typecache - пропускаем проверку веса
 	else
 		if(G.weapon_weight < min_weapon_weight || G.weapon_weight > max_weapon_weight)
-			HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] weight [G.weapon_weight] outside range [min_weapon_weight]-[max_weapon_weight]")
 			return FALSE
 	if(!allow_fullauto && G.gun_firemodes && (FIREMODE_FULLAUTO in G.gun_firemodes))
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "can_holster: gun [G.type] has full auto mode")
 		return FALSE
-	HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "can_holster: gun [G.type] allowed")
 	return TRUE
 
 /obj/item/clothing/accessory/holster/attack_self(mob/user)
@@ -185,53 +161,36 @@
 		unholster(user)
 
 /obj/item/clothing/accessory/holster/proc/holster(obj/item/I, mob/user)
-	if(!I)
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: item is null")
+	if(!I || !user || QDELETED(I) || QDELETED(user) || QDELETED(src))
 		if(user)
 			notify_fail(user, HOLSTER_FAIL_BROKEN_ITEM)
-		return FALSE
-	if(!user)
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: user is null")
-		return FALSE
-	if(QDELETED(I) || QDELETED(user) || QDELETED(src))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: object deleted during operation")
 		return FALSE
 	var/reason = can_use_holster(user, TRUE)
 	if(reason != HOLSTER_OK)
 		notify_fail(user, reason)
 		return FALSE
 	if(istype(I, /obj/item/clothing/accessory/holster))
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "holster: user [user.ckey] tried to holster holster in holster")
 		notify_fail(user, HOLSTER_FAIL_NESTED)
 		return FALSE
 	var/datum/component/storage/STR = get_storage_component(user)
 	if(!STR)
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: storage component not found for user [user.ckey]")
 		notify_fail(user, HOLSTER_FAIL_UNINIT)
 		return FALSE
 	if(!can_holster(I, user))
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "holster: item [I.type] cannot be holstered by user [user.ckey]")
 		notify_fail(user, HOLSTER_FAIL_DOESNT_FIT, I)
 		return FALSE
 	if(!STR.can_be_inserted(I, TRUE, user))
-		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "holster: storage cannot insert item [I.type]")
 		notify_fail(user, HOLSTER_FAIL_CANT_TAKE, I)
 		return FALSE
 	if(STR.handle_item_insertion(I, TRUE, user))
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "holster: successfully holstered [I.type] for user [user.ckey]")
 		playsound(user, HOLSTER_SND_IN, HOLSTER_SND_VOL, TRUE)
 		holster_notify_success(user, HOLSTER_OK_PUT, I)
 		return TRUE
-	HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "holster: failed to insert item [I.type] into storage")
 	notify_fail(user, HOLSTER_FAIL_CANT_TAKE, I)
 	return FALSE
 
 /obj/item/clothing/accessory/holster/proc/unholster(mob/user)
-	if(!user)
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: user is null")
-		return
-	if(QDELETED(user) || QDELETED(src))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: object deleted during operation")
+	if(!user || QDELETED(user) || QDELETED(src))
 		return
 	// Требуем доступные руки для извлечения
 	var/reason = can_use_holster(user, FALSE)
@@ -240,24 +199,19 @@
 		return
 	var/datum/component/storage/STR = get_storage_component(user)
 	if(!STR)
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: storage component not found for user [user.ckey]")
 		notify_fail(user, HOLSTER_FAIL_UNINIT)
 		return
 	if(!has_contents(STR))
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "unholster: holster is empty for user [user.ckey]")
 		notify_fail(user, HOLSTER_FAIL_EMPTY)
 		return
 	var/list/L = STR.contents()
 	var/obj/item/I = L[L.len]
 	if(!I || QDELETED(I))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: item in holster is null or deleted")
 		notify_fail(user, HOLSTER_FAIL_BROKEN_ITEM)
 		return
 	if(STR.remove_from_storage(I, null))
-		HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "unholster: removed [I.type] from storage for user [user.ckey]")
 		if(HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 			I.forceMove(get_turf(user))
-			HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "unholster: hands blocked, placed [I.type] on ground for user [user.ckey]")
 		else
 			// В HARM‑интенции — освобождаем руки и берём в две руки, если предмет поддерживает 2h
 			if(user.a_intent == INTENT_HARM)
@@ -274,7 +228,6 @@
 					var/datum/component/two_handed/comp2h = I.GetComponent(/datum/component/two_handed)
 					if(comp2h && user.is_holding(I))
 						comp2h.wield(user, TRUE)
-						HOLSTER_DBG(HOLSTER_LOG_DEBUG, user, "unholster: wielded [I.type] two‑handed (HARM)")
 			else
 				// Обычная логика: освободить активную руку, потом поместить туда предмет
 				var/obj/item/ah2 = user.get_active_held_item()
@@ -284,9 +237,7 @@
 		playsound(user, HOLSTER_SND_OUT, HOLSTER_SND_VOL, TRUE)
 		I.add_fingerprint(user)
 		unholster_message(user, I)
-		HOLSTER_LOG(HOLSTER_LOG_INFO, user, "unholster: successfully unholstered [I.type] for user [user.ckey]")
 		return
-	HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "unholster: failed to remove [I.type] from storage for user [user.ckey]")
 	notify_fail(user, HOLSTER_FAIL_CANT_TAKE, I)
 
 /obj/item/clothing/accessory/holster/proc/unholster_message(mob/user, obj/item/I)
@@ -492,16 +443,13 @@
 
 /obj/item/clothing/accessory/holster/proc/get_storage_component(mob/user = null)
 	if(!src || QDELETED(src))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "get_storage_component: holster is null or deleted")
 		return null
 	if(!user)
 		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		if(!STR || QDELETED(STR))
-			HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: no storage component on holster")
 			return null
 		return STR
 	if(!istype(user) || QDELETED(user))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "get_storage_component: invalid user")
 		return null
 	var/current_time = world.time
 	if(cached_storage)
@@ -511,23 +459,18 @@
 			return cached_storage
 	var/mob/living/carbon/human/H = user
 	if(!istype(H))
-		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: user [user.ckey] is not human")
 		return null
 	if(!istype(H.w_uniform) || QDELETED(H.w_uniform))
-		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: user [user.ckey] has no uniform")
 		return null
 	var/obj/item/clothing/under/uniform = H.w_uniform
 	if(!uniform.attached_accessory || QDELETED(uniform.attached_accessory))
-		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: user [user.ckey] has no attached accessory")
 		return null
 	if(uniform.attached_accessory != src)
-		HOLSTER_LOG(HOLSTER_LOG_WARNING, user, "get_storage_component: user [user.ckey] attached accessory is not this holster")
 		return null
 	var/datum/component/storage/STR = uniform.GetComponent(/datum/component/storage)
 	if(!STR)
 		STR = GetComponent(/datum/component/storage)
 	if(!STR || QDELETED(STR))
-		HOLSTER_LOG(HOLSTER_LOG_ERROR, user, "get_storage_component: storage component is null or deleted for user [user.ckey]")
 		invalidate_storage_cache()
 		return null
 	cached_storage = STR

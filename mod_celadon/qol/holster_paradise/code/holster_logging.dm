@@ -12,8 +12,9 @@
 #define HOLSTER_LOG_DEBUG 4
 
 // Глобальный уровень логирования (можно переопределить)
+// Установлен на WARNING для уменьшения спама в логах
 #ifndef HOLSTER_LOG_LEVEL
-#define HOLSTER_LOG_LEVEL HOLSTER_LOG_INFO
+#define HOLSTER_LOG_LEVEL HOLSTER_LOG_WARNING
 #endif
 
 // Макрос логирования (нужен явный user; не использовать usr)
