@@ -35,8 +35,7 @@
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
 	// [CELADON-ADD] - MOVEMENT_LAG_FIX - Reset movement input to prevent stuck movement during stun
 	// MOVEMENT_LAG_FIX: сброс ввода при смене состояния (стан)
-	if(owner.client)
-		owner.client.reset_movement_input()
+	owner.client?.reset_movement_input()
 	// [/CELADON-ADD]
 
 /datum/status_effect/incapacitating/stun/on_remove()
@@ -92,8 +91,7 @@
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
 	// [CELADON-ADD] - MOVEMENT_LAG_FIX - Reset movement input to prevent stuck movement during paralysis
 	// MOVEMENT_LAG_FIX: сброс ввода при смене состояния (паралич)
-	if(owner.client)
-		owner.client.reset_movement_input()
+	owner.client?.reset_movement_input()
 	// [/CELADON-ADD]
 
 /datum/status_effect/incapacitating/paralyzed/on_remove()

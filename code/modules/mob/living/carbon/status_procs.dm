@@ -20,8 +20,7 @@
 	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, STAMINA)
 	// [CELADON-ADD] - MOVEMENT_LAG_FIX - Reset movement input to prevent stuck movement during stamcrit
 	// MOVEMENT_LAG_FIX: сброс ввода при смене состояния (стам-крит)
-	if(client)
-		client.reset_movement_input()
+	client?.reset_movement_input()
 	// [/CELADON-ADD]
 	if((maxHealth - health + getStaminaLoss()) > 120) // Puts you a little further into the initial stamcrit, makes stamcrit harder to outright counter with chems.		//WS Edit - Stamina stacks with health damage
 		adjustStaminaLoss(30, FALSE)

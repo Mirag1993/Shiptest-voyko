@@ -7,10 +7,10 @@
 	set name = "Reset Held Keys"
 	set hidden = TRUE
 
-	for(var/key in keys_held)
-		keyUp(key)
-
-	//In case one got stuck and the previous loop didn't clean it, somehow.
+	// [CELADON-EDIT] - MOVEMENT_LAG_FIX - Use centralized reset procedure instead of broken old logic
+	// Old logic had iteration bugs and duplicated functionality
+	reset_movement_input()
+	// [/CELADON-EDIT]
 
 // [CELADON-ADD] - MOVEMENT_LAG_FIX - Debug command for movement system
 /client/verb/toggle_movement_debug()

@@ -721,9 +721,7 @@
 		// [CELADON-ADD] - MOVEMENT_LAG_FIX - Reset movement input for mobs to prevent stuck movement after teleportation
 		// MOVEMENT_LAG_FIX: сброс ввода при телепортации
 		if(ismob(src))
-			var/mob/M = src
-			if(M.client)
-				M.client.reset_movement_input()
+			src:client?.reset_movement_input()
 		// [/CELADON-ADD]
 	else
 		CRASH("No valid destination passed into forceMove")

@@ -227,6 +227,7 @@
  */
 /client/proc/reset_movement_input()
 	keys_held.Cut()
+	key_combos_held.Cut()
 	next_move_dir_add = 0
 	next_move_dir_sub = 0
 	empty_keys_held_ticks = 0
