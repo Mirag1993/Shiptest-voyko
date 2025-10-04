@@ -259,6 +259,20 @@ FIXES_ANTAG_NINJA
 - EDIT, ADD: `code/modules/ninja/energy_katana.dm`
 - EDIT: `code/modules/ninja/suit/suit_attackby.dm`
 
+MOVEMENT_LAG_FIX - **Исправление бага движения во время лагов**
+**Проблема:** Во время лагов сервера персонаж продолжал двигаться в одну сторону даже после отпускания клавиши движения. Персонаж останавливался только при нажатии клавиши в противоположном направлении.
+**Решение:** Добавлена система импульсных шагов и идемпотентный сброс дельт движения для предотвращения "залипания" движения во время лагов.
+**Изменения:**
+- EDIT: `code/modules/mob/mob_movement.dm` - сброс дельт в начале Move()
+- EDIT: `code/modules/keybindings/bindings_atom.dm` - улучшенная логика keyLoop с импульсной системой
+- ADD: `code/modules/client/client_defines.dm` - новые переменные для импульсной системы и функция reset_movement_input()
+- ADD: `code/modules/keybindings/bindings_client.dm` - установка импульса в keyDown
+- ADD: `code/game/atoms_movable.dm` - ресет ввода при телепортации
+- ADD: `code/datums/status_effects/debuffs.dm` - ресет ввода при стане/параличе
+- ADD: `code/modules/mob/living/carbon/status_procs.dm` - ресет ввода при стам-крите
+- ADD: `code/modules/client/verbs/reset_held_keys.dm` - debug команда для отладки движения
+**Автор:** Mirag1993
+
 
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
@@ -321,6 +335,7 @@ RalseiDreemuurr, Mirag1993 , Корольный крыс, MrCat15352, MysticalFa
 - Автор фикса дисков дизайнов: Турон/Mirag1993
 - Автор фикса бесконечного спавна мобов: Турон/Mirag1993
 - Автор фиксов производительности консолей: AI Assistant
+- Автор фикса движения во время лагов: Mirag1993
 
 ### Исправления производительности консолей
 

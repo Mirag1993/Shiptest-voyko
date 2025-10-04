@@ -49,6 +49,10 @@
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
+		// [CELADON-ADD] - MOVEMENT_LAG_FIX - Set impulse for guaranteed one-time step after lag
+		pending_impulse_dir |= movement
+		impulse_set_time = world.time
+		// [/CELADON-ADD]
 
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.

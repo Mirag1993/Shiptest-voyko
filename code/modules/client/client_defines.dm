@@ -189,6 +189,22 @@
 	/// On next move, subtract this dir from the move that would otherwise be done
 	var/next_move_dir_sub
 
+	// [CELADON-ADD] - MOVEMENT_LAG_FIX - Movement system improvements
+	/// Number of consecutive ticks with empty keys_held (for focus recovery)
+	var/empty_keys_held_ticks = 0
+	/// Number of consecutive failed move attempts (for debugging)
+	var/consecutive_move_failures = 0
+	/// Debug flag for movement system
+	var/debug_movement = FALSE
+
+	/// Guaranteed "one-time step" after lag (impulse system)
+	var/pending_impulse_dir = 0
+	/// Time when impulse was set
+	var/impulse_set_time = 0
+	/// TTL for impulse in ticks (safety to prevent infinite impulses)
+	var/impulse_ttl_ticks = 10
+	// [/CELADON-ADD]
+
 	/// If the client is currently under the restrictions of the interview system
 	var/interviewee = TRUE
 
@@ -201,4 +217,22 @@
 
 	/// Literally Admin Verbs Menu
 	var/datum/admin_menu/admin_menu
+// [/CELADON-ADD]
+
+// [CELADON-ADD] - MOVEMENT_LAG_FIX - Total input reset for movement system
+/**
+ * Total input reset for movement system
+ * Clears all movement-related state to prevent stuck movement
+ * Should be called when entering incapacitated states, teleporting, etc.
+ */
+/client/proc/reset_movement_input()
+	keys_held.Cut()
+	next_move_dir_add = 0
+	next_move_dir_sub = 0
+	empty_keys_held_ticks = 0
+	consecutive_move_failures = 0
+	pending_impulse_dir = 0
+	impulse_set_time = 0
+	if(debug_movement)
+		to_chat(src, span_notice("MOVEMENT: Total input reset performed"))
 // [/CELADON-ADD]
