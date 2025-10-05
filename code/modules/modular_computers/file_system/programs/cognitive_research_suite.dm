@@ -66,6 +66,14 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 
 	return TRUE
 
+/// Обновить отметку активности игрока, чтобы не терять прогресс во время перерывов
+/datum/computer_file/program/cognitive_research_suite/proc/touch_player(ckey)
+	if(!ckey)
+		return
+	var/list/stats = get_player_stats(ckey)
+	stats["last_seen"] = world.time
+	GLOB.cogrs_player_stats[ckey] = stats
+
 /datum/computer_file/program/cognitive_research_suite/ui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
@@ -80,6 +88,7 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 
 			var/mob/living/user_mob = ui?.user
 			var/ck = user_mob?.client?.ckey
+			touch_player(ck)
 
 			// Проверяем доступные режимы с учётом ГЛОБАЛЬНОГО кулдауна
 			var/list/player_cds = islist(GLOB.cogrs_global_cooldowns[ck]) ? GLOB.cogrs_global_cooldowns[ck] : list()
@@ -137,6 +146,7 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 			var/ck = user_mob?.client?.ckey
 			if(ck)
 				var/list/player_stats = get_player_stats(ck)
+				touch_player(ck)
 				points = player_stats["total_score"] || 0
 
 				if(points <= 0)
@@ -169,32 +179,26 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 			if(!simulation_active)
 				return TRUE
 
-			var/gain = ch ? ch.validate_and_score() : 0
-
-			// Применяем прогрессию игрока
 			var/mob/living/user_mob = ui?.user
 			var/ck = user_mob?.client?.ckey
-			var/progression_multiplier = get_progression_multiplier(ck)
-			var/base_score = max(0, round(gain))
-			var/final_score = max(0, round(base_score * progression_multiplier))
+			touch_player(ck)
+
+			var/list/scored = calculate_final_score(ch, ck)
+			var/base_score = scored["base"]
+			var/progression_multiplier = scored["multiplier"]
+			var/final_score = scored["final"]
 
 			score = final_score
 			simulation_active = FALSE
 
-			// Обновляем статистику игрока
 			update_player_stats(ck, final_score)
 
 			var/list/player_stats = get_player_stats(ck)
 			var/completed_count = player_stats["completed"] || 0
 			var/multiplier_text = progression_multiplier > 1.0 ? " (x[progression_multiplier] progression)" : ""
-
 			status_message = "Simulation completed. Gained [final_score] research points[multiplier_text]. Total completed: [completed_count]."
-
-			// Начисление RP с прогрессией
 			to_chat(ui?.user, span_notice("Gained [final_score] research points from cognitive simulation[multiplier_text]."))
 			computer?.say("Telemetry collected: [final_score] research points.")
-
-			// Принцип 6 - КРИТИКА И САМОКРИТИКА: логируем для анализа
 			log_game("CRS: [ck] completed [ch.mode] simulation - base: [base_score], final: [final_score], multiplier: [progression_multiplier], total_completed: [completed_count]")
 			if(ch)
 				qdel(ch)
@@ -207,6 +211,7 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 			if(simulation_active && ch)
 				var/mob/living/user_mob = ui?.user
 				var/ck = user_mob?.client?.ckey
+				touch_player(ck)
 				var/list/cd_map = islist(GLOB.cogrs_global_cooldowns[ck]) ? GLOB.cogrs_global_cooldowns[ck] : list()
 				cd_map[ch.mode] = 0 // Сбрасываем кулдаун
 				GLOB.cogrs_global_cooldowns[ck] = cd_map
@@ -279,6 +284,22 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 
 	return data
 
+/// Централизованная функция подсчета очков: база, множитель прогрессии, финал
+/// ВНИМАНИЕ: usr не используется, ckey должен передаваться явно
+/datum/computer_file/program/cognitive_research_suite/proc/calculate_final_score(datum/cogrs_challenge/challenge, ckey)
+	var/result = list("base" = 0, "multiplier" = 1.0, "final" = 0)
+	if(!challenge)
+		return result
+
+	var/base_gain = max(0, round(challenge.validate_and_score()))
+	var/mult = get_progression_multiplier(ckey)
+	var/final_gain = max(0, round(base_gain * mult))
+
+	result["base"] = base_gain
+	result["multiplier"] = mult
+	result["final"] = final_gain
+	return result
+
 /// Очистка старых кулдаунов и статистики для предотвращения утечек памяти
 /// Принцип 4 - РЕВОЛЮЦИОННАЯ НЕПРИМИРИМОСТЬ: каждый баг - враг народа!
 /// Принцип 2 - ЦЕНТРАЛИЗМ: вся очистка памяти в одном месте!
@@ -311,9 +332,10 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 		if(!cds.len)
 			GLOB.cogrs_global_cooldowns -= ckey
 
-	// Очистка статистики игроков - УСТРАНЯЕМ УТЕЧКУ ПАМЯТИ!
-	// Принцип 4 - НЕПРИМИРИМОСТЬ: неактивные игроки не должны засорять память!
+	// Очистка статистики игроков — БЕРЕЖЕМ ПРОГРЕСС!
+	// Удаляем только мусорные/старые пустые записи, не трогаем реальные очки
 	var/stats_cleaned = 0
+	var/inactivity_cutoff = world.time - (24 HOURS)
 	for(var/ckey in GLOB.cogrs_player_stats)
 		var/list/stats = GLOB.cogrs_player_stats[ckey]
 		if(!islist(stats))
@@ -321,19 +343,15 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 			stats_cleaned++
 			continue
 
-		// Проверяем, активен ли игрок (есть ли у него активный кулдаун)
-		var/list/player_cds = GLOB.cogrs_global_cooldowns[ckey]
-		var/has_active_cooldown = FALSE
+		var/has_progress = ((stats["total_score"] || 0) > 0) || ((stats["completed"] || 0) > 0)
+		var/last_seen = stats["last_seen"] || 0
 
-		if(islist(player_cds))
-			for(var/mode in player_cds)
-				if(player_cds[mode] > world.time)
-					has_active_cooldown = TRUE
-					break
+		// Если есть прогресс — НЕ УДАЛЯЕМ
+		if(has_progress)
+			continue
 
-		// Если нет активных кулдаунов, удаляем статистику
-		// Это означает, что игрок давно не играл
-		if(!has_active_cooldown)
+		// Пустые и давно не виденные — удаляем
+		if(last_seen < inactivity_cutoff)
 			GLOB.cogrs_player_stats -= ckey
 			stats_cleaned++
 
@@ -360,11 +378,11 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 /// Получить статистику игрока
 /datum/computer_file/program/cognitive_research_suite/proc/get_player_stats(ckey)
 	if(!ckey)
-		return list("completed" = 0, "total_score" = 0)
+		return list("completed" = 0, "total_score" = 0, "last_seen" = world.time)
 
 	var/list/stats = GLOB.cogrs_player_stats[ckey]
 	if(!islist(stats))
-		stats = list("completed" = 0, "total_score" = 0)
+		stats = list("completed" = 0, "total_score" = 0, "last_seen" = world.time)
 		GLOB.cogrs_player_stats[ckey] = stats
 
 	return stats

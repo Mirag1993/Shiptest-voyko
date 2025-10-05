@@ -76,26 +76,33 @@ export const NtosCognitiveResearchSuite = (props, context) => {
             </Box>
 
             <Box mb={2}>
-              {session?.mode === 'lightsout' &&
-              Array.isArray(session?.payload) ? (
-                <Box>
-                  {session.payload.map((row, ri) => (
-                    <Box key={ri}>
-                      {row.map((cell, ci) => (
-                        <Button
-                          key={`${ri}-${ci}`}
-                          width={2}
-                          selected={cell === '●'}
-                          onClick={() =>
-                            act('step', { row: ri + 1, col: ci + 1 })
-                          }
-                        >
-                          {cell}
-                        </Button>
+              {session?.mode === 'lightsout' ? (
+                (() => {
+                  const grid = Array.isArray(session?.payload)
+                    ? session.payload
+                    : session?.payload?.grid;
+                  if (!Array.isArray(grid)) return null;
+                  return (
+                    <Box>
+                      {grid.map((row, ri) => (
+                        <Box key={ri}>
+                          {row.map((cell, ci) => (
+                            <Button
+                              key={`${ri}-${ci}`}
+                              width={2}
+                              selected={cell === '●'}
+                              onClick={() =>
+                                act('step', { row: ri + 1, col: ci + 1 })
+                              }
+                            >
+                              {cell}
+                            </Button>
+                          ))}
+                        </Box>
                       ))}
                     </Box>
-                  ))}
-                </Box>
+                  );
+                })()
               ) : session?.mode === 'mastermind' ? (
                 <Section title="Mastermind">
                   <Box mb={1}>
@@ -329,7 +336,7 @@ export const NtosCognitiveResearchSuite = (props, context) => {
               >
                 Submit Telemetry
               </Button>
-              {is_admin && (
+              {!!is_admin && (
                 <Button
                   icon="magic"
                   color="default"

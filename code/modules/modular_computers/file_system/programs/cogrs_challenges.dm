@@ -5,7 +5,6 @@
 #define CRS_SCORE_PER_DIFFICULTY 25
 #define CRS_MIN_SCORE 700
 #define CRS_MASTERMIND_MAX_CODE 6
-#define CRS_LIGHTSOUT_ON_PROB 40
 #define CRS_SUDOKU4_BASE_HOLES 6
 #define CRS_SUDOKU4_HOLES_PER_DIFF 2
 
@@ -162,6 +161,7 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 			var/r = text2num(params["row"])
 			var/c = text2num(params["col"])
 			lightsout_toggle(r, c)
+			attempts++
 			return TRUE
 		if("mastermind")
 			var/action = params?["mm"]
@@ -227,6 +227,8 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 				client_view["last_result_text"] = "[black]B / [white]W"
 				mm_buffer = list()
 				client_view["buffer"] = list()
+				attempts++
+				client_view["attempts"] = attempts
 				if(black == len)
 					solved = TRUE
 				refresh_mastermind_view()
@@ -246,6 +248,8 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 				client_view["inputs"] = _inputs_list.Copy()
 				client_view["output"] = out
 				solved = (out == client_view["target"])
+				attempts++
+				client_view["attempts"] = attempts
 				return TRUE
 		if("sudoku4")
 			var/action = params?["sd"]
@@ -268,6 +272,9 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 				state[r][c] = val
 				if(islist(client_view?["grid"]))
 					client_view["grid"][r][c] = val
+				// Подсчитываем попытки для корректного efficiency-бонуса
+				attempts++
+				client_view["attempts"] = attempts
 				// Check solved - только НЕфиксированные клетки!
 				var/ok = TRUE
 				if(!islist(sudoku_solution) || !islist(sudoku_fixed))
@@ -368,16 +375,22 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 				client_view["solution"] += n
 				// Refresh conflicts/solved
 				topsort_refresh()
+				attempts++
+				client_view["attempts"] = attempts
 				return TRUE
 			if(action == "back")
 				if(islist(client_view?["solution"]) && length(client_view["solution"]))
 					var/list/sol = client_view["solution"]
 					sol.Cut(length(sol), length(sol) + 1)
 				topsort_refresh()
+				attempts++
+				client_view["attempts"] = attempts
 				return TRUE
 			if(action == "reset")
 				client_view["solution"] = list()
 				topsort_refresh()
+				attempts++
+				client_view["attempts"] = attempts
 				return TRUE
 		// stubs for other modes
 	return TRUE
@@ -427,24 +440,60 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 
 // Lights Out - ксенологическая сетка
 /datum/cogrs_challenge/proc/gen_lightsout()
-	difficulty = rand(2, 5)  // Соответствует конфигурации 2,3,4,5
+	// Максимальный размер 6x6: допускаем 5x5 и 6x6
+	difficulty = rand(2, 3)
 	var/grid_size = 3 + difficulty
 
 	state = list()
 	client_view = list()
 	board = list()
 
-	// Создаем случайную начальную конфигурацию
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: создаем ГАРАНТИРОВАННО решаемую конфигурацию!
+	// Начинаем с ВСЕ ВЫКЛЮЧЕНО (все 0)
 	for(var/i in 1 to grid_size)
 		var/list/row = list()
 		var/list/view_row = list()
 		for(var/j in 1 to grid_size)
-			var/light_state = prob(CRS_LIGHTSOUT_ON_PROB) ? 1 : 0
-			row += light_state
-			view_row += light_state ? "●" : "○"
+			row += 0  // Все выключено
+			view_row += "○"
 		state += list(row)
 		client_view += list(view_row)
 		board += list(row.Copy())
+
+	// Принцип 3 - ПЛАНОВОСТЬ: делаем БЕЗ ПОВТОРОВ для контроля сложности!
+	var/list/available_cells = list()
+	for(var/i in 1 to grid_size)
+		for(var/j in 1 to grid_size)
+			available_cells += list(list(i, j))
+
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: гарантируем нетривиальную сложность
+	var/num_moves = rand(max(3, grid_size), min(grid_size * grid_size - 1, grid_size * 2))
+	var/list/intent_path = list()  // Принцип 5 - храним интент-путь для телеметрии
+
+	for(var/move in 1 to num_moves)
+		if(!length(available_cells))
+			break  // Защита от бесконечного цикла
+		var/random_index = rand(1, length(available_cells))
+		var/cell = available_cells[random_index]
+		available_cells -= list(cell)  // Убираем из доступных (БЕЗ ПОВТОРОВ!)
+
+		var/row = cell[1]
+		var/col = cell[2]
+		intent_path += list(list(row, col))  // Сохраняем для телеметрии
+		lightsout_toggle_silent(row, col)
+
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: проверяем на тривиальность!
+	if(is_lightsout_all_off())
+		// Если получилась тривиальная конфигурация - делаем еще один ход
+		var/extra_row = rand(1, grid_size)
+		var/extra_col = rand(1, grid_size)
+		lightsout_toggle_silent(extra_row, extra_col)
+		intent_path += list(list(extra_row, extra_col))
+
+	// Принцип 6 - ЖЕЛЕЗНАЯ ДИСЦИПЛИНА: юнит-тест на гарантию решаемости!
+	// Сохраняем интент-путь для валидации
+	state["intent_path"] = intent_path
+	state["validation_passed"] = validate_lightsout_solvability(intent_path, grid_size)
 
 	// Ensure board exists for toggling
 	if(!islist(board) || !length(board))
@@ -494,6 +543,69 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 	refresh_lightsout_view()
 	solved = is_lightsout_solved()
 
+// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: отдельная функция для генерации без обновления UI
+/datum/cogrs_challenge/proc/lightsout_toggle_silent(row, col)
+	if(mode != "lightsout")
+		return
+	var/size = length(board)
+	var/list/dirs = list(list(0,0), list(1,0), list(-1,0), list(0,1), list(0,-1))
+	for(var/d in dirs)
+		var/dr = d[1]
+		var/dc = d[2]
+		var/rr = row + dr
+		var/cc = col + dc
+		if(rr >= 1 && rr <= size && cc >= 1 && cc <= length(board[rr]))
+			board[rr][cc] = board[rr][cc] ? 0 : 1
+	// НЕ обновляем UI и не проверяем solved - это только для генерации!
+
+// Принцип 4 - НЕПРИМИРИМОСТЬ: проверка на тривиальность (все выключено)
+/datum/cogrs_challenge/proc/is_lightsout_all_off()
+	if(!islist(board) || !length(board))
+		return TRUE
+	for(var/i in 1 to length(board))
+		for(var/j in 1 to length(board[i]))
+			if(board[i][j])
+				return FALSE
+	return TRUE
+
+// Принцип 6 - ЖЕЛЕЗНАЯ ДИСЦИПЛИНА: юнит-тест на гарантию решаемости
+/datum/cogrs_challenge/proc/validate_lightsout_solvability(intent_path, grid_size)
+	if(!islist(intent_path))
+		return FALSE
+
+	// Создаем чистую доску
+	var/list/test_board = list()
+	for(var/i in 1 to grid_size)
+		var/list/row = list()
+		for(var/j in 1 to grid_size)
+			row += 0
+		test_board += list(row)
+
+	// Применяем ТЕ ЖЕ ходы к чистой доске
+	for(var/move in intent_path)
+		if(!islist(move) || length(move) < 2)
+			continue
+		var/row = move[1]
+		var/col = move[2]
+		if(row >= 1 && row <= grid_size && col >= 1 && col <= grid_size)
+			// Применяем тот же toggle
+			var/list/dirs = list(list(0,0), list(1,0), list(-1,0), list(0,1), list(0,-1))
+			for(var/d in dirs)
+				var/dr = d[1]
+				var/dc = d[2]
+				var/rr = row + dr
+				var/cc = col + dc
+				if(rr >= 1 && rr <= grid_size && cc >= 1 && cc <= grid_size)
+					test_board[rr][cc] = test_board[rr][cc] ? 0 : 1
+
+	// Проверяем, что получили ту же конфигурацию, что и board
+	for(var/i in 1 to grid_size)
+		for(var/j in 1 to grid_size)
+			if(test_board[i][j] != board[i][j])
+				return FALSE
+
+	return TRUE
+
 /datum/cogrs_challenge/proc/force_solved()
 	// Force mark the current challenge as solved (debug)
 	// Принцип 2 - ЦЕНТРАЛИЗМ: используем switch для всех режимов!
@@ -515,6 +627,11 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 				for(var/i in 1 to length(state))
 					for(var/j in 1 to length(state[i]))
 						state[i][j] = sudoku_solution[i][j]
+				if(islist(client_view) && islist(client_view["grid"]))
+					for(var/i in 1 to 4)
+						for(var/j in 1 to 4)
+							client_view["grid"][i][j] = sudoku_solution[i][j]
+			solved = TRUE
 		if("cryptogram")
 			// Force complete cryptogram
 			var/list/solution = state?["solution"]
@@ -593,7 +710,7 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 			row += sym[base[i][j]]
 		solution += list(row)
 
-	// Swap rows within bands
+    // Swap rows within bands
 	if(prob(50))
 		var/tmp = solution[1]; solution[1] = solution[2]; solution[2] = tmp
 	if(prob(50))
@@ -603,7 +720,21 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 		var/list/tmpb = solution[1]; solution[1] = solution[3]; solution[3] = tmpb
 		var/list/tmpb2 = solution[2]; solution[2] = solution[4]; solution[4] = tmpb2
 
-	// Build starting grid by removing cells per difficulty
+	// NEW: Swap columns within stacks (1<->2, 3<->4) for added variety
+	if(prob(50))
+		for(var/i in 1 to 4)
+			var/t = solution[i][1]; solution[i][1] = solution[i][2]; solution[i][2] = t
+	if(prob(50))
+		for(var/i in 1 to 4)
+			var/t2 = solution[i][3]; solution[i][3] = solution[i][4]; solution[i][4] = t2
+	// NEW: Swap stacks (columns 1-2 with 3-4)
+	if(prob(50))
+		for(var/i in 1 to 4)
+			var/tc1 = solution[i][1]; var/tc2 = solution[i][2]
+			solution[i][1] = solution[i][3]; solution[i][2] = solution[i][4]
+			solution[i][3] = tc1;            solution[i][4] = tc2
+
+	// Build starting grid by removing cells per difficulty (unique holes)
 	var/list/grid = list()
 	var/list/fixed = list()
 	for(var/i in 1 to 4)
@@ -616,16 +747,25 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 		fixed += list(rowf)
 
 	var/holes = CRS_SUDOKU4_BASE_HOLES + (difficulty * CRS_SUDOKU4_HOLES_PER_DIFF) // 8..12 holes
-	for(var/k in 1 to holes)
-		var/ri = rand(1,4)
-		var/rj = rand(1,4)
-		grid[ri][rj] = 0
-		fixed[ri][rj] = FALSE
+	var/list/all_cells = list()
+	for(var/ri in 1 to 4)
+		for(var/rj in 1 to 4)
+			all_cells += list(list(ri, rj))
+	for(var/h in 1 to holes)
+		if(!length(all_cells)) break
+		var/idx = rand(1, length(all_cells))
+		var/c = all_cells[idx]
+		all_cells.Cut(idx, idx+1)
+		var/ri2 = c[1]
+		var/rj2 = c[2]
+		grid[ri2][rj2] = 0
+		fixed[ri2][rj2] = FALSE
 
-	state = grid.Copy()
-	sudoku_solution = solution.Copy()
-	sudoku_fixed = fixed.Copy()
-	client_view = list("grid" = grid, "fixed" = fixed)
+	// Deep copy structures to avoid aliasing
+	state = deep_copy_grid(grid)
+	sudoku_solution = deep_copy_grid(solution)
+	sudoku_fixed = deep_copy_grid(fixed)
+	client_view = list("grid" = deep_copy_grid(grid), "fixed" = deep_copy_grid(fixed), "attempts" = attempts)
 	solved = FALSE
 
 // Logic Gates - нейробулевы пробы
@@ -932,6 +1072,18 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 	solved = ok
 
 // ===== ВСПОМОГАТЕЛЬНЫЕ ПРОЦЕДУРЫ =====
+
+/datum/cogrs_challenge/proc/deep_copy_grid(list/src_grid)
+	var/list/out = list()
+	if(!islist(src_grid))
+		return out
+	for(var/i in 1 to length(src_grid))
+		var/list/row = src_grid[i]
+		var/list/new_row = list()
+		for(var/j in 1 to length(row))
+			new_row += row[j]
+		out += list(new_row)
+	return out
 
 /datum/cogrs_challenge/proc/get_pars()
 	// Принцип 2 - ЦЕНТРАЛИЗМ: используем централизованную конфигурацию
