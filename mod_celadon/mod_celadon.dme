@@ -47,6 +47,7 @@
 
 // --- OBJECTS --- //
 #include "barsigns/_barsigns.dme"
+#include "bluespace_corridor/_bluespace_corridor.dme"
 #include "boarding/_boarding.dme"
 #include "bongs/_bongs.dme"
 #include "celadon_old_syndicate_rigs/_celadon_old_syndicate_rigs.dme"
