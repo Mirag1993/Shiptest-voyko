@@ -1021,14 +1021,12 @@
 			buffer_index = clamp(buffer_index, 1, NUMBER_OF_BUFFERS)
 
 			// Set the new information
-			// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
 			genetic_makeup_buffer[buffer_index] = list(
 				"label"="Slot [buffer_index]:[scanner_occupant.real_name]",
 				"UI"=scanner_occupant.dna.uni_identity,
 				"UE"=scanner_occupant.dna.unique_enzymes,
 				"name"=scanner_occupant.real_name,
-				"blood_type"=scanner_occupant.get_blood_type_display())
-			// [/CELADON-EDIT]
+				"blood_type"=scanner_occupant.get_blood_type_display()) //"blood_type"=scanner_occupant.dna.blood_type.name)	// [/CELADON-EDIT]
 
 			return
 

@@ -148,6 +148,7 @@
 				var/mob/living/carbon/human/H = i
 				if(H.ckey)
 // [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+//					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type.name]</td></tr>"
 					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.get_blood_type_display()]</td></tr>"
 // [/CELADON-EDIT]
 			dat += "</table>"

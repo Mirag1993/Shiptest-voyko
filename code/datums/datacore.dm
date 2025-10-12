@@ -238,6 +238,7 @@
 		M.fields["id"]			= id
 		M.fields["name"]		= H.real_name
 		// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+		//M.fields["blood_type"] = H.dna.blood_type.name
 		M.fields["blood_type"]	= H.get_blood_type_display()
 		// [/CELADON-EDIT]
 		M.fields["b_dna"]		= H.dna.unique_enzymes
