@@ -146,8 +146,10 @@
 			dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 			for(var/i in GLOB.human_list)
 				var/mob/living/carbon/human/H = i
-				if(H.ckey)
-					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type.name]</td></tr>"
+						if(H.ckey)
+							// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+							dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.get_blood_type_display()]</td></tr>"
+							// [/CELADON-EDIT]
 			dat += "</table>"
 			holder << browse(dat, "window=DNA;size=440x410")
 		if("fingerprints")
