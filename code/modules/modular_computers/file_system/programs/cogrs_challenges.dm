@@ -4,7 +4,6 @@
 // ===== Balance Defines =====
 #define CRS_SCORE_PER_DIFFICULTY 25
 #define CRS_MIN_SCORE 700
-#define CRS_MASTERMIND_MAX_CODE 6
 #define CRS_SUDOKU4_BASE_HOLES 6
 #define CRS_SUDOKU4_HOLES_PER_DIFF 2
 
@@ -12,10 +11,15 @@
 #define CRS_SPEED_BONUS_WEIGHT 0.3    // 30% веса за скорость решения
 #define CRS_EFFICIENCY_BONUS_WEIGHT 0.3 // 30% веса за эффективность (меньше попыток)
 
+// ===== Marker Scriptorium Symbols =====
+/// Gothic/Latin/Dead Space aesthetic symbols for Marker Scriptorium mode
+#define MARKER_SYMBOLS list("✠", "☨", "⛧", "Ω", "Ψ", "Δ", "Σ", "Φ", "Λ", "Θ", "☥", "⚔", "✟", "†", "◆")
+
 // ===== Global Constants =====
 /// Принцип 2 - ЦЕНТРАЛИЗМ: единый список режимов для всех файлов!
 /// Принцип 1 - СОЗНАТЕЛЬНОСТЬ: cryptogram теперь полный режим с UI!
-GLOBAL_LIST_INIT(cogrs_all_modes, list("topsort", "cryptogram", "mastermind", "sudoku4", "lightsout"))
+/// UPDATED: Заменен mastermind на marker (Marker Scriptorium - gothic scrolling alignment game)
+GLOBAL_LIST_INIT(cogrs_all_modes, list("topsort", "cryptogram", "marker", "sudoku4", "lightsout"))
 
 // ===== Configuration Datum =====
 /// Принцип 2 - ЦЕНТРАЛИЗМ: вся конфигурация в одном месте!
@@ -29,11 +33,11 @@ GLOBAL_LIST_INIT(cogrs_all_modes, list("topsort", "cryptogram", "mastermind", "s
 			"4" = list("par_moves" = 12, "par_time" = 80),  // 7x7 grid
 			"5" = list("par_moves" = 16, "par_time" = 100)  // 8x8 grid
 		),
-		"mastermind" = list(
-			"2" = list("par_moves" = 4, "par_time" = 40),
-			"3" = list("par_moves" = 5, "par_time" = 60),
-			"4" = list("par_moves" = 6, "par_time" = 80),
-			"5" = list("par_moves" = 7, "par_time" = 100)
+		"marker" = list(
+			"2" = list("par_moves" = 5, "par_time" = 40),   // 5 symbols, slow scroll, generous time
+			"3" = list("par_moves" = 6, "par_time" = 50),   // 6 symbols, medium scroll
+			"4" = list("par_moves" = 7, "par_time" = 60),   // 7 symbols, fast scroll
+			"5" = list("par_moves" = 8, "par_time" = 70)    // 8 symbols, very fast, allows 1-2 mistakes
 		),
 		"sudoku4" = list(
 			"1" = list("par_moves" = 10, "par_time" = 120),
@@ -85,14 +89,16 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 	var/completion_time = 0
 	var/attempts = 0
 	var/solved = FALSE
-	// Buffer for mastermind input
-	var/list/mm_buffer
 	// Sudoku solution & fixed mask
 	var/list/sudoku_solution
 	var/list/sudoku_fixed
 
 	// Internal board for lightsout
 	var/list/board
+
+	// Marker Scriptorium: scroll position and timer
+	var/marker_position = 0
+	var/marker_last_tick = 0
 
 /datum/cogrs_challenge/proc/generate_for(obj/item/modular_computer/comp, forced_mode)
 	start_time = world.time
@@ -114,11 +120,11 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 			title = "Cognitive Simulation"
 			subtitle = "Xenologic Grid"
 			gen_lightsout()
-		if("mastermind")
-			mode = "mastermind"
-			title = "Decoder Trial"
-			subtitle = "Codebook"
-			gen_mastermind()
+		if("marker")
+			mode = "marker"
+			title = "Marker Scriptorium"
+			subtitle = "Convergite Signum"
+			gen_marker()
 		if("sudoku4")
 			mode = "sudoku4"
 			title = "Stability Matrix"
@@ -140,6 +146,9 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 		client_view = list("note" = "No payload generated")
 
 /datum/cogrs_challenge/proc/export_for_client()
+	// Update marker position before sending to client
+	update_marker_position()
+
 	return list(
 		"mode" = mode,
 		"title" = title,
@@ -163,94 +172,72 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 			lightsout_toggle(r, c)
 			attempts++
 			return TRUE
-		if("mastermind")
-			var/action = params?["mm"]
-			if(action == "push")
-				var/ch = uppertext(copytext(params?["ch"] || "", 1, 2))
-				if(!ch)
+		if("marker")
+			// Marker Scriptorium: PROGRESSIVE sequence capture - must click each symbol in order!
+			// Wrong click = FULL RESET! High tension cognitive challenge!
+			var/action = params?["ma"]
+			if(action == "press")
+				var/pressed_pos = text2num(params["position"])
+				if(!isnum(pressed_pos))
 					return FALSE
-				var/list/colors = client_view?["colors"]
-				if(colors && (ch in colors))
-					var/len = client_view?["code_length"] || 0
-					if(length(mm_buffer) >= len)
-						return FALSE
-					mm_buffer += ch
-					client_view["buffer"] = mm_buffer.Copy()
-					refresh_mastermind_view()
-					return TRUE
-			if(action == "back")
-				if(length(mm_buffer))
-					mm_buffer.Cut(length(mm_buffer), length(mm_buffer)+1)
-					client_view["buffer"] = mm_buffer.Copy()
-					refresh_mastermind_view()
-					return TRUE
-				return FALSE
-			if(action == "submit")
-				var/len = client_view?["code_length"] || 0
-				if(!islist(mm_buffer) || length(mm_buffer) != len)
+
+				var/list/target_seq = state["target_sequence"]
+				var/list/scroll_pool = state["scrolling_pool"]
+				var/current_prog = state["current_progress"]
+
+				if(!islist(target_seq) || !islist(scroll_pool))
 					return FALSE
-				// Defensive copies
-				var/list/secret
-				if(islist(state))
-					secret = state.Copy()
+
+				// What symbol is at CENTER of scrolling display now?
+				var/pool_len = length(scroll_pool)
+				if(pool_len <= 0)
+					return FALSE
+				var/center_idx = (pressed_pos % pool_len) + 1
+				if(center_idx < 1 || center_idx > pool_len)
+					return FALSE
+				var/pressed_symbol = scroll_pool[center_idx]
+
+				// What symbol do we NEED next in the sequence?
+				var/target_len = length(target_seq)
+				if(current_prog < 0 || current_prog >= target_len)
+					return FALSE
+				var/needed_symbol = target_seq[current_prog + 1]
+
+				attempts++
+				client_view["attempts"] = attempts
+
+				if(pressed_symbol == needed_symbol)
+					// CORRECT! Advance progress by one symbol
+					current_prog++
+					state["current_progress"] = current_prog
+					client_view["current_progress"] = current_prog
+
+					// Track captured symbols for display
+					var/list/prog_syms = client_view["progress_symbols"]
+					if(!islist(prog_syms))
+						prog_syms = list()
+					prog_syms += pressed_symbol
+					client_view["progress_symbols"] = prog_syms
+
+					// Check if entire sequence complete
+					if(current_prog >= length(target_seq))
+						solved = TRUE
+						client_view["result"] = "complete"
+					else
+						client_view["result"] = "correct"
+
+					return TRUE
 				else
-					secret = list()
-				var/list/guess = mm_buffer.Copy()
-				var/black = 0
-				var/white = 0
-				// First pass: exact matches
-				for(var/i in 1 to len)
-					if(i > length(secret) || i > length(guess))
-						continue
-					if(guess[i] == secret[i])
-						black++
-						guess[i] = null
-						secret[i] = null
-				// Build frequency map for remaining secret colors
-				var/list/freq = list()
-				for(var/i in 1 to len)
-					var/s = secret[i]
-					if(isnull(s))
-						continue
-					freq[s] = (freq[s] || 0) + 1
-				// Second pass: color-only matches
-				for(var/i in 1 to len)
-					var/g = guess[i]
-					if(isnull(g))
-						continue
-					if(freq[g] && freq[g] > 0)
-						white++
-						freq[g] -= 1
-				client_view["guesses"] += list(mm_buffer.Copy())
-				client_view["feedback"] += list(list("black" = black, "white" = white))
-				client_view["last_result"] = list("black" = black, "white" = white)
-				client_view["last_result_text"] = "[black]B / [white]W"
-				mm_buffer = list()
-				client_view["buffer"] = list()
-				attempts++
-				client_view["attempts"] = attempts
-				if(black == len)
-					solved = TRUE
-				refresh_mastermind_view()
-				return TRUE
-		if("logic")
-			var/action = params?["lg"]
-			if(action == "toggle")
-				// Валидация индекса для предотвращения крашей
-				if(!validate_index(params, length(state?["inputs"] || list())))
-					return FALSE
-				var/idx = text2num(params["idx"])
-				if(!islist(state) || !islist(state["inputs"]))
-					return FALSE
-				state["inputs"][idx] = state["inputs"][idx] ? 0 : 1
-				var/out = logic_eval(state["inputs"], state["op"])
-				var/list/_inputs_list = state["inputs"]
-				client_view["inputs"] = _inputs_list.Copy()
-				client_view["output"] = out
-				solved = (out == client_view["target"])
-				attempts++
-				client_view["attempts"] = attempts
-				return TRUE
+					// WRONG SYMBOL! Reset ALL progress to zero!
+					state["current_progress"] = 0
+					client_view["current_progress"] = 0
+					client_view["progress_symbols"] = list()
+					client_view["result"] = "reset"
+					return TRUE
+
+			return FALSE
+		// REMOVED: "logic" mode - temporarily disabled for complexity rework
+		// Code preserved in Git history for future re-implementation
 		if("sudoku4")
 			var/action = params?["sd"]
 			if(!islist(state) || !islist(client_view))
@@ -513,11 +500,7 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 			view_row += (board[i][j] ? "●" : "○")
 		client_view += list(view_row)
 
-/datum/cogrs_challenge/proc/refresh_mastermind_view()
-	if(mode != "mastermind")
-		return
-	// Ничего особенного: клиенту достаточно payload с guesses/feedback/buffer
-	return
+// REMOVED: refresh_mastermind_view() - no longer needed after mastermind removal
 
 /datum/cogrs_challenge/proc/is_lightsout_solved()
 	if(!islist(board) || !length(board))
@@ -617,10 +600,14 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 				for(var/j in 1 to length(board[i]))
 					board[i][j] = 0
 			refresh_lightsout_view()
-		if("mastermind")
-			// Force complete mastermind - просто помечаем как решенную
-			// Принцип 4 - НЕПРИМИРИМОСТЬ: не пытаемся изменить несуществующие ключи!
-			// Для mastermind достаточно просто установить solved = TRUE
+		if("marker")
+			// Force complete marker sequence - set progress to full
+			var/list/target_seq = state["target_sequence"]
+			if(islist(target_seq))
+				state["current_progress"] = length(target_seq)
+				client_view["current_progress"] = length(target_seq)
+				client_view["progress_symbols"] = target_seq.Copy()
+			client_view["result"] = "complete"
 		if("sudoku4")
 			// Force complete sudoku
 			if(islist(state) && islist(sudoku_solution))
@@ -657,31 +644,87 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 		refresh_lightsout_view()
 	// topsort_refresh() уже вызван выше для topsort
 
-// Mastermind - декодер код-книг
-/datum/cogrs_challenge/proc/gen_mastermind()
+// REPLACED: Mastermind (too complex) → Marker Scriptorium (progressive sequence capture)
+// Old mastermind code preserved in Git history for reference
+// Marker Scriptorium - Gothic/Dead Space themed PROGRESSIVE symbol sequence capture game
+// Players must capture each symbol in target_sequence one-by-one as they scroll
+// Wrong click = FULL RESET! High tension cognitive challenge!
+/datum/cogrs_challenge/proc/gen_marker()
 	difficulty = rand(2, 5)
-	var/code_length = 3 + difficulty
-	// Clamp to a maximum length
-	if(code_length > CRS_MASTERMIND_MAX_CODE)
-		code_length = CRS_MASTERMIND_MAX_CODE
 
-	state = list()
-	client_view = list()
-	mm_buffer = list()
+	var/list/symbols = MARKER_SYMBOLS
+	var/word_length = min(2 + difficulty, 6) // 4-6 symbols (capped at 6)
+	var/list/target_sequence = list()
 
-	// Создаем секретный код
-	var/list/colors = list("R", "G", "B", "Y", "P", "C")
-	for(var/i in 1 to code_length)
-		state += pick(colors)
+	// Generate target word/sequence that player must spell by clicking
+	// Принцип 4 - НЕПРИМИРИМОСТЬ: достойное испытание для Техномаринов!
+	for(var/i in 1 to word_length)
+		target_sequence += pick(symbols)
 
-	// Создаем пустую доску для отображения
-	client_view = list(
-		"code_length" = code_length,
-		"colors" = colors,
-		"guesses" = list(),
-		"feedback" = list(),
-		"buffer" = list()
+	// Create scrolling pool: contains target symbols + extras for confusion
+	var/list/scrolling_pool = target_sequence.Copy()
+	var/extra_count = rand(3, 5) // Add 3-5 random symbols for distraction
+	for(var/i in 1 to extra_count)
+		scrolling_pool += pick(symbols)
+
+	// Shuffle the pool so target symbols appear in random scroll order
+	scrolling_pool = shuffle_list(scrolling_pool)
+
+	// Scroll interval: higher difficulty = faster scroll
+	// deciseconds: 8, 7, 6, 5 (0.8s, 0.7s, 0.6s, 0.5s)
+	var/scroll_interval = 10 - difficulty
+
+	state = list(
+		"target_sequence" = target_sequence,
+		"scrolling_pool" = scrolling_pool,
+		"current_progress" = 0,
+		"scroll_interval" = scroll_interval
 	)
+
+	// Initialize scroll position tracking
+	marker_position = 0
+	marker_last_tick = world.time
+
+	client_view = list(
+		"target_sequence" = target_sequence.Copy(),
+		"scrolling_pool" = scrolling_pool.Copy(),
+		"current_progress" = 0,
+		"progress_symbols" = list(),
+		"scroll_interval" = scroll_interval,
+		"current_position" = marker_position
+	)
+
+	solved = FALSE
+
+// Helper: shuffle a list (Fisher-Yates shuffle variant)
+/datum/cogrs_challenge/proc/shuffle_list(list/input)
+	if(!islist(input) || !length(input))
+		return list()
+	var/list/output = list()
+	var/list/temp = input.Copy()
+	while(length(temp))
+		var/picked = pick(temp)
+		output += picked
+		temp -= picked
+	return output
+
+// Update marker position (called before exporting to client)
+/datum/cogrs_challenge/proc/update_marker_position()
+	if(mode != "marker" || solved)
+		return
+
+	var/scroll_interval = state["scroll_interval"]
+	if(!isnum(scroll_interval) || scroll_interval <= 0)
+		return
+
+	// Calculate how many ticks have passed
+	var/time_elapsed = world.time - marker_last_tick
+	var/ticks_to_add = round(time_elapsed / scroll_interval)
+
+	if(ticks_to_add > 0)
+		marker_position += ticks_to_add
+		marker_last_tick += ticks_to_add * scroll_interval
+		client_view["current_position"] = marker_position
 
 // Sudoku 4x4 - матрица стабилизации
 
@@ -768,87 +811,10 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 	client_view = list("grid" = deep_copy_grid(grid), "fixed" = deep_copy_grid(fixed), "attempts" = attempts)
 	solved = FALSE
 
-// Logic Gates - нейробулевы пробы
-/datum/cogrs_challenge/proc/gen_logic()
-	difficulty = rand(1, 3)
-
-	// Количество входов 3..6 (усложнено!)
-	var/num_inputs = 2 + difficulty
-	var/list/inputs = list()
-	for(var/i in 1 to num_inputs)
-		inputs += 0
-	// Усложненные операции - XOR временно закомментирован для доработки
-	// TODO: Доработать XOR головоломку позже
-	var/op = pick("AND", "OR", "NAND", "NOR", "XNOR", "IMPLIES", "EQUIVALENCE")
-
-	// ИСПРАВЛЕНИЕ БАГА: генерируем РЕШАЕМЫЙ target
-	// Сначала пробуем разные комбинации входов для данной операции
-	var/list/possible_targets = list()
-	for(var/attempt = 0, attempt < 10, attempt++)
-		var/list/test_inputs = list()
-		for(var/i in 1 to num_inputs)
-			test_inputs += rand(0, 1)
-		var/test_out = logic_eval(test_inputs, op)
-		possible_targets |= test_out
-
-	// Выбираем случайный target из возможных
-	var/target = pick(possible_targets)
-
-	// Устанавливаем начальные входы для достижения target
-	var/found = FALSE
-	for(var/attempt = 0, attempt < 20 && !found, attempt++)
-		var/list/test_inputs = list()
-		for(var/i in 1 to num_inputs)
-			test_inputs += rand(0, 1)
-		if(logic_eval(test_inputs, op) == target)
-			inputs = test_inputs
-			found = TRUE
-
-	// Если не нашли, используем нули
-	if(!found)
-		for(var/i in 1 to num_inputs)
-			inputs[i] = 0
-
-	state = list("inputs" = inputs, "op" = op)
-	client_view = list(
-		"operator" = op,
-		"inputs" = inputs.Copy(),
-		"target" = target,
-		"output" = logic_eval(inputs, op)
-	)
-	solved = (logic_eval(inputs, op) == target)
-
-/datum/cogrs_challenge/proc/logic_eval(list/inputs, op)
-	switch(op)
-		if("AND")
-			return !(0 in inputs)
-		if("OR")
-			return (1 in inputs)
-		if("XOR")
-			var/sum = 0
-			for(var/v in inputs)
-				sum += v
-			return sum % 2
-		if("NAND")
-			return (0 in inputs) // NOT AND
-		if("NOR")
-			return !(1 in inputs) // NOT OR
-		if("XNOR")
-			var/sum = 0
-			for(var/v in inputs)
-				sum += v
-			return !(sum % 2) // NOT XOR
-		if("IMPLIES")
-			// A → B = NOT A OR B
-			if(length(inputs) >= 2)
-				return !inputs[1] || inputs[2]
-			return 0
-		if("EQUIVALENCE")
-			// A ≡ B = (A AND B) OR (NOT A AND NOT B)
-			if(length(inputs) >= 2)
-				return (inputs[1] && inputs[2]) || (!inputs[1] && !inputs[2])
-			return 0
-	return 0
+// REMOVED: Logic Gates mode - temporarily disabled for complexity rework
+// The mode was too simple (2-4 inputs, random operators) and needs redesign
+// Code preserved in Git history (commit before this change) for future re-implementation
+// TODO: Redesign with multi-stage boolean logic chains and progressive difficulty
 
 // Cryptogram - криптографическая головоломка
 /datum/cogrs_challenge/proc/gen_cryptogram()
@@ -1102,12 +1068,10 @@ GLOBAL_DATUM_INIT(cogrs_config, /datum/cogrs_config, new /datum/cogrs_config())
 	switch(mode)
 		if("lightsout")
 			return "Analyze xenological network topology by toggling grid cells to achieve stable configuration."
-		if("mastermind")
-			return "Decipher alien communication patterns using logical deduction and pattern recognition."
+		if("marker")
+			return "Align the sacred Marker symbol with the target indicator through careful timing. Convergite signum."
 		if("sudoku4")
 			return "Complete the stability matrix to ensure proper system configuration."
-		if("logic")
-			return "Configure neuroboolean logic gates to achieve desired output patterns."
 		if("topsort")
 			return "Determine correct wiring sequence for acyclic network connections."
 		else

@@ -10,6 +10,226 @@ import {
 } from '../components';
 import { NtosWindow } from '../layouts';
 
+// ⛧ MARKER SCRIPTORIUM ⛧
+// Gothic/Dead Space themed PROGRESSIVE sequence capture game
+// Players must click each symbol in target_sequence as it scrolls by
+// Wrong click = FULL RESET! High tension cognitive challenge!
+const MarkerScriptorium = ({ session, act }) => {
+  const targetSequence = session.payload?.target_sequence || [];
+  const scrollingPool = session.payload?.scrolling_pool || [];
+  const progress = session.payload?.current_progress || 0;
+  const progressSymbols = session.payload?.progress_symbols || [];
+  const position = session.payload?.current_position || 0;
+  const result = session.payload?.result || '';
+
+  // Next symbol player needs to capture
+  const nextSymbol = targetSequence[progress] || '?';
+
+  // Get 5 visible symbols from scrolling pool (2 left, center, 2 right)
+  const getVisibleSymbols = () => {
+    const visible = [];
+    for (let offset = -2; offset <= 2; offset++) {
+      const index =
+        (((position + offset) % scrollingPool.length) + scrollingPool.length) %
+        scrollingPool.length;
+      const symbol = scrollingPool[index] || '?';
+      const isCenterSymbol = offset === 0;
+
+      visible.push(
+        <Box
+          key={offset}
+          style={{
+            display: 'inline-block',
+            fontSize: isCenterSymbol ? '60px' : '48px',
+            color: isCenterSymbol ? '#ff0000' : '#8b0000',
+            textShadow: isCenterSymbol
+              ? '0 0 20px rgba(255, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.5)'
+              : '0 0 8px rgba(139, 0, 0, 0.6)',
+            opacity: isCenterSymbol ? 1.0 : 0.4,
+            margin: '0 8px',
+            transition: 'all 0.2s ease-in-out',
+            transform: isCenterSymbol ? 'scale(1.2)' : 'scale(1.0)',
+            fontFamily: 'serif',
+            fontWeight: 'bold',
+          }}
+        >
+          {symbol}
+        </Box>
+      );
+    }
+    return visible;
+  };
+
+  return (
+    <Section
+      title="⛧ MARKER SCRIPTORIUM ⛧"
+      style={{
+        backgroundColor: '#0a0a0a',
+        border: '2px solid #8b0000',
+        boxShadow: '0 0 20px rgba(139, 0, 0, 0.3)',
+      }}
+    >
+      {/* Target Sequence with Visual Progress Indicators */}
+      <Box textAlign="center" mb={2}>
+        <Box
+          fontSize="14px"
+          color="label"
+          mb={1}
+          style={{ letterSpacing: '2px' }}
+        >
+          SIGNUM SEQUENTIA:
+        </Box>
+
+        {/* Target symbols with color-coded status */}
+        <Box fontSize="40px" style={{ letterSpacing: '12px' }}>
+          {targetSequence.map((sym, idx) => {
+            let symbolColor, symbolGlow, symbolOpacity, symbolAnimation;
+
+            if (idx < progress) {
+              // Already captured - GREEN
+              symbolColor = '#00ff00';
+              symbolGlow = '0 0 15px rgba(0, 255, 0, 0.9)';
+              symbolOpacity = 1.0;
+              symbolAnimation = 'none';
+            } else if (idx === progress) {
+              // NEXT TARGET - ORANGE/YELLOW, PULSING
+              symbolColor = '#ffaa00';
+              symbolGlow =
+                '0 0 20px rgba(255, 170, 0, 1), 0 0 40px rgba(255, 170, 0, 0.6)';
+              symbolOpacity = 1.0;
+              symbolAnimation = 'pulse 1s infinite';
+            } else {
+              // Waiting - RED, DIMMED
+              symbolColor = '#8b0000';
+              symbolGlow = '0 0 5px rgba(139, 0, 0, 0.5)';
+              symbolOpacity = 0.4;
+              symbolAnimation = 'none';
+            }
+
+            return (
+              <span
+                key={idx}
+                style={{
+                  color: symbolColor,
+                  textShadow: symbolGlow,
+                  opacity: symbolOpacity,
+                  display: 'inline-block',
+                  margin: '0 4px',
+                  transition: 'all 0.3s ease',
+                  animation: symbolAnimation,
+                  fontFamily: 'serif',
+                  fontWeight: 'bold',
+                }}
+              >
+                {sym}
+              </span>
+            );
+          })}
+        </Box>
+      </Box>
+
+      {/* Scrolling Symbols Pool */}
+      <Box
+        textAlign="center"
+        mb={2}
+        style={{
+          padding: '20px 10px',
+          backgroundColor: '#1a1a1a',
+          border: '1px solid #4a0000',
+          boxShadow: 'inset 0 0 30px rgba(139, 0, 0, 0.4)',
+          minHeight: '140px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {getVisibleSymbols()}
+      </Box>
+
+      {/* Alignment Marker (static arrow) */}
+      <Box
+        textAlign="center"
+        style={{
+          fontSize: '36px',
+          color: '#00ff00',
+          textShadow: '0 0 20px rgba(0, 255, 0, 0.8)',
+          marginTop: '-60px',
+          marginBottom: '20px',
+        }}
+      >
+        ▼
+      </Box>
+
+      {/* Capture Button - Shows current target */}
+      <Box textAlign="center" mb={2}>
+        <Button
+          color="bad"
+          fontSize="12px"
+          disabled={session.solved}
+          style={{
+            backgroundColor: '#8b0000',
+            border: '2px solid #ff0000',
+            boxShadow: '0 0 15px rgba(255, 0, 0, 0.5)',
+            fontFamily: 'serif',
+            letterSpacing: '2px',
+            padding: '8px 17px',
+          }}
+          onClick={() =>
+            act('submit_step', { ma: 'press', position: position })
+          }
+        >
+          ⛧ CAPTURE: {nextSymbol} ({progress + 1}/{targetSequence.length}) ⛧
+        </Button>
+      </Box>
+
+      {/* Enhanced Result Messages */}
+      {result === 'correct' &&
+        !session.solved &&
+        progressSymbols.length > 0 && (
+          <NoticeBox color="good" textAlign="center">
+            SYMBOL CAPTURED! ({progress}/{targetSequence.length})
+          </NoticeBox>
+        )}
+      {result === 'reset' && (
+        <NoticeBox color="bad" textAlign="center">
+          WRONG SYMBOL! SEQUENCE RESET!
+          <br />
+          {targetSequence.length > 0 && targetSequence[0] && (
+            <Box fontSize="12px" mt={0.5}>
+              Start from {targetSequence[0]} again
+            </Box>
+          )}
+        </NoticeBox>
+      )}
+      {result === 'complete' && (
+        <NoticeBox color="good" textAlign="center">
+          CONVERGENCE COMPLETE!
+          <br />
+          <Box fontSize="12px" mt={0.5}>
+            SEQUENCE: {progressSymbols.join(' → ')}
+          </Box>
+        </NoticeBox>
+      )}
+
+      {/* Latin Flavor Text */}
+      <Box
+        textAlign="center"
+        mt={2}
+        style={{
+          fontSize: '13px',
+          color: '#8b0000',
+          fontFamily: 'serif',
+          fontStyle: 'italic',
+          letterSpacing: '1px',
+          opacity: 0.8,
+        }}
+      >
+        "Convergite signum... Make us whole."
+      </Box>
+    </Section>
+  );
+};
+
 export const NtosCognitiveResearchSuite = (props, context) => {
   const { act, data } = useBackend(context);
   const {
@@ -103,59 +323,8 @@ export const NtosCognitiveResearchSuite = (props, context) => {
                     </Box>
                   );
                 })()
-              ) : session?.mode === 'mastermind' ? (
-                <Section title="Mastermind">
-                  <Box mb={1}>
-                    <Box mb={0.5}>
-                      Buffer ({session.payload?.buffer?.length || 0}/
-                      {session.payload?.code_length || 0}){': '}
-                      {session.payload?.buffer?.join(' ') || ''}
-                    </Box>
-                    <Box>
-                      {(session.payload?.colors || []).map((c) => (
-                        <Button
-                          key={c}
-                          onClick={() =>
-                            act('submit_step', { mm: 'push', ch: c })
-                          }
-                        >
-                          {c}
-                        </Button>
-                      ))}
-                      <Button
-                        ml={1}
-                        onClick={() => act('submit_step', { mm: 'back' })}
-                      >
-                        Back
-                      </Button>
-                      <Button
-                        ml={1}
-                        onClick={() => act('submit_step', { mm: 'submit' })}
-                        disabled={
-                          (session.payload?.buffer?.length || 0) !==
-                          (session.payload?.code_length || 0)
-                        }
-                      >
-                        Submit
-                      </Button>
-                    </Box>
-                  </Box>
-                  {typeof session.payload?.last_result === 'object' && (
-                    <NoticeBox>
-                      Right color & position:{' '}
-                      {session.payload.last_result.black || 0} · Right color,
-                      wrong position: {session.payload.last_result.white || 0}
-                    </NoticeBox>
-                  )}
-                  {Array.isArray(session.payload?.guesses) &&
-                    session.payload.guesses.map((g, i) => (
-                      <Box key={i} mb={0.25}>
-                        {g.join(' ')} —{' '}
-                        {session.payload?.feedback?.[i]?.black || 0}B /{' '}
-                        {session.payload?.feedback?.[i]?.white || 0}W
-                      </Box>
-                    ))}
-                </Section>
+              ) : session?.mode === 'marker' ? (
+                <MarkerScriptorium session={session} act={act} />
               ) : session?.mode === 'sudoku4' ? (
                 <Section title="Sudoku 4x4">
                   <Box>

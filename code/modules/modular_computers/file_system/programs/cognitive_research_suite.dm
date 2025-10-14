@@ -47,22 +47,17 @@ GLOBAL_LIST_EMPTY(cogrs_player_stats)
 
 // Принцип 3 - ПЛАНОВОСТЬ: очистка статистики при завершении раунда!
 // Принцип 4 - НЕПРИМИРИМОСТЬ: не даем памяти засоряться между раундами!
-GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
+// REMOVED: GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE) - не требуется, сервер рестартит после раунда
 
-// Принцип 3 - ПЛАНОВОСТЬ: регистрируем очистку при завершении раунда!
-// Принцип 2 - ЦЕНТРАЛИЗМ: вся очистка в одном месте!
-/proc/cogrs_register_round_end_cleanup()
-	if(!GLOB.cogrs_round_cleanup_done)
-		var/datum/computer_file/program/cognitive_research_suite/cleaner = new()
-		SSticker.round_end_events += CALLBACK(cleaner, TYPE_PROC_REF(/datum/computer_file/program/cognitive_research_suite, cleanup_round_end))
+// REMOVED: /proc/cogrs_register_round_end_cleanup() - не требуется, сервер рестартит после раунда
+// Cleanup внутри раунда осуществляется через cleanup_old_cooldowns() каждые 10 минут
 
 /datum/computer_file/program/cognitive_research_suite/run_program(mob/living/user)
 	if(!..())
 		return FALSE
 
-	// Принцип 3 - ПЛАНОВОСТЬ: регистрируем очистку при первом запуске!
-	// Принцип 4 - НЕПРИМИРИМОСТЬ: гарантируем очистку памяти!
-	cogrs_register_round_end_cleanup()
+	// Cleanup памяти осуществляется автоматически через cleanup_old_cooldowns()
+	// при каждом вызове begin_simulation (каждые 10+ минут)
 
 	return TRUE
 
@@ -358,22 +353,9 @@ GLOBAL_VAR_INIT(cogrs_round_cleanup_done, FALSE)
 	if(cleaned > 0 || stats_cleaned > 0)
 		log_game("CRS: Cleaned up [cleaned] old cooldown entries and [stats_cleaned] inactive player stats")
 
-/// Полная очистка всех данных CRS при завершении раунда
-/// Принцип 3 - ПЛАНОВОСТЬ: системная очистка при завершении раунда!
-/// Принцип 4 - НЕПРИМИРИМОСТЬ: никаких остатков данных между раундами!
-/datum/computer_file/program/cognitive_research_suite/proc/cleanup_round_end()
-	if(GLOB.cogrs_round_cleanup_done)
-		return // Уже очистили
-
-	GLOB.cogrs_round_cleanup_done = TRUE
-
-	var/cooldowns_cleaned = GLOB.cogrs_global_cooldowns.len
-	var/stats_cleaned = GLOB.cogrs_player_stats.len
-
-	GLOB.cogrs_global_cooldowns.Cut()
-	GLOB.cogrs_player_stats.Cut()
-
-	log_game("CRS: Round end cleanup - cleared [cooldowns_cleaned] cooldown entries and [stats_cleaned] player stats")
+// REMOVED: /datum/computer_file/program/cognitive_research_suite/proc/cleanup_round_end()
+// Не требуется - сервер полностью рестартит после раунда, все глобальные переменные обнуляются автоматически
+// Cleanup внутри раунда осуществляется через cleanup_old_cooldowns() каждые 10 минут
 
 /// Получить статистику игрока
 /datum/computer_file/program/cognitive_research_suite/proc/get_player_stats(ckey)

@@ -19,7 +19,7 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 
 ### Modes (player instructions)
 - Lights Out: toggle grid cells to turn all lights off. Click tiles to flip it and neighbors.
-- Mastermind (Codebook): choose colors to fill buffer (max length ≤ 6), Submit; feedback shows "Right color & position" and "Right color, wrong position".
+- **Marker Scriptorium** (NEW): Progressive symbol sequence capture game. A target sequence of 4-6 gothic symbols is displayed at the top (e.g., ✠ Ω Ψ ✠ Δ). Symbols scroll continuously across the screen. Player must click to capture EACH symbol in order as it aligns with the center marker. Progress is tracked symbol-by-symbol with visual indicators: captured symbols glow green, current target pulses orange, waiting symbols are dimmed. **HIGH TENSION:** Any wrong click resets ALL progress back to the first symbol! Difficulty scales via longer sequences (4→6 symbols), faster scroll speed (0.8s→0.5s), and repeating symbols. Features Dead Space/Warhammer 40K gothic aesthetic with latin phrases ("Convergite signum... Make us whole").
 - Sudoku 4×4: click non‑fixed cells to cycle 1→4, match solution.
 - ~~Logic (AND/OR/NAND/NOR/XNOR/IMPLIES/EQUIVALENCE)~~: **TEMPORARILY DISABLED** - режим оказался слишком простым и был отключен для доработки сложности.
 - Topsort (Wiring Order): click nodes to form an order so all edges A→B go from earlier to later. Back and Reset available; conflicts listed. **ENHANCED** with complex dependency graphs!
@@ -28,7 +28,7 @@ Nanotrasen Cognitive Research Suite: empathic simulations, xenologic pattern tes
 ### UI actions (client → server)
 - `begin_simulation`
 - `step {row, col}` — Lights Out
-- `submit_step { mm:'push'|'back'|'submit', ch:'R|G|B|Y|P|C' }` — Mastermind
+- `submit_step { ma:'press', position:<number> }` — Marker Scriptorium
 - `submit_step { sd:'cycle'|'set', row, col, val? }` — Sudoku4
 - ~~`submit_step { lg:'toggle', idx }` — Logic~~ **DISABLED**
 - `submit_step { ts:'push'|'back'|'reset', n? }` — Topsort
@@ -94,10 +94,9 @@ Notes:
 ```
 #define CRS_SCORE_PER_DIFFICULTY 25
 #define CRS_MIN_SCORE 700
-#define CRS_MASTERMIND_MAX_CODE 6
-#define CRS_LIGHTSOUT_ON_PROB 40
 #define CRS_SUDOKU4_BASE_HOLES 6
 #define CRS_SUDOKU4_HOLES_PER_DIFF 2
+#define MARKER_SYMBOLS list("✠", "☨", "⛧", "Ω", "Ψ", "Δ", "Σ", "Φ", "Λ", "Θ", "☥", "⚔", "✟", "†", "◆")
 ```
 
 ### Balancing guide (how to tune points and difficulty)
@@ -119,11 +118,17 @@ Notes:
 - Change weights `0.3` → other values to emphasize speed vs efficiency, or set to `0` to disable a component.
 
 4) Mode difficulty knobs
-- Lights Out: `CRS_LIGHTSOUT_ON_PROB` — chance to spawn a lit cell; increases problem density.
-- Mastermind: `CRS_MASTERMIND_MAX_CODE` — maximum code length; difficulty sets length as `3 + difficulty` up to the cap.
-- Sudoku 4×4: `CRS_SUDOKU4_BASE_HOLES` and `CRS_SUDOKU4_HOLES_PER_DIFF` control number of empty cells.
-- ~~Logic~~: **DISABLED** - режим оказался слишком простым (2-4 входа, случайные операторы AND/OR/XOR).
-- Topsort: node count equals `difficulty` (3..6).
+- Lights Out: Grid size increases with difficulty (5x5 to 8x8 grid)
+- **Marker Scriptorium**: Progressive sequence capture with scroll speed scaling
+  - Difficulty 2: 4 symbols to capture, 0.8s scroll, 40s par time (beginner-friendly)
+  - Difficulty 3: 5 symbols to capture, 0.7s scroll, 50s par time (moderate)
+  - Difficulty 4: 5 symbols to capture, 0.6s scroll, 60s par time (challenging)
+  - Difficulty 5: 6 symbols to capture, 0.5s scroll, 70s par time (master-level)
+  - Scrolling pool = target symbols + 3-5 random extras (shuffled)
+  - Wrong click resets ALL progress - must complete entire sequence without errors!
+- Sudoku 4×4: `CRS_SUDOKU4_BASE_HOLES` and `CRS_SUDOKU4_HOLES_PER_DIFF` control number of empty cells
+- Topsort: node count equals `difficulty` (3..6)
+- Cryptogram: Word length increases with difficulty (4-5, 6-7, 8+ letters)
 
 5) Cooldowns
 - Per‑mode cooldown is set in `cognitive_research_suite.dm` via `mode_cooldown` (default `3 MINUTES`).
@@ -159,7 +164,7 @@ Notes:
 
 Created
 - `code/modules/modular_computers/file_system/programs/cognitive_research_suite.dm` — NTOS program datum (main app logic, NTNet listing, access checks, cooldowns, collect data)
-- `code/modules/modular_computers/file_system/programs/cogrs_challenges.dm` — challenge engine (Lights Out, Mastermind, Sudoku 4×4, Logic, Topsort; scoring and pars)
+- `code/modules/modular_computers/file_system/programs/cogrs_challenges.dm` — challenge engine (Lights Out, Marker Scriptorium, Sudoku 4×4, Cryptogram, Topsort; scoring and pars)
 - `tgui/packages/tgui/interfaces/NtosCognitiveResearchSuite.js` — TGUI interface (interactive UI for all modes, cooldown and notes UI)
 - `mod_celadon/docs/CRS/README.md` — this documentation
 
@@ -179,22 +184,24 @@ Referenced (not modified)
 - **New Cryptogram Mode**: Dead Space themed word decoding with hint system
 - **Global Cooldowns**: Fixed abuse vulnerability - cooldowns now work across all computers
 - **Progression System**: Player experience multipliers (1.0x to 5.0x) based on completed puzzles
-- **Memory Management**: **CRITICAL FIX** - Automatic cleanup of old cooldown entries AND player statistics to prevent memory leaks
-- **Round End Cleanup**: Complete data cleanup between rounds to prevent memory accumulation
+- **Memory Management**: **CRITICAL FIX** - Automatic cleanup of old cooldown entries AND player statistics to prevent memory leaks during gameplay
+- **Roundend Cleanup Removed**: Unnecessary roundend cleanup code removed - server restart automatically clears all memory between rounds
 - **Input Validation**: Robust parameter validation to prevent runtime errors
 - **Centralized Configuration**: All game balance parameters in one location
-- **Logic Mode Temporarily Disabled**: Mode was too simple and disabled for complexity rework
-- **Debug Function Fixed**: Fixed force_solved() function for mastermind and topsort modes
+- **Logic Mode Removed**: Mode was too simple and completely removed (code in Git history)
+- **Mastermind Replaced with Marker Scriptorium**: Complex deduction game replaced with progressive symbol sequence capture game featuring gothic/Dead Space aesthetic and Latin phrases
+- **Debug Function Fixed**: Fixed force_solved() function for all game modes
 - **DRY Principle Applied**: Removed redundant code duplication in get_pars() function
 - **Documentation Consistency**: Fixed CRS_MIN_SCORE value mismatch between code (700) and docs (1000)
 - **Better Scoring**: Minimum score reduced to 700, improved bonus calculations
 
 ### Memory Management (Technical Details)
-- **Automatic Cleanup**: Runs every 10 minutes during gameplay to remove inactive player data
-- **Inactivity Detection**: Players without active cooldowns are considered inactive and their stats are removed
-- **Round End Cleanup**: Complete data wipe between rounds to prevent memory accumulation
-- **Logging**: All cleanup operations are logged to server logs for monitoring
-- **Performance**: Cleanup operations are throttled to prevent server lag
+- **In-Game Cleanup**: Runs every 10 minutes during gameplay via `cleanup_old_cooldowns()` to remove stale data
+- **Cooldown Expiry**: Cooldowns older than 1 hour are automatically removed
+- **Inactive Player Cleanup**: Player stats without progress and not seen in 24 hours are removed
+- **Round End Behavior**: Server restart automatically clears ALL global memory - no manual cleanup needed
+- **Logging**: All cleanup operations are logged to server logs for monitoring (look for "CRS: Cleaned up" messages)
+- **Performance**: Cleanup operations are throttled to every 10 minutes to prevent server lag
 
 ### Future knobs (optional)
 - **Re-enable Logic Mode**: Redesign with more complex boolean logic chains and multi-stage puzzles
