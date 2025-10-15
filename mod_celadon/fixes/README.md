@@ -359,13 +359,7 @@ RalseiDreemuurr, Mirag1993 , Корольный крыс, MrCat15352, MysticalFa
 
 FIXES_TWO_HANDED_CRASH
 - EDIT: `code/game/atoms_movable.dm` - Исправлен краш клиента при атаке двуручным оружием (sledgehammer, топоры). `image()` теперь использует `used_item.icon` и `used_item.icon_state` вместо передачи всего объекта, что предотвращает копирование corrupted appearance data от компонента `two_handed`.
-- ADD: `code/datums/chatmessage.dm` - Добавлена проверка `if(!owned_by)` в `generate_image()` для предотвращения краша при `null.MeasureText()` когда у моба нет клиента.
-
-FIXES_SHIP_SELECT_ZERO_BUG
-- EDIT: `code/modules/mob/dead/new_player/ship_select.dm` - Исправлен демон нуля после названий джобов в шип-селекте. Заменено `"name" = job,` на `"name" = job.name,` в строке 191. Теперь передается строковое свойство объекта job вместо самого объекта, что устраняет появление "0" после названий джобов на кастомных кораблях (например, Schmiedeberg).
-- EDIT: `mod_celadon/ship_selection_rework/code/ship_select_enhanced.dm` - Исправлен демон нуля в mod_celadon версии шип-селекта. Полностью переопределена функция ui_static_data с исправлением `"name" = job.name,` в строке 231. Это гарантирует, что исправление работает в mod_celadon, который использует ship_selection_rework.
-
----
+- ADD: `code/datums/chatmessage.dm` - Добавлена проверка `if(!owned_by)` в `generate_image()` для предотвращения краша при `null.MeasureText()` когда у моба нет клиента
 
 <!--
   Здесь находится твой никнейм
