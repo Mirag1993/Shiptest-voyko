@@ -102,7 +102,12 @@
  */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan, datum/language/message_language)
 	// Register client who owns this message
+	// [CELADON-ADD] - CELADON_FIXES - Fix crash when owner has no client
 	owned_by = owner.client
+	if(!owned_by)
+		qdel(src)
+		return
+	// [/CELADON-ADD]
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, PROC_REF(on_parent_qdel))
 
 	// Clip message
