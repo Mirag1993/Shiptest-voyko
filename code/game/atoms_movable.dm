@@ -1080,10 +1080,7 @@
 	if(visual_effect_icon)
 		attack_image = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
 	else if(used_item)
-		// [CELADON-EDIT] - CELADON_FIXES - Fix client crash when attacking with two_handed weapons
-		// attack_image = image(icon = used_item, loc = A, layer = A.layer + 0.1) // CELADON-EDIT - ORIGINAL
-		attack_image = image(icon = used_item.icon, loc = A, icon_state = used_item.icon_state, layer = A.layer + 0.1)
-		// [/CELADON-EDIT]
+        attack_image = image(icon = used_item, loc = A, layer = A.layer + 0.1)
 		attack_image.plane = GAME_PLANE
 
 		// Scale the icon.
