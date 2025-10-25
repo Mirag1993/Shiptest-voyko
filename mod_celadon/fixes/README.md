@@ -363,8 +363,7 @@ RalseiDreemuurr, Mirag1993 , Корольный крыс, MrCat15352, MysticalFa
 ---
 
 FIXES_TWO_HANDED_CRASH
-- EDIT: `code/game/atoms_movable.dm` - Исправлен краш клиента при атаке двуручным оружием (sledgehammer, топоры). `image()` теперь использует `used_item.icon` и `used_item.icon_state` вместо передачи всего объекта, что предотвращает копирование corrupted appearance data от компонента `two_handed`.
-- ADD: `code/datums/chatmessage.dm` - Добавлена проверка `if(!owned_by)` в `generate_image()` для предотвращения краша при `null.MeasureText()` когда у моба нет клиента
+- ADD: `code/_onclick/item_attack.dm` - добавлена обработка звуков если приходи не один файл, а лист ( обычно )
 
 <!--
   Здесь находится твой никнейм
