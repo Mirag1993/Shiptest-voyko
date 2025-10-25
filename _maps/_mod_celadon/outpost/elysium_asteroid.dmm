@@ -3345,6 +3345,12 @@
 	pixel_y = 0;
 	pixel_x = 29
 	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/effect/turf_decal/corner/transparent/blue/half{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "coJ" = (
@@ -6396,11 +6402,19 @@
 /turf/open/floor/plasteel/patterned/grid,
 /area/outpost/hallway/fore)
 "eiE" = (
-/obj/effect/turf_decal/corner/transparent/blue/half,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/effect/turf_decal/corner/transparent/blue/half{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
@@ -9549,12 +9563,12 @@
 /turf/open/floor/plasteel/rockvault,
 /area/outpost/hallway/central)
 "goO" = (
-/obj/effect/turf_decal/corner/transparent/blue/half{
-	dir = 8
-	},
 /obj/structure/chair/bench/grey/directional/east,
 /obj/machinery/airalarm/directional/west{
 	req_access_txt = "8100, 8111"
+	},
+/obj/effect/turf_decal/corner/transparent/blue/three_quarters{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
@@ -17145,24 +17159,18 @@
 /turf/open/floor/plating,
 /area/outpost/fraction/syndi)
 "lfS" = (
-/obj/effect/turf_decal/corner/transparent/blue/three_quarters{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
 /obj/machinery/light_switch{
 	pixel_y = 1;
 	pixel_x = -23;
 	dir = 4
+	},
+/obj/effect/turf_decal/corner/transparent/blue/half{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
@@ -19625,6 +19633,9 @@
 /obj/effect/turf_decal/industrial/traffic{
 	dir = 1
 	},
+/obj/effect/turf_decal/corner/transparent/blue/three_quarters{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "mQI" = (
@@ -20327,6 +20338,9 @@
 	icon_state = "1-4"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/corner/transparent/blue/half{
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "npV" = (
@@ -27495,11 +27509,14 @@
 /turf/open/floor/plasteel/patterned/grid,
 /area/outpost/fraction/inteq)
 "sbP" = (
-/obj/effect/turf_decal/corner/transparent/blue/three_quarters{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/corner/transparent/blue/three_quarters{
+	dir = 1;
+	icon_state = "corner_white"
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
@@ -30714,6 +30731,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/corner/transparent/blue/three_quarters{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
@@ -35453,6 +35473,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/corner/transparent/blue/half{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
@@ -62259,7 +62282,7 @@ xzT
 eiE
 lfS
 npT
-bjo
+sbP
 kDX
 jqa
 rqn
@@ -62442,9 +62465,9 @@ plM
 lSc
 mRY
 mQw
-plM
+lAb
 coh
-sbP
+lAb
 aFX
 lAb
 aEt
