@@ -1442,7 +1442,10 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/directional/north,
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispensers/watertank{
+	anchorable = 0;
+	anchored = 1
+	},
 /turf/open/floor/plasteel/patterned/cargo_one{
 	planetary_atmos = 1
 	},
@@ -1969,6 +1972,15 @@
 	planetary_atmos = 1
 	},
 /area/hangar)
+"NE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/newscaster/directional/east,
+/turf/open/floor/concrete/slab_1{
+	planetary_atmos = 1
+	},
+/area/hangar)
 "NK" = (
 /obj/structure/catwalk/over/plated_catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -2293,7 +2305,8 @@
 	},
 /obj/structure/reagent_dispensers/fueltank{
 	anchored = 1;
-	desc = "Вы видите как к топливной тележке прикреплена записка, где большими красными буквами написано: данная тележка собственность аванпоста! Поэтому данная тележка приварена к полу намертво. Тот кто решит спиздить её - получит по шапке!"
+	desc = "Вы видите как к топливной тележке прикреплена записка, где большими красными буквами написано: данная тележка собственность аванпоста! Поэтому данная тележка приварена к полу намертво. Тот кто решит спиздить её - получит по шапке!";
+	anchorable = 0
 	},
 /turf/open/floor/plasteel/patterned/cargo_one{
 	planetary_atmos = 1
@@ -3767,7 +3780,7 @@ Mt
 Mt
 FC
 sP
-eP
+NE
 HI
 Tu
 gE

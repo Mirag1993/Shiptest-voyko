@@ -80,6 +80,7 @@
 #include "reskin_customization/_reskin_customization.dme"
 #include "drinks_and_food/_drinks_and_food.dme"
 #include "wall_painter/_wall_painter.dme"
+#include "layer_toggle/_layer_toggle.dme"
 
 // --- MOBS --- //
 #include "drakeborgs/_drakeborgs.dme"
@@ -103,6 +104,7 @@
 #include "quickbind_pocket_and_neck/_quickbind_pocket_and_neck.dme"
 #include "add_item_for_slot_ears/_add_item_for_slot_ears.dme"
 #include "bite_feral/_bite_feral.dme"
+#include "black_market/_black_market.dme"
 
 // --- RETURNS --- //
 #include "return_content_clowns/_return_content_clowns.dme"
