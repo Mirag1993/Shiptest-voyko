@@ -58,6 +58,7 @@
 #include "items/_items.dme"
 #include "large_doors/_large_doors.dme"
 #include "mechas/_mechas.dme"
+#include "medassist_belt/_medassist_belt.dme"
 #include "moniq/_moniq.dme"
 #include "outpost_console/_outpost_console.dme"
 #include "paperwork/_paperwork.dme"
