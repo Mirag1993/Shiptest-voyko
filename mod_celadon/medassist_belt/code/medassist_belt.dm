@@ -76,7 +76,7 @@
 
 /obj/item/medassist_device/proto/Initialize(mapload)
 	. = ..()
-	create_reagents(51, INJECTABLE)
+	create_reagents(initial(doses_remaining) * initial(injection_amount), INJECTABLE)
 
 	// Продвинутые медикаменты NT
 	reagents.add_reagent(/datum/reagent/medicine/atropine, 12)
@@ -85,9 +85,15 @@
 
 	update_appearance()
 
+/obj/item/medassist_device/proto/equipped(mob/user, slot)
+	. = ..()
+	// Устройство полностью разряжено - не запускаем
+	if(slot == ITEM_SLOT_BELT && doses_remaining <= 0 && formaldehyde_injected)
+		STOP_PROCESSING(SSprocessing, src)
+		current_wearer = null
+
 /obj/item/medassist_device/proto/dropped(mob/user)
 	. = ..()
-	formaldehyde_injected = FALSE
 
 /obj/item/medassist_device/proto/handle_wearer_state()
 	// Обработка смерти
@@ -129,8 +135,9 @@
 		)
 
 		playsound(src, 'sound/items/hypospray.ogg', 50, TRUE)
-
-	addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown_time)
+		addtimer(CALLBACK(src, PROC_REF(reset_cooldown)), cooldown_time)
+	else
+		on_cooldown = FALSE
 
 /obj/item/medassist_device/proto/proc/reset_cooldown()
 	on_cooldown = FALSE
@@ -151,7 +158,7 @@
 		playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
 
 	// Периодические алерты
-	if(world.time >= next_death_alert)
+	if(formaldehyde_injected && world.time >= next_death_alert)
 		next_death_alert = world.time + rand(1 MINUTES, 3 MINUTES)
 		say("CRITICAL PATIENT CONDITION!")
 		playsound(src, 'sound/machines/triple_beep.ogg', 60, TRUE)
@@ -199,7 +206,7 @@
 	. = ..()
 	// Меняем на базовые реагенты
 	reagents.clear_reagents()
-	reagents.maximum_volume = 68
+	reagents.maximum_volume = initial(doses_remaining) * initial(injection_amount)
 
 	reagents.add_reagent(/datum/reagent/medicine/epinephrine, 20)
 	reagents.add_reagent(/datum/reagent/medicine/bicaridine, 24)
@@ -246,15 +253,19 @@
 
 /obj/item/medassist_device/handcraft/proc/attempt_injection(mob/living/carbon/target)
 	if(!target || QDELETED(target) || target.stat == DEAD)
+		vial_used = FALSE
 		return
 
 	if(target.health > target.crit_threshold)
+		vial_used = FALSE
 		return
 
 	if(target.get_item_by_slot(ITEM_SLOT_BELT) != src)
+		vial_used = FALSE
 		return
 
 	if(!loaded_vial || !loaded_vial.reagents || loaded_vial.reagents.total_volume <= 0)
+		vial_used = FALSE
 		return
 
 	// Вводим ВСЁ из vial
@@ -289,13 +300,14 @@
 			to_chat(user, span_warning("[src] has no vial loaded!"))
 			return
 
-		loaded_vial.forceMove(user.loc)
-		user.put_in_hands(loaded_vial)
-		to_chat(user, span_notice("You unscrew and extract [loaded_vial] from [src]."))
-		playsound(src, 'sound/items/screwdriver.ogg', 50, TRUE)
-		loaded_vial = null
-		vial_used = FALSE
-		update_appearance()
+		if(user.put_in_hands(loaded_vial))
+			to_chat(user, span_notice("You unscrew and extract [loaded_vial] from [src]."))
+			playsound(src, 'sound/items/screwdriver.ogg', 50, TRUE)
+			loaded_vial = null
+			vial_used = FALSE
+			update_appearance()
+		else
+			to_chat(user, span_warning("You need a free hand to take the vial!"))
 		return
 
 	// Вставка vial
