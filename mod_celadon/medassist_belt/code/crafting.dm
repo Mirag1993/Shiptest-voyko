@@ -14,7 +14,7 @@
 
 // Рецепт крафта MedAssist Handcraft
 /datum/crafting_recipe/medassist_handcraft
-	name = "MedAssist Handcraft"
+	name = "QuickHeal Handcraft"
 	result = /obj/item/medassist_device/handcraft
 	time = 100
 	reqs = list(
