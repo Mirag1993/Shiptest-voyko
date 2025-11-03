@@ -447,8 +447,6 @@
 /obj/item/clothing/accessory/holster/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
-*/
-// [/CELADON-REMOVE]
 
 /obj/item/clothing/accessory/holster/marine
 	name = "marine's holster"
@@ -459,6 +457,8 @@
 	new /obj/item/gun/ballistic/automatic/pistol/candor(src)
 	new /obj/item/ammo_box/magazine/m45(src)
 	new /obj/item/ammo_box/magazine/m45(src)
+*/
+// [/CELADON-REMOVE]
 
 //////////
 //RILENA//

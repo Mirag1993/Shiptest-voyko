@@ -2,8 +2,6 @@
 // Полноценная реализация логики кобур
 // Автор: Mirag1993
 
-// Общий include логирования перенесён в _holster_paradise.dm
-
 // Константы звуков
 #define HOLSTER_SND_VOL 50
 #define HOLSTER_SND_IN 'mod_celadon/qol/holster_paradise/sounds/1holster.ogg'
@@ -11,12 +9,6 @@
 
 // Константы для кэширования
 #define HOLSTER_STORAGE_CACHE_TICKS (5 SECONDS) // баланс: уменьшает GetComponent() спам, не держит устаревшее дольше 5с
-
-// Конфигурация DEBUG логов - отключено для производительности
-#define HOLSTER_DEBUG 0
-
-// Макрос для условного логирования - полностью отключен
-#define HOLSTER_DBG(lvl, who, msg)
 
 // Константы для сообщений об ошибках
 #define HOLSTER_OK 0
@@ -357,6 +349,15 @@
 /obj/item/clothing/accessory/holster/detective/Initialize()
 	. = ..()
 	new /obj/item/gun/ballistic/revolver/detective(src)
+
+// Marine holster
+/obj/item/clothing/accessory/holster/marine
+	name = "marine's holster"
+	desc = "Wearing this makes you feel badass, but you suspect it's just a detective's holster from a surplus somewhere."
+
+/obj/item/clothing/accessory/holster/marine/Initialize()
+	. = ..()
+	new /obj/item/gun/ballistic/automatic/pistol/candor(src)
 
 // Nukie holster
 /obj/item/clothing/accessory/holster/nukie
